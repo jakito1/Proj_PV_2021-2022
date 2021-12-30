@@ -1,0 +1,8 @@
+***REMOVED***
+  "dependencies": ***REMOVED***
+    "mssql1": ***REMOVED***
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnection"
+***REMOVED***
+  ***REMOVED***
+***REMOVED***
