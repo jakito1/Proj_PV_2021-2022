@@ -46,19 +46,25 @@
           ***REMOVED***
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.1, )"
           ***REMOVED***
             "Microsoft.AspNetCore.Identity.UI": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.1, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.SqlServer": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.1, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.Tools": ***REMOVED***
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[6.0.1, )"
+          ***REMOVED***
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.1, )"
         ***REMOVED***
         ***REMOVED***
           "imports": [

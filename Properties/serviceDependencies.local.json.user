@@ -1,5 +1,9 @@
 ***REMOVED***
   "dependencies": ***REMOVED***
+    "mssql2": ***REMOVED***
+      "restored": true,
+      "restoreTime": "2021-12-30T17:56:19.5719741Z"
+  ***REMOVED***
     "mssql1": ***REMOVED***
       "restored": true,
       "restoreTime": "2021-12-30T17:41:11.7809987Z"

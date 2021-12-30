@@ -3,6 +3,10 @@
     "mssql1": ***REMOVED***
       "type": "mssql",
       "connectionId": "ConnectionStrings:DefaultConnection"
+  ***REMOVED***
+    "mssql2": ***REMOVED***
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
 ***REMOVED***
   ***REMOVED***
 ***REMOVED***
