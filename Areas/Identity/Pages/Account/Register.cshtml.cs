@@ -159,7 +159,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         {
             try
             {
-                return Activator.CreateInstance<UserAccount>();
+                return new UserAccount();
             }
             catch
             {
