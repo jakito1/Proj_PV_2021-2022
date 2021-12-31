@@ -9,15 +9,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NutriFitWeb.Areas.Identity.Data;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 ***REMOVED***
     public class LogoutModel : PageModel
     ***REMOVED***
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<UserAccount> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
-        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<UserAccount> signInManager, ILogger<LogoutModel> logger)
         ***REMOVED***
             _signInManager = signInManager;
             _logger = logger;

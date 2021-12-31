@@ -159,7 +159,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         ***REMOVED***
             try
             ***REMOVED***
-                return Activator.CreateInstance<UserAccount>();
+                return new UserAccount();
         ***REMOVED***
             catch
             ***REMOVED***
