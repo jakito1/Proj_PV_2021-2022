@@ -25,7 +25,7 @@ namespace NutriFitWeb.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             ***REMOVED***
-                From = new EmailAddress("noReply@NutriFit.com", "Password Recovery"),
+                From = new EmailAddress("nutrifit.web@protonmail.com", "Password Recovery"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
