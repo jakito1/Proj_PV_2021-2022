@@ -9889,7 +9889,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\eufra\\.nuget\\packages\\": {}
+    "C:\\Users\\eufra\\.nuget\\packages\\": {},
+    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -9900,6 +9901,9 @@
       "packagesPath": "C:\\Users\\eufra\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\eufra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -9976,7 +9980,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
