@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -13,6 +15,82 @@ html {
   min-height: 100%;
 }
 
+header {
+    margin-bottom: 0px;
+}
+
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* NutriFitWeb Header Title / Home Button */
+.navbar-light .navbar-brand {
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    color: #00A2E8;
+}
+
+.navbar-light:hover .navbar-brand:hover {
+    color: dodgerblue;
+}
+
+/* Header */
+.bg-white {
+    background-color: #00A2E8 !important;
+}
+
+/* Register and Login Buttons*/
+.text-dark {
+    font-size: 25px;
+    color: white !important;
+}
+
+/*Margin between inputs*/
+input {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/*Log in container*/
+.container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/*Login local account form*/
+.col-md-4 {
+    width: 50%;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button {
+    margin-bottom: 30px;
+    background-color: #00A2E8 !important;
+}
+
+/* Titles*/
+h1 {
+    color: #00A2E8 !important;
+    font-weight: 900 !important;
+    font-size: 500% !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Different type of authentication section */
+.anotherLoginService {
+    margin-top: 30px;
+}
+
+#forgot-password, #register-new-account, #resend-confirmation {
+    color: #00A2E8 !important;
+    text-decoration: none;
+    font-weight: bold;
 }
