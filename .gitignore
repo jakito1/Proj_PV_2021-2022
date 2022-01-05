@@ -50,3 +50,9 @@ Thumbs.db
 
 
 /.vs/NutriFitWeb/v17/**
+
+*.cache
+
+**/Debug
+
+/obj
