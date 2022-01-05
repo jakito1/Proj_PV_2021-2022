@@ -9889,23 +9889,19 @@
     ]
 ***REMOVED***
   "packageFolders": ***REMOVED***
-    "C:\\Users\\eufra\\.nuget\\packages\\": ***REMOVED******REMOVED***,
-    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": ***REMOVED******REMOVED***
+    "C:\\Users\\tidag\\.nuget\\packages\\": ***REMOVED******REMOVED***
 ***REMOVED***
   "project": ***REMOVED***
     "version": "1.0.0",
     "restore": ***REMOVED***
-      "projectUniqueName": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj",
+      "projectUniqueName": "C:\\Users\\tidag\\Desktop\\Projeto ESA PV\\nutrifitweb\\NutriFitWeb.csproj",
       "projectName": "NutriFitWeb",
-      "projectPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj",
-      "packagesPath": "C:\\Users\\eufra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\obj\\",
+      "projectPath": "C:\\Users\\tidag\\Desktop\\Projeto ESA PV\\nutrifitweb\\NutriFitWeb.csproj",
+      "packagesPath": "C:\\Users\\tidag\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tidag\\Desktop\\Projeto ESA PV\\nutrifitweb\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\eufra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tidag\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9980,7 +9976,7 @@
             "privateAssets": "all"
       ***REMOVED***
       ***REMOVED***
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
   ***REMOVED***
 ***REMOVED***
   ***REMOVED***

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 html ***REMOVED***
   font-size: 14px;
 ***REMOVED***
@@ -13,6 +15,82 @@ html ***REMOVED***
   min-height: 100%;
 ***REMOVED***
 
+header ***REMOVED***
+    margin-bottom: 0px;
+***REMOVED***
+
 body ***REMOVED***
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+***REMOVED***
+
+/* NutriFitWeb Header Title / Home Button */
+.navbar-light .navbar-brand ***REMOVED***
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    color: #00A2E8;
+***REMOVED***
+
+.navbar-light:hover .navbar-brand:hover ***REMOVED***
+    color: dodgerblue;
+***REMOVED***
+
+/* Header */
+.bg-white ***REMOVED***
+    background-color: #00A2E8 !important;
+***REMOVED***
+
+/* Register and Login Buttons*/
+.text-dark ***REMOVED***
+    font-size: 25px;
+    color: white !important;
+***REMOVED***
+
+/*Margin between inputs*/
+input ***REMOVED***
+    margin-top: 30px;
+    margin-bottom: 20px;
+***REMOVED***
+
+/*Log in container*/
+.container ***REMOVED***
+    margin-top: 50px;
+    text-align: center;
+***REMOVED***
+
+/*Login local account form*/
+.col-md-4 ***REMOVED***
+    width: 50%;
+    display: inline-block;
+    margin-top: 20px;
+***REMOVED***
+
+button ***REMOVED***
+    margin-bottom: 30px;
+    background-color: #00A2E8 !important;
+***REMOVED***
+
+/* Titles*/
+h1 ***REMOVED***
+    color: #00A2E8 !important;
+    font-weight: 900 !important;
+    font-size: 500% !important;
+    font-family: 'Roboto', sans-serif;
+***REMOVED***
+
+/* Different type of authentication section */
+.anotherLoginService ***REMOVED***
+    margin-top: 30px;
+***REMOVED***
+
+#forgot-password, #register-new-account, #resend-confirmation ***REMOVED***
+    color: #00A2E8 !important;
+    text-decoration: none;
+    font-weight: bold;
 ***REMOVED***
