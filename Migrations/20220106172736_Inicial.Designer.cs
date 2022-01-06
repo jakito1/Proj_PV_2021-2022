@@ -12,7 +12,7 @@ using NutriFitWeb.Data;
 namespace NutriFitWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211231172028_Inicial")]
+    [Migration("20220106172736_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
