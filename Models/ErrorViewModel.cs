@@ -6,4 +6,5 @@ namespace NutriFitWeb.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 ***REMOVED***
+    //this is a comment
 ***REMOVED***
