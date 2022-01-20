@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 using System.Diagnostics;
 
@@ -7,10 +10,15 @@ namespace NutriFitWeb.Controllers
     public class HomeController : Controller
     ***REMOVED***
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<UserAccount> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<UserAccount> userManager, RoleManager<IdentityRole> roleManager)
         ***REMOVED***
             _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            SeedData.Seed(userManager, roleManager).Wait();
     ***REMOVED***
 
         public IActionResult Index()
