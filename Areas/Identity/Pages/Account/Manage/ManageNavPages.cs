@@ -3,6 +3,7 @@
 #nullable disable
 
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace  NutriFitWeb.Areas.Identity.Pages.Account.Manage
