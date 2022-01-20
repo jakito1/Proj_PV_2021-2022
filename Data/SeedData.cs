@@ -48,7 +48,7 @@ namespace NutriFitWeb.Data
         ***REMOVED***
             if (userManager.FindByNameAsync("admin").Result == null)
             ***REMOVED***
-                var admin = new UserAccount ***REMOVED*** UserName = "admin@admin.pt", Email = "admin@admin.pt", EmailConfirmed = true***REMOVED***;
+                var admin = new UserAccount ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true***REMOVED***;
                 var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 if (result.Succeeded)
                 ***REMOVED***
