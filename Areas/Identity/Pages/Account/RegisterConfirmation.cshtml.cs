@@ -52,7 +52,6 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 return RedirectToPage("/Index");
         ***REMOVED***
             returnUrl = returnUrl ?? Url.Content("~/");
-
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             ***REMOVED***
