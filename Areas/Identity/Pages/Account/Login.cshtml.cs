@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 {
@@ -113,7 +114,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
-                var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
+                var result = SignInResult.Failed;
+                if (user != null)
+                {
+                    result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                };
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
