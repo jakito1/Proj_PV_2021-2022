@@ -95,6 +95,39 @@ h1 {
     font-weight: bold;
 }
 
-/*#AccountIndex:active {
+
+
+.settingsBtn:hover {
+    background-color: dodgerblue !important;
+    border-radius: 5px;
+}
+
+    .settingsBtn:hover a {
+        color: white !important;
+    }
+
+/*Centrar conteúdo das definições*/
+.centerSettings {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#enable-authenticator, .btnBorder {
+    background-color: #00A2E8;
+    border-color: #00A2E8;
+}
+
+.nav-pills .nav-link.active {
     background-color: #00A2E8 !important;
-}*/
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #00A2E8 !important;
+}
+
+
+.menuItem {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+}
