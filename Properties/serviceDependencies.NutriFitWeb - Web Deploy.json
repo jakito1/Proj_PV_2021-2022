@@ -1,10 +1,16 @@
 ***REMOVED***
   "dependencies": ***REMOVED***
     "mssql1": ***REMOVED***
+      "ignored": "true",
+      "suggestion": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnection"
+  ***REMOVED***
+    "mssql3": ***REMOVED***
       "secretStore": "AzureAppSettings",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/nutrifitwebdbserver/databases/NutriFitWeb_db",
       "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:DefaultConnection"
+      "connectionId": "NutriFitWebConnectionString"
 ***REMOVED***
   ***REMOVED***
 ***REMOVED***
