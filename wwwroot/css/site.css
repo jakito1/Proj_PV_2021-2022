@@ -131,3 +131,8 @@ h1 {
     margin-top: auto !important;
     margin-bottom: auto !important;
 }
+
+.logoutClick:active {
+    border-color: red !important;
+    
+}
