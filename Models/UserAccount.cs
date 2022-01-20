@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace NutriFitWeb.Areas.Identity.Data
+namespace NutriFitWeb.Models
 {
     public class UserAccount : IdentityUser
     {

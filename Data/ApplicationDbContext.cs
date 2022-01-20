@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Data
 {
