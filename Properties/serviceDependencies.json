@@ -1,12 +1,14 @@
 {
   "dependencies": {
     "mssql2": {
+      "ignored": "true",
+      "suggestion": "true",
       "type": "mssql",
       "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
     },
-    "mssql1": {
+    "mssql3": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:DefaultConnection"
+      "connectionId": "NutriFitWebConnectionString"
     }
   }
 }
