@@ -17,39 +17,49 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 ***REMOVED***
+    /// <summary>
+    /// ForgotPasswordModel class, derived from PageModel.
+    /// </summary>
     public class ForgotPasswordModel : PageModel
     ***REMOVED***
-        private readonly UserManager<UserAccount> _userManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<UserAccount> userManager, IEmailSender emailSender)
+        /// <summary>
+        /// Build the ForgotPasswordModel model to be used when the user forgets the password.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="emailSender">Microsoft EmailSender interface.</param>
+        public ForgotPasswordModel(UserManager<UserAccountModel> userManager, IEmailSender emailSender)
         ***REMOVED***
             _userManager = userManager;
             _emailSender = emailSender;
     ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         ***REMOVED***
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// Gets or sets the Email inputed by the user.
             /// </summary>
             [Required]
             [EmailAddress]
             public string Email ***REMOVED*** get; set; ***REMOVED***
     ***REMOVED***
 
+        /// <summary>
+        /// Handles the Post Request during the ForgotPassword process.
+        /// Send link to the user email with a password reset link.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         ***REMOVED***
             if (ModelState.IsValid)

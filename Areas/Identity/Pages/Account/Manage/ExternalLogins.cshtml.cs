@@ -15,16 +15,25 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 ***REMOVED***
+    /// <summary>
+    /// ExternalLoginsModel class, derived from PageModel.
+    /// </summary>
     public class ExternalLoginsModel : PageModel
     ***REMOVED***
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly SignInManager<UserAccount> _signInManager;
-        private readonly IUserStore<UserAccount> _userStore;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly SignInManager<UserAccountModel> _signInManager;
+        private readonly IUserStore<UserAccountModel> _userStore;
 
+        /// <summary>
+        /// Build the ExternalLoginsModel model to be used when the user wants to view the page where it's possible to use an external login.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="userStore">Provides an abstraction for a store which manages the UserAccountModel.</param>
         public ExternalLoginsModel(
-            UserManager<UserAccount> userManager,
-            SignInManager<UserAccount> signInManager,
-            IUserStore<UserAccount> userStore)
+            UserManager<UserAccountModel> userManager,
+            SignInManager<UserAccountModel> signInManager,
+            IUserStore<UserAccountModel> userStore)
         ***REMOVED***
             _userManager = userManager;
             _signInManager = signInManager;
@@ -32,30 +41,30 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
     ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets a list with the current application supported external logins
         /// </summary>
         public IList<UserLoginInfo> CurrentLogins ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets a list with all the external logins theoretically supported.
         /// </summary>
         public IList<AuthenticationScheme> OtherLogins ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the flag whether to show the ShowRemoveButton.
         /// </summary>
         public bool ShowRemoveButton ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage ***REMOVED*** get; set; ***REMOVED***
 
+        /// <summary>
+        /// Tries to show the possible external login options.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
@@ -70,7 +79,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 .ToList();
 
             string passwordHash = null;
-            if (_userStore is IUserPasswordStore<UserAccount> userPasswordStore)
+            if (_userStore is IUserPasswordStore<UserAccountModel> userPasswordStore)
             ***REMOVED***
                 passwordHash = await userPasswordStore.GetPasswordHashAsync(user, HttpContext.RequestAborted);
         ***REMOVED***
@@ -79,6 +88,12 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return Page();
     ***REMOVED***
 
+        /// <summary>
+        /// Tries to remove an external login information from the user account.
+        /// </summary>
+        /// <param name="loginProvider">string with the provider name</param>
+        /// <param name="providerKey">string with the provider key</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostRemoveLoginAsync(string loginProvider, string providerKey)
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
@@ -99,6 +114,11 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
     ***REMOVED***
 
+        /// <summary>
+        /// Tries to redirect an user to the external login link.
+        /// </summary>
+        /// <param name="provider">string with the provider name</param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostLinkLoginAsync(string provider)
         ***REMOVED***
             // Clear the existing external cookie to ensure a clean login process
@@ -110,6 +130,11 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return new ChallengeResult(provider, properties);
     ***REMOVED***
 
+        /// <summary>
+        /// Tries to add an external login to a user.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Thrown when an error occurs while obtaining the external logins informations</exception>
         public async Task<IActionResult> OnGetLinkLoginCallbackAsync()
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);

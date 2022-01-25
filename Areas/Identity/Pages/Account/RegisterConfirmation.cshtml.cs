@@ -15,36 +15,48 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 ***REMOVED***
+    /// <summary>
+    /// RegisterConfirmationModel class, derived from PageModel.
+    /// </summary>
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     ***REMOVED***
-        private readonly UserManager<UserAccount> _userManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<UserAccount> userManager, IEmailSender sender)
+        /// <summary>
+        /// Build the RegisterConfirmationModel model to be used after the user registers and has to confirm the account.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="sender">Microsoft EmailSender interface.</param>
+        public RegisterConfirmationModel(UserManager<UserAccountModel> userManager, IEmailSender sender)
         ***REMOVED***
             _userManager = userManager;
             _sender = sender;
     ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the Email inputed by the user.
         /// </summary>
         public string Email ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the DisplayConfirmAccountLink (link to confirm the user account)
         /// </summary>
         public bool DisplayConfirmAccountLink ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the EmailConfirmationUrl (link to confirm the user account sent to the email)
         /// </summary>
         public string EmailConfirmationUrl ***REMOVED*** get; set; ***REMOVED***
 
+        /// <summary>
+        /// Handle the Get Request during the RegisterConfirmation process.
+        /// Will get create and request the EmailSender to send an email to the user containing the account confirmation link.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
         ***REMOVED***
             if (email == null)

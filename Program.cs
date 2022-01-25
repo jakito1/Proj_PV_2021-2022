@@ -15,15 +15,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-//builder.Services.AddDefaultIdentity<UserAccount>(options => options.SignIn.RequireConfirmedAccount = true)
+//builder.Services.AddDefaultIdentity<UserAccountModel>(options => options.SignIn.RequireConfirmedAccount = true)
   //  .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
-//builder.Services.AddIdentity<UserAccount, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-builder.Services.AddDefaultIdentity<UserAccount>(options => ***REMOVED*** 
+//builder.Services.AddIdentity<UserAccountModel, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddDefaultIdentity<UserAccountModel>(options => ***REMOVED*** 
     options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
 ***REMOVED***)
