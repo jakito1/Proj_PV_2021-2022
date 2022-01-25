@@ -4,8 +4,15 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<UserAccount>
+    /// <summary>
+    /// ApplicationDbContext class, derives from IdentityDbContext using the UserAccountModel as the model
+    /// </summary>
+    public class ApplicationDbContext : IdentityDbContext<UserAccountModel>
     {
+        /// <summary>
+        /// Build the ApplicationDbContext.
+        /// </summary>
+        /// <param name="options">Options to be used by a DbContext</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

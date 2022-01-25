@@ -1,5 +1,5 @@
 ﻿@using NutriFitWeb.Models
-@inject SignInManager<UserAccount> SignInManager
+@inject SignInManager<UserAccountModel> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

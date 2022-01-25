@@ -13,17 +13,30 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// LogoutModel class, derived from PageModel.
+    /// </summary>
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<UserAccount> _signInManager;
+        private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
-        public LogoutModel(SignInManager<UserAccount> signInManager, ILogger<LogoutModel> logger)
+        /// <summary>
+        /// Build the LogoutModel model to be used when the user decides to logout.
+        /// </summary>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
+        public LogoutModel(SignInManager<UserAccountModel> signInManager, ILogger<LogoutModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Handles the Post Request during the logout process.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();

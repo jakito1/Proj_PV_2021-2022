@@ -7,13 +7,22 @@ using System.Diagnostics;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// HomeController class, derived from Controller.
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<UserAccount> _userManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<UserAccount> userManager, RoleManager<IdentityRole> roleManager)
+        /// <summary>
+        /// Build the HomeController to be used on the main page.
+        /// </summary>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="roleManager">Provides the APIs for managing roles in a persistence store.</param>
+        public HomeController(ILogger<HomeController> logger, UserManager<UserAccountModel> userManager, RoleManager<IdentityRole> roleManager)
         {
             _logger = logger;
             _userManager = userManager;
@@ -21,16 +30,28 @@ namespace NutriFitWeb.Controllers
             SeedData.Seed(userManager, roleManager).Wait();
         }
 
+        /// <summary>
+        /// Redirects to the Index page.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Redirects to the Privacy page.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Privacy()
         {
             return View();
         }
 
+        /// <summary>
+        /// When an error occurs.
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

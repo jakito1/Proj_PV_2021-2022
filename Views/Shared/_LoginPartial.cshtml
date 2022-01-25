@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NutriFitWeb.Models
-@inject SignInManager<UserAccount> SignInManager
-@inject UserManager<UserAccount> UserManager
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

@@ -13,15 +13,24 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// DeletePersonalDataModel class, derived from PageModel.
+    /// </summary>
     public class DeletePersonalDataModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly SignInManager<UserAccount> _signInManager;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<DeletePersonalDataModel> _logger;
 
+        /// <summary>
+        /// Build the DeletePersonalDataModel model to be used when the user wants to view the page where it's possible to delete the account in the account profile.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public DeletePersonalDataModel(
-            UserManager<UserAccount> userManager,
-            SignInManager<UserAccount> signInManager,
+            UserManager<UserAccountModel> userManager,
+            SignInManager<UserAccountModel> signInManager,
             ILogger<DeletePersonalDataModel> logger)
         {
             _userManager = userManager;
@@ -30,21 +39,18 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets the Password inputed by the user.
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
@@ -52,11 +58,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the flag whether the user has or not password in the account.
         /// </summary>
         public bool RequirePassword { get; set; }
 
+        /// <summary>
+        /// Handle the Get Request during the DeletePersonalData process.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGet()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -69,6 +78,12 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Handle the Post Request during the DeletePersonalData process.
+        /// Tries to delete the user account, provided the password given is correct.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Exception thrown when an error occurs during the account deletion</exception>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);

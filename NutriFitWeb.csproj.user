@@ -7,7 +7,7 @@
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_Layout.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_DbContextDialogWidth>650,4</WebStackScaffolding_DbContextDialogWidth>
     <WebStackScaffolding_IdentityDialogWidth>650,4</WebStackScaffolding_IdentityDialogWidth>
-    <ActiveDebugProfile>NutriFitWeb</ActiveDebugProfile>
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <NameOfLastUsedPublishProfile>C:\Users\eufra\OneDrive\Documents\Faculdade\2021-2022\1º Semestre\PV\Projeto\NutriFitWeb\Properties\PublishProfiles\NutriFitWeb - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

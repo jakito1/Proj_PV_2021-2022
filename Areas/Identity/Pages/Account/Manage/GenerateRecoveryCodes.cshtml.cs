@@ -13,13 +13,21 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// GenerateRecoveryCodesModel class, derived from PageModel.
+    /// </summary>
     public class GenerateRecoveryCodesModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
+        /// <summary>
+        /// Build the GenerateRecoveryCodesModel model to be used when the user generates the recovery codes in the account profile.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public GenerateRecoveryCodesModel(
-            UserManager<UserAccount> userManager,
+            UserManager<UserAccountModel> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
         {
             _userManager = userManager;
@@ -27,19 +35,22 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets a temporary string array with the RecoveryCodes
         /// </summary>
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// Handle the Get Request during the recovery codes creation process.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Exception thrown when the user doesn't have 2FA enabled.</exception>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -57,6 +68,11 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Handle the Post Request during the recovery codes creation process.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Exception thrown when the user doesn't have 2FA enabled.</exception>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);

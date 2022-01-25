@@ -3,9 +3,18 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Data
 {
+    /// <summary>
+    /// SeedData class
+    /// </summary>
     public static class SeedData
     {
-        public static async Task Seed(UserManager<UserAccount> userManager, RoleManager<IdentityRole> roleManager)
+        /// <summary>
+        /// Tries to create the roles and the admin
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="roleManager">Provides the APIs for managing roles in a persistence store.</param>
+        /// <returns></returns>
+        public static async Task Seed(UserManager<UserAccountModel> userManager, RoleManager<IdentityRole> roleManager)
         {
             await SeedRolesAsync(roleManager);
             await SeedUsersAsync(userManager);
@@ -44,11 +53,11 @@ namespace NutriFitWeb.Data
             }
         }
 
-        private static async Task SeedUsersAsync(UserManager<UserAccount> userManager)
+        private static async Task SeedUsersAsync(UserManager<UserAccountModel> userManager)
         {
             if (userManager.FindByNameAsync("admin").Result == null)
             {
-                var admin = new UserAccount { UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true};
+                var admin = new UserAccountModel { UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true};
                 var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 if (result.Succeeded)
                 {
