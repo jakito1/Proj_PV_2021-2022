@@ -94,3 +94,45 @@ h1 ***REMOVED***
     text-decoration: none;
     font-weight: bold;
 ***REMOVED***
+
+
+
+.settingsBtn:hover ***REMOVED***
+    background-color: dodgerblue !important;
+    border-radius: 5px;
+***REMOVED***
+
+    .settingsBtn:hover a ***REMOVED***
+        color: white !important;
+***REMOVED***
+
+/*Centrar conteúdo das definições*/
+.centerSettings ***REMOVED***
+    margin-left: auto !important;
+    margin-right: auto !important;
+***REMOVED***
+
+#enable-authenticator, .btnBorder ***REMOVED***
+    background-color: #00A2E8;
+    border-color: #00A2E8;
+***REMOVED***
+
+.nav-pills .nav-link.active ***REMOVED***
+    background-color: #00A2E8 !important;
+    color: white !important;
+***REMOVED***
+
+.nav-pills .nav-link ***REMOVED***
+    color: #00A2E8 !important;
+***REMOVED***
+
+
+.menuItem ***REMOVED***
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+***REMOVED***
+
+.logoutClick:active ***REMOVED***
+    border-color: red !important;
+    
+***REMOVED***

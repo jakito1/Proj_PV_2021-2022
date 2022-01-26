@@ -1,12 +1,14 @@
 ***REMOVED***
   "dependencies": ***REMOVED***
     "mssql2": ***REMOVED***
+      "ignored": "true",
+      "suggestion": "true",
       "type": "mssql",
       "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
   ***REMOVED***
-    "mssql1": ***REMOVED***
+    "mssql3": ***REMOVED***
       "type": "mssql",
-      "connectionId": "ConnectionStrings:DefaultConnection"
+      "connectionId": "NutriFitWebConnectionString"
 ***REMOVED***
   ***REMOVED***
 ***REMOVED***

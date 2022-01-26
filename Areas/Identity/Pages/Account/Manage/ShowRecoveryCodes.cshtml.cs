@@ -6,34 +6,31 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 ***REMOVED***
     /// <summary>
-    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-    ///     directly from your code. This API may change or be removed in future releases.
+    /// ShowRecoveryCodesModel class, derived from PageModel.
     /// </summary>
     public class ShowRecoveryCodesModel : PageModel
     ***REMOVED***
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets a temporary string array with the RecoveryCodes
         /// </summary>
         [TempData]
         public string[] RecoveryCodes ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Handles the Get Request during the code show up process.
         /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet()
         ***REMOVED***
             if (RecoveryCodes == null || RecoveryCodes.Length == 0)
