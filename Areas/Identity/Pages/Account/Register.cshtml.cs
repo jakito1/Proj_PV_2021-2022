@@ -18,23 +18,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// RegisterModel class, derived from PageModel.
+    /// </summary>
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<UserAccount> _signInManager;
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly IUserStore<UserAccount> _userStore;
-        private readonly IUserEmailStore<UserAccount> _emailStore;
+        private readonly SignInManager<UserAccountModel> _signInManager;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IUserStore<UserAccountModel> _userStore;
+        private readonly IUserEmailStore<UserAccountModel> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        /// <summary>
+        /// Build the RegisterModel model to be used when the user decides to register.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="userStore">Provides an abstraction for a store which manages the UserAccountModel.</param>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
+        /// <param name="emailSender">Microsoft EmailSender interface.</param>
         public RegisterModel(
-            UserManager<UserAccount> userManager,
-            IUserStore<UserAccount> userStore,
-            SignInManager<UserAccount> signInManager,
+            UserManager<UserAccountModel> userManager,
+            IUserStore<UserAccountModel> userStore,
+            SignInManager<UserAccountModel> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -47,33 +58,36 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string containing the ErrorMessage.
         /// </summary>
         public string ReturnUrl { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets a list with the ExternalLogins.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// Gets or sets the UserName inputed by the user.
+            /// </summary>
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "User Name")]
+            public string UserName { get; set; }
+
+            /// <summary>
+            /// Gets or sets the Email inputed by the user.
             /// </summary>
             [Required]
             [EmailAddress]
@@ -81,8 +95,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets the Password inputed by the user.
             /// </summary>
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -91,8 +104,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets the repeated Password inputed by the user.
             /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
@@ -100,13 +112,23 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
+        /// <summary>
+        /// Handles the Get Request during the register process.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
+        /// <summary>
+        /// Handles the Post Request during the register process.
+        /// Tries to create a user account.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -115,7 +137,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -155,27 +177,27 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private UserAccount CreateUser()
+        private UserAccountModel CreateUser()
         {
             try
             {
-                return new UserAccount();
+                return new UserAccountModel();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserAccount)}'. " +
-                    $"Ensure that '{nameof(UserAccount)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserAccountModel)}'. " +
+                    $"Ensure that '{nameof(UserAccountModel)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<UserAccount> GetEmailStore()
+        private IUserEmailStore<UserAccountModel> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<UserAccount>)_userStore;
+            return (IUserEmailStore<UserAccountModel>)_userStore;
         }
     }
 }

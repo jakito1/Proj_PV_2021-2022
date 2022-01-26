@@ -1,18 +1,47 @@
 {
   "dependencies": {
+    "mssql3": {
+      "restored": true,
+      "restoreTime": "2022-01-19T22:56:10.0799234Z"
+    },
     "mssql1": {
       "restored": true,
-      "restoreTime": "2022-01-19T19:17:10.7308898Z"
+      "restoreTime": "2022-01-19T22:03:56.0360556Z"
     }
   },
   "parameters": {
-    "mssql1.subscriptionId": {
-      "Name": "mssql1.subscriptionId",
+    "NutriFitWeb.resourceGroupName": {
+      "Name": "NutriFitWeb.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "NutriFitWeb20220119185531ResourceGroup"
+    },
+    "mssql3.subscriptionId": {
+      "Name": "mssql3.subscriptionId",
       "Type": "subscription",
       "Value": "a7288385-be53-42a5-a5ad-679eccf07e3b"
     },
-    "mssql1.resourceGroupName": {
-      "Name": "mssql1.resourceGroupName",
+    "NutriFitWeb.subscriptionId": {
+      "Name": "NutriFitWeb.subscriptionId",
+      "Type": "subscription",
+      "Value": "a7288385-be53-42a5-a5ad-679eccf07e3b"
+    },
+    "subscriptionId": {
+      "Name": "subscriptionId",
+      "Type": "subscription",
+      "Value": "a7288385-be53-42a5-a5ad-679eccf07e3b"
+    },
+    "NutriFitWeb.resourceGroupLocation": {
+      "Name": "NutriFitWeb.resourceGroupLocation",
+      "Type": null,
+      "Value": "southcentralus"
+    },
+    "NutriFitWeb.resourceName": {
+      "Name": "NutriFitWeb.resourceName",
+      "Type": null,
+      "Value": "NutriFitWeb"
+    },
+    "mssql3.resourceGroupName": {
+      "Name": "mssql3.resourceGroupName",
       "Type": "resourceGroup",
       "Value": "NutriFitWeb20220119185531ResourceGroup"
     }
