@@ -27,7 +27,13 @@ namespace NutriFitWeb.Controllers
             _logger = logger;
             _userManager = userManager;
             _roleManager = roleManager;
-            SeedData.Seed(userManager, roleManager).Wait();
+            try
+            {
+                SeedData.Seed(userManager, roleManager).Wait();
+            } catch
+            {
+              
+            }
         }
 
         /// <summary>
