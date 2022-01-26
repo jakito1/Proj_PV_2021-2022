@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NutriFitWebTest\**" />
     <Compile Remove="VSdoc\**" />
+    <Content Remove="NutriFitWebTest\**" />
     <Content Remove="VSdoc\**" />
+    <EmbeddedResource Remove="NutriFitWebTest\**" />
     <EmbeddedResource Remove="VSdoc\**" />
+    <None Remove="NutriFitWebTest\**" />
     <None Remove="VSdoc\**" />
   </ItemGroup>
 
