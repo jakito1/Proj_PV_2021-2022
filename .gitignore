@@ -64,3 +64,5 @@ Thumbs.db
 /Properties/ServiceDependencies/NutriFitWeb - Web Deploy
 /Properties/PublishProfiles
 /VSdoc
+/NutriFitWeb\NutriFitWebTest\obj
+NutriFitWeb.csproj.user

@@ -1,23 +1,23 @@
 ***REMOVED***
   "format": 1,
   "restore": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED******REMOVED***
+    "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED******REMOVED***
 ***REMOVED***
   "projects": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
+    "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj": ***REMOVED***
       "version": "1.0.0",
       "restore": ***REMOVED***
-        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj",
+        "projectUniqueName": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj",
         "projectName": "NutriFitWeb",
-        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj",
-        "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\obj\\",
+        "projectPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj",
+        "packagesPath": "C:\\Users\\eufra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Luís\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eufra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,20 +96,20 @@
     ***REMOVED***
   ***REMOVED***
   ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
+    "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
       "version": "1.0.0",
       "restore": ***REMOVED***
-        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectUniqueName": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\NutriFitWebTest.csproj",
         "projectName": "NutriFitWebTest",
-        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
-        "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+        "projectPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "packagesPath": "C:\\Users\\eufra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Luís\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eufra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -123,8 +123,8 @@
           "net6.0": ***REMOVED***
             "targetAlias": "net6.0",
             "projectReferences": ***REMOVED***
-              "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
-                "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj"
+              "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj": ***REMOVED***
+                "projectPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj"
           ***REMOVED***
         ***REMOVED***
       ***REMOVED***
