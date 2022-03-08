@@ -11578,23 +11578,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Luís\\.nuget\\packages\\": {},
+    "C:\\Users\\eufra\\.nuget\\packages\\": {},
     "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+      "projectUniqueName": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\NutriFitWebTest.csproj",
       "projectName": "NutriFitWebTest",
-      "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
-      "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-      "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+      "projectPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+      "packagesPath": "C:\\Users\\eufra\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWebTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Luís\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\eufra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11608,8 +11608,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj": {
-              "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWeb.csproj"
+            "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj": {
+              "projectPath": "C:\\Users\\eufra\\OneDrive\\Documents\\Faculdade\\2021-2022\\1º Semestre\\PV\\Projeto\\NutriFitWeb\\NutriFitWeb.csproj"
             }
           }
         }
