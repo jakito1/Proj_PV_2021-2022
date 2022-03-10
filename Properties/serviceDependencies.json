@@ -6,9 +6,9 @@
       "type": "mssql",
       "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
     },
-    "mssql3": {
+    "mssql1": {
       "type": "mssql",
-      "connectionId": "NutriFitWebConnectionString"
+      "connectionId": "ConnectionStrings:DefaultConnection"
     }
   }
 }
