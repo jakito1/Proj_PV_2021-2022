@@ -6,9 +6,9 @@
       "type": "mssql",
       "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
   ***REMOVED***
-    "mssql3": ***REMOVED***
+    "mssql1": ***REMOVED***
       "type": "mssql",
-      "connectionId": "NutriFitWebConnectionString"
+      "connectionId": "ConnectionStrings:DefaultConnection"
 ***REMOVED***
   ***REMOVED***
 ***REMOVED***
