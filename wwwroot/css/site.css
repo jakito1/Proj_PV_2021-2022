@@ -126,13 +126,44 @@ h1 {
     color: #00A2E8 !important;
 }
 
+.nav-link:hover{
+    color:lightgrey;
+}
 
 .menuItem {
     margin-top: auto !important;
     margin-bottom: auto !important;
+    margin-left: 50px;
 }
+
 
 .logoutClick:active {
     border-color: red !important;
     
+}
+
+.notLoggedInHome{
+    margin: 2% !important;
+}
+
+.imageHome {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.notificationBell{
+    margin-right: 20px;
+    color: white;
+    font-size: 1.8em;
+}
+
+.mainPageGyms  {
+    color: #00A2E8 !important;
+    font-weight: bold !important;
+    margin: 50px !important;
+}
+
+
+.menuItem:hover {
+    color: lightgrey !important;
 }

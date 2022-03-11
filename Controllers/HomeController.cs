@@ -54,6 +54,11 @@ namespace NutriFitWeb.Controllers
             return View();
         }
 
+        public IActionResult Users()
+        {
+            return View();
+        }
+
         /// <summary>
         /// When an error occurs.
         /// </summary>
