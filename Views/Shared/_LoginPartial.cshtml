@@ -6,14 +6,44 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 ***REMOVED***
-    <li class="nav-item menuItem">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
+        @if (User.IsInRole("gym"))
+        ***REMOVED***
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Nutricionists">Nutricionistas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Trainers">Treinadores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Clients">Clientes</a>
+            </li>
+    ***REMOVED***else if (User.IsInRole("administrator"))
+        ***REMOVED***
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Index">Utilizadores</a>
+            </li>
+    ***REMOVED***
+
+        @if (!(User.IsInRole("administrator")))
+        ***REMOVED***
+            <li class="nav-item">
+                <a  class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            </li>
+    ***REMOVED***
+        
     <li class="nav-item logoutClick">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new ***REMOVED*** area = "" ***REMOVED***)">
             <button  type="submit" class="nav-link btn btn-link text-dark menuItem">Logout</button>
         </form>
     </li>
+
+    @if (!(User.IsInRole("administrator")))
+        ***REMOVED***
+            <li class="nav-item notificationBell">
+                <a  class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-bell"></i></a>    
+            </li>
+    ***REMOVED***
+    
 ***REMOVED***
 else
 ***REMOVED***
@@ -21,7 +51,7 @@ else
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>*/
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 ***REMOVED***
 </ul>

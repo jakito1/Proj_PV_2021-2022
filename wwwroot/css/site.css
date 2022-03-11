@@ -126,13 +126,44 @@ h1 ***REMOVED***
     color: #00A2E8 !important;
 ***REMOVED***
 
+.nav-link:hover***REMOVED***
+    color:lightgrey;
+***REMOVED***
 
 .menuItem ***REMOVED***
     margin-top: auto !important;
     margin-bottom: auto !important;
+    margin-left: 50px;
 ***REMOVED***
+
 
 .logoutClick:active ***REMOVED***
     border-color: red !important;
     
+***REMOVED***
+
+.notLoggedInHome***REMOVED***
+    margin: 2% !important;
+***REMOVED***
+
+.imageHome ***REMOVED***
+    max-width: 100%;
+    max-height: 100%;
+***REMOVED***
+
+.notificationBell***REMOVED***
+    margin-right: 20px;
+    color: white;
+    font-size: 1.8em;
+***REMOVED***
+
+.mainPageGyms  ***REMOVED***
+    color: #00A2E8 !important;
+    font-weight: bold !important;
+    margin: 50px !important;
+***REMOVED***
+
+
+.menuItem:hover ***REMOVED***
+    color: lightgrey !important;
 ***REMOVED***

@@ -59,9 +59,15 @@ namespace NutriFitWeb.Data
             ***REMOVED***
                 var admin = new UserAccountModel ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true***REMOVED***;
                 var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var gymTest = new UserAccountModel ***REMOVED*** UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true ***REMOVED***;
+                var result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 if (result.Succeeded)
                 ***REMOVED***
                     await userManager.AddToRoleAsync(admin, "administrator");
+            ***REMOVED***
+                if (result1.Succeeded)
+                ***REMOVED***
+                    await userManager.AddToRoleAsync(gymTest, "gym");
             ***REMOVED***
         ***REMOVED***
     ***REMOVED***
