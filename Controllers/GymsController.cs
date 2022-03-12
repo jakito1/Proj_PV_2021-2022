@@ -12,9 +12,9 @@ namespace NutriFitWeb.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Gym.ToListAsync());
+            return View();
         }
     }
 }

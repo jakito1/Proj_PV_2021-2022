@@ -21,6 +21,6 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.Client>? Client { get; set; }
         public DbSet<NutriFitWeb.Models.Gym>? Gym { get; set; }
 
+        //this is another comment
     }
-    //this is another comment
 }

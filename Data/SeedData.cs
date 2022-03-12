@@ -14,10 +14,10 @@ namespace NutriFitWeb.Data
         /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
         /// <param name="roleManager">Provides the APIs for managing roles in a persistence store.</param>
         /// <returns></returns>
-        public static async Task Seed(UserManager<UserAccountModel> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task Seed(UserManager<UserAccountModel> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             await SeedRolesAsync(roleManager);
-            await SeedUsersAsync(userManager);
+            await SeedUsersAsync(userManager, context);
         }
 
         private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
@@ -53,7 +53,7 @@ namespace NutriFitWeb.Data
             }
         }
 
-        private static async Task SeedUsersAsync(UserManager<UserAccountModel> userManager)
+        private static async Task SeedUsersAsync(UserManager<UserAccountModel> userManager, ApplicationDbContext context)
         {
             if (userManager.FindByNameAsync("admin").Result == null)
             {
@@ -61,16 +61,29 @@ namespace NutriFitWeb.Data
                 var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 var gymTest = new UserAccountModel { UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true };
                 var result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest = new UserAccountModel { UserName = "client", Email = "client@client.pt", EmailConfirmed = true };
+                var result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+
+                Gym gym = new() { GymId = 1, Name = "Teste", UserAccount = gymTest };
+                Client client = new() { ClientId = 1, Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym};
+
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "administrator");
                 }
-                if (result1.Succeeded)
-                {
+                if (result1.Succeeded)          
+                {                 
+                    await context.Gym.AddAsync(gym);
+                    await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(gymTest, "gym");
+                }
+                if (result2.Succeeded)
+                {                   
+                    await context.Client.AddAsync(client);
+                    await context.SaveChangesAsync();                  
+                    await userManager.AddToRoleAsync(clientTest, "client");
                 }
             }
         }
-
     }
 }

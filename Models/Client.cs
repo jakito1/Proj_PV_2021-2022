@@ -6,10 +6,10 @@ namespace NutriFitWeb.Models
     {
 
         public int ClientId { get; set; }
-        public double Weight { get; set; }
-        public double Height { get; set; }
+        public double? Weight { get; set; }
+        public double? Height { get; set; }
 
-        public int GymId { get; set; }
+        public Gym? Gym { get; set; }
 
 
         public UserAccountModel? UserAccountModel { get; set; }
