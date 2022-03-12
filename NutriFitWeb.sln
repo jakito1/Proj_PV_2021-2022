@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "NutriFitWeb", "NutriFitWeb.csproj", "***REMOVED***D72B6C57-9E91-4FDD-9592-461702AEF571***REMOVED***"
 EndProject
-Project("***REMOVED***FAE04EC0-301F-11D3-BF4B-00C04F79EFBC***REMOVED***") = "NutriFitWebTest", "NutriFitWebTest\NutriFitWebTest.csproj", "***REMOVED***CD9577BC-35A0-4586-8827-1DAD773910AE***REMOVED***"
+Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "NutriFitWebTest", "NutriFitWebTest\NutriFitWebTest.csproj", "***REMOVED***CD9577BC-35A0-4586-8827-1DAD773910AE***REMOVED***"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

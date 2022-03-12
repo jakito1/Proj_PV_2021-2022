@@ -8,6 +8,7 @@
 ***REMOVED***
         @if (User.IsInRole("gym"))
         ***REMOVED***
+            @UserManager.GetUserId(User)
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Nutricionists">Nutricionistas</a>
             </li>
@@ -15,7 +16,7 @@
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Trainers">Treinadores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Clients">Clientes</a>
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
     ***REMOVED***else if (User.IsInRole("administrator"))
         ***REMOVED***
