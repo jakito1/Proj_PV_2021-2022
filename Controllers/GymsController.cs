@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NutriFitWeb.Data;
 
 namespace NutriFitWeb.Controllers
 {
     public class GymsController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+        public GymsController(ApplicationDbContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Gym.ToListAsync());
         }
     }
 }
