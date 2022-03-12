@@ -1,4 +1,10 @@
-﻿@model int
+﻿@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@model NutriFitWeb.Models.Gym
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
+
+@inject ICountUsers CountUsers
 
 @***REMOVED***
     ViewData["Title"] = "Gym Home Page";
@@ -6,7 +12,7 @@
 
 <div class="text-center">
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
-    <p class="mainPageGyms">Clientes: </p>
+    <p class="mainPageGyms">Clientes: @CountUsers.UserCount("Client", UserManager.GetUserId(User)).Count()</p>
     <p class="mainPageGyms">Treinadores: contar número de utilizadores com role Trainer</p>
     <p class="mainPageGyms">Nutricionistas: contar número de utilizadores com role Nutricionist</p>
 
