@@ -111,10 +111,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword ***REMOVED*** get; set; ***REMOVED***
 
-            
-            [Required]
-            [DataType("UserRole")]
-            public string UserRole ***REMOVED*** get; set; ***REMOVED***
+        
     ***REMOVED***
 
         /// <summary>
@@ -142,6 +139,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ***REMOVED***
                 var user = CreateUser();
 
+                string accountType = Request.Form["AccountType"].ToString();
+                if (string.IsNullOrEmpty(accountType)) ***REMOVED*** accountType = "client"; ***REMOVED***
+
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -162,7 +162,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='***REMOVED***HtmlEncoder.Default.Encode(callbackUrl)***REMOVED***'>clicking here</a>.");
 
-                    await _userManager.AddToRoleAsync(user, Input.UserRole);
+                    await _userManager.AddToRoleAsync(user, accountType);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     ***REMOVED***
