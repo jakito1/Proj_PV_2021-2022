@@ -73,14 +73,14 @@ namespace NutriFitWeb.Data
                 }
                 if (result1.Succeeded)          
                 {                 
-                    await context.Gym.AddAsync(gym);
-                    await context.SaveChangesAsync();
+                    //await context.Gym.AddAsync(gym);
+                    //await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(gymTest, "gym");
                 }
                 if (result2.Succeeded)
                 {                   
-                    await context.Client.AddAsync(client);
-                    await context.SaveChangesAsync();                  
+                    //await context.Client.AddAsync(client);
+                    //await context.SaveChangesAsync();                  
                     await userManager.AddToRoleAsync(clientTest, "client");
                 }
             }
