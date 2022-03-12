@@ -73,14 +73,14 @@ namespace NutriFitWeb.Data
             ***REMOVED***
                 if (result1.Succeeded)          
                 ***REMOVED***                 
-                    await context.Gym.AddAsync(gym);
-                    await context.SaveChangesAsync();
+                    //await context.Gym.AddAsync(gym);
+                    //await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(gymTest, "gym");
             ***REMOVED***
                 if (result2.Succeeded)
                 ***REMOVED***                   
-                    await context.Client.AddAsync(client);
-                    await context.SaveChangesAsync();                  
+                    //await context.Client.AddAsync(client);
+                    //await context.SaveChangesAsync();                  
                     await userManager.AddToRoleAsync(clientTest, "client");
             ***REMOVED***
         ***REMOVED***

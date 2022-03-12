@@ -107,9 +107,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ///     Gets or sets the repeated Password inputed by the user.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirmar password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword ***REMOVED*** get; set; ***REMOVED***
+
+            
+            [Required]
+            [DataType("UserRole")]
+            public string UserRole ***REMOVED*** get; set; ***REMOVED***
     ***REMOVED***
 
         /// <summary>
@@ -156,6 +161,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='***REMOVED***HtmlEncoder.Default.Encode(callbackUrl)***REMOVED***'>clicking here</a>.");
+
+                    await _userManager.AddToRoleAsync(user, Input.UserRole);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     ***REMOVED***
