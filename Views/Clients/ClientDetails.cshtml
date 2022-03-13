@@ -1,0 +1,74 @@
+﻿@model NutriFitWeb.Models.Client
+
+@***REMOVED***
+    ViewData["Title"] = "Details";
+***REMOVED***
+
+<h1>Details</h1>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.ClientFirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ClientFirstName == null || Model.ClientFirstName == "")
+            ***REMOVED***
+                <p>N/A</p>
+        ***REMOVED***else***REMOVED***
+                @Html.DisplayFor(Model => Model.ClientFirstName)
+        ***REMOVED***
+        </dd>
+        <dt class = "col-sm-2">
+                @Html.DisplayNameFor(Model => Model.ClientLastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ClientLastName == null || Model.ClientLastName == "")
+            ***REMOVED***
+                <p>N/A</p>
+        ***REMOVED***else***REMOVED***
+                @Html.DisplayFor(Model => Model.ClientLastName)
+        ***REMOVED***
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.ClientAge)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ClientLastName == null || Model.ClientLastName == "")
+            ***REMOVED***
+                <p>N/A</p>
+        ***REMOVED***else***REMOVED***
+                @Html.DisplayFor(Model => Model.ClientAge)
+        ***REMOVED***
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Weight)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Weight == null || Model.Weight == 0)
+            ***REMOVED***
+               <p>N/A</p>
+        ***REMOVED***else
+             ***REMOVED***
+                 @Html.DisplayFor(Model => Model.Weight)
+         ***REMOVED***   
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Height)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Height == null || Model.Height == 0)
+            ***REMOVED***
+                <p>N/A</p>
+        ***REMOVED***else
+            ***REMOVED***
+                @Html.DisplayFor(Model => Model.Height)
+        ***REMOVED***
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="ShowClients">Back to List</a>
+</div>
