@@ -22,6 +22,7 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             var returnQuery = _context.Client.Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
+                Include(a => a.Gym.UserAccount).
                 Where(a => a.Gym.UserAccount.Id == user.Id || a.Gym.UserAccount.Id != user.Id).
                 OrderByDescending(a => a.Gym);
             return View(await returnQuery.ToListAsync());
