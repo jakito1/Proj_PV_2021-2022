@@ -1,4 +1,8 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Client>
+﻿@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<NutriFitWeb.Models.Client>
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
 
 @{
     ViewData["Title"] = "ShowClients";
@@ -28,36 +32,40 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                        @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)
-                    
+                @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)  
             </td>
-
-                        <td>
-                    @if (item.Weight == null || item.Weight == 0)
-                    {
-                        <p>N/A</p>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.Weight)
-                    }   
+            <td>
+                @if (item.Weight == null || item.Weight == 0)
+                {
+                    <p>N/A</p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Weight)
+                }   
                     
             </td>
             <td>
                 @if (item.Height == null || item.Height == 0)
-                    {
-                        <p>N/A</p>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.Height)
-                    }
+                {
+                    <p>N/A</p>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Height)
+                }
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                <a asp-action="ClientDetails" asp-route-id="@item.ClientId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                @if(UserManager.GetUserId(User) == item.Gym.UserAccount.Id){
+                    <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                }else if(item.Gym.UserAccount.Id == null){
+                    <p>Add</p>
+                }
+                @*<a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |*@
+                <a asp-action="ClientDetails" asp-route-id="@item.ClientId">Details</a> 
+                @*<a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>*@
             </td>
+
         </tr>
 }
     </tbody>
