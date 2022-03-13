@@ -67,6 +67,18 @@
                 @Html.DisplayFor(Model => Model.Height)
             }
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Gym)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Gym.GymName == null || Model.Gym.GymName == "")
+            {
+                <p>N/A</p>
+            }else
+            {
+                @Html.DisplayFor(Model => Model.Gym.GymName)
+            }
+        </dd>
     </dl>
 </div>
 <div>

@@ -36,9 +36,8 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            Client? test = await _context.Client.Where(a => a.ClientId == id).FirstOrDefaultAsync();
 
-            return View(test);
+            return View(await _context.Client.Include(a => a.Gym).Where(a => a.ClientId == id).FirstOrDefaultAsync());
         }
 
     }
