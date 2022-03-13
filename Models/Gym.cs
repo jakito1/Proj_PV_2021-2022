@@ -1,8 +1,13 @@
-﻿namespace NutriFitWeb.Models
+﻿using System.ComponentModel;
+
+namespace NutriFitWeb.Models
 ***REMOVED***
     public class Gym
     ***REMOVED***
+        [DisplayName("ID do Ginásio")]
         public int GymId ***REMOVED*** get; set; ***REMOVED***
+
+        [DisplayName("Nome")]
         public string? GymName ***REMOVED*** get; set; ***REMOVED***
 
         public UserAccountModel? UserAccount ***REMOVED*** get; set; ***REMOVED***
