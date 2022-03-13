@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
@@ -33,6 +34,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<UserAccountModel> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         /// <summary>
         /// Build the RegisterModel model to be used when the user decides to register.
@@ -47,7 +49,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             IUserStore<UserAccountModel> userStore,
             SignInManager<UserAccountModel> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -55,6 +58,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -161,6 +165,21 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    if (accountType.Equals("client")) {
+                        await _context.Client.AddAsync(new() { UserAccountModel = user});
+                    } else if (accountType.Equals("trainer"))
+                    {
+                        //toDo
+                    } else if (accountType.Equals("nutritionist"))
+                    {
+                        //toDo
+                    }else if (accountType.Equals("gym"))
+                    {
+                        await _context.Gym.AddAsync(new() { UserAccount = user });
+                    }
+
+                    await _context.SaveChangesAsync();
 
                     await _userManager.AddToRoleAsync(user, accountType);
 
