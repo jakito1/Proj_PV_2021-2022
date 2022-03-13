@@ -13,7 +13,7 @@
 <div class="text-center">
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
     <p class="mainPageGyms">Clientes: @CountUsers.UserCount("client", UserManager.GetUserId(User)).Count()</p>
-    <p class="mainPageGyms">Treinadores: @CountUsers.UserCount("trainer", UserManager.GetUserId(User)).Count()</p></p>
-    <p class="mainPageGyms">Nutricionistas: @CountUsers.UserCount("nutritionist", UserManager.GetUserId(User)).Count()</p></p>
+    <p class="mainPageGyms">Treinadores: @CountUsers.UserCount("trainer", UserManager.GetUserId(User)).Count()</p>
+    <p class="mainPageGyms">Nutricionistas: @CountUsers.UserCount("nutritionist", UserManager.GetUserId(User)).Count()</p>
 
 </div>

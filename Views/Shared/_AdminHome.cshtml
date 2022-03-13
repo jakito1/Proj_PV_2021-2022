@@ -1,7 +1,36 @@
-﻿@{
+﻿@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@*@model IEnumerable<NutriFitWeb.Models.Client>*@
+
+@{
     ViewData["Title"] = "Admin Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Teste</h1>
-</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tipo de Cliente</th>
+            <th>ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@*@foreach (var item in Model) {@**@
+        <tr>
+            <td>cliente</td>           
+            <td><p>Eliminar     Editar</p>
+            </td>
+        </tr>
+        <tr>
+            <td>nutricionista</td>
+            <td><p>Eliminar     Editar</p>
+            </td>
+        </tr>
+        <tr>
+            <td>treinador</td>
+            <td><p>Eliminar     Editar</p>
+            </td>
+        </tr>
+@*}*@
+    </tbody>
+</table>
