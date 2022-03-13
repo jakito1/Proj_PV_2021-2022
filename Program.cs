@@ -4,6 +4,7 @@ using NutriFitWeb.Models;
 using NutriFitWeb.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using NutriFitWeb.Services;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,16 +14,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-//builder.Services.AddDefaultIdentity<UserAccountModel>(options => options.SignIn.RequireConfirmedAccount = true)
-  //  .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IEmailSender, EmailSender>();
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.AddSingleton<IEmailSender>(new EmailSender (builder.Configuration.GetConnectionString("SendGridKey")));
 
 builder.Services.AddScoped<ICountUsers, CountUsers>();
 
-//builder.Services.AddIdentity<UserAccountModel, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddDefaultIdentity<UserAccountModel>(options => ***REMOVED*** 
     options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
