@@ -19,7 +19,7 @@ namespace NutriFitWeb.Services
             IQueryable<string>? usersIDs = from a in _context.UserRoles where a.RoleId == role.First() select a.UserId;
             IQueryable<UserAccountModel>? returnQuery = from a in _context.Client where a.Gym.GymId == loggedInGym.First() select a.UserAccountModel;
 
-            return returnQuery;
+            return returnQuery.ToList();
         }
 
     }
