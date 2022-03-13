@@ -1,30 +1,64 @@
-﻿@model NutriFitWeb.Models.Client
+﻿@model IEnumerable<NutriFitWeb.Models.Client>
 
 @***REMOVED***
-    ViewData["Title"] = "Clients View";
+    ViewData["Title"] = "ShowClients";
 ***REMOVED***
 
-<h1>ClientsView</h1>
+<h1>ShowClients</h1>
 
-<div>
-    <h4>Client</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Height)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Height)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ClientId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserAccountModel.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) ***REMOVED***
+        <tr>
+            <td>
+                        @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)
+                    
+            </td>
+
+                        <td>
+                    @if (item.Weight == null || item.Weight == 0)
+                    ***REMOVED***
+                        <p>N/A</p>
+                ***REMOVED***
+                    else
+                    ***REMOVED***
+                        @Html.DisplayFor(modelItem => item.Weight)
+                ***REMOVED***   
+                    
+            </td>
+            <td>
+                @if (item.Height == null || item.Height == 0)
+                    ***REMOVED***
+                        <p>N/A</p>
+                ***REMOVED***
+                    else
+                    ***REMOVED***
+                        @Html.DisplayFor(modelItem => item.Height)
+                ***REMOVED***
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+            </td>
+        </tr>
+***REMOVED***
+    </tbody>
+</table>
