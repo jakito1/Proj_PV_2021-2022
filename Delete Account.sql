@@ -1,6 +1,7 @@
 ﻿select * from dbo.AspNetRoles;
-select * from dbo.AspNetUsers;
 select * from dbo.AspNetUserRoles;
+select * from dbo.AspNetUsers;
+
 select * from dbo.Client;
 select * from dbo.Gym;
 insert into dbo.Client (ClientId, Weight, Height) values (1, 100, 100);

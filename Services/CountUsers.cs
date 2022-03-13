@@ -16,8 +16,18 @@ namespace NutriFitWeb.Services
         {
             IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccount.Id == loggedIn select a.GymId;
             IQueryable<string> ? role = from a in _context.Roles where a.Name == userType select a.Id;
-            IQueryable<string>? usersIDs = from a in _context.UserRoles where a.RoleId == role.First() select a.UserId;
-            IQueryable<UserAccountModel>? returnQuery = from a in _context.Client where a.Gym.GymId == loggedInGym.First() select a.UserAccountModel;
+            IQueryable<UserAccountModel>? returnQuery = null;
+            if (userType == "client")
+            {
+                returnQuery = from a in _context.Client where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+            } else if (userType == "trainer")
+            {
+                returnQuery = from a in _context.Trainer where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+            } else if (userType == "nutritionist")
+            {
+                returnQuery = from a in _context.Nutritionist where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+            }
+
 
             return returnQuery.ToList();
         }

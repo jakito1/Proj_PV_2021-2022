@@ -19,6 +19,8 @@ namespace NutriFitWeb.Data
         }
 
         public DbSet<NutriFitWeb.Models.Client>? Client { get; set; }
+        public DbSet<NutriFitWeb.Models.Nutritionist>? Nutritionist { get; set; }
+        public DbSet<NutriFitWeb.Models.Trainer>? Trainer { get; set; }
         public DbSet<NutriFitWeb.Models.Gym>? Gym { get; set; }
 
         //this is another comment
