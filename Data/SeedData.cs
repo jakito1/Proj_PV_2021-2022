@@ -64,8 +64,8 @@ namespace NutriFitWeb.Data
                 var clientTest = new UserAccountModel ***REMOVED*** UserName = "client", Email = "client@client.pt", EmailConfirmed = true ***REMOVED***;
                 var result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
-                Gym gym = new() ***REMOVED*** GymId = 1, Name = "Teste", UserAccount = gymTest ***REMOVED***;
-                Client client = new() ***REMOVED*** ClientId = 1, Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym***REMOVED***;
+                Gym gym = new() ***REMOVED***Name = "Teste", UserAccount = gymTest ***REMOVED***;
+                Client client = new() ***REMOVED***Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym***REMOVED***;
 
                 if (result.Succeeded)
                 ***REMOVED***
@@ -73,14 +73,14 @@ namespace NutriFitWeb.Data
             ***REMOVED***
                 if (result1.Succeeded)          
                 ***REMOVED***                 
-                    //await context.Gym.AddAsync(gym);
-                    //await context.SaveChangesAsync();
+                    await context.Gym.AddAsync(gym);
+                    await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(gymTest, "gym");
             ***REMOVED***
                 if (result2.Succeeded)
                 ***REMOVED***                   
-                    //await context.Client.AddAsync(client);
-                    //await context.SaveChangesAsync();                  
+                    await context.Client.AddAsync(client);
+                    await context.SaveChangesAsync();                  
                     await userManager.AddToRoleAsync(clientTest, "client");
             ***REMOVED***
         ***REMOVED***
