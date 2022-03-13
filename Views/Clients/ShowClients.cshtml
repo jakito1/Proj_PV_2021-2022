@@ -55,7 +55,10 @@
             </td>
             <td>
                 @if(UserManager.GetUserId(User) == item.Gym.UserAccount.Id)***REMOVED***
-                    <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                   <a href="Clients/RemoveClientFromGym">
+                   <input type="button" value="Remover Cliente" />
+                   </a>
+
             ***REMOVED***else if(item.Gym.UserAccount.Id == null)***REMOVED***
                     <p>Add</p>
             ***REMOVED***

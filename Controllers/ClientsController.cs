@@ -41,5 +41,14 @@ namespace NutriFitWeb.Controllers
             return View(await _context.Client.Include(a => a.Gym).Where(a => a.ClientId == id).FirstOrDefaultAsync());
     ***REMOVED***
 
+        public async Task<IActionResult> RemoveClientFromGym(int? id)
+        ***REMOVED***
+            Client? client = _context.Client.Where(a => a.ClientId == id).FirstOrDefault();
+            client.Gym = null;
+            _context.Client.Update(client);
+            await _context.SaveChangesAsync();
+            return LocalRedirect(Url.Content("~/Clients/ShowClients"));
+    ***REMOVED***
+
 ***REMOVED***
 ***REMOVED***
