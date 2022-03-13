@@ -15,15 +15,15 @@ namespace NutriFitWeb.Services
         /// Build the EmailSender to be used when an email need to be sent to the user.
         /// </summary>
         /// <param name="optionsAccessor">EmailSender options</param>
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
+        public EmailSender(string optionsAccessor)
         {
-            Options = optionsAccessor.Value;
+            Options = optionsAccessor;
         }
 
         /// <summary>
         /// Gets or sets the EmailSender Options.
         /// </summary>
-        public AuthMessageSenderOptions Options { get; } //set only via Secret Manager
+        public string Options { get; } //set only via Secret Manager
 
         /// <summary>
         /// Tries to send an email to the user.
@@ -34,7 +34,7 @@ namespace NutriFitWeb.Services
         /// <returns></returns>
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridKey, subject, message, email);
+            return Execute(Options, subject, message, email);
         }
 
         private Task Execute(string apiKey, string subject, string message, string email)
