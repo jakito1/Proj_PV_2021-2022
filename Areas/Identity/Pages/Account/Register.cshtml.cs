@@ -170,11 +170,12 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                         await _context.Client.AddAsync(new() ***REMOVED*** UserAccountModel = user***REMOVED***);
                 ***REMOVED*** else if (accountType.Equals("trainer"))
                     ***REMOVED***
-                        //toDo
+                        await _context.Trainer.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
                 ***REMOVED*** else if (accountType.Equals("nutritionist"))
                     ***REMOVED***
-                        //toDo
-                ***REMOVED***else if (accountType.Equals("gym"))
+                        await _context.Nutritionist.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
+                ***REMOVED***
+                    else if (accountType.Equals("gym"))
                     ***REMOVED***
                         await _context.Gym.AddAsync(new() ***REMOVED*** UserAccount = user ***REMOVED***);
                 ***REMOVED***

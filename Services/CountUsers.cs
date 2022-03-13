@@ -16,8 +16,18 @@ namespace NutriFitWeb.Services
         ***REMOVED***
             IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccount.Id == loggedIn select a.GymId;
             IQueryable<string> ? role = from a in _context.Roles where a.Name == userType select a.Id;
-            IQueryable<string>? usersIDs = from a in _context.UserRoles where a.RoleId == role.First() select a.UserId;
-            IQueryable<UserAccountModel>? returnQuery = from a in _context.Client where a.Gym.GymId == loggedInGym.First() select a.UserAccountModel;
+            IQueryable<UserAccountModel>? returnQuery = null;
+            if (userType == "client")
+            ***REMOVED***
+                returnQuery = from a in _context.Client where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+        ***REMOVED*** else if (userType == "trainer")
+            ***REMOVED***
+                returnQuery = from a in _context.Trainer where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+        ***REMOVED*** else if (userType == "nutritionist")
+            ***REMOVED***
+                returnQuery = from a in _context.Nutritionist where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+        ***REMOVED***
+
 
             return returnQuery.ToList();
     ***REMOVED***
