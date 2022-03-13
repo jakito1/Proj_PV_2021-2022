@@ -1,0 +1,74 @@
+﻿@model NutriFitWeb.Models.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.ClientFirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ClientFirstName == null || Model.ClientFirstName == "")
+            {
+                <p>N/A</p>
+            }else{
+                @Html.DisplayFor(Model => Model.ClientFirstName)
+            }
+        </dd>
+        <dt class = "col-sm-2">
+                @Html.DisplayNameFor(Model => Model.ClientLastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ClientLastName == null || Model.ClientLastName == "")
+            {
+                <p>N/A</p>
+            }else{
+                @Html.DisplayFor(Model => Model.ClientLastName)
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.ClientAge)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ClientLastName == null || Model.ClientLastName == "")
+            {
+                <p>N/A</p>
+            }else{
+                @Html.DisplayFor(Model => Model.ClientAge)
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Weight)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Weight == null || Model.Weight == 0)
+            {
+               <p>N/A</p>
+            }else
+             {
+                 @Html.DisplayFor(Model => Model.Weight)
+             }   
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Height)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Height == null || Model.Height == 0)
+            {
+                <p>N/A</p>
+            }else
+            {
+                @Html.DisplayFor(Model => Model.Height)
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="ShowClients">Back to List</a>
+</div>

@@ -6,25 +6,21 @@ using Microsoft.AspNetCore.Identity;
 
 namespace NutriFitWeb.Controllers
 {
-    public class ClientsController : Controller
+    public class TrainersController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
-        public ClientsController(ApplicationDbContext context,
+        public TrainersController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public async Task<IActionResult> ShowClients()
+        public async Task<IActionResult> ShowTrainers()
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var returnQuery = _context.Client.Include(a => a.UserAccountModel).
+            var returnQuery = _context.Trainer.Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
                 Where(a => a.Gym.UserAccount.Id == user.Id || a.Gym.UserAccount.Id != user.Id).
                 OrderByDescending(a => a.Gym);
