@@ -74,5 +74,19 @@ namespace NutriFitWeb.Controllers
            
             return LocalRedirect(Url.Content(url));
         }
+
+        public async Task<IActionResult> TrainerDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            return View(await _context.Trainer.
+                Include(a => a.UserAccountModel).
+                Include(a => a.Gym).
+                Where(a => a.TrainerId == id).
+                FirstOrDefaultAsync());
+        }
     }
 }
