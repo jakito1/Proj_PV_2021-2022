@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.Trainer>
+@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
 
 @{
     ViewData["Title"] = "ShowTrainers";
@@ -31,6 +35,13 @@
                 @Html.DisplayFor(modelItem => item.TrainerLastName)
             </td>
             <td>
+
+                @if(item.Gym == null){
+                     <a asp-action="AddTrainerToGym" asp-route-id="@item.TrainerId">Adicionar ao Ginásio</a>
+                }else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id){                   
+                     <a asp-action="RemoveTrainerFromGym" asp-route-id="@item.TrainerId">Remover do Ginásio</a> 
+                }
+
                 <a asp-action="Edit" asp-route-id="@item.TrainerId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TrainerId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.TrainerId">Delete</a>

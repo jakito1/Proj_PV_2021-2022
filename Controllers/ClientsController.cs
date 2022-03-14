@@ -41,10 +41,10 @@ namespace NutriFitWeb.Controllers
 
         public async Task<IActionResult> RemoveClientFromGym(int? id)
         {
-            Client? client = _context.Client.
+            Client? client = await _context.Client.
                 Include(a => a.Gym).
                 Where(a => a.ClientId == id).
-                FirstOrDefault();
+                FirstOrDefaultAsync();
             client.Gym = null;
             _context.Client.Update(client);
             await _context.SaveChangesAsync();
