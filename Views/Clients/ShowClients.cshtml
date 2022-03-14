@@ -28,7 +28,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) ***REMOVED***
-        <tr>
+            <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)  
             </td>
@@ -54,14 +54,13 @@
             ***REMOVED***
             </td>
             <td>
-                @if(UserManager.GetUserId(User) == item.Gym.UserAccount.Id)***REMOVED***
-                   <a href="Clients/RemoveClientFromGym">
-                   <input type="button" value="Remover Cliente" />
-                   </a>
-
-            ***REMOVED***else if(item.Gym.UserAccount.Id == null)***REMOVED***
-                    <p>Add</p>
+                
+                @if(item.Gym == null)***REMOVED***
+                     <a asp-action="AddClientToGym" asp-route-id="@item.ClientId">Adicionar ao Ginásio</a>
+            ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
+                     <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId">Remover do Ginásio</a> 
             ***REMOVED***
+
                 @*<a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |*@
                 <a asp-action="ClientDetails" asp-route-id="@item.ClientId">Details</a> 
                 @*<a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>*@

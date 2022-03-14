@@ -14,7 +14,7 @@ namespace NutriFitWeb.Services
 
         public IEnumerable<UserAccountModel> UserCount(string userType, string loggedIn)
         ***REMOVED***
-            IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccount.Id == loggedIn select a.GymId;
+            IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.Id == loggedIn select a.GymId;
             IQueryable<string> ? role = from a in _context.Roles where a.Name == userType select a.Id;
             IQueryable<UserAccountModel>? returnQuery = null;
             if (userType == "client")

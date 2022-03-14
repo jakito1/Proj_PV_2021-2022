@@ -10,7 +10,7 @@ namespace NutriFitWeb.Models
         [DisplayName("Nome")]
         public string? GymName ***REMOVED*** get; set; ***REMOVED***
 
-        public UserAccountModel? UserAccount ***REMOVED*** get; set; ***REMOVED***
+        public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 
         public List<Client>? Clients ***REMOVED*** get; set; ***REMOVED***
         public List<Nutritionist>? Nutritionists ***REMOVED*** get; set; ***REMOVED***

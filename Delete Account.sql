@@ -4,6 +4,7 @@ select * from dbo.AspNetUsers;
 
 select * from dbo.Client;
 select * from dbo.Gym;
+update dbo.Client set GymId = NULL where ClientId = 1;
 insert into dbo.Client (ClientId, Weight, Height) values (1, 100, 100);
 /*delete from dbo.AspNetUsers;*/
 /*select * from dbo.AspNetUserRoles;*/

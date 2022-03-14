@@ -177,7 +177,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 ***REMOVED***
                     else if (accountType.Equals("gym"))
                     ***REMOVED***
-                        await _context.Gym.AddAsync(new() ***REMOVED*** UserAccount = user ***REMOVED***);
+                        await _context.Gym.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
                 ***REMOVED***
 
                     await _context.SaveChangesAsync();

@@ -22,13 +22,11 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             var returnQuery = _context.Client.Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
-                Include(a => a.Gym.UserAccount).
-                Where(a => a.Gym.UserAccount.Id == user.Id || a.Gym.UserAccount.Id != user.Id).
+                Include(a => a.Gym.UserAccountModel).
+                Where(a => a.Gym.UserAccountModel.Id == user.Id || a.Gym.UserAccountModel.Id != user.Id).
                 OrderByDescending(a => a.Gym);
-            return View(await returnQuery.ToListAsync());
+            return View(returnQuery);
     ***REMOVED***
-
-        
 
         public async Task<IActionResult> ClientDetails(int? id)
         ***REMOVED***
@@ -43,12 +41,28 @@ namespace NutriFitWeb.Controllers
 
         public async Task<IActionResult> RemoveClientFromGym(int? id)
         ***REMOVED***
-            Client? client = _context.Client.Where(a => a.ClientId == id).FirstOrDefault();
+            Client? client = _context.Client.
+                Include(a => a.Gym).
+                Where(a => a.ClientId == id).
+                FirstOrDefault();
             client.Gym = null;
             _context.Client.Update(client);
             await _context.SaveChangesAsync();
             return LocalRedirect(Url.Content("~/Clients/ShowClients"));
     ***REMOVED***
 
+        public async Task<IActionResult> AddClientToGym(int? id)
+        ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Client? client = _context.Client.
+                Include(a => a.Gym).
+                Where(a => a.ClientId == id).
+                FirstOrDefault();
+            client.Gym = gym;
+            _context.Client.Update(client);
+            await _context.SaveChangesAsync();
+            return LocalRedirect(Url.Content("~/Clients/ShowClients"));
+    ***REMOVED***
 ***REMOVED***
 ***REMOVED***
