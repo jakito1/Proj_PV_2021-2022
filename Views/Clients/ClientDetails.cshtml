@@ -7,9 +7,20 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Client</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.UserAccountModel.UserName == null || Model.UserAccountModel.UserName == "")
+            ***REMOVED***
+                <p>N/A</p>
+        ***REMOVED***else***REMOVED***
+                @Html.DisplayFor(Model => Model.UserAccountModel.UserName)
+        ***REMOVED***
+        </dd>
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(Model => Model.ClientFirstName)
         </dt>

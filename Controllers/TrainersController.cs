@@ -3,6 +3,7 @@ using NutriFitWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
@@ -17,6 +18,7 @@ namespace NutriFitWeb.Controllers
             _userManager = userManager;
     ***REMOVED***
 
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowTrainers()
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -27,18 +29,27 @@ namespace NutriFitWeb.Controllers
             return View(await returnQuery.ToListAsync());
     ***REMOVED***
 
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> RemoveTrainerFromGym(int? id)
         ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
             Trainer? trainer = await _context.Trainer.
                 Include(a => a.Gym).
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
-            trainer.Gym = null;
-            _context.Trainer.Update(trainer);
-            await _context.SaveChangesAsync();
+
+            if(trainer.Gym == gym)
+            ***REMOVED***
+                trainer.Gym = null;
+                _context.Trainer.Update(trainer);
+                await _context.SaveChangesAsync();
+        ***REMOVED***
+           
             return LocalRedirect(Url.Content("~/Trainers/ShowTrainers"));
     ***REMOVED***
 
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> AddTrainerToGym(int? id)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -47,9 +58,14 @@ namespace NutriFitWeb.Controllers
                 Include(a => a.Gym).
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
-            trainer.Gym = gym;
-            _context.Trainer.Update(trainer);
-            await _context.SaveChangesAsync();
+
+            if(trainer.Gym == null)
+            ***REMOVED***
+                trainer.Gym = gym;
+                _context.Trainer.Update(trainer);
+                await _context.SaveChangesAsync();
+        ***REMOVED***
+           
             return LocalRedirect(Url.Content("~/Trainers/ShowTrainers"));
     ***REMOVED***
 ***REMOVED***
