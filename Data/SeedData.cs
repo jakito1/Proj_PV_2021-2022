@@ -67,11 +67,27 @@ namespace NutriFitWeb.Data
                 var result3 = await userManager.CreateAsync(nutritionistTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 var trainerTest = new UserAccountModel { UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true };
                 var result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var admin2 = new UserAccountModel { UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true };
+                var result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() {GymName = "Teste", UserAccountModel = gymTest };
                 Client client = new() {Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym};
-                Nutritionist nutritionist = new() { NutritionistFirstName = "Teste", NutritionistLastName = "Teste2", UserAccountModel = nutritionistTest, Gym = gym };
-                Trainer trainer = new() { TrainerFirstName = "Teste", TrainerLastName = "Teste2", UserAccountModel = trainerTest, Gym = gym };
+                Nutritionist nutritionist = new()
+                {
+                    NutritionistFirstName = "Teste",
+                    NutritionistLastName = "Teste2",
+                    UserAccountModel = nutritionistTest,
+                    Gym = gym,
+                    Clients = new List<Client> { client }
+                };
+                Trainer trainer = new()
+                {
+                    TrainerFirstName = "Teste",
+                    TrainerLastName = "Teste2",
+                    UserAccountModel = trainerTest,
+                    Gym = gym,
+                    Clients = new List<Client> { client }
+                };
 
                 if (result.Succeeded)
                 {
@@ -100,6 +116,10 @@ namespace NutriFitWeb.Data
                     await context.Trainer.AddAsync(trainer);
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(clientTest, "trainer");
+                } 
+                if (result5.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin2, "administrator");
                 }
             }
         }
