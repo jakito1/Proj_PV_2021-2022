@@ -4,37 +4,42 @@
     ViewData["Title"] = "ShowAllUsers";
 ***REMOVED***
 
-<h1>ShowAllUsers</h1>
+@***REMOVED***string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);***REMOVED***
+@***REMOVED***string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;***REMOVED***
+@***REMOVED***string? returnUrl = $"***REMOVED***routeUrl***REMOVED******REMOVED***qsPath***REMOVED***";***REMOVED***
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<h1>Lista de Utilizadores</h1>
+<form asp-action="ShowAllUsers" asp-route-id=email method="get">
+    <input type="text" name="email" placeholder="Insira o email do utilizador"/>
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
 @foreach (var item in Model) ***REMOVED***
-        <tr>
+
+    <div class="listsDiv">
+         <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserName):</b>
+         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserName)</p>
+         <br>
+         <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.Email):</b>
+         <p class="listsItem">@Html.DisplayFor(modelItem => item.Email)</p>
+         <div class="listsItem"><a asp-action="DeleteUserAccount" asp-route-id="@item.Id" class="fas fa-minus-circle icons removeIcon" asp-route-url=@returnUrl></a></div>
+    </div>
+        @*<tr style="margin:10px">
             <td>
+                <b>@Html.DisplayNameFor(model => model.UserName):</b>
                 @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
+                <a asp-action="DeleteUserAccount" asp-route-id="@item.Id" class="fas fa-minus-circle icons"></a>
+                <br>
+                <b>@Html.DisplayNameFor(model => model.Email):</b>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>        
+            </td>      
             <td>
                 <a asp-action="EditUserSettings" asp-route-id="@item.Id">Edit</a>
-                <a asp-action="DeleteUserAccount" asp-route-id="@item.Id">Delete</a>
+                
             </td>
-        </tr>
+        </tr>*@
 ***REMOVED***
-    </tbody>
-</table>
+@if (!string.IsNullOrEmpty(qsPath))
+***REMOVED***
+    <a asp-action="ShowAllUsers" class="backToListBtn">Back to List</a>
+***REMOVED***
+

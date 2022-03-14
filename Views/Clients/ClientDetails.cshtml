@@ -9,7 +9,14 @@
 <div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
+            @Html.DisplayNameFor(Model => Model.ClientId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(Model => Model.ClientId)
+        </dd>
+
+        <dt class = "col-sm-2 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)
         </dt>
         <dd class = "col-sm-10">
@@ -21,7 +28,7 @@
         ***REMOVED***
         </dd>
 
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientFirstName)
         </dt>
         <dd class = "col-sm-10">
@@ -32,7 +39,7 @@
                 @Html.DisplayFor(Model => Model.ClientFirstName)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
                 @Html.DisplayNameFor(Model => Model.ClientLastName)
         </dt>
         <dd class = "col-sm-10">
@@ -43,7 +50,7 @@
                 @Html.DisplayFor(Model => Model.ClientLastName)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientAge)
         </dt>
         <dd class = "col-sm-10">
@@ -54,7 +61,7 @@
                 @Html.DisplayFor(Model => Model.ClientAge)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Weight)
         </dt>
         <dd class = "col-sm-10">
@@ -66,7 +73,7 @@
                  @Html.DisplayFor(Model => Model.Weight)
          ***REMOVED***   
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Height)
         </dt>
         <dd class = "col-sm-10">
@@ -78,7 +85,7 @@
                 @Html.DisplayFor(Model => Model.Height)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Gym)
         </dt>
         <dd class = "col-sm-10">
@@ -92,6 +99,6 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="ShowClients">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-action="ShowClients" class="backToListBtn">Back to List</a>
 </div>

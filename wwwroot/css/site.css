@@ -167,3 +167,68 @@ h1 ***REMOVED***
 .menuItem:hover ***REMOVED***
     color: lightgrey !important;
 ***REMOVED***
+
+.icons ***REMOVED***
+    text-decoration: none !important;
+    font-size: 3em;
+***REMOVED***
+
+.table***REMOVED***
+    margin-top: 50px !important;
+***REMOVED***
+
+.listsDiv ***REMOVED***
+    margin: 1em !important;
+    padding: 1em !important;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+***REMOVED***
+
+.listsItem***REMOVED***
+    font-size: 1em;
+    margin: 1em;
+***REMOVED***
+
+.listsItemTitle ***REMOVED***
+    color: #00A2E8;
+***REMOVED***
+
+.removeIcon***REMOVED***
+    color: red;
+***REMOVED***
+
+.gymHomeImage ***REMOVED***
+    max-width: 70%;
+    height: auto;
+***REMOVED***
+
+.backToListBtn ***REMOVED***
+    text-decoration: none;
+    background-color: #00A2E8;
+    color: white;
+    border-color: #00A2E8;
+    border-style: solid;
+    border-radius: 1em;
+    padding: 10px;
+***REMOVED***
+
+.backToListBtn:hover ***REMOVED***
+    color: lightgrey;
+***REMOVED***
+
+.backBtnDiv***REMOVED***
+    margin-top: 100px;
+***REMOVED***
+
+.searchBar ***REMOVED***
+    border-color: #00A2E8;
+    border-radius: 0.5em;
+    color: #00A2E8;
+***REMOVED***
+
+.searchBtn***REMOVED***
+    border-radius: 0.5em;
+    border-color: #00A2E8;
+    color: white;
+***REMOVED***
