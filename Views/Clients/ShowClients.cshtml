@@ -13,7 +13,7 @@
 @{string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;}
 @{string? returnUrl = $"{routeUrl}{qsPath}";}
 
-<h1>ShowClients</h1>
+<h1>Clientes</h1>
 
 <form asp-action="ShowClients" asp-route-id=email method="get">
     <input type="text" name="email" placeholder="Insira o email do utilizador"/>
@@ -79,5 +79,7 @@
 </table>
 @if (!string.IsNullOrEmpty(qsPath))
 {
-    <a asp-action="ShowClients">Back to List</a>
+    <div class="backBtnDiv">
+        <a asp-action="ShowClients" class="backToListBtn">Back to List</a>
+    </div>
 }

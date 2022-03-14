@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
@@ -15,17 +16,22 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "administrator")]
-        public async Task<IActionResult> ShowAllUsers()
+        public async Task<IActionResult> ShowAllUsers(string? email)
         {
-
             IQueryable<string>? adminRole = from a in _context.Roles where a.Name == "administrator" select a.Id;
             var admin = from a in _context.UserRoles where a.RoleId == adminRole.FirstOrDefault() select a.UserId;
 
-            return View(_context.Users.Where(p => admin.All(p2 => p2 != p.Id)));
+            if (email == null)
+            {
+                return View(_context.Users.Where(p => admin.All(p2 => p2 != p.Id)));
+            }
+
+            return View(_context.Users.Where(p => admin.All(p2 => p2 != p.Id)).Where(a => a.Email.Contains(email)));
+
         }
 
         
-        public async Task<IActionResult> DeleteUserAccount(string? id)
+        public async Task<IActionResult> DeleteUserAccount(string? id, string? url)
         {
             if (id == null)
             {
@@ -97,7 +103,8 @@ namespace NutriFitWeb.Controllers
                  
             _context.Users.Remove(await _context.Users.Where(a => a.Id == id).FirstOrDefaultAsync());
             await _context.SaveChangesAsync();
-            return LocalRedirect(Url.Content("~/Admins/ShowAllUsers"));
+            return LocalRedirect(Url.Content(url));
         }
+
     }
 }

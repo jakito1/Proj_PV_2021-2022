@@ -167,3 +167,68 @@ h1 {
 .menuItem:hover {
     color: lightgrey !important;
 }
+
+.icons {
+    text-decoration: none !important;
+    font-size: 3em;
+}
+
+.table{
+    margin-top: 50px !important;
+}
+
+.listsDiv {
+    margin: 1em !important;
+    padding: 1em !important;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+}
+
+.listsItem{
+    font-size: 1em;
+    margin: 1em;
+}
+
+.listsItemTitle {
+    color: #00A2E8;
+}
+
+.removeIcon{
+    color: red;
+}
+
+.gymHomeImage {
+    max-width: 70%;
+    height: auto;
+}
+
+.backToListBtn {
+    text-decoration: none;
+    background-color: #00A2E8;
+    color: white;
+    border-color: #00A2E8;
+    border-style: solid;
+    border-radius: 1em;
+    padding: 10px;
+}
+
+.backToListBtn:hover {
+    color: lightgrey;
+}
+
+.backBtnDiv{
+    margin-top: 100px;
+}
+
+.searchBar {
+    border-color: #00A2E8;
+    border-radius: 0.5em;
+    color: #00A2E8;
+}
+
+.searchBtn{
+    border-radius: 0.5em;
+    border-color: #00A2E8;
+    color: white;
+}
