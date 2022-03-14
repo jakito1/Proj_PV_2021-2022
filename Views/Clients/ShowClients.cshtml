@@ -11,6 +11,10 @@
 <h1>ShowClients</h1>
 
 
+<form asp-action="ShowClients" asp-route-id=email method="get">
+    <input type="text" name="email" placeholder="Insira o email do utilizador"/>
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -58,15 +62,20 @@
                 @if(item.Gym == null)***REMOVED***
                      <a asp-action="AddClientToGym" asp-route-id="@item.ClientId">Adicionar ao Ginásio</a>
             ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
-                     <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId">Remover do Ginásio</a> 
-            ***REMOVED***
+                        <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId" asp-route-url=@Context.Request.Path>Remover do Ginásio</a>
+                ***REMOVED***
 
                 @*<a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |*@
                 <a asp-action="ClientDetails" asp-route-id="@item.ClientId">Details</a> 
                 @*<a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>*@
             </td>
-
         </tr>
-***REMOVED***
+    ***REMOVED***
     </tbody>
+
 </table>
+<script>
+function myFunction() ***REMOVED***
+    location.reload();
+***REMOVED***
+</script>

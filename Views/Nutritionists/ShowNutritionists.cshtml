@@ -8,11 +8,12 @@
     ViewData["Title"] = "ShowNutritionists";
 ***REMOVED***
 
-<h1>ShowNutritionists</h1>
+<h1>Nutricionistas</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-action="ShowNutritionists" asp-route-id=email method="get">
+    <input type="text" name="email" placeholder="Insira o email do utilizador"/>
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
 <table class="table">
     <thead>
         <tr>

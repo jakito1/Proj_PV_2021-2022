@@ -19,14 +19,20 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> ShowTrainers()
+        public async Task<IActionResult> ShowTrainers(string? email)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var returnQuery = _context.Trainer.Include(a => a.UserAccountModel).
+            if (email == null)
+            ***REMOVED***
+                return View(_context.Trainer.Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
-                Where(a => a.Gym.UserAccountModel.Id == user.Id || a.Gym.UserAccountModel.Id != user.Id).
-                OrderByDescending(a => a.Gym);
-            return View(await returnQuery.ToListAsync());
+                Include(a => a.Gym.UserAccountModel).
+                OrderByDescending(a => a.Gym));
+        ***REMOVED***
+            return View(_context.Trainer.Include(a => a.UserAccountModel).
+                Include(a => a.Gym).
+                Include(a => a.Gym.UserAccountModel).
+                Where(a => a.UserAccountModel.Email.Contains(email)).OrderByDescending(a => a.Gym));
     ***REMOVED***
 
         [Authorize(Roles = "gym")]

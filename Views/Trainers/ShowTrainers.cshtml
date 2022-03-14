@@ -10,9 +10,10 @@
 
 <h1>ShowTrainers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-action="ShowTrainers" asp-route-id=email method="get">
+    <input type="text" name="email" placeholder="Insira o email do utilizador"/>
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
 <table class="table">
     <thead>
         <tr>
