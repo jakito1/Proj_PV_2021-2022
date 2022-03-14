@@ -177,7 +177,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                     }
                     else if (accountType.Equals("gym"))
                     {
-                        await _context.Gym.AddAsync(new() { UserAccount = user });
+                        await _context.Gym.AddAsync(new() { UserAccountModel = user });
                     }
 
                     await _context.SaveChangesAsync();

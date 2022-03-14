@@ -64,7 +64,7 @@ namespace NutriFitWeb.Data
                 var clientTest = new UserAccountModel { UserName = "client", Email = "client@client.pt", EmailConfirmed = true };
                 var result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
-                Gym gym = new() {GymName = "Teste", UserAccount = gymTest };
+                Gym gym = new() {GymName = "Teste", UserAccountModel = gymTest };
                 Client client = new() {Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym};
 
                 if (result.Succeeded)
