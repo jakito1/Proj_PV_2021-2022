@@ -1,4 +1,5 @@
 ﻿@using NutriFitWeb.Services
+@using NutriFitWeb.Models
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
@@ -8,8 +9,11 @@
     ViewData["Title"] = "ShowClients";
 ***REMOVED***
 
-<h1>ShowClients</h1>
+@***REMOVED***string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);***REMOVED***
+@***REMOVED***string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;***REMOVED***
+@***REMOVED***string? returnUrl = $"***REMOVED***routeUrl***REMOVED******REMOVED***qsPath***REMOVED***";***REMOVED***
 
+<h1>ShowClients</h1>
 
 <form asp-action="ShowClients" asp-route-id=email method="get">
     <input type="text" name="email" placeholder="Insira o email do utilizador"/>
@@ -57,12 +61,11 @@
                     @Html.DisplayFor(modelItem => item.Height)
             ***REMOVED***
             </td>
-            <td>
-                
+            <td>               
                 @if(item.Gym == null)***REMOVED***
-                     <a asp-action="AddClientToGym" asp-route-id="@item.ClientId">Adicionar ao Ginásio</a>
+                     <a asp-action="AddClientToGym" asp-route-id="@item.ClientId" asp-route-url=@returnUrl>Adicionar ao Ginásio</a>
             ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
-                        <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId" asp-route-url=@Context.Request.Path>Remover do Ginásio</a>
+                        <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId" asp-route-url=@returnUrl>Remover do Ginásio</a>
                 ***REMOVED***
 
                 @*<a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |*@
@@ -74,8 +77,7 @@
     </tbody>
 
 </table>
-<script>
-function myFunction() ***REMOVED***
-    location.reload();
+@if (!string.IsNullOrEmpty(qsPath))
 ***REMOVED***
-</script>
+    <a asp-action="ShowClients">Back to List</a>
+***REMOVED***

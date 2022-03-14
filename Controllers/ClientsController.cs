@@ -71,7 +71,7 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddClientToGym(int? id)
+        public async Task<IActionResult> AddClientToGym(int? id, string? url)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
@@ -87,7 +87,7 @@ namespace NutriFitWeb.Controllers
                 await _context.SaveChangesAsync();
         ***REMOVED***      
             
-            return LocalRedirect(Url.Content("~/Clients/ShowClients"));
+            return LocalRedirect(Url.Content(url));
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
