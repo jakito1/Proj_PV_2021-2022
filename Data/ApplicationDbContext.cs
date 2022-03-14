@@ -22,7 +22,6 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.Nutritionist>? Nutritionist ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Trainer>? Trainer ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Gym>? Gym ***REMOVED*** get; set; ***REMOVED***
-
-        //this is another comment
+        
 ***REMOVED***
 ***REMOVED***

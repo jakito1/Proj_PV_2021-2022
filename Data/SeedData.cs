@@ -67,11 +67,27 @@ namespace NutriFitWeb.Data
                 var result3 = await userManager.CreateAsync(nutritionistTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 var trainerTest = new UserAccountModel ***REMOVED*** UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true ***REMOVED***;
                 var result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var admin2 = new UserAccountModel ***REMOVED*** UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true ***REMOVED***;
+                var result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() ***REMOVED***GymName = "Teste", UserAccountModel = gymTest ***REMOVED***;
                 Client client = new() ***REMOVED***Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym***REMOVED***;
-                Nutritionist nutritionist = new() ***REMOVED*** NutritionistFirstName = "Teste", NutritionistLastName = "Teste2", UserAccountModel = nutritionistTest, Gym = gym ***REMOVED***;
-                Trainer trainer = new() ***REMOVED*** TrainerFirstName = "Teste", TrainerLastName = "Teste2", UserAccountModel = trainerTest, Gym = gym ***REMOVED***;
+                Nutritionist nutritionist = new()
+                ***REMOVED***
+                    NutritionistFirstName = "Teste",
+                    NutritionistLastName = "Teste2",
+                    UserAccountModel = nutritionistTest,
+                    Gym = gym,
+                    Clients = new List<Client> ***REMOVED*** client ***REMOVED***
+            ***REMOVED***;
+                Trainer trainer = new()
+                ***REMOVED***
+                    TrainerFirstName = "Teste",
+                    TrainerLastName = "Teste2",
+                    UserAccountModel = trainerTest,
+                    Gym = gym,
+                    Clients = new List<Client> ***REMOVED*** client ***REMOVED***
+            ***REMOVED***;
 
                 if (result.Succeeded)
                 ***REMOVED***
@@ -100,6 +116,10 @@ namespace NutriFitWeb.Data
                     await context.Trainer.AddAsync(trainer);
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(clientTest, "trainer");
+            ***REMOVED*** 
+                if (result5.Succeeded)
+                ***REMOVED***
+                    await userManager.AddToRoleAsync(admin2, "administrator");
             ***REMOVED***
         ***REMOVED***
     ***REMOVED***

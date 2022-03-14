@@ -28,6 +28,12 @@ namespace NutriFitWeb.Models
         [DisplayName("Ginásio")]
         public Gym? Gym ***REMOVED*** get; set; ***REMOVED***
 
+        [DisplayName("Nutricionista")]
+        public Nutritionist? Nutritionist ***REMOVED*** get; set; ***REMOVED***
+
+        [DisplayName("Treinador")]
+        public Trainer? Trainer ***REMOVED*** get; set; ***REMOVED***
+
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 ***REMOVED***
