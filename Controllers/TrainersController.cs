@@ -36,7 +36,7 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveTrainerFromGym(int? id)
+        public async Task<IActionResult> RemoveTrainerFromGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
@@ -52,11 +52,11 @@ namespace NutriFitWeb.Controllers
                 await _context.SaveChangesAsync();
             }
            
-            return LocalRedirect(Url.Content("~/Trainers/ShowTrainers"));
+            return LocalRedirect(Url.Content(url));
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddTrainerToGym(int? id)
+        public async Task<IActionResult> AddTrainerToGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
@@ -72,7 +72,7 @@ namespace NutriFitWeb.Controllers
                 await _context.SaveChangesAsync();
             }
            
-            return LocalRedirect(Url.Content("~/Trainers/ShowTrainers"));
+            return LocalRedirect(Url.Content(url));
         }
     }
 }

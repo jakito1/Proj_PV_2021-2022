@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.Nutritionist>
 @using NutriFitWeb.Services
+@using NutriFitWeb.Models
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
@@ -7,6 +8,10 @@
 @{
     ViewData["Title"] = "ShowNutritionists";
 }
+
+@{string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);}
+@{string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;}
+@{string? returnUrl = $"{routeUrl}{qsPath}";}
 
 <h1>Nutricionistas</h1>
 
@@ -36,11 +41,10 @@
                 @Html.DisplayFor(modelItem => item.NutritionistLastName)
             </td>
             <td>
-
                 @if(item.Gym == null){
-                     <a asp-action="AddNutritionistToGym" asp-route-id="@item.NutritionistId">Adicionar ao Ginásio</a>
+                     <a asp-action="AddNutritionistToGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl>Adicionar ao Ginásio</a>
                 }else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id){                   
-                     <a asp-action="RemoveNutritionistFromGym" asp-route-id="@item.NutritionistId">Remover do Ginásio</a> 
+                     <a asp-action="RemoveNutritionistFromGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl>Remover do Ginásio</a> 
                 }
 
                 <a asp-action="Edit" asp-route-id="@item.NutritionistId">Edit</a> |
@@ -51,3 +55,8 @@
 }
     </tbody>
 </table>
+
+@if (!string.IsNullOrEmpty(qsPath))
+{
+    <a asp-action="ShowNutritionists">Back to List</a>
+}
