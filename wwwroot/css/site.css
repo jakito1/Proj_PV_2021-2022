@@ -198,6 +198,18 @@ h1 ***REMOVED***
     color: red;
 ***REMOVED***
 
+.removeIcon:hover***REMOVED***
+    color: darkred;
+***REMOVED***
+
+.addIcon***REMOVED***
+    color: green;
+***REMOVED***
+
+.addIcon:hover ***REMOVED***
+    color: darkgreen;
+***REMOVED***
+
 .gymHomeImage ***REMOVED***
     max-width: 70%;
     height: auto;
@@ -225,6 +237,11 @@ h1 ***REMOVED***
     border-color: #00A2E8;
     border-radius: 0.5em;
     color: #00A2E8;
+    width: 195px;
+***REMOVED***
+
+    .searchBar:focus ***REMOVED***
+        border-color: #00A2E8;
 ***REMOVED***
 
 .searchBtn***REMOVED***

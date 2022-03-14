@@ -10,8 +10,8 @@
 
 <h1>Lista de Utilizadores</h1>
 <form asp-action="ShowAllUsers" asp-route-id=email method="get">
-    <input type="text" name="email" placeholder="Insira o email do utilizador"/>
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
+    <button type="submit" class="searchBtn"><i class="fa fa-search"></i></button>
 </form>
 @foreach (var item in Model) ***REMOVED***
 
@@ -40,6 +40,6 @@
 ***REMOVED***
 @if (!string.IsNullOrEmpty(qsPath))
 ***REMOVED***
-    <a asp-action="ShowAllUsers" class="backToListBtn">Back to List</a>
+    <a asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
 ***REMOVED***
 

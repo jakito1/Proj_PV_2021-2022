@@ -16,49 +16,32 @@
 <h1>Nutricionistas</h1>
 
 <form asp-action="ShowNutritionists" asp-route-id=email method="get">
-    <input type="text" name="email" placeholder="Insira o email do utilizador"/>
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
+    <button type="submit" class="searchBtn"><i class="fa fa-search"></i></button>
 </form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NutritionistFirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NutritionistLastName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) ***REMOVED***
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NutritionistFirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NutritionistLastName)
-            </td>
-            <td>
-                @if(item.Gym == null)***REMOVED***
-                     <a asp-action="AddNutritionistToGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl>Adicionar ao Ginásio</a>
-            ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
-                     <a asp-action="RemoveNutritionistFromGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl>Remover do Ginásio</a> 
-            ***REMOVED***
 
-                <a asp-action="Edit" asp-route-id="@item.NutritionistId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NutritionistId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NutritionistId">Delete</a>
-            </td>
-        </tr>
+@foreach (var item in Model) ***REMOVED***
+    <div class="listsDiv">
+        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.UserName):</b>
+        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
+        <br>
+        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.Email):</b>
+        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
+        <div class="listsItem">
+            @if(item.Gym == null)***REMOVED***
+                <a asp-action="AddNutritionistToGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl class="fas fa-plus-circle icons addIcon"></a>
+        ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
+                <a asp-action="RemoveNutritionistFromGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl class="fas fa-minus-circle icons removeIcon"></a> 
+        ***REMOVED***
+
+            <a asp-action="NutritionistDetails" asp-route-id="@item.NutritionistId" class="fa fa-info-circle icons"></a>
+        </div>
+    </div>
 ***REMOVED***
-    </tbody>
-</table>
 
 @if (!string.IsNullOrEmpty(qsPath))
 ***REMOVED***
     <div class="backBtnDiv">
-        <a asp-action="ShowNutritionists" class="backToListBtn">Back to List</a>
+        <a asp-action="ShowNutritionists" class="backToListBtn">Voltar</a>
     </div>
 ***REMOVED***
