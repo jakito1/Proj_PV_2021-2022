@@ -26,5 +26,31 @@ namespace NutriFitWeb.Controllers
                 OrderByDescending(a => a.Gym);
             return View(await returnQuery.ToListAsync());
     ***REMOVED***
+
+        public async Task<IActionResult> RemoveTrainerFromGym(int? id)
+        ***REMOVED***
+            Trainer? trainer = await _context.Trainer.
+                Include(a => a.Gym).
+                Where(a => a.TrainerId == id).
+                FirstOrDefaultAsync();
+            trainer.Gym = null;
+            _context.Trainer.Update(trainer);
+            await _context.SaveChangesAsync();
+            return LocalRedirect(Url.Content("~/Trainers/ShowTrainers"));
+    ***REMOVED***
+
+        public async Task<IActionResult> AddTrainerToGym(int? id)
+        ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Trainer? trainer = await _context.Trainer.
+                Include(a => a.Gym).
+                Where(a => a.TrainerId == id).
+                FirstOrDefaultAsync();
+            trainer.Gym = gym;
+            _context.Trainer.Update(trainer);
+            await _context.SaveChangesAsync();
+            return LocalRedirect(Url.Content("~/Trainers/ShowTrainers"));
+    ***REMOVED***
 ***REMOVED***
 ***REMOVED***

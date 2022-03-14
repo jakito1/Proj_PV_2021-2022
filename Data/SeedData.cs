@@ -63,9 +63,15 @@ namespace NutriFitWeb.Data
                 var result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 var clientTest = new UserAccountModel ***REMOVED*** UserName = "client", Email = "client@client.pt", EmailConfirmed = true ***REMOVED***;
                 var result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var nutritionistTest = new UserAccountModel ***REMOVED*** UserName = "nutritionist", Email = "nutritionist@nutritionist.pt", EmailConfirmed = true ***REMOVED***;
+                var result3 = await userManager.CreateAsync(nutritionistTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var trainerTest = new UserAccountModel ***REMOVED*** UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true ***REMOVED***;
+                var result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() ***REMOVED***GymName = "Teste", UserAccountModel = gymTest ***REMOVED***;
                 Client client = new() ***REMOVED***Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym***REMOVED***;
+                Nutritionist nutritionist = new() ***REMOVED*** NutritionistFirstName = "Teste", NutritionistLastName = "Teste2", UserAccountModel = nutritionistTest, Gym = gym ***REMOVED***;
+                Trainer trainer = new() ***REMOVED*** TrainerFirstName = "Teste", TrainerLastName = "Teste2", UserAccountModel = trainerTest, Gym = gym ***REMOVED***;
 
                 if (result.Succeeded)
                 ***REMOVED***
@@ -82,6 +88,18 @@ namespace NutriFitWeb.Data
                     await context.Client.AddAsync(client);
                     await context.SaveChangesAsync();                  
                     await userManager.AddToRoleAsync(clientTest, "client");
+            ***REMOVED***
+                if (result3.Succeeded)
+                ***REMOVED***
+                    await context.Nutritionist.AddAsync(nutritionist);
+                    await context.SaveChangesAsync();
+                    await userManager.AddToRoleAsync(clientTest, "nutritionist");
+            ***REMOVED***
+                if (result4.Succeeded)
+                ***REMOVED***
+                    await context.Trainer.AddAsync(trainer);
+                    await context.SaveChangesAsync();
+                    await userManager.AddToRoleAsync(clientTest, "trainer");
             ***REMOVED***
         ***REMOVED***
     ***REMOVED***

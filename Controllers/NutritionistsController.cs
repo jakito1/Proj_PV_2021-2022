@@ -30,5 +30,32 @@ namespace NutriFitWeb.Controllers
                 OrderByDescending(a => a.Gym);
             return View(await returnQuery.ToListAsync());
     ***REMOVED***
+
+        public async Task<IActionResult> RemoveNutritionistFromGym(int? id)
+        ***REMOVED***
+            Nutritionist? nutritionist = await _context.Nutritionist.
+                Include(a => a.Gym).
+                Where(a => a.NutritionistId == id).
+                FirstOrDefaultAsync();
+            nutritionist.Gym = null;
+            _context.Nutritionist.Update(nutritionist);
+            await _context.SaveChangesAsync();
+            return LocalRedirect(Url.Content("~/Nutritionists/ShowNutritionists"));
+    ***REMOVED***
+
+        public async Task<IActionResult> AddNutritionistToGym(int? id)
+        ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Nutritionist? nutritionist = await _context.Nutritionist.
+                Include(a => a.Gym).
+                Where(a => a.NutritionistId == id).
+                FirstOrDefaultAsync();
+            nutritionist.Gym = gym;
+            _context.Nutritionist.Update(nutritionist);
+            await _context.SaveChangesAsync();
+            return LocalRedirect(Url.Content("~/Nutritionists/ShowNutritionists"));
+    ***REMOVED***
+
 ***REMOVED***
 ***REMOVED***
