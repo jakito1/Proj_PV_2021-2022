@@ -23,14 +23,20 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> ShowNutritionists()
+        public async Task<IActionResult> ShowNutritionists(string? email)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var returnQuery = _context.Nutritionist.Include(a => a.UserAccountModel).
-                Include(a => a.Gym).
-                Where(a => a.Gym.UserAccountModel.Id == user.Id || a.Gym.UserAccountModel.Id != user.Id).
-                OrderByDescending(a => a.Gym);
-            return View(await returnQuery.ToListAsync());
+
+            if (email == null)
+            {
+                return View(_context.Nutritionist.
+                    Include(a => a.UserAccountModel).
+                    Include(a => a.Gym).
+                    OrderByDescending(a => a.Gym));
+            }
+
+            return View(_context.Nutritionist.Include(a => a.UserAccountModel).
+                Include(a => a.Gym).Where(a => a.UserAccountModel.Email.Contains(email)).OrderByDescending(a => a.Gym));
         }
 
         [Authorize(Roles = "gym")]

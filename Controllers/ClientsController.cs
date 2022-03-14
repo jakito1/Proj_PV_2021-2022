@@ -19,14 +19,20 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> ShowClients()
+        public async Task<IActionResult> ShowClients(string? email)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (email == null){
+                return View(_context.Client.Include(a => a.UserAccountModel).
+                Include(a => a.Gym).
+                Include(a => a.Gym.UserAccountModel).
+                OrderByDescending(a => a.Gym));
+            }
             return View(_context.Client.Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
                 Include(a => a.Gym.UserAccountModel).
-                Where(a => a.Gym.UserAccountModel.Id == user.Id || a.Gym.UserAccountModel.Id != user.Id).
-                OrderByDescending(a => a.Gym));
+                Where(a => a.UserAccountModel.Email.Contains(email)).OrderByDescending(a => a.Gym));
+
         }
 
         [Authorize(Roles = "gym")]
@@ -45,7 +51,7 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveClientFromGym(int? id)
+        public async Task<IActionResult> RemoveClientFromGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
@@ -61,7 +67,7 @@ namespace NutriFitWeb.Controllers
                 await _context.SaveChangesAsync();
             }
             
-            return LocalRedirect(Url.Content("~/Clients/ShowClients"));
+            return LocalRedirect(Url.Content(url));
         }
 
         [Authorize(Roles = "gym")]
