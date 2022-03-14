@@ -23,6 +23,7 @@ body {
     margin-bottom: 60px;
     background-color: white;
     font-family: 'Roboto', sans-serif;
+    overflow: scroll !important
 }
 
 /* NutriFitWeb Header Title / Home Button */
