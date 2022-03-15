@@ -18,15 +18,15 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> ShowAllUsers(string? email)
         ***REMOVED***
-            IQueryable<string>? adminRole = from a in _context.Roles where a.Name == "administrator" select a.Id;
-            var admin = from a in _context.UserRoles where a.RoleId == adminRole.FirstOrDefault() select a.UserId;
+            IdentityRole? adminRole = await _context.Roles.Where(a => a.Name == "administrator").FirstOrDefaultAsync();
+            var admin = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
 
             if (email == null)
             ***REMOVED***
-                return View(_context.Users.Where(p => admin.All(p2 => p2 != p.Id)));
+                return View(_context.Users.Where(p => admin.All(p2 => p2.UserId != p.Id)));
         ***REMOVED***
 
-            return View(_context.Users.Where(p => admin.All(p2 => p2 != p.Id)).Where(a => a.Email.Contains(email)));
+            return View(_context.Users.Where(p => admin.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(email)));
 
     ***REMOVED***
 

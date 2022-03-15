@@ -16,8 +16,11 @@ namespace NutriFitWeb.Models
         [DisplayName("Último Nome")]
         public string? ClientLastName ***REMOVED*** get; set; ***REMOVED***
 
-        [DisplayName("Idade")]
-        public int? ClientAge ***REMOVED*** get; set; ***REMOVED***
+
+        [DisplayName("Data de Nascimento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "***REMOVED***0:dd/MM/yyyy***REMOVED***")]
+        public DateTime? ClientBirthday ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Peso")]
         public double? Weight ***REMOVED*** get; set; ***REMOVED***
