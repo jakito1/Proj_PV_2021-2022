@@ -71,7 +71,7 @@ namespace NutriFitWeb.Data
                 var result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() {GymName = "Teste", UserAccountModel = gymTest };
-                Client client = new() {Height = 100, Weight = 100, UserAccountModel = clientTest, Gym = gym};
+                Client client = new() {Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"),UserAccountModel = clientTest, Gym = gym};
                 Nutritionist nutritionist = new()
                 {
                     NutritionistFirstName = "Teste",

@@ -51,14 +51,14 @@
             }
         </dd>
         <dt class = "col-sm-2 listsItemTitle">
-            @Html.DisplayNameFor(Model => Model.ClientAge)
+            @Html.DisplayNameFor(Model => Model.ClientBirthday)
         </dt>
         <dd class = "col-sm-10">
-            @if (Model.ClientLastName == null || Model.ClientLastName == "")
+            @if (Model.ClientBirthday == null)
             {
                 <p>N/A</p>
             }else{
-                @Html.DisplayFor(Model => Model.ClientAge)
+                @Html.DisplayFor(Model => Model.ClientBirthday)
             }
         </dd>
         <dt class = "col-sm-2 listsItemTitle">
