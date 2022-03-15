@@ -32,11 +32,16 @@ namespace NutriFitWeb.Controllers
                 return View(_context.Nutritionist.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Gym).
+                    Include(a => a.Gym.UserAccountModel).
                     OrderByDescending(a => a.Gym));
         ***REMOVED***
 
-            return View(_context.Nutritionist.Include(a => a.UserAccountModel).
-                Include(a => a.Gym).Where(a => a.UserAccountModel.Email.Contains(email)).OrderByDescending(a => a.Gym));
+            return View(_context.Nutritionist.
+                    Include(a => a.UserAccountModel).
+                    Include(a => a.Gym).
+                    Include(a => a.Gym.UserAccountModel).
+                    Where(a => a.UserAccountModel.Email.Contains(email)).
+                    OrderByDescending(a => a.Gym));
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
