@@ -1,17 +1,17 @@
 ***REMOVED***
   "format": 1,
   "restore": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED******REMOVED***
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED******REMOVED***
 ***REMOVED***
   "projects": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
       "version": "1.0.0",
       "restore": ***REMOVED***
-        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
         "projectName": "NutriFitWebTest",
-        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
         "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
