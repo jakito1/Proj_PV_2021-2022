@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NutriFitWeb.Models.UserAccountModel>
+
+@***REMOVED***
+    ViewData["Title"] = "ShowAllUsers";
+***REMOVED***
+
+@***REMOVED***string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);***REMOVED***
+@***REMOVED***string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;***REMOVED***
+@***REMOVED***string? returnUrl = $"***REMOVED***routeUrl***REMOVED******REMOVED***qsPath***REMOVED***";***REMOVED***
+
+<h1>Lista de Utilizadores</h1>
+<form asp-action="ShowAllUsers" asp-route-id=email method="get">
+    <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
+    <button type="submit" class="searchBtn"><i class="fa fa-search"></i></button>
+</form>
+@foreach (var item in Model) ***REMOVED***
+
+    <div class="listsDiv">
+         <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserName):</b>
+         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserName)</p>
+         <br>
+         <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.Email):</b>
+         <p class="listsItem">@Html.DisplayFor(modelItem => item.Email)</p>
+         <div class="listsItem"><a asp-action="DeleteUserAccount" asp-route-id="@item.Id" class="fas fa-minus-circle icons removeIcon" asp-route-url=@returnUrl></a></div>
+    </div>
+        @*<tr style="margin:10px">
+            <td>
+                <b>@Html.DisplayNameFor(model => model.UserName):</b>
+                @Html.DisplayFor(modelItem => item.UserName)
+                <a asp-action="DeleteUserAccount" asp-route-id="@item.Id" class="fas fa-minus-circle icons"></a>
+                <br>
+                <b>@Html.DisplayNameFor(model => model.Email):</b>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>      
+            <td>
+                <a asp-action="EditUserSettings" asp-route-id="@item.Id">Edit</a>
+                
+            </td>
+        </tr>*@
+***REMOVED***
+@if (!string.IsNullOrEmpty(qsPath))
+***REMOVED***
+    <a asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
+***REMOVED***
+

@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
@@ -33,6 +34,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<UserAccountModel> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         /// <summary>
         /// Build the RegisterModel model to be used when the user decides to register.
@@ -47,7 +49,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             IUserStore<UserAccountModel> userStore,
             SignInManager<UserAccountModel> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         ***REMOVED***
             _userManager = userManager;
             _userStore = userStore;
@@ -55,6 +58,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
     ***REMOVED***
 
         /// <summary>
@@ -107,9 +111,11 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ///     Gets or sets the repeated Password inputed by the user.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirmar password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword ***REMOVED*** get; set; ***REMOVED***
+
+        
     ***REMOVED***
 
         /// <summary>
@@ -137,6 +143,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ***REMOVED***
                 var user = CreateUser();
 
+                string accountType = Request.Form["AccountType"].ToString();
+                if (string.IsNullOrEmpty(accountType)) ***REMOVED*** accountType = "client"; ***REMOVED***
+
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -156,6 +165,24 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='***REMOVED***HtmlEncoder.Default.Encode(callbackUrl)***REMOVED***'>clicking here</a>.");
+
+                    if (accountType.Equals("client")) ***REMOVED***
+                        await _context.Client.AddAsync(new() ***REMOVED*** UserAccountModel = user***REMOVED***);
+                ***REMOVED*** else if (accountType.Equals("trainer"))
+                    ***REMOVED***
+                        await _context.Trainer.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
+                ***REMOVED*** else if (accountType.Equals("nutritionist"))
+                    ***REMOVED***
+                        await _context.Nutritionist.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
+                ***REMOVED***
+                    else if (accountType.Equals("gym"))
+                    ***REMOVED***
+                        await _context.Gym.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
+                ***REMOVED***
+
+                    await _context.SaveChangesAsync();
+
+                    await _userManager.AddToRoleAsync(user, accountType);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     ***REMOVED***

@@ -17,6 +17,11 @@ namespace NutriFitWeb.Data
             : base(options)
         ***REMOVED***
     ***REMOVED***
+
+        public DbSet<NutriFitWeb.Models.Client>? Client ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.Nutritionist>? Nutritionist ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.Trainer>? Trainer ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.Gym>? Gym ***REMOVED*** get; set; ***REMOVED***
+        
 ***REMOVED***
-    //this is another comment
 ***REMOVED***
