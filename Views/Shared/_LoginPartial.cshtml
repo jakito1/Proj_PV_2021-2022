@@ -1,19 +1,49 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using NutriFitWeb.Areas.Identity.Data
-@inject SignInManager<UserAccount> SignInManager
-@inject UserManager<UserAccount> UserManager
+@using NutriFitWeb.Models
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
+        @if (User.IsInRole("gym"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Nutritionists" asp-action="ShowNutritionists">Nutricionistas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Trainers" asp-action="ShowTrainers">Treinadores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
+            </li>
+        }else if (User.IsInRole("administrator"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Admins" asp-action="ShowAllUsers">Utilizadores</a>
+            </li>
+        }
+
+        @if (!(User.IsInRole("administrator")))
+        {
+            <li class="nav-item">
+                <a  class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            </li>
+        }
+        
+    <li class="nav-item logoutClick">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <button  type="submit" class="nav-link btn btn-link text-dark menuItem">Logout</button>
         </form>
     </li>
+
+    @if (!(User.IsInRole("administrator")))
+        {
+            <li class="nav-item notificationBell">
+                <a  class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-bell"></i></a>    
+            </li>
+        }
+    
 }
 else
 {
@@ -21,7 +51,7 @@ else
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>*/
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>

@@ -3,5 +3,18 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    @if (User.IsInRole("gym"))
+    {
+        <partial name="~/Views/Gyms/_GymHomeInt.cshtml" />
+    }
+    else if (User.IsInRole("administrator"))
+    {        
+        <partial name="~/Views/Admins/_AdminHome.cshtml" />
+    }
+    else
+    {
+        <h1 class="notLoggedInHome">Bem Vindo ao NutriFit</h1>
+        <img src="~/images/MainPageNotLoggedIn.png" alt="MainPageWithoutLoginImage" class="notLoggedInHome imageHome"/>
+        <p class="notLoggedInHome"><b>Planeie os seus treinos e planos alimentares com diversos profissionais do seu ginásio ou outros ginásios aderentes!</b></p>
+    }
 </div>

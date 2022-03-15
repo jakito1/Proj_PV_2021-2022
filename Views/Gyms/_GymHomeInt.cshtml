@@ -1,0 +1,19 @@
+﻿@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@model NutriFitWeb.Models.Gym
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
+
+@inject ICountUsers CountUsers
+
+@{
+    ViewData["Title"] = "Gym Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
+    <p class="mainPageGyms">Clientes: @CountUsers.UserCount("client", UserManager.GetUserId(User)).Count()</p>
+    <p class="mainPageGyms">Treinadores: @CountUsers.UserCount("trainer", UserManager.GetUserId(User)).Count()</p>
+    <p class="mainPageGyms">Nutricionistas: @CountUsers.UserCount("nutritionist", UserManager.GetUserId(User)).Count()</p>
+    <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage"/>
+</div>

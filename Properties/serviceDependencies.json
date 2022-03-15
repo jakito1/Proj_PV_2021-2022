@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "mssql2": {
+      "ignored": "true",
+      "suggestion": "true",
       "type": "mssql",
       "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
     },

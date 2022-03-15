@@ -23,6 +23,7 @@ body {
     margin-bottom: 60px;
     background-color: white;
     font-family: 'Roboto', sans-serif;
+    overflow: scroll !important
 }
 
 /* NutriFitWeb Header Title / Home Button */
@@ -93,4 +94,159 @@ h1 {
     color: #00A2E8 !important;
     text-decoration: none;
     font-weight: bold;
+}
+
+
+
+.settingsBtn:hover {
+    background-color: dodgerblue !important;
+    border-radius: 5px;
+}
+
+    .settingsBtn:hover a {
+        color: white !important;
+    }
+
+/*Centrar conteúdo das definições*/
+.centerSettings {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#enable-authenticator, .btnBorder {
+    background-color: #00A2E8;
+    border-color: #00A2E8;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #00A2E8 !important;
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #00A2E8 !important;
+}
+
+.nav-link:hover{
+    color:lightgrey;
+}
+
+.menuItem {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    margin-left: 50px;
+}
+
+
+.logoutClick:active {
+    border-color: red !important;
+    
+}
+
+.notLoggedInHome{
+    margin: 2% !important;
+}
+
+.imageHome {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.notificationBell{
+    margin-right: 20px;
+    color: white;
+    font-size: 1.8em;
+}
+
+.mainPageGyms  {
+    color: #00A2E8 !important;
+    font-weight: bold !important;
+    margin: 50px !important;
+}
+
+
+.menuItem:hover {
+    color: lightgrey !important;
+}
+
+.icons {
+    text-decoration: none !important;
+    font-size: 3em;
+}
+
+.table{
+    margin-top: 50px !important;
+}
+
+.listsDiv {
+    margin: 1em !important;
+    padding: 1em !important;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+}
+
+.listsItem{
+    font-size: 1em;
+    margin: 1em;
+}
+
+.listsItemTitle {
+    color: #00A2E8;
+}
+
+.removeIcon{
+    color: red;
+}
+
+.removeIcon:hover{
+    color: darkred;
+}
+
+.addIcon{
+    color: green;
+}
+
+.addIcon:hover {
+    color: darkgreen;
+}
+
+.gymHomeImage {
+    max-width: 70%;
+    height: auto;
+}
+
+.backToListBtn {
+    text-decoration: none;
+    background-color: #00A2E8;
+    color: white;
+    border-color: #00A2E8;
+    border-style: solid;
+    border-radius: 1em;
+    padding: 10px;
+}
+
+.backToListBtn:hover {
+    color: lightgrey;
+}
+
+.backBtnDiv{
+    margin-top: 100px;
+}
+
+.searchBar {
+    border-color: #00A2E8;
+    border-radius: 0.5em;
+    color: #00A2E8;
+    width: 195px;
+}
+
+    .searchBar:focus {
+        border-color: #00A2E8;
+    }
+
+.searchBtn{
+    border-radius: 0.5em;
+    border-color: #00A2E8;
+    color: white;
 }

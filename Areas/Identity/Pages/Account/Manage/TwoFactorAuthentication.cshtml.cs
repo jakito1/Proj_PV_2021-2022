@@ -8,18 +8,27 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// TwoFactorAuthenticationModel class, derived from PageModel.
+    /// </summary>
     public class TwoFactorAuthenticationModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly SignInManager<UserAccount> _signInManager;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
+        /// <summary>
+        /// Build the TwoFactorAuthenticationModel model to be used when the user wants to view a page where it's requested a 2FA code.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public TwoFactorAuthenticationModel(
-            UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
+            UserManager<UserAccountModel> userManager, SignInManager<UserAccountModel> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -27,37 +36,36 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the flag containing whether the user has 2FA setup.
         /// </summary>
         public bool HasAuthenticator { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the amount of recovery codes left.
         /// </summary>
         public int RecoveryCodesLeft { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///      Gets or sets the flag containing whether the user has 2FA enabled.
         /// </summary>
         [BindProperty]
         public bool Is2faEnabled { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the flag containing whether the user has the current machine remembered.
         /// </summary>
         public bool IsMachineRemembered { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// Handles the Get Request during the 2FA code request process.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -74,6 +82,11 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Handles the Post Request during the 2FA code request process.
+        /// Tries to forget a machine, requiring a 2FA code on the next login.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
