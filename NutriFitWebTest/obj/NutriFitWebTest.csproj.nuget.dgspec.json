@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": {}
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": {}
   },
   "projects": {
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": {
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
         "projectName": "NutriFitWebTest",
-        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
         "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
