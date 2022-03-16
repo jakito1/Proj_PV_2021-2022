@@ -4,14 +4,14 @@
     "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED******REMOVED***
 ***REMOVED***
   "projects": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
       "version": "1.0.0",
       "restore": ***REMOVED***
-        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
-        "projectName": "NutriFitWebTest",
-        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj",
+        "projectName": "NutriFitWeb",
+        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj",
         "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,9 +43,121 @@
         "net6.0": ***REMOVED***
           "targetAlias": "net6.0",
           "dependencies": ***REMOVED***
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.0, )"
+          ***REMOVED***
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.1, )"
+          ***REMOVED***
+            "Microsoft.AspNetCore.Identity.UI": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.1, )"
+          ***REMOVED***
+            "Microsoft.EntityFrameworkCore.SqlServer": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.1, )"
+          ***REMOVED***
+            "Microsoft.EntityFrameworkCore.Tools": ***REMOVED***
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.1, )"
+          ***REMOVED***
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.2, )"
+          ***REMOVED***
+            "SendGrid": ***REMOVED***
+              "target": "Package",
+              "version": "[9.25.1, )"
+        ***REMOVED***
+        ***REMOVED***
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": ***REMOVED***
+            "Microsoft.AspNetCore.App": ***REMOVED***
+              "privateAssets": "none"
+          ***REMOVED***
+            "Microsoft.NETCore.App": ***REMOVED***
+              "privateAssets": "all"
+        ***REMOVED***
+        ***REMOVED***
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+    ***REMOVED***
+  ***REMOVED***
+  ***REMOVED***
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
+      "version": "1.0.0",
+      "restore": ***REMOVED***
+        "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "projectName": "NutriFitWebTest",
+        "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+        "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
+        "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Luís\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": ***REMOVED***
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": ***REMOVED******REMOVED***,
+          "https://api.nuget.org/v3/index.json": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "frameworks": ***REMOVED***
+          "net6.0": ***REMOVED***
+            "targetAlias": "net6.0",
+            "projectReferences": ***REMOVED***
+              "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
+                "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj"
+          ***REMOVED***
+        ***REMOVED***
+      ***REMOVED***
+      ***REMOVED***
+        "warningProperties": ***REMOVED***
+          "warnAsError": [
+            "NU1605"
+          ]
+    ***REMOVED***
+    ***REMOVED***
+      "frameworks": ***REMOVED***
+        "net6.0": ***REMOVED***
+          "targetAlias": "net6.0",
+          "dependencies": ***REMOVED***
+            "Microsoft.AspNet.Mvc": ***REMOVED***
+              "target": "Package",
+              "version": "[5.2.7, )"
+          ***REMOVED***
+            "Microsoft.Data.Sqlite.Core": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.3, )"
+          ***REMOVED***
+            "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.3, )"
+          ***REMOVED***
             "Microsoft.NET.Test.Sdk": ***REMOVED***
               "target": "Package",
-              "version": "[16.11.0, )"
+              "version": "[17.1.0, )"
+          ***REMOVED***
+            "Moq": ***REMOVED***
+              "target": "Package",
+              "version": "[4.16.1, )"
           ***REMOVED***
             "coverlet.collector": ***REMOVED***
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
