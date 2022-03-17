@@ -169,22 +169,48 @@ h1 {
     color: lightgrey !important;
 }
 
-.icons {
+.notificationIcon {
     margin-top: 0.5em;
     text-decoration: none !important;
     height: 1em;
     width: 1em;
 }
 
+.notificationIcon:hover {
+    height: 1.1em;
+    width: 1.1em;
+}
+
+.icons {
+    height: 3em;
+    width: 3em;
+}
+
+link{
+    text-decoration: none;
+}
+
 .icons:hover {
+    padding: 2px;
     border-style: solid;
-    border-radius: 1em;
+    border-radius: 1.5em;
+}
+
+.removeIcon:hover{
+    border-color: red;
+}
+
+.addIcon:hover {
+    border-color: green;
+}
+
+.detailsIcon:hover {
+    border-color: #00A2E8;
 }
 
 .iconBorder {
-    
     margin-top: 5px;
-    padding:0px;
+    padding: 0px;
 }
 
 .table{
@@ -206,22 +232,6 @@ h1 {
 
 .listsItemTitle {
     color: #00A2E8;
-}
-
-.removeIcon{
-    color: red;
-}
-
-.removeIcon:hover{
-    color: darkred;
-}
-
-.addIcon{
-    color: green;
-}
-
-.addIcon:hover {
-    color: darkgreen;
 }
 
 .gymHomeImage {
