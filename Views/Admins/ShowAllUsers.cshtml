@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.UserAccountModel>
+@using NutriFitWeb.Services
+
+@inject IIsUserInRoleByUserId IsUserInRoleByUserId
 
 @***REMOVED***
     ViewData["Title"] = "ShowAllUsers";
@@ -27,6 +30,11 @@
              </a>
          </div>
          <a asp-action="EditUserSettings" asp-route-id="@item.Id">Edit</a>
+        @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "client"))
+        ***REMOVED***
+            <a asp-controller="Clients" asp-action="EditClientSettings" asp-route-id="@item.Id">Edit Client</a>
+    ***REMOVED***
+
     </div>
         @*<tr style="margin:10px">
             <td>

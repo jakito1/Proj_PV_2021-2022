@@ -11,6 +11,7 @@ namespace NutriFitWeb.Controllers
     public class AdminsController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
+
         public AdminsController(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
