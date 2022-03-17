@@ -29,12 +29,14 @@
         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
             @if(item.Gym == null)***REMOVED***
-                <a asp-action="AddTrainerToGym" asp-route-id="@item.TrainerId" asp-route-url=@returnUrl class="fas fa-plus-circle icons addIcon"></a>
+                <a asp-action="AddTrainerToGym" asp-route-id="@item.TrainerId" asp-route-url=@returnUrl><img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon"/></a>
         ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
-                <a asp-action="RemoveTrainerFromGym" asp-route-id="@item.TrainerId" asp-route-url=@returnUrl class="fas fa-minus-circle icons removeIcon"></a> 
+                <a asp-action="RemoveTrainerFromGym" asp-route-id="@item.TrainerId" asp-route-url=@returnUrl><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
         ***REMOVED***
 
-            <a asp-action="TrainerDetails" asp-route-id="@item.TrainerId" class="fa fa-info-circle icons"></a>
+            <a asp-action="TrainerDetails" asp-route-id="@item.TrainerId">
+                <img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon"/>
+            </a>
         </div>
     </div>
 ***REMOVED***

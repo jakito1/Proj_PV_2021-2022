@@ -169,22 +169,48 @@ h1 ***REMOVED***
     color: lightgrey !important;
 ***REMOVED***
 
-.icons ***REMOVED***
+.notificationIcon ***REMOVED***
     margin-top: 0.5em;
     text-decoration: none !important;
     height: 1em;
     width: 1em;
 ***REMOVED***
 
+.notificationIcon:hover ***REMOVED***
+    height: 1.1em;
+    width: 1.1em;
+***REMOVED***
+
+.icons ***REMOVED***
+    height: 3em;
+    width: 3em;
+***REMOVED***
+
+link***REMOVED***
+    text-decoration: none;
+***REMOVED***
+
 .icons:hover ***REMOVED***
+    padding: 2px;
     border-style: solid;
-    border-radius: 1em;
+    border-radius: 1.5em;
+***REMOVED***
+
+.removeIcon:hover***REMOVED***
+    border-color: red;
+***REMOVED***
+
+.addIcon:hover ***REMOVED***
+    border-color: green;
+***REMOVED***
+
+.detailsIcon:hover ***REMOVED***
+    border-color: #00A2E8;
 ***REMOVED***
 
 .iconBorder ***REMOVED***
-    
     margin-top: 5px;
-    padding:0px;
+    padding: 0px;
 ***REMOVED***
 
 .table***REMOVED***
@@ -206,22 +232,6 @@ h1 ***REMOVED***
 
 .listsItemTitle ***REMOVED***
     color: #00A2E8;
-***REMOVED***
-
-.removeIcon***REMOVED***
-    color: red;
-***REMOVED***
-
-.removeIcon:hover***REMOVED***
-    color: darkred;
-***REMOVED***
-
-.addIcon***REMOVED***
-    color: green;
-***REMOVED***
-
-.addIcon:hover ***REMOVED***
-    color: darkgreen;
 ***REMOVED***
 
 .gymHomeImage ***REMOVED***
