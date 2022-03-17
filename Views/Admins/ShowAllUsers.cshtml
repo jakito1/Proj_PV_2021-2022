@@ -25,7 +25,7 @@
          <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.Email):</b>
          <p class="listsItem">@Html.DisplayFor(modelItem => item.Email)</p>
          <div class="listsItem">
-            <a asp-action="DeleteUserAccountPost" asp-route-id="@item.Id" asp-route-url=@returnUrl><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
+            <a asp-action="DeleteUserAccount" asp-route-id="@item.Id" asp-route-url=@returnUrl><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
 
             <a asp-action="EditUserSettings" asp-route-id="@item.Id" class="editLink"><img class="editIcon" src="~/icons/editIcon.svg" alt="editIcon"/></a>
          </div>
