@@ -17,6 +17,9 @@
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Gyms" asp-action="EditGymSettings">Perfil</a>
+            </li>
         }else if (User.IsInRole("administrator"))
         {
             <li class="nav-item">
@@ -26,6 +29,16 @@
         {
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
+            </li>
+        } else if (User.IsInRole("nutritionist"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Nutritionists" asp-action="EditNutritionistSettings">Perfil</a>
+            </li>
+        } else if (User.IsInRole("trainer"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Trainers" asp-action="EditTrainerSettings">Perfil</a>
             </li>
         }
 

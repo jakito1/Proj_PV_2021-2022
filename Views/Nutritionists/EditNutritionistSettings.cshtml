@@ -1,0 +1,45 @@
+﻿@model NutriFitWeb.Models.Nutritionist
+
+@{
+    ViewData["Title"] = "EditNutritionistSettings";
+}
+
+<h1>EditNutritionistSettings</h1>
+
+<h4>Nutritionist</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditNutritionistSettings">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NutritionistId" />
+            <div class="form-group">
+                <label asp-for="NutritionistFirstName" class="control-label"></label>
+                <input asp-for="NutritionistFirstName" class="form-control" />
+                <span asp-validation-for="NutritionistFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NutritionistLastName" class="control-label"></label>
+                <input asp-for="NutritionistLastName" class="form-control" />
+                <span asp-validation-for="NutritionistLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (User.IsInRole("administrator"))
+    {
+        <a asp-controller="Admins" asp-action="ShowAllUsers">Back to List</a>
+    } else if (User.IsInRole("nutritionist"))
+    {
+        <a asp-action="Index">Back to List</a>
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

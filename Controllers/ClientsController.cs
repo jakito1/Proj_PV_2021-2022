@@ -12,7 +12,7 @@ namespace NutriFitWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
-        private IIsUserInRoleByUserId _isUserInRoleByUserId;
+        private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         public ClientsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId isUserInRoleByUserId)
@@ -102,7 +102,6 @@ namespace NutriFitWeb.Controllers
                 return BadRequest();
             }
 
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? client = await GetClient(id);
 
             if (client == null)
@@ -123,9 +122,7 @@ namespace NutriFitWeb.Controllers
             }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Client? clientToUpdate = await GetClient(id);
-            
-
+            Client? clientToUpdate = await GetClient(id);      
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
