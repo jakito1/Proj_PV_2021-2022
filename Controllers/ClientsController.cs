@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
@@ -11,11 +12,14 @@ namespace NutriFitWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private IIsUserInRoleByUserId _isUserInRoleByUserId;
         public ClientsController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IIsUserInRoleByUserId isUserInRoleByUserId)
         {
             _context = context;
             _userManager = userManager;
+            _isUserInRoleByUserId = isUserInRoleByUserId;
         }
 
         [Authorize(Roles = "gym")]
@@ -88,6 +92,65 @@ namespace NutriFitWeb.Controllers
             }      
             
             return LocalRedirect(Url.Content(url));
+        }
+
+        [Authorize(Roles = "administrator, client")]
+        public async Task<IActionResult> EditClientSettings(string? id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Client? client = await GetClient(id);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
+            return View(client);
+        }
+
+        [HttpPost, ActionName("EditClientSettings")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator, client")]
+        public async Task<IActionResult> EditClientSettingsPost(string? id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Client? clientToUpdate = await GetClient(id);
+            
+
+
+            if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
+                c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
+                c => c.Weight, c => c.Height))
+            {
+                _context.SaveChanges();
+                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
+                {
+                    return RedirectToAction("ShowAllUsers", "Admins");
+                }
+                return LocalRedirect(Url.Content("~/"));
+            }
+            return View(clientToUpdate);
+        }
+
+        private async Task<Client> GetClient(string? id)
+        {
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
+            {
+                return _context.Client.FirstOrDefault(a => a.UserAccountModel.Id == id);
+            }
+
+            var userAccount = await _userManager.FindByNameAsync(id);
+            return await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
         }
 
     }
