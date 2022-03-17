@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 
@@ -35,7 +36,7 @@ namespace NutriFitWeb.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
@@ -51,11 +52,11 @@ namespace NutriFitWeb.Controllers
         [HttpPost, ActionName("DeleteUserAccount")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator")]
-        public async Task<IActionResult> DeleteUserAccountConfirmed(string? id)
+        public async Task<IActionResult> DeleteUserAccountPost(string? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
@@ -136,6 +137,42 @@ namespace NutriFitWeb.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("ShowAllUsers");
+        }
+
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> EditUserSettings(string? id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+
+            UserAccountModel? userAccountModel = await _context.Users.FindAsync(id);
+            if (userAccountModel == null)
+            {
+                return NotFound();
+            }
+            return View(userAccountModel);
+        }
+
+        [HttpPost, ActionName("EditUserSettings")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> EditUserSettingsPost(string? id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+
+            var userToUpdate = await _context.Users.FindAsync(id);
+            if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "", 
+                u => u.PhoneNumber, u => u.UserName))
+            {
+                _context.SaveChanges();
+                return RedirectToAction("ShowAllUsers");
+            }
+            return View(userToUpdate);
         }
 
     }
