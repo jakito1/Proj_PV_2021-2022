@@ -71,7 +71,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
+                return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -89,7 +89,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
+                return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -97,7 +97,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             ***REMOVED***
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 ***REMOVED***
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Palavra-passe incorreta.");
                     return Page();
             ***REMOVED***
         ***REMOVED***
@@ -106,12 +106,12 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             ***REMOVED***
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                throw new InvalidOperationException($"Erro inesperado ao tentar apagar o utilizador.");
         ***REMOVED***
 
             await _signInManager.SignOutAsync();
 
-            _logger.LogInformation("User with ID '***REMOVED***UserId***REMOVED***' deleted themselves.", userId);
+            _logger.LogInformation("O utilizador com o ID '***REMOVED***UserId***REMOVED***' apagou a sua conta.", userId);
 
             return Redirect("~/");
     ***REMOVED***

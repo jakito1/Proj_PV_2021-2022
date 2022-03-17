@@ -9,9 +9,9 @@
 @***REMOVED***string? returnUrl = $"***REMOVED***routeUrl***REMOVED******REMOVED***qsPath***REMOVED***";***REMOVED***
 
 <h1>Lista de Utilizadores</h1>
-<form asp-action="ShowAllUsers" asp-route-id=email method="get">
+<form asp-action="ShowClients" asp-route-id=email method="get">
     <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
-    <button type="submit" class="searchBtn"><i class="fa fa-search"></i></button>
+    <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
 </form>
 @foreach (var item in Model) ***REMOVED***
 
@@ -22,11 +22,10 @@
          <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.Email):</b>
          <p class="listsItem">@Html.DisplayFor(modelItem => item.Email)</p>
          <div class="listsItem">
-             <a asp-action="DeleteUserAccount" asp-route-id="@item.Id" asp-route-url=@returnUrl>
-                <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/>
-             </a>
+            <a asp-action="DeleteUserAccountPost" asp-route-id="@item.Id" asp-route-url=@returnUrl><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
+
+            <a asp-action="EditUserSettings" asp-route-id="@item.Id" class="editLink"><img class="editIcon" src="~/icons/editIcon.svg" alt="editIcon"/></a>
          </div>
-         <a asp-action="EditUserSettings" asp-route-id="@item.Id">Edit</a>
     </div>
         @*<tr style="margin:10px">
             <td>

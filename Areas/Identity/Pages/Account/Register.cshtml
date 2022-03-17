@@ -4,11 +4,10 @@
     ViewData["Title"] = "Register";
 ***REMOVED***
 
-<h1>@ViewData["Title"]</h1>
+<h1>Criar Conta</h1>
 
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
@@ -33,15 +32,16 @@
             </div>
             
             <div class="form-floating">
-                <select style="margin-bottom:20px" class="form-control" id="AccountType" name="AccountType">
-                    <option value="client">Cliente</option>
-                    <option value="trainer">Treinador</option>
-                    <option value="nutricionist">Nutricionista</option>
-                    <option value="gym">Ginásio</option>
+                <label class="userType">Tipo de Utilizador</label>
+                <select style="margin-bottom:20px" class="form-control" id="AccountType" name="AccountType" label="Tipo de Utilizador">
+                   <option value="client">Cliente</option>
+                   <option value="trainer">Treinador</option>
+                   <option value="nutricionist">Nutricionista</option>
+                   <option value="gym">Ginásio</option>
                 </select>
             </div>
 
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registar</button>
                    
         </form>
     </div>
