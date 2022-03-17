@@ -170,8 +170,21 @@ h1 ***REMOVED***
 ***REMOVED***
 
 .icons ***REMOVED***
+    margin-top: 0.5em;
     text-decoration: none !important;
-    font-size: 3em;
+    height: 1em;
+    width: 1em;
+***REMOVED***
+
+.icons:hover ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+***REMOVED***
+
+.iconBorder ***REMOVED***
+    
+    margin-top: 5px;
+    padding:0px;
 ***REMOVED***
 
 .table***REMOVED***
