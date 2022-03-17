@@ -206,6 +206,10 @@ link***REMOVED***
     border-color: red;
 ***REMOVED***
 
+.editProfileIcon***REMOVED***
+    border-color: grey;
+***REMOVED***
+
 .addIcon:hover ***REMOVED***
     border-color: green;
 ***REMOVED***
@@ -255,7 +259,28 @@ link***REMOVED***
     border-style: solid;
     border-radius: 1em;
     padding: 10px;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
 ***REMOVED***
+
+input.btn.btn-primary ***REMOVED***
+    border-radius: 1em !important;
+    padding: 20px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    margin-bottom: 4em;
+***REMOVED***
+
+input.btn.btn-danger ***REMOVED***
+    border-radius: 1em !important;
+    padding: 20px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    font-size: 2em;
+    margin-bottom: 4em;
+***REMOVED***
+
+
 
 .backToListBtn:hover ***REMOVED***
     color: lightgrey;
@@ -302,8 +327,19 @@ link***REMOVED***
 ***REMOVED***
      
 .editIcon ***REMOVED***
-    width: 1.2em;
-    height: 1.2em;
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+***REMOVED***
+
+.editIcon:hover ***REMOVED***
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
 ***REMOVED***
 
 .row ***REMOVED***
