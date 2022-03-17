@@ -4,14 +4,11 @@
 @inject UserManager<UserAccountModel> UserManager
 
 @{
-    ViewData["Title"] = "EditClientAccount";
+    ViewData["Title"] = "Editar perfil do Utilizador";
 }
 
-<h1>EditClientAccount</h1>
-
-<h4>Client</h4>
+<h1>@ViewData["Title"]</h1>
 <hr />
-<div class="row">
     <div class="col-md-4">
         <form asp-action="EditClientSettings">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -42,19 +39,18 @@
                 <span asp-validation-for="Height" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
 
 <div>
     @if (User.IsInRole("administrator"))
     {
-        <a asp-controller="Admins" asp-action="ShowAllUsers">Back to List</a>
+        <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
     } else if (User.IsInRole("client"))
     {
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="backToListBtn">Voltar</a>
     }
 </div>
 

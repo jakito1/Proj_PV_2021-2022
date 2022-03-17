@@ -5,13 +5,15 @@
 }
 
 <h1>Apagar Conta</h1>
-
-<h3>Tem a certeza que pretende remover o cliente @Html.DisplayFor(model => model.UserName) (@Html.DisplayFor(model => model.Email))?</h3>
 <div>
     <hr />
+    <p>Tem a certeza que pretende remover o cliente</p>
+    <p style="color: #00A2E8"><b>@Html.DisplayFor(model => model.UserName)</b> (<b>@Html.DisplayFor(model => model.Email)</b>)</p>
+    <p>?</p>
+    <h4></h4>
     <form asp-action="DeleteUserAccount">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Desativar" class="btn btn-danger" /> |
-        <a asp-action="ShowAllUsers">Back to List</a>
+        <input type="submit" value="Desativar Conta" class="btn btn-danger" />
     </form>
+    <a asp-action="ShowAllUsers" class="backToListBtn" class="backToListBtn">Voltar</a>
 </div>

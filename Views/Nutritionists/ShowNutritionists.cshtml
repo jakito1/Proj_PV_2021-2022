@@ -14,7 +14,7 @@
 @{string? returnUrl = $"{routeUrl}{qsPath}";}
 
 <h1>Nutricionistas</h1>
-<form asp-action="ShowClients" asp-route-id=email method="get">
+<form asp-action="ShowNutritionists" asp-route-id=email method="get">
     <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
     <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
 </form>
