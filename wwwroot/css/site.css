@@ -206,6 +206,10 @@ link{
     border-color: red;
 }
 
+.editProfileIcon{
+    border-color: grey;
+}
+
 .addIcon:hover {
     border-color: green;
 }
@@ -255,7 +259,28 @@ link{
     border-style: solid;
     border-radius: 1em;
     padding: 10px;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
 }
+
+input.btn.btn-primary {
+    border-radius: 1em !important;
+    padding: 20px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    margin-bottom: 4em;
+}
+
+input.btn.btn-danger {
+    border-radius: 1em !important;
+    padding: 20px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    font-size: 2em;
+    margin-bottom: 4em;
+}
+
+
 
 .backToListBtn:hover {
     color: lightgrey;
@@ -302,8 +327,19 @@ link{
 }
      
 .editIcon {
-    width: 1.2em;
-    height: 1.2em;
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+}
+
+.editIcon:hover {
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
 }
 
 .row {

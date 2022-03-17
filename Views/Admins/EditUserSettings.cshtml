@@ -1,14 +1,11 @@
 ﻿@model NutriFitWeb.Models.UserAccountModel
 
 @{
-    ViewData["Title"] = "EditUserSettings";
+    ViewData["Title"] = "Editar Definições de Conta";
 }
 
-<h1>EditUserSettings</h1>
-
-<h4>Client</h4>
+<h1>@ViewData["Title"]</h1>
 <hr />
-<div class="row">
     <div class="col-md-4">
         <form asp-action="EditUserSettings">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,19 +16,18 @@
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
+                <label asp-for="PhoneNumber" class="control-label">Telefone</label>
                 <input type="number" asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>        
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
 
 <div>
-    <a asp-action="ShowAllUsers">Voltar</a>
+    <a asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
 </div>
 
 @section Scripts {
