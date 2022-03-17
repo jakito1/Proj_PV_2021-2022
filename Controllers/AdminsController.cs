@@ -30,8 +30,28 @@ namespace NutriFitWeb.Controllers
 
     ***REMOVED***
 
-        
-        public async Task<IActionResult> DeleteUserAccount(string? id, string? url)
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> DeleteUserAccount(string? id)
+        ***REMOVED***
+            if (id == null)
+            ***REMOVED***
+                return NotFound();
+        ***REMOVED***
+
+            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+             
+            if (user == null)
+            ***REMOVED***
+                return NotFound();
+        ***REMOVED***
+
+            return View(user);
+    ***REMOVED***
+
+        [HttpPost, ActionName("DeleteUserAccount")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> DeleteUserAccountConfirmed(string? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
@@ -42,8 +62,6 @@ namespace NutriFitWeb.Controllers
             Nutritionist? nutritionist = await _context.Nutritionist.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
             Gym? gym = await _context.Gym.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
             Client? client = await _context.Client.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-
-
 
             if (trainer != null)
             ***REMOVED***
@@ -57,6 +75,7 @@ namespace NutriFitWeb.Controllers
 
                 _context.Trainer.Remove(trainer);
         ***REMOVED***
+
             if (nutritionist != null)
             ***REMOVED***
                 var clients = _context.Client.Where(a => a.Nutritionist == nutritionist);
@@ -66,14 +85,18 @@ namespace NutriFitWeb.Controllers
                     c.Nutritionist = null;
                     _context.Client.Update(c);
             ***REMOVED***
+
                 _context.Nutritionist.Remove(nutritionist);
         ***REMOVED***
+
             if (client != null)
             ***REMOVED***
                 _context.Client.Remove(client);
         ***REMOVED***
+
             if (gym != null)
             ***REMOVED***
+
                 var clients = _context.Client.
                     Where(a => a.Gym == gym);
                 var trainers = _context.Trainer.
@@ -86,24 +109,33 @@ namespace NutriFitWeb.Controllers
                     c.Gym = null;
                     _context.Client.Update(c);
             ***REMOVED***
+
                 foreach (var n in nutritionists)
                 ***REMOVED***
                     n.Gym = null;
                     _context.Nutritionist.Update(n);
             ***REMOVED***
+
                 foreach (var t in trainers)
                 ***REMOVED***
                     t.Gym = null;
                     _context.Trainer.Update(t);
             ***REMOVED***
 
-                await _context.SaveChangesAsync();
                 _context.Gym.Remove(gym);
         ***REMOVED***          
-                 
-            _context.Users.Remove(await _context.Users.Where(a => a.Id == id).FirstOrDefaultAsync());
+                        
+            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (user != null)
+            ***REMOVED***
+                _context.Users.Remove(user);
+                
+        ***REMOVED***
+
             await _context.SaveChangesAsync();
-            return LocalRedirect(Url.Content(url));
+
+            return RedirectToAction("ShowAllUsers");
     ***REMOVED***
 
 ***REMOVED***
