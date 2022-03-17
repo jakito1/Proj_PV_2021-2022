@@ -40,7 +40,7 @@
     @if (!(User.IsInRole("administrator")))
         {
             <li class="nav-item notificationBell">
-                <a  class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-bell"></i></a>    
+                <a  class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="icons" src="~/icons/notificationIcon.svg"/></a>  
             </li>
         }
     

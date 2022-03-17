@@ -170,8 +170,21 @@ h1 {
 }
 
 .icons {
+    margin-top: 0.5em;
     text-decoration: none !important;
-    font-size: 3em;
+    height: 1em;
+    width: 1em;
+}
+
+.icons:hover {
+    border-style: solid;
+    border-radius: 1em;
+}
+
+.iconBorder {
+    
+    margin-top: 5px;
+    padding:0px;
 }
 
 .table{
