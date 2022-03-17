@@ -1,0 +1,40 @@
+﻿@model NutriFitWeb.Models.Gym
+
+@***REMOVED***
+    ViewData["Title"] = "EditGymSettings";
+***REMOVED***
+
+<h1>EditGymSettings</h1>
+
+<h4>Gym</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditGymSettings">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GymId" />
+            <div class="form-group">
+                <label asp-for="GymName" class="control-label"></label>
+                <input asp-for="GymName" class="form-control" />
+                <span asp-validation-for="GymName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (User.IsInRole("administrator"))
+    ***REMOVED***
+        <a asp-controller="Admins" asp-action="ShowAllUsers">Back to List</a>
+***REMOVED*** else if (User.IsInRole("gym"))
+    ***REMOVED***
+        <a asp-action="Index">Back to List</a>
+***REMOVED***
+</div>
+
+@section Scripts ***REMOVED***
+    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+***REMOVED***
