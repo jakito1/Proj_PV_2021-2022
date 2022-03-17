@@ -22,6 +22,11 @@
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Admins" asp-action="ShowAllUsers">Utilizadores</a>
             </li>
+        } else if (User.IsInRole("client"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
+            </li>
         }
 
         @if (!(User.IsInRole("administrator")))
