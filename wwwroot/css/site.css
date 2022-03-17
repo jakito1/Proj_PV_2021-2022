@@ -17,6 +17,7 @@ html {
 
 header {
     margin-bottom: 0px;
+    background-color: black;
 }
 
 body {
@@ -25,6 +26,16 @@ body {
     font-family: 'Roboto', sans-serif;
     overflow: scroll !important
 }
+
+button.navbar-toggler{
+    border-color: white !important;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
 
 /* NutriFitWeb Header Title / Home Button */
 .navbar-light .navbar-brand {
@@ -152,11 +163,6 @@ h1 {
     max-height: 100%;
 }
 
-.notificationBell{
-    margin-right: 20px;
-    color: white;
-    font-size: 1.8em;
-}
 
 .mainPageGyms  {
     color: #00A2E8 !important;
@@ -218,16 +224,18 @@ link{
 }
 
 .listsDiv {
-    margin: 1em !important;
-    padding: 1em !important;
     border-style: solid;
     border-radius: 1em;
     border-color: lightgrey;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
 }
 
 .listsItem{
     font-size: 1em;
-    margin: 1em;
+    margin: 0.5em;
 }
 
 .listsItemTitle {
@@ -258,18 +266,55 @@ link{
 }
 
 .searchBar {
-    border-color: #00A2E8;
+    border-style: solid;
+    border-color: lightgrey;
     border-radius: 0.5em;
     color: #00A2E8;
-    width: 195px;
+    width: 20em;
+    height: 2.5em;
+    margin-bottom: 5em;
 }
 
-    .searchBar:focus {
-        border-color: #00A2E8;
-    }
+.searchBtn {
+    border-radius: 0.5em !important;
+    border-color: #00A2E8 !important;
+    height: 2.5em;
+    width: 3.4em;
+}
 
-.searchBtn{
-    border-radius: 0.5em;
-    border-color: #00A2E8;
-    color: white;
+.searchIcon{
+    height: 1.2em;
+    width: 1.2em;
+}
+
+.editLink{
+    background-color: grey;
+    padding: 1em;
+    border-radius: 4em;
+}
+
+.editLink:hover {
+    background-color: grey;
+    padding: 1em;
+    border-color: darkgrey;
+    border-style: solid;
+    border-radius: 4em;
+}
+     
+.editIcon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.row {
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.userType {
+    margin: -16px;
+    margin-left: 0px;
+    color: dimgrey;
+    font-size: 0.9em;
 }

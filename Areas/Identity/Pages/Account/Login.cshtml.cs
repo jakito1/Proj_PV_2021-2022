@@ -82,7 +82,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             /// <summary>
             ///     Gets or sets if the user selected the "Remember me?" option.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Lembrar conta?")]
             public bool RememberMe { get; set; }
         }
 
@@ -148,7 +148,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tentativa de Login inválida.");
                     return Page();
                 }
             }

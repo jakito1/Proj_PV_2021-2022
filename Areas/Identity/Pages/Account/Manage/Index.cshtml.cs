@@ -58,7 +58,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             ///     Gets or sets the phone number inputed by the user.
             /// </summary>
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Número de Telemóvel")]
             public string PhoneNumber { get; set; }
         }
 
