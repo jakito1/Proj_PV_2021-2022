@@ -21,7 +21,6 @@ namespace NutriFitWebTest
             using (var context = new ApplicationDbContext(options))
             {
                 context.Database.EnsureCreated();
-                context.SaveChanges();
             }
 
             using (var context = new ApplicationDbContext(options))
