@@ -48,11 +48,10 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> RemoveNutritionistFromGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Nutritionist? nutritionist = await _context.Nutritionist.
                 Include(a => a.Gym).
-                Where(a => a.NutritionistId == id).
-                FirstOrDefaultAsync();
+                FirstOrDefaultAsync(a => a.NutritionistId == id);
 
             if(nutritionist.Gym == gym)
             {
@@ -68,11 +67,10 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> AddNutritionistToGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Nutritionist? nutritionist = await _context.Nutritionist.
                 Include(a => a.Gym).
-                Where(a => a.NutritionistId == id).
-                FirstOrDefaultAsync();
+                FirstOrDefaultAsync(a => a.NutritionistId == id);
 
             if(nutritionist.Gym == null)
             {
@@ -94,8 +92,7 @@ namespace NutriFitWeb.Controllers
             return View(await _context.Nutritionist.
                 Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
-                Where(a => a.NutritionistId == id).
-                FirstOrDefaultAsync());
+                FirstOrDefaultAsync(a => a.NutritionistId == id));
         }
 
     }

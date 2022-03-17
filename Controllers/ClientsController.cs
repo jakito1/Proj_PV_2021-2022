@@ -23,15 +23,18 @@ namespace NutriFitWeb.Controllers
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (email == null){
-                return View(_context.Client.Include(a => a.UserAccountModel).
-                Include(a => a.Gym).
-                Include(a => a.Gym.UserAccountModel).
-                OrderByDescending(a => a.Gym));
+                return View(_context.Client.
+                    Include(a => a.UserAccountModel).
+                    Include(a => a.Gym).
+                    Include(a => a.Gym.UserAccountModel).
+                    OrderByDescending(a => a.Gym));
             }
-            return View(_context.Client.Include(a => a.UserAccountModel).
+            return View(_context.Client.
+                Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
                 Include(a => a.Gym.UserAccountModel).
-                Where(a => a.UserAccountModel.Email.Contains(email)).OrderByDescending(a => a.Gym));
+                Where(a => a.UserAccountModel.Email.Contains(email)).
+                OrderByDescending(a => a.Gym));
 
         }
 
@@ -46,19 +49,17 @@ namespace NutriFitWeb.Controllers
             return View(await _context.Client.
                 Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
-                Where(a => a.ClientId == id).
-                FirstOrDefaultAsync());
+                FirstOrDefaultAsync(a => a.ClientId == id));
         }
 
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> RemoveClientFromGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = _context.Client.
                 Include(a => a.Gym).
-                Where(a => a.ClientId == id).
-                FirstOrDefault();
+                FirstOrDefault(a => a.ClientId == id);
 
             if (client.Gym == gym)
             {
@@ -74,11 +75,10 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> AddClientToGym(int? id, string? url)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
-            Client? client = _context.Client.
+            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client? client = await _context.Client.
                 Include(a => a.Gym).
-                Where(a => a.ClientId == id).
-                FirstOrDefault();
+                FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client.Gym == null)
             {

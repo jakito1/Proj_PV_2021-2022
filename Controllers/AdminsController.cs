@@ -18,15 +18,15 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> ShowAllUsers(string? email)
         {
-            IdentityRole? adminRole = await _context.Roles.Where(a => a.Name == "administrator").FirstOrDefaultAsync();
-            var admin = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
+            IdentityRole? adminRole = await _context.Roles.FirstOrDefaultAsync(a => a.Name == "administrator");
+            IQueryable<IdentityUserRole<string>>? admins = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
 
             if (email == null)
             {
-                return View(_context.Users.Where(p => admin.All(p2 => p2.UserId != p.Id)));
+                return View(_context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)));
             }
 
-            return View(_context.Users.Where(p => admin.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(email)));
+            return View(_context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(email)));
 
         }
 
@@ -58,10 +58,10 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            Trainer? trainer = await _context.Trainer.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-            Nutritionist? nutritionist = await _context.Nutritionist.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-            Gym? gym = await _context.Gym.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-            Client? client = await _context.Client.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
+            Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+            Nutritionist? nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+            Gym? gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
 
             if (trainer != null)
             {
