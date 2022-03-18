@@ -18,8 +18,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IEmailSender>(new EmailSender (builder.Configuration.GetConnectionString("SendGridKey")));
 
-builder.Services.AddTransient<IIsUserInRoleByUserId, IsUserInRoleById>();
-builder.Services.AddScoped<ICountUsers, CountUsers>();
+builder.Services.AddTransient<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
+builder.Services.AddScoped<IGetUsersForGym, GetUsersForGym>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options => ***REMOVED*** 
     options.SignIn.RequireConfirmedAccount = true;

@@ -4,32 +4,29 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
 ***REMOVED***
-    public class CountUsers : ICountUsers
+    public class GetUsersForGym : IGetUsersForGym
     ***REMOVED***
         private readonly ApplicationDbContext _context;
-        public CountUsers(ApplicationDbContext context)
+        public GetUsersForGym(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
     ***REMOVED***
 
-        public IEnumerable<UserAccountModel> UserCount(string userType, string loggedIn)
+        public IEnumerable<UserAccountModel> GetUsers(string userType, string loggedIn)
         ***REMOVED***
             IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.Id == loggedIn select a.GymId;
             IQueryable<string> ? role = from a in _context.Roles where a.Name == userType select a.Id;
-            IQueryable<UserAccountModel>? returnQuery = null;
             if (userType == "client")
             ***REMOVED***
-                returnQuery = from a in _context.Client where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+                return _context.Client.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).OrderByDescending(a => a.RowVersion).Select(a => a.UserAccountModel);
         ***REMOVED*** else if (userType == "trainer")
             ***REMOVED***
-                returnQuery = from a in _context.Trainer where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+                return _context.Trainer.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).Select(a => a.UserAccountModel);
         ***REMOVED*** else if (userType == "nutritionist")
             ***REMOVED***
-                returnQuery = from a in _context.Nutritionist where a.Gym.GymId == loggedInGym.FirstOrDefault() select a.UserAccountModel;
+                return _context.Nutritionist.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).Select(a => a.UserAccountModel);               
         ***REMOVED***
-
-
-            return returnQuery.ToList();
+            return null;
     ***REMOVED***
 
 ***REMOVED***

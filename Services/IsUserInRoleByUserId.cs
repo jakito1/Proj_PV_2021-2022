@@ -4,10 +4,10 @@ using NutriFitWeb.Data;
 
 namespace NutriFitWeb.Services
 ***REMOVED***
-    public class IsUserInRoleById : IIsUserInRoleByUserId
+    public class IsUserInRoleByUserId : IIsUserInRoleByUserId
     ***REMOVED***
         private readonly ApplicationDbContext _context;
-        public IsUserInRoleById(ApplicationDbContext context)
+        public IsUserInRoleByUserId(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
     ***REMOVED***

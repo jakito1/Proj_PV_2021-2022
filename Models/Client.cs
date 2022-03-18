@@ -28,6 +28,9 @@ namespace NutriFitWeb.Models
         [DisplayName("Altura")]
         public double? Height ***REMOVED*** get; set; ***REMOVED***
 
+        [Timestamp]
+        public byte[]? RowVersion ***REMOVED*** get; set; ***REMOVED***
+
         [DisplayName("Ginásio")]
         public Gym? Gym ***REMOVED*** get; set; ***REMOVED***
 

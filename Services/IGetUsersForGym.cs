@@ -2,8 +2,8 @@
 
 namespace NutriFitWeb.Services
 ***REMOVED***
-    public interface ICountUsers
+    public interface IGetUsersForGym
     ***REMOVED***
-        IEnumerable<UserAccountModel> UserCount(string userType, string loggedIn);
+        IEnumerable<UserAccountModel> GetUsers(string userType, string loggedIn);
 ***REMOVED***
 ***REMOVED***
