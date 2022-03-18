@@ -164,10 +164,9 @@ h1 ***REMOVED***
 ***REMOVED***
 
 
-.mainPageGyms  ***REMOVED***
+.gymHome  ***REMOVED***
     color: #00A2E8 !important;
-    font-weight: bold !important;
-    margin: 50px !important;
+    font-size: 1em;
 ***REMOVED***
 
 
@@ -421,7 +420,24 @@ input.btn.btn-danger ***REMOVED***
     margin: 3em;
 ***REMOVED***
 
+.gymStatistics ***REMOVED***
+    margin-top: 3em;
+***REMOVED***
 
-ul.nav.nav-pills.flex-column.settingsMenu***REMOVED***
-    
+.recentClientsGym ***REMOVED***
+    background-color: #00A2E8;
+    color: white;
+    border-radius: 1em;
+    padding: 1em;
+***REMOVED***
+
+.newUsersDiv ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    padding: 1em;
+    border-color: #00A2E8;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
 ***REMOVED***

@@ -12,12 +12,17 @@
 
 <div class="text-center">
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
-    <p class="mainPageGyms">Clientes: @GetUsersForGym.GetUsers("client", UserManager.GetUserId(User)).Count()</p>
-    <p class="mainPageGyms">Treinadores: @GetUsersForGym.GetUsers("trainer", UserManager.GetUserId(User)).Count()</p>
-    <p class="mainPageGyms">Nutricionistas: @GetUsersForGym.GetUsers("nutritionist", UserManager.GetUserId(User)).Count()</p>
+    <div class="gymStatistics">
+        <p><b class="gymHome">Clientes:  &nbsp; </b><b>@GetUsersForGym.GetUsers("client", UserManager.GetUserId(User)).Count()</b></p>
+        <p><b class="gymHome">Treinadores:  &nbsp; </b><b>@GetUsersForGym.GetUsers("trainer", UserManager.GetUserId(User)).Count()</b></p>
+        <p><b class="gymHome">Nutricionistas:  &nbsp; </b><b>@GetUsersForGym.GetUsers("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
+        <div class="newUsersDiv">
+            <p><b class="gymHome">Clientes mais recentes:</b></p>
+            @foreach (var item in GetUsersForGym.GetUsers("client", UserManager.GetUserId(User)))
+            ***REMOVED***
+                <p class="recentClientsGym"><b>Username - @item.UserName.ToUpper()</b></p>      
+        ***REMOVED***
+        </div>
+    </div>
     <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage"/>
-    @foreach (var item in GetUsersForGym.GetUsers("client", UserManager.GetUserId(User)))
-    ***REMOVED***
-        <p>@item.Email</p>      
-***REMOVED***
 </div>
