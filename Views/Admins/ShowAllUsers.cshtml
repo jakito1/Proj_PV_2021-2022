@@ -34,29 +34,22 @@
                 <a asp-controller="Clients" asp-action="EditClientSettings" asp-route-id="@item.Id">
                     <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon"/>
                 </a>
+            } 
+            @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "nutritionist"))
+            {
+                <a asp-controller="Nutritionists" asp-action="EditNutritionistSettings" asp-route-id="@item.Id">Edit Nutritionist</a>
             }
-         </div>
-            <a asp-action="EditUserSettings" asp-route-id="@item.Id" class="editLink"><img class="editIcon" src="~/icons/editIcon.svg" alt="editIcon"/></a>
-         </div>
-         <a asp-action="EditUserSettings" asp-route-id="@item.Id">Edit</a>
-        @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "client"))
-        {
-            <a asp-controller="Clients" asp-action="EditClientSettings" asp-route-id="@item.Id">Edit Client</a>
-        }
-        @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "nutritionist"))
-        {
-            <a asp-controller="Nutritionists" asp-action="EditNutritionistSettings" asp-route-id="@item.Id">Edit Nutritionist</a>
-        }
-        @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "trainer"))
-        {
-            <a asp-controller="Trainers" asp-action="EditTrainerSettings" asp-route-id="@item.Id">Edit Trainer</a>
-        }
-        @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "gym"))
-        {
-            <a asp-controller="Gyms" asp-action="EditGymSettings" asp-route-id="@item.Id">Edit Gym</a>
-        }
-
+            @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "trainer"))
+            {
+                <a asp-controller="Trainers" asp-action="EditTrainerSettings" asp-route-id="@item.Id">Edit Trainer</a>
+            }
+            @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "gym"))
+            {
+                <a asp-controller="Gyms" asp-action="EditGymSettings" asp-route-id="@item.Id">Edit Gym</a>
+            }  
+        </div>
     </div>
+
         @*<tr style="margin:10px">
             <td>
                 <b>@Html.DisplayNameFor(model => model.UserName):</b>
