@@ -1,0 +1,30 @@
+﻿@model NutriFitWeb.Models.TrainingPlan
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TrainingPlan</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingPlanName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainingPlanName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingPlanDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainingPlanDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditTrainingPlan" asp-route-id="@Model?.TrainingPlanId">Edit</a> |
+    <a asp-action="ShowTrainingPlans">Back to List</a>
+</div>

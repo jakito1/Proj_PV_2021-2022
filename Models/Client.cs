@@ -40,6 +40,8 @@ namespace NutriFitWeb.Models
         [DisplayName("Treinador")]
         public Trainer? Trainer { get; set; }
 
+        public List<TrainingPlan>? TrainingPlans { get; set; }
+
         public UserAccountModel? UserAccountModel { get; set; }
     }
 }
