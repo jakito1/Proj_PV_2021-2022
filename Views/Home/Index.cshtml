@@ -5,7 +5,7 @@
 <div class="text-center">
     @if (User.IsInRole("gym"))
     {
-        <partial name="~/Views/Gyms/_GymHomeInt.cshtml" />
+        <partial name="~/Views/Gyms/_GymHome.cshtml" />
     }
     else if (User.IsInRole("administrator"))
     {        
