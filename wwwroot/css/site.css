@@ -207,7 +207,7 @@ link***REMOVED***
 ***REMOVED***
 
 .editProfileIcon***REMOVED***
-    border-color: grey;
+    border-color: dodgerblue;
 ***REMOVED***
 
 .addIcon:hover ***REMOVED***
@@ -231,13 +231,63 @@ link***REMOVED***
     border-style: solid;
     border-radius: 1em;
     border-color: lightgrey;
-    width: 50%;
+    max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1em;
+    /*Breaks line if text is out of div bounds*/
+    word-wrap: break-word;
 ***REMOVED***
 
-.listsItem***REMOVED***
+.detailsTitle***REMOVED***
+    margin-bottom: 1em;
+***REMOVED***
+
+
+
+.pagesDiv ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #00A2E8;
+***REMOVED***
+
+.profileDivs ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    background-color: white;
+    padding: 1em;
+    padding-top: 4em;
+    padding-bottom: 0px;
+    color: #00A2E8;
+    font-weight: bold;
+***REMOVED***
+
+a.btn.btn-default:hover ***REMOVED***
+    border-radius: 0.8em;
+    color: white;
+    background-color: #00A2E8;
+***REMOVED***
+
+a.btn.btn-default ***REMOVED***
+    color: #00A2E8;
+***REMOVED***
+
+a.btn.btn-default.disabled ***REMOVED***
+    color: #212529; 
+***REMOVED***
+
+.noMoreResults ***REMOVED***
+    text-align: center;
+    margin: 0.2em;
+    color: #00A2E8;
+    font-weight: bold;
+***REMOVED***
+
+.listsItem ***REMOVED***
     font-size: 1em;
     margin: 0.5em;
 ***REMOVED***
@@ -264,11 +314,20 @@ link***REMOVED***
 ***REMOVED***
 
 input.btn.btn-primary ***REMOVED***
-    border-radius: 1em !important;
-    padding: 20px !important;
+    border-width: 0.2em;
+    border-radius: 1em;
+    border-color: #00A2E8;
     padding-left: 2em !important;
     padding-right: 2em !important;
     margin-bottom: 4em;
+    color: white;
+    font-weight: bold;
+    background-color: #00A2E8;
+***REMOVED***
+
+input.btn.btn-primary:hover ***REMOVED***
+    padding: 1em;
+    color: lightgrey;
 ***REMOVED***
 
 input.btn.btn-danger ***REMOVED***
@@ -353,4 +412,16 @@ input.btn.btn-danger ***REMOVED***
     margin-left: 0px;
     color: dimgrey;
     font-size: 0.9em;
+***REMOVED***
+
+.settingsMenu ***REMOVED***
+    border-style: solid;
+    border-radius: 0.8em;
+    border-color: #00A2E8;
+    margin: 3em;
+***REMOVED***
+
+
+ul.nav.nav-pills.flex-column.settingsMenu***REMOVED***
+    
 ***REMOVED***
