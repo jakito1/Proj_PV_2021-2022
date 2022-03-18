@@ -207,7 +207,7 @@ link{
 }
 
 .editProfileIcon{
-    border-color: grey;
+    border-color: dodgerblue;
 }
 
 .addIcon:hover {
@@ -231,13 +231,63 @@ link{
     border-style: solid;
     border-radius: 1em;
     border-color: lightgrey;
-    width: 50%;
+    max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1em;
+    /*Breaks line if text is out of div bounds*/
+    word-wrap: break-word;
 }
 
-.listsItem{
+.detailsTitle{
+    margin-bottom: 1em;
+}
+
+
+
+.pagesDiv {
+    border-style: solid;
+    border-radius: 1em;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #00A2E8;
+}
+
+.profileDivs {
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    background-color: white;
+    padding: 1em;
+    padding-top: 4em;
+    padding-bottom: 0px;
+    color: #00A2E8;
+    font-weight: bold;
+}
+
+a.btn.btn-default:hover {
+    border-radius: 0.8em;
+    color: white;
+    background-color: #00A2E8;
+}
+
+a.btn.btn-default {
+    color: #00A2E8;
+}
+
+a.btn.btn-default.disabled {
+    color: #212529; 
+}
+
+.noMoreResults {
+    text-align: center;
+    margin: 0.2em;
+    color: #00A2E8;
+    font-weight: bold;
+}
+
+.listsItem {
     font-size: 1em;
     margin: 0.5em;
 }
@@ -264,11 +314,20 @@ link{
 }
 
 input.btn.btn-primary {
-    border-radius: 1em !important;
-    padding: 20px !important;
+    border-width: 0.2em;
+    border-radius: 1em;
+    border-color: #00A2E8;
     padding-left: 2em !important;
     padding-right: 2em !important;
     margin-bottom: 4em;
+    color: white;
+    font-weight: bold;
+    background-color: #00A2E8;
+}
+
+input.btn.btn-primary:hover {
+    padding: 1em;
+    color: lightgrey;
 }
 
 input.btn.btn-danger {
@@ -353,4 +412,16 @@ input.btn.btn-danger {
     margin-left: 0px;
     color: dimgrey;
     font-size: 0.9em;
+}
+
+.settingsMenu {
+    border-style: solid;
+    border-radius: 0.8em;
+    border-color: #00A2E8;
+    margin: 3em;
+}
+
+
+ul.nav.nav-pills.flex-column.settingsMenu{
+    
 }
