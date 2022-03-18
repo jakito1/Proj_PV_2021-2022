@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NutriFitWeb.Models.TrainingPlan>
+
+@***REMOVED***
+    ViewData["Title"] = "Index";
+***REMOVED***
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingPlanName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingPlanDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) ***REMOVED***
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingPlanName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingPlanDescription)
+            </td>
+            <td>
+                <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId">Edit</a> |
+                <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId">Details</a> |
+                <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId">Delete</a>
+            </td>
+        </tr>
+***REMOVED***
+    </tbody>
+</table>

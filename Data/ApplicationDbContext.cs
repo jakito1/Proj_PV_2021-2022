@@ -22,6 +22,8 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.Nutritionist>? Nutritionist ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Trainer>? Trainer ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Gym>? Gym ***REMOVED*** get; set; ***REMOVED***
-        
+        public DbSet<NutriFitWeb.Models.TrainingPlan>? TrainingPlan ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.Exercise>? Exercise ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.Picture>? Picture ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 ***REMOVED***
