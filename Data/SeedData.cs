@@ -69,9 +69,31 @@ namespace NutriFitWeb.Data
                 var result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 var admin2 = new UserAccountModel { UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true };
                 var result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest2 = new UserAccountModel { UserName = "clientTest2", Email = "clientTest2@clientTest2.pt", EmailConfirmed = true };
+                var result6 = await userManager.CreateAsync(clientTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest3 = new UserAccountModel { UserName = "clientTest3", Email = "clientTest3@clientTest3.pt", EmailConfirmed = true };
+                var result7 = await userManager.CreateAsync(clientTest3, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest4 = new UserAccountModel { UserName = "clientTest4", Email = "clientTest4@clientTest4.pt", EmailConfirmed = true };
+                var result8 = await userManager.CreateAsync(clientTest4, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest5 = new UserAccountModel { UserName = "clientTest5", Email = "clientTest5@clientTest5.pt", EmailConfirmed = true };
+                var result9 = await userManager.CreateAsync(clientTest5, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest6 = new UserAccountModel { UserName = "clientTest6", Email = "clientTest6@clientTest6.pt", EmailConfirmed = true };
+                var result10 = await userManager.CreateAsync(clientTest6, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var clientTest7 = new UserAccountModel { UserName = "clientTest7", Email = "clientTest7@clientTest7.pt", EmailConfirmed = true };
+                var result11 = await userManager.CreateAsync(clientTest7, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var nutritionistTest2 = new UserAccountModel { UserName = "nutritionistTest2", Email = "nutritionistTest2@nutritionistTest2.pt", EmailConfirmed = true };
+                var result12 = await userManager.CreateAsync(nutritionistTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                var trainerTest2 = new UserAccountModel { UserName = "trainerTest2", Email = "trainerTest2@trainerTest2.pt", EmailConfirmed = true };
+                var result13 = await userManager.CreateAsync(trainerTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() {GymName = "Teste", UserAccountModel = gymTest };
                 Client client = new() {Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"),UserAccountModel = clientTest, Gym = gym};
+                Client client2 = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest2, Gym = gym };
+                Client client3 = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest3, Gym = gym };
+                Client client4 = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest4, Gym = gym };
+                Client client5 = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest5, Gym = gym };
+                Client client6 = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest6, Gym = gym };
+                Client client7 = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest7, Gym = gym };
                 Nutritionist nutritionist = new()
                 {
                     NutritionistFirstName = "Teste",
@@ -88,6 +110,22 @@ namespace NutriFitWeb.Data
                     Gym = gym,
                     Clients = new List<Client> { client }
                 };
+                Nutritionist nutritionist2 = new()
+                {
+                    NutritionistFirstName = "Teste",
+                    NutritionistLastName = "Teste2",
+                    UserAccountModel = nutritionistTest2,
+                    Gym = gym,
+                    Clients = new List<Client> { client2 }
+                };
+                Trainer trainer2 = new()
+                {
+                    TrainerFirstName = "Teste",
+                    TrainerLastName = "Teste2",
+                    UserAccountModel = trainerTest2,
+                    Gym = gym,
+                    Clients = new List<Client> { client2 }
+                };
 
                 if (result.Succeeded)
                 {
@@ -102,20 +140,37 @@ namespace NutriFitWeb.Data
                 if (result2.Succeeded)
                 {                   
                     await context.Client.AddAsync(client);
+                    await context.Client.AddAsync(client2);
+                    await context.Client.AddAsync(client3);
+                    await context.Client.AddAsync(client4);
+                    await context.Client.AddAsync(client5);
+                    await context.Client.AddAsync(client6);
+                    await context.Client.AddAsync(client7);
                     await context.SaveChangesAsync();                  
                     await userManager.AddToRoleAsync(clientTest, "client");
+                    await userManager.AddToRoleAsync(clientTest2, "client");
+                    await userManager.AddToRoleAsync(clientTest3, "client");
+                    await userManager.AddToRoleAsync(clientTest4, "client");
+                    await userManager.AddToRoleAsync(clientTest5, "client");
+                    await userManager.AddToRoleAsync(clientTest6, "client");
+                    await userManager.AddToRoleAsync(clientTest7, "client");
+
                 }
                 if (result3.Succeeded)
                 {
                     await context.Nutritionist.AddAsync(nutritionist);
+                    await context.Nutritionist.AddAsync(nutritionist2);
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(nutritionistTest, "nutritionist");
+                    await userManager.AddToRoleAsync(nutritionistTest2, "nutritionist");
                 }
                 if (result4.Succeeded)
                 {
                     await context.Trainer.AddAsync(trainer);
+                    await context.Trainer.AddAsync(trainer2);
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(trainerTest, "trainer");
+                    await userManager.AddToRoleAsync(trainerTest2, "trainer");
                 } 
                 if (result5.Succeeded)
                 {

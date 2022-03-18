@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
@@ -18,18 +19,30 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "administrator")]
-        public async Task<IActionResult> ShowAllUsers(string? email)
+        public async Task<IActionResult> ShowAllUsers(string? searchString, string? currentFilter, int? pageNumber)
         {
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
             IdentityRole? adminRole = await _context.Roles.FirstOrDefaultAsync(a => a.Name == "administrator");
             IQueryable<IdentityUserRole<string>>? admins = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
 
-            if (email == null)
+            IQueryable<UserAccountModel>? users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id));
+            if (!string.IsNullOrEmpty(searchString))
             {
-                return View(_context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)));
+                 users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(searchString));
             }
 
-            return View(_context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(email)));
-
+            int pageSize = 3;
+            return View(await PaginatedList<UserAccountModel>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         [Authorize(Roles = "administrator")]
