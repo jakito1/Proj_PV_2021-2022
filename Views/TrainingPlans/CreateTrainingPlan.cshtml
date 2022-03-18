@@ -22,6 +22,7 @@
                 <input asp-for="TrainingPlanDescription" class="form-control" />
                 <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
             </div>
+            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

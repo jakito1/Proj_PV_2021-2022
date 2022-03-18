@@ -1,0 +1,57 @@
+﻿@model NutriFitWeb.Models.Exercise
+
+<h4>Exercise</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateExercise">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ExerciseName" class="control-label"></label>
+                <input asp-for="ExerciseName" class="form-control" />
+                <span asp-validation-for="ExerciseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseDescription" class="control-label"></label>
+                <input asp-for="ExerciseDescription" class="form-control" />
+                <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseDuration" class="control-label"></label>
+                <input asp-for="ExerciseDuration" class="form-control" />
+                <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseRepetitions" class="control-label"></label>
+                <input asp-for="ExerciseRepetitions" class="form-control" />
+                <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseURL" class="control-label"></label>
+                <input asp-for="ExerciseURL" class="form-control" />
+                <span asp-validation-for="ExerciseURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseType" class="control-label"></label>
+                <select asp-for="ExerciseType" class="form-control"></select>
+                <span asp-validation-for="ExerciseType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseMuscles" class="control-label"></label>
+                <select asp-for="ExerciseMuscles" class="form-control"></select>
+                <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts ***REMOVED***
+    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+***REMOVED***

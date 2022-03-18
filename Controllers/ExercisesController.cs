@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,85 +11,85 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
-    public class TrainingPlansController : Controller
+    public class ExercisesController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
 
-        public TrainingPlansController(ApplicationDbContext context)
+        public ExercisesController(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
     ***REMOVED***
 
-        [Authorize(Roles = "client, trainer")]
-        public async Task<IActionResult> ShowTrainingPlans()
+        // GET: Exercises
+        public async Task<IActionResult> Index()
         ***REMOVED***
-            return View(await _context.TrainingPlan.ToListAsync());
+            return View(await _context.Exercise.ToListAsync());
     ***REMOVED***
 
-        // GET: TrainingPlans/Details/5
-        public async Task<IActionResult> TrainingPlanDetails(int? id)
+        // GET: Exercises/Details/5
+        public async Task<IActionResult> Details(int? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlan = await _context.TrainingPlan
-                .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
-            if (trainingPlan == null)
+            var exercise = await _context.Exercise
+                .FirstOrDefaultAsync(m => m.ExerciseId == id);
+            if (exercise == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            return View(trainingPlan);
+            return View(exercise);
     ***REMOVED***
 
-        // GET: TrainingPlans/Create
-        public IActionResult CreateTrainingPlan()
+        // GET: Exercises/Create
+        public IActionResult CreateExercise()
         ***REMOVED***
             return View();
     ***REMOVED***
 
-        // POST: TrainingPlans/Create
+        // POST: Exercises/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("CreateTrainingPlan")]
+        [HttpPost, ActionName("CreateExercise")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription")] TrainingPlan trainingPlan)
+        public async Task<IActionResult> CreateExercisePost([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
-                _context.Add(trainingPlan);
+                _context.Add(exercise);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
         ***REMOVED***
-            return View(trainingPlan);
+            return View(exercise);
     ***REMOVED***
 
-        // GET: TrainingPlans/Edit/5
-        public async Task<IActionResult> EditTrainingPlan(int? id)
+        // GET: Exercises/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlan = await _context.TrainingPlan.FindAsync(id);
-            if (trainingPlan == null)
+            var exercise = await _context.Exercise.FindAsync(id);
+            if (exercise == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-            return View(trainingPlan);
+            return View(exercise);
     ***REMOVED***
 
-        // POST: TrainingPlans/Edit/5
+        // POST: Exercises/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("EditTrainingPlan")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditTrainingPlanPost(int id, [Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription")] TrainingPlan trainingPlan)
+        public async Task<IActionResult> Edit(int id, [Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
         ***REMOVED***
-            if (id != trainingPlan.TrainingPlanId)
+            if (id != exercise.ExerciseId)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -99,12 +98,12 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 try
                 ***REMOVED***
-                    _context.Update(trainingPlan);
+                    _context.Update(exercise);
                     await _context.SaveChangesAsync();
             ***REMOVED***
                 catch (DbUpdateConcurrencyException)
                 ***REMOVED***
-                    if (!TrainingPlanExists(trainingPlan.TrainingPlanId))
+                    if (!ExerciseExists(exercise.ExerciseId))
                     ***REMOVED***
                         return NotFound();
                 ***REMOVED***
@@ -115,41 +114,41 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return RedirectToAction(nameof(Index));
         ***REMOVED***
-            return View(trainingPlan);
+            return View(exercise);
     ***REMOVED***
 
-        // GET: TrainingPlans/Delete/5
-        public async Task<IActionResult> DeleteTrainingPlan(int? id)
+        // GET: Exercises/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlan = await _context.TrainingPlan
-                .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
-            if (trainingPlan == null)
+            var exercise = await _context.Exercise
+                .FirstOrDefaultAsync(m => m.ExerciseId == id);
+            if (exercise == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            return View(trainingPlan);
+            return View(exercise);
     ***REMOVED***
 
-        // POST: TrainingPlans/Delete/5
-        [HttpPost, ActionName("DeleteTrainingPlan")]
+        // POST: Exercises/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteTrainingPlanConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         ***REMOVED***
-            var trainingPlan = await _context.TrainingPlan.FindAsync(id);
-            _context.TrainingPlan.Remove(trainingPlan);
+            var exercise = await _context.Exercise.FindAsync(id);
+            _context.Exercise.Remove(exercise);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
     ***REMOVED***
 
-        private bool TrainingPlanExists(int id)
+        private bool ExerciseExists(int id)
         ***REMOVED***
-            return _context.TrainingPlan.Any(e => e.TrainingPlanId == id);
+            return _context.Exercise.Any(e => e.ExerciseId == id);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

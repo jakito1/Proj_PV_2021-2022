@@ -38,6 +38,9 @@
     ***REMOVED*** else if (User.IsInRole("trainer"))
         ***REMOVED***
             <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Planos de Treino</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Trainers" asp-action="EditTrainerSettings">Perfil</a>
             </li>
     ***REMOVED***
