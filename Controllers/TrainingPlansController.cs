@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace NutriFitWeb.Controllers
             _context = context;
         }
 
-        // GET: TrainingPlans
+        [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlans()
         {
             return View(await _context.TrainingPlan.ToListAsync());

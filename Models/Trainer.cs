@@ -19,6 +19,7 @@ namespace NutriFitWeb.Models
         public UserAccountModel? UserAccountModel { get; set; }
 
         public List<Client>? Clients { get; set; }
+        public List<TrainingPlan>? TrainingPlans { get; set; }
 
     }
 }

@@ -7,6 +7,8 @@
         public string? TrainingPlanDescription { get; set; }
 
         public List<Exercise>? Exercises { get; set; }
+        public List<Trainer>? Trainers { get; set; }
+        public List<Client>? Clients { get; set; }
     }
 
 }

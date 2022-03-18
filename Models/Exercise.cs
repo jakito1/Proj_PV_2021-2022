@@ -16,6 +16,7 @@ namespace NutriFitWeb.Models
         public List<Picture>? Pictures { get; set; }
         public ExerciseType ExerciseType { get; set; }
         public ExerciseMuscles ExerciseMuscles { get; set; }
+        public List<TrainingPlan>? TrainingPlans { get; set; }
 
         [FromForm]
         [NotMapped]
