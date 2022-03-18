@@ -3,42 +3,59 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
-@model IEnumerable<NutriFitWeb.Models.Client>
+@model PaginatedList<NutriFitWeb.Models.Client>
 
 @***REMOVED***
     ViewData["Title"] = "ShowClients";
 ***REMOVED***
 
-@***REMOVED***string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);***REMOVED***
-@***REMOVED***string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;***REMOVED***
-@***REMOVED***string? returnUrl = $"***REMOVED***routeUrl***REMOVED******REMOVED***qsPath***REMOVED***";***REMOVED***
-
 <h1>Clientes</h1>
 
-<form asp-action="ShowClients" asp-route-id=email method="get">
-    <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
+<form asp-action="ShowClients" method="get">
+    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar"/>
     <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
 </form>
 
 @foreach (var item in Model) ***REMOVED***
     <div class="listsDiv">
-        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.UserName):</b>
+        <b class="listsItem listsItemTitle">UserName:</b>
         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
         <br>
-        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.Email):</b>
+        <b class="listsItem listsItemTitle">Email:</b>
         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
             @if(item.Gym == null)***REMOVED***
-                <a asp-action="AddClientToGym" asp-route-id="@item.ClientId" asp-route-url=@returnUrl><img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon"/></a>
+                <a asp-action="AddClientToGym" asp-route-id="@item.ClientId" asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon"/></a>
         ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
-                <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId" asp-route-url=@returnUrl><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
+                <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId" asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
         ***REMOVED***
 
             <a asp-action="ClientDetails" asp-route-id="@item.ClientId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon"/></a>
         </div>
     </div>
 ***REMOVED***
-@if (!string.IsNullOrEmpty(qsPath))
+
+@***REMOVED***
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+***REMOVED***
+
+<a asp-action="ShowClients"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="ShowClients"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowClients" class="backToListBtn">Voltar</a>

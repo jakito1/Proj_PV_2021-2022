@@ -27,29 +27,42 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> ShowNutritionists(string? email)
+        public async Task<IActionResult> ShowNutritionists(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
+            if (searchString != null)
+            ***REMOVED***
+                pageNumber = 1;
+        ***REMOVED***
+            else
+            ***REMOVED***
+                searchString = currentFilter;
+        ***REMOVED***
+
+            ViewData["CurrentFilter"] = searchString;
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            if (email == null)
-            ***REMOVED***
-                return View(_context.Nutritionist.
+            IOrderedQueryable<Nutritionist>? nutritionists = _context.Nutritionist.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Gym).
                     Include(a => a.Gym.UserAccountModel).
-                    OrderByDescending(a => a.Gym));
+                    OrderByDescending(a => a.Gym);
+
+            if (!string.IsNullOrEmpty(searchString))
+            ***REMOVED***
+                nutritionists = _context.Nutritionist.
+                    Include(a => a.UserAccountModel).
+                    Include(a => a.Gym).
+                    Include(a => a.Gym.UserAccountModel).
+                    Where(a => a.UserAccountModel.Email.Contains(searchString)).
+                    OrderByDescending(a => a.Gym);
         ***REMOVED***
 
-            return View(_context.Nutritionist.
-                    Include(a => a.UserAccountModel).
-                    Include(a => a.Gym).
-                    Include(a => a.Gym.UserAccountModel).
-                    Where(a => a.UserAccountModel.Email.Contains(email)).
-                    OrderByDescending(a => a.Gym));
+            int pageSize = 3;
+            return View(await PaginatedList<Nutritionist>.CreateAsync(nutritionists.AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveNutritionistFromGym(int? id, string? url)
+        public async Task<IActionResult> RemoveNutritionistFromGym(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -63,12 +76,12 @@ namespace NutriFitWeb.Controllers
                 _context.Nutritionist.Update(nutritionist);
                 await _context.SaveChangesAsync();
         ***REMOVED***
-          
-            return LocalRedirect(Url.Content(url));
+
+            return RedirectToAction("ShowNutritionists", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddNutritionistToGym(int? id, string? url)
+        public async Task<IActionResult> AddNutritionistToGym(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -82,8 +95,8 @@ namespace NutriFitWeb.Controllers
                 _context.Nutritionist.Update(nutritionist);
                 await _context.SaveChangesAsync();
         ***REMOVED***
-           
-            return LocalRedirect(Url.Content(url));
+
+            return RedirectToAction("ShowNutritionists", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
         public async Task<IActionResult> NutritionistDetails(int? id)
