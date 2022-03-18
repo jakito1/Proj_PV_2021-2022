@@ -109,13 +109,13 @@ namespace NutriFitWeb.Data
                 ***REMOVED***
                     await context.Nutritionist.AddAsync(nutritionist);
                     await context.SaveChangesAsync();
-                    await userManager.AddToRoleAsync(clientTest, "nutritionist");
+                    await userManager.AddToRoleAsync(nutritionistTest, "nutritionist");
             ***REMOVED***
                 if (result4.Succeeded)
                 ***REMOVED***
                     await context.Trainer.AddAsync(trainer);
                     await context.SaveChangesAsync();
-                    await userManager.AddToRoleAsync(clientTest, "trainer");
+                    await userManager.AddToRoleAsync(trainerTest, "trainer");
             ***REMOVED*** 
                 if (result5.Succeeded)
                 ***REMOVED***
