@@ -313,7 +313,7 @@ a.btn.btn-default.disabled {
 }
 
 input.btn.btn-primary {
-    border-width: 0.2em;
+    
     border-radius: 1em;
     border-color: #00A2E8;
     padding-left: 2em !important;
@@ -325,7 +325,7 @@ input.btn.btn-primary {
 }
 
 input.btn.btn-primary:hover {
-    padding: 1em;
+    
     color: lightgrey;
 }
 
