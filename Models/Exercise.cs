@@ -14,13 +14,15 @@ namespace NutriFitWeb.Models
         public int? ExerciseRepetitions { get; set; }
         public string? ExerciseURL { get; set; }
         public List<Picture>? Pictures { get; set; }
-        public ExerciseType ExerciseType { get; set; }
-        public ExerciseMuscles ExerciseMuscles { get; set; }
-        public List<TrainingPlan>? TrainingPlans { get; set; }
+        public ExerciseType? ExerciseType { get; set; }
+        public ExerciseMuscles? ExerciseMuscles { get; set; }
+        public TrainingPlan? TrainingPlan { get; set; }
+        public UserAccountModel? UserAccount { get; set; }
 
         [FromForm]
         [NotMapped]
-        public IFormFileCollection Files { get; set; }
+        public IFormFileCollection? Files { get; set; }
+
     }
 
     public enum ExerciseType

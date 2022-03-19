@@ -22,11 +22,16 @@
                 <input asp-for="TrainingPlanDescription" class="form-control" />
                 <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
             </div>
-            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+        <div id="_ShowExercisesPartialList">
+            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
+        </div>
+        
     </div>
 </div>
 
@@ -35,5 +40,13 @@
 </div>
 
 @section Scripts {
+     <script>
+        function onSuccess(response){
+            alert(response);
+        }
+        function clearForm(){
+            $('#_CreateExercisePartialForm').trigger("reset");
+        }
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

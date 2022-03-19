@@ -3,21 +3,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
     public class ExercisesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IGetExercisesForCurrentUser _getExercisesForCurrentUser;
 
-        public ExercisesController(ApplicationDbContext context)
+        public ExercisesController(ApplicationDbContext context,
+            UserManager<UserAccountModel> userManager,
+            IGetExercisesForCurrentUser getExercisesForCurrentUser)
         {
             _context = context;
+            _userManager = userManager;
+            _getExercisesForCurrentUser = getExercisesForCurrentUser;
         }
 
         // GET: Exercises
@@ -59,11 +67,14 @@ namespace NutriFitWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+                exercise.UserAccount = user;
                 _context.Add(exercise);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id));
             }
-            return View(exercise);
+           
+            return null;
         }
 
         // GET: Exercises/Edit/5
@@ -117,8 +128,7 @@ namespace NutriFitWeb.Controllers
             return View(exercise);
         }
 
-        // GET: Exercises/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteExercise(int? id)
         {
             if (id == null)
             {
@@ -131,19 +141,11 @@ namespace NutriFitWeb.Controllers
             {
                 return NotFound();
             }
-
-            return View(exercise);
-        }
-
-        // POST: Exercises/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var exercise = await _context.Exercise.FindAsync(id);
             _context.Exercise.Remove(exercise);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+            return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id)); ;
         }
 
         private bool ExerciseExists(int id)
