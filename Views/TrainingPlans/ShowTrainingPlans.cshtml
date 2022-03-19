@@ -13,12 +13,12 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TrainingPlanName)
+                Nome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrainingPlanDescription)
+                Descrição
             </th>
-            <th></th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -28,12 +28,18 @@
                 @Html.DisplayFor(modelItem => item.TrainingPlanName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanDescription)
+                @if (item.TrainingPlanDescription == null || item.TrainingPlanDescription == "")
+                    {
+                        <p>N/A</p>
+                    }else{
+                        @Html.DisplayFor(modelItem => item.TrainingPlanDescription)
+                    }
+                    
             </td>
             <td>
-                <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId">Edit</a> |
-                <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId">Details</a> |
-                <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId">Delete</a>
+                <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg"/></a> 
+                <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg"/></a> 
+                <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg"/></a>
             </td>
         </tr>
 }

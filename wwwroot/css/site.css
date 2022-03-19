@@ -10,6 +10,13 @@ html {
   }
 }
 
+h2 {
+    margin: 1em;
+    color: dodgerblue;
+    font-weight: bold;
+    padding: 0.2em;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -227,23 +234,44 @@ link{
     padding: 0px;
 }
 
-.table{
-    margin-top: 50px !important;
+.table {
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6em;
+    max-width: 80%;
+    color: #00A2E8;
 }
 
 .listsDiv {
     border-style: solid;
     border-radius: 1em;
-    border-color: lightgrey;
-    max-width: 50%;
+    border-color: #00A2E8;
+    background-color: white;
+    max-width: 60%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 1em;
+    padding: 0.5em;
+    margin-bottom: 2em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
 }
 
-div.titlesMargin{
+/*border-style: solid;
+border-radius: 1em;
+border-color: #00A2E8;
+background-color: white;
+padding: 1em;
+padding-top: 4em;
+padding-bottom: 0px;
+color: #00A2E8;
+font-weight: bold;*/
+
+.exercisesDiv {
+    max-width: 80%;
+}
+
+div.titlesMargin {
     margin-top: 3em;
 }
 
@@ -270,8 +298,15 @@ div.titlesMargin{
     padding: 1em;
     padding-top: 4em;
     padding-bottom: 0px;
+    margin-bottom: 3em;
     color: #00A2E8;
     font-weight: bold;
+}
+
+div.form-group{
+    max-width: 60%;
+    margin: auto;
+    text-align: center;
 }
 
 a.btn.btn-default:hover {
@@ -316,10 +351,20 @@ a.btn.btn-default.disabled {
     border-color: #00A2E8;
     border-style: solid;
     border-radius: 1em;
-    padding: 10px;
+    padding: 1em;
     padding-left: 2.3em;
     padding-right: 2.3em;
 }
+
+div.titlesMargin{
+    margin-bottom: 3em;
+}
+
+.deleteB {
+    color: #00A2E8;
+    font-weight: bold;
+}
+
 
 input.btn.btn-primary {
     text-decoration: none;
@@ -328,9 +373,14 @@ input.btn.btn-primary {
     border-color: #00A2E8;
     border-style: solid;
     border-radius: 1em;
-    padding: 10px;
+    padding: 1em;
     padding-left: 2.3em;
     padding-right: 2.3em;
+    margin-bottom: 4em;
+}
+
+.createBtn{
+    width: 80%;
 }
 
 input.btn.btn-primary:hover {
@@ -347,9 +397,12 @@ input.btn.btn-danger {
     margin-bottom: 4em;
 }
 
+.center-content{
+    margin-left: auto;
+    margin-right:auto;
+}
 
-
-.backToListBtn:hover {
+.backToListBtn:hover, .createTrainBtn:hover {
     color: lightgrey;
 }
 
