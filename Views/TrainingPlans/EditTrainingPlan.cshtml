@@ -1,13 +1,9 @@
 ﻿@model NutriFitWeb.Models.TrainingPlan
 
-@{
-    ViewData["Title"] = "Editar plano de treino";
-}
-
-<h1>@ViewData["Title"]</h1>
+<h1>Editar plano de treino</h1>
 
 <hr />
-    <div class="col-md-4 profileDivs">
+    @*<div class="col-md-4 profileDivs">
         <form asp-action="EditTrainingPlan">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TrainingPlanId" />
@@ -26,6 +22,30 @@
             </div>
         </form>
     </div>
+    *@
+
+    <div class="col-md-12 profileDivs">
+        <form asp-controller="TrainingPlans" asp-action="CreateTrainingPlan">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary createBtn" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingPlanName" class="control-label">Nome</label>
+                <input asp-for="TrainingPlanName" class="form-control" />
+                <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
+                <input asp-for="TrainingPlanDescription" class="form-control" />
+                <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
+            </div>
+        </form>
+        @*<partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+        <div id="_ShowExercisesPartialList">
+            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
+        </div>*@
+    </div>
 
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
@@ -34,3 +54,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
