@@ -1,34 +1,19 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
 
 @***REMOVED***
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Exercícios";
 ***REMOVED***
 
-<h1>Index</h1>
+<h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ExerciseName)
+                Nome do Exercício
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExerciseDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExerciseDuration)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExerciseRepetitions)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExerciseURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExerciseType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExerciseMuscles)
+                Descrição
             </th>
             <th></th>
         </tr>
@@ -45,23 +30,9 @@
                 @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
-            </td>
-            <td>
                 <a asp-action="DeleteExercise" asp-controller="Exercises" method="post" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
                 asp-route-id="@item.i">Delete</a>
+                asp-route-id="@item.ExerciseId"><img src=~/icons/removeIcon.svg/></a>
             </td>
         </tr>
     ***REMOVED***

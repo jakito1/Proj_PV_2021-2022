@@ -4,30 +4,19 @@
     ViewData["Title"] = "Delete";
 ***REMOVED***
 
-<h1>Delete</h1>
+<h1>Apagar Plano de Treino</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TrainingPlan</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanDescription)
-        </dd>
-    </dl>
-    
+    <p><b>Tem a certeza que pretende apagar este plano de treino?</b></p>
+    <p class="deleteB">Nome:</p>
+    <p><b>@Html.DisplayFor(model => model.TrainingPlanName)</b></p>
+    <p class="deleteB">Descrição:</p>
+    <p><b>@Html.DisplayFor(model => model.TrainingPlanDescription)</b></p>
+
     <form asp-action="DeleteTrainingPlan">
         <input type="hidden" asp-for="TrainingPlanId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="ShowTrainingPlans">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
     </form>
-</div>
+    <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar</a>
+
+

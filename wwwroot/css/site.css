@@ -10,6 +10,13 @@ html ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 
+h2 ***REMOVED***
+    margin: 1em;
+    color: dodgerblue;
+    font-weight: bold;
+    padding: 0.2em;
+***REMOVED***
+
 html ***REMOVED***
   position: relative;
   min-height: 100%;
@@ -227,23 +234,44 @@ link***REMOVED***
     padding: 0px;
 ***REMOVED***
 
-.table***REMOVED***
-    margin-top: 50px !important;
+.table ***REMOVED***
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6em;
+    max-width: 80%;
+    color: #00A2E8;
 ***REMOVED***
 
 .listsDiv ***REMOVED***
     border-style: solid;
     border-radius: 1em;
-    border-color: lightgrey;
-    max-width: 50%;
+    border-color: #00A2E8;
+    background-color: white;
+    max-width: 60%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 1em;
+    padding: 0.5em;
+    margin-bottom: 2em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
 ***REMOVED***
 
-div.titlesMargin***REMOVED***
+/*border-style: solid;
+border-radius: 1em;
+border-color: #00A2E8;
+background-color: white;
+padding: 1em;
+padding-top: 4em;
+padding-bottom: 0px;
+color: #00A2E8;
+font-weight: bold;*/
+
+.exercisesDiv ***REMOVED***
+    max-width: 80%;
+***REMOVED***
+
+div.titlesMargin ***REMOVED***
     margin-top: 3em;
 ***REMOVED***
 
@@ -270,8 +298,15 @@ div.titlesMargin***REMOVED***
     padding: 1em;
     padding-top: 4em;
     padding-bottom: 0px;
+    margin-bottom: 3em;
     color: #00A2E8;
     font-weight: bold;
+***REMOVED***
+
+div.form-group***REMOVED***
+    max-width: 60%;
+    margin: auto;
+    text-align: center;
 ***REMOVED***
 
 a.btn.btn-default:hover ***REMOVED***
@@ -316,10 +351,20 @@ a.btn.btn-default.disabled ***REMOVED***
     border-color: #00A2E8;
     border-style: solid;
     border-radius: 1em;
-    padding: 10px;
+    padding: 1em;
     padding-left: 2.3em;
     padding-right: 2.3em;
 ***REMOVED***
+
+div.titlesMargin***REMOVED***
+    margin-bottom: 3em;
+***REMOVED***
+
+.deleteB ***REMOVED***
+    color: #00A2E8;
+    font-weight: bold;
+***REMOVED***
+
 
 input.btn.btn-primary ***REMOVED***
     text-decoration: none;
@@ -328,9 +373,14 @@ input.btn.btn-primary ***REMOVED***
     border-color: #00A2E8;
     border-style: solid;
     border-radius: 1em;
-    padding: 10px;
+    padding: 1em;
     padding-left: 2.3em;
     padding-right: 2.3em;
+    margin-bottom: 4em;
+***REMOVED***
+
+.createBtn***REMOVED***
+    width: 80%;
 ***REMOVED***
 
 input.btn.btn-primary:hover ***REMOVED***
@@ -347,9 +397,12 @@ input.btn.btn-danger ***REMOVED***
     margin-bottom: 4em;
 ***REMOVED***
 
+.center-content***REMOVED***
+    margin-left: auto;
+    margin-right:auto;
+***REMOVED***
 
-
-.backToListBtn:hover ***REMOVED***
+.backToListBtn:hover, .createTrainBtn:hover ***REMOVED***
     color: lightgrey;
 ***REMOVED***
 
