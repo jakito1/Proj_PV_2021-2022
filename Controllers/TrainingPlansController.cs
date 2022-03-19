@@ -31,6 +31,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlans()
         ***REMOVED***
+            HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             return View(await _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).ToListAsync());

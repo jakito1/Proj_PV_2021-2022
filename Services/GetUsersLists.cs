@@ -4,15 +4,15 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
 ***REMOVED***
-    public class GetUsersForGym : IGetUsersForGym
+    public class GetUsersLists : IGetUsersLists
     ***REMOVED***
         private readonly ApplicationDbContext _context;
-        public GetUsersForGym(ApplicationDbContext context)
+        public GetUsersLists(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
     ***REMOVED***
 
-        public IEnumerable<UserAccountModel> GetUsers(string userType, string loggedIn)
+        public IEnumerable<UserAccountModel> GetUsersForGym(string userType, string loggedIn)
         ***REMOVED***
             IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.Id == loggedIn select a.GymId;
             IQueryable<string> ? role = from a in _context.Roles where a.Name == userType select a.Id;

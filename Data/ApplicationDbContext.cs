@@ -35,6 +35,7 @@ namespace NutriFitWeb.Data
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Gym>().HasMany(a => a.Trainers).WithOne(a => a.Gym)
                 .OnDelete(DeleteBehavior.SetNull);
+            //modelBuilder.Entity
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
