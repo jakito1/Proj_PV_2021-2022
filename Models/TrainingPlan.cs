@@ -7,8 +7,8 @@
         public string? TrainingPlanDescription ***REMOVED*** get; set; ***REMOVED***
 
         public List<Exercise>? Exercises ***REMOVED*** get; set; ***REMOVED***
-        public List<Trainer>? Trainers ***REMOVED*** get; set; ***REMOVED***
-        public List<Client>? Clients ***REMOVED*** get; set; ***REMOVED***
+        public Trainer? Trainer ***REMOVED*** get; set; ***REMOVED***
+        public Client? Client ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 
 ***REMOVED***

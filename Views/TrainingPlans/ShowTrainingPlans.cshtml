@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.TrainingPlan>
 
 @***REMOVED***
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Planos de Treino";
 ***REMOVED***
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
-<p>
-    <a asp-action="CreateTrainingPlan">Create New</a>
-</p>
+<div class="titlesMargin">
+    <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
+</div>
 <table class="table">
     <thead>
         <tr>
