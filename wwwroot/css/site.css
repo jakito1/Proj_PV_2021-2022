@@ -24,7 +24,12 @@ body {
     margin-bottom: 60px;
     background-color: white;
     font-family: 'Roboto', sans-serif;
-    overflow: scroll !important
+    overflow: scroll !important;
+    background-image: url("../images//background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 button.navbar-toggler{
@@ -238,7 +243,11 @@ link{
     word-wrap: break-word;
 }
 
-.detailsTitle{
+div.titlesMargin{
+    margin-top: 3em;
+}
+
+.detailsTitle {
     margin-bottom: 1em;
 }
 
@@ -313,20 +322,20 @@ a.btn.btn-default.disabled {
 }
 
 input.btn.btn-primary {
-    border-width: 0.2em;
-    border-radius: 1em;
-    border-color: #00A2E8;
-    padding-left: 2em !important;
-    padding-right: 2em !important;
-    margin-bottom: 4em;
-    color: white;
-    font-weight: bold;
+    text-decoration: none;
     background-color: #00A2E8;
+    color: white;
+    border-color: #00A2E8;
+    border-style: solid;
+    border-radius: 1em;
+    padding: 10px;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
 }
 
 input.btn.btn-primary:hover {
-    padding: 1em;
-    color: lightgrey;
+    color: #00A2E8;
+    background-color: white;
 }
 
 input.btn.btn-danger {
