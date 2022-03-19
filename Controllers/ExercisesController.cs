@@ -74,7 +74,7 @@ namespace NutriFitWeb.Controllers
                 return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id));
             }
            
-            return null;
+            return BadRequest();
         }
 
         // GET: Exercises/Edit/5
@@ -145,7 +145,7 @@ namespace NutriFitWeb.Controllers
             await _context.SaveChangesAsync();
 
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id)); ;
+            return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id));
         }
 
         private bool ExerciseExists(int id)
