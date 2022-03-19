@@ -7,34 +7,31 @@
 <h1>@ViewData["Title"]</h1>
 
 <hr />
-    <div class="col-md-12 listsDiv">
-        <form asp-action="CreateTrainingPlan">
+    <div class="col-md-12 profileDivs">
+        <form asp-controller="TrainingPlans" asp-action="CreateTrainingPlan">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TrainingPlanName" class="control-label"></label>
+                <input type="submit" value="Criar" class="btn btn-primary createBtn" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingPlanName" class="control-label">Nome</label>
                 <input asp-for="TrainingPlanName" class="form-control" />
                 <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TrainingPlanDescription" class="control-label"></label>
+                <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
                 <input asp-for="TrainingPlanDescription" class="form-control" />
                 <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
         <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
         <div id="_ShowExercisesPartialList">
             <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
         </div>
-        
     </div>
-
-<div>
-    <a asp-action="ShowTrainingPlans">Back to List</a>
-</div>
+    <div>
+        <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar</a>
+    </div>
 
 @section Scripts ***REMOVED***
      <script>
