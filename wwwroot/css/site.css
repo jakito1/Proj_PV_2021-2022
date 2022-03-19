@@ -321,6 +321,8 @@ a.btn.btn-default.disabled ***REMOVED***
     padding-right: 2.3em;
 ***REMOVED***
 
+
+
 input.btn.btn-primary ***REMOVED***
     text-decoration: none;
     background-color: #00A2E8;
@@ -347,7 +349,10 @@ input.btn.btn-danger ***REMOVED***
     margin-bottom: 4em;
 ***REMOVED***
 
-
+.center-content***REMOVED***
+    margin-left: auto;
+    margin-right:auto;
+***REMOVED***
 
 .backToListBtn:hover ***REMOVED***
     color: lightgrey;

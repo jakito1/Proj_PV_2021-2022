@@ -1,15 +1,14 @@
 ﻿@model NutriFitWeb.Models.TrainingPlan
 
 @***REMOVED***
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar plano de treino";
 ***REMOVED***
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>TrainingPlan</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 center-content">
         <form asp-action="CreateTrainingPlan">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
