@@ -18,7 +18,7 @@
         <p><b class="gymHome">Nutricionistas:  &nbsp; </b><b>@GetUsersForGym.GetUsers("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
         <div class="newUsersDiv">
             <p><b class="gymHome">Clientes mais recentes:</b></p>
-            @foreach (var item in GetUsersForGym.GetUsers("client", UserManager.GetUserId(User)))
+            @foreach (var item in GetUsersForGym.GetUsers("client", UserManager.GetUserId(User)).Take(3))
             {
                 <p class="recentClientsGym"><b>Username - @item.UserName.ToUpper()</b></p>      
             }
