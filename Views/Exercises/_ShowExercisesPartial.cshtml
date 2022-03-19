@@ -36,32 +36,32 @@
     <tbody>
         @if (Model != null)
         ***REMOVED***
-            @foreach (var item in Model) ***REMOVED***
+            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***)) ***REMOVED***
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseName)
+                @Html.DisplayFor(modelItem => item.value.ExerciseName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseDescription)
+                @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseDuration)
+                @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseRepetitions)
+                @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseURL)
+                @Html.DisplayFor(modelItem => item.value.ExerciseURL)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseType)
+                @Html.DisplayFor(modelItem => item.value.ExerciseType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseMuscles)
+                @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
             </td>
             <td>
                 <a asp-action="DeleteExercise" asp-controller="Exercises" method="post" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
-                asp-route-id="@item.ExerciseId">Delete</a>
+                asp-route-id="@item.i">Delete</a>
             </td>
         </tr>
     ***REMOVED***

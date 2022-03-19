@@ -16,17 +16,16 @@ namespace NutriFitWeb.Controllers
 ***REMOVED***
     public class TrainingPlansController : Controller
     ***REMOVED***
+        private readonly string SessionKeyExercises;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
-        private readonly IGetExercisesForCurrentUser _getExercisesForCurrentUser;
 
         public TrainingPlansController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager,
-            IGetExercisesForCurrentUser getExercisesForCurrentUser)
+            UserManager<UserAccountModel> userManager)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
-            _getExercisesForCurrentUser = getExercisesForCurrentUser;
+            SessionKeyExercises = "_Exercises";
     ***REMOVED***
 
         [Authorize(Roles = "client, trainer")]
@@ -72,11 +71,19 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                var exercises = _getExercisesForCurrentUser.GetExercises(user.Id).ToList();
-                foreach (var exercise in exercises)
+                //var exercises = _getExercisesForCurrentUser.GetExercises(user.Id).ToList();
+
+                //foreach (var exercise in exercises)
+                //***REMOVED***
+                //exercise.UserAccount = null;
+                //***REMOVED***
+                List<Exercise> exercises = null;
+                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) != null)
                 ***REMOVED***
-                    exercise.UserAccount = null;
+                    exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
             ***REMOVED***
+
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
                 _context.Add(trainingPlan);
