@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Exercícios";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
+<div class="listsDiv">
 <table class="table">
     <thead>
         <tr>
@@ -69,3 +70,4 @@
 }
     </tbody>
 </table>
+</div>

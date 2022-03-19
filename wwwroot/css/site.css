@@ -238,12 +238,18 @@ link{
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding: 2em;
     margin-bottom: 1em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
+    background-color: white;
 }
 
-div.titlesMargin{
+.exercisesDiv{
+    max-width: 80%;
+}
+
+div.titlesMargin {
     margin-top: 3em;
 }
 
