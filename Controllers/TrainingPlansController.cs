@@ -4,27 +4,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
     public class TrainingPlansController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IGetExercisesForCurrentUser _getExercisesForCurrentUser;
 
-        public TrainingPlansController(ApplicationDbContext context)
+        public TrainingPlansController(ApplicationDbContext context,
+            UserManager<UserAccountModel> userManager,
+            IGetExercisesForCurrentUser getExercisesForCurrentUser)
         ***REMOVED***
             _context = context;
+            _userManager = userManager;
+            _getExercisesForCurrentUser = getExercisesForCurrentUser;
     ***REMOVED***
 
         [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlans()
         ***REMOVED***
-            return View(await _context.TrainingPlan.ToListAsync());
+            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            return View(await _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).ToListAsync());
     ***REMOVED***
 
         // GET: TrainingPlans/Details/5
@@ -60,11 +70,19 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
+                UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                var exercises = _getExercisesForCurrentUser.GetExercises(user.Id).ToList();
+                foreach (var exercise in exercises)
+                ***REMOVED***
+                    exercise.UserAccount = null;
+            ***REMOVED***
+                trainingPlan.Exercises = exercises;
+                trainingPlan.Trainer = trainer;
                 _context.Add(trainingPlan);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
         ***REMOVED***
-            return View(trainingPlan);
+            return RedirectToAction("ShowTrainingPlans");
     ***REMOVED***
 
         // GET: TrainingPlans/Edit/5
