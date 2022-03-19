@@ -16,22 +16,22 @@ namespace NutriFitWeb.Controllers
 {
     public class TrainingPlansController : Controller
     {
+        private readonly string SessionKeyExercises;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
-        private readonly IGetExercisesForCurrentUser _getExercisesForCurrentUser;
 
         public TrainingPlansController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager,
-            IGetExercisesForCurrentUser getExercisesForCurrentUser)
+            UserManager<UserAccountModel> userManager)
         {
             _context = context;
             _userManager = userManager;
-            _getExercisesForCurrentUser = getExercisesForCurrentUser;
+            SessionKeyExercises = "_Exercises";
         }
 
         [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlans()
         {
+            HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             return View(await _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).ToListAsync());
@@ -72,11 +72,19 @@ namespace NutriFitWeb.Controllers
             {
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                var exercises = _getExercisesForCurrentUser.GetExercises(user.Id).ToList();
-                foreach (var exercise in exercises)
+                //var exercises = _getExercisesForCurrentUser.GetExercises(user.Id).ToList();
+
+                //foreach (var exercise in exercises)
+                //{
+                //exercise.UserAccount = null;
+                //}
+                List<Exercise> exercises = null;
+                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) != null)
                 {
-                    exercise.UserAccount = null;
+                    exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
                 }
+
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
                 _context.Add(trainingPlan);

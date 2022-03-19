@@ -14,13 +14,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".NutriFitWeb.Session";
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IEmailSender>(new EmailSender (builder.Configuration.GetConnectionString("SendGridKey")));
 
 builder.Services.AddTransient<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
-builder.Services.AddTransient<IGetExercisesForCurrentUser, GetExercisesForCurrentUser>();
-builder.Services.AddScoped<IGetUsersForGym, GetUsersForGym>();
+builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options => { 
     options.SignIn.RequireConfirmedAccount = true;
@@ -49,6 +56,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
