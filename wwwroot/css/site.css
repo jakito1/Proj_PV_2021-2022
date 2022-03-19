@@ -238,12 +238,18 @@ link***REMOVED***
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding: 2em;
     margin-bottom: 1em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
+    background-color: white;
 ***REMOVED***
 
-div.titlesMargin***REMOVED***
+.exercisesDiv***REMOVED***
+    max-width: 80%;
+***REMOVED***
+
+div.titlesMargin ***REMOVED***
     margin-top: 3em;
 ***REMOVED***
 
