@@ -17,7 +17,6 @@ namespace NutriFitWeb.Models
         public ExerciseType? ExerciseType ***REMOVED*** get; set; ***REMOVED***
         public ExerciseMuscles? ExerciseMuscles ***REMOVED*** get; set; ***REMOVED***
         public TrainingPlan? TrainingPlan ***REMOVED*** get; set; ***REMOVED***
-        public UserAccountModel? UserAccount ***REMOVED*** get; set; ***REMOVED***
 
         [FromForm]
         [NotMapped]

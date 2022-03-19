@@ -90,7 +90,7 @@ namespace NutriFitWeb.Controllers
 
                 _context.Trainer.Remove(trainer);
         ***REMOVED***
-
+            #region
             if (nutritionist != null)
             ***REMOVED***
                 var clients = _context.Client.Where(a => a.Nutritionist == nutritionist);
@@ -103,6 +103,7 @@ namespace NutriFitWeb.Controllers
 
                 _context.Nutritionist.Remove(nutritionist);
         ***REMOVED***
+            #endregion
 
             if (client != null)
             ***REMOVED***
@@ -110,33 +111,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             if (gym != null)
-            ***REMOVED***
-
-                var clients = _context.Client.
-                    Where(a => a.Gym == gym);
-                var trainers = _context.Trainer.
-                    Where(a => a.Gym == gym);
-                var nutritionists = _context.Nutritionist.
-                    Where(a => a.Gym == gym);
-
-                foreach (var c in clients)
-                ***REMOVED***
-                    c.Gym = null;
-                    _context.Client.Update(c);
-            ***REMOVED***
-
-                foreach (var n in nutritionists)
-                ***REMOVED***
-                    n.Gym = null;
-                    _context.Nutritionist.Update(n);
-            ***REMOVED***
-
-                foreach (var t in trainers)
-                ***REMOVED***
-                    t.Gym = null;
-                    _context.Trainer.Update(t);
-            ***REMOVED***
-
+            ***REMOVED***            
                 _context.Gym.Remove(gym);
         ***REMOVED***          
                         

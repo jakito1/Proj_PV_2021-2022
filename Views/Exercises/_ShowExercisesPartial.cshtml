@@ -18,17 +18,17 @@
     <tbody>
         @if (Model != null)
         ***REMOVED***
-            @foreach (var item in Model) ***REMOVED***
+            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***)) ***REMOVED***
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseName)
+                @Html.DisplayFor(modelItem => item.value.ExerciseName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExerciseDescription)
+                @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
             </td>
             <td>
-                <a asp-action="DeleteExercise" asp-controller="Exercises" method="post" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
-                asp-route-id="@item.ExerciseId"><img src=~/icons/removeIcon.svg/></a>
+                <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
+                asp-route-id="@item.i"><img src=~/icons/removeIcon.svg/></a>
             </td>
         </tr>
     ***REMOVED***
