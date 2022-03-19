@@ -17,7 +17,6 @@ namespace NutriFitWeb.Models
         public ExerciseType? ExerciseType { get; set; }
         public ExerciseMuscles? ExerciseMuscles { get; set; }
         public TrainingPlan? TrainingPlan { get; set; }
-        public UserAccountModel? UserAccount { get; set; }
 
         [FromForm]
         [NotMapped]

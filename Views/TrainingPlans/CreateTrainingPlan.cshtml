@@ -22,6 +22,11 @@
                 <input asp-for="TrainingPlanDescription" class="form-control" />
                 <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="ClientEmail" class="control-label"></label>
+                <input asp-for="ClientEmail" class="form-control"/>
+                <span asp-validation-for="ClientEmail" class="text-danger"></span>
+            </div>
             
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -41,9 +46,6 @@
 
 @section Scripts {
      <script>
-        function onSuccess(response){
-            alert(response);
-        }
         function clearForm(){
             $('#_CreateExercisePartialForm').trigger("reset");
         }

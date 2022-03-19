@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,17 +16,16 @@ namespace NutriFitWeb.Controllers
 {
     public class ExercisesController : Controller
     {
+        private readonly string SessionKeyExercises;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
-        private readonly IGetExercisesForCurrentUser _getExercisesForCurrentUser;
 
         public ExercisesController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager,
-            IGetExercisesForCurrentUser getExercisesForCurrentUser)
+            UserManager<UserAccountModel> userManager)
         {
             _context = context;
             _userManager = userManager;
-            _getExercisesForCurrentUser = getExercisesForCurrentUser;
+            SessionKeyExercises = "_Exercises";
         }
 
         // GET: Exercises
@@ -68,10 +68,23 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             {
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-                exercise.UserAccount = user;
-                _context.Add(exercise);
-                await _context.SaveChangesAsync();
-                return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id));
+
+                //exercise.UserAccount = user;
+                //_context.Add(exercise);
+                //await _context.SaveChangesAsync();
+                List<Exercise> lista = new();
+                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) == null)
+                {
+                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() { exercise });
+                    lista.Add(exercise);
+                } else
+                {
+                    lista = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                    lista.Add(exercise);
+                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, lista);
+                }
+                //TempData["ExercisePlan"] = exercise;
+                return PartialView("_ShowExercisesPartial", lista);
             }
            
             return BadRequest();
@@ -128,24 +141,18 @@ namespace NutriFitWeb.Controllers
             return View(exercise);
         }
 
-        public async Task<IActionResult> DeleteExercise(int? id)
+        public IActionResult DeleteExercise(int id)
         {
-            if (id == null)
+
+            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            if (exercises != null)
             {
-                return NotFound();
+                exercises.RemoveAt(id);
+                HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+                return PartialView("_ShowExercisesPartial", exercises);
             }
 
-            var exercise = await _context.Exercise
-                .FirstOrDefaultAsync(m => m.ExerciseId == id);
-            if (exercise == null)
-            {
-                return NotFound();
-            }
-            _context.Exercise.Remove(exercise);
-            await _context.SaveChangesAsync();
-
-            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            return PartialView("_ShowExercisesPartial", _getExercisesForCurrentUser.GetExercises(user.Id));
+            return PartialView("_ShowExercisesPartial", new List<Exercise>());
         }
 
         private bool ExerciseExists(int id)
