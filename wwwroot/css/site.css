@@ -238,12 +238,18 @@ link***REMOVED***
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding: 2em;
     margin-bottom: 1em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
+    background-color: white;
 ***REMOVED***
 
-div.titlesMargin***REMOVED***
+.exercisesDiv***REMOVED***
+    max-width: 80%;
+***REMOVED***
+
+div.titlesMargin ***REMOVED***
     margin-top: 3em;
 ***REMOVED***
 
@@ -321,6 +327,8 @@ a.btn.btn-default.disabled ***REMOVED***
     padding-right: 2.3em;
 ***REMOVED***
 
+
+
 input.btn.btn-primary ***REMOVED***
     text-decoration: none;
     background-color: #00A2E8;
@@ -347,7 +355,10 @@ input.btn.btn-danger ***REMOVED***
     margin-bottom: 4em;
 ***REMOVED***
 
-
+.center-content***REMOVED***
+    margin-left: auto;
+    margin-right:auto;
+***REMOVED***
 
 .backToListBtn:hover ***REMOVED***
     color: lightgrey;
