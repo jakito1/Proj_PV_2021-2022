@@ -3,8 +3,7 @@
 
     <div class="col-md-12 listsDiv exercisesDiv">
         <h2>Criar exercício</h2>
-        <form method="post" id="_CreateExercisePartialForm" 
-        data-ajax-begin="clearForm" data-ajax-complete="clearForm" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
+        <form method="post" id="_CreateExercisePartialForm" data-ajax-success="updateViews" data-ajax="true" 
         asp-action="CreateExercise" asp-controller="Exercises">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -49,10 +48,5 @@
     </div>
 
 @section Scripts {
-     <script>
-        function clearForm(){
-            $('#_CreateExercisePartialForm').trigger("reset");
-        }
-    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
