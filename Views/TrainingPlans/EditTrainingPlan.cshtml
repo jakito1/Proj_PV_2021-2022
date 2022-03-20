@@ -55,9 +55,6 @@
 
 @section Scripts {
     <script>
-        function clearForm(){
-            $('#_CreateExercisePartialForm').trigger("reset");
-        }
         function updateViews(response) {
             $("#_CreateExercisePartialItem").html(response._CreateExercise);
             $("#_ShowExercisesPartialList").html(response._ShowExercises);
