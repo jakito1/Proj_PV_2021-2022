@@ -43,13 +43,29 @@ namespace NutriFitWeb.Controllers
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             ViewData["CurrentFilter"] = searchString;
-            IQueryable<TrainingPlan>? plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId);
+            IQueryable<TrainingPlan>? plans = null;
 
-            if (!string.IsNullOrEmpty(searchString))
+            if (trainer != null)
+            ***REMOVED***
+                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId);
+        ***REMOVED***
+            
+            if(client != null)
+            ***REMOVED***
+                plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId);
+        ***REMOVED***
+
+            if (!string.IsNullOrEmpty(searchString) && trainer != null)
             ***REMOVED***
                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Where(a => a.TrainingPlanName.Contains(searchString));
+        ***REMOVED***
+
+            if (!string.IsNullOrEmpty(searchString) && client != null)
+            ***REMOVED***
+                plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId).Where(a => a.TrainingPlanName.Contains(searchString));
         ***REMOVED***
 
             int pageSize = 5;
@@ -64,7 +80,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlan = await _context.TrainingPlan.Include(a=>a.Exercises)
+            var trainingPlan = await _context.TrainingPlan.Include(a=>a.Exercises).Include(a => a.Trainer.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
             if (trainingPlan == null)
             ***REMOVED***
@@ -88,12 +104,14 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
 
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
+                trainingPlan.Client = client;
                 _context.Add(trainingPlan);
                 await _context.SaveChangesAsync();
         ***REMOVED***
@@ -171,7 +189,7 @@ namespace NutriFitWeb.Controllers
             var trainingPlan = await _context.TrainingPlan.FindAsync(id);
             _context.TrainingPlan.Remove(trainingPlan);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("ShowTrainingPlans");
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
