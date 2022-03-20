@@ -50,7 +50,7 @@ namespace NutriFitWeb.Controllers
 
             if (trainer != null)
             ***REMOVED***
-                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId);
+                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
         ***REMOVED***
             
             if(client != null)
@@ -60,7 +60,9 @@ namespace NutriFitWeb.Controllers
 
             if (!string.IsNullOrEmpty(searchString) && trainer != null)
             ***REMOVED***
-                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Where(a => a.TrainingPlanName.Contains(searchString));
+                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId)
+                    .Where(a => a.TrainingPlanName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString))
+                    .Include(a => a.Client.UserAccountModel);
         ***REMOVED***
 
             if (!string.IsNullOrEmpty(searchString) && client != null)
@@ -80,7 +82,10 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlan = await _context.TrainingPlan.Include(a=>a.Exercises).Include(a => a.Trainer.UserAccountModel)
+            var trainingPlan = await _context.TrainingPlan
+                .Include(a=>a.Exercises)
+                .Include(a => a.Trainer.UserAccountModel)
+                .Include(a => a.Client.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
             if (trainingPlan == null)
             ***REMOVED***
