@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,12 +28,32 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "client, trainer")]
-        public async Task<IActionResult> ShowTrainingPlans()
+        public async Task<IActionResult> ShowTrainingPlans(string? searchString, string? currentFilter, int? pageNumber)
         {
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            return View(await _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).ToListAsync());
+
+            ViewData["CurrentFilter"] = searchString;
+            IQueryable<TrainingPlan>? plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Where(a => a.TrainingPlanName.Contains(searchString));
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<TrainingPlan>.CreateAsync(plans.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: TrainingPlans/Details/5
@@ -45,7 +64,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlan = await _context.TrainingPlan
+            var trainingPlan = await _context.TrainingPlan.Include(a=>a.Exercises)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
             if (trainingPlan == null)
             {

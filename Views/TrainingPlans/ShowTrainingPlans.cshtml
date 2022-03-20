@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NutriFitWeb.Models.TrainingPlan>
+﻿@model PaginatedList<NutriFitWeb.Models.TrainingPlan>
+@using NutriFitWeb.Services
 
 @{
     ViewData["Title"] = "Planos de Treino";
@@ -7,6 +8,10 @@
 <h1>@ViewData["Title"]</h1>
 
 <div class="titlesMargin">
+    <form asp-action="ShowTrainingPlans" method="get">
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do treino" class="searchBar"/>
+        <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
+    </form>
     <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
 </div>
 <table class="table tableHead">
@@ -25,14 +30,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanName)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
             </td>
             <td>
                 @if (item.TrainingPlanDescription == null || item.TrainingPlanDescription == "")
                     {
-                        <p>N/A</p>
+                        <p class="details"><b>N/A</b></p>
                     }else{
-                        @Html.DisplayFor(modelItem => item.TrainingPlanDescription)
+                        
+                        string description = item.TrainingPlanDescription;
+                        if (description.Length > 40)
+                        {
+                            description = description.Substring(0, 40);
+                            <p class="details"><b>@description...</b></p>
+                        }
+                        
+                        
                     }
                     
             </td>
@@ -45,3 +58,41 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainingPlans"
+        asp-route-pageNumber="@(Model.PageIndex - 1)"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+        class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+    }
+
+    @if (nextDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainingPlans"
+        asp-route-pageNumber="@(Model.PageIndex + 1)"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+        class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>   
+    }
+
+    @if(prevDisabled == "disabled" && nextDisabled == "disabled")
+    {
+        <p class="noMoreResults">Não existem mais resultados</p>
+    }
+</div>
+
+    @if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+    {
+        <div class="backBtnDiv"> 
+            <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
+        </div>
+    }
