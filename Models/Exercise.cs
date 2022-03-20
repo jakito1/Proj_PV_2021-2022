@@ -8,6 +8,7 @@ namespace NutriFitWeb.Models
     public class Exercise
     {
         public int ExerciseId { get; set; }
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string? ExerciseName { get; set; }
         public string? ExerciseDescription { get; set; }
         [DataType(DataType.Time)]
@@ -29,11 +30,19 @@ namespace NutriFitWeb.Models
 
     public enum ExerciseType
     {
-        CARDIO, STRENGHT
+        [Display(Name = "Cardio")]
+        CARDIO,
+        [Display(Name = "Força")]
+        STRENGHT
     }
 
     public enum ExerciseMuscles
     {
-        LEG, ARM, BACK
+        [Display(Name = "Pernas")]
+        LEGS,
+        [Display(Name = "Braços")]
+        ARMS,
+        [Display(Name = "Costas")]
+        BACK
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
@@ -6,6 +7,7 @@ namespace NutriFitWeb.Models
     public class TrainingPlan
     {
         public int TrainingPlanId { get; set; }
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string? TrainingPlanName { get; set; }
         public string? TrainingPlanDescription { get; set; }
 
@@ -14,6 +16,7 @@ namespace NutriFitWeb.Models
         public Client? Client { get; set; }
 
         [NotMapped]
+        [Remote(action: "VerifyClientEmail", controller: "Clients")]
         public string? ClientEmail { get; set; }
 
         [NotMapped]

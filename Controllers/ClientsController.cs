@@ -152,6 +152,26 @@ namespace NutriFitWeb.Controllers
             return View(clientToUpdate);
         }
 
+        [AcceptVerbs("GET", "POST")]
+        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
+        {
+            if (string.IsNullOrEmpty(trainingPlan.ClientEmail)) {
+                return Json(true);
+            }
+
+            UserAccountModel? userAccountModel = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
+            if (userAccountModel != null)
+            {
+                if (await GetClient(userAccountModel.UserName) != null)
+                {
+                    return Json(true);
+                }
+            }
+
+            return Json($"O email: {trainingPlan.ClientEmail} não pertence a um cliente.");
+
+        }
+
         private async Task<Client> GetClient(string? id)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
