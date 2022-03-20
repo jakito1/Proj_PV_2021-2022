@@ -18,29 +18,31 @@ namespace NutriFitWeb.Services
 
             controller.ViewData.Model = model;
 
-            using (StringWriter writer = new StringWriter())
+            if (model == null)
             ***REMOVED***
-                try
-                ***REMOVED***
-                    var view = FindView(controller, viewNamePath);
+                controller.ViewData.ModelState.Clear();
+        ***REMOVED***
 
-                    ViewContext viewContext = new ViewContext(
-                        controller.ControllerContext,
-                        view,
-                        controller.ViewData,
-                        controller.TempData,
-                        writer,
-                        new HtmlHelperOptions()
-                    );
-
-                    await view.RenderAsync(viewContext);
-
-                    return writer.GetStringBuilder().ToString();
+            using StringWriter writer = new();
+            try
             ***REMOVED***
-                catch (Exception exc)
-                ***REMOVED***
-                    return $"Failed - ***REMOVED***exc.Message***REMOVED***";
+                var view = FindView(controller, viewNamePath);                
+                ViewContext viewContext = new(
+                    controller.ControllerContext,
+                    view,
+                    controller.ViewData,
+                    controller.TempData,
+                    writer,
+                    new HtmlHelperOptions()
+                );
+
+                await view.RenderAsync(viewContext);
+
+                return writer.GetStringBuilder().ToString();
+        ***REMOVED***
+            catch (Exception exc)
             ***REMOVED***
+                return $"Failed - ***REMOVED***exc.Message***REMOVED***";
         ***REMOVED***
     ***REMOVED***
 
@@ -48,8 +50,7 @@ namespace NutriFitWeb.Services
         ***REMOVED***
             IViewEngine viewEngine = controller.HttpContext.RequestServices.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
 
-            ViewEngineResult viewResult = null;
-
+            ViewEngineResult viewResult;
             if (viewNamePath.EndsWith(".cshtml"))
                 viewResult = viewEngine.GetView(viewNamePath, viewNamePath, false);
             else
