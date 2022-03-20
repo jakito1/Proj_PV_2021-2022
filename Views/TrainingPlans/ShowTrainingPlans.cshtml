@@ -1,5 +1,7 @@
 ﻿@model PaginatedList<NutriFitWeb.Models.TrainingPlan>
 @using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserAccountModel> UserManager
 
 @{
     ViewData["Title"] = "Planos de Treino";
@@ -7,13 +9,26 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="titlesMargin">
-    <form asp-action="ShowTrainingPlans" method="get">
-        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do treino" class="searchBar"/>
-        <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
-    </form>
-    <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
-</div>
+@if (User.IsInRole("trainer"))
+{
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlans" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do cliente ou nome do plano" class="searchBar"/>
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
+        </form>
+        <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
+    </div>
+} else if (User.IsInRole("client"))
+{
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlans" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar"/>
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
+        </form>
+        <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
+    </div>
+}
+
 <table class="table tableHead">
     <thead>
         <tr>
@@ -23,6 +38,12 @@
             <th>
                 Descrição
             </th>
+            @if (User.IsInRole("trainer"))
+            {
+                <th>
+                    Cliente
+                </th>
+            }           
             <th>Ações</th>
         </tr>
     </thead>
@@ -43,12 +64,25 @@
                         {
                             description = description.Substring(0, 40);
                             <p class="details"><b>@description...</b></p>
-                        }
-                        
-                        
-                    }
-                    
+                        }        
+                    }                  
             </td>
+                @if (User.IsInRole("trainer"))
+                {
+                    if (item.Client != null)
+                    {
+                        <td>
+                            <p class="details">@Html.DisplayFor(modelItem => item.Client.UserAccountModel.Email)</p>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                             <p class="details"><b>N/A</b></p>
+                        </td>
+                    }
+                }
+                
             <td>
                 <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg"/></a> 
                 <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg"/></a> 

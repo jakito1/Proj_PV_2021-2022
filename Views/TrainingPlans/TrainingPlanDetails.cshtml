@@ -30,17 +30,23 @@
                 <p class="details">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
             }
         </dd>
-        @if(User.IsInRole("client"))
+        @if(User.IsInRole("client") && Model.Trainer != null)
         {
-            if(Model.Trainer != null)
-            {
-                <dt class = "col-sm-12 listsItemTitle">
-                    Treinador
-                </dt>
-                <dd class = "col-sm-12">
-                    <p class="details">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
-                </dd>
-            }           
+            <dt class = "col-sm-12 listsItemTitle">
+                Treinador
+            </dt>
+            <dd class = "col-sm-12">
+                <p class="details">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
+            </dd>        
+        }
+        @if(User.IsInRole("trainer") && Model.Client != null)
+        {
+            <dt class = "col-sm-12 listsItemTitle">
+                Cliente
+            </dt>
+            <dd class = "col-sm-12">
+                <p class="details">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+            </dd>          
         }
     </dl>
     <div id="_ShowExercisesPartialList">
