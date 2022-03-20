@@ -29,6 +29,7 @@
             <td>
                 <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
                 asp-route-id="@item.i"><img src=~/icons/removeIcon.svg/></a>
+                <a asp-action="EditExercise" asp-controller="Exercises" data-ajax="true" data-ajax-success="updateViews" asp-route-id="@item.i">Edit</a>
             </td>
         </tr>
     ***REMOVED***
