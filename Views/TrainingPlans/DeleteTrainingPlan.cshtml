@@ -11,8 +11,13 @@
     <p class="deleteB">Nome:</p>
     <p><b>@Html.DisplayFor(model => model.TrainingPlanName)</b></p>
     <p class="deleteB">Descrição:</p>
-    <p><b>@Html.DisplayFor(model => model.TrainingPlanDescription)</b></p>
 
+    @if(Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")***REMOVED***
+        <p><b>N/A</b></p>
+***REMOVED***else***REMOVED***
+        <p><b>@Html.DisplayFor(model => model.TrainingPlanDescription)</b></p>
+***REMOVED***
+    
     <form asp-action="DeleteTrainingPlan">
         <input type="hidden" asp-for="TrainingPlanId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> 
