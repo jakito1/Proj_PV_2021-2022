@@ -18,29 +18,31 @@ namespace NutriFitWeb.Services
 
             controller.ViewData.Model = model;
 
-            using (StringWriter writer = new StringWriter())
+            if (model == null)
             {
-                try
-                {
-                    var view = FindView(controller, viewNamePath);
+                controller.ViewData.ModelState.Clear();
+            }
 
-                    ViewContext viewContext = new ViewContext(
-                        controller.ControllerContext,
-                        view,
-                        controller.ViewData,
-                        controller.TempData,
-                        writer,
-                        new HtmlHelperOptions()
-                    );
+            using StringWriter writer = new();
+            try
+            {
+                var view = FindView(controller, viewNamePath);                
+                ViewContext viewContext = new(
+                    controller.ControllerContext,
+                    view,
+                    controller.ViewData,
+                    controller.TempData,
+                    writer,
+                    new HtmlHelperOptions()
+                );
 
-                    await view.RenderAsync(viewContext);
+                await view.RenderAsync(viewContext);
 
-                    return writer.GetStringBuilder().ToString();
-                }
-                catch (Exception exc)
-                {
-                    return $"Failed - {exc.Message}";
-                }
+                return writer.GetStringBuilder().ToString();
+            }
+            catch (Exception exc)
+            {
+                return $"Failed - {exc.Message}";
             }
         }
 
@@ -48,8 +50,7 @@ namespace NutriFitWeb.Services
         {
             IViewEngine viewEngine = controller.HttpContext.RequestServices.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
 
-            ViewEngineResult viewResult = null;
-
+            ViewEngineResult viewResult;
             if (viewNamePath.EndsWith(".cshtml"))
                 viewResult = viewEngine.GetView(viewNamePath, viewNamePath, false);
             else
