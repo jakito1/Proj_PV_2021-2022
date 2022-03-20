@@ -63,15 +63,11 @@ namespace NutriFitWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("CreateExercise")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateExercisePost([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
+        public IActionResult CreateExercisePost([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
-                UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-                //exercise.UserAccount = user;
-                //_context.Add(exercise);
-                //await _context.SaveChangesAsync();
                 List<Exercise> lista = new();
                 if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) == null)
                 {
@@ -83,27 +79,30 @@ namespace NutriFitWeb.Controllers
                     lista.Add(exercise);
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, lista);
                 }
-                //TempData["ExercisePlan"] = exercise;
                 return PartialView("_ShowExercisesPartial", lista);
             }
            
             return BadRequest();
         }
 
-        // GET: Exercises/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditExercise(int id)
         {
-            if (id == null)
+
+            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+
+            if (exercises == null)
             {
                 return NotFound();
             }
 
-            var exercise = await _context.Exercise.FindAsync(id);
-            if (exercise == null)
-            {
-                return NotFound();
-            }
-            return View(exercise);
+            var _CreateExercise = await ViewRenderService.RenderViewToStringAsync(this, "_CreateExercisePartial", exercises[id]);
+
+            exercises.RemoveAt(id);
+            HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+
+            var _ShowExercises = await ViewRenderService.RenderViewToStringAsync(this, "_ShowExercisesPartial", exercises);
+            var json = Json(new { _CreateExercise, _ShowExercises });
+            return json;
         }
 
         // POST: Exercises/Edit/5
@@ -111,7 +110,7 @@ namespace NutriFitWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
+        public async Task<IActionResult> EditExercise(int id, [Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
         {
             if (id != exercise.ExerciseId)
             {
@@ -149,6 +148,7 @@ namespace NutriFitWeb.Controllers
             {
                 exercises.RemoveAt(id);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+
                 return PartialView("_ShowExercisesPartial", exercises);
             }
 

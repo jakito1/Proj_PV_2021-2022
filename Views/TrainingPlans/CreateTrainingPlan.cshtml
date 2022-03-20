@@ -30,7 +30,9 @@
             </div>
             
         </form>
-        <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+        <div id="_CreateExercisePartialItem">
+            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+        </div>
         <div id="_ShowExercisesPartialList">
             <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
         </div>
@@ -43,6 +45,10 @@
      <script>
         function clearForm(){
             $('#_CreateExercisePartialForm').trigger("reset");
+        }
+        function updateViews(response) {
+            $("#_CreateExercisePartialItem").html(response._CreateExercise);
+            $("#_ShowExercisesPartialList").html(response._ShowExercises);
         }
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
