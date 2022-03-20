@@ -15,6 +15,9 @@ namespace NutriFitWeb.Models
 
         [NotMapped]
         public string? ClientEmail { get; set; }
+
+        [NotMapped]
+        public Exercise? Exercise { get; set; }
     }
 
 }

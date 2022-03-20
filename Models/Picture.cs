@@ -8,6 +8,6 @@
         public string FileExtension { get; set; }
         public double Size { get; set; }
 
-        public List<Exercise>? Exercises { get; set; }
+        public Exercise? Exercise { get; set; }
     }
 }

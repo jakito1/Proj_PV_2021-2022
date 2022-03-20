@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 {
@@ -16,6 +17,8 @@ namespace NutriFitWeb.Models
         public List<Picture>? Pictures { get; set; }
         public ExerciseType? ExerciseType { get; set; }
         public ExerciseMuscles? ExerciseMuscles { get; set; }
+
+        [JsonIgnore]
         public TrainingPlan? TrainingPlan { get; set; }
 
         [FromForm]

@@ -61,9 +61,6 @@ namespace NutriFitWeb.Controllers
             return View();
         }
 
-        // POST: TrainingPlans/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("CreateTrainingPlan")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription")] TrainingPlan trainingPlan)
@@ -72,18 +69,9 @@ namespace NutriFitWeb.Controllers
             {
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                //var exercises = _getExercisesForCurrentUser.GetExercises(user.Id).ToList();
 
-                //foreach (var exercise in exercises)
-                //{
-                //exercise.UserAccount = null;
-                //}
-                List<Exercise> exercises = null;
-                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) != null)
-                {
-                    exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
-                }
+                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
 
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
@@ -93,7 +81,6 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowTrainingPlans");
         }
 
-        // GET: TrainingPlans/Edit/5
         public async Task<IActionResult> EditTrainingPlan(int? id)
         {
             if (id == null)
@@ -101,47 +88,42 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlan = await _context.TrainingPlan.FindAsync(id);
+            var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);           
             if (trainingPlan == null)
             {
                 return NotFound();
             }
+            HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, trainingPlan.Exercises);
             return View(trainingPlan);
         }
 
-        // POST: TrainingPlans/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost, ActionName("EditTrainingPlan")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditTrainingPlanPost(int id, [Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription")] TrainingPlan trainingPlan)
+        public async Task<IActionResult> EditTrainingPlanPost(int? id)
         {
-            if (id != trainingPlan.TrainingPlanId)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+            if (await TryUpdateModelAsync<TrainingPlan>(trainingPlanToUpdate, "",
+                u => u.TrainingPlanName, u => u.TrainingPlanDescription))
             {
-                try
-                {
-                    _context.Update(trainingPlan);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TrainingPlanExists(trainingPlan.TrainingPlanId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
+
+                var excludedIDs = new HashSet<int>(exercises.Select(a => a.ExerciseId));
+                var missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
+
+                _context.Exercise.RemoveRange(missingRows);
+
+                trainingPlanToUpdate.Exercises = exercises;
+                _context.SaveChanges();
+                return RedirectToAction("ShowTrainingPlans");
             }
-            return View(trainingPlan);
+            return View(trainingPlanToUpdate);
         }
 
         // GET: TrainingPlans/Delete/5
@@ -171,11 +153,6 @@ namespace NutriFitWeb.Controllers
             _context.TrainingPlan.Remove(trainingPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool TrainingPlanExists(int id)
-        {
-            return _context.TrainingPlan.Any(e => e.TrainingPlanId == id);
         }
     }
 }

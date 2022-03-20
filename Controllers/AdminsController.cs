@@ -80,30 +80,12 @@ namespace NutriFitWeb.Controllers
 
             if (trainer != null)
             {
-                var clients = _context.Client.Where(a => a.Trainer == trainer);
-
-                foreach (var c in clients)
-                {
-                    c.Trainer = null;
-                    _context.Client.Update(c);
-                }
-
                 _context.Trainer.Remove(trainer);
             }
-            #region
             if (nutritionist != null)
             {
-                var clients = _context.Client.Where(a => a.Nutritionist == nutritionist);
-
-                foreach (var c in clients)
-                {
-                    c.Nutritionist = null;
-                    _context.Client.Update(c);
-                }
-
                 _context.Nutritionist.Remove(nutritionist);
             }
-            #endregion
 
             if (client != null)
             {
@@ -119,8 +101,7 @@ namespace NutriFitWeb.Controllers
 
             if (user != null)
             {
-                _context.Users.Remove(user);
-                
+                _context.Users.Remove(user);              
             }
 
             await _context.SaveChangesAsync();
