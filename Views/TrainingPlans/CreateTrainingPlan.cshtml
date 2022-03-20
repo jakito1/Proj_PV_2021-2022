@@ -27,7 +27,7 @@
             @if (User.IsInRole("trainer")){
                 <div class="form-group">
                     <label asp-for="ClientEmail" class="control-label"></label>
-                    <input asp-for="ClientEmail" class="form-control"/>
+                    <input asp-for="ClientEmail" class="form-control" aria-required="true"/>
                     <span asp-validation-for="ClientEmail" class="text-danger"></span>
                 </div>
             }

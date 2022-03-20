@@ -155,10 +155,6 @@ namespace NutriFitWeb.Controllers
         [AcceptVerbs("GET", "POST")]
         public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
         {
-            if (string.IsNullOrEmpty(trainingPlan.ClientEmail)) {
-                return Json(true);
-            }
-
             UserAccountModel? userAccountModel = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
             if (userAccountModel != null)
             {
