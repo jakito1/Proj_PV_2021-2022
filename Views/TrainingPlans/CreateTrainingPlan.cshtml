@@ -1,5 +1,6 @@
 ﻿@model NutriFitWeb.Models.TrainingPlan
-
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserAccountModel> UserManager
 @***REMOVED***
     ViewData["Title"] = "Criar plano de treino";
 ***REMOVED***
@@ -15,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TrainingPlanName" class="control-label">Nome</label>
-                <input asp-for="TrainingPlanName" class="form-control" />
+                <input asp-for="TrainingPlanName" class="form-control" aria-required="true"/>
                 <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -23,12 +24,14 @@
                 <input asp-for="TrainingPlanDescription" class="form-control" />
                 <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ClientEmail" class="control-label"></label>
-                <input asp-for="ClientEmail" class="form-control"/>
-                <span asp-validation-for="ClientEmail" class="text-danger"></span>
-            </div>
-            
+            @if (User.IsInRole("trainer"))***REMOVED***
+                <div class="form-group">
+                    <label asp-for="ClientEmail" class="control-label"></label>
+                    <input asp-for="ClientEmail" class="form-control"/>
+                    <span asp-validation-for="ClientEmail" class="text-danger"></span>
+                </div>
+        ***REMOVED***
+                       
         </form>
         <div id="_CreateExercisePartialItem">
             <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />

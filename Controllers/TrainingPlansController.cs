@@ -98,13 +98,26 @@ namespace NutriFitWeb.Controllers
 
         [HttpPost, ActionName("CreateTrainingPlan")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription")] TrainingPlan trainingPlan)
+        public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription, ClientEmail")] TrainingPlan trainingPlan)
         ***REMOVED***
             if (ModelState.IsValid)
-            ***REMOVED***
+            ***REMOVED***                
+
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+                UserAccountModel? clientAccount = null;
+
+                if (!string.IsNullOrEmpty(trainingPlan.ClientEmail))
+                ***REMOVED***
+                    clientAccount = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
+            ***REMOVED***
+
+                if (trainer != null && clientAccount != null)
+                ***REMOVED***                    
+                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
+            ***REMOVED***
 
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);

@@ -32,12 +32,15 @@
         </dd>
         @if(User.IsInRole("client"))
         ***REMOVED***
-            <dt class = "col-sm-12 listsItemTitle">
-                Treinador
-            </dt>
-            <dd class = "col-sm-12">
-                <p class="details">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
-            </dd>
+            if(Model.Trainer != null)
+            ***REMOVED***
+                <dt class = "col-sm-12 listsItemTitle">
+                    Treinador
+                </dt>
+                <dd class = "col-sm-12">
+                    <p class="details">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
+                </dd>
+        ***REMOVED***           
     ***REMOVED***
     </dl>
     <div id="_ShowExercisesPartialList">
