@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -63,23 +64,29 @@ namespace NutriFitWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("CreateExercise")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateExercisePost([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
+        public async Task<IActionResult> CreateExercisePost([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
 
-                List<Exercise> lista = new();
+                List<Exercise> exercises = new();
                 if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) == null)
                 ***REMOVED***
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() ***REMOVED*** exercise ***REMOVED***);
-                    lista.Add(exercise);
+                    exercises.Add(exercise);
             ***REMOVED*** else
                 ***REMOVED***
-                    lista = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-                    lista.Add(exercise);
-                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, lista);
+                    exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                    exercises.Add(exercise);
+                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
             ***REMOVED***
-                return PartialView("_ShowExercisesPartial", lista);
+
+
+                var _CreateExercise = await ViewRenderService.RenderViewToStringAsync(this, "_CreateExercisePartial", null);
+
+                var _ShowExercises = await ViewRenderService.RenderViewToStringAsync(this, "_ShowExercisesPartial", exercises);
+                var json = Json(new ***REMOVED*** _CreateExercise, _ShowExercises ***REMOVED***);
+                return json;
         ***REMOVED***
            
             return BadRequest();
