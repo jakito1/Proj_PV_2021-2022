@@ -29,5 +29,18 @@ namespace NutriFitWeb.Services
             return null;
         }
 
+        public IEnumerable<UserAccountModel> GetUsersForTrainer(string loggedIn)
+        {
+            IQueryable<int>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.Id == loggedIn select a.TrainerId;
+            return _context.Client.Where(a => a.Trainer.TrainerId == loggedInTrainer.FirstOrDefault()).OrderByDescending(a => a.RowVersion).Select(a => a.UserAccountModel);
+        }
+
+        public string GetTrainerGym(string loggedIn)
+        {
+            IQueryable<Gym>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.Id == loggedIn select a.Gym;
+            IQueryable<string>? trainerGym = from a in _context.Gym where a.GymId == loggedInTrainer.FirstOrDefault().GymId select a.GymName;
+            return trainerGym.FirstOrDefault();
+        }
+
     }
 }
