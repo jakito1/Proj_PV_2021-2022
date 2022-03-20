@@ -165,6 +165,10 @@ h1 ***REMOVED***
     margin-left: 50px;
 ***REMOVED***
 
+.details***REMOVED***
+    font-weight: bold;
+    color: black;
+***REMOVED***
 
 .logoutClick:active ***REMOVED***
     border-color: red !important;
@@ -342,6 +346,7 @@ a.btn.btn-default.disabled ***REMOVED***
 
 .listsItemTitle ***REMOVED***
     color: #00A2E8;
+    font-size: 1.2em;
 ***REMOVED***
 
 .gymHomeImage ***REMOVED***
@@ -512,4 +517,13 @@ input.btn.btn-danger ***REMOVED***
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1em;
+***REMOVED***
+
+.videosUrl ***REMOVED***
+    text-decoration-color: #00A2E8;
+***REMOVED***
+
+.exercisesData***REMOVED***
+    font-weight: bold;
+    color: black;
 ***REMOVED***

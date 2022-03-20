@@ -1,0 +1,39 @@
+﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
+
+
+<p class="listsItemTitle">Exercícios</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome/Descrição
+            </th>
+            <th>
+                Outros Dados
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        ***REMOVED***
+            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***)) ***REMOVED***
+        <tr>
+            <td class="exercisesData">
+                @Html.DisplayFor(modelItem => item.value.ExerciseName)
+                <br />
+                @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+            </td>
+            <td class="exercisesData">
+                @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
+                | @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions) | 
+                <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
+                | @Html.DisplayFor(modelItem => item.value.ExerciseType) | @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
+
+            </td>
+        </tr>
+    ***REMOVED*** 
+***REMOVED***
+    </tbody>
+</table>
