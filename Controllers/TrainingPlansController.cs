@@ -171,7 +171,7 @@ namespace NutriFitWeb.Controllers
             var trainingPlan = await _context.TrainingPlan.FindAsync(id);
             _context.TrainingPlan.Remove(trainingPlan);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("ShowTrainingPlans");
         }
     }
 }
