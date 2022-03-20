@@ -17,6 +17,11 @@ h2 ***REMOVED***
     padding: 0.2em;
 ***REMOVED***
 
+h3 ***REMOVED***
+    margin-top: 2em;
+    color: #00A2E8;
+***REMOVED***
+
 html ***REMOVED***
   position: relative;
   min-height: 100%;
@@ -365,6 +370,10 @@ div.titlesMargin***REMOVED***
     font-weight: bold;
 ***REMOVED***
 
+.tableHead ***REMOVED***
+    border-color: #00A2E8;
+***REMOVED***
+
 
 input.btn.btn-primary ***REMOVED***
     text-decoration: none;
@@ -479,7 +488,8 @@ input.btn.btn-danger ***REMOVED***
     border-style: solid;
     border-radius: 0.8em;
     border-color: #00A2E8;
-    margin: 3em;
+    margin: auto;
+    margin-top: 4em;
 ***REMOVED***
 
 .gymStatistics ***REMOVED***
