@@ -15,6 +15,9 @@ namespace NutriFitWeb.Models
 
         [NotMapped]
         public string? ClientEmail ***REMOVED*** get; set; ***REMOVED***
+
+        [NotMapped]
+        public Exercise? Exercise ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 
 ***REMOVED***

@@ -35,7 +35,20 @@ namespace NutriFitWeb.Data
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Gym>().HasMany(a => a.Trainers).WithOne(a => a.Gym)
                 .OnDelete(DeleteBehavior.SetNull);
-            //modelBuilder.Entity
+            modelBuilder.Entity<Trainer>().HasMany(a => a.Clients).WithOne(a => a.Trainer)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Nutritionist>().HasMany(a => a.Clients).WithOne(a => a.Nutritionist)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Trainer>().HasMany(a => a.TrainingPlans).WithOne(a => a.Trainer)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<TrainingPlan>().HasMany(a => a.Exercises).WithOne(a => a.TrainingPlan)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Exercise>().HasMany(a => a.Pictures).WithOne(a => a.Exercise)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Client>().HasMany(a => a.TrainingPlans).WithOne(a => a.Client)
+                .OnDelete(DeleteBehavior.Cascade);
+
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

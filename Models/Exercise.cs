@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
@@ -16,6 +17,8 @@ namespace NutriFitWeb.Models
         public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED***
         public ExerciseType? ExerciseType ***REMOVED*** get; set; ***REMOVED***
         public ExerciseMuscles? ExerciseMuscles ***REMOVED*** get; set; ***REMOVED***
+
+        [JsonIgnore]
         public TrainingPlan? TrainingPlan ***REMOVED*** get; set; ***REMOVED***
 
         [FromForm]
