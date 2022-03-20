@@ -27,9 +27,12 @@
             </td>
             <td class="exercisesData">
                 @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
-                | @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions) | 
-                <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
-                | @Html.DisplayFor(modelItem => item.value.ExerciseType) | @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
+                @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)  
+                @if(item.value.ExerciseURL != null && item.value.ExerciseURL != ""){
+                    <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
+                }
+                @Html.DisplayFor(modelItem => item.value.ExerciseType)
+                @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
 
             </td>
         </tr>

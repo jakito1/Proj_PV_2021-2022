@@ -28,6 +28,19 @@
         } else if (User.IsInRole("client"))
         {
             <li class="nav-item">
+                @*RecipesController ShowRecipes*@
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Receitas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Planos de Treino</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlans" asp-action="">Planos de Nutrição</a>
+            </li>
+           <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Ginásio</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
             </li>
         } else if (User.IsInRole("nutritionist"))
