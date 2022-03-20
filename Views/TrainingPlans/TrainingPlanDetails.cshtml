@@ -6,17 +6,17 @@
 
 <h1>@ViewData["Title"]</h1>
 <hr />
-<div class="col-md-4 profileDivs">
+<div class="col-md-12 profileDivs">
     <dl class="row">
         <dt class = "col-sm-12 listsItemTitle">
             Nome
-        </dt>
+         </dt>
         <dd class = "col-sm-12">
             @if(Model.TrainingPlanName == null || Model.TrainingPlanName == "")
             {
-                <p>N/A</p>
+                <p class="details">N/A</p>
             }else{
-                @Html.DisplayFor(model => model.TrainingPlanName)
+                <p class="details">@Html.DisplayFor(model => model.TrainingPlanName)</p>
             }
         </dd>
         <dt class = "col-sm-12 listsItemTitle">
@@ -25,13 +25,29 @@
         <dd class = "col-sm-12">
             @if(Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")
             {
-                <p>N/A</p>
+                <p class="details">N/A</p>
             }else{
-                @Html.DisplayFor(model => model.TrainingPlanDescription)
+                <p class="details">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
             }
         </dd>
-    </dl>    
+    </dl>
+    <div id="_ShowExercisesPartialList">
+            <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
+        </div>
     </div>
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
 </div>
+
+
+@section Scripts {
+     <script>
+        function clearForm(){
+            $('#_CreateExercisePartialForm').trigger("reset");
+        }
+        function updateViews(response) {
+            $("#_ShowExercisesPartialList").html(response._ShowExercises);
+        }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
