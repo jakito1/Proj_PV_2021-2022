@@ -37,9 +37,13 @@ namespace NutriFitWeb.Services
 
         public string GetTrainerGym(string loggedIn)
         {
-            IQueryable<Gym>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.Id == loggedIn select a.Gym;
-            IQueryable<string>? trainerGym = from a in _context.Gym where a.GymId == loggedInTrainer.FirstOrDefault().GymId select a.GymName;
-            return trainerGym.FirstOrDefault();
+            Trainer? trainer = _context.Trainer.FirstOrDefault(a => a.UserAccountModel.Id == loggedIn);
+            if (trainer != null && trainer.Gym != null)
+            {
+                Gym? gym = _context.Gym.FirstOrDefault(a => a.GymId == trainer.Gym.GymId);
+                return (gym != null && gym.GymName != null) ? gym.GymName : "";
+            }
+            return "";
         }
 
     }
