@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TrainingPlanName" class="control-label">Nome</label>
-                <input asp-for="TrainingPlanName" class="form-control" aria-required="true"/>
+                <input asp-for="TrainingPlanName" class="form-control"/>
                 <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -27,7 +27,7 @@
             @if (User.IsInRole("trainer"))***REMOVED***
                 <div class="form-group">
                     <label asp-for="ClientEmail" class="control-label"></label>
-                    <input asp-for="ClientEmail" class="form-control" aria-required="true"/>
+                    <input required asp-for="ClientEmail" class="form-control"/>
                     <span asp-validation-for="ClientEmail" class="text-danger"></span>
                 </div>
         ***REMOVED***

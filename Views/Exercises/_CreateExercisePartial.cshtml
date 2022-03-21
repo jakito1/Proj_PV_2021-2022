@@ -7,8 +7,10 @@
         asp-action="CreateExercise" asp-controller="Exercises">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ExerciseName" class="control-label">Nome *</label>
-                <input asp-for="ExerciseName" class="form-control" aria-required="true"/>
+                <label asp-for="ExerciseName" class="control-label">Nome</label>
+                <input required asp-for="ExerciseName" class="form-control" 
+                    oninvalid="this.setCustomValidity('Campo obrigatório')"
+                    onchange="this.setCustomValidity('')"/>
                 <span asp-validation-for="ExerciseName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,7 +47,6 @@
                 <input type="submit" value="Adicionar" class="btn btn-primary" />
             </div>
         </form>
-        <p>* Campo Obrigatório</p>
     </div>
 
 @section Scripts ***REMOVED***

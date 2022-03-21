@@ -105,15 +105,11 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription, ClientEmail")] TrainingPlan trainingPlan)
         ***REMOVED***
-            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            if (trainer == null)
-            ***REMOVED***
-                ModelState.Remove("ClientEmail");
-        ***REMOVED***          
+       
             if (ModelState.IsValid)
-            ***REMOVED***                
-
+            ***REMOVED***
+                UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
                 UserAccountModel? clientAccount = null;
