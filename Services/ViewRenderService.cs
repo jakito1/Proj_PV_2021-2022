@@ -26,7 +26,7 @@ namespace NutriFitWeb.Services
             using StringWriter writer = new();
             try
             ***REMOVED***
-                var view = FindView(controller, viewNamePath);                
+                var view = FindView(controller, viewNamePath);
                 ViewContext viewContext = new(
                     controller.ControllerContext,
                     view,

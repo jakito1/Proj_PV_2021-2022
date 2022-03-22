@@ -57,7 +57,7 @@ namespace NutriFitWeb.Data
         ***REMOVED***
             if (userManager.FindByNameAsync("admin").Result == null)
             ***REMOVED***
-                var admin = new UserAccountModel ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true***REMOVED***;
+                var admin = new UserAccountModel ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true ***REMOVED***;
                 var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
                 var gymTest = new UserAccountModel ***REMOVED*** UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true ***REMOVED***;
                 var result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
@@ -86,8 +86,8 @@ namespace NutriFitWeb.Data
                 var trainerTest2 = new UserAccountModel ***REMOVED*** UserName = "trainerTest2", Email = "trainerTest2@trainerTest2.pt", EmailConfirmed = true ***REMOVED***;
                 var result13 = await userManager.CreateAsync(trainerTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
-                Gym gym = new() ***REMOVED***GymName = "Teste", UserAccountModel = gymTest ***REMOVED***;
-                Client client = new() ***REMOVED***Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"),UserAccountModel = clientTest, Gym = gym***REMOVED***;
+                Gym gym = new() ***REMOVED*** GymName = "Teste", UserAccountModel = gymTest ***REMOVED***;
+                Client client = new() ***REMOVED*** Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest, Gym = gym ***REMOVED***;
                 Client client2 = new() ***REMOVED*** Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest2, Gym = gym ***REMOVED***;
                 Client client3 = new() ***REMOVED*** Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest3, Gym = gym ***REMOVED***;
                 Client client4 = new() ***REMOVED*** Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest4, Gym = gym ***REMOVED***;
@@ -131,14 +131,14 @@ namespace NutriFitWeb.Data
                 ***REMOVED***
                     await userManager.AddToRoleAsync(admin, "administrator");
             ***REMOVED***
-                if (result1.Succeeded)          
-                ***REMOVED***                 
+                if (result1.Succeeded)
+                ***REMOVED***
                     await context.Gym.AddAsync(gym);
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(gymTest, "gym");
             ***REMOVED***
                 if (result2.Succeeded)
-                ***REMOVED***                   
+                ***REMOVED***
                     await context.Client.AddAsync(client);
                     await context.Client.AddAsync(client2);
                     await context.Client.AddAsync(client3);
@@ -146,7 +146,7 @@ namespace NutriFitWeb.Data
                     await context.Client.AddAsync(client5);
                     await context.Client.AddAsync(client6);
                     await context.Client.AddAsync(client7);
-                    await context.SaveChangesAsync();                  
+                    await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(clientTest, "client");
                     await userManager.AddToRoleAsync(clientTest2, "client");
                     await userManager.AddToRoleAsync(clientTest3, "client");
@@ -171,7 +171,7 @@ namespace NutriFitWeb.Data
                     await context.SaveChangesAsync();
                     await userManager.AddToRoleAsync(trainerTest, "trainer");
                     await userManager.AddToRoleAsync(trainerTest2, "trainer");
-            ***REMOVED*** 
+            ***REMOVED***
                 if (result5.Succeeded)
                 ***REMOVED***
                     await userManager.AddToRoleAsync(admin2, "administrator");

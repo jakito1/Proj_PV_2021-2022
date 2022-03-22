@@ -18,25 +18,27 @@
     <tbody>
         @if (Model != null)
         ***REMOVED***
-            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***)) ***REMOVED***
-        <tr>
-            <td class="exercisesData">
-                @Html.DisplayFor(modelItem => item.value.ExerciseName)
-                <br />
-                @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
-            </td>
-            <td class="exercisesData">
-                @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
-                @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)  
-                @if(item.value.ExerciseURL != null && item.value.ExerciseURL != "")***REMOVED***
-                    <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
+            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***))
             ***REMOVED***
-                @Html.DisplayFor(modelItem => item.value.ExerciseType)
-                @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
+                <tr>
+                    <td class="exercisesData">
+                        @Html.DisplayFor(modelItem => item.value.ExerciseName)
+                        <br />
+                        @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                    </td>
+                    <td class="exercisesData">
+                        @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
+                        @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)
+                        @if (item.value.ExerciseURL != null && item.value.ExerciseURL != "")
+                        ***REMOVED***
+                            <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
+                    ***REMOVED***
+                        @Html.DisplayFor(modelItem => item.value.ExerciseType)
+                        @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
 
-            </td>
-        </tr>
-    ***REMOVED*** 
-***REMOVED***
+                    </td>
+                </tr>
+        ***REMOVED***
+    ***REMOVED***
     </tbody>
 </table>

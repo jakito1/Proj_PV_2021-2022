@@ -38,7 +38,7 @@ namespace NutriFitWeb.Controllers
             IQueryable<UserAccountModel>? users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id));
             if (!string.IsNullOrEmpty(searchString))
             ***REMOVED***
-                 users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(searchString));
+                users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(searchString));
         ***REMOVED***
 
             int pageSize = 3;
@@ -54,7 +54,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
-             
+
             if (user == null)
             ***REMOVED***
                 return NotFound();
@@ -93,15 +93,15 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             if (gym != null)
-            ***REMOVED***            
+            ***REMOVED***
                 _context.Gym.Remove(gym);
-        ***REMOVED***          
-                        
+        ***REMOVED***
+
             var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
 
             if (user != null)
             ***REMOVED***
-                _context.Users.Remove(user);              
+                _context.Users.Remove(user);
         ***REMOVED***
 
             await _context.SaveChangesAsync();
@@ -136,7 +136,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             var userToUpdate = await _context.Users.FindAsync(id);
-            if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "", 
+            if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "",
                 u => u.PhoneNumber, u => u.UserName))
             ***REMOVED***
                 _context.SaveChanges();

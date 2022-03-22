@@ -8,89 +8,100 @@
 
 <div class="listsDiv">
     <dl class="row">
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientId)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @Html.DisplayFor(Model => Model.ClientId)
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.UserAccountModel.UserName == null || Model.UserAccountModel.UserName == "")
             ***REMOVED***
                 <p>N/A</p>
-        ***REMOVED***else***REMOVED***
+        ***REMOVED***
+            else
+            ***REMOVED***
                 @Html.DisplayFor(Model => Model.UserAccountModel.UserName)
         ***REMOVED***
         </dd>
 
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientFirstName)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.ClientFirstName == null || Model.ClientFirstName == "")
             ***REMOVED***
                 <p>N/A</p>
-        ***REMOVED***else***REMOVED***
+        ***REMOVED***
+            else
+            ***REMOVED***
                 @Html.DisplayFor(Model => Model.ClientFirstName)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
-                @Html.DisplayNameFor(Model => Model.ClientLastName)
+        <dt class="col-sm-12 listsItemTitle">
+            @Html.DisplayNameFor(Model => Model.ClientLastName)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.ClientLastName == null || Model.ClientLastName == "")
             ***REMOVED***
                 <p>N/A</p>
-        ***REMOVED***else***REMOVED***
+        ***REMOVED***
+            else
+            ***REMOVED***
                 @Html.DisplayFor(Model => Model.ClientLastName)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientBirthday)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.ClientBirthday == null)
             ***REMOVED***
                 <p>N/A</p>
-        ***REMOVED***else***REMOVED***
+        ***REMOVED***
+            else
+            ***REMOVED***
                 @Html.DisplayFor(Model => Model.ClientBirthday)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Weight)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.Weight == null || Model.Weight == 0)
             ***REMOVED***
-               <p>N/A</p>
-        ***REMOVED***else
-             ***REMOVED***
-                 @Html.DisplayFor(Model => Model.Weight)
-         ***REMOVED***   
+                <p>N/A</p>
+        ***REMOVED***
+            else
+            ***REMOVED***
+                @Html.DisplayFor(Model => Model.Weight)
+        ***REMOVED***
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Height)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.Height == null || Model.Height == 0)
             ***REMOVED***
                 <p>N/A</p>
-        ***REMOVED***else
+        ***REMOVED***
+            else
             ***REMOVED***
                 @Html.DisplayFor(Model => Model.Height)
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Gym)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.Gym == null || Model.Gym.GymName == null || Model.Gym.GymName == "")
             ***REMOVED***
                 <p>N/A</p>
-        ***REMOVED***else
+        ***REMOVED***
+            else
             ***REMOVED***
                 @Html.DisplayFor(Model => Model.Gym.GymName)
         ***REMOVED***

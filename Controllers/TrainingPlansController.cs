@@ -50,10 +50,10 @@ namespace NutriFitWeb.Controllers
 
             if (trainer != null)
             ***REMOVED***
-                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
+                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
         ***REMOVED***
-            
-            if(client != null)
+
+            if (client != null)
             ***REMOVED***
                 plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId);
         ***REMOVED***
@@ -83,7 +83,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             var trainingPlan = await _context.TrainingPlan
-                .Include(a=>a.Exercises)
+                .Include(a => a.Exercises)
                 .Include(a => a.Trainer.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
@@ -105,7 +105,7 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription, ClientEmail")] TrainingPlan trainingPlan)
         ***REMOVED***
-       
+
             if (ModelState.IsValid)
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -120,7 +120,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
 
                 if (trainer != null && clientAccount != null)
-                ***REMOVED***                    
+                ***REMOVED***
                     client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
             ***REMOVED***
 
@@ -143,7 +143,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);           
+            var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
             if (trainingPlan == null)
             ***REMOVED***
                 return NotFound();

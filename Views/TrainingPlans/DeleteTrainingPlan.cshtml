@@ -6,22 +6,25 @@
 
 <h1>Apagar Plano de Treino</h1>
 
-    <hr />
-    <p><b>Tem a certeza que pretende apagar este plano de treino?</b></p>
-    <p class="deleteB">Nome:</p>
-    <p><b>@Html.DisplayFor(model => model.TrainingPlanName)</b></p>
-    <p class="deleteB">Descrição:</p>
+<hr />
+<p><b>Tem a certeza que pretende apagar este plano de treino?</b></p>
+<p class="deleteB">Nome:</p>
+<p><b>@Html.DisplayFor(model => model.TrainingPlanName)</b></p>
+<p class="deleteB">Descrição:</p>
 
-    @if(Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")***REMOVED***
-        <p><b>N/A</b></p>
-***REMOVED***else***REMOVED***
-        <p><b>@Html.DisplayFor(model => model.TrainingPlanDescription)</b></p>
+@if (Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")
 ***REMOVED***
-    
-    <form asp-action="DeleteTrainingPlan">
-        <input type="hidden" asp-for="TrainingPlanId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> 
-    </form>
-    <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar</a>
+    <p><b>N/A</b></p>
+***REMOVED***
+else
+***REMOVED***
+    <p><b>@Html.DisplayFor(model => model.TrainingPlanDescription)</b></p>
+***REMOVED***
+
+<form asp-action="DeleteTrainingPlan">
+    <input type="hidden" asp-for="TrainingPlanId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+<a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar</a>
 
 

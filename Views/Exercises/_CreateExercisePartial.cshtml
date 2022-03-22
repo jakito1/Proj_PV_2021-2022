@@ -1,54 +1,56 @@
 ﻿@model NutriFitWeb.Models.Exercise
 
 
-    <div class="col-md-12 listsDiv exercisesDiv">
-        <h2>Criar exercício</h2>
-        <form method="post" id="_CreateExercisePartialForm" data-ajax-success="updateViews" data-ajax="true" 
-        asp-action="CreateExercise" asp-controller="Exercises">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ExerciseName" class="control-label">Nome</label>
-                <input required asp-for="ExerciseName" class="form-control" 
-                    oninvalid="this.setCustomValidity('Campo obrigatório')"
-                    onchange="this.setCustomValidity('')"/>
-                <span asp-validation-for="ExerciseName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExerciseDescription" class="control-label">Descrição</label>
-                <input asp-for="ExerciseDescription" class="form-control" />
-                <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExerciseDuration" class="control-label">Duração</label>
-                <input asp-for="ExerciseDuration" class="form-control" />
-                <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExerciseRepetitions" class="control-label">Repetições</label>
-                <input asp-for="ExerciseRepetitions" class="form-control" />
-                <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExerciseURL" class="control-label">Link do Exercício</label>
-                <input asp-for="ExerciseURL" class="form-control" />
-                <span asp-validation-for="ExerciseURL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExerciseType" class="control-label">Tipo de Exercício</label>
-                <select asp-for="ExerciseType" class="form-control" asp-items="Html.GetEnumSelectList<ExerciseType>()"></select>
-                <span asp-validation-for="ExerciseType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label>
-                <select asp-for="ExerciseMuscles" class="form-control" asp-items="Html.GetEnumSelectList<ExerciseMuscles>()"></select>
-                <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Adicionar" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="col-md-12 listsDiv exercisesDiv">
+    <h2>Criar exercício</h2>
+    <form method="post" id="_CreateExercisePartialForm" data-ajax-success="updateViews" data-ajax="true"
+          asp-action="CreateExercise" asp-controller="Exercises">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ExerciseName" class="control-label">Nome</label>
+            <input required asp-for="ExerciseName" class="form-control"
+                   oninvalid="this.setCustomValidity('Campo obrigatório')"
+                   onchange="this.setCustomValidity('')" />
+            <span asp-validation-for="ExerciseName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExerciseDescription" class="control-label">Descrição</label>
+            <input asp-for="ExerciseDescription" class="form-control" />
+            <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExerciseDuration" class="control-label">Duração</label>
+            <input asp-for="ExerciseDuration" class="form-control" />
+            <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExerciseRepetitions" class="control-label">Repetições</label>
+            <input asp-for="ExerciseRepetitions" class="form-control" />
+            <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExerciseURL" class="control-label">Link do Exercício</label>
+            <input asp-for="ExerciseURL" class="form-control" />
+            <span asp-validation-for="ExerciseURL" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExerciseType" class="control-label">Tipo de Exercício</label>
+            <select asp-for="ExerciseType" class="form-control" asp-items="Html.GetEnumSelectList<ExerciseType>()"></select>
+            <span asp-validation-for="ExerciseType" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label>
+            <select asp-for="ExerciseMuscles" class="form-control" asp-items="Html.GetEnumSelectList<ExerciseMuscles>()"></select>
+            <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Adicionar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 
 @section Scripts ***REMOVED***
-    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
 ***REMOVED***

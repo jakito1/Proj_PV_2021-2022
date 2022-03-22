@@ -18,22 +18,23 @@
     <tbody>
         @if (Model != null)
         ***REMOVED***
-            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***)) ***REMOVED***
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
-            </td>
-            <td>
-                <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
-                asp-route-id="@item.i"><img class="removeIcon icons" src="~/icons/removeIcon.svg"/></a> 
-                <a asp-action="EditExercise" asp-controller="Exercises" data-ajax="true" data-ajax-success="updateViews" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg"/></a> 
-            </td>
-        </tr>
+            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***))
+            ***REMOVED***
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.ExerciseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                    </td>
+                    <td>
+                        <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
+                   asp-route-id="@item.i"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                        <a asp-action="EditExercise" asp-controller="Exercises" data-ajax="true" data-ajax-success="updateViews" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                    </td>
+                </tr>
+        ***REMOVED***
+
     ***REMOVED***
-        
-***REMOVED***
     </tbody>
 </table>

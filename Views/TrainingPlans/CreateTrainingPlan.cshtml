@@ -8,48 +8,51 @@
 <h1>@ViewData["Title"]</h1>
 
 <hr />
-    <div class="col-md-12 profileDivs">
-        <form asp-controller="TrainingPlans" asp-action="CreateTrainingPlan">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-primary createBtn" />
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanName" class="control-label">Nome</label>
-                <input asp-for="TrainingPlanName" class="form-control"/>
-                <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
-                <input asp-for="TrainingPlanDescription" class="form-control" />
-                <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
-            </div>
-            @if (User.IsInRole("trainer"))***REMOVED***
-                <div class="form-group">
-                    <label asp-for="ClientEmail" class="control-label"></label>
-                    <input required asp-for="ClientEmail" class="form-control"/>
-                    <span asp-validation-for="ClientEmail" class="text-danger"></span>
-                </div>
+<div class="col-md-12 profileDivs">
+    <form asp-controller="TrainingPlans" asp-action="CreateTrainingPlan">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="submit" value="Criar" class="btn btn-primary createBtn" />
+        </div>
+        <div class="form-group">
+            <label asp-for="TrainingPlanName" class="control-label">Nome</label>
+            <input asp-for="TrainingPlanName" class="form-control" />
+            <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
+            <input asp-for="TrainingPlanDescription" class="form-control" />
+            <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
+        </div>
+        @if (User.IsInRole("trainer"))
         ***REMOVED***
-                       
-        </form>
-        <div id="_CreateExercisePartialItem">
-            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
-        </div>
-        <div id="_ShowExercisesPartialList">
-            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
-        </div>
+            <div class="form-group">
+                <label asp-for="ClientEmail" class="control-label"></label>
+                <input required asp-for="ClientEmail" class="form-control" />
+                <span asp-validation-for="ClientEmail" class="text-danger"></span>
+            </div>
+    ***REMOVED***
+
+    </form>
+    <div id="_CreateExercisePartialItem">
+        <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
     </div>
-    <div>
-        <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar</a>
+    <div id="_ShowExercisesPartialList">
+        <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
     </div>
+</div>
+<div>
+    <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar</a>
+</div>
 
 @section Scripts ***REMOVED***
-     <script>
-        function updateViews(response) ***REMOVED***
-            $("#_CreateExercisePartialItem").html(response._CreateExercise);
-            $("#_ShowExercisesPartialList").html(response._ShowExercises);
-    ***REMOVED***
-    </script>
-    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+<script>
+    function updateViews(response) ***REMOVED***
+        $("#_CreateExercisePartialItem").html(response._CreateExercise);
+        $("#_ShowExercisesPartialList").html(response._ShowExercises);
+***REMOVED***
+</script>
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
 ***REMOVED***

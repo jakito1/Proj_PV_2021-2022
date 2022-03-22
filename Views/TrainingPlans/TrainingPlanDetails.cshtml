@@ -8,61 +8,67 @@
 <hr />
 <div class="col-md-12 profileDivs">
     <dl class="row">
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             Nome
-         </dt>
-        <dd class = "col-sm-12">
-            @if(Model.TrainingPlanName == null || Model.TrainingPlanName == "")
+        </dt>
+        <dd class="col-sm-12">
+            @if (Model.TrainingPlanName == null || Model.TrainingPlanName == "")
             ***REMOVED***
                 <p class="details">N/A</p>
-        ***REMOVED***else***REMOVED***
+        ***REMOVED***
+            else
+            ***REMOVED***
                 <p class="details">@Html.DisplayFor(model => model.TrainingPlanName)</p>
         ***REMOVED***
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             Descrição
         </dt>
-        <dd class = "col-sm-12">
-            @if(Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")
+        <dd class="col-sm-12">
+            @if (Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")
             ***REMOVED***
                 <p class="details">N/A</p>
-        ***REMOVED***else***REMOVED***
+        ***REMOVED***
+            else
+            ***REMOVED***
                 <p class="details">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
         ***REMOVED***
         </dd>
-        @if(User.IsInRole("client") && Model.Trainer != null)
+        @if (User.IsInRole("client") && Model.Trainer != null)
         ***REMOVED***
-            <dt class = "col-sm-12 listsItemTitle">
+            <dt class="col-sm-12 listsItemTitle">
                 Treinador
             </dt>
-            <dd class = "col-sm-12">
+            <dd class="col-sm-12">
                 <p class="details">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
-            </dd>        
+            </dd>
     ***REMOVED***
-        @if(User.IsInRole("trainer") && Model.Client != null)
+        @if (User.IsInRole("trainer") && Model.Client != null)
         ***REMOVED***
-            <dt class = "col-sm-12 listsItemTitle">
+            <dt class="col-sm-12 listsItemTitle">
                 Cliente
             </dt>
-            <dd class = "col-sm-12">
+            <dd class="col-sm-12">
                 <p class="details">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
-            </dd>          
+            </dd>
     ***REMOVED***
     </dl>
     <div id="_ShowExercisesPartialList">
-            <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
-        </div>
+        <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
     </div>
+</div>
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
 </div>
 
 
 @section Scripts ***REMOVED***
-     <script>
-        function updateViews(response) ***REMOVED***
-            $("#_ShowExercisesPartialList").html(response._ShowExercises);
-    ***REMOVED***
-    </script>
-    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+<script>
+    function updateViews(response) ***REMOVED***
+        $("#_ShowExercisesPartialList").html(response._ShowExercises);
+***REMOVED***
+</script>
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
 ***REMOVED***

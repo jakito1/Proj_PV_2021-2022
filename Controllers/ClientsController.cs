@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NutriFitWeb.Data;
-using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Models;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NutriFitWeb.Data;
+using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
@@ -71,40 +71,18 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveClientFromGym(int? id, int? pageNumber, string? currentFilter)
+        public async Task<IActionResult> ChangeClientGymStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = _context.Client.
-                Include(a => a.Gym).
-                FirstOrDefault(a => a.ClientId == id);
+            Include(a => a.Gym).
+            FirstOrDefault(a => a.ClientId == id);
 
-            if (client.Gym == gym)
-            ***REMOVED***
-                client.Gym = null;
-                _context.Client.Update(client);
-                await _context.SaveChangesAsync();
-        ***REMOVED***
-            
-            return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-    ***REMOVED***
+            client.Gym = (client.Gym == null) ? gym : null;
+            _context.Client.Update(client);
+            await _context.SaveChangesAsync();
 
-        [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddClientToGym(int? id, int? pageNumber, string? currentFilter)
-        ***REMOVED***
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Client? client = await _context.Client.
-                Include(a => a.Gym).
-                FirstOrDefaultAsync(a => a.ClientId == id);
-
-            if (client.Gym == null)
-            ***REMOVED***
-                client.Gym = gym;
-                _context.Client.Update(client);
-                await _context.SaveChangesAsync();
-        ***REMOVED***      
-            
             return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
@@ -136,7 +114,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Client? clientToUpdate = await GetClient(id);      
+            Client? clientToUpdate = await GetClient(id);
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
@@ -152,12 +130,8 @@ namespace NutriFitWeb.Controllers
             return View(clientToUpdate);
     ***REMOVED***
 
-        [AcceptVerbs("GET", "POST")]
+
         public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
-        ***REMOVED***
-            if (trainingPlan == null || string.IsNullOrEmpty(trainingPlan.ClientEmail))
-            ***REMOVED***
-                return Json("Campo obrigatório.");
         ***REMOVED***
             UserAccountModel? userAccountModel = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
             if (userAccountModel != null)
@@ -177,7 +151,7 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
-                return _context.Client.FirstOrDefault(a => a.UserAccountModel.Id == id);
+                return await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
             var userAccount = await _userManager.FindByNameAsync(id);

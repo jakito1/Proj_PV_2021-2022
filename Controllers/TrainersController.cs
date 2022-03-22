@@ -59,7 +59,7 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveTrainerFromGym(int? id, int? pageNumber, string? currentFilter)
+        public async Task<IActionResult> ChangeTrainerGymStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
@@ -68,32 +68,9 @@ namespace NutriFitWeb.Controllers
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
 
-            if(trainer.Gym == gym)
-            ***REMOVED***
-                trainer.Gym = null;
-                _context.Trainer.Update(trainer);
-                await _context.SaveChangesAsync();
-        ***REMOVED***
-
-            return RedirectToAction("ShowTrainers", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-    ***REMOVED***
-
-        [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddTrainerToGym(int? id, int? pageNumber, string? currentFilter)
-        ***REMOVED***
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
-            Trainer? trainer = await _context.Trainer.
-                Include(a => a.Gym).
-                Where(a => a.TrainerId == id).
-                FirstOrDefaultAsync();
-
-            if(trainer.Gym == null)
-            ***REMOVED***
-                trainer.Gym = gym;
-                _context.Trainer.Update(trainer);
-                await _context.SaveChangesAsync();
-        ***REMOVED***
+            trainer.Gym = (trainer.Gym == null) ? gym : null;
+            _context.Trainer.Update(trainer);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("ShowTrainers", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***

@@ -6,25 +6,25 @@
 
 <h1>@ViewData["Title"]</h1>
 <hr />
-    <div class="col-md-4 profileDivs">
-        <form asp-action="EditNutritionistSettings">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="NutritionistId" />
-            <div class="form-group">
-                <label asp-for="NutritionistFirstName" class="control-label"></label>
-                <input asp-for="NutritionistFirstName" class="form-control" />
-                <span asp-validation-for="NutritionistFirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NutritionistLastName" class="control-label"></label>
-                <input asp-for="NutritionistLastName" class="form-control" />
-                <span asp-validation-for="NutritionistLastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="col-md-4 profileDivs">
+    <form asp-action="EditNutritionistSettings">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="NutritionistId" />
+        <div class="form-group">
+            <label asp-for="NutritionistFirstName" class="control-label"></label>
+            <input asp-for="NutritionistFirstName" class="form-control" />
+            <span asp-validation-for="NutritionistFirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NutritionistLastName" class="control-label"></label>
+            <input asp-for="NutritionistLastName" class="form-control" />
+            <span asp-validation-for="NutritionistLastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 <div>
     @if (User.IsInRole("administrator"))
     ***REMOVED***
@@ -33,5 +33,7 @@
 </div>
 
 @section Scripts ***REMOVED***
-    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
 ***REMOVED***

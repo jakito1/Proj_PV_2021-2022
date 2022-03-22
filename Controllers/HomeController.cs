@@ -33,9 +33,10 @@ namespace NutriFitWeb.Controllers
             try
             ***REMOVED***
                 SeedData.Seed(userManager, roleManager, context).Wait();
-        ***REMOVED*** catch
+        ***REMOVED***
+            catch
             ***REMOVED***
-              
+
         ***REMOVED***
     ***REMOVED***
 
