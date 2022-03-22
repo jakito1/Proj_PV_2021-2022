@@ -50,10 +50,10 @@ namespace NutriFitWeb.Controllers
 
             if (trainer != null)
             {
-                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
+                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
             }
-            
-            if(client != null)
+
+            if (client != null)
             {
                 plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId);
             }
@@ -83,7 +83,7 @@ namespace NutriFitWeb.Controllers
             }
 
             var trainingPlan = await _context.TrainingPlan
-                .Include(a=>a.Exercises)
+                .Include(a => a.Exercises)
                 .Include(a => a.Trainer.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
@@ -105,7 +105,7 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription, ClientEmail")] TrainingPlan trainingPlan)
         {
-       
+
             if (ModelState.IsValid)
             {
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -120,7 +120,7 @@ namespace NutriFitWeb.Controllers
                 }
 
                 if (trainer != null && clientAccount != null)
-                {                    
+                {
                     client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
                 }
 
@@ -143,7 +143,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);           
+            var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
             if (trainingPlan == null)
             {
                 return NotFound();

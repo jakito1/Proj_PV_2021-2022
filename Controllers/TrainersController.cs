@@ -59,7 +59,7 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveTrainerFromGym(int? id, int? pageNumber, string? currentFilter)
+        public async Task<IActionResult> ChangeTrainerGymStatus(int? id, int? pageNumber, string? currentFilter)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
@@ -68,32 +68,9 @@ namespace NutriFitWeb.Controllers
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
 
-            if(trainer.Gym == gym)
-            {
-                trainer.Gym = null;
-                _context.Trainer.Update(trainer);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("ShowTrainers", new { pageNumber, currentFilter });
-        }
-
-        [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddTrainerToGym(int? id, int? pageNumber, string? currentFilter)
-        {
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
-            Trainer? trainer = await _context.Trainer.
-                Include(a => a.Gym).
-                Where(a => a.TrainerId == id).
-                FirstOrDefaultAsync();
-
-            if(trainer.Gym == null)
-            {
-                trainer.Gym = gym;
-                _context.Trainer.Update(trainer);
-                await _context.SaveChangesAsync();
-            }
+            trainer.Gym = (trainer.Gym == null) ? gym : null;
+            _context.Trainer.Update(trainer);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("ShowTrainers", new { pageNumber, currentFilter });
         }

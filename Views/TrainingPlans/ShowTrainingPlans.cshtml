@@ -13,17 +13,18 @@
 {
     <div class="titlesMargin">
         <form asp-action="ShowTrainingPlans" method="get">
-            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do cliente ou nome do plano" class="searchBar"/>
-            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do cliente ou nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
         </form>
         <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
     </div>
-} else if (User.IsInRole("client"))
+}
+else if (User.IsInRole("client"))
 {
     <div class="titlesMargin">
         <form asp-action="ShowTrainingPlans" method="get">
-            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar"/>
-            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
         </form>
         <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
     </div>
@@ -43,30 +44,33 @@
                 <th>
                     Cliente
                 </th>
-            }           
+            }
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
-            </td>
-            <td>
-                @if (item.TrainingPlanDescription == null || item.TrainingPlanDescription == "")
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
+                </td>
+                <td>
+                    @if (item.TrainingPlanDescription == null || item.TrainingPlanDescription == "")
                     {
                         <p class="details"><b>N/A</b></p>
-                    }else{
-                        
+                    }
+                    else
+                    {
+
                         string description = item.TrainingPlanDescription;
                         if (description.Length > 40)
                         {
                             description = description.Substring(0, 40);
                             <p class="details"><b>@description...</b></p>
-                        }        
-                    }                  
-            </td>
+                        }
+                    }
+                </td>
                 @if (User.IsInRole("trainer"))
                 {
                     if (item.Client != null)
@@ -78,18 +82,18 @@
                     else
                     {
                         <td>
-                             <p class="details"><b>N/A</b></p>
+                            <p class="details"><b>N/A</b></p>
                         </td>
                     }
                 }
-                
-            <td>
-                <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg"/></a> 
-                <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg"/></a> 
-                <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg"/></a>
-            </td>
-        </tr>
-}
+
+                <td>
+                    <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                    <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
+                    <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -101,9 +105,9 @@
     @if (prevDisabled != "disabled")
     {
         <a asp-action="ShowTrainingPlans"
-        asp-route-pageNumber="@(Model.PageIndex - 1)"
-        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-        class="btn btn-default @prevDisabled">
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
     }
@@ -111,22 +115,22 @@
     @if (nextDisabled != "disabled")
     {
         <a asp-action="ShowTrainingPlans"
-        asp-route-pageNumber="@(Model.PageIndex + 1)"
-        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-        class="btn btn-default @nextDisabled">
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
             <b>Próximo</b>
-        </a>   
+        </a>
     }
 
-    @if(prevDisabled == "disabled" && nextDisabled == "disabled")
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
     {
         <p class="noMoreResults">Não existem mais resultados</p>
     }
 </div>
 
-    @if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
-    {
-        <div class="backBtnDiv"> 
-            <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
-        </div>
-    }
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+{
+    <div class="backBtnDiv">
+        <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
+    </div>
+}

@@ -33,9 +33,10 @@ namespace NutriFitWeb.Controllers
             try
             {
                 SeedData.Seed(userManager, roleManager, context).Wait();
-            } catch
+            }
+            catch
             {
-              
+
             }
         }
 

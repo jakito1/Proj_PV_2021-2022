@@ -2,64 +2,44 @@
 
 <h1>Editar plano de treino</h1>
 
-<hr />
-    @*<div class="col-md-4 profileDivs">
-        <form asp-action="EditTrainingPlan">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TrainingPlanId" />
-            <div class="form-group">
-                <label asp-for="TrainingPlanName" class="control-label">Nome</label>
-                <input asp-for="TrainingPlanName" class="form-control" />
-                <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
-                <input asp-for="TrainingPlanDescription" class="form-control" />
-                <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-    *@
-
-    <div class="col-md-12 profileDivs">
-        <form asp-controller="TrainingPlans" asp-action="EditTrainingPlan">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <input type="submit" value="Editar" class="btn btn-primary createBtn" />
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanName" class="control-label">Nome</label>
-                <input asp-for="TrainingPlanName" class="form-control" aria-required="true" />
-                <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
-                <input asp-for="TrainingPlanDescription" class="form-control" />
-                <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
-            </div>
-        </form>
-        <div id="_CreateExercisePartialItem">
-            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" model=@Model.Exercise />
+<div class="col-md-12 profileDivs">
+    <form asp-controller="TrainingPlans" asp-action="EditTrainingPlan">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="submit" value="Editar" class="btn btn-primary createBtn" />
         </div>
-        <div id="_ShowExercisesPartialList">
-            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" model=@Model.Exercises />
+        <div class="form-group">
+            <label asp-for="TrainingPlanName" class="control-label">Nome</label>
+            <input asp-for="TrainingPlanName" class="form-control" aria-required="true" />
+            <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label asp-for="TrainingPlanDescription" class="control-label">Descrição</label>
+            <input asp-for="TrainingPlanDescription" class="form-control" />
+            <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
+        </div>
+    </form>
+    <div id="_CreateExercisePartialItem">
+        <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" model=@Model.Exercise />
     </div>
+    <div id="_ShowExercisesPartialList">
+        <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" model=@Model.Exercises />
+    </div>
+</div>
 
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
 </div>
 
 @section Scripts {
-    <script>
-        function updateViews(response) {
-            $("#_CreateExercisePartialItem").html(response._CreateExercise);
-            $("#_ShowExercisesPartialList").html(response._ShowExercises);
-        }
-    </script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    function updateViews(response) {
+        $("#_CreateExercisePartialItem").html(response._CreateExercise);
+        $("#_ShowExercisesPartialList").html(response._ShowExercises);
+    }
+</script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
 

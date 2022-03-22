@@ -8,89 +8,100 @@
 
 <div class="listsDiv">
     <dl class="row">
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientId)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @Html.DisplayFor(Model => Model.ClientId)
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.UserAccountModel.UserName == null || Model.UserAccountModel.UserName == "")
             {
                 <p>N/A</p>
-            }else{
+            }
+            else
+            {
                 @Html.DisplayFor(Model => Model.UserAccountModel.UserName)
             }
         </dd>
 
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientFirstName)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.ClientFirstName == null || Model.ClientFirstName == "")
             {
                 <p>N/A</p>
-            }else{
+            }
+            else
+            {
                 @Html.DisplayFor(Model => Model.ClientFirstName)
             }
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
-                @Html.DisplayNameFor(Model => Model.ClientLastName)
+        <dt class="col-sm-12 listsItemTitle">
+            @Html.DisplayNameFor(Model => Model.ClientLastName)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.ClientLastName == null || Model.ClientLastName == "")
             {
                 <p>N/A</p>
-            }else{
+            }
+            else
+            {
                 @Html.DisplayFor(Model => Model.ClientLastName)
             }
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.ClientBirthday)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.ClientBirthday == null)
             {
                 <p>N/A</p>
-            }else{
+            }
+            else
+            {
                 @Html.DisplayFor(Model => Model.ClientBirthday)
             }
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Weight)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.Weight == null || Model.Weight == 0)
             {
-               <p>N/A</p>
-            }else
-             {
-                 @Html.DisplayFor(Model => Model.Weight)
-             }   
+                <p>N/A</p>
+            }
+            else
+            {
+                @Html.DisplayFor(Model => Model.Weight)
+            }
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Height)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.Height == null || Model.Height == 0)
             {
                 <p>N/A</p>
-            }else
+            }
+            else
             {
                 @Html.DisplayFor(Model => Model.Height)
             }
         </dd>
-        <dt class = "col-sm-12 listsItemTitle">
+        <dt class="col-sm-12 listsItemTitle">
             @Html.DisplayNameFor(Model => Model.Gym)
         </dt>
-        <dd class = "col-sm-12">
+        <dd class="col-sm-12">
             @if (Model.Gym == null || Model.Gym.GymName == null || Model.Gym.GymName == "")
             {
                 <p>N/A</p>
-            }else
+            }
+            else
             {
                 @Html.DisplayFor(Model => Model.Gym.GymName)
             }

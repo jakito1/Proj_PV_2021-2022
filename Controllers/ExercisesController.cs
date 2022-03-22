@@ -74,7 +74,8 @@ namespace NutriFitWeb.Controllers
                 {
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() { exercise });
                     exercises.Add(exercise);
-                } else
+                }
+                else
                 {
                     exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                     exercises.Add(exercise);
@@ -88,7 +89,7 @@ namespace NutriFitWeb.Controllers
                 var json = Json(new { _CreateExercise, _ShowExercises });
                 return json;
             }
-           
+
             return BadRequest();
         }
 

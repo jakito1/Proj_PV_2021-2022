@@ -24,12 +24,13 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IEmailSender>(new EmailSender (builder.Configuration.GetConnectionString("SendGridKey")));
+builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuration.GetConnectionString("SendGridKey")));
 
 builder.Services.AddTransient<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
 builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
 
-builder.Services.AddDefaultIdentity<UserAccountModel>(options => { 
+builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
+{
     options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
 })

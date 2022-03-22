@@ -8,15 +8,17 @@
         <partial name="~/Views/Gyms/_GymHome.cshtml" />
     }
     else if (User.IsInRole("administrator"))
-    {        
+    {
         <partial name="~/Views/Admins/_AdminHome.cshtml" />
-    }else if(User.IsInRole("trainer")){
+    }
+    else if (User.IsInRole("trainer"))
+    {
         <partial name="~/Views/Trainers/_TrainerHome.cshtml" />
     }
     else
     {
         <h1 class="notLoggedInHome">Bem Vindo ao NutriFit</h1>
-        <img src="~/images/MainPageNotLoggedIn.png" alt="MainPageWithoutLoginImage" class="notLoggedInHome imageHome"/>
+        <img src="~/images/MainPageNotLoggedIn.png" alt="MainPageWithoutLoginImage" class="notLoggedInHome imageHome" />
         <p class="notLoggedInHome"><b>Planeie os seus treinos e planos alimentares com diversos profissionais do seu ginásio ou outros ginásios aderentes!</b></p>
     }
 </div>

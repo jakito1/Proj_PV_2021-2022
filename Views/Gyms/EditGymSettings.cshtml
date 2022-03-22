@@ -6,20 +6,20 @@
 
 <h1>@ViewData["Title"]</h1>
 <hr />
-    <div class="col-md-4 profileDivs">
-        <form asp-action="EditGymSettings">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="GymId" />
-            <div class="form-group">
-                <label asp-for="GymName" class="control-label"></label>
-                <input asp-for="GymName" class="form-control" />
-                <span asp-validation-for="GymName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="col-md-4 profileDivs">
+    <form asp-action="EditGymSettings">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="GymId" />
+        <div class="form-group">
+            <label asp-for="GymName" class="control-label"></label>
+            <input asp-for="GymName" class="form-control" />
+            <span asp-validation-for="GymName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 <div>
     @if (User.IsInRole("administrator"))
     {
@@ -28,5 +28,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

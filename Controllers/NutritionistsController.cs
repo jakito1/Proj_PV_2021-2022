@@ -21,10 +21,6 @@ namespace NutriFitWeb.Controllers
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowNutritionists(string? searchString, string? currentFilter, int? pageNumber)
@@ -62,7 +58,7 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "gym")]
-        public async Task<IActionResult> RemoveNutritionistFromGym(int? id, int? pageNumber, string? currentFilter)
+        public async Task<IActionResult> ChangeNutritionistGymStatus(int? id, int? pageNumber, string? currentFilter)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -70,31 +66,9 @@ namespace NutriFitWeb.Controllers
                 Include(a => a.Gym).
                 FirstOrDefaultAsync(a => a.NutritionistId == id);
 
-            if(nutritionist.Gym == gym)
-            {
-                nutritionist.Gym = null;
-                _context.Nutritionist.Update(nutritionist);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("ShowNutritionists", new { pageNumber, currentFilter });
-        }
-
-        [Authorize(Roles = "gym")]
-        public async Task<IActionResult> AddNutritionistToGym(int? id, int? pageNumber, string? currentFilter)
-        {
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Nutritionist? nutritionist = await _context.Nutritionist.
-                Include(a => a.Gym).
-                FirstOrDefaultAsync(a => a.NutritionistId == id);
-
-            if(nutritionist.Gym == null)
-            {
-                nutritionist.Gym = gym;
-                _context.Nutritionist.Update(nutritionist);
-                await _context.SaveChangesAsync();
-            }
+            nutritionist.Gym = (nutritionist.Gym == null) ? gym : null;
+            _context.Nutritionist.Update(nutritionist);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("ShowNutritionists", new { pageNumber, currentFilter });
         }

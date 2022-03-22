@@ -4,8 +4,8 @@
 @inject UserManager<UserAccountModel> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
+    @if (SignInManager.IsSignedIn(User))
+    {
         @if (User.IsInRole("gym"))
         {
             <li class="nav-item">
@@ -20,12 +20,14 @@
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Gyms" asp-action="EditGymSettings">Perfil</a>
             </li>
-        }else if (User.IsInRole("administrator"))
+        }
+        else if (User.IsInRole("administrator"))
         {
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Admins" asp-action="ShowAllUsers">Utilizadores</a>
             </li>
-        } else if (User.IsInRole("client"))
+        }
+        else if (User.IsInRole("client"))
         {
             <li class="nav-item">
                 @*RecipesController ShowRecipes*@
@@ -37,18 +39,20 @@
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlans" asp-action="">Planos de Nutrição</a>
             </li>
-           <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Ginásio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
             </li>
-        } else if (User.IsInRole("nutritionist"))
+        }
+        else if (User.IsInRole("nutritionist"))
         {
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Nutritionists" asp-action="EditNutritionistSettings">Perfil</a>
             </li>
-        } else if (User.IsInRole("trainer"))
+        }
+        else if (User.IsInRole("trainer"))
         {
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Planos de Treino</a>
@@ -61,31 +65,31 @@
         @if (!(User.IsInRole("administrator")))
         {
             <li class="nav-item">
-                <a  class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @User.Identity?.Name!</a>
+                <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @User.Identity?.Name!</a>
             </li>
         }
-        
-    <li class="nav-item logoutClick">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark menuItem">Logout</button>
-        </form>
-    </li>
 
-    @if (!(User.IsInRole("administrator")))
+        <li class="nav-item logoutClick">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark menuItem">Logout</button>
+            </form>
+        </li>
+
+        @if (!(User.IsInRole("administrator")))
         {
             <li class="nav-item notificationBell">
-                <a  class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon"/></a>  
+                <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
             </li>
         }
-    
-}
-else
-{
-    /*<li class="nav-item">
+
+    }
+    else
+    {
+        /*<li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>*/
-    <li class="nav-item">
-        <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+        </li>*/
+        <li class="nav-item">
+            <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>

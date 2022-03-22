@@ -12,11 +12,12 @@
 <h1>Clientes</h1>
 
 <form asp-action="ShowClients" method="get">
-    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar"/>
-    <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon"/></button>
+    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar" />
+    <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
 </form>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <div class="listsDiv">
         <b class="listsItem listsItemTitle">UserName:</b>
         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
@@ -24,15 +25,19 @@
         <b class="listsItem listsItemTitle">Email:</b>
         <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
-            @if(item.Gym == null){
-                <a asp-action="AddClientToGym" asp-route-id="@item.ClientId" asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
-                    <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon"/></a>
-            }else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id){                   
-                <a asp-action="RemoveClientFromGym" asp-route-id="@item.ClientId" asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
-                    <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon"/></a> 
-            }
+            <a asp-action="ChangeClientGymStatus" asp-route-id="@item.ClientId"
+           asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                @if (item.Gym == null)
+                {
+                    <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
+                }
+                else if (UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)
+                {
+                    <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
+                }
+            </a>
 
-            <a asp-action="ClientDetails" asp-route-id="@item.ClientId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon"/></a>
+            <a asp-action="ClientDetails" asp-route-id="@item.ClientId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
         </div>
     </div>
 }
@@ -46,9 +51,9 @@
     @if (prevDisabled != "disabled")
     {
         <a asp-action="ShowClients"
-        asp-route-pageNumber="@(Model.PageIndex - 1)"
-        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-        class="btn btn-default @prevDisabled">
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
     }
@@ -56,14 +61,14 @@
     @if (nextDisabled != "disabled")
     {
         <a asp-action="ShowClients"
-        asp-route-pageNumber="@(Model.PageIndex + 1)"
-        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-        class="btn btn-default @nextDisabled">
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
             <b>Próximo</b>
-        </a>   
+        </a>
     }
 
-    @if(prevDisabled == "disabled" && nextDisabled == "disabled")
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
     {
         <p class="noMoreResults">Não existem mais resultados</p>
     }
