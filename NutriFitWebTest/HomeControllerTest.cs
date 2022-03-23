@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using NutriFitWeb.Controllers;
-using NutriFitWeb.Data;
 using Xunit;
 
 namespace NutriFitWebTest
@@ -11,7 +8,7 @@ namespace NutriFitWebTest
         [Fact]
         public void Index_ReturnsViewResult()
         {
-            
+
 
             //var controller = new HomeController(null, null, null);
 

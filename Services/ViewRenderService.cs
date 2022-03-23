@@ -66,8 +66,8 @@ namespace NutriFitWeb.Services
                 if (endPointDisplay.Contains(".Areas."))
                 {
                     //search in Areas
-                    string? areaName = endPointDisplay.Substring(endPointDisplay.IndexOf(".Areas.") + ".Areas.".Length);
-                    areaName = areaName.Substring(0, areaName.IndexOf(".Controllers."));
+                    string? areaName = endPointDisplay[(endPointDisplay.IndexOf(".Areas.") + ".Areas.".Length)..];
+                    areaName = areaName[..areaName.IndexOf(".Controllers.")];
 
                     viewNamePath = $"~/Areas/{areaName}/views/{controller.HttpContext.Request.RouteValues["controller"]}/{controller.HttpContext.Request.RouteValues["action"]}.cshtml";
 

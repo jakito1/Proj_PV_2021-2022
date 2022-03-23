@@ -16,7 +16,6 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly SignInManager<UserAccountModel> _signInManager;
-        private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
         /// <summary>
         /// Build the TwoFactorAuthenticationModel model to be used when the user wants to view a page where it's requested a 2FA code.
@@ -25,11 +24,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public TwoFactorAuthenticationModel(
-            UserManager<UserAccountModel> userManager, SignInManager<UserAccountModel> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
+            UserManager<UserAccountModel> userManager, SignInManager<UserAccountModel> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _logger = logger;
         }
 
         /// <summary>

@@ -11,9 +11,6 @@ namespace NutriFitWeb.Controllers
     /// </summary>
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<UserAccountModel> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
         /// <summary>
         /// Build the HomeController to be used on the main page.
@@ -21,14 +18,10 @@ namespace NutriFitWeb.Controllers
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
         /// <param name="roleManager">Provides the APIs for managing roles in a persistence store.</param>
-        public HomeController(ILogger<HomeController> logger,
-            UserManager<UserAccountModel> userManager,
+        public HomeController(UserManager<UserAccountModel> userManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext context)
         {
-            _logger = logger;
-            _userManager = userManager;
-            _roleManager = roleManager;
             try
             {
                 SeedData.Seed(userManager, roleManager, context).Wait();

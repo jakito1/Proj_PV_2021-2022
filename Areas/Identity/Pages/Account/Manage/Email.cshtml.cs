@@ -20,7 +20,6 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
     public class EmailModel : PageModel
     {
         private readonly UserManager<UserAccountModel> _userManager;
-        private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly IEmailSender _emailSender;
 
         /// <summary>
@@ -31,11 +30,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="emailSender">Microsoft EmailSender interface.</param>
         public EmailModel(
             UserManager<UserAccountModel> userManager,
-            SignInManager<UserAccountModel> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _emailSender = emailSender;
         }
 
@@ -132,7 +129,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 string callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
+                    values: new { area = "Identity", userId, email = Input.NewEmail, code },
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
@@ -172,7 +169,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             string callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new { area = "Identity", userId = userId, code = code },
+                values: new { area = "Identity", userId, code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,

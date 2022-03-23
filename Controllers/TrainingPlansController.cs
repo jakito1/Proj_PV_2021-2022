@@ -12,6 +12,7 @@ namespace NutriFitWeb.Controllers
     {
         private readonly string SessionKeyExercises;
         private readonly string SessionKeyClientsUserAccounts;
+        private readonly string SessionKeyCurrentTrainer;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
@@ -22,6 +23,7 @@ namespace NutriFitWeb.Controllers
             _userManager = userManager;
             SessionKeyExercises = "_Exercises";
             SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
+            SessionKeyCurrentTrainer = "_CurrentTrainer";
         }
 
         [Authorize(Roles = "client, trainer")]
@@ -95,6 +97,7 @@ namespace NutriFitWeb.Controllers
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            HttpContext.Session.Set<Trainer>(SessionKeyCurrentTrainer, trainer);
             HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts,
                 await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync());
             return View();
@@ -126,6 +129,7 @@ namespace NutriFitWeb.Controllers
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
                 HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts, null);
+                HttpContext.Session.Set<Trainer>(SessionKeyCurrentTrainer, null);
 
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
@@ -169,7 +173,7 @@ namespace NutriFitWeb.Controllers
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
 
-                HashSet<int>? excludedIDs = new HashSet<int>(exercises.Select(a => a.ExerciseId));
+                HashSet<int>? excludedIDs = new(exercises.Select(a => a.ExerciseId));
                 IEnumerable<Exercise>? missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
 
                 _context.Exercise.RemoveRange(missingRows);
@@ -211,15 +215,15 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
         {
             List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
-            UserAccountModel? currUser = await _userManager.FindByNameAsync(User.Identity.Name);
-            Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == currUser.Id);
-
-            if (clientsUsersAccounts is null)
-            {
-                clientsUsersAccounts = await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync();
-            }
-
+            Trainer? trainer = HttpContext.Session.Get<Trainer>(SessionKeyCurrentTrainer);
             Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == trainingPlan.ClientEmail);
+
+            if (clientsUsersAccounts is null || trainer is null)
+            {
+                UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+                clientsUsersAccounts = await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync();
+                trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            }           
 
             if (client is not null)
             {
