@@ -22,31 +22,31 @@ namespace NutriFitWeb.Data
 
         private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
         {
-            var clientRole = new IdentityRole("client");
+            IdentityRole? clientRole = new IdentityRole("client");
             if (!await roleManager.RoleExistsAsync(clientRole.Name))
             {
                 await roleManager.CreateAsync(clientRole);
             }
 
-            var gymRole = new IdentityRole("gym");
+            IdentityRole? gymRole = new IdentityRole("gym");
             if (!await roleManager.RoleExistsAsync(gymRole.Name))
             {
                 await roleManager.CreateAsync(gymRole);
             }
 
-            var trainerRole = new IdentityRole("trainer");
+            IdentityRole? trainerRole = new IdentityRole("trainer");
             if (!await roleManager.RoleExistsAsync(trainerRole.Name))
             {
                 await roleManager.CreateAsync(trainerRole);
             }
 
-            var nutritionistRole = new IdentityRole("nutritionist");
+            IdentityRole? nutritionistRole = new IdentityRole("nutritionist");
             if (!await roleManager.RoleExistsAsync(nutritionistRole.Name))
             {
                 await roleManager.CreateAsync(nutritionistRole);
             }
 
-            var adminRole = new IdentityRole("administrator");
+            IdentityRole? adminRole = new IdentityRole("administrator");
             if (!await roleManager.RoleExistsAsync(adminRole.Name))
             {
                 await roleManager.CreateAsync(adminRole);
@@ -57,34 +57,34 @@ namespace NutriFitWeb.Data
         {
             if (userManager.FindByNameAsync("admin").Result is null)
             {
-                var admin = new UserAccountModel { UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true };
-                var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var gymTest = new UserAccountModel { UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true };
-                var result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest = new UserAccountModel { UserName = "client", Email = "client@client.pt", EmailConfirmed = true };
-                var result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var nutritionistTest = new UserAccountModel { UserName = "nutritionist", Email = "nutritionist@nutritionist.pt", EmailConfirmed = true };
-                var result3 = await userManager.CreateAsync(nutritionistTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var trainerTest = new UserAccountModel { UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true };
-                var result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var admin2 = new UserAccountModel { UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true };
-                var result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest2 = new UserAccountModel { UserName = "clientTest2", Email = "clientTest2@clientTest2.pt", EmailConfirmed = true };
-                var result6 = await userManager.CreateAsync(clientTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest3 = new UserAccountModel { UserName = "clientTest3", Email = "clientTest3@clientTest3.pt", EmailConfirmed = true };
-                var result7 = await userManager.CreateAsync(clientTest3, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest4 = new UserAccountModel { UserName = "clientTest4", Email = "clientTest4@clientTest4.pt", EmailConfirmed = true };
-                var result8 = await userManager.CreateAsync(clientTest4, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest5 = new UserAccountModel { UserName = "clientTest5", Email = "clientTest5@clientTest5.pt", EmailConfirmed = true };
-                var result9 = await userManager.CreateAsync(clientTest5, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest6 = new UserAccountModel { UserName = "clientTest6", Email = "clientTest6@clientTest6.pt", EmailConfirmed = true };
-                var result10 = await userManager.CreateAsync(clientTest6, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var clientTest7 = new UserAccountModel { UserName = "clientTest7", Email = "clientTest7@clientTest7.pt", EmailConfirmed = true };
-                var result11 = await userManager.CreateAsync(clientTest7, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var nutritionistTest2 = new UserAccountModel { UserName = "nutritionistTest2", Email = "nutritionistTest2@nutritionistTest2.pt", EmailConfirmed = true };
-                var result12 = await userManager.CreateAsync(nutritionistTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                var trainerTest2 = new UserAccountModel { UserName = "trainerTest2", Email = "trainerTest2@trainerTest2.pt", EmailConfirmed = true };
-                var result13 = await userManager.CreateAsync(trainerTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? admin = new UserAccountModel { UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true };
+                IdentityResult? result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? gymTest = new UserAccountModel { UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true };
+                IdentityResult? result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest = new UserAccountModel { UserName = "client", Email = "client@client.pt", EmailConfirmed = true };
+                IdentityResult? result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? nutritionistTest = new UserAccountModel { UserName = "nutritionist", Email = "nutritionist@nutritionist.pt", EmailConfirmed = true };
+                IdentityResult? result3 = await userManager.CreateAsync(nutritionistTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? trainerTest = new UserAccountModel { UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true };
+                IdentityResult? result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? admin2 = new UserAccountModel { UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true };
+                IdentityResult? result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest2 = new UserAccountModel { UserName = "clientTest2", Email = "clientTest2@clientTest2.pt", EmailConfirmed = true };
+                IdentityResult? result6 = await userManager.CreateAsync(clientTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest3 = new UserAccountModel { UserName = "clientTest3", Email = "clientTest3@clientTest3.pt", EmailConfirmed = true };
+                IdentityResult? result7 = await userManager.CreateAsync(clientTest3, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest4 = new UserAccountModel { UserName = "clientTest4", Email = "clientTest4@clientTest4.pt", EmailConfirmed = true };
+                IdentityResult? result8 = await userManager.CreateAsync(clientTest4, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest5 = new UserAccountModel { UserName = "clientTest5", Email = "clientTest5@clientTest5.pt", EmailConfirmed = true };
+                IdentityResult? result9 = await userManager.CreateAsync(clientTest5, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest6 = new UserAccountModel { UserName = "clientTest6", Email = "clientTest6@clientTest6.pt", EmailConfirmed = true };
+                IdentityResult? result10 = await userManager.CreateAsync(clientTest6, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest7 = new UserAccountModel { UserName = "clientTest7", Email = "clientTest7@clientTest7.pt", EmailConfirmed = true };
+                IdentityResult? result11 = await userManager.CreateAsync(clientTest7, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? nutritionistTest2 = new UserAccountModel { UserName = "nutritionistTest2", Email = "nutritionistTest2@nutritionistTest2.pt", EmailConfirmed = true };
+                IdentityResult? result12 = await userManager.CreateAsync(nutritionistTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? trainerTest2 = new UserAccountModel { UserName = "trainerTest2", Email = "trainerTest2@trainerTest2.pt", EmailConfirmed = true };
+                IdentityResult? result13 = await userManager.CreateAsync(trainerTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() { GymName = "Teste", UserAccountModel = gymTest };
                 Client client = new() { Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest, Gym = gym };

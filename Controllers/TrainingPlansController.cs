@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -83,7 +78,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlan = await _context.TrainingPlan
+            TrainingPlan? trainingPlan = await _context.TrainingPlan
                 .Include(a => a.Exercises)
                 .Include(a => a.Trainer.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
@@ -148,7 +143,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+            TrainingPlan? trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
             if (trainingPlan is null)
             {
                 return NotFound();
@@ -167,15 +162,15 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+            TrainingPlan? trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
             if (await TryUpdateModelAsync<TrainingPlan>(trainingPlanToUpdate, "",
                 u => u.TrainingPlanName, u => u.TrainingPlanDescription))
             {
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
 
-                var excludedIDs = new HashSet<int>(exercises.Select(a => a.ExerciseId));
-                var missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
+                HashSet<int>? excludedIDs = new HashSet<int>(exercises.Select(a => a.ExerciseId));
+                IEnumerable<Exercise>? missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
 
                 _context.Exercise.RemoveRange(missingRows);
 
@@ -193,7 +188,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlan = await _context.TrainingPlan
+            TrainingPlan? trainingPlan = await _context.TrainingPlan
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
             if (trainingPlan is null)
             {
@@ -207,7 +202,7 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteTrainingPlanConfirmed(int id)
         {
-            var trainingPlan = await _context.TrainingPlan.FindAsync(id);
+            TrainingPlan? trainingPlan = await _context.TrainingPlan.FindAsync(id);
             _context.TrainingPlan.Remove(trainingPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction("ShowTrainingPlans");

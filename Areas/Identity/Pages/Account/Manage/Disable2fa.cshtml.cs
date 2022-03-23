@@ -2,12 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
@@ -46,7 +43,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <exception cref="InvalidOperationException">Exception thrown when a user tries to disable 2FA on an account with it disabled</exception>
         public async Task<IActionResult> OnGet()
         {
-            var user = await _userManager.GetUserAsync(User);
+            UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
             {
                 return NotFound($"Não foi possível carregar o utilizador com o ID '{_userManager.GetUserId(User)}'.");
@@ -68,13 +65,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <exception cref="InvalidOperationException">Exception thrown when an error occurs during the 2FA deactivation</exception>
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
+            UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
+            IdentityResult disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
             {
                 throw new InvalidOperationException($"Unexpected error occurred disabling 2FA.");

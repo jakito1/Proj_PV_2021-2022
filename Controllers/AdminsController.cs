@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
@@ -53,7 +52,7 @@ namespace NutriFitWeb.Controllers
                 return BadRequest();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+            UserAccountModel? user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
 
             if (user is null)
             {
@@ -97,7 +96,7 @@ namespace NutriFitWeb.Controllers
                 _context.Gym.Remove(gym);
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+            UserAccountModel? user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
 
             if (user is not null)
             {
@@ -135,7 +134,7 @@ namespace NutriFitWeb.Controllers
                 return BadRequest();
             }
 
-            var userToUpdate = await _context.Users.FindAsync(id);
+            UserAccountModel? userToUpdate = await _context.Users.FindAsync(id);
             if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "",
                 u => u.PhoneNumber, u => u.UserName))
             {

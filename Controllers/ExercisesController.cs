@@ -1,13 +1,6 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -43,7 +36,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var exercise = await _context.Exercise
+            Exercise exercise = await _context.Exercise
                 .FirstOrDefaultAsync(m => m.ExerciseId == id);
             if (exercise is null)
             {
@@ -83,10 +76,10 @@ namespace NutriFitWeb.Controllers
                 }
 
 
-                var _CreateExercise = await ViewRenderService.RenderViewToStringAsync(this, "_CreateExercisePartial", null);
+                string _CreateExercise = await ViewRenderService.RenderViewToStringAsync(this, "_CreateExercisePartial", null);
 
-                var _ShowExercises = await ViewRenderService.RenderViewToStringAsync(this, "_ShowExercisesPartial", exercises);
-                var json = Json(new { _CreateExercise, _ShowExercises });
+                string _ShowExercises = await ViewRenderService.RenderViewToStringAsync(this, "_ShowExercisesPartial", exercises);
+                JsonResult json = Json(new { _CreateExercise, _ShowExercises });
                 return json;
             }
 
@@ -103,13 +96,13 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var _CreateExercise = await ViewRenderService.RenderViewToStringAsync(this, "_CreateExercisePartial", exercises[id]);
+            string _CreateExercise = await ViewRenderService.RenderViewToStringAsync(this, "_CreateExercisePartial", exercises[id]);
 
             exercises.RemoveAt(id);
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
 
-            var _ShowExercises = await ViewRenderService.RenderViewToStringAsync(this, "_ShowExercisesPartial", exercises);
-            var json = Json(new { _CreateExercise, _ShowExercises });
+            string _ShowExercises = await ViewRenderService.RenderViewToStringAsync(this, "_ShowExercisesPartial", exercises);
+            JsonResult json = Json(new { _CreateExercise, _ShowExercises });
             return json;
         }
 
