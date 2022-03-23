@@ -2,14 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 ***REMOVED***
@@ -87,13 +84,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
+            UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
             ***REMOVED***
                 return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            var hasPassword = await _userManager.HasPasswordAsync(user);
+            bool hasPassword = await _userManager.HasPasswordAsync(user);
             if (!hasPassword)
             ***REMOVED***
                 return RedirectToPage("./SetPassword");
@@ -114,16 +111,16 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 return Page();
         ***REMOVED***
 
-            var user = await _userManager.GetUserAsync(User);
+            UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
             ***REMOVED***
                 return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
+            IdentityResult changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
             if (!changePasswordResult.Succeeded)
             ***REMOVED***
-                foreach (var error in changePasswordResult.Errors)
+                foreach (IdentityError error in changePasswordResult.Errors)
                 ***REMOVED***
                     ModelState.AddModelError(string.Empty, error.Description);
             ***REMOVED***

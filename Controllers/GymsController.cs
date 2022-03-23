@@ -73,7 +73,7 @@ namespace NutriFitWeb.Controllers
                 return _context.Gym.FirstOrDefault(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
-            var userAccount = await _userManager.FindByNameAsync(id);
+            UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
             return await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 ***REMOVED***

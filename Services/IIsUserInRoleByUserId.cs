@@ -1,6 +1,4 @@
-﻿using NutriFitWeb.Models;
-
-namespace NutriFitWeb.Services
+﻿namespace NutriFitWeb.Services
 ***REMOVED***
     public interface IIsUserInRoleByUserId
     ***REMOVED***

@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Models;
-using NutriFitWeb.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
+using NutriFitWeb.Data;
+using NutriFitWeb.Models;
 using NutriFitWeb.Services;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NutriFitWeb.Data;
-using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Models;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NutriFitWeb.Data;
+using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
@@ -140,7 +140,7 @@ namespace NutriFitWeb.Controllers
                 return _context.Trainer.FirstOrDefault(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
-            var userAccount = await _userManager.FindByNameAsync(id);
+            UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
             return await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 ***REMOVED***

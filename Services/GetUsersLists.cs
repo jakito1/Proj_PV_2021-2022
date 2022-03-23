@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using NutriFitWeb.Data;
+﻿using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services

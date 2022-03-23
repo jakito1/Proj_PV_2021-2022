@@ -2,19 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
@@ -124,14 +117,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ***REMOVED***
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
+                UserAccountModel user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
 
-                var result = SignInResult.Failed;
+                SignInResult result = SignInResult.Failed;
                 if (user is not null)
                 ***REMOVED***
                     result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
             ***REMOVED***;
-                
+
                 if (result.Succeeded)
                 ***REMOVED***
                     _logger.LogInformation("User logged in.");

@@ -2,9 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -12,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using NutriFitWeb.Models;
+using System.Text;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 ***REMOVED***
@@ -64,7 +62,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 return RedirectToPage("/Index");
         ***REMOVED***
             returnUrl = returnUrl ?? Url.Content("~/");
-            var user = await _userManager.FindByEmailAsync(email);
+            UserAccountModel user = await _userManager.FindByEmailAsync(email);
             if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with email '***REMOVED***email***REMOVED***'.");
@@ -75,8 +73,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             DisplayConfirmAccountLink = false;
             if (DisplayConfirmAccountLink)
             ***REMOVED***
-                var userId = await _userManager.GetUserIdAsync(user);
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                string userId = await _userManager.GetUserIdAsync(user);
+                string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",

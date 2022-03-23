@@ -2,14 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 ***REMOVED***
@@ -68,7 +65,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnGet()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
+            UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
             ***REMOVED***
                 return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
@@ -86,7 +83,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <exception cref="InvalidOperationException">Exception thrown when an error occurs during the account deletion</exception>
         public async Task<IActionResult> OnPostAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
+            UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
             ***REMOVED***
                 return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
@@ -102,8 +99,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             ***REMOVED***
         ***REMOVED***
 
-            var result = await _userManager.DeleteAsync(user);
-            var userId = await _userManager.GetUserIdAsync(user);
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            string userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             ***REMOVED***
                 throw new InvalidOperationException($"Erro inesperado ao tentar apagar o utilizador.");
