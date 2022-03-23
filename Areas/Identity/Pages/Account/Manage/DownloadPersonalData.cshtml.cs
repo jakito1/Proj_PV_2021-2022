@@ -56,7 +56,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             _logger.LogInformation("User with ID '***REMOVED***UserId***REMOVED***' asked for their personal data.", _userManager.GetUserId(User));
 
             // Only include personal data for download
-            Dictionary<string, string> personalData = new Dictionary<string, string>();
+            Dictionary<string, string> personalData = new();
             IEnumerable<System.Reflection.PropertyInfo> personalDataProps = typeof(UserAccountModel).GetProperties().Where(
                             prop => Attribute.IsDefined(prop, typeof(PersonalDataAttribute)));
             foreach (System.Reflection.PropertyInfo p in personalDataProps)

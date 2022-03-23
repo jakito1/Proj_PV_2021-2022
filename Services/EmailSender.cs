@@ -35,10 +35,10 @@ namespace NutriFitWeb.Services
             return Execute(Options, subject, message, email);
     ***REMOVED***
 
-        private Task Execute(string apiKey, string subject, string message, string email)
+        private static Task Execute(string apiKey, string subject, string message, string email)
         ***REMOVED***
-            SendGridClient? client = new SendGridClient(apiKey);
-            SendGridMessage? msg = new SendGridMessage()
+            SendGridClient? client = new(apiKey);
+            SendGridMessage? msg = new()
             ***REMOVED***
                 From = new EmailAddress("nutrifit.web@protonmail.com", "NutriFit"),
                 Subject = subject,

@@ -86,7 +86,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             string callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new ***REMOVED*** userId = userId, code = code ***REMOVED***,
+                values: new ***REMOVED*** userId, code ***REMOVED***,
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,

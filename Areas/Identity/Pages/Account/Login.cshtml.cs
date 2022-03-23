@@ -132,7 +132,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ***REMOVED***
                 if (result.RequiresTwoFactor)
                 ***REMOVED***
-                    return RedirectToPage("./LoginWith2fa", new ***REMOVED*** ReturnUrl = returnUrl, RememberMe = Input.RememberMe ***REMOVED***);
+                    return RedirectToPage("./LoginWith2fa", new ***REMOVED*** ReturnUrl = returnUrl, Input.RememberMe ***REMOVED***);
             ***REMOVED***
                 if (result.IsLockedOut)
                 ***REMOVED***

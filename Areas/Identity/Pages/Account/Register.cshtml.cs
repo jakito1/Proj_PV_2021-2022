@@ -153,7 +153,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                     string callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new ***REMOVED*** area = "Identity", userId = userId, code = code, returnUrl = returnUrl ***REMOVED***,
+                        values: new ***REMOVED*** area = "Identity", userId, code, returnUrl ***REMOVED***,
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
@@ -182,7 +182,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     ***REMOVED***
-                        return RedirectToPage("RegisterConfirmation", new ***REMOVED*** email = Input.Email, returnUrl = returnUrl ***REMOVED***);
+                        return RedirectToPage("RegisterConfirmation", new ***REMOVED*** email = Input.Email, returnUrl ***REMOVED***);
                 ***REMOVED***
                     else
                     ***REMOVED***

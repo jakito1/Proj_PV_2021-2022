@@ -4,7 +4,6 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
@@ -20,17 +19,15 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
     public class RegisterConfirmationModel : PageModel
     ***REMOVED***
         private readonly UserManager<UserAccountModel> _userManager;
-        private readonly IEmailSender _sender;
 
         /// <summary>
         /// Build the RegisterConfirmationModel model to be used after the user registers and has to confirm the account.
         /// </summary>
         /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
         /// <param name="sender">Microsoft EmailSender interface.</param>
-        public RegisterConfirmationModel(UserManager<UserAccountModel> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<UserAccountModel> userManager)
         ***REMOVED***
             _userManager = userManager;
-            _sender = sender;
     ***REMOVED***
 
         /// <summary>
@@ -61,7 +58,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ***REMOVED***
                 return RedirectToPage("/Index");
         ***REMOVED***
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             UserAccountModel user = await _userManager.FindByEmailAsync(email);
             if (user is null)
             ***REMOVED***
@@ -79,7 +76,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new ***REMOVED*** area = "Identity", userId = userId, code = code, returnUrl = returnUrl ***REMOVED***,
+                    values: new ***REMOVED*** area = "Identity", userId, code, returnUrl ***REMOVED***,
                     protocol: Request.Scheme);
         ***REMOVED***
 

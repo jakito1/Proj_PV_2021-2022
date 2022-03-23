@@ -22,31 +22,31 @@ namespace NutriFitWeb.Data
 
         private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
         ***REMOVED***
-            IdentityRole? clientRole = new IdentityRole("client");
+            IdentityRole? clientRole = new("client");
             if (!await roleManager.RoleExistsAsync(clientRole.Name))
             ***REMOVED***
                 await roleManager.CreateAsync(clientRole);
         ***REMOVED***
 
-            IdentityRole? gymRole = new IdentityRole("gym");
+            IdentityRole? gymRole = new("gym");
             if (!await roleManager.RoleExistsAsync(gymRole.Name))
             ***REMOVED***
                 await roleManager.CreateAsync(gymRole);
         ***REMOVED***
 
-            IdentityRole? trainerRole = new IdentityRole("trainer");
+            IdentityRole? trainerRole = new("trainer");
             if (!await roleManager.RoleExistsAsync(trainerRole.Name))
             ***REMOVED***
                 await roleManager.CreateAsync(trainerRole);
         ***REMOVED***
 
-            IdentityRole? nutritionistRole = new IdentityRole("nutritionist");
+            IdentityRole? nutritionistRole = new("nutritionist");
             if (!await roleManager.RoleExistsAsync(nutritionistRole.Name))
             ***REMOVED***
                 await roleManager.CreateAsync(nutritionistRole);
         ***REMOVED***
 
-            IdentityRole? adminRole = new IdentityRole("administrator");
+            IdentityRole? adminRole = new("administrator");
             if (!await roleManager.RoleExistsAsync(adminRole.Name))
             ***REMOVED***
                 await roleManager.CreateAsync(adminRole);
@@ -57,34 +57,34 @@ namespace NutriFitWeb.Data
         ***REMOVED***
             if (userManager.FindByNameAsync("admin").Result is null)
             ***REMOVED***
-                UserAccountModel? admin = new UserAccountModel ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true ***REMOVED***;
+                UserAccountModel? admin = new() ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true ***REMOVED***;
                 IdentityResult? result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? gymTest = new UserAccountModel ***REMOVED*** UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true ***REMOVED***;
+                UserAccountModel? gymTest = new() ***REMOVED*** UserName = "gym", Email = "gym@gym.pt", EmailConfirmed = true ***REMOVED***;
                 IdentityResult? result1 = await userManager.CreateAsync(gymTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest = new UserAccountModel ***REMOVED*** UserName = "client", Email = "client@client.pt", EmailConfirmed = true ***REMOVED***;
+                UserAccountModel? clientTest = new() ***REMOVED*** UserName = "client", Email = "client@client.pt", EmailConfirmed = true ***REMOVED***;
                 IdentityResult? result2 = await userManager.CreateAsync(clientTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? nutritionistTest = new UserAccountModel ***REMOVED*** UserName = "nutritionist", Email = "nutritionist@nutritionist.pt", EmailConfirmed = true ***REMOVED***;
+                UserAccountModel? nutritionistTest = new() ***REMOVED*** UserName = "nutritionist", Email = "nutritionist@nutritionist.pt", EmailConfirmed = true ***REMOVED***;
                 IdentityResult? result3 = await userManager.CreateAsync(nutritionistTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? trainerTest = new UserAccountModel ***REMOVED*** UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true ***REMOVED***;
+                UserAccountModel? trainerTest = new() ***REMOVED*** UserName = "trainer", Email = "trainer@trainer.pt", EmailConfirmed = true ***REMOVED***;
                 IdentityResult? result4 = await userManager.CreateAsync(trainerTest, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? admin2 = new UserAccountModel ***REMOVED*** UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true ***REMOVED***;
+                UserAccountModel? admin2 = new() ***REMOVED*** UserName = "admin2", Email = "admin2@admin2.pt", EmailConfirmed = true ***REMOVED***;
                 IdentityResult? result5 = await userManager.CreateAsync(admin2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest2 = new UserAccountModel ***REMOVED*** UserName = "clientTest2", Email = "clientTest2@clientTest2.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result6 = await userManager.CreateAsync(clientTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest3 = new UserAccountModel ***REMOVED*** UserName = "clientTest3", Email = "clientTest3@clientTest3.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result7 = await userManager.CreateAsync(clientTest3, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest4 = new UserAccountModel ***REMOVED*** UserName = "clientTest4", Email = "clientTest4@clientTest4.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result8 = await userManager.CreateAsync(clientTest4, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest5 = new UserAccountModel ***REMOVED*** UserName = "clientTest5", Email = "clientTest5@clientTest5.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result9 = await userManager.CreateAsync(clientTest5, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest6 = new UserAccountModel ***REMOVED*** UserName = "clientTest6", Email = "clientTest6@clientTest6.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result10 = await userManager.CreateAsync(clientTest6, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? clientTest7 = new UserAccountModel ***REMOVED*** UserName = "clientTest7", Email = "clientTest7@clientTest7.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result11 = await userManager.CreateAsync(clientTest7, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? nutritionistTest2 = new UserAccountModel ***REMOVED*** UserName = "nutritionistTest2", Email = "nutritionistTest2@nutritionistTest2.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result12 = await userManager.CreateAsync(nutritionistTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
-                UserAccountModel? trainerTest2 = new UserAccountModel ***REMOVED*** UserName = "trainerTest2", Email = "trainerTest2@trainerTest2.pt", EmailConfirmed = true ***REMOVED***;
-                IdentityResult? result13 = await userManager.CreateAsync(trainerTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest2 = new() ***REMOVED*** UserName = "clientTest2", Email = "clientTest2@clientTest2.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(clientTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest3 = new() ***REMOVED*** UserName = "clientTest3", Email = "clientTest3@clientTest3.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(clientTest3, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest4 = new() ***REMOVED*** UserName = "clientTest4", Email = "clientTest4@clientTest4.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(clientTest4, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest5 = new() ***REMOVED*** UserName = "clientTest5", Email = "clientTest5@clientTest5.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(clientTest5, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest6 = new() ***REMOVED*** UserName = "clientTest6", Email = "clientTest6@clientTest6.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(clientTest6, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? clientTest7 = new() ***REMOVED*** UserName = "clientTest7", Email = "clientTest7@clientTest7.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(clientTest7, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? nutritionistTest2 = new() ***REMOVED*** UserName = "nutritionistTest2", Email = "nutritionistTest2@nutritionistTest2.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(nutritionistTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
+                UserAccountModel? trainerTest2 = new() ***REMOVED*** UserName = "trainerTest2", Email = "trainerTest2@trainerTest2.pt", EmailConfirmed = true ***REMOVED***;
+                await userManager.CreateAsync(trainerTest2, "4p^91S!Mpu&tZgrfmiA^fWT&L");
 
                 Gym gym = new() ***REMOVED*** GymName = "Teste", UserAccountModel = gymTest ***REMOVED***;
                 Client client = new() ***REMOVED*** Height = 100, Weight = 100, ClientBirthday = DateTime.Parse("01/01/1990"), UserAccountModel = clientTest, Gym = gym ***REMOVED***;
