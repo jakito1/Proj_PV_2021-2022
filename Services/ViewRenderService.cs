@@ -18,7 +18,7 @@ namespace NutriFitWeb.Services
 
             controller.ViewData.Model = model;
 
-            if (model == null)
+            if (model is null)
             {
                 controller.ViewData.ModelState.Clear();
             }

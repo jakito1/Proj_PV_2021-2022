@@ -41,7 +41,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
+            if (returnUrl is not null)
             {
                 return LocalRedirect(returnUrl);
             }

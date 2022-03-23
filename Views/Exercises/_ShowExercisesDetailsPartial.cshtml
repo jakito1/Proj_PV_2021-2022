@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model != null)
+        @if (Model is not null)
         {
             @foreach (var item in Model.Select((value, i) => new { i, value }))
             {
@@ -29,7 +29,7 @@
                     <td class="exercisesData">
                         @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
                         @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)
-                        @if (item.value.ExerciseURL != null && item.value.ExerciseURL != "")
+                        @if (item.value.ExerciseURL is not null && item.value.ExerciseURL != "")
                         {
                             <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
                         }

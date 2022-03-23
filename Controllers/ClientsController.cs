@@ -25,7 +25,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowClients(string? searchString, string? currentFilter, int? pageNumber)
         {
-            if (searchString != null)
+            if (searchString is not null)
             {
                 pageNumber = 1;
             }
@@ -59,7 +59,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ClientDetails(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return NotFound();
             }
@@ -79,7 +79,7 @@ namespace NutriFitWeb.Controllers
             Include(a => a.Gym).
             FirstOrDefault(a => a.ClientId == id);
 
-            client.Gym = (client.Gym == null) ? gym : null;
+            client.Gym = (client.Gym is null) ? gym : null;
             _context.Client.Update(client);
             await _context.SaveChangesAsync();
 
@@ -96,7 +96,7 @@ namespace NutriFitWeb.Controllers
 
             Client? client = await GetClient(id);
 
-            if (client == null)
+            if (client is null)
             {
                 return NotFound();
             }
@@ -128,22 +128,6 @@ namespace NutriFitWeb.Controllers
                 return LocalRedirect(Url.Content("~/"));
             }
             return View(clientToUpdate);
-        }
-
-
-        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
-        {
-            UserAccountModel? userAccountModel = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
-            if (userAccountModel != null)
-            {
-                if (await GetClient(userAccountModel.UserName) != null)
-                {
-                    return Json(true);
-                }
-            }
-
-            return Json($"O email: {trainingPlan.ClientEmail} não pertence a um cliente.");
-
         }
 
         private async Task<Client> GetClient(string? id)

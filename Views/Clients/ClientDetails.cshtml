@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.UserAccountModel.UserName == null || Model.UserAccountModel.UserName == "")
+            @if (Model.UserAccountModel.UserName is null || Model.UserAccountModel.UserName == "")
             {
                 <p>N/A</p>
             }
@@ -32,7 +32,7 @@
             @Html.DisplayNameFor(Model => Model.ClientFirstName)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.ClientFirstName == null || Model.ClientFirstName == "")
+            @if (Model.ClientFirstName is null || Model.ClientFirstName == "")
             {
                 <p>N/A</p>
             }
@@ -45,7 +45,7 @@
             @Html.DisplayNameFor(Model => Model.ClientLastName)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.ClientLastName == null || Model.ClientLastName == "")
+            @if (Model.ClientLastName is null || Model.ClientLastName == "")
             {
                 <p>N/A</p>
             }
@@ -58,7 +58,7 @@
             @Html.DisplayNameFor(Model => Model.ClientBirthday)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.ClientBirthday == null)
+            @if (Model.ClientBirthday is null)
             {
                 <p>N/A</p>
             }
@@ -71,7 +71,7 @@
             @Html.DisplayNameFor(Model => Model.Weight)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.Weight == null || Model.Weight == 0)
+            @if (Model.Weight is null || Model.Weight == 0)
             {
                 <p>N/A</p>
             }
@@ -84,7 +84,7 @@
             @Html.DisplayNameFor(Model => Model.Height)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.Height == null || Model.Height == 0)
+            @if (Model.Height is null || Model.Height == 0)
             {
                 <p>N/A</p>
             }
@@ -97,7 +97,7 @@
             @Html.DisplayNameFor(Model => Model.Gym)
         </dt>
         <dd class="col-sm-12">
-            @if (Model.Gym == null || Model.Gym.GymName == null || Model.Gym.GymName == "")
+            @if (Model.Gym is null || Model.Gym.GymName is null || Model.Gym.GymName == "")
             {
                 <p>N/A</p>
             }

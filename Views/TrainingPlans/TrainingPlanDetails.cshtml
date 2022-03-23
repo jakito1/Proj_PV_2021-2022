@@ -12,7 +12,7 @@
             Nome
         </dt>
         <dd class="col-sm-12">
-            @if (Model.TrainingPlanName == null || Model.TrainingPlanName == "")
+            @if (Model.TrainingPlanName is null || Model.TrainingPlanName == "")
             {
                 <p class="details">N/A</p>
             }
@@ -25,7 +25,7 @@
             Descrição
         </dt>
         <dd class="col-sm-12">
-            @if (Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")
+            @if (Model.TrainingPlanDescription is null || Model.TrainingPlanDescription == "")
             {
                 <p class="details">N/A</p>
             }
@@ -34,7 +34,7 @@
                 <p class="details">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
             }
         </dd>
-        @if (User.IsInRole("client") && Model.Trainer != null)
+        @if (User.IsInRole("client") && Model.Trainer is not null)
         {
             <dt class="col-sm-12 listsItemTitle">
                 Treinador
@@ -43,7 +43,7 @@
                 <p class="details">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
             </dd>
         }
-        @if (User.IsInRole("trainer") && Model.Client != null)
+        @if (User.IsInRole("trainer") && Model.Client is not null)
         {
             <dt class="col-sm-12 listsItemTitle">
                 Cliente

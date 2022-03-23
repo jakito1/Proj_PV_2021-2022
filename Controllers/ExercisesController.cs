@@ -38,14 +38,14 @@ namespace NutriFitWeb.Controllers
         // GET: Exercises/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return NotFound();
             }
 
             var exercise = await _context.Exercise
                 .FirstOrDefaultAsync(m => m.ExerciseId == id);
-            if (exercise == null)
+            if (exercise is null)
             {
                 return NotFound();
             }
@@ -70,7 +70,7 @@ namespace NutriFitWeb.Controllers
             {
 
                 List<Exercise> exercises = new();
-                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) == null)
+                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) is null)
                 {
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() { exercise });
                     exercises.Add(exercise);
@@ -98,7 +98,7 @@ namespace NutriFitWeb.Controllers
 
             List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
 
-            if (exercises == null)
+            if (exercises is null)
             {
                 return NotFound();
             }
@@ -152,7 +152,7 @@ namespace NutriFitWeb.Controllers
         {
 
             List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-            if (exercises != null)
+            if (exercises is not null)
             {
                 exercises.RemoveAt(id);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);

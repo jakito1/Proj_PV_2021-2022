@@ -16,6 +16,7 @@ namespace NutriFitWeb.Controllers
     public class TrainingPlansController : Controller
     {
         private readonly string SessionKeyExercises;
+        private readonly string SessionKeyClientsUserAccounts;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
@@ -25,13 +26,14 @@ namespace NutriFitWeb.Controllers
             _context = context;
             _userManager = userManager;
             SessionKeyExercises = "_Exercises";
+            SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
         }
 
         [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlans(string? searchString, string? currentFilter, int? pageNumber)
         {
 
-            if (searchString != null)
+            if (searchString is not null)
             {
                 pageNumber = 1;
             }
@@ -48,24 +50,24 @@ namespace NutriFitWeb.Controllers
             ViewData["CurrentFilter"] = searchString;
             IQueryable<TrainingPlan>? plans = null;
 
-            if (trainer != null)
+            if (trainer is not null)
             {
                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
             }
 
-            if (client != null)
+            if (client is not null)
             {
                 plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId);
             }
 
-            if (!string.IsNullOrEmpty(searchString) && trainer != null)
+            if (!string.IsNullOrEmpty(searchString) && trainer is not null)
             {
                 plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId)
                     .Where(a => a.TrainingPlanName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString))
                     .Include(a => a.Client.UserAccountModel);
             }
 
-            if (!string.IsNullOrEmpty(searchString) && client != null)
+            if (!string.IsNullOrEmpty(searchString) && client is not null)
             {
                 plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId).Where(a => a.TrainingPlanName.Contains(searchString));
             }
@@ -74,10 +76,9 @@ namespace NutriFitWeb.Controllers
             return View(await PaginatedList<TrainingPlan>.CreateAsync(plans.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
-        // GET: TrainingPlans/Details/5
         public async Task<IActionResult> TrainingPlanDetails(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return NotFound();
             }
@@ -87,7 +88,7 @@ namespace NutriFitWeb.Controllers
                 .Include(a => a.Trainer.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
-            if (trainingPlan == null)
+            if (trainingPlan is null)
             {
                 return NotFound();
             }
@@ -95,9 +96,12 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlan);
         }
 
-        // GET: TrainingPlans/Create
-        public IActionResult CreateTrainingPlan()
+        public async Task<IActionResult> CreateTrainingPlan()
         {
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts,
+                await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync());
             return View();
         }
 
@@ -119,13 +123,14 @@ namespace NutriFitWeb.Controllers
                     clientAccount = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
                 }
 
-                if (trainer != null && clientAccount != null)
+                if (trainer is not null && clientAccount is not null)
                 {
                     client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
                 }
 
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
+                HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts, null);
 
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
@@ -138,13 +143,13 @@ namespace NutriFitWeb.Controllers
 
         public async Task<IActionResult> EditTrainingPlan(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return NotFound();
             }
 
             var trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
-            if (trainingPlan == null)
+            if (trainingPlan is null)
             {
                 return NotFound();
             }
@@ -157,7 +162,7 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditTrainingPlanPost(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return NotFound();
             }
@@ -181,17 +186,16 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlanToUpdate);
         }
 
-        // GET: TrainingPlans/Delete/5
         public async Task<IActionResult> DeleteTrainingPlan(int? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return NotFound();
             }
 
             var trainingPlan = await _context.TrainingPlan
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
-            if (trainingPlan == null)
+            if (trainingPlan is null)
             {
                 return NotFound();
             }
@@ -199,7 +203,6 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlan);
         }
 
-        // POST: TrainingPlans/Delete/5
         [HttpPost, ActionName("DeleteTrainingPlan")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteTrainingPlanConfirmed(int id)
@@ -208,6 +211,30 @@ namespace NutriFitWeb.Controllers
             _context.TrainingPlan.Remove(trainingPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction("ShowTrainingPlans");
+        }
+
+        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
+        {
+            List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
+            UserAccountModel? currUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == currUser.Id);
+
+            if (clientsUsersAccounts is null)
+            {
+                clientsUsersAccounts = await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync();
+            }
+
+            Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == trainingPlan.ClientEmail);
+
+            if (client is not null)
+            {
+
+                return Json(true);
+
+            }
+
+            return Json($"O email: {trainingPlan.ClientEmail} não pertence a um dos seus clientes.");
+
         }
     }
 }

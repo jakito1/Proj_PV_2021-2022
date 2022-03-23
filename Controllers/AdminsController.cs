@@ -21,7 +21,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> ShowAllUsers(string? searchString, string? currentFilter, int? pageNumber)
         {
-            if (searchString != null)
+            if (searchString is not null)
             {
                 pageNumber = 1;
             }
@@ -48,14 +48,14 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> DeleteUserAccount(string? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return BadRequest();
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
@@ -68,7 +68,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> DeleteUserAccountPost(string? id)
         {
-            if (id == null)
+            if (id is null)
             {
                 return BadRequest();
             }
@@ -78,28 +78,28 @@ namespace NutriFitWeb.Controllers
             Gym? gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
             Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
 
-            if (trainer != null)
+            if (trainer is not null)
             {
                 _context.Trainer.Remove(trainer);
             }
-            if (nutritionist != null)
+            if (nutritionist is not null)
             {
                 _context.Nutritionist.Remove(nutritionist);
             }
 
-            if (client != null)
+            if (client is not null)
             {
                 _context.Client.Remove(client);
             }
 
-            if (gym != null)
+            if (gym is not null)
             {
                 _context.Gym.Remove(gym);
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
 
-            if (user != null)
+            if (user is not null)
             {
                 _context.Users.Remove(user);
             }
@@ -118,7 +118,7 @@ namespace NutriFitWeb.Controllers
             }
 
             UserAccountModel? userAccountModel = await _context.Users.FindAsync(id);
-            if (userAccountModel == null)
+            if (userAccountModel is null)
             {
                 return NotFound();
             }
