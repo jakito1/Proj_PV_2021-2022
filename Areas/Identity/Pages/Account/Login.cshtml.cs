@@ -127,7 +127,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 var user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
 
                 var result = SignInResult.Failed;
-                if (user != null)
+                if (user is not null)
                 ***REMOVED***
                     result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
             ***REMOVED***;

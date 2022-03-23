@@ -39,13 +39,8 @@ namespace NutriFitWeb.Services
 
         public string GetTrainerGym(string loggedIn)
         ***REMOVED***
-            Trainer? trainer = _context.Trainer.FirstOrDefault(a => a.UserAccountModel.Id == loggedIn);
-            Gym? gym = null;
-            if (trainer != null && trainer.Gym != null)
-            ***REMOVED***
-                gym = _context.Gym.FirstOrDefault(a => a.GymId == trainer.Gym.GymId);
-        ***REMOVED***
-            return (gym != null && gym.GymName != null) ? gym.GymName : "";
+            Gym? gym = _context.Trainer.Where(a => a.UserAccountModel.Id == loggedIn).Select(a => a.Gym).FirstOrDefault();
+            return (gym is null) ? "" : gym.GymName;
     ***REMOVED***
 
 ***REMOVED***

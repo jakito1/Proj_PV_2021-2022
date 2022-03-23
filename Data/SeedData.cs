@@ -55,7 +55,7 @@ namespace NutriFitWeb.Data
 
         private static async Task SeedUsersAsync(UserManager<UserAccountModel> userManager, ApplicationDbContext context)
         ***REMOVED***
-            if (userManager.FindByNameAsync("admin").Result == null)
+            if (userManager.FindByNameAsync("admin").Result is null)
             ***REMOVED***
                 var admin = new UserAccountModel ***REMOVED*** UserName = "admin", Email = "admin@admin.pt", EmailConfirmed = true ***REMOVED***;
                 var result = await userManager.CreateAsync(admin, "4p^91S!Mpu&tZgrfmiA^fWT&L");

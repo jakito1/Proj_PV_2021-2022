@@ -32,7 +32,7 @@ namespace NutriFitWeb.Controllers
 
             Gym? gym = await GetGym(id);
 
-            if (gym == null)
+            if (gym is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***

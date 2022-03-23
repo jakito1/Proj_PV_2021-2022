@@ -38,14 +38,14 @@ namespace NutriFitWeb.Controllers
         // GET: Exercises/Details/5
         public async Task<IActionResult> Details(int? id)
         ***REMOVED***
-            if (id == null)
+            if (id is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
             var exercise = await _context.Exercise
                 .FirstOrDefaultAsync(m => m.ExerciseId == id);
-            if (exercise == null)
+            if (exercise is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -70,7 +70,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
 
                 List<Exercise> exercises = new();
-                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) == null)
+                if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) is null)
                 ***REMOVED***
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() ***REMOVED*** exercise ***REMOVED***);
                     exercises.Add(exercise);
@@ -98,7 +98,7 @@ namespace NutriFitWeb.Controllers
 
             List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
 
-            if (exercises == null)
+            if (exercises is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -152,7 +152,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-            if (exercises != null)
+            if (exercises is not null)
             ***REMOVED***
                 exercises.RemoveAt(id);
                 HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);

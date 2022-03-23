@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
@@ -18,6 +19,7 @@ namespace NutriFitWeb.Models
 
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 
+        [JsonIgnore]
         public List<Client>? Clients ***REMOVED*** get; set; ***REMOVED***
         public List<TrainingPlan>? TrainingPlans ***REMOVED*** get; set; ***REMOVED***
 

@@ -27,7 +27,7 @@
         <div class="listsItem">
             <a asp-action="ChangeClientGymStatus" asp-route-id="@item.ClientId"
            asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
-                @if (item.Gym == null)
+                @if (item.Gym is null)
                 ***REMOVED***
                     <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
             ***REMOVED***

@@ -25,7 +25,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowTrainers(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
-            if (searchString != null)
+            if (searchString is not null)
             ***REMOVED***
                 pageNumber = 1;
         ***REMOVED***
@@ -68,7 +68,7 @@ namespace NutriFitWeb.Controllers
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
 
-            trainer.Gym = (trainer.Gym == null) ? gym : null;
+            trainer.Gym = (trainer.Gym is null) ? gym : null;
             _context.Trainer.Update(trainer);
             await _context.SaveChangesAsync();
 
@@ -77,7 +77,7 @@ namespace NutriFitWeb.Controllers
 
         public async Task<IActionResult> TrainerDetails(int? id)
         ***REMOVED***
-            if (id == null)
+            if (id is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -99,7 +99,7 @@ namespace NutriFitWeb.Controllers
 
             Trainer? trainer = await GetTrainer(id);
 
-            if (trainer == null)
+            if (trainer is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***

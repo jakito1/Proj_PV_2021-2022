@@ -88,7 +88,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
@@ -115,7 +115,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         ***REMOVED***
 
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***

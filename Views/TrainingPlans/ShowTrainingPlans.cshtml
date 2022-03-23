@@ -56,7 +56,7 @@ else if (User.IsInRole("client"))
                     <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
                 </td>
                 <td>
-                    @if (item.TrainingPlanDescription == null || item.TrainingPlanDescription == "")
+                    @if (item.TrainingPlanDescription is null || item.TrainingPlanDescription == "")
                     ***REMOVED***
                         <p class="details"><b>N/A</b></p>
                 ***REMOVED***
@@ -73,7 +73,7 @@ else if (User.IsInRole("client"))
                 </td>
                 @if (User.IsInRole("trainer"))
                 ***REMOVED***
-                    if (item.Client != null)
+                    if (item.Client is not null)
                     ***REMOVED***
                         <td>
                             <p class="details">@Html.DisplayFor(modelItem => item.Client.UserAccountModel.Email)</p>

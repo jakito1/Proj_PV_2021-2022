@@ -54,7 +54,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***

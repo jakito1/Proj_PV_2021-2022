@@ -12,7 +12,7 @@
 <p><b>@Html.DisplayFor(model => model.TrainingPlanName)</b></p>
 <p class="deleteB">Descrição:</p>
 
-@if (Model.TrainingPlanDescription == null || Model.TrainingPlanDescription == "")
+@if (Model.TrainingPlanDescription is null || Model.TrainingPlanDescription == "")
 ***REMOVED***
     <p><b>N/A</b></p>
 ***REMOVED***

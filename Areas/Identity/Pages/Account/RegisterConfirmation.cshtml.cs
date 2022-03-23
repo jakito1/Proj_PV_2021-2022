@@ -59,13 +59,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
         ***REMOVED***
-            if (email == null)
+            if (email is null)
             ***REMOVED***
                 return RedirectToPage("/Index");
         ***REMOVED***
             returnUrl = returnUrl ?? Url.Content("~/");
             var user = await _userManager.FindByEmailAsync(email);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with email '***REMOVED***email***REMOVED***'.");
         ***REMOVED***

@@ -25,7 +25,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowClients(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
-            if (searchString != null)
+            if (searchString is not null)
             ***REMOVED***
                 pageNumber = 1;
         ***REMOVED***
@@ -59,7 +59,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ClientDetails(int? id)
         ***REMOVED***
-            if (id == null)
+            if (id is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -79,7 +79,7 @@ namespace NutriFitWeb.Controllers
             Include(a => a.Gym).
             FirstOrDefault(a => a.ClientId == id);
 
-            client.Gym = (client.Gym == null) ? gym : null;
+            client.Gym = (client.Gym is null) ? gym : null;
             _context.Client.Update(client);
             await _context.SaveChangesAsync();
 
@@ -96,7 +96,7 @@ namespace NutriFitWeb.Controllers
 
             Client? client = await GetClient(id);
 
-            if (client == null)
+            if (client is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -128,22 +128,6 @@ namespace NutriFitWeb.Controllers
                 return LocalRedirect(Url.Content("~/"));
         ***REMOVED***
             return View(clientToUpdate);
-    ***REMOVED***
-
-
-        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
-        ***REMOVED***
-            UserAccountModel? userAccountModel = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
-            if (userAccountModel != null)
-            ***REMOVED***
-                if (await GetClient(userAccountModel.UserName) != null)
-                ***REMOVED***
-                    return Json(true);
-            ***REMOVED***
-        ***REMOVED***
-
-            return Json($"O email: ***REMOVED***trainingPlan.ClientEmail***REMOVED*** não pertence a um cliente.");
-
     ***REMOVED***
 
         private async Task<Client> GetClient(string? id)

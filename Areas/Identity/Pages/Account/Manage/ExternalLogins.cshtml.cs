@@ -68,7 +68,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
@@ -84,7 +84,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 passwordHash = await userPasswordStore.GetPasswordHashAsync(user, HttpContext.RequestAborted);
         ***REMOVED***
 
-            ShowRemoveButton = passwordHash != null || CurrentLogins.Count > 1;
+            ShowRemoveButton = passwordHash is not null || CurrentLogins.Count > 1;
             return Page();
     ***REMOVED***
 
@@ -97,7 +97,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostRemoveLoginAsync(string loginProvider, string providerKey)
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
@@ -138,14 +138,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetLinkLoginCallbackAsync()
         ***REMOVED***
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
             var userId = await _userManager.GetUserIdAsync(user);
             var info = await _signInManager.GetExternalLoginInfoAsync(userId);
-            if (info == null)
+            if (info is null)
             ***REMOVED***
                 throw new InvalidOperationException($"Unexpected error occurred loading external login info.");
         ***REMOVED***
