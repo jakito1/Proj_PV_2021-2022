@@ -47,10 +47,26 @@
 
 @section Scripts ***REMOVED***
 <script>
-    function updateViews(response) ***REMOVED***
-        $("#_CreateExercisePartialItem").html(response._CreateExercise);
-        $("#_ShowExercisesPartialList").html(response._ShowExercises);
-***REMOVED***
+    function UpdateExercisesList() ***REMOVED***
+            $.ajax(***REMOVED***
+                url: "@Url.Action("ShowExercisesList", "Exercises")",
+                type: "GET",
+                datatype: "HTML",
+                success: function (data) ***REMOVED***
+                    $("#_ShowExercisesPartialList").html(data);
+            ***REMOVED***
+        ***REMOVED***)
+    ***REMOVED***
+    function UpdateCreateExercise() ***REMOVED***
+            $.ajax(***REMOVED***
+                url: "@Url.Action("GetCleanCreateExercisePartial", "Exercises")",
+                type: "GET",
+                datatype: "HTML",
+                success: function (data) ***REMOVED***
+                    $("#_CreateExercisePartialItem").html(data);
+            ***REMOVED***
+        ***REMOVED***)
+    ***REMOVED***
 </script>
     @***REMOVED***
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
