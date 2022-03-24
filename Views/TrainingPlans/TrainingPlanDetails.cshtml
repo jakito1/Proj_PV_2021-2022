@@ -63,11 +63,6 @@
 
 
 @section Scripts {
-<script>
-    function updateViews(response) {
-        $("#_ShowExercisesPartialList").html(response._ShowExercises);
-    }
-</script>
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }

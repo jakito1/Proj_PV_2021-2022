@@ -47,10 +47,26 @@
 
 @section Scripts {
 <script>
-    function updateViews(response) {
-        $("#_CreateExercisePartialItem").html(response._CreateExercise);
-        $("#_ShowExercisesPartialList").html(response._ShowExercises);
-    }
+    function UpdateExercisesList() {
+            $.ajax({
+                url: "@Url.Action("ShowExercisesList", "Exercises")",
+                type: "GET",
+                datatype: "HTML",
+                success: function (data) {
+                    $("#_ShowExercisesPartialList").html(data);
+                }
+            })
+        }
+    function UpdateCreateExercise() {
+            $.ajax({
+                url: "@Url.Action("GetCleanCreateExercisePartial", "Exercises")",
+                type: "GET",
+                datatype: "HTML",
+                success: function (data) {
+                    $("#_CreateExercisePartialItem").html(data);
+                }
+            })
+        }
 </script>
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");

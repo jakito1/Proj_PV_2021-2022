@@ -223,13 +223,11 @@ namespace NutriFitWeb.Controllers
                 UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
                 clientsUsersAccounts = await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync();
                 trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            }           
+            }
 
             if (client is not null)
             {
-
                 return Json(true);
-
             }
 
             return Json($"O email: {trainingPlan.ClientEmail} não pertence a um dos seus clientes.");
