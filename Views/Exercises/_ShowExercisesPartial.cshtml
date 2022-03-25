@@ -25,7 +25,12 @@
                         @Html.DisplayFor(modelItem => item.value.ExerciseName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                        @if (String.IsNullOrEmpty(item.value.ExerciseDescription))
+                        {
+                            <p>N/A</p>
+                        }else{
+                            @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                        }
                     </td>
                     <td>
                         <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"

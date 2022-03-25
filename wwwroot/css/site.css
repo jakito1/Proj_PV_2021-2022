@@ -57,6 +57,8 @@ button.navbar-toggler{
     border-style: solid;
     border-radius: 1em;
     height: 2.5em;
+    width: 17em;
+    padding-left: 0.5em;
 }
 
 /* NutriFitWeb Header Title / Home Button */
@@ -193,6 +195,7 @@ h1 {
 .imageHome {
     max-width: 100%;
     max-height: 100%;
+    border-radius: 1em;
 }
 
 
@@ -273,7 +276,7 @@ link{
     border-radius: 1em;
     border-color: #00A2E8;
     background-color: white;
-    max-width: 60%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding: 0.5em;
@@ -610,3 +613,18 @@ button.subMenuItem:hover, a.subMenuItem:hover {
     margin-left: 2em;
 }
 
+label.labelOne{
+    margin-right: 2.5em !important;
+}
+
+label.labelTwo {
+    margin-right: 1em !important;
+}
+
+label.labelThree {
+    margin-right: 2em !important;
+}
+
+label.labelFour {
+    margin-right: 1.2em !important;
+}

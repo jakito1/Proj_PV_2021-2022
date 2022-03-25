@@ -15,8 +15,8 @@
             <input type="submit" value="Criar" class="btn btn-primary createBtn" />
         </div>
         <div>
-            <label asp-for="TrainingPlanName" class="control-label">Nome &nbsp;</label>
-            <input asp-for="TrainingPlanName" class="formsInput" />
+            <label asp-for="TrainingPlanName" class="control-label">Nome &emsp; &ensp;</label>
+            <input asp-for="TrainingPlanName" class="formsInput nameInput" />
             <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
         </div>
         <div>
@@ -27,7 +27,7 @@
         @if (User.IsInRole("trainer"))
         {
             <div>
-                <label asp-for="ClientEmail" class="control-label">Email do Cliente &nbsp;</label>
+                <label asp-for="ClientEmail" class="control-label">Cliente &emsp; &nbsp;</label>
                 <input required asp-for="ClientEmail" class="formsInput" />
                 <span asp-validation-for="ClientEmail" class="text-danger"></span>
             </div>
