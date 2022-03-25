@@ -11,12 +11,19 @@ namespace NutriFitWeb.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string? ExerciseName ***REMOVED*** get; set; ***REMOVED***
         public string? ExerciseDescription ***REMOVED*** get; set; ***REMOVED***
-        [DataType(DataType.Time)]
-        public TimeSpan? ExerciseDuration ***REMOVED*** get; set; ***REMOVED***
+
+        [Range(0, Int32.MaxValue, ErrorMessage = "Este campo tem de ser maior que ***REMOVED***1***REMOVED***.")]
+        public int? ExerciseDuration ***REMOVED*** get; set; ***REMOVED***
+
+        [Range(0, Int32.MaxValue, ErrorMessage = "Este campo tem de ser maior que ***REMOVED***1***REMOVED***.")]
         public int? ExerciseRepetitions ***REMOVED*** get; set; ***REMOVED***
         public string? ExerciseURL ***REMOVED*** get; set; ***REMOVED***
         public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED***
+
+        [Column(TypeName = "nvarchar(24)")]
         public ExerciseType? ExerciseType ***REMOVED*** get; set; ***REMOVED***
+
+        [Column(TypeName = "nvarchar(24)")]
         public ExerciseMuscles? ExerciseMuscles ***REMOVED*** get; set; ***REMOVED***
 
         [JsonIgnore]
