@@ -568,6 +568,7 @@ input.btn.btn-danger ***REMOVED***
 
 .dropdown:hover .dropbtn ***REMOVED***
     background-color: white;
+
 ***REMOVED***
 
 .dropdownBtnBorderFix ***REMOVED***
@@ -580,6 +581,7 @@ button.subMenuItem, a.subMenuItem ***REMOVED***
     margin-left: 0em;
     text-decoration: none;
     font-weight: bold;
+    border-radius: 1em;
 ***REMOVED***
 
 button.subMenuItem:hover, a.subMenuItem:hover ***REMOVED***
