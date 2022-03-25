@@ -17,9 +17,6 @@
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Gyms" asp-action="EditGymSettings">Perfil</a>
-            </li>
     ***REMOVED***
         else if (User.IsInRole("administrator"))
         ***REMOVED***
@@ -30,49 +27,56 @@
         else if (User.IsInRole("client"))
         ***REMOVED***
             <li class="nav-item">
-                @*RecipesController ShowRecipes*@
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Receitas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Planos de Treino</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlans" asp-action="">Planos de Nutrição</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Ginásio</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
+
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Planos</button>
+                <div class="dropdown-content plansSubMenuFix">
+                    @if (User.IsInRole("client"))
+                    ***REMOVED***
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="">Nutrição</a>
+                ***REMOVED***
+                </div>
             </li>
     ***REMOVED***
         else if (User.IsInRole("nutritionist"))
         ***REMOVED***
             <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Nutritionists" asp-action="EditNutritionistSettings">Perfil</a>
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Nutrição</a>
             </li>
     ***REMOVED***
         else if (User.IsInRole("trainer"))
         ***REMOVED***
             <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Planos de Treino</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Trainers" asp-action="EditTrainerSettings">Perfil</a>
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
             </li>
     ***REMOVED***
 
-        @if (!(User.IsInRole("administrator")))
-        ***REMOVED***
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @User.Identity?.Name!</a>
-            </li>
-    ***REMOVED***
+        <li class="dropdown">
+            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
+            <div class="dropdown-content fixAdminAccountSubmenu">
+                @if (User.IsInRole("trainer"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Trainers" asp-action="EditTrainerSettings">Perfil</a>
+            ***REMOVED***else if (User.IsInRole("nutritionist"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Nutritionists" asp-action="EditNutritionistSettings">Perfil</a>
+            ***REMOVED***else if (User.IsInRole("gym"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Gyms" asp-action="EditGymSettings">Perfil</a>
+            ***REMOVED***else if (User.IsInRole("client"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
+            ***REMOVED***
 
-        <li class="nav-item logoutClick">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new ***REMOVED*** area = "" ***REMOVED***)">
-                <button type="submit" class="nav-link btn btn-link text-dark menuItem">Logout</button>
-            </form>
+                <a class="btn btn-link subMenuItem" asp-area="Identity" asp-page="/Account/Manage/Index">Conta</a>                
+
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new ***REMOVED*** area = "" ***REMOVED***)">
+                    <button type="submit" class="btn btn-link menuItem subMenuItem logout">Sair &nbsp;<img class="logoutIcon" src=~/icons/logoutIcon.svg alt="logoutIcon"/></button>
+                </form>
+            </div>
         </li>
 
         @if (!(User.IsInRole("administrator")))
@@ -80,10 +84,10 @@
             <li class="nav-item notificationBell">
                 <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
             </li>
+    ***REMOVED***else***REMOVED***
+            <li class="spacingLi"></li>
     ***REMOVED***
-
-***REMOVED***
-    else
+***REMOVED***else
     ***REMOVED***
         /*<li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>

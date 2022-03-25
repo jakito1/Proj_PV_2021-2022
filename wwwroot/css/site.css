@@ -162,9 +162,15 @@ h1 ***REMOVED***
     margin-top: auto !important;
     margin-bottom: auto !important;
     margin-left: 50px;
+    text-decoration: none;
+    color: white;
 ***REMOVED***
 
-.details***REMOVED***
+.subMenuItem***REMOVED***
+    background-color: white;
+***REMOVED***
+
+.details ***REMOVED***
     font-weight: bold;
     color: black;
 ***REMOVED***
@@ -194,11 +200,16 @@ h1 ***REMOVED***
     color: lightgrey !important;
 ***REMOVED***
 
-.notificationIcon ***REMOVED***
-    margin-top: 0.5em;
+.notificationIcon, .accountIcon ***REMOVED***
+    margin-top: 0.3em;
     text-decoration: none !important;
     height: 1em;
     width: 1em;
+    font-size: 1.4em;
+***REMOVED***
+
+.accountIcon ***REMOVED***
+    margin-top: 0em;
 ***REMOVED***
 
 .notificationIcon:hover ***REMOVED***
@@ -525,4 +536,68 @@ input.btn.btn-danger ***REMOVED***
 .exercisesData***REMOVED***
     font-weight: bold;
     color: black;
+***REMOVED***
+
+.dropdown ***REMOVED***
+    position: relative;
+    display: inline-block;
+    margin-right: 0em;
+***REMOVED***
+
+.dropdown-content ***REMOVED***
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 1em;
+    padding: 1em;
+    margin-left: 1.2em;
+    /*Brings everything to the front*/
+    z-index: 1;
+    width: 7em;
+***REMOVED***
+
+.plansSubMenuFix***REMOVED***
+    margin-left: 2.5em;
+***REMOVED***
+
+
+.dropdown:hover .dropdown-content ***REMOVED***
+    display: block;
+    text-align: center;
+***REMOVED***
+
+.dropdown:hover .dropbtn ***REMOVED***
+    background-color: white;
+***REMOVED***
+
+.dropdownBtnBorderFix ***REMOVED***
+    border-style: none;
+***REMOVED***
+
+button.subMenuItem, a.subMenuItem ***REMOVED***
+    background-color: white !important;
+    color: #00A2E8;
+    margin-left: 0em;
+    text-decoration: none;
+    font-weight: bold;
+***REMOVED***
+
+button.subMenuItem:hover, a.subMenuItem:hover ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    color: white !important;
+    background-color: #00A2E8 !important;
+***REMOVED***
+
+.logout:hover .logoutIcon ***REMOVED***
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(100%) contrast(105%);
+***REMOVED***
+
+.logout***REMOVED***
+    color:red !important;
+***REMOVED***
+
+.spacingLi ***REMOVED***
+    margin-left: 2em;
 ***REMOVED***
