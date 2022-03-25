@@ -48,10 +48,15 @@
                 url: "@Url.Action("GetCleanCreateExercisePartial", "Exercises")",
                 type: "GET",
                 datatype: "HTML",
-                success: function (data) {
+                success: function (data) {  
                     $("#_CreateExercisePartialItem").html(data);
                 }
             })
+        }
+    function RefreshUnobtrusiveValidation() {
+            $('#_CreateExercisePartialForm').removeData('validator');
+            $('#_CreateExercisePartialForm').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse('#_CreateExercisePartialForm');
         }
 </script>
     @{
