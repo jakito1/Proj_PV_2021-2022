@@ -12,6 +12,7 @@
             <input required asp-for="ExerciseName" class="formsInput"
                    oninvalid="this.setCustomValidity('Campo obrigatório')"
                    onchange="this.setCustomValidity('')" />
+            <br />
             <span asp-validation-for="ExerciseName" class="text-danger"></span>
         </div>
         <div>

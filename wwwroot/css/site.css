@@ -601,8 +601,9 @@ button.subMenuItem:hover, a.subMenuItem:hover ***REMOVED***
     background-color: #00A2E8 !important;
 ***REMOVED***
 
+
 .logout:hover .logoutIcon ***REMOVED***
-    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(100%) contrast(105%);
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(1000%) contrast(105%);
 ***REMOVED***
 
 .logout***REMOVED***
