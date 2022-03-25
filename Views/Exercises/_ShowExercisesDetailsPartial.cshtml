@@ -18,23 +18,23 @@
     <tbody>
         @if (Model is not null)
         {
-            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            @foreach (var item in Model)
             {
                 <tr>
                     <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.value.ExerciseName)
+                        @Html.DisplayFor(modelItem => item.ExerciseName)
                         <br />
-                        @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                        @Html.DisplayFor(modelItem => item.ExerciseDescription)
                     </td>
                     <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.value.ExerciseDuration)
-                        @Html.DisplayFor(modelItem => item.value.ExerciseRepetitions)
-                        @if (item.value.ExerciseURL is not null && item.value.ExerciseURL != "")
+                        @Html.DisplayFor(modelItem => item.ExerciseDuration) minutos
+                        @Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições
+                        @if (item.ExerciseURL is not null && item.ExerciseURL != "")
                         {
-                            <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.value.ExerciseURL)>Vídeo do Exercício</a>
+                            <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL)>Vídeo do Exercício</a>
                         }
-                        @Html.DisplayFor(modelItem => item.value.ExerciseType)
-                        @Html.DisplayFor(modelItem => item.value.ExerciseMuscles)
+                        @Html.DisplayFor(modelItem => item.ExerciseType)
+                        @Html.DisplayFor(modelItem => item.ExerciseMuscles)
 
                     </td>
                 </tr>
