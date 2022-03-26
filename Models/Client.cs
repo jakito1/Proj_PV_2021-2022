@@ -18,7 +18,6 @@ namespace NutriFitWeb.Models
 
         [DisplayName("Data de Nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? ClientBirthday { get; set; }
 
         [DisplayName("Peso")]

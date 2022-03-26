@@ -17,6 +17,7 @@
         <div>
             <label asp-for="TrainingPlanName" class="control-label">Nome &emsp; &ensp;</label>
             <input asp-for="TrainingPlanName" class="formsInput nameInput" />
+            <br />
             <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
         </div>
         <div>
@@ -28,7 +29,8 @@
         {
             <div>
                 <label asp-for="ClientEmail" class="control-label">Cliente &emsp; &nbsp;</label>
-                <input required asp-for="ClientEmail" class="formsInput" />
+                <input required="true" asp-for="ClientEmail" class="formsInput" />
+                <br />
                 <span asp-validation-for="ClientEmail" class="text-danger"></span>
             </div>
         }
@@ -53,6 +55,9 @@
                 type: "GET",
                 datatype: "HTML",
                 success: function (data) {
+                    $('#_CreateExercisePartialForm').removeData('validator');
+                    $('#_CreateExercisePartialForm').removeData('unobtrusiveValidation');
+                    $.validator.unobtrusive.parse('#_CreateExercisePartialForm');
                     $("#_ShowExercisesPartialList").html(data);
                 }
             })
@@ -66,11 +71,6 @@
                     $("#_CreateExercisePartialItem").html(data);
                 }
             })
-        }
-    function RefreshUnobtrusiveValidation() {
-            $('#_CreateExercisePartialForm').removeData('validator');
-            $('#_CreateExercisePartialForm').removeData('unobtrusiveValidation');
-            $.validator.unobtrusive.parse('#_CreateExercisePartialForm');
         }
 </script>
     @{

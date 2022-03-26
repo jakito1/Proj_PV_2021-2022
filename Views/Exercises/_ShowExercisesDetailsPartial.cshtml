@@ -27,8 +27,14 @@
                         @Html.DisplayFor(modelItem => item.ExerciseDescription)
                     </td>
                     <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.ExerciseDuration) minutos
-                        @Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições
+                        @if (item.ExerciseDuration is not null)
+                        {
+                            @Html.DisplayFor(modelItem => item.ExerciseDuration) <p>minutos</p> 
+                        }
+                        @if (item.ExerciseRepetitions is not null)
+                        {
+                            @Html.DisplayFor(modelItem => item.ExerciseRepetitions) <p>repetições</p>
+                        }                       
                         @if (item.ExerciseURL is not null && item.ExerciseURL != "")
                         {
                             <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL)>Vídeo do Exercício</a>
