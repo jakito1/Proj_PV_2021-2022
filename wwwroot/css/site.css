@@ -43,6 +43,10 @@ body {
     background-attachment: fixed;
 }
 
+a{
+    text-decoration: none !important;
+}
+
 button.navbar-toggler{
     border-color: white;
 }
@@ -57,7 +61,7 @@ button.navbar-toggler{
     border-style: solid;
     border-radius: 1em;
     height: 2.5em;
-    width: 17em;
+    width: 15em;
     padding-left: 0.5em;
 }
 
@@ -269,6 +273,12 @@ link{
     margin-bottom: 6em;
     max-width: 80%;
     color: #00A2E8;
+    background-color: white;
+    border-radius: 1em;
+}
+
+tr{
+    border-radius: 1em;
 }
 
 .listsDiv {
@@ -296,7 +306,7 @@ color: #00A2E8;
 font-weight: bold;*/
 
 .exercisesDiv {
-    max-width: 80%;
+    max-width: 100%;
 }
 
 div.titlesMargin {
@@ -394,9 +404,6 @@ div.titlesMargin{
     font-weight: bold;
 }
 
-.tableHead {
-    border-color: #00A2E8;
-}
 
 
 input.btn.btn-primary {
@@ -512,6 +519,7 @@ input.btn.btn-danger {
     border-style: solid;
     border-radius: 0.8em;
     border-color: #00A2E8;
+    background-color: white;
     margin: auto;
     margin-top: 4em;
 }
@@ -520,26 +528,47 @@ input.btn.btn-danger {
     margin-top: 3em;
 }
 
+.statisticsCount{
+    background-color: white;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+    max-width: 50%;
+    padding-top: 0.5em;
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+}
+
 .recentClientsGym {
     background-color: #00A2E8;
     color: white;
     border-radius: 1em;
     padding: 1em;
+    max-width: fit-content;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .newUsersDiv {
     border-style: solid;
     border-radius: 1em;
+    background-color: white;
     padding: 1em;
-    border-color: #00A2E8;
+    border-color: lightgrey;
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .videosUrl {
-    text-decoration-color: #00A2E8;
+    text-decoration: none;
+    border-radius: 1em;
+    color: white;
+    background-color: #00A2E8;
+    padding: 0.5em;
 }
 
 .exercisesData{
@@ -628,4 +657,24 @@ label.labelThree {
 
 label.labelFour {
     margin-right: 1.2em !important;
+}
+
+.descriptionBox {
+    vertical-align: middle;
+    height: 6em;
+    border-style: solid;
+    border-radius: 1em;
+    border-width: 0.2em;
+    border-color: lightgrey;
+    width: 15em;
+    padding: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.tableHeader {
+    background-color: #00A2E8;
+    color: white;
+    border-style: solid;
+    border-radius: 1em !important;
 }

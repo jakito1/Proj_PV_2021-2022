@@ -30,8 +30,8 @@ else if (User.IsInRole("client"))
     </div>
 }
 
-<table class="table tableHead">
-    <thead>
+<table class="table">
+    <thead class="tableHeader">
         <tr>
             <th>
                 Nome
@@ -62,12 +62,13 @@ else if (User.IsInRole("client"))
                     }
                     else
                     {
-
                         string description = item.TrainingPlanDescription;
-                        if (description.Length > 40)
+                        if (description.Length > 20)
                         {
-                            description = description.Substring(0, 40);
+                            description = description.Substring(0, 20);
                             <p class="details"><b>@description...</b></p>
+                        }else{
+                            <p class="details"><b>@description</b></p>
                         }
                     }
                 </td>

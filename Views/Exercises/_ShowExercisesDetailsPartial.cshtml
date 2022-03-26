@@ -29,19 +29,18 @@
                     <td class="exercisesData">
                         @if (item.ExerciseDuration is not null)
                         {
-                            @Html.DisplayFor(modelItem => item.ExerciseDuration) <p>minutos</p> 
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos</p> 
                         }
                         @if (item.ExerciseRepetitions is not null)
                         {
-                            @Html.DisplayFor(modelItem => item.ExerciseRepetitions) <p>repetições</p>
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições</p>
                         }                       
+                        <p>@Html.DisplayFor(modelItem => item.ExerciseType)</p>
+                        <p>@Html.DisplayFor(modelItem => item.ExerciseMuscles)</p>
                         @if (item.ExerciseURL is not null && item.ExerciseURL != "")
                         {
-                            <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL)>Vídeo do Exercício</a>
+                            <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL) target="_blank">Vídeo do Exercício</a>
                         }
-                        @Html.DisplayFor(modelItem => item.ExerciseType)
-                        @Html.DisplayFor(modelItem => item.ExerciseMuscles)
-
                     </td>
                 </tr>
             }

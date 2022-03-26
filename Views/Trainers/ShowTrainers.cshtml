@@ -69,6 +69,11 @@
             <b>Próximo</b>
         </a>
     }
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    {
+        <p class="noMoreResults">Não existem mais resultados</p>
+    }
 </div>
 
 @if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
