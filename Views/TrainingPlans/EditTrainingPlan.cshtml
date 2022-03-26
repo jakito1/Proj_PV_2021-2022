@@ -11,6 +11,7 @@
         <div class="form-group">
             <label asp-for="TrainingPlanName" class="control-label">Nome &emsp; &nbsp;</label>
             <input asp-for="TrainingPlanName" class="formsInput" aria-required="true" />
+            <br />
             <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -39,6 +40,9 @@
                 type: "GET",
                 datatype: "HTML",
                 success: function (data) ***REMOVED***
+                    $('#_CreateExercisePartialForm').removeData('validator');
+                    $('#_CreateExercisePartialForm').removeData('unobtrusiveValidation');
+                    $.validator.unobtrusive.parse('#_CreateExercisePartialForm');
                     $("#_ShowExercisesPartialList").html(data);
             ***REMOVED***
         ***REMOVED***)
@@ -52,11 +56,6 @@
                     $("#_CreateExercisePartialItem").html(data);
             ***REMOVED***
         ***REMOVED***)
-    ***REMOVED***
-    function RefreshUnobtrusiveValidation() ***REMOVED***
-            $('#_CreateExercisePartialForm').removeData('validator');
-            $('#_CreateExercisePartialForm').removeData('unobtrusiveValidation');
-            $.validator.unobtrusive.parse('#_CreateExercisePartialForm');
     ***REMOVED***
 </script>
     @***REMOVED***

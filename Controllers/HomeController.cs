@@ -38,15 +38,7 @@ namespace NutriFitWeb.Controllers
         /// <returns></returns>
         public IActionResult Index()
         ***REMOVED***
-            return View();
-    ***REMOVED***
-
-        /// <summary>
-        /// Redirects to the Privacy page.
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Privacy()
-        ***REMOVED***
+            HttpContext.Session.Clear();
             return View();
     ***REMOVED***
 

@@ -39,7 +39,7 @@ namespace NutriFitWeb.Controllers
                 searchString = currentFilter;
         ***REMOVED***
 
-            HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
+            HttpContext.Session.Remove(SessionKeyExercises);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -105,9 +105,8 @@ namespace NutriFitWeb.Controllers
 
         [HttpPost, ActionName("CreateTrainingPlan")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription, ClientEmail")] TrainingPlan trainingPlan)
+        public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription,ClientEmail")] TrainingPlan trainingPlan)
         ***REMOVED***
-
             if (ModelState.IsValid)
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -127,9 +126,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
 
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-                HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
-                HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts, null);
-                HttpContext.Session.Set<Trainer>(SessionKeyCurrentTrainer, null);
+                HttpContext.Session.Clear();
 
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
@@ -171,7 +168,7 @@ namespace NutriFitWeb.Controllers
                 u => u.TrainingPlanName, u => u.TrainingPlanDescription))
             ***REMOVED***
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-                HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, null);
+                HttpContext.Session.Remove(SessionKeyExercises);
 
                 HashSet<int>? excludedIDs = new(exercises.Select(a => a.ExerciseId));
                 IEnumerable<Exercise>? missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));

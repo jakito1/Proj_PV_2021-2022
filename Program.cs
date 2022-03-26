@@ -18,7 +18,9 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 ***REMOVED***
     options.Cookie.Name = ".NutriFitWeb.Session";
-    options.Cookie.IsEssential = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.Cookie.HttpOnly = true;
 ***REMOVED***);
 
 builder.Services.AddControllersWithViews();
