@@ -19,7 +19,7 @@
             <p><b class="gymHome">Clientes mais recentes:</b></p>
             @foreach (var item in GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Take(3))
             ***REMOVED***
-                <p class="recentClientsGym"><b>Username - @item.UserName.ToUpper()</b></p>
+                <p class="recentClientsGym"><b>Username: @item.UserName.ToUpper()</b></p>
         ***REMOVED***
         </div>
     </div>
