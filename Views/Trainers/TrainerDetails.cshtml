@@ -6,25 +6,16 @@
 
 <h1 class="detailsTitle">Detalhes do Treinador</h1>
 
-<div class="col-md-4 listsDiv">
+<div class="detailsDivs">
     <dl class="row">
-        <dt class="col-sm-12 listsItemTitle">
-            @Html.DisplayNameFor(model => model.TrainerId)
-        </dt>
         <dd class="col-sm-12">
-            @Html.DisplayFor(model => model.TrainerId)
+            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(model => model.TrainerId)</b> @Html.DisplayFor(model => model.TrainerId)</p>
         </dd>
-        <dt class="col-sm-12 listsItemTitle">
-            @Html.DisplayNameFor(model => model.TrainerFirstName)
-        </dt>
         <dd class="col-sm-12">
-            @Html.DisplayFor(model => model.TrainerFirstName)
+            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(model => model.TrainerFirstName)</b> @Html.DisplayFor(model => model.TrainerFirstName)</p>
         </dd>
-        <dt class="col-sm-12 listsItemTitle">
-            @Html.DisplayNameFor(model => model.TrainerLastName)
-        </dt>
         <dd class="col-sm-12">
-            @Html.DisplayFor(model => model.TrainerLastName)
+            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(model => model.TrainerLastName)</b> @Html.DisplayFor(model => model.TrainerLastName)</p>
         </dd>
     </dl>
 </div>

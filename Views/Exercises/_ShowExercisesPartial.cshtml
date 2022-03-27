@@ -4,7 +4,7 @@
 <h2>Exercícios</h2>
 
 <table class="table">
-    <thead>
+    <thead class="tableHeader">
         <tr>
             <th>
                 Nome do Exercício
@@ -22,14 +22,14 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.value.ExerciseName)
+                        <p class="details">@Html.DisplayFor(modelItem => item.value.ExerciseName)</p>
                     </td>
                     <td>
                         @if (String.IsNullOrEmpty(item.value.ExerciseDescription))
                         {
-                            <p>N/A</p>
+                            <p class="details">N/A</p>
                         }else{
-                            @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                            <p class="details">@Html.DisplayFor(modelItem => item.value.ExerciseDescription)</p>
                         }
                     </td>
                     <td>
@@ -44,3 +44,4 @@
         }
     </tbody>
 </table>
+<br />
