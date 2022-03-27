@@ -1,0 +1,58 @@
+﻿@model NutriFitWeb.Models.NutritionPlan
+
+@***REMOVED***
+    ViewData["Title"] = "Detalhes do Plano de Nutrição";
+***REMOVED***
+
+<h1>@ViewData["Title"]</h1>
+<div class="col-md-12 profileDivs">
+    <dl class="row">
+        <dd class="col-sm-12">
+            <p class="details"><b class="col-sm-12 listsItemTitle">Nome</b> &nbsp; @Html.DisplayFor(model => model.NutritionPlanName)</p>
+        </dd>
+        <dt class="col-sm-12 listsItemTitle">
+            Descrição
+        </dt>
+        <dd class="col-sm-12">
+            @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
+            ***REMOVED***
+                <p class="details">N/A</p>
+        ***REMOVED***
+            else
+            ***REMOVED***
+                <p class="details">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
+        ***REMOVED***
+        </dd>
+        @if (User.IsInRole("client") && Model.Nutritionist is not null)
+        ***REMOVED***
+            <dt class="col-sm-12 listsItemTitle">
+                Nutricionista
+            </dt>
+            <dd class="col-sm-12">
+                <p class="details">@Html.DisplayFor(model => model.Nutritionist.UserAccountModel.UserName)</p>
+            </dd>
+    ***REMOVED***
+        @if (User.IsInRole("nutritionist") && Model.Client is not null)
+        ***REMOVED***
+            <dt class="col-sm-12 listsItemTitle">
+                Cliente
+            </dt>
+            <dd class="col-sm-12">
+                <p class="details">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+            </dd>
+    ***REMOVED***
+    </dl>
+    <div id="_ShowMealsPartialList" class="mealDetailsDiv">
+        <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
+    </div>
+</div>
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
+</div>
+
+
+@section Scripts ***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
+***REMOVED***

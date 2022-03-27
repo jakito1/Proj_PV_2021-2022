@@ -21,6 +21,29 @@ function UpdateCreateExercise() ***REMOVED***
     ***REMOVED***
 ***REMOVED***)
 ***REMOVED***
+function UpdateMealsList() ***REMOVED***
+    $.ajax(***REMOVED***
+        url: "/Meals/ShowMealsList",
+        type: "GET",
+        datatype: "HTML",
+        success: function (data) ***REMOVED***
+            $('#_CreateMealPartialForm').removeData('validator');
+            $('#_CreateMealPartialForm').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse('#_CreateMealPartialForm');
+            $("#_ShowMealsPartialList").html(data);
+    ***REMOVED***
+***REMOVED***)
+***REMOVED***
+function UpdateCreateMeal() ***REMOVED***
+    $.ajax(***REMOVED***
+        url: "/Meals/GetCleanCreateMealPartial",
+        type: "GET",
+        datatype: "HTML",
+        success: function (data) ***REMOVED***
+            $("#_CreateMealPartialItem").html(data);
+    ***REMOVED***
+***REMOVED***)
+***REMOVED***
 
 function limitExerciseRepetitions(input) ***REMOVED***
     if (Math.abs(input.value) > 0) ***REMOVED***
@@ -40,5 +63,15 @@ function limitExerciseDuration(input) ***REMOVED***
 ***REMOVED***
     if (Math.abs(input.value) > 120) ***REMOVED***
         input.value = 120
+***REMOVED***
+***REMOVED***
+function limitMealForm(input) ***REMOVED***
+    if (Math.abs(input.value) > 0) ***REMOVED***
+        input.value = Math.abs(input.value);
+***REMOVED*** else ***REMOVED***
+        input.value = null;
+***REMOVED***
+    if (Math.abs(input.value) > 99999) ***REMOVED***
+        input.value = 99999
 ***REMOVED***
 ***REMOVED***

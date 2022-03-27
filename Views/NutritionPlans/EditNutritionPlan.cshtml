@@ -1,0 +1,44 @@
+﻿@model NutriFitWeb.Models.NutritionPlan
+
+@***REMOVED***
+    ViewData["Title"] = "Editar plano de nutrição";
+***REMOVED***
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="col-md-12 profileDivs">
+    <form asp-controller="NutritionPlans" asp-action="EditNutritionPlan">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="submit" value="Editar" class="btn btn-primary createBtn" />
+        </div>
+        <div>
+            <label asp-for="NutritionPlanName" class="control-label">Nome &emsp; &ensp;</label>
+            <input asp-for="NutritionPlanName" class="formsInput nameInput" />
+            <br />
+            <span asp-validation-for="NutritionPlanName" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="NutritionPlanDescription" class="control-label">Descrição &nbsp;</label>
+            <textarea asp-for="NutritionPlanDescription" class="descriptionBox"></textarea>
+            <span asp-validation-for="NutritionPlanDescription" class="text-danger"></span>
+        </div>
+       
+    </form>
+    <div id="_CreateMealPartialItem">
+        <partial name="~/Views/Meals/_CreateMealPartial.cshtml" model="Model.Meal" />
+    </div>
+    <div id="_ShowMealsPartialList">
+        <partial name="~/Views/Meals/_ShowMealsPartial.cshtml" model="Model.Meals" />
+    </div>
+</div>
+<div>
+    <a class="backToListBtn" asp-action="ShowNutritionPlans">Voltar</a>
+</div>
+
+@section Scripts ***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
+***REMOVED***

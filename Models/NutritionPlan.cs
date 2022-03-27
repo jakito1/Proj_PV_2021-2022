@@ -16,7 +16,7 @@ namespace NutriFitWeb.Models
         public Client? Client ***REMOVED*** get; set; ***REMOVED***
 
         [NotMapped]
-        [Remote(action: "Client", controller: "TrainingPlans")]
+        [Remote(action: "VerifyClientEmail", controller: "NutritionPlans")]
         public string? ClientEmail ***REMOVED*** get; set; ***REMOVED***
 
         [NotMapped]

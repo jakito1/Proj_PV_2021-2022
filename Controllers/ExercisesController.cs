@@ -1,8 +1,5 @@
 ﻿#nullable disable
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
@@ -29,9 +26,9 @@ namespace NutriFitWeb.Controllers
             return PartialView("_ShowExercisesPartial", new List<Exercise>());
     ***REMOVED***
 
-        [HttpPost, ActionName("CreateExercise")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public void CreateExercisePost([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
+        public void CreateExercise([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
@@ -61,7 +58,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var exercise = exercises[id];
+            Exercise exercise = exercises[id];
             exercises.RemoveAt(id);
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
             return PartialView("_CreateExercisePartial", exercise);

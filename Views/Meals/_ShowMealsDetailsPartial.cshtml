@@ -1,6 +1,6 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
+﻿@model IEnumerable<NutriFitWeb.Models.Meal>
 
-<p class="listsItemTitle">Exercícios</p>
+<p class="listsItemTitle">Refeições</p>
 
 <table class="table">
     <thead>
@@ -21,10 +21,11 @@
             ***REMOVED***
                 <tr>
                     <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.ExerciseName)
+                        @Html.DisplayFor(modelItem => item.MealName)
                         <br />
-                        @Html.DisplayFor(modelItem => item.ExerciseDescription)
+                        @Html.DisplayFor(modelItem => item.MealDescription)
                     </td>
+                    @*
                     <td class="exercisesData">
                         @if (item.ExerciseDuration is not null)
                         ***REMOVED***
@@ -40,7 +41,7 @@
                         ***REMOVED***
                             <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL) target="_blank">Vídeo do Exercício</a>
                     ***REMOVED***
-                    </td>
+                    </td>*@
                 </tr>
         ***REMOVED***
     ***REMOVED***

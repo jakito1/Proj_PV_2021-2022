@@ -1,21 +1,21 @@
-﻿@model PaginatedList<NutriFitWeb.Models.TrainingPlan>
+﻿@model PaginatedList<NutriFitWeb.Models.NutritionPlan>
 @using NutriFitWeb.Services
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<UserAccountModel> UserManager
 
 @***REMOVED***
-    ViewData["Title"] = "Planos de Treino";
+    ViewData["Title"] = "Planos de Nutrição";
 ***REMOVED***
 
-<h1>@ViewData["Title"] <img src="~/icons/dumbbellsIcon.svg" alt="dumbbellsIcon"/></h1>
+<h1>@ViewData["Title"]</h1>
 
-@if (User.IsInRole("trainer"))
+@if (User.IsInRole("nutritionist"))
 ***REMOVED***
     <div class="titlesMargin">
-        <form asp-action="ShowTrainingPlans" method="get">
+        <form asp-action="ShowNutritionPlans" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
-            <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
+            <a class="createBtn" asp-action="CreateNutritionPlan">Criar plano</a>
         </form>
         
     </div>
@@ -23,13 +23,14 @@
 else if (User.IsInRole("client"))
 ***REMOVED***
     <div class="titlesMargin">
-        <form asp-action="ShowTrainingPlans" method="get">
+        <form asp-action="ShowNutritionPlans" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
-            <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
+            <a class="createBtn" asp-action="CreateNutritionPlan">Criar plano</a>
         </form>
     </div>
 ***REMOVED***
+
 <table class="table">
     <thead class="tableHeader">
         <tr>
@@ -39,7 +40,7 @@ else if (User.IsInRole("client"))
             <th>
                 Descrição
             </th>
-            @if (User.IsInRole("trainer"))
+            @if (User.IsInRole("nutritionist"))
             ***REMOVED***
                 <th>
                     Cliente
@@ -53,16 +54,16 @@ else if (User.IsInRole("client"))
         ***REMOVED***
             <tr>
                 <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
+                    <p class="details">@Html.DisplayFor(modelItem => item.NutritionPlanName)</p>
                 </td>
                 <td>
-                    @if (item.TrainingPlanDescription is null || item.TrainingPlanDescription == "")
+                    @if (item.NutritionPlanDescription is null || item.NutritionPlanDescription == "")
                     ***REMOVED***
                         <p class="details"><b>N/A</b></p>
                 ***REMOVED***
                     else
                     ***REMOVED***
-                        string description = item.TrainingPlanDescription;
+                        string description = item.NutritionPlanDescription;
                         if (description.Length > 20)
                         ***REMOVED***
                             description = description.Substring(0, 20);
@@ -72,7 +73,7 @@ else if (User.IsInRole("client"))
                     ***REMOVED***
                 ***REMOVED***
                 </td>
-                @if (User.IsInRole("trainer"))
+                @if (User.IsInRole("nutritionist"))
                 ***REMOVED***
                     if (item.Client is not null)
                     ***REMOVED***
@@ -89,9 +90,9 @@ else if (User.IsInRole("client"))
             ***REMOVED***
 
                 <td>
-                    <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
-                    <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
-                    <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                    <a asp-action="EditNutritionPlan" asp-route-id="@item.NutritionPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                    <a asp-action="NutritionPlanDetails" asp-route-id="@item.NutritionPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
+                    <a asp-action="DeleteNutritionPlan" asp-route-id="@item.NutritionPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
                 </td>
             </tr>
     ***REMOVED***
@@ -105,7 +106,7 @@ else if (User.IsInRole("client"))
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
     ***REMOVED***
-        <a asp-action="ShowTrainingPlans"
+        <a asp-action="ShowNutritionPlans"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
@@ -115,7 +116,7 @@ else if (User.IsInRole("client"))
 
     @if (nextDisabled != "disabled")
     ***REMOVED***
-        <a asp-action="ShowTrainingPlans"
+        <a asp-action="ShowNutritionPlans"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
@@ -132,6 +133,6 @@ else if (User.IsInRole("client"))
 @if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
 ***REMOVED***
     <div class="backBtnDiv">
-        <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
+        <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
     </div>
 ***REMOVED***
