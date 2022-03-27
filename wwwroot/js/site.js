@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿function limitExerciseRepetitions(input) {
+    if (Math.abs(input.value) > 0) {
+        input.value = Math.abs(input.value);
+    } else {
+        input.value = null;
+    }
+    if (Math.abs(input.value) > 999) {
+        input.value = 999
+    }
+}
+function limitExerciseDuration(input) {
+    if (Math.abs(input.value) > 0) {
+        input.value = Math.abs(input.value);
+    } else {
+        input.value = null;
+    }
+    if (Math.abs(input.value) > 120) {
+        input.value = 120
+    }
+}
