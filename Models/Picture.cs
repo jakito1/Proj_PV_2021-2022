@@ -9,5 +9,6 @@
         public double Size { get; set; }
 
         public Exercise? Exercise { get; set; }
+        public Meal? Meal { get; set; }
     }
 }
