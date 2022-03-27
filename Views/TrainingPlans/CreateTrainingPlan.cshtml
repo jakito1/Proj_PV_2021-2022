@@ -22,7 +22,7 @@
         </div>
         <div>
             <label asp-for="TrainingPlanDescription" class="control-label">Descrição &nbsp;</label>
-            <textarea asp-for="TrainingPlanDescription" class="descriptionBox">Insira uma descrição (opcional)</textarea>
+            <textarea asp-for="TrainingPlanDescription" class="descriptionBox"></textarea>
             <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
         </div>
         @if (User.IsInRole("trainer"))

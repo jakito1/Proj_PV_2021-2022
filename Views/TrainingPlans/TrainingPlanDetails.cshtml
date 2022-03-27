@@ -5,21 +5,10 @@
 ***REMOVED***
 
 <h1>@ViewData["Title"]</h1>
-<hr />
 <div class="col-md-12 profileDivs">
     <dl class="row">
-        <dt class="col-sm-12 listsItemTitle">
-            Nome
-        </dt>
         <dd class="col-sm-12">
-            @if (Model.TrainingPlanName is null || Model.TrainingPlanName == "")
-            ***REMOVED***
-                <p class="details">N/A</p>
-        ***REMOVED***
-            else
-            ***REMOVED***
-                <p class="details">@Html.DisplayFor(model => model.TrainingPlanName)</p>
-        ***REMOVED***
+            <p class="details"><b class="col-sm-12 listsItemTitle">Nome</b> &nbsp; @Html.DisplayFor(model => model.TrainingPlanName)</p>
         </dd>
         <dt class="col-sm-12 listsItemTitle">
             Descrição
@@ -53,7 +42,7 @@
             </dd>
     ***REMOVED***
     </dl>
-    <div id="_ShowExercisesPartialList">
+    <div id="_ShowExercisesPartialList" class="exercisesDetailsDiv">
         <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
     </div>
 </div>

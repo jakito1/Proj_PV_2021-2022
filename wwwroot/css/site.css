@@ -120,8 +120,9 @@ button ***REMOVED***
 h1 ***REMOVED***
     color: #00A2E8 !important;
     font-weight: 900 !important;
-    font-size: 500% !important;
+    font-size: 480% !important;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.4em;
 ***REMOVED***
 
 /* Different type of authentication section */
@@ -284,13 +285,13 @@ tr***REMOVED***
 .listsDiv ***REMOVED***
     border-style: solid;
     border-radius: 1em;
-    border-color: #00A2E8;
+    border-color: lightgrey;
     background-color: white;
-    max-width: 80%;
+    max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     padding: 0.5em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
 ***REMOVED***
@@ -311,13 +312,12 @@ font-weight: bold;*/
 
 div.titlesMargin ***REMOVED***
     margin-top: 3em;
+    margin-bottom: 1em;
 ***REMOVED***
 
 .detailsTitle ***REMOVED***
     margin-bottom: 1em;
 ***REMOVED***
-
-
 
 .pagesDiv ***REMOVED***
     border-style: solid;
@@ -331,7 +331,7 @@ div.titlesMargin ***REMOVED***
 .profileDivs ***REMOVED***
     border-style: solid;
     border-radius: 1em;
-    border-color: #00A2E8;
+    border-color: lightgrey;
     background-color: white;
     padding: 1em;
     padding-top: 4em;
@@ -384,19 +384,19 @@ a.btn.btn-default.disabled ***REMOVED***
 ***REMOVED***
 
 .backToListBtn ***REMOVED***
-    text-decoration: none;
-    background-color: #00A2E8;
-    color: white;
-    border-color: #00A2E8;
+    width: 100%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
     border-style: solid;
+    border-color: #00A2E8;
     border-radius: 1em;
     padding: 1em;
-    padding-left: 2.3em;
-    padding-right: 2.3em;
 ***REMOVED***
 
-div.titlesMargin***REMOVED***
-    margin-bottom: 3em;
+.backToListBtn:hover***REMOVED***
+    background-color: #00A2E8;
+    color: white;
 ***REMOVED***
 
 .deleteB ***REMOVED***
@@ -419,8 +419,26 @@ input.btn.btn-primary ***REMOVED***
     margin-bottom: 4em;
 ***REMOVED***
 
-.createBtn***REMOVED***
+.createBtn ***REMOVED***
     width: 80%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em;
+***REMOVED***
+
+.createBtn:hover***REMOVED***
+    width: 80%;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em;
 ***REMOVED***
 
 input.btn.btn-primary:hover ***REMOVED***
@@ -442,12 +460,8 @@ input.btn.btn-danger ***REMOVED***
     margin-right:auto;
 ***REMOVED***
 
-.backToListBtn:hover, .createTrainBtn:hover ***REMOVED***
-    color: lightgrey;
-***REMOVED***
-
 .backBtnDiv***REMOVED***
-    margin-top: 100px;
+    margin-top: 2em;
 ***REMOVED***
 
 .searchBar ***REMOVED***
@@ -455,16 +469,24 @@ input.btn.btn-danger ***REMOVED***
     border-color: lightgrey;
     border-radius: 0.5em;
     color: #00A2E8;
-    width: 20em;
+    width: 15em;
     height: 2.5em;
     margin-bottom: 5em;
 ***REMOVED***
 
 .searchBtn ***REMOVED***
-    border-radius: 0.5em !important;
+    border-style: solid;
+    border-radius: 1em !important;
     border-color: #00A2E8 !important;
     height: 2.5em;
     width: 3.4em;
+***REMOVED***
+
+.searchBtn:hover ***REMOVED***
+    background-color: dodgerblue !important;
+    border-style: solid;
+    border-color: dodgerblue !important;
+    border-width: medium;
 ***REMOVED***
 
 .searchIcon***REMOVED***
@@ -524,7 +546,7 @@ input.btn.btn-danger ***REMOVED***
     margin-top: 4em;
 ***REMOVED***
 
-.gymStatistics ***REMOVED***
+.statistics ***REMOVED***
     margin-top: 3em;
 ***REMOVED***
 
@@ -574,6 +596,14 @@ input.btn.btn-danger ***REMOVED***
 .exercisesData***REMOVED***
     font-weight: bold;
     color: black;
+***REMOVED***
+
+.exercisesDetailsDiv***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+    margin: 1em 0em;
+    padding: 1em 0em;
 ***REMOVED***
 
 .dropdown ***REMOVED***

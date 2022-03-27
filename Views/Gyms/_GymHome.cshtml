@@ -12,7 +12,7 @@
 
 <div class="text-center">
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
-    <div class="gymStatistics">
+    <div class="statistics">
         <div class= statisticsCount>
             <p><b class="gymHome">Clientes:  &nbsp; </b><b>@GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
             <p><b class="gymHome">Treinadores:  &nbsp; </b><b>@GetUsersLists.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
