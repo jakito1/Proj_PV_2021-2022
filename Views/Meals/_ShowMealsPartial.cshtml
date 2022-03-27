@@ -1,13 +1,13 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
+﻿@model IEnumerable<NutriFitWeb.Models.Meal>
 
 
-<h2>Exercícios</h2>
+<h2>Refeições</h2>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                Nome do Exercício
+                Nome da Refeição
             </th>
             <th>
                 Descrição
@@ -22,23 +22,23 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.value.ExerciseName)
+                        @Html.DisplayFor(modelItem => item.value.MealName)
                     </td>
                     <td>
-                        @if (String.IsNullOrEmpty(item.value.ExerciseDescription))
+                        @if (String.IsNullOrEmpty(item.value.MealDescription))
                         {
                             <p>N/A</p>
                         }
                         else
                         {
-                            @Html.DisplayFor(modelItem => item.value.ExerciseDescription)
+                            @Html.DisplayFor(modelItem => item.value.MealDescription)
                         }
                     </td>
                     <td>
-                        <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
+                        <a asp-action="DeleteMeal" asp-controller="Meals" data-ajax="true" data-ajax-update="#_ShowMealsPartialList"
                    asp-route-id="@item.i"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
-                        <a asp-action="EditExercise" asp-controller="Exercises" data-ajax="true" data-ajax-success="UpdateExercisesList"
-                   data-ajax-update="#_CreateExercisePartialItem" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                        <a asp-action="EditMeal" asp-controller="Meals" data-ajax="true" data-ajax-success="UpdateMealsList"
+                   data-ajax-update="#_CreateMealPartialItem" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
                     </td>
                 </tr>
             }

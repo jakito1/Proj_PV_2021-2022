@@ -135,28 +135,6 @@ namespace NutriFitWeb.Controllers
             }
             return View(clientToUpdate);
         }
-        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
-        {
-            List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
-            Trainer? trainer = HttpContext.Session.Get<Trainer>(SessionKeyCurrentTrainer);
-            Nutritionist? nutritionist = HttpContext.Session.Get<Nutritionist>(SessionKeyCurrentNutritionist);
-            Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == trainingPlan.ClientEmail);
-
-            if (clientsUsersAccounts is null || (trainer is null && nutritionist is null))
-            {
-                UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-                clientsUsersAccounts = await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync();
-                trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            }
-
-            if (client is not null)
-            {
-                return Json(true);
-            }
-
-            return Json($"O email: {trainingPlan.ClientEmail} não pertence a um dos seus clientes.");
-        }
 
         private async Task<Client> GetClient(string? id)
         {

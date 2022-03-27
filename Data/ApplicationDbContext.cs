@@ -48,18 +48,18 @@ namespace NutriFitWeb.Data
 
             modelBuilder.Entity<TrainingPlan>().HasMany(a => a.Exercises).WithOne(a => a.TrainingPlan)
                 .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Exercise>().HasMany(a => a.Pictures).WithOne(a => a.Exercise)
-                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Client>().HasMany(a => a.TrainingPlans).WithOne(a => a.Client)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<NutritionPlan>().HasMany(a => a.Meals).WithOne(a => a.NutritionPlan)
                 .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Meal>().HasMany(a => a.Pictures).WithOne(a => a.Meal)
-                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Client>().HasMany(a => a.NutritionPlans).WithOne(a => a.Client)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Exercise>().HasMany(a => a.Pictures).WithOne(a => a.Exercise)
+                .OnDelete(DeleteBehavior.ClientCascade);
+            modelBuilder.Entity<Meal>().HasMany(a => a.Pictures).WithOne(a => a.Meal)
+                .OnDelete(DeleteBehavior.ClientCascade);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace NutriFitWeb.Controllers
                 searchString = currentFilter;
             }
 
-            HttpContext.Session.Remove(SessionKeyExercises);
+            HttpContext.Session.Clear();
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -207,6 +207,27 @@ namespace NutriFitWeb.Controllers
             _context.TrainingPlan.Remove(trainingPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction("ShowTrainingPlans");
+        }
+
+        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
+        {
+            List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
+            Trainer? trainer = HttpContext.Session.Get<Trainer>(SessionKeyCurrentTrainer);
+            Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == trainingPlan.ClientEmail);
+
+            if (clientsUsersAccounts is null || trainer is null)
+            {
+                UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+                clientsUsersAccounts = await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync();
+                trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            }
+
+            if (client is not null)
+            {
+                return Json(true);
+            }
+
+            return Json($"O email: {trainingPlan.ClientEmail} não pertence a um dos seus clientes.");
         }
     }
 }

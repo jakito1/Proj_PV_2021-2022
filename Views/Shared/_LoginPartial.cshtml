@@ -36,7 +36,7 @@
                     @if (User.IsInRole("client"))
                     {
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="">Nutrição</a>
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
                     }
                 </div>
             </li>
@@ -44,7 +44,7 @@
         else if (User.IsInRole("nutritionist"))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Nutrição</a>
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
             </li>
         }
         else if (User.IsInRole("trainer"))

@@ -21,6 +21,29 @@ function UpdateCreateExercise() {
         }
     })
 }
+function UpdateMealsList() {
+    $.ajax({
+        url: "/Meals/ShowMealsList",
+        type: "GET",
+        datatype: "HTML",
+        success: function (data) {
+            $('#_CreateMealPartialForm').removeData('validator');
+            $('#_CreateMealPartialForm').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse('#_CreateMealPartialForm');
+            $("#_ShowMealsPartialList").html(data);
+        }
+    })
+}
+function UpdateCreateMeal() {
+    $.ajax({
+        url: "/Meals/GetCleanCreateMealPartial",
+        type: "GET",
+        datatype: "HTML",
+        success: function (data) {
+            $("#_CreateMealPartialItem").html(data);
+        }
+    })
+}
 
 function limitExerciseRepetitions(input) {
     if (Math.abs(input.value) > 0) {
@@ -40,5 +63,15 @@ function limitExerciseDuration(input) {
     }
     if (Math.abs(input.value) > 120) {
         input.value = 120
+    }
+}
+function limitMealForm(input) {
+    if (Math.abs(input.value) > 0) {
+        input.value = Math.abs(input.value);
+    } else {
+        input.value = null;
+    }
+    if (Math.abs(input.value) > 99999) {
+        input.value = 99999
     }
 }
