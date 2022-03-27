@@ -7,16 +7,17 @@
     ViewData["Title"] = "Planos de Treino";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>@ViewData["Title"] <img src="~/icons/dumbbellsIcon.svg" alt="dumbbellsIcon"/></h1>
 
 @if (User.IsInRole("trainer"))
 {
     <div class="titlesMargin">
         <form asp-action="ShowTrainingPlans" method="get">
-            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do cliente ou nome do plano" class="searchBar" />
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+            <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
         </form>
-        <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
+        
     </div>
 }
 else if (User.IsInRole("client"))
@@ -25,8 +26,8 @@ else if (User.IsInRole("client"))
         <form asp-action="ShowTrainingPlans" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+            <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
         </form>
-        <a class="backToListBtn" asp-action="CreateTrainingPlan">Criar novo plano</a>
     </div>
 }
 
