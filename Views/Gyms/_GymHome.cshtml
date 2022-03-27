@@ -14,12 +14,12 @@
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
     <div class="statistics">
         <div class= statisticsCount>
-            <p><b class="gymHome">Clientes:  &nbsp; </b><b>@GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
-            <p><b class="gymHome">Treinadores:  &nbsp; </b><b>@GetUsersLists.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
-            <p><b class="gymHome">Nutricionistas:  &nbsp; </b><b>@GetUsersLists.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle">Clientes</b><b>@GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle">Treinadores</b><b>@GetUsersLists.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle">Nutricionistas</b><b>@GetUsersLists.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
         </div>
         <div class="newUsersDiv">
-            <p><b class="gymHome">Clientes mais recentes:</b></p>
+            <p><b class="listsItemTitle">Clientes mais recentes</b></p>
             @foreach (var item in GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Take(3))
             ***REMOVED***
                 <p class="recentClientsGym"><b>@item.UserName.ToUpper()</b></p>

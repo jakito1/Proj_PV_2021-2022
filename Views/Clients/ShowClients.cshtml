@@ -19,11 +19,8 @@
 @foreach (var item in Model)
 ***REMOVED***
     <div class="listsDiv">
-        <b class="listsItem listsItemTitle">UserName:</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
-        <br>
-        <b class="listsItem listsItemTitle">Email:</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
+        <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder">UserName</b> @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
+        <p class="listsItem"><img src="~/icons/emailIcon.svg"/> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
             <a asp-action="ChangeClientGymStatus" asp-route-id="@item.ClientId"
            asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
