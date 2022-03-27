@@ -12,10 +12,10 @@ namespace NutriFitWeb.Models
         public string? ExerciseName ***REMOVED*** get; set; ***REMOVED***
         public string? ExerciseDescription ***REMOVED*** get; set; ***REMOVED***
 
-        [Range(0, Int32.MaxValue, ErrorMessage = "Este campo tem de ser maior que ***REMOVED***1***REMOVED***.")]
+        [Range(1, 120, ErrorMessage = "Para um treino saudável, deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** minutos.")]
         public int? ExerciseDuration ***REMOVED*** get; set; ***REMOVED***
 
-        [Range(0, Int32.MaxValue, ErrorMessage = "Este campo tem de ser maior que ***REMOVED***1***REMOVED***.")]
+        [Range(1, 999, ErrorMessage = "Para um treino saudável, deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** repetições.")]
         public int? ExerciseRepetitions ***REMOVED*** get; set; ***REMOVED***
         public string? ExerciseURL ***REMOVED*** get; set; ***REMOVED***
         public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED***
