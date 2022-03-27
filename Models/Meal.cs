@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 {
@@ -10,17 +11,29 @@ namespace NutriFitWeb.Models
         [Required]
         public string? MealName { get; set; }
         public string? MealDescription { get; set; }
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} calorias.")]
         public int? MealCalorie { get; set; }
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de proteína.")]
         public int? MealProtein { get; set; }
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de gordura.")]
         public int? MealFat { get; set; }
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de hidratos de carbono.")]
         public int? MealCarbohydrate { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? MealDate { get; set; }
 
         [Column(TypeName = "nvarchar(24)")]
+        public MealWeekDay? MealWeekDay { get; set; }
+
+        [Column(TypeName = "nvarchar(24)")]
         public MealType? MealType { get; set; }
+
+        public string? MealURL { get; set; }
         public List<Picture>? Pictures { get; set; }
+
+        [JsonIgnore]
+        public NutritionPlan? NutritionPlan { get; set; }
 
         [FromForm]
         [NotMapped]
@@ -36,5 +49,23 @@ namespace NutriFitWeb.Models
         LUNCH,
         [Display(Name = "Jantar")]
         DINER
+    }
+
+    public enum MealWeekDay
+    {
+        [Display(Name = "Domingo")]
+        SUNDAY,
+        [Display(Name = "Segunda-Feira")]
+        MONDAY,
+        [Display(Name = "Terça-Feira")]
+        TUESDAY,
+        [Display(Name = "Quarta-Feira")]
+        WEDNESDAY,
+        [Display(Name = "Quinta-Feira")]
+        THURSDAY,
+        [Display(Name = "Sexta-Feira")]
+        FRIDAY,
+        [Display(Name = "Sábado")]
+        SATURDAY
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 {
@@ -18,7 +19,9 @@ namespace NutriFitWeb.Models
 
         public UserAccountModel? UserAccountModel { get; set; }
 
+        [JsonIgnore]
         public List<Client>? Clients { get; set; }
+        public List<NutritionPlan>? NutritionPlans { get; set; }
 
     }
 }
