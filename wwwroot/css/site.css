@@ -11,10 +11,14 @@ html {
 }
 
 h2 {
-    margin: 1em;
-    color: dodgerblue;
+    background-color: #00A2E8;
+    color: white;
     font-weight: bold;
-    padding: 0.2em;
+    padding: 0.3em;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 1em;
+    border-radius: 1em;
 }
 
 h3 {
@@ -203,13 +207,6 @@ h1 {
     border-radius: 1em;
 }
 
-
-.gymHome  {
-    color: #00A2E8 !important;
-    font-size: 1em;
-}
-
-
 .menuItem:hover {
     color: lightgrey !important;
 }
@@ -285,9 +282,9 @@ tr{
 .listsDiv {
     border-style: solid;
     border-radius: 1em;
-    border-color: lightgrey;
-    background-color: white;
-    max-width: 50%;
+    border-color: grey;
+    background-color: lightgrey;
+    max-width: 55%;
     margin-left: auto;
     margin-right: auto;
     padding: 0.5em;
@@ -307,7 +304,11 @@ color: #00A2E8;
 font-weight: bold;*/
 
 .exercisesDiv {
-    max-width: 100%;
+    max-width: 95%;
+    margin: 1em auto;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 1em;
 }
 
 div.titlesMargin {
@@ -329,22 +330,45 @@ div.titlesMargin {
 }
 
 .profileDivs {
-    border-style: solid;
     border-radius: 1em;
-    border-color: lightgrey;
     background-color: white;
     padding: 1em;
     padding-top: 4em;
-    padding-bottom: 0px;
+    padding-bottom: 0em;
     margin-bottom: 3em;
-    color: #00A2E8;
+    color: black;
     font-weight: bold;
 }
 
-div.form-group{
+.detailsDivs {
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 1em;
+    margin-bottom: 3em;
+    color: black;
+    font-weight: bold;
+    max-width: 65%;
+    margin:auto;
+}
+
+div.form-group {
     max-width: 60%;
     margin: auto;
     text-align: center;
+}
+
+.form-control{
+    border-radius: 1em;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: medium;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #00A2E8;
 }
 
 a.btn.btn-default:hover {
@@ -370,17 +394,34 @@ a.btn.btn-default.disabled {
 
 .listsItem {
     font-size: 1em;
-    margin: 0.5em;
+    margin: 1.5em 0.5em;
+    font-weight: bold;
 }
 
 .listsItemTitle {
-    color: #00A2E8;
-    font-size: 1.2em;
+    background-color: #00A2E8;
+    color: white;
+    border-style: solid;
+    border-color: #00A2E8;
+    padding: 0.3em;
+    border-radius: 1em;
+    font-size: 1em;
+    width: fit-content;
+    margin: auto;
+    margin-right: 0.5em;
+}
+
+.showListsBorder {
+    border-color: white;
+}
+
+.allUsersTitleFix {
+    padding-right: 0em;
 }
 
 .gymHomeImage {
-    max-width: 70%;
-    height: auto;
+    max-width: 50%;
+    border-radius: 1em;
 }
 
 .backToListBtn {
@@ -408,11 +449,13 @@ a.btn.btn-default.disabled {
 
 input.btn.btn-primary {
     text-decoration: none;
-    background-color: #00A2E8;
-    color: white;
+    background-color: white;
+    color: #00A2E8;
     border-color: #00A2E8;
     border-style: solid;
     border-radius: 1em;
+    border-width: medium;
+    font-weight: bold;
     padding: 1em;
     padding-left: 2.3em;
     padding-right: 2.3em;
@@ -442,8 +485,8 @@ input.btn.btn-primary {
 }
 
 input.btn.btn-primary:hover {
-    color: #00A2E8;
-    background-color: white;
+    color: white;
+    background-color: #00A2E8;
 }
 
 input.btn.btn-danger {
@@ -552,32 +595,31 @@ input.btn.btn-danger {
 
 .statisticsCount{
     background-color: white;
-    border-style: solid;
     border-radius: 1em;
-    border-color: lightgrey;
     max-width: 50%;
-    padding-top: 0.5em;
+    padding-top: 1em;
+    padding-bottom: 0.1em;
     margin-left: auto;
     margin-right:auto;
     text-align: center;
 }
 
 .recentClientsGym {
-    background-color: #00A2E8;
-    color: white;
+    background-color: lightgrey;
+    color: #00A2E8;
     border-radius: 1em;
     padding: 1em;
     max-width: fit-content;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: small;
 }
 
 .newUsersDiv {
-    border-style: solid;
     border-radius: 1em;
     background-color: white;
     padding: 1em;
-    border-color: lightgrey;
+    padding-top: 2em;
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -587,9 +629,9 @@ input.btn.btn-danger {
 
 .videosUrl {
     text-decoration: none;
-    border-radius: 1em;
-    color: white;
-    background-color: #00A2E8;
+    color: #00A2E8;
+    border-radius: 0.5em;
+    background-color: lightgrey;
     padding: 0.5em;
 }
 

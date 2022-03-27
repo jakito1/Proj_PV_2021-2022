@@ -16,11 +16,8 @@
 {
 
     <div class="listsDiv">
-        <b class="listsItem listsItemTitle">UserName:</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserName)</p>
-        <br>
-        <b class="listsItem listsItemTitle">Email:</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.Email)</p>
+        <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder allUsersTitleFix">UserName </b> &nbsp; @Html.DisplayFor(modelItem => item.UserName)</p>
+        <p class="listsItem"><img src="~/icons/emailIcon.svg"/> @Html.DisplayFor(modelItem => item.Email)</p>
         <div class="listsItem">
             <a asp-action="DeleteUserAccount" asp-route-id="@item.Id"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
 

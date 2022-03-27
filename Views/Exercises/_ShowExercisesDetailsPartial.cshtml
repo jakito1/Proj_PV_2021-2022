@@ -3,7 +3,7 @@
 <p class="listsItemTitle">Exercícios</p>
 
 <table class="table">
-    <thead>
+    <thead class="tableHeader">
         <tr>
             <th>
                 Nome/Descrição
@@ -21,21 +21,19 @@
             {
                 <tr>
                     <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.ExerciseName)
-                        <br />
+                        @Html.DisplayFor(modelItem => item.ExerciseName) /
                         @Html.DisplayFor(modelItem => item.ExerciseDescription)
                     </td>
                     <td class="exercisesData">
                         @if (item.ExerciseDuration is not null)
                         {
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos</p>
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p> 
                         }
                         @if (item.ExerciseRepetitions is not null)
                         {
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições</p>
-                        }
-                        <p>@Html.DisplayFor(modelItem => item.ExerciseType)</p>
-                        <p>@Html.DisplayFor(modelItem => item.ExerciseMuscles)</p>
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições,</p>
+                        }                       
+                        <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
                         @if (item.ExerciseURL is not null && item.ExerciseURL != "")
                         {
                             <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL) target="_blank">Vídeo do Exercício</a>
