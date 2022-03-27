@@ -9,5 +9,6 @@
         public double Size ***REMOVED*** get; set; ***REMOVED***
 
         public Exercise? Exercise ***REMOVED*** get; set; ***REMOVED***
+        public Meal? Meal ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 ***REMOVED***

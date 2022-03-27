@@ -39,6 +39,7 @@ namespace NutriFitWeb.Models
         public Trainer? Trainer ***REMOVED*** get; set; ***REMOVED***
 
         public List<TrainingPlan>? TrainingPlans ***REMOVED*** get; set; ***REMOVED***
+        public List<NutritionPlan>? NutritionPlans ***REMOVED*** get; set; ***REMOVED***
 
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***

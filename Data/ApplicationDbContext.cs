@@ -24,6 +24,8 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.Gym>? Gym ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.TrainingPlan>? TrainingPlan ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Exercise>? Exercise ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.NutritionPlan>? NutritionPlan ***REMOVED*** get; set; ***REMOVED***
+        public DbSet<NutriFitWeb.Models.Meal>? Meal ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Picture>? Picture ***REMOVED*** get; set; ***REMOVED***
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,12 +43,21 @@ namespace NutriFitWeb.Data
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Trainer>().HasMany(a => a.TrainingPlans).WithOne(a => a.Trainer)
                 .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Nutritionist>().HasMany(a => a.NutritionPlans).WithOne(a => a.Nutritionist)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<TrainingPlan>().HasMany(a => a.Exercises).WithOne(a => a.TrainingPlan)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Exercise>().HasMany(a => a.Pictures).WithOne(a => a.Exercise)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Client>().HasMany(a => a.TrainingPlans).WithOne(a => a.Client)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<NutritionPlan>().HasMany(a => a.Meals).WithOne(a => a.NutritionPlan)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Meal>().HasMany(a => a.Pictures).WithOne(a => a.Meal)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Client>().HasMany(a => a.NutritionPlans).WithOne(a => a.Client)
                 .OnDelete(DeleteBehavior.Cascade);
 
     ***REMOVED***
