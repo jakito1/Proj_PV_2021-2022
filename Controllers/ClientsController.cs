@@ -102,6 +102,7 @@ namespace NutriFitWeb.Controllers
                 (client is not null && client.Trainer is not null && _userManager.GetUserId(User) == client.Trainer.UserAccountModel.Id))
             ***REMOVED***
                 client.Trainer = (client.Trainer is null) ? trainer : null;
+                client.WantsTrainer = false;
                 _context.Client.Update(client);
                 await _context.SaveChangesAsync();
         ***REMOVED***              
@@ -142,7 +143,7 @@ namespace NutriFitWeb.Controllers
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
                 c => c.Weight, c => c.Height, c => c.Photo))
             ***REMOVED***
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
                 ***REMOVED***
                     return RedirectToAction("ShowAllUsers", "Admins");
@@ -150,6 +151,25 @@ namespace NutriFitWeb.Controllers
                 return LocalRedirect(Url.Content("~/"));
         ***REMOVED***
             return View(clientToUpdate);
+    ***REMOVED***
+       
+        [Authorize(Roles = "client")]
+        public async Task<IActionResult> RequestTrainer(int? pageNumber, string? currentFilter)
+        ***REMOVED***
+            UserAccountModel? user = null;
+            Client? client = null;
+            if (User.Identity is not null)
+            ***REMOVED***
+                user = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (user is not null)
+                ***REMOVED***
+                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                    client.WantsTrainer = true;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ShowTrainingPlans", "TrainingPlans", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
+            ***REMOVED***
+        ***REMOVED***
+            return NotFound();
     ***REMOVED***
 
         private async Task<Client> GetClient(string? id)
@@ -194,19 +214,18 @@ namespace NutriFitWeb.Controllers
                         Include(a => a.UserAccountModel).
                         Include(a => a.Trainer).
                         Include(a => a.Trainer.UserAccountModel).
-                        Where(a => a.Gym == trainer.Gym && (a.Trainer == null || a.Trainer.UserAccountModel.Id == userID)).
+                        Where(a => a.Trainer.UserAccountModel.Id == userID || (a.Gym == trainer.Gym && a.WantsTrainer)).
                         OrderByDescending(a => a.Trainer);
             ***REMOVED***
                 return _context.Client.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Trainer).
                     Include(a => a.Trainer.UserAccountModel).
-                    Where(a => a.UserAccountModel.Email.Contains(searchString) && 
-                        (a.Gym == trainer.Gym && (a.Trainer == null || a.Trainer.UserAccountModel.Id == userID))).
+                    Where(a => a.UserAccountModel.Email.Contains(searchString) &&
+                        (a.Trainer.UserAccountModel.Id == userID || (a.Gym == trainer.Gym && a.WantsTrainer))).
                     OrderByDescending(a => a.Trainer);
         ***REMOVED***
-            return null;
-            
+            return null;          
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
