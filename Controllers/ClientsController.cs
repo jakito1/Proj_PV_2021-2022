@@ -10,9 +10,6 @@ namespace NutriFitWeb.Controllers
 {
     public class ClientsController : Controller
     {
-        private readonly string SessionKeyClientsUserAccounts;
-        private readonly string SessionKeyCurrentTrainer;
-        private readonly string SessionKeyCurrentNutritionist;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
@@ -23,9 +20,6 @@ namespace NutriFitWeb.Controllers
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = isUserInRoleByUserId;
-            SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
-            SessionKeyCurrentTrainer = "_CurrentTrainer";
-            SessionKeyCurrentNutritionist = "_CurrentNutritionist";
         }
 
         [Authorize(Roles = "gym")]
