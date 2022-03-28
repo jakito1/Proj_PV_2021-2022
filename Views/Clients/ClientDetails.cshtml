@@ -22,6 +22,36 @@
         ***REMOVED***
         </dd>
         <dd class="col-sm-12">
+            @if (Model.Trainer is not null)
+            ***REMOVED***
+                @if ((Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "") && (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == ""))
+                ***REMOVED***
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.UserAccountModel.UserName</p>
+            ***REMOVED***else if(Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "")
+                ***REMOVED***
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerLastName</p>
+            ***REMOVED***else if (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == "")
+                ***REMOVED***
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerFirstName</p>
+            ***REMOVED***
+        ***REMOVED***
+        </dd>
+        <dd class="col-sm-12">
+            @if (Model.Nutritionist is not null)
+            ***REMOVED***
+                @if ((Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "") && (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == ""))
+                ***REMOVED***
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.UserAccountModel.UserName</p>
+            ***REMOVED***else if(Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "")
+                ***REMOVED***
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.NutritionistLastName</p>
+            ***REMOVED***else if (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == "")
+                ***REMOVED***
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.NutritionistFirstName</p>
+            ***REMOVED***
+        ***REMOVED***
+        </dd>
+        <dd class="col-sm-12">
             @if (Model.UserAccountModel.UserName is null || Model.UserAccountModel.UserName == "")
             ***REMOVED***
                 <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)</b> N/A</p>

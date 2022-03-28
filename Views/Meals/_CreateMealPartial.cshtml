@@ -1,72 +1,101 @@
 ﻿@model NutriFitWeb.Models.Meal
 
-
-<div class="row">
-    <div class="col-md-12 profileDivs exercisesDiv">
+    <div class="col-md-12 profileDivs exercisesDiv tableWrapper">
         <h2>Adicionar refeição</h2>
         <form method="post" id="_CreateMealPartialForm" data-ajax-begin="UpdateCreateMeal" data-ajax-success="UpdateMealsList" data-ajax="true"
         asp-action="CreateMeal" asp-controller="Meals">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MealName" class="control-label">Nome</label>
-                <input asp-for="MealName" class="formsInput" />
-                <span asp-validation-for="MealName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealDescription" class="control-label">Descrição</label>
-                <input asp-for="MealDescription" class="formsInput" />
-                <span asp-validation-for="MealDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealCalorie" class="control-label">Calorias</label>
-                <input asp-for="MealCalorie" min ="1" oninput="limitMealForm(this);" class="formsInput" />
-                <span asp-validation-for="MealCalorie" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealProtein" class="control-label">Proteína</label>
-                <input asp-for="MealProtein" min ="1" oninput="limitMealForm(this);" class="formsInput" />
-                <span asp-validation-for="MealProtein" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealFat" class="control-label">Gordura</label>
-                <input asp-for="MealFat" min ="1" oninput="limitMealForm(this);" class="formsInput" />
-                <span asp-validation-for="MealFat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealCarbohydrate" class="control-label">Carboidratos</label>
-                <input asp-for="MealCarbohydrate" min ="1" oninput="limitMealForm(this);" class="formsInput" />
-                <span asp-validation-for="MealCarbohydrate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealDate" class="control-label">Data</label>
-                <input asp-for="MealDate" class="formsInput" />
-                <span asp-validation-for="MealDate" class="text-danger"></span>
-                
-            </div>
-            <div class="form-group">
-                <label asp-for="MealWeekDay" class="control-label">Dia da semana</label>
-                <select asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
-                    <option value="">Nenhum</option>
-                </select>
-                <span asp-validation-for="MealWeekDay" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
-                <label asp-for="MealType" class="control-label">Tipo</label>
-                <select asp-for="MealType" class="formsInput" asp-items="Html.GetEnumSelectList<MealType>()"></select>
-                <span asp-validation-for="MealType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MealURL" class="control-label">Link da refeição</label>
-                <input asp-for="MealURL" class="formsInput" />
-                <span asp-validation-for="MealURL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            
+            <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="MealName" class="control-label">Nome</label></th>
+                    <td>
+                        <input asp-for="MealName" class="formsInput" />
+                        <span asp-validation-for="MealName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label asp-for="MealDescription" class="control-label">Descrição</label></th>
+                    <td>
+                        <textarea asp-for="MealDescription" class="descriptionBox"></textarea>
+                        <span asp-validation-for="MealDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="formTables">
+                <tr>
+                    <th><label asp-for="MealCalorie" class="control-label">Calorias</label></th>
+                    <th><label asp-for="MealProtein" class="control-label">Proteína</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <input asp-for="MealCalorie" min ="1" oninput="limitMealForm(this);" class="formsInput" />
+                        <span asp-validation-for="MealCalorie" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input asp-for="MealProtein" min ="1" oninput="limitMealForm(this);" class="formsInput" />
+                        <span asp-validation-for="MealProtein" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="formTables">
+                <tr>
+                    <th><label asp-for="MealFat" class="control-label">Gordura</label></th>
+                    <th><label asp-for="MealCarbohydrate" class="control-label">Carboidratos</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <input asp-for="MealFat" min ="1" oninput="limitMealForm(this);" class="formsInput" />
+                        <span asp-validation-for="MealFat" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input asp-for="MealCarbohydrate" min ="1" oninput="limitMealForm(this);" class="formsInput" />
+                        <span asp-validation-for="MealCarbohydrate" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="formTables">
+                <tr>
+                    <th><label asp-for="MealDate" class="control-label">Data</label></th>
+                    <th><label asp-for="MealWeekDay" class="control-label">Dia da semana</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <input asp-for="MealDate" class="formsInput" />
+                        <span asp-validation-for="MealDate" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <select asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
+                            <option value="">Nenhum</option>
+                        </select>
+                        <span asp-validation-for="MealWeekDay" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="formTables">
+                <tr>
+                    <th><label asp-for="MealType" class="control-label">Tipo</label></th>
+                    <th><label asp-for="MealURL" class="control-label">Link da refeição</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <select asp-for="MealType" class="formsInput" asp-items="Html.GetEnumSelectList<MealType>()"></select>
+                        <span asp-validation-for="MealType" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input asp-for="MealURL" class="formsInput" />
+                        <span asp-validation-for="MealURL" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
+
+           <div><input type="submit" value="Create" class="btn btn-primary" /></div>
         </form>
     </div>
-</div>
 
 @section Scripts ***REMOVED***
     @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***

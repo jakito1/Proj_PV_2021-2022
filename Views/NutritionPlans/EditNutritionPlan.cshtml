@@ -6,7 +6,6 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<hr />
 <div class="col-md-12 profileDivs">
     <form asp-controller="NutritionPlans" asp-action="EditNutritionPlan">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -33,8 +32,9 @@
         <partial name="~/Views/Meals/_ShowMealsPartial.cshtml" model="Model.Meals" />
     </div>
 </div>
-<div>
-    <a class="backToListBtn" asp-action="ShowNutritionPlans">Voltar</a>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
 </div>
 
 @section Scripts ***REMOVED***

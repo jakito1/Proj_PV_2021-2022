@@ -6,45 +6,63 @@
     <form method="post" id="_CreateExercisePartialForm" data-ajax-begin="UpdateCreateExercise" data-ajax-success="UpdateExercisesList" data-ajax="true"
         asp-action="CreateExercise" asp-controller="Exercises">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div>
-            <label asp-for="ExerciseName" class="control-label labelThree">Nome</label>&nbsp;
-            <input asp-for="ExerciseName" class="formsInput"/>
-            <br />
-            <span asp-validation-for="ExerciseName" class="text-danger"></span>
-        </div>
-        <div>
-            <label asp-for="ExerciseDescription" class="control-label labelFour">Descrição</label>
-            <textarea asp-for="ExerciseDescription" class="descriptionBox"></textarea>
-            <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ExerciseDuration" class="control-label labelThree">Duração</label>
-            <input asp-for="ExerciseDuration" min ="1" oninput="limitExerciseDuration(this);" class="formsInput" />
-            <br />
-            <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ExerciseRepetitions" class="control-label labelTwo">Repetições</label>
-            <input asp-for="ExerciseRepetitions" min ="1" oninput="limitExerciseRepetitions(this);" class="formsInput" />
-            <br />
-            <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
-        </div>
-        <div>
-            <label asp-for="ExerciseURL" class="control-label labelOne">Link do Exercício</label>
-            <input asp-for="ExerciseURL" class="formsInput" />
-            <span asp-validation-for="ExerciseURL" class="text-danger"></span>
-        </div>
-        <div>
-            <label asp-for="ExerciseType" class="control-label labelOne">Tipo de Exercício</label>
-            <select asp-for="ExerciseType" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseType>()"></select>
-            <span asp-validation-for="ExerciseType" class="text-danger"></span>
-        </div>
-        <br />
-        <div>
-            <label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label>
-            <select asp-for="ExerciseMuscles" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseMuscles>()"></select>
-            <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
-        </div>
+
+        <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="ExerciseName" class="control-label">Nome</label></th>
+                    <td>
+                        <input asp-for="ExerciseName" class="formsInput"/>
+                        <span asp-validation-for="ExerciseName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label asp-for="ExerciseDescription" class="control-label">Descrição</label></th>
+                    <td>
+                        <textarea asp-for="ExerciseDescription" class="descriptionBox"></textarea>
+                        <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+        </table>
+
+        <table class="formTables">
+                <tr>
+                    <th><label asp-for="ExerciseDuration" class="control-label labelThree">Duração</label></th>
+                    <th><label asp-for="ExerciseRepetitions" class="control-label labelTwo">Repetições</label></th>
+                    <th><label asp-for="ExerciseURL" class="control-label labelOne">Link do Exercício</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <input asp-for="ExerciseDuration" min ="1" oninput="limitExerciseDuration(this);" class="formsInput" />
+                        <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input asp-for="ExerciseRepetitions" min ="1" oninput="limitExerciseRepetitions(this);" class="formsInput" />
+                        <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input asp-for="ExerciseURL" class="formsInput" />
+                        <span asp-validation-for="ExerciseURL" class="text-danger"></span>
+                    </td>
+                </tr>
+        </table>
+
+        <table class="formTables">
+                <tr>
+                    <th><label asp-for="ExerciseType" class="control-label labelOne">Tipo de Exercício</label></th>
+                    <th><label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <select asp-for="ExerciseType" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseType>()"></select>
+                        <span asp-validation-for="ExerciseType" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <select asp-for="ExerciseMuscles" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseMuscles>()"></select>
+                        <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
+                    </td>
+                </tr>
+        </table>
+
         <div class="form-group">
             <input type="submit" value="Adicionar" class="btn btn-primary" />
         </div>

@@ -17,8 +17,12 @@ h2 ***REMOVED***
     padding: 0.3em;
     width: fit-content;
     margin: auto;
-    margin-bottom: 1em;
+    margin-bottom: 1em;;
     border-radius: 1em;
+***REMOVED***
+
+.h2Fix***REMOVED***
+    margin-top: 1em;
 ***REMOVED***
 
 h3 ***REMOVED***
@@ -67,6 +71,12 @@ button.navbar-toggler***REMOVED***
     height: 2.5em;
     width: 15em;
     padding-left: 0.5em;
+    margin: auto;
+    margin-bottom: 1em;
+***REMOVED***
+
+.formsElemsDivs ***REMOVED***
+    margin: 0em;
 ***REMOVED***
 
 /* NutriFitWeb Header Title / Home Button */
@@ -275,7 +285,19 @@ link***REMOVED***
     border-radius: 1em;
 ***REMOVED***
 
-tr***REMOVED***
+.alignTableTitles***REMOVED***
+    padding-bottom: 1em;
+***REMOVED***
+
+.formTables ***REMOVED***
+    margin:auto;
+***REMOVED***
+
+.tableWrapper***REMOVED***
+    display: table;
+***REMOVED***
+
+tr ***REMOVED***
     border-radius: 1em;
 ***REMOVED***
 
@@ -343,6 +365,7 @@ div.titlesMargin ***REMOVED***
     color: black;
     font-weight: bold;
     margin: auto;
+    display: table;
 ***REMOVED***
 
 .detailsDivs ***REMOVED***
