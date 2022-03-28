@@ -14,9 +14,9 @@
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
     <div class="statistics">
         <div class= statisticsCount>
-            <p><b class="listsItemTitle">Clientes</b><b>@GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
-            <p><b class="listsItemTitle">Treinadores</b><b>@GetUsersLists.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
-            <p><b class="listsItemTitle">Nutricionistas</b><b>@GetUsersLists.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Clientes</b><b>@GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Treinadores</b><b>@GetUsersLists.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Nutricionistas</b><b>@GetUsersLists.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
         </div>
         <div class="newUsersDiv">
             <p><b class="listsItemTitle">Clientes mais recentes</b></p>
