@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
-    public class Meal
+    public class Meal : IValidatableObject
     ***REMOVED***
         public int MealId ***REMOVED*** get; set; ***REMOVED***
         [Required]
@@ -29,6 +29,7 @@ namespace NutriFitWeb.Models
         [Column(TypeName = "nvarchar(24)")]
         public MealType? MealType ***REMOVED*** get; set; ***REMOVED***
 
+        [Url]
         public string? MealURL ***REMOVED*** get; set; ***REMOVED***
         public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED***
 
@@ -39,6 +40,23 @@ namespace NutriFitWeb.Models
         [NotMapped]
         public IFormFileCollection? Files ***REMOVED*** get; set; ***REMOVED***
 
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        ***REMOVED***
+            if (MealDate is null && MealWeekDay is null)
+            ***REMOVED***
+                yield return new ValidationResult(
+                    "Pelo menos uma data ou um dia de semana têm de ser fornecidos.",
+                    new[] ***REMOVED*** nameof(MealDate), nameof(MealWeekDay) ***REMOVED***);
+        ***REMOVED***
+            if (MealDate is not null && MealWeekDay is not null)
+            ***REMOVED***
+                yield return new ValidationResult(
+                    "Apenas pode fornecer uma data ou um dia de semana.",
+                    new[] ***REMOVED*** nameof(MealDate), nameof(MealWeekDay) ***REMOVED***);
+        ***REMOVED***
+            yield return ValidationResult.Success;
+    ***REMOVED***
 ***REMOVED***
 
     public enum MealType

@@ -40,10 +40,13 @@
                 <label asp-for="MealDate" class="control-label"></label>
                 <input asp-for="MealDate" class="form-control" />
                 <span asp-validation-for="MealDate" class="text-danger"></span>
+                
             </div>
             <div class="form-group">
                 <label asp-for="MealWeekDay" class="control-label"></label>
-                <select asp-for="MealWeekDay" class="form-control" asp-items="Html.GetEnumSelectList<MealWeekDay>()"></select>
+                <select asp-for="MealWeekDay" class="form-control" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
+                    <option value="">Nenhum</option>
+                </select>
                 <span asp-validation-for="MealWeekDay" class="text-danger"></span>
             </div>
             <div class="form-group">

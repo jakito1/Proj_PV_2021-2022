@@ -209,11 +209,11 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowTrainingPlans");
     ***REMOVED***
 
-        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] TrainingPlan trainingPlan)
+        public async Task<IActionResult> VerifyClientEmail(string? clientEmail)
         ***REMOVED***
             List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
             Trainer? trainer = HttpContext.Session.Get<Trainer>(SessionKeyCurrentTrainer);
-            Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == trainingPlan.ClientEmail);
+            Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == clientEmail);
 
             if (clientsUsersAccounts is null || trainer is null)
             ***REMOVED***
@@ -227,7 +227,7 @@ namespace NutriFitWeb.Controllers
                 return Json(true);
         ***REMOVED***
 
-            return Json($"O email: ***REMOVED***trainingPlan.ClientEmail***REMOVED*** não pertence a um dos seus clientes.");
+            return Json($"O email: ***REMOVED***clientEmail***REMOVED*** não pertence a um dos seus clientes.");
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
