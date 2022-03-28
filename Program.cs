@@ -27,8 +27,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuration.GetConnectionString("SendGridKey")));
 
-builder.Services.AddTransient<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
+builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
 builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
+builder.Services.AddScoped<IHasTrainerOrNutritionist, HasTrainerOrNutritionist>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
 {
