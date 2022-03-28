@@ -9,10 +9,15 @@
 
 <h1>@ViewData["Title"]</h1>
 <hr />
-<div class="col-md-4 profileDivs">
+<div class="col-md-8 profileDivs">
     <form asp-action="EditClientSettings">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ClientId" />
+        <div class="form-group">
+            <label asp-for="Photo" class="control-label listsItemTitle">Foto de Perfil</label>
+            <input asp-for="Photo" class="form-control"/>
+            <span asp-validation-for="Photo" class="text-danger"></span>
+        </div>
         <div class="form-group">
             <label asp-for="ClientFirstName" class="control-label listsItemTitle"></label>
             <input asp-for="ClientFirstName" class="form-control" />

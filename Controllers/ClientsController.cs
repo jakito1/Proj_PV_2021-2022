@@ -118,7 +118,7 @@ namespace NutriFitWeb.Controllers
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height))
+                c => c.Weight, c => c.Height, c => c.Photo))
             ***REMOVED***
                 _context.SaveChanges();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
