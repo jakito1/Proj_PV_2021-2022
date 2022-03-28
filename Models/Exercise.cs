@@ -18,7 +18,7 @@ namespace NutriFitWeb.Models
         [Range(1, 999, ErrorMessage = "Para um treino saudável, deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** repetições.")]
         public int? ExerciseRepetitions ***REMOVED*** get; set; ***REMOVED***
 
-        [Url]
+        [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? ExerciseURL ***REMOVED*** get; set; ***REMOVED***
         public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED***
 

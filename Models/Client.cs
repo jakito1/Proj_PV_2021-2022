@@ -41,9 +41,12 @@ namespace NutriFitWeb.Models
 
         [DisplayName("Nutricionista")]
         public Nutritionist? Nutritionist ***REMOVED*** get; set; ***REMOVED***
+        public bool WantsNutritionist ***REMOVED*** get; set; ***REMOVED*** = false;
 
         [DisplayName("Treinador")]
         public Trainer? Trainer ***REMOVED*** get; set; ***REMOVED***
+
+        public bool WantsTrainer ***REMOVED*** get; set; ***REMOVED*** = false;
 
         public List<TrainingPlan>? TrainingPlans ***REMOVED*** get; set; ***REMOVED***
         public List<NutritionPlan>? NutritionPlans ***REMOVED*** get; set; ***REMOVED***
