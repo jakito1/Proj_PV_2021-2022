@@ -37,7 +37,7 @@
                         <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
                         @if (item.ExerciseURL is not null && item.ExerciseURL != "")
                         {
-                            <a class="videosUrl" href=@Html.DisplayFor(modelItem => item.ExerciseURL) target="_blank">Vídeo do Exercício</a>
+                            <a class="videosUrl" href="@item.ExerciseURL" target="_blank">Vídeo do Exercício</a>
                         }
                     </td>
                 </tr>

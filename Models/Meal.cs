@@ -29,7 +29,7 @@ namespace NutriFitWeb.Models
         [Column(TypeName = "nvarchar(24)")]
         public MealType? MealType { get; set; }
 
-        [Url]
+        [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? MealURL { get; set; }
         public List<Picture>? Pictures { get; set; }
 
