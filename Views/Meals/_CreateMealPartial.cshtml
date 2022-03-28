@@ -2,61 +2,63 @@
 
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12 profileDivs exercisesDiv">
+        <h2>Adicionar refeição</h2>
         <form method="post" id="_CreateMealPartialForm" data-ajax-begin="UpdateCreateMeal" data-ajax-success="UpdateMealsList" data-ajax="true"
         asp-action="CreateMeal" asp-controller="Meals">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MealName" class="control-label"></label>
-                <input asp-for="MealName" class="form-control" />
+                <label asp-for="MealName" class="control-label">Nome</label>
+                <input asp-for="MealName" class="formsInput" />
                 <span asp-validation-for="MealName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealDescription" class="control-label"></label>
-                <input asp-for="MealDescription" class="form-control" />
+                <label asp-for="MealDescription" class="control-label">Descrição</label>
+                <input asp-for="MealDescription" class="formsInput" />
                 <span asp-validation-for="MealDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealCalorie" class="control-label"></label>
-                <input asp-for="MealCalorie" min ="1" oninput="limitMealForm(this);" class="form-control" />
+                <label asp-for="MealCalorie" class="control-label">Calorias</label>
+                <input asp-for="MealCalorie" min ="1" oninput="limitMealForm(this);" class="formsInput" />
                 <span asp-validation-for="MealCalorie" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealProtein" class="control-label"></label>
-                <input asp-for="MealProtein" min ="1" oninput="limitMealForm(this);" class="form-control" />
+                <label asp-for="MealProtein" class="control-label">Proteína</label>
+                <input asp-for="MealProtein" min ="1" oninput="limitMealForm(this);" class="formsInput" />
                 <span asp-validation-for="MealProtein" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealFat" class="control-label"></label>
-                <input asp-for="MealFat" min ="1" oninput="limitMealForm(this);" class="form-control" />
+                <label asp-for="MealFat" class="control-label">Gordura</label>
+                <input asp-for="MealFat" min ="1" oninput="limitMealForm(this);" class="formsInput" />
                 <span asp-validation-for="MealFat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealCarbohydrate" class="control-label"></label>
-                <input asp-for="MealCarbohydrate" min ="1" oninput="limitMealForm(this);" class="form-control" />
+                <label asp-for="MealCarbohydrate" class="control-label">Carboidratos</label>
+                <input asp-for="MealCarbohydrate" min ="1" oninput="limitMealForm(this);" class="formsInput" />
                 <span asp-validation-for="MealCarbohydrate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealDate" class="control-label"></label>
-                <input asp-for="MealDate" class="form-control" />
+                <label asp-for="MealDate" class="control-label">Data</label>
+                <input asp-for="MealDate" class="formsInput" />
                 <span asp-validation-for="MealDate" class="text-danger"></span>
                 
             </div>
             <div class="form-group">
-                <label asp-for="MealWeekDay" class="control-label"></label>
-                <select asp-for="MealWeekDay" class="form-control" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
+                <label asp-for="MealWeekDay" class="control-label">Dia da semana</label>
+                <select asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
                     <option value="">Nenhum</option>
                 </select>
                 <span asp-validation-for="MealWeekDay" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="MealType" class="control-label"></label>
-                <select asp-for="MealType" class="form-control" asp-items="Html.GetEnumSelectList<MealType>()"></select>
+                <label asp-for="MealType" class="control-label">Tipo</label>
+                <select asp-for="MealType" class="formsInput" asp-items="Html.GetEnumSelectList<MealType>()"></select>
                 <span asp-validation-for="MealType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MealURL" class="control-label"></label>
-                <input asp-for="MealURL" class="form-control" />
+                <label asp-for="MealURL" class="control-label">Link da refeição</label>
+                <input asp-for="MealURL" class="formsInput" />
                 <span asp-validation-for="MealURL" class="text-danger"></span>
             </div>
             <div class="form-group">
