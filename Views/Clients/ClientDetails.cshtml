@@ -22,6 +22,36 @@
             }
         </dd>
         <dd class="col-sm-12">
+            @if (Model.Trainer is not null)
+            {
+                @if ((Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "") && (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == ""))
+                {
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.UserAccountModel.UserName</p>
+                }else if(Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "")
+                {
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerLastName</p>
+                }else if (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == "")
+                {
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerFirstName</p>
+                }
+            }
+        </dd>
+        <dd class="col-sm-12">
+            @if (Model.Nutritionist is not null)
+            {
+                @if ((Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "") && (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == ""))
+                {
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.UserAccountModel.UserName</p>
+                }else if(Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "")
+                {
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.NutritionistLastName</p>
+                }else if (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == "")
+                {
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.NutritionistFirstName</p>
+                }
+            }
+        </dd>
+        <dd class="col-sm-12">
             @if (Model.UserAccountModel.UserName is null || Model.UserAccountModel.UserName == "")
             {
                 <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)</b> N/A</p>

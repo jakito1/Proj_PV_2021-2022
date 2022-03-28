@@ -17,8 +17,12 @@ h2 {
     padding: 0.3em;
     width: fit-content;
     margin: auto;
-    margin-bottom: 1em;
+    margin-bottom: 1em;;
     border-radius: 1em;
+}
+
+.h2Fix{
+    margin-top: 1em;
 }
 
 h3 {
@@ -67,6 +71,12 @@ button.navbar-toggler{
     height: 2.5em;
     width: 15em;
     padding-left: 0.5em;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.formsElemsDivs {
+    margin: 0em;
 }
 
 /* NutriFitWeb Header Title / Home Button */
@@ -275,7 +285,19 @@ link{
     border-radius: 1em;
 }
 
-tr{
+.alignTableTitles{
+    padding-bottom: 1em;
+}
+
+.formTables {
+    margin:auto;
+}
+
+.tableWrapper{
+    display: table;
+}
+
+tr {
     border-radius: 1em;
 }
 
@@ -343,6 +365,7 @@ div.titlesMargin {
     color: black;
     font-weight: bold;
     margin: auto;
+    display: table;
 }
 
 .detailsDivs {
