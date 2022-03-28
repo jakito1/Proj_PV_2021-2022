@@ -338,6 +338,7 @@ div.titlesMargin {
     margin-bottom: 3em;
     color: black;
     font-weight: bold;
+    margin: auto;
 }
 
 .detailsDivs {
@@ -360,6 +361,13 @@ div.form-group {
 }
 
 .form-control{
+    border-radius: 1em;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: medium;
+}
+
+.profilePic {
     border-radius: 1em;
     border-style: solid;
     border-color: lightgrey;
