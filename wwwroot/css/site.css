@@ -415,6 +415,10 @@ div.form-group ***REMOVED***
     padding-right: 1em;
 ***REMOVED***
 
+.itemsLeftMargin***REMOVED***
+    padding-left: 1em;
+***REMOVED***
+
 a.btn.btn-default:hover ***REMOVED***
     border-radius: 0.8em;
     color: white;
@@ -450,7 +454,7 @@ a.btn.btn-default.disabled ***REMOVED***
     padding: 0.3em;
     border-radius: 1em;
     font-size: 1em;
-    width: fit-content;
+    width: 7em;
     margin: auto;
 ***REMOVED***
 
