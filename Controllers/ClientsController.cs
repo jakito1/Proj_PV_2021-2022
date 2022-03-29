@@ -129,6 +129,64 @@ namespace NutriFitWeb.Controllers
             }
             return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
         }
+        
+
+        [Authorize(Roles = "trainer, nutritionist")]
+        public async Task<IActionResult> EditClientForTrainerAndNutritionist(int? id)
+        {
+            if (id is null)
+            {
+                return BadRequest();
+            }
+
+            Client? client = await _context.Client.FindAsync(id);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            if (client is null)
+            {
+                return NotFound();
+            }
+            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+                trainer is not null && trainer.Clients.Contains(client))
+            {
+                return View(client);
+            }
+            return Forbid();
+        }
+
+        [HttpPost, ActionName("EditClientForTrainerAndNutritionist")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "trainer, nutritionist")]
+        public async Task<IActionResult> EditClientForTrainerAndNutritionistPost(int? id)
+        {
+            if (id is null)
+            {
+                return BadRequest();
+            }
+
+            Client? client = await _context.Client.FindAsync(id);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            if (client is null)
+            {
+                return NotFound();
+            }
+            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+                trainer is not null && trainer.Clients.Contains(client))
+            {
+                if (await TryUpdateModelAsync<Client>(client, "",
+                c => c.Weight, c => c.Height))
+                {
+                    await _context.SaveChangesAsync();
+                    return LocalRedirect(Url.Content("~/"));
+                }
+            }            
+            return View(client);
+        }
 
         [Authorize(Roles = "administrator, client")]
         public async Task<IActionResult> EditClientSettings(string? id)
