@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace NutriFitWeb.Services
+﻿namespace NutriFitWeb.Services
 ***REMOVED***
     public interface IHasTrainerOrNutritionist
     ***REMOVED***

@@ -50,13 +50,13 @@
 
 </div>
 
-<div class="backBtnDiv">
-    @if (User.IsInRole("administrator"))
-    ***REMOVED***
-        <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
+@if (User.IsInRole("administrator"))
 ***REMOVED***
-</div>
-
+    <div class="backBtnDiv">
+    
+        <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
+    </div>
+***REMOVED***
 
 
 @section Scripts ***REMOVED***
