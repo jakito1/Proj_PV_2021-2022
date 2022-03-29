@@ -41,9 +41,13 @@
                 </td>
             </tr>
         </table>
-    <div id="_ShowMealsPartialList" class="mealDetailsDiv">
-        <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
-    </div>
+        @if(Model.Meals is not null && Model.Meals.Count() != 0)
+        ***REMOVED***
+            <div id="_ShowMealsPartialList" class="mealDetailsDiv">
+                <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
+            </div>
+    ***REMOVED***
+    <br />
 </div>
 <div class="backBtnDiv">
     <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
