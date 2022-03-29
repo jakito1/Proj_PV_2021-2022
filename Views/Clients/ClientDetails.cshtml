@@ -33,6 +33,8 @@
                 }else if (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == "")
                 {
                     <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerFirstName</p>
+                }else{
+                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerFirstName @Model.Trainer.TrainerLastName</p>
                 }
             }
         </dd>

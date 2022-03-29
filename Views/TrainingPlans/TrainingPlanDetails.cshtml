@@ -5,37 +5,50 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<div class="col-md-12 profileDivs">
-    <dl class="row">
-        @if (User.IsInRole("client") && Model.Trainer is not null)
-        {
-            <dd class="col-sm-12">
-                <p class="details"><b class="col-sm-12 listsItemTitle">Treinador</b> &nbsp; @Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
-            </dd>
-        }
-        @if (User.IsInRole("trainer") && Model.Client is not null)
-        {
-            <dd class="col-sm-12">
-                <p class="details"><b class="col-sm-12 listsItemTitle">Cliente</b> &nbsp; @Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
-            </dd>
-        }
-        <dd class="col-sm-12">
-            <p class="details"><b class="col-sm-12 listsItemTitle">Nome</b> &nbsp; @Html.DisplayFor(model => model.TrainingPlanName)</p>
-        </dd>
-        <dd class="col-sm-12">
-            @if (Model.TrainingPlanDescription is null || Model.TrainingPlanDescription == "")
-            {
-                <p class="details"><b class="col-sm-12 listsItemTitle">Descrição</b> &nbsp; N/A</p>
-            }
-            else
-            {
-                <p class="details"><b class="col-sm-12 listsItemTitle">Descrição</b> &nbsp; @Html.DisplayFor(model => model.TrainingPlanDescription)</p>
-            }
-        </dd>
-    </dl>
-    <div id="_ShowExercisesPartialList" class="exercisesDetailsDiv">
-        <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
-    </div>
+<div class="col-md-12 profileDivs exercisesDiv">
+        <table class="formTables">
+            <tr>
+                @if (User.IsInRole("client") && Model.Trainer is not null)
+                {
+                    <th><p class="control-label listsItemTitle">Treinador</p></th>
+                    <td>
+                        <p>@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
+                    </td>       
+                }
+                @if (User.IsInRole("trainer") && Model.Client is not null)
+                {
+                    <th class="control-label listsItemTitle">Cliente</th>
+                    <td>
+                        <p>@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+                    </td> 
+                }
+            </tr>
+            <tr><th></th><td></td></tr>
+            <tr class="detailsTitle">
+                <th class="control-label listsItemTitle">Nome</th>
+                <td>
+                    <p>@Html.DisplayFor(model => model.TrainingPlanName)</p>
+                </td>
+            </tr>
+            <tr><th></th><td></td></tr>
+            <tr>
+                <th class="control-label listsItemTitle">Descrição</th>
+                <td>
+                    @if (Model.TrainingPlanDescription is null || Model.TrainingPlanDescription == "")
+                    {
+                        <p>N/A</p>
+                    }else{
+                        <p>@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
+                    }
+                </td>
+            </tr>
+        </table>
+    @if(@Model.Exercises is not null)
+    {
+        <div id="_ShowExercisesPartialList" class="exercisesDetailsDiv">
+            <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
+        </div>
+    }
     <br />
 </div>
 <div class="backBtnDiv">
