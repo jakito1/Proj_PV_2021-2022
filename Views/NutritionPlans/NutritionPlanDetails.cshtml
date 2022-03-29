@@ -5,42 +5,45 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<div class="col-md-12 profileDivs exercisesDiv">
-         <table class="formTables">
+<div class="col-md-6 profileDivs exercisesDiv">
+    <table class="formTables">
             <tr>
                 @if (User.IsInRole("client") && Model.Nutritionist is not null)
                 {
-                    <th><p class="control-label">Nutricionista</p></th>
+                    <th><p class="control-label listsItemTitle">Nutricionista</p></th>
                     <td>
-                        <p class="details">@Html.DisplayFor(model => model.Nutritionist.UserAccountModel.UserName)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Nutritionist.UserAccountModel.UserName)</p>
                     </td>       
                 }
                 @if (User.IsInRole("nutritionist") && Model.Client is not null)
                 {
-                    <th class="control-label alignTableTitles">Cliente</th>
+                    <th class="control-label listsItemTitle">Cliente</th>
                     <td>
-                        <p class="details">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
                     </td> 
                 }
             </tr>
-            <tr>
-                <th class="control-label">Nome</th>
+            <tr><th></th><td></td></tr>
+            <tr class="detailsTitle">
+                <th class="control-label listsItemTitle">Nome</th>
                 <td>
-                    <p>@Html.DisplayFor(model => model.NutritionPlanName)</p>
+                    <p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanName)</p>
                 </td>
             </tr>
+            <tr><th></th><td></td></tr>
             <tr>
-                <th class="control-label">Descrição</th>
+                <th class="control-label listsItemTitle">Descrição</th>
                 <td>
                     @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
                     {
-                        <p class="details">N/A</p>
+                        <p class="itemsLeftMargin">N/A</p>
                     }else{
-                        <p class="details">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
                     }
                 </td>
             </tr>
         </table>
+         
     <div id="_ShowMealsPartialList" class="mealDetailsDiv">
         <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
     </div>

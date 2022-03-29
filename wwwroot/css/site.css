@@ -298,10 +298,16 @@ link{
 }
 
 .formTables {
-    margin:auto;
+    margin: auto;
+    margin-bottom: 2em;
 }
 
-.tableWrapper{
+.fixMeasurementsMargin {
+    border-collapse: separate;
+    border-spacing: 1em 0.5em;
+}
+
+.tableWrapper {
     display: table;
 }
 
@@ -367,8 +373,8 @@ div.titlesMargin {
     border-radius: 1em;
     background-color: white;
     padding: 1em;
-    padding-top: 4em;
-    padding-bottom: 0em;
+    padding-top: 3em;
+    padding-bottom: 1em;
     margin-bottom: 3em;
     color: black;
     font-weight: bold;
@@ -381,7 +387,7 @@ div.titlesMargin {
     background-color: white;
     padding: 1em;
     padding-top: 3em;
-    padding-bottom: 1em;
+    padding-bottom: 2em;
     margin-bottom: 3em;
     color: black;
     font-weight: bold;
@@ -454,7 +460,7 @@ a.btn.btn-default.disabled {
     padding: 0.3em;
     border-radius: 1em;
     font-size: 1em;
-    width: 7em;
+    width: 9em;
     margin: auto;
 }
 

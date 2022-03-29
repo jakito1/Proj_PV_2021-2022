@@ -1,6 +1,61 @@
 ﻿@model IEnumerable<NutriFitWeb.Models.Meal>
 
+
+<br />
 <p class="listsItemTitle">Refeições</p>
+
+<table class="table">
+    <thead class="tableHeader">
+        <tr>
+            <th>
+                Nome/Descrição
+            </th>
+            <th>
+                Outros Dados
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="exercisesData">
+                        @Html.DisplayFor(modelItem => item.ExerciseName) /
+                        @Html.DisplayFor(modelItem => item.ExerciseDescription)
+                    </td>
+                    <td class="exercisesData">
+                        @if (item.ExerciseDuration is not null)
+                        {
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p> 
+                        }
+                        @if (item.ExerciseRepetitions is not null)
+                        {
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições,</p>
+                        }                       
+                        <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
+                        @if (item.ExerciseURL is not null && item.ExerciseURL != "")
+                        {
+                            <a class="videosUrl" href="@item.ExerciseURL" target="_blank">Vídeo do Exercício</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
 
 <table class="table">
     <thead>

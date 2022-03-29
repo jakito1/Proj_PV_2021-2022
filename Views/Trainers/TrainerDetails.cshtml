@@ -6,18 +6,47 @@
 
 <h1 class="detailsTitle">Detalhes do Treinador</h1>
 
-<div class="detailsDivs">
-    <dl class="row">
-        <dd class="col-sm-12">
-            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(model => model.TrainerId)</b> @Html.DisplayFor(model => model.TrainerId)</p>
-        </dd>
-        <dd class="col-sm-12">
-            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(model => model.TrainerFirstName)</b> @Html.DisplayFor(model => model.TrainerFirstName)</p>
-        </dd>
-        <dd class="col-sm-12">
-            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(model => model.TrainerLastName)</b> @Html.DisplayFor(model => model.TrainerLastName)</p>
-        </dd>
-    </dl>
+<div class="col-md-6 profileDivs exercisesDiv">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(model => model.TrainerId)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainerId)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.UserName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome Completo</p></th>
+            @if ((Model.TrainerFirstName is null || Model.TrainerFirstName == "") && (Model.TrainerLastName is null || Model.TrainerLastName == ""))
+            {
+                <td><p class="itemsLeftMargin">N/A</p></td>
+            }else if(Model.TrainerFirstName is null || Model.TrainerFirstName == "")
+            {
+                <td><p class="itemsLeftMargin">@Model.TrainerLastName</p></td>
+            }else if (Model.TrainerLastName is null || Model.TrainerLastName == "")
+            {
+                <td><p class="itemsLeftMargin">@Model.TrainerFirstName</p></td>
+            }else{
+                <td><p class="itemsLeftMargin">@Model.TrainerFirstName @Model.TrainerLastName</p></td>
+            }
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.Email)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.Email)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.PhoneNumber)</p></th>
+            @if(Model.UserAccountModel.PhoneNumber is null)
+            {
+                <td><p class="itemsLeftMargin">N/A</p></td>
+            }
+            else
+            {
+                <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.PhoneNumber)</p></td>
+            }
+        </tr>
+    </table>
 </div>
 <div class="backBtnDiv">
     <a asp-action="ShowTrainers" class="backToListBtn">Voltar</a>
