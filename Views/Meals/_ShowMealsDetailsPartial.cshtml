@@ -4,6 +4,9 @@
 <br />
 <p class="listsItemTitle">Refeições</p>
 
+<br />
+<p class="listsItemTitle">Exercícios</p>
+
 <table class="table">
     <thead class="tableHeader">
         <tr>
@@ -23,80 +26,31 @@
             ***REMOVED***
                 <tr>
                     <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.ExerciseName) /
-                        @Html.DisplayFor(modelItem => item.ExerciseDescription)
-                    </td>
-                    <td class="exercisesData">
-                        @if (item.ExerciseDuration is not null)
-                        ***REMOVED***
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p> 
-                    ***REMOVED***
-                        @if (item.ExerciseRepetitions is not null)
-                        ***REMOVED***
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições,</p>
-                    ***REMOVED***                       
-                        <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
-                        @if (item.ExerciseURL is not null && item.ExerciseURL != "")
-                        ***REMOVED***
-                            <a class="videosUrl" href="@item.ExerciseURL" target="_blank">Vídeo do Exercício</a>
-                    ***REMOVED***
-                    </td>
-                </tr>
-        ***REMOVED***
-    ***REMOVED***
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Nome/Descrição
-            </th>
-            <th>
-                Outros Dados
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model is not null)
-        ***REMOVED***
-            @foreach (var item in Model)
-            ***REMOVED***
-                <tr>
-                    <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.MealName)
-                        <br />
+                        @Html.DisplayFor(modelItem => item.MealName) /
                         @Html.DisplayFor(modelItem => item.MealDescription)
                     </td>
-                    @*
                     <td class="exercisesData">
-                        @if (item.ExerciseDuration is not null)
+                        @if (item.MealCalorie is not null)
                         ***REMOVED***
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos</p>
+                            <p>@Html.DisplayFor(modelItem => item.MealCalorie) calorias,</p> 
                     ***REMOVED***
-                        @if (item.ExerciseRepetitions is not null)
+                        @if (item.MealProtein is not null)
                         ***REMOVED***
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições</p>
-                    ***REMOVED***
-                        <p>@Html.DisplayFor(modelItem => item.ExerciseType)</p>
-                        <p>@Html.DisplayFor(modelItem => item.ExerciseMuscles)</p>
-                        @if (item.ExerciseURL is not null && item.ExerciseURL != "")
+                            <p>@Html.DisplayFor(modelItem => item.MealProtein) gramas,</p>
+                    ***REMOVED*** 
+                        @if (item.MealFat is not null)
                         ***REMOVED***
-                            <a class="videosUrl" href="@item.MealURL" target="_blank">Vídeo do Exercício</a>
+                            <p>@Html.DisplayFor(modelItem => item.MealFat) gramas,</p>
+                    ***REMOVED*** 
+                        @if (item.MealCarbohydrate is not null)
+                        ***REMOVED***
+                            <p>@Html.DisplayFor(modelItem => item.MealCarbohydrate) gramas,</p>
+                    ***REMOVED*** 
+                        @if (item.MealURL is not null && item.MealURL != "")
+                        ***REMOVED***
+                            <a class="videosUrl" href="@item.MealURL" target="_blank">Link da refeição</a>
                     ***REMOVED***
-                    </td>*@
+                    </td>
                 </tr>
         ***REMOVED***
     ***REMOVED***
