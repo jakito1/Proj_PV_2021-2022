@@ -129,6 +129,64 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
+        
+
+        [Authorize(Roles = "trainer, nutritionist")]
+        public async Task<IActionResult> EditClientForTrainerAndNutritionist(int? id)
+        ***REMOVED***
+            if (id is null)
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
+
+            Client? client = await _context.Client.FindAsync(id);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            if (client is null)
+            ***REMOVED***
+                return NotFound();
+        ***REMOVED***
+            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+                trainer is not null && trainer.Clients.Contains(client))
+            ***REMOVED***
+                return View(client);
+        ***REMOVED***
+            return Forbid();
+    ***REMOVED***
+
+        [HttpPost, ActionName("EditClientForTrainerAndNutritionist")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "trainer, nutritionist")]
+        public async Task<IActionResult> EditClientForTrainerAndNutritionistPost(int? id)
+        ***REMOVED***
+            if (id is null)
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
+
+            Client? client = await _context.Client.FindAsync(id);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            if (client is null)
+            ***REMOVED***
+                return NotFound();
+        ***REMOVED***
+            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+                trainer is not null && trainer.Clients.Contains(client))
+            ***REMOVED***
+                if (await TryUpdateModelAsync<Client>(client, "",
+                c => c.Weight, c => c.Height))
+                ***REMOVED***
+                    await _context.SaveChangesAsync();
+                    return LocalRedirect(Url.Content("~/"));
+            ***REMOVED***
+        ***REMOVED***            
+            return View(client);
+    ***REMOVED***
 
         [Authorize(Roles = "administrator, client")]
         public async Task<IActionResult> EditClientSettings(string? id)
