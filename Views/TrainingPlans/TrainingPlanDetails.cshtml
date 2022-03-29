@@ -5,7 +5,7 @@
 ***REMOVED***
 
 <h1>@ViewData["Title"]</h1>
-<div class="col-md-12 profileDivs exercisesDiv">
+<div class="col-md-6 profileDivs exercisesDiv">
         <table class="formTables">
             <tr>
                 @if (User.IsInRole("client") && Model.Trainer is not null)
@@ -45,11 +45,11 @@
         </table>
     @if(Model.Exercises is not null && Model.Exercises.Count() != 0)
     ***REMOVED***
+        <br />
         <div id="_ShowExercisesPartialList" class="exercisesDetailsDiv">
             <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
         </div>
 ***REMOVED***
-    <br />
 </div>
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
