@@ -48,6 +48,19 @@
                         <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
                     }
                 </a>
+            } else if (User.IsInRole("nutritionist"))
+            {
+                <a asp-action="ChangeClientNutritionistStatus" asp-route-id="@item.ClientId"
+                    asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    @if (item.Nutritionist is null)
+                    {
+                        <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
+                    }
+                    else if (UserManager.GetUserId(User) == item.Nutritionist.UserAccountModel.Id)
+                    {
+                        <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
+                    }
+                </a>
             }
 
 

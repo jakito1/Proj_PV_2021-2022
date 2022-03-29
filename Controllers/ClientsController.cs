@@ -46,10 +46,9 @@ namespace NutriFitWeb.Controllers
                 clients = await GetClientsForTrainer(searchString, user.Id);
             } else if (User.IsInRole("nutritionist"))
             {
-                //clients = 
+                clients = await GetClientsForNutritionist(searchString, user.Id);
             }
             
-
             int pageSize = 3;
             return View(await PaginatedList<Client>.CreateAsync(clients.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
@@ -106,6 +105,26 @@ namespace NutriFitWeb.Controllers
                 _context.Client.Update(client);
                 await _context.SaveChangesAsync();
             }              
+            return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
+        }
+        
+        [Authorize(Roles = "nutritionist")]
+        public async Task<IActionResult> ChangeClientNutritionistStatus(int? id, int? pageNumber, string? currentFilter)
+        {
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Nutritionist nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client? client = await _context.Client.
+            Include(a => a.Trainer).
+            FirstOrDefaultAsync(a => a.ClientId == id);
+
+            if (client is not null && nutritionist is not null && client.Gym == nutritionist.Gym && client.Nutritionist is null ||
+                (client is not null && client.Nutritionist is not null && _userManager.GetUserId(User) == client.Nutritionist.UserAccountModel.Id))
+            {
+                client.Nutritionist = (client.Nutritionist is null) ? nutritionist : null;
+                client.WantsNutritionist = false;
+                _context.Client.Update(client);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
         }
 
@@ -172,6 +191,25 @@ namespace NutriFitWeb.Controllers
             return NotFound();
         }
 
+        [Authorize(Roles = "client")]
+        public async Task<IActionResult> RequestNutritionist(int? pageNumber, string? currentFilter)
+        {
+            UserAccountModel? user = null;
+            Client? client = null;
+            if (User.Identity is not null)
+            {
+                user = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (user is not null)
+                {
+                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                    client.WantsNutritionist = true;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ShowNutritionPlans", "NutritionPlans", new { pageNumber, currentFilter });
+                }
+            }
+            return NotFound();
+        }
+
         private async Task<Client> GetClient(string? id)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -226,6 +264,31 @@ namespace NutriFitWeb.Controllers
                     OrderByDescending(a => a.Trainer);
             }
             return null;          
+        }
+
+        private async Task<IOrderedQueryable<Client>> GetClientsForNutritionist(string? searchString, string? userID)
+        {
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == userID);
+            if (nutritionist is not null)
+            {
+                if (string.IsNullOrEmpty(searchString))
+                {
+                    return _context.Client.
+                        Include(a => a.UserAccountModel).
+                        Include(a => a.Nutritionist).
+                        Include(a => a.Nutritionist.UserAccountModel).
+                        Where(a => a.Nutritionist.UserAccountModel.Id == userID || (a.Gym == nutritionist.Gym && a.WantsNutritionist)).
+                        OrderByDescending(a => a.Nutritionist);
+                }
+                return _context.Client.
+                    Include(a => a.UserAccountModel).
+                    Include(a => a.Nutritionist).
+                    Include(a => a.Nutritionist.UserAccountModel).
+                    Where(a => a.UserAccountModel.Email.Contains(searchString) &&
+                        (a.Nutritionist.UserAccountModel.Id == userID || (a.Gym == nutritionist.Gym && a.WantsNutritionist))).
+                    OrderByDescending(a => a.Nutritionist);
+            }
+            return null;
         }
     }
 }
