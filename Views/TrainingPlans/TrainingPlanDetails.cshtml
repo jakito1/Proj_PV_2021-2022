@@ -12,14 +12,14 @@
                 {
                     <th><p class="control-label listsItemTitle">Treinador</p></th>
                     <td>
-                        <p>@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
                     </td>       
                 }
                 @if (User.IsInRole("trainer") && Model.Client is not null)
                 {
                     <th class="control-label listsItemTitle">Cliente</th>
                     <td>
-                        <p>@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
                     </td> 
                 }
             </tr>
@@ -27,7 +27,7 @@
             <tr class="detailsTitle">
                 <th class="control-label listsItemTitle">Nome</th>
                 <td>
-                    <p>@Html.DisplayFor(model => model.TrainingPlanName)</p>
+                    <p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanName)</p>
                 </td>
             </tr>
             <tr><th></th><td></td></tr>
@@ -36,9 +36,9 @@
                 <td>
                     @if (Model.TrainingPlanDescription is null || Model.TrainingPlanDescription == "")
                     {
-                        <p>N/A</p>
+                        <p class="itemsLeftMargin">N/A</p>
                     }else{
-                        <p>@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
                     }
                 </td>
             </tr>

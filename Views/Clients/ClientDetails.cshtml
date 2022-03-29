@@ -6,111 +6,56 @@
 
 <h1 class="detailsTitle">Detalhes do Cliente</h1>
 
-<div class="detailsDivs">
-    <dl class="row">
-        <dd class="col-sm-12">
-            <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientId)</b> @Html.DisplayFor(Model => Model.ClientId)</p>
-        </dd>
-        <dd class="col-sm-12">
+<div class="col-md-12 profileDivs exercisesDiv">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientId)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.ClientId)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.Gym)</p></th>
             @if (Model.Gym is null || Model.Gym.GymName is null || Model.Gym.GymName == "")
             {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientId)</b> N/A</p>
+                <td><p class="itemsLeftMargin">N/A</p></td>
             }
             else
             {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.Gym)</b>  @Html.DisplayFor(Model => Model.Gym.GymName)</p>   
+                <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.Gym.GymName)</p></td> 
             }
-        </dd>
-        <dd class="col-sm-12">
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Treinador</p></th>
             @if (Model.Trainer is not null)
             {
                 @if ((Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "") && (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == ""))
                 {
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.UserAccountModel.UserName</p>
+                    <td><p class="itemsLeftMargin">@Model.Trainer.UserAccountModel.UserName</p></td>
                 }else if(Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "")
                 {
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerLastName</p>
+                    <td><p class="itemsLeftMargin">@Model.Trainer.TrainerLastName</p></td>
                 }else if (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == "")
                 {
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerFirstName</p>
+                    <td><p class="itemsLeftMargin">@Model.Trainer.TrainerFirstName</p></td>
                 }else{
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Trainer.TrainerFirstName @Model.Trainer.TrainerLastName</p>
+                    <td><p class="itemsLeftMargin">@Model.Trainer.TrainerFirstName @Model.Trainer.TrainerLastName</p></td>
                 }
             }
-        </dd>
-        <dd class="col-sm-12">
-            @if (Model.Nutritionist is not null)
-            {
-                @if ((Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "") && (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == ""))
-                {
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.UserAccountModel.UserName</p>
-                }else if(Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "")
-                {
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.NutritionistLastName</p>
-                }else if (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == "")
-                {
-                    <p class="listsItem"><b class="col-sm-12 listsItemTitle">Treinador</b> @Model.Nutritionist.NutritionistFirstName</p>
-                }
-            }
-        </dd>
-        <dd class="col-sm-12">
-            @if (Model.UserAccountModel.UserName is null || Model.UserAccountModel.UserName == "")
-            {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)</b> N/A</p>
-            }
-            else
-            {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)</b> @Html.DisplayFor(Model => Model.UserAccountModel.UserName)</p>
-            }
-        </dd>
-        <dd class="col-sm-12">
-            @if ((Model.ClientFirstName is null || Model.ClientFirstName == "") && (Model.ClientLastName is null || Model.ClientLastName == ""))
-            {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">Nome Completo</b> N/A</p>
-            }
-            else
-            {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">Nome Completo</b> @Html.DisplayFor(Model => Model.ClientFirstName) @Html.DisplayFor(Model => Model.ClientLastName)</p>
-            }
-        </dd>
-        <dd class="col-sm-12">
-            @if (Model.ClientBirthday is null)
-            {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientBirthday)</b> N/A</p>
-            }
-            else
-            {
-                <p class="listsItem"><b class="col-sm-12 listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientBirthday)</b> @Html.DisplayFor(Model => Model.ClientBirthday)</p>
-            }
-        </dd>
-        <dt class="col-sm-12">
-            <img src="~/icons/weightIcon.svg"/>
-        </dt>
-        <dd class="col-sm-12">
-            @if (Model.Weight is null || Model.Weight == 0)
-            {
-                <p>N/A</p>
-            }
-            else
-            {
-                <p>@Html.DisplayFor(Model => Model.Weight) quilos</p>
-            }
-        </dd>
-        <dt class="col-sm-12">
-            <img src="~/icons/heightIcon.svg"/>
-        </dt>
-        <dd class="col-sm-12">
-            @if (Model.Height is null || Model.Height == 0)
-            {
-                <p>N/A</p>
-            }
-            else
-            {
-                <p>@Html.DisplayFor(Model => Model.Height) centímetros</p>
-            }
-        </dd>
-    </dl>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle"></p></th>
+            <td><p class="itemsLeftMargin"></p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle"></p></th>
+            <td><p class="itemsLeftMargin"></p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle"></p></th>
+            <td><p class="itemsLeftMargin"></p></td>
+        </tr>
+    </table>
 </div>
+
 <div class="backBtnDiv">
     <a asp-action="ShowClients" class="backToListBtn">Voltar</a>
 </div>

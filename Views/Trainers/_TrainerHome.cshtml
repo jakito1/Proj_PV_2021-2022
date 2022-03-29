@@ -14,9 +14,9 @@
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
     <div class="statistics">
         <div class= statisticsCount>
-            <p><b class="listsItemTitle homeTitlesFix">Clientes</b><b>@GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix control-label">Clientes</b><b class="itemsLeftMargin">@GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Count()</b></p>
             <br />
-            <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b>@GetUsersLists.GetTrainerGym(UserManager.GetUserId(User))</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b class="itemsLeftMargin">@GetUsersLists.GetTrainerGym(UserManager.GetUserId(User))</b></p>
             <br />
         </div>
         <div class="newUsersDiv">
