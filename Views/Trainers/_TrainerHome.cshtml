@@ -15,12 +15,15 @@
     <div class="statistics">
         <div class= statisticsCount>
             <p><b class="listsItemTitle homeTitlesFix">Clientes</b><b>@GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Count()</b></p>
+            <br />
             <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b>@GetUsersLists.GetTrainerGym(UserManager.GetUserId(User))</b></p>
+            <br />
         </div>
         <div class="newUsersDiv">
             <p><b class="listsItemTitle">Clientes mais recentes</b></p>
             @foreach (var item in GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Take(3))
             ***REMOVED***
+                <br />
                 <p class="recentClientsGym"><b>@item.UserName.ToUpper()</b></p>
         ***REMOVED***
         </div>

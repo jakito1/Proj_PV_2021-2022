@@ -5,43 +5,42 @@
 ***REMOVED***
 
 <h1>@ViewData["Title"]</h1>
-<div class="col-md-12 profileDivs">
-    <dl class="row">
-        <dd class="col-sm-12">
-            <p class="details"><b class="col-sm-12 listsItemTitle">Nome</b> &nbsp; @Html.DisplayFor(model => model.NutritionPlanName)</p>
-        </dd>
-        <dt class="col-sm-12 listsItemTitle">
-            Descrição
-        </dt>
-        <dd class="col-sm-12">
-            @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
+<div class="col-md-12 profileDivs exercisesDiv">
+         <table class="formTables">
+            <tr>
+                @if (User.IsInRole("client") && Model.Nutritionist is not null)
+                ***REMOVED***
+                    <th><p class="control-label">Nutricionista</p></th>
+                    <td>
+                        <p class="details">@Html.DisplayFor(model => model.Nutritionist.UserAccountModel.UserName)</p>
+                    </td>       
             ***REMOVED***
-                <p class="details">N/A</p>
-        ***REMOVED***
-            else
+                @if (User.IsInRole("nutritionist") && Model.Client is not null)
+                ***REMOVED***
+                    <th class="control-label alignTableTitles">Cliente</th>
+                    <td>
+                        <p class="details">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+                    </td> 
             ***REMOVED***
-                <p class="details">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
-        ***REMOVED***
-        </dd>
-        @if (User.IsInRole("client") && Model.Nutritionist is not null)
-        ***REMOVED***
-            <dt class="col-sm-12 listsItemTitle">
-                Nutricionista
-            </dt>
-            <dd class="col-sm-12">
-                <p class="details">@Html.DisplayFor(model => model.Nutritionist.UserAccountModel.UserName)</p>
-            </dd>
-    ***REMOVED***
-        @if (User.IsInRole("nutritionist") && Model.Client is not null)
-        ***REMOVED***
-            <dt class="col-sm-12 listsItemTitle">
-                Cliente
-            </dt>
-            <dd class="col-sm-12">
-                <p class="details">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
-            </dd>
-    ***REMOVED***
-    </dl>
+            </tr>
+            <tr>
+                <th class="control-label">Nome</th>
+                <td>
+                    <p>@Html.DisplayFor(model => model.NutritionPlanName)</p>
+                </td>
+            </tr>
+            <tr>
+                <th class="control-label">Descrição</th>
+                <td>
+                    @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
+                    ***REMOVED***
+                        <p class="details">N/A</p>
+                ***REMOVED***else***REMOVED***
+                        <p class="details">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
+                ***REMOVED***
+                </td>
+            </tr>
+        </table>
     <div id="_ShowMealsPartialList" class="mealDetailsDiv">
         <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
     </div>
