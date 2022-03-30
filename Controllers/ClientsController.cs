@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -14,13 +13,16 @@ namespace NutriFitWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
+        private readonly IPhotoManagement _photoManagement;
         public ClientsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
-            IIsUserInRoleByUserId isUserInRoleByUserId)
+            IIsUserInRoleByUserId isUserInRoleByUserId,
+            IPhotoManagement photoManagement)
         {
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = isUserInRoleByUserId;
+            _photoManagement = photoManagement;
         }
 
         [Authorize(Roles = "gym, nutritionist, trainer")]
@@ -163,7 +165,7 @@ namespace NutriFitWeb.Controllers
             }
             return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
         }
-        
+
 
         [Authorize(Roles = "trainer, nutritionist")]
         public async Task<IActionResult> EditClientForTrainerAndNutritionist(int? id)
@@ -182,7 +184,7 @@ namespace NutriFitWeb.Controllers
             {
                 return NotFound();
             }
-            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+            if (nutritionist is not null && nutritionist.Clients.Contains(client) ||
                 trainer is not null && trainer.Clients.Contains(client))
             {
                 return View(client);
@@ -209,7 +211,7 @@ namespace NutriFitWeb.Controllers
             {
                 return NotFound();
             }
-            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+            if (nutritionist is not null && nutritionist.Clients.Contains(client) ||
                 trainer is not null && trainer.Clients.Contains(client))
             {
                 if (await TryUpdateModelAsync<Client>(client, "",
@@ -218,7 +220,7 @@ namespace NutriFitWeb.Controllers
                     await _context.SaveChangesAsync();
                     return LocalRedirect(Url.Content("~/"));
                 }
-            }            
+            }
             return View(client);
         }
 
@@ -231,6 +233,10 @@ namespace NutriFitWeb.Controllers
             }
 
             Client? client = await GetClient(id);
+            if (client.ClientProfilePhoto is not null)
+            {
+                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadImage(client.ClientId);
+            }
 
             if (client is null)
             {
@@ -248,20 +254,42 @@ namespace NutriFitWeb.Controllers
             {
                 return BadRequest();
             }
-            var temp = formFile;
+
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
+            Photo? oldPhoto = null;
+            if (clientToUpdate is not null && clientToUpdate.ClientProfilePhoto is not null)
+            {
+                oldPhoto = clientToUpdate.ClientProfilePhoto;
+            }
+            if (clientToUpdate is not null)
+            {
+                clientToUpdate.ClientProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
+            }
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height))
+                c => c.Weight, c => c.Height, c => c.ClientProfilePhoto))
             {
+                if (oldPhoto is not null && clientToUpdate.ClientProfilePhoto is not null)
+                {
+                    _context.Photos.Remove(oldPhoto);
+                }
+                else if (clientToUpdate.ClientProfilePhoto is null)
+                {
+                    clientToUpdate.ClientProfilePhoto = oldPhoto;
+                }
+
                 await _context.SaveChangesAsync();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
                 {
                     return RedirectToAction("ShowAllUsers", "Admins");
                 }
-                return LocalRedirect(Url.Content("~/"));
+                if (clientToUpdate.ClientProfilePhoto is not null)
+                {
+                    clientToUpdate.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadImage(clientToUpdate.ClientId);
+                }
+                return View(clientToUpdate);
             }
             return View(clientToUpdate);
         }
@@ -309,11 +337,11 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             {
-                return await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+                return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
             }
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
         }
 
         private IOrderedQueryable<Client> GetClientsForGym(string? searchString, string? userID)
@@ -384,36 +412,5 @@ namespace NutriFitWeb.Controllers
             }
             return null;
         }
-
-        public IActionResult UploadProfilePhoto()
-        {
-            foreach (var file in Request.Form.Files)
-            {
-                Photo photo = new Photo();
-                photo.ImageTitle = file.FileName;
-
-                MemoryStream m = new MemoryStream();
-                file.CopyTo(m);
-                photo.ImageData = m.ToArray();
-
-                m.Close();
-                m.Dispose();
-
-                _context.Photos.Add(photo);
-                _context.SaveChanges();
-            }
-            return View("EditClientSettings");
-        }
-
-        /*[HttpPost]
-        public ActionResult RetrieveImage()
-        {
-            Photo photo = _context.Photos.Include(a=> Client).Where(a=> a.Id = );
-            string imageBase64Data = Convert.ToBase64String(photo.ImageData);
-            string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
-            ViewBag.ImageTitle = photo.ImageTitle;
-            ViewBag.ImageDataUrl = imageDataURL;
-            return View("EditClientSettings");
-        }*/
     }
 }

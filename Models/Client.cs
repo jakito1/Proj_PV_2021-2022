@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 {
@@ -35,9 +33,7 @@ namespace NutriFitWeb.Models
         public Gym? Gym { get; set; }
 
         [DisplayName("Foto de Perfil")]
-        [NotMapped]
-        public string? Photo { get; set; }
-        public Photo? ProfilePhoto { get; set; }
+        public Photo? ClientProfilePhoto { get; set; }
 
         [DisplayName("Nutricionista")]
         public Nutritionist? Nutritionist { get; set; }
@@ -52,7 +48,7 @@ namespace NutriFitWeb.Models
         public List<TrainingPlanRequest>? TrainingPlanRequests { get; set; }
         public List<NutritionPlan>? NutritionPlans { get; set; }
         public List<NutritionPlanRequest>? NutritionPlanRequests { get; set; }
-        
+
 
         public UserAccountModel? UserAccountModel { get; set; }
     }

@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 {
     public class Photo
     {
-        [Key]
-        public int Id { get; set; }
-        public string? ImageTitle { get; set; }
-        public byte[]? ImageData { get; set; }
+        public int PhotoId { get; set; }
+        public string? PhotoTitle { get; set; }
+        public byte[]? PhotoData { get; set; }
+
+        [NotMapped]
+        public string? PhotoUrl { get; set; }
     }
 }
