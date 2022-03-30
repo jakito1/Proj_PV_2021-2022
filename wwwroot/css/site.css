@@ -697,7 +697,15 @@ input.btn.btn-danger {
     color: black;
 }
 
-.exercisesDetailsDiv{
+.breakText{
+    word-break: break-word;
+}
+
+.breakTextOtherData {
+    width: 60%;
+}
+
+.plansListDetailsDiv {
     border-style: solid;
     border-radius: 1em;
     border-color: lightgrey;
