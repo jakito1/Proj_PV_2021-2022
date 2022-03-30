@@ -29,7 +29,7 @@ builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuratio
 
 builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
 builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
-builder.Services.AddScoped<IHasTrainerOrNutritionist, HasTrainerOrNutritionist>();
+builder.Services.AddScoped<IHasTrainerNutritionistGym, HasTrainerNutritionistGym>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
 ***REMOVED***
