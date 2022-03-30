@@ -21,8 +21,9 @@
             @foreach (var item in Model)
             ***REMOVED***
                 <tr>
-                    <td class="exercisesData">
-                        @Html.DisplayFor(modelItem => item.ExerciseName) /
+                    <td class="exercisesData breakText breakTextOtherData">
+                        @Html.DisplayFor(modelItem => item.ExerciseName)
+                        <br />
                         @Html.DisplayFor(modelItem => item.ExerciseDescription)
                     </td>
                     <td class="exercisesData">

@@ -697,7 +697,15 @@ input.btn.btn-danger ***REMOVED***
     color: black;
 ***REMOVED***
 
-.exercisesDetailsDiv***REMOVED***
+.breakText***REMOVED***
+    word-break: break-word;
+***REMOVED***
+
+.breakTextOtherData ***REMOVED***
+    width: 60%;
+***REMOVED***
+
+.plansListDetailsDiv ***REMOVED***
     border-style: solid;
     border-radius: 1em;
     border-color: lightgrey;

@@ -59,21 +59,19 @@
             </table>
 
             <table class="formTables">
-
-                <select class="formsInput" name="dateOrWeekDaySelect" onchange="showDateOrWeekDayDiv(this)" id="dateOrWeekDaySelect" >
+                <label for="dateOrWeekDaySelect" class="control-label">Data/Dia da Semana</label>
+                <select class="formsInput selectDropDwn" name="dateOrWeekDaySelect" onchange="showDateOrWeekDayDiv(this)" id="dateOrWeekDaySelect" >
                     <option value="1">Data</option>
                     <option value="2">Dia de Semana</option>
                 </select>
                 <div style="display:block;" id="MealDateID">
-                    <label asp-for="MealDate" class="control-label">Data</label>
                     <input required="true" id="MealDateInputID" asp-for="MealDate" class="formsInput" />
                     <br />
                     <span asp-validation-for="MealDate" class="text-danger"></span>
                 </div>
                 <div style="display:none;" id="MealWeekDayID">
-                    <label asp-for="MealWeekDay" class="control-label">Dia da semana</label>
                     <select required="true" id="MealWeekDaySelectID" asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
-                            <option value=""></option>
+                            <option value="">Selecione um dia da semana</option>
                     </select>
                     <br />
                     <span asp-validation-for="MealWeekDay" class="text-danger"></span>
