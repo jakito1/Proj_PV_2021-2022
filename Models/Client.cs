@@ -37,6 +37,7 @@ namespace NutriFitWeb.Models
         [DisplayName("Foto de Perfil")]
         [NotMapped]
         public string? Photo { get; set; }
+        public Photo? ProfilePhoto { get; set; }
 
         [DisplayName("Nutricionista")]
         public Nutritionist? Nutritionist { get; set; }

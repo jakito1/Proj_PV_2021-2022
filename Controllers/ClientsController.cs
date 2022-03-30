@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -253,7 +254,7 @@ namespace NutriFitWeb.Controllers
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height, c => c.Photo))
+                c => c.Weight, c => c.Height))
             {
                 await _context.SaveChangesAsync();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
@@ -383,5 +384,36 @@ namespace NutriFitWeb.Controllers
             }
             return null;
         }
+
+        public IActionResult UploadProfilePhoto()
+        {
+            foreach (var file in Request.Form.Files)
+            {
+                Photo photo = new Photo();
+                photo.ImageTitle = file.FileName;
+
+                MemoryStream m = new MemoryStream();
+                file.CopyTo(m);
+                photo.ImageData = m.ToArray();
+
+                m.Close();
+                m.Dispose();
+
+                _context.Photos.Add(photo);
+                _context.SaveChanges();
+            }
+            return View("EditClientSettings");
+        }
+
+        /*[HttpPost]
+        public ActionResult RetrieveImage()
+        {
+            Photo photo = _context.Photos.Include(a=> Client).Where(a=> a.Id = );
+            string imageBase64Data = Convert.ToBase64String(photo.ImageData);
+            string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+            ViewBag.ImageTitle = photo.ImageTitle;
+            ViewBag.ImageDataUrl = imageDataURL;
+            return View("EditClientSettings");
+        }*/
     }
 }
