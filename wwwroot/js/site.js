@@ -45,6 +45,18 @@ function UpdateCreateMeal() ***REMOVED***
 ***REMOVED***)
 ***REMOVED***
 
+function showDateOrWeekDayDiv(select) ***REMOVED***
+    if (select.value == 1) ***REMOVED***
+        document.getElementById('MealDateID').style.display = "block";
+        document.getElementById('MealWeekDayID').style.display = "none";
+        document.getElementById('MealWeekDaySelectID').value = ''
+***REMOVED*** else ***REMOVED***
+        document.getElementById('MealDateID').style.display = "none";
+        document.getElementById('MealWeekDayID').style.display = "block";
+        document.getElementById('MealDateInputID').value = ''
+***REMOVED***
+***REMOVED***
+
 function limitExerciseRepetitions(input) ***REMOVED***
     if (Math.abs(input.value) > 0) ***REMOVED***
         input.value = Math.abs(input.value);

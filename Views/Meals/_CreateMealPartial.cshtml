@@ -11,6 +11,7 @@
                     <th class="alignTableTitles"><label asp-for="MealName" class="control-label">Nome</label></th>
                     <td>
                         <input asp-for="MealName" class="formsInput" />
+                        <br />
                         <span asp-validation-for="MealName" class="text-danger"></span>
                     </td>
                 </tr>
@@ -58,22 +59,25 @@
             </table>
 
             <table class="formTables">
-                <tr>
-                    <th><label asp-for="MealDate" class="control-label">Data</label></th>
-                    <th><label asp-for="MealWeekDay" class="control-label">Dia da semana</label></th>
-                </tr>
-                <tr>
-                    <td>
-                        <input asp-for="MealDate" class="formsInput" />
-                        <span asp-validation-for="MealDate" class="text-danger"></span>
-                    </td>
-                    <td>
-                        <select asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
-                            <option value="">Nenhum</option>
-                        </select>
-                        <span asp-validation-for="MealWeekDay" class="text-danger"></span>
-                    </td>
-                </tr>
+
+                <select class="formsInput" name="dateOrWeekDaySelect" onchange="showDateOrWeekDayDiv(this)" id="dateOrWeekDaySelect" >
+                    <option value="1">Data</option>
+                    <option value="2">Dia de Semana</option>
+                </select>
+                <div style="display:block;" id="MealDateID">
+                    <label asp-for="MealDate" class="control-label">Data</label>
+                    <input required="true" id="MealDateInputID" asp-for="MealDate" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="MealDate" class="text-danger"></span>
+                </div>
+                <div style="display:none;" id="MealWeekDayID">
+                    <label asp-for="MealWeekDay" class="control-label">Dia da semana</label>
+                    <select required="true" id="MealWeekDaySelectID" asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
+                            <option value=""></option>
+                    </select>
+                    <br />
+                    <span asp-validation-for="MealWeekDay" class="text-danger"></span>
+                </div>
             </table>
 
             <table class="formTables">
@@ -98,5 +102,6 @@
     </div>
 
 @section Scripts ***REMOVED***
+
     @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
 ***REMOVED***

@@ -49,7 +49,10 @@ namespace NutriFitWeb.Models
         public bool WantsTrainer ***REMOVED*** get; set; ***REMOVED*** = false;
 
         public List<TrainingPlan>? TrainingPlans ***REMOVED*** get; set; ***REMOVED***
+        public List<TrainingPlanRequest>? TrainingPlanRequests ***REMOVED*** get; set; ***REMOVED***
         public List<NutritionPlan>? NutritionPlans ***REMOVED*** get; set; ***REMOVED***
+        public List<NutritionPlanRequest>? NutritionPlanRequests ***REMOVED*** get; set; ***REMOVED***
+        
 
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
