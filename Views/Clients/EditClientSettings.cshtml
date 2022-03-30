@@ -15,6 +15,10 @@
         <input type="hidden" asp-for="ClientId" />
         <div class="form-group">
             <label asp-for="ClientProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
+            @if(Model.ClientProfilePhoto is not null)
+            {
+                <img src="@Model.ClientProfilePhoto.PhotoUrl" />
+            }
             <input type="file" asp-for="ClientProfilePhoto" class="form-control" name="formFile"/>
             <span asp-validation-for="ClientProfilePhoto" class="text-danger"></span>
         </div>
@@ -47,12 +51,10 @@
             <input type="submit" value="Guardar" class="btn btn-primary" />
         </div>
     </form>
-
     @if(Model.ClientProfilePhoto is not null)
-    {
-        <img src="@Model.ClientProfilePhoto.PhotoUrl" />
-    }
-
+        {
+            <img src="@Model.ClientProfilePhoto.PhotoUrl" />
+        }
 </div>
 
 @if (User.IsInRole("administrator"))
