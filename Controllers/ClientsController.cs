@@ -241,13 +241,13 @@ namespace NutriFitWeb.Controllers
         [HttpPost, ActionName("EditClientSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, client")]
-        public async Task<IActionResult> EditClientSettingsPost(string? id)
+        public async Task<IActionResult> EditClientSettingsPost(string? id, IFormFile? formFile)
         ***REMOVED***
             if (string.IsNullOrEmpty(id))
             ***REMOVED***
                 return BadRequest();
         ***REMOVED***
-
+            var temp = formFile;
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
 

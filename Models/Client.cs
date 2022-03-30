@@ -35,9 +35,8 @@ namespace NutriFitWeb.Models
         public Gym? Gym ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Foto de Perfil")]
-        [FromForm]
         [NotMapped]
-        public IFormFile? Photo ***REMOVED*** get; set; ***REMOVED***
+        public string? Photo ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Nutricionista")]
         public Nutritionist? Nutritionist ***REMOVED*** get; set; ***REMOVED***
