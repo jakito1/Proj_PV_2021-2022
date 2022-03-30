@@ -5,7 +5,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<div class="col-md-6 profileDivs exercisesDiv">
+<div class="col-md-8 profileDivs exercisesDiv">
     <table class="formTables">
             <tr>
                 @if (User.IsInRole("client") && Model.Nutritionist is not null)
@@ -27,7 +27,7 @@
             <tr class="detailsTitle">
                 <th class="control-label listsItemTitle">Nome</th>
                 <td>
-                    <p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanName)</p>
+                    <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.NutritionPlanName)</p>
                 </td>
             </tr>
             <tr><th></th><td></td></tr>
@@ -38,14 +38,14 @@
                     {
                         <p class="itemsLeftMargin">N/A</p>
                     }else{
-                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
+                        <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
                     }
                 </td>
             </tr>
         </table>
         @if(Model.Meals is not null && Model.Meals.Count() != 0)
         {
-            <div id="_ShowMealsPartialList" class="mealDetailsDiv">
+            <div id="_ShowMealsPartialList" class="plansListDetailsDiv">
                 <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
             </div>
         }
