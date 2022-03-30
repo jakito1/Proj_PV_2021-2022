@@ -5,7 +5,7 @@
 ***REMOVED***
 
 <h1>@ViewData["Title"]</h1>
-<div class="col-md-6 profileDivs exercisesDiv">
+<div class="col-md-8 profileDivs exercisesDiv">
         <table class="formTables">
             <tr>
                 @if (User.IsInRole("client") && Model.Trainer is not null)
@@ -25,9 +25,9 @@
             </tr>
             <tr><th></th><td></td></tr>
             <tr class="detailsTitle">
-                <th class="control-label listsItemTitle">Nome</th>
+                <th class="control-label listsItemTitle ">Nome</th>
                 <td>
-                    <p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanName)</p>
+                    <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.TrainingPlanName)</p>
                 </td>
             </tr>
             <tr><th></th><td></td></tr>
@@ -38,7 +38,7 @@
                     ***REMOVED***
                         <p class="itemsLeftMargin">N/A</p>
                 ***REMOVED***else***REMOVED***
-                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
+                        <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
                 ***REMOVED***
                 </td>
             </tr>
@@ -46,7 +46,7 @@
     @if(Model.Exercises is not null && Model.Exercises.Count() != 0)
     ***REMOVED***
         <br />
-        <div id="_ShowExercisesPartialList" class="exercisesDetailsDiv">
+        <div id="_ShowExercisesPartialList" class="plansListDetailsDiv">
             <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
         </div>
 ***REMOVED***
