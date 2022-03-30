@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -14,13 +13,16 @@ namespace NutriFitWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
+        private readonly IPhotoManagement _photoManagement;
         public ClientsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
-            IIsUserInRoleByUserId isUserInRoleByUserId)
+            IIsUserInRoleByUserId isUserInRoleByUserId,
+            IPhotoManagement photoManagement)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = isUserInRoleByUserId;
+            _photoManagement = photoManagement;
     ***REMOVED***
 
         [Authorize(Roles = "gym, nutritionist, trainer")]
@@ -163,7 +165,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
-        
+
 
         [Authorize(Roles = "trainer, nutritionist")]
         public async Task<IActionResult> EditClientForTrainerAndNutritionist(int? id)
@@ -182,7 +184,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+            if (nutritionist is not null && nutritionist.Clients.Contains(client) ||
                 trainer is not null && trainer.Clients.Contains(client))
             ***REMOVED***
                 return View(client);
@@ -209,7 +211,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-            if (nutritionist is not null  && nutritionist.Clients.Contains(client) || 
+            if (nutritionist is not null && nutritionist.Clients.Contains(client) ||
                 trainer is not null && trainer.Clients.Contains(client))
             ***REMOVED***
                 if (await TryUpdateModelAsync<Client>(client, "",
@@ -218,7 +220,7 @@ namespace NutriFitWeb.Controllers
                     await _context.SaveChangesAsync();
                     return LocalRedirect(Url.Content("~/"));
             ***REMOVED***
-        ***REMOVED***            
+        ***REMOVED***
             return View(client);
     ***REMOVED***
 
@@ -231,6 +233,10 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             Client? client = await GetClient(id);
+            if (client.ClientProfilePhoto is not null)
+            ***REMOVED***
+                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadImage(client.ClientId);
+        ***REMOVED***
 
             if (client is null)
             ***REMOVED***
@@ -248,20 +254,42 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return BadRequest();
         ***REMOVED***
-            var temp = formFile;
+
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
+            Photo? oldPhoto = null;
+            if (clientToUpdate is not null && clientToUpdate.ClientProfilePhoto is not null)
+            ***REMOVED***
+                oldPhoto = clientToUpdate.ClientProfilePhoto;
+        ***REMOVED***
+            if (clientToUpdate is not null)
+            ***REMOVED***
+                clientToUpdate.ClientProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
+        ***REMOVED***
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height))
+                c => c.Weight, c => c.Height, c => c.ClientProfilePhoto))
             ***REMOVED***
+                if (oldPhoto is not null && clientToUpdate.ClientProfilePhoto is not null)
+                ***REMOVED***
+                    _context.Photos.Remove(oldPhoto);
+            ***REMOVED***
+                else if (clientToUpdate.ClientProfilePhoto is null)
+                ***REMOVED***
+                    clientToUpdate.ClientProfilePhoto = oldPhoto;
+            ***REMOVED***
+
                 await _context.SaveChangesAsync();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
                 ***REMOVED***
                     return RedirectToAction("ShowAllUsers", "Admins");
             ***REMOVED***
-                return LocalRedirect(Url.Content("~/"));
+                if (clientToUpdate.ClientProfilePhoto is not null)
+                ***REMOVED***
+                    clientToUpdate.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadImage(clientToUpdate.ClientId);
+            ***REMOVED***
+                return View(clientToUpdate);
         ***REMOVED***
             return View(clientToUpdate);
     ***REMOVED***
@@ -309,11 +337,11 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
-                return await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+                return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 
         private IOrderedQueryable<Client> GetClientsForGym(string? searchString, string? userID)
@@ -384,36 +412,5 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             return null;
     ***REMOVED***
-
-        public IActionResult UploadProfilePhoto()
-        ***REMOVED***
-            foreach (var file in Request.Form.Files)
-            ***REMOVED***
-                Photo photo = new Photo();
-                photo.ImageTitle = file.FileName;
-
-                MemoryStream m = new MemoryStream();
-                file.CopyTo(m);
-                photo.ImageData = m.ToArray();
-
-                m.Close();
-                m.Dispose();
-
-                _context.Photos.Add(photo);
-                _context.SaveChanges();
-        ***REMOVED***
-            return View("EditClientSettings");
-    ***REMOVED***
-
-        /*[HttpPost]
-        public ActionResult RetrieveImage()
-        ***REMOVED***
-            Photo photo = _context.Photos.Include(a=> Client).Where(a=> a.Id = );
-            string imageBase64Data = Convert.ToBase64String(photo.ImageData);
-            string imageDataURL = string.Format("data:image/jpg;base64,***REMOVED***0***REMOVED***", imageBase64Data);
-            ViewBag.ImageTitle = photo.ImageTitle;
-            ViewBag.ImageDataUrl = imageDataURL;
-            return View("EditClientSettings");
-    ***REMOVED****/
 ***REMOVED***
 ***REMOVED***

@@ -8,7 +8,7 @@ namespace NutriFitWeb.Models
     public class Meal : IValidatableObject
     ***REMOVED***
         public int MealId ***REMOVED*** get; set; ***REMOVED***
-        [Required (ErrorMessage = "Este campo é obrigatório.")]
+        [Required(ErrorMessage = "Este campo é obrigatório.")]
         public string? MealName ***REMOVED*** get; set; ***REMOVED***
         public string? MealDescription ***REMOVED*** get; set; ***REMOVED***
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** calorias.")]

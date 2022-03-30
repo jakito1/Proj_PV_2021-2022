@@ -208,7 +208,7 @@ namespace NutriFitWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("ShowTrainingPlans");
     ***REMOVED***
-        
+
         public async Task<IActionResult> VerifyClientEmail(string? clientEmail)
         ***REMOVED***
             List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
