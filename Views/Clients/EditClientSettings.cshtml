@@ -1,8 +1,9 @@
 ﻿@model NutriFitWeb.Models.Client
 @using NutriFitWeb.Models
 @using Microsoft.AspNetCore.Identity
+@using NutriFitWeb.Services
 @inject UserManager<UserAccountModel> UserManager
-
+@inject IPhotoManagement PhotoManagement
 @***REMOVED***
     ViewData["Title"] = "Editar perfil do Cliente";
 ***REMOVED***
@@ -52,9 +53,10 @@
         </div>
     </form>
     @if(Model.ClientProfilePhoto is not null)
-        ***REMOVED***
-            <img src="@Model.ClientProfilePhoto.PhotoUrl" />
     ***REMOVED***
+        <img src=@Model.ClientProfilePhoto.PhotoUrl; />
+***REMOVED***
+
 </div>
 
 @if (User.IsInRole("administrator"))
