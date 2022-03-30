@@ -34,10 +34,7 @@ namespace NutriFitWeb.Models
         [DisplayName("Ginásio")]
         public Gym? Gym { get; set; }
 
-        [DisplayName("Foto de Perfil")]
-        [FromForm]
-        [NotMapped]
-        public IFormFile? Photo { get; set; }
+        public Photo? ProfilePhoto { get; set; }
 
         [DisplayName("Nutricionista")]
         public Nutritionist? Nutritionist { get; set; }
