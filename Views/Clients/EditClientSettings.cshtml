@@ -14,9 +14,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ClientId" />
         <div class="form-group">
-            <label asp-for="Photo" class="control-label listsItemTitle">Foto de Perfil</label>
-            <input asp-for="Photo" class="form-control"/>
-            <span asp-validation-for="Photo" class="text-danger"></span>
+            <input type="submit" value="Guardar" class="btn btn-primary" />
         </div>
         <div class="form-group">
             <label asp-for="ClientFirstName" class="control-label listsItemTitle"></label>
@@ -43,17 +41,21 @@
             <input asp-for="Height" class="form-control" />
             <span asp-validation-for="Height" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Guardar" class="btn btn-primary" />
-        </div>
     </form>
-
+    @*@if(Model.ProfilePhoto is not null)
+    ***REMOVED***
+        <img src="@ViewBag.ImageDataUrl" />
+***REMOVED***else***REMOVED****@
+        <form asp-action="UploadProfilePhoto" asp-controller="Clients" method="post" enctype="multipart/form-data">
+            <input type="file" id="file" name="file" />
+            <button type="submit">Upload File(s)</button>
+        </form>
+    @****REMOVED****@
 </div>
 
 @if (User.IsInRole("administrator"))
 ***REMOVED***
     <div class="backBtnDiv">
-    
         <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
     </div>
 ***REMOVED***
