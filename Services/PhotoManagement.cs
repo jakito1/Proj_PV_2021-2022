@@ -15,7 +15,11 @@ namespace NutriFitWeb.Services
     ***REMOVED***
         public Photo UploadProfilePhoto(IFormFile? file)
         ***REMOVED***
-            if (file is not null && string.Equals(Path.GetExtension(file.FileName), ".gif"))
+            if (file is not null && (string.Equals(Path.GetExtension(file.FileName), ".gif") 
+                                        || string.Equals(Path.GetExtension(file.FileName), ".png") 
+                                        || string.Equals(Path.GetExtension(file.FileName), ".jpg")
+                                        || string.Equals(Path.GetExtension(file.FileName), ".jpeg"))
+               )
             ***REMOVED***
                 Photo photo = new();
                 photo.PhotoTitle = file.FileName;
