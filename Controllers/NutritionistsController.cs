@@ -13,13 +13,16 @@ namespace NutriFitWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
+        private readonly IPhotoManagement _photoManagement;
         public NutritionistsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
-            IIsUserInRoleByUserId inRoleByUserId)
+            IIsUserInRoleByUserId inRoleByUserId,
+            IPhotoManagement photoManagement)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
+            _photoManagement = photoManagement;
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
@@ -101,6 +104,10 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             Nutritionist? nutritionist = await GetNutritionist(id);
+            if (nutritionist is not null && nutritionist.NutritionistProfilePhoto is not null)
+            ***REMOVED***
+                nutritionist.NutritionistProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+        ***REMOVED***
 
             if (nutritionist is null)
             ***REMOVED***
@@ -112,7 +119,7 @@ namespace NutriFitWeb.Controllers
         [HttpPost, ActionName("EditNutritionistSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, nutritionist")]
-        public async Task<IActionResult> EditNutritionistSettingsPost(string? id)
+        public async Task<IActionResult> EditNutritionistSettingsPost(string? id, IFormFile? formFile)
         ***REMOVED***
             if (string.IsNullOrEmpty(id))
             ***REMOVED***
@@ -122,16 +129,38 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist? nutritionistToUpdate = await GetNutritionist(id);
 
+            Photo? oldPhoto = null;
+            if (nutritionistToUpdate is not null && nutritionistToUpdate.NutritionistProfilePhoto is not null)
+            ***REMOVED***
+                oldPhoto = nutritionistToUpdate.NutritionistProfilePhoto;
+        ***REMOVED***
+            if (nutritionistToUpdate is not null)
+            ***REMOVED***
+                nutritionistToUpdate.NutritionistProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
+        ***REMOVED***
 
             if (await TryUpdateModelAsync<Nutritionist>(nutritionistToUpdate, "",
-                n => n.NutritionistFirstName, n => n.NutritionistLastName))
+                n => n.NutritionistFirstName, n => n.NutritionistLastName, n => n.NutritionistProfilePhoto))
             ***REMOVED***
-                _context.SaveChanges();
+                if (oldPhoto is not null && nutritionistToUpdate.NutritionistProfilePhoto is not null)
+                ***REMOVED***
+                    _context.Photos.Remove(oldPhoto);
+            ***REMOVED***
+                else if (nutritionistToUpdate.NutritionistProfilePhoto is null)
+                ***REMOVED***
+                    nutritionistToUpdate.NutritionistProfilePhoto = oldPhoto;
+            ***REMOVED***
+
+                await _context.SaveChangesAsync();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
                 ***REMOVED***
                     return RedirectToAction("ShowAllUsers", "Admins");
             ***REMOVED***
-                return LocalRedirect(Url.Content("~/"));
+                if (nutritionistToUpdate.NutritionistProfilePhoto is not null)
+                ***REMOVED***
+                    nutritionistToUpdate.NutritionistProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+            ***REMOVED***
+                return View(nutritionistToUpdate);
         ***REMOVED***
             return View(nutritionistToUpdate);
     ***REMOVED***
@@ -141,11 +170,11 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
-                return _context.Nutritionist.FirstOrDefault(a => a.UserAccountModel.Id == id);
+                return _context.Nutritionist.Include(a => a.NutritionistProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Nutritionist.Include(a => a.NutritionistProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 
 ***REMOVED***

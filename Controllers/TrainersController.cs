@@ -13,13 +13,17 @@ namespace NutriFitWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
+        private readonly IPhotoManagement _photoManagement;
+
         public TrainersController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
-            IIsUserInRoleByUserId inRoleByUserId)
+            IIsUserInRoleByUserId inRoleByUserId,
+            IPhotoManagement photoManagement)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
+            _photoManagement = photoManagement;
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
@@ -104,6 +108,10 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             Trainer? trainer = await GetTrainer(id);
+            if (trainer is not null && trainer.TrainerProfilePhoto is not null)
+            ***REMOVED***
+                trainer.TrainerProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+        ***REMOVED***
 
             if (trainer is null)
             ***REMOVED***
@@ -115,7 +123,7 @@ namespace NutriFitWeb.Controllers
         [HttpPost, ActionName("EditTrainerSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, trainer")]
-        public async Task<IActionResult> EditTrainerSettingsPost(string? id)
+        public async Task<IActionResult> EditTrainerSettingsPost(string? id, IFormFile? formFile)
         ***REMOVED***
             if (string.IsNullOrEmpty(id))
             ***REMOVED***
@@ -125,15 +133,38 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer? trainerToUpdate = await GetTrainer(id);
 
-            if (await TryUpdateModelAsync<Trainer>(trainerToUpdate, "",
-                t => t.TrainerFirstName, t => t.TrainerLastName))
+            Photo? oldPhoto = null;
+            if (trainerToUpdate is not null && trainerToUpdate.TrainerProfilePhoto is not null)
             ***REMOVED***
-                _context.SaveChanges();
+                oldPhoto = trainerToUpdate.TrainerProfilePhoto;
+        ***REMOVED***
+            if (trainerToUpdate is not null)
+            ***REMOVED***
+                trainerToUpdate.TrainerProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
+        ***REMOVED***
+
+            if (await TryUpdateModelAsync<Trainer>(trainerToUpdate, "",
+                t => t.TrainerFirstName, t => t.TrainerLastName, t => t.TrainerProfilePhoto))
+            ***REMOVED***
+                if (oldPhoto is not null && trainerToUpdate.TrainerProfilePhoto is not null)
+                ***REMOVED***
+                    _context.Photos.Remove(oldPhoto);
+            ***REMOVED***
+                else if (trainerToUpdate.TrainerProfilePhoto is null)
+                ***REMOVED***
+                    trainerToUpdate.TrainerProfilePhoto = oldPhoto;
+            ***REMOVED***
+
+                await _context.SaveChangesAsync();
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
                 ***REMOVED***
                     return RedirectToAction("ShowAllUsers", "Admins");
             ***REMOVED***
-                return LocalRedirect(Url.Content("~/"));
+                if (trainerToUpdate.TrainerProfilePhoto is not null)
+                ***REMOVED***
+                    trainerToUpdate.TrainerProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+            ***REMOVED***
+                return View(trainerToUpdate);
         ***REMOVED***
             return View(trainerToUpdate);
     ***REMOVED***
@@ -143,11 +174,11 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
-                return _context.Trainer.FirstOrDefault(a => a.UserAccountModel.Id == id);
+                return _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

@@ -815,3 +815,18 @@ label.labelFour ***REMOVED***
     border-style: solid;
     border-radius: 1em !important;
 ***REMOVED***
+
+.profilePhoto***REMOVED***
+    max-width: 80%;
+    margin: 1em;
+    margin-bottom: 0em;
+    border-radius: 1em;
+***REMOVED***
+
+.profilePicMenu ***REMOVED***
+    max-width: 80%;
+***REMOVED***
+
+.marginFixChooseFile ***REMOVED***
+    margin-bottom: 3em;
+***REMOVED***

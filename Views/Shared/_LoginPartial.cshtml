@@ -63,7 +63,16 @@
     ***REMOVED***
 
         <li class="dropdown">
-            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=@***REMOVED***await PhotoManagement.LoadProfileImage(User.Identity.Name);***REMOVED*** alt="accountIcon"/></button>
+            @*@***REMOVED***
+                var profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
+        ***REMOVED***
+            @if(profilePic is not null)
+            ***REMOVED***
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=@***REMOVED***await PhotoManagement.LoadProfileImage(User.Identity.Name);***REMOVED*** alt="accountIcon"/></button>
+        ***REMOVED***else***REMOVED***
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/>)</button>
+        ***REMOVED****@
+            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
             <div class="dropdown-content fixAdminAccountSubmenu">
                 @if (User.IsInRole("trainer"))
                 ***REMOVED***
