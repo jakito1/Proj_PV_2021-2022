@@ -18,6 +18,8 @@ namespace NutriFitWeb.Models
         public Gym? Gym ***REMOVED*** get; set; ***REMOVED***
 
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
+        [DisplayName("Foto de Perfil")]
+        public Photo? NutritionistProfilePhoto ***REMOVED*** get; set; ***REMOVED***
 
         [JsonIgnore]
         public List<Client>? Clients ***REMOVED*** get; set; ***REMOVED***
