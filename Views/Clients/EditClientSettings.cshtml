@@ -1,8 +1,9 @@
 ﻿@model NutriFitWeb.Models.Client
 @using NutriFitWeb.Models
 @using Microsoft.AspNetCore.Identity
+@using NutriFitWeb.Services
 @inject UserManager<UserAccountModel> UserManager
-
+@inject IPhotoManagement PhotoManagement
 @{
     ViewData["Title"] = "Editar perfil do Cliente";
 }
@@ -47,10 +48,9 @@
             <input type="submit" value="Guardar" class="btn btn-primary" />
         </div>
     </form>
-
     @if(Model.ClientProfilePhoto is not null)
     {
-        <img src="@Model.ClientProfilePhoto.PhotoUrl" />
+        <img src=@Model.ClientProfilePhoto.PhotoUrl; />
     }
 
 </div>
