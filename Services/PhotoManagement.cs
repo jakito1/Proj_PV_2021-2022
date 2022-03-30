@@ -19,8 +19,8 @@ namespace NutriFitWeb.Services
         }
         public Photo UploadProfilePhoto(IFormFile? file)
         {
-            if (file is not null && (string.Equals(Path.GetExtension(file.FileName), ".gif") 
-                                        || string.Equals(Path.GetExtension(file.FileName), ".png") 
+            if (file is not null && (string.Equals(Path.GetExtension(file.FileName), ".gif")
+                                        || string.Equals(Path.GetExtension(file.FileName), ".png")
                                         || string.Equals(Path.GetExtension(file.FileName), ".jpg")
                                         || string.Equals(Path.GetExtension(file.FileName), ".jpeg"))
                )
@@ -45,9 +45,10 @@ namespace NutriFitWeb.Services
         public async Task<string> LoadProfileImage(string? userName)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(userName);
-            Trainer trainer = await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.NutritionistProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Gym? gym = await _context.Gym.Include(a => a.GymProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             Photo? photo = null;
 
@@ -63,13 +64,18 @@ namespace NutriFitWeb.Services
             {
                 photo = nutritionist.NutritionistProfilePhoto;
             }
+
+            if (gym is not null && gym.GymProfilePhoto is not null && gym.GymProfilePhoto.PhotoData is not null)
+            {
+                photo = gym.GymProfilePhoto;
+            }
+
             if (photo is not null && photo.PhotoData is not null)
             {
                 string imageBase64Data = Convert.ToBase64String(photo.PhotoData);
                 return string.Format("data:image/jpg;base64,{0}", imageBase64Data);
             }
-            return string.Empty;
-        }
-
+            return string.Empty;  
+        } 
     }
 }

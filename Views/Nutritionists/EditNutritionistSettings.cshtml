@@ -7,9 +7,18 @@
 <h1>@ViewData["Title"]</h1>
 <hr />
 <div class="col-md-4 profileDivs">
-    <form asp-action="EditNutritionistSettings">
+    <form asp-action="EditNutritionistSettings" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="NutritionistId" />
+        <div class="form-group">
+            <label asp-for="NutritionistProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
+            @if(Model.NutritionistProfilePhoto is not null)
+            {
+                <img class="profilePhoto" src="@Model.NutritionistProfilePhoto.PhotoUrl" />
+            }
+            <input type="file" asp-for="NutritionistProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
+            <span asp-validation-for="NutritionistProfilePhoto" class="text-danger"></span>
+        </div>
         <div class="form-group">
             <label asp-for="NutritionistFirstName" class="control-label listsItemTitle"></label>
             <input asp-for="NutritionistFirstName" class="form-control" />

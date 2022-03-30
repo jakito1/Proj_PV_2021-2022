@@ -815,3 +815,18 @@ label.labelFour {
     border-style: solid;
     border-radius: 1em !important;
 }
+
+.profilePhoto{
+    max-width: 80%;
+    margin: 1em;
+    margin-bottom: 0em;
+    border-radius: 1em;
+}
+
+.profilePicMenu {
+    max-width: 80%;
+}
+
+.marginFixChooseFile {
+    margin-bottom: 3em;
+}

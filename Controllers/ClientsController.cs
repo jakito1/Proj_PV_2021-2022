@@ -257,6 +257,7 @@ namespace NutriFitWeb.Controllers
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
+
             Photo? oldPhoto = null;
             if (clientToUpdate is not null && clientToUpdate.ClientProfilePhoto is not null)
             {

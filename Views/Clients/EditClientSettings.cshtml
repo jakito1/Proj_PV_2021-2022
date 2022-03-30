@@ -18,9 +18,9 @@
             <label asp-for="ClientProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
             @if(Model.ClientProfilePhoto is not null)
             {
-                <img src="@Model.ClientProfilePhoto.PhotoUrl" />
+                <img class="profilePhoto" src="@Model.ClientProfilePhoto.PhotoUrl" />
             }
-            <input type="file" asp-for="ClientProfilePhoto" class="form-control" name="formFile"/>
+            <input type="file" asp-for="ClientProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
             <span asp-validation-for="ClientProfilePhoto" class="text-danger"></span>
         </div>
         <div class="form-group">

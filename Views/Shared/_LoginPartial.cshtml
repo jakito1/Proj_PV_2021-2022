@@ -63,7 +63,16 @@
         }
 
         <li class="dropdown">
-            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=@{await PhotoManagement.LoadProfileImage(User.Identity.Name);} alt="accountIcon"/></button>
+            @*@{
+                var profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
+            }
+            @if(profilePic is not null)
+            {
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=@{await PhotoManagement.LoadProfileImage(User.Identity.Name);} alt="accountIcon"/></button>
+            }else{
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/>)</button>
+            }*@
+            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
             <div class="dropdown-content fixAdminAccountSubmenu">
                 @if (User.IsInRole("trainer"))
                 {
