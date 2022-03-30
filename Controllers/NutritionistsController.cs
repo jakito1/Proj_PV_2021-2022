@@ -64,10 +64,16 @@ namespace NutriFitWeb.Controllers
             Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Nutritionist? nutritionist = await _context.Nutritionist.
                 Include(a => a.Gym).
+                Include(a => a.Clients).
+                Include(a => a.NutritionPlans).
                 FirstOrDefaultAsync(a => a.NutritionistId == id);
 
             nutritionist.Gym = (nutritionist.Gym is null) ? gym : null;
-            _context.Nutritionist.Update(nutritionist);
+            if (nutritionist.Gym is null)
+            ***REMOVED***
+                nutritionist.Clients = null;
+                nutritionist.NutritionPlans = null;
+        ***REMOVED***
             await _context.SaveChangesAsync();
 
             return RedirectToAction("ShowNutritionists", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
