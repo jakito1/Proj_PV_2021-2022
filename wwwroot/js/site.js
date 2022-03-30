@@ -45,6 +45,18 @@ function UpdateCreateMeal() {
     })
 }
 
+function showDateOrWeekDayDiv(select) {
+    if (select.value == 1) {
+        document.getElementById('MealDateID').style.display = "block";
+        document.getElementById('MealWeekDayID').style.display = "none";
+        document.getElementById('MealWeekDaySelectID').value = ''
+    } else {
+        document.getElementById('MealDateID').style.display = "none";
+        document.getElementById('MealWeekDayID').style.display = "block";
+        document.getElementById('MealDateInputID').value = ''
+    }
+}
+
 function limitExerciseRepetitions(input) {
     if (Math.abs(input.value) > 0) {
         input.value = Math.abs(input.value);
