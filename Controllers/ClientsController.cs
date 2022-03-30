@@ -78,12 +78,35 @@ namespace NutriFitWeb.Controllers
             Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = await _context.Client.
             Include(a => a.Gym).
+            Include(a => a.Trainer).
+            Include(a => a.Trainer.TrainingPlans).
+            Include(a => a.Nutritionist).
+            Include(a => a.Nutritionist.NutritionPlans).
+            Include(a => a.TrainingPlanRequests).
+            Include(a => a.NutritionPlanRequests).
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && gym is not null && client.Gym is null ||
                 (client is not null && client.Gym is not null && _userManager.GetUserId(User) == client.Gym.UserAccountModel.Id))
             {
                 client.Gym = (client.Gym is null) ? gym : null;
+                if (client.Gym is null)
+                {
+                    if (client.Trainer is not null && client.Trainer.TrainingPlans is not null)
+                    {
+                        client.Trainer.TrainingPlans = client.Trainer.TrainingPlans.Where(a => a.Client != client).ToList();
+                    }
+                    if (client.Nutritionist is not null && client.Nutritionist.NutritionPlans is not null)
+                    {
+                        client.Nutritionist.NutritionPlans = client.Nutritionist.NutritionPlans.Where(a => a.Client != client).ToList();
+                    }
+                    client.Trainer = null;
+                    client.WantsTrainer = false;
+                    client.Nutritionist = null;
+                    client.WantsNutritionist = false;
+                    client.TrainingPlanRequests = null;
+                    client.NutritionPlanRequests = null;
+                }
                 _context.Client.Update(client);
                 await _context.SaveChangesAsync();
             }
@@ -97,11 +120,16 @@ namespace NutriFitWeb.Controllers
             Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = await _context.Client.
             Include(a => a.Trainer).
+            Include(a => a.Trainer.TrainingPlans).
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && trainer is not null && client.Gym == trainer.Gym && client.Trainer is null ||
                 (client is not null && client.Trainer is not null && _userManager.GetUserId(User) == client.Trainer.UserAccountModel.Id))
             {
+                if (client.Trainer is not null && client.Trainer.TrainingPlans is not null)
+                {
+                    client.Trainer.TrainingPlans = client.Trainer.TrainingPlans.Where(a => a.Client != client).ToList();
+                }
                 client.Trainer = (client.Trainer is null) ? trainer : null;
                 client.WantsTrainer = false;
                 _context.Client.Update(client);
@@ -116,12 +144,17 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = await _context.Client.
-            Include(a => a.Trainer).
+            Include(a => a.Nutritionist).
+            Include(a => a.Nutritionist.NutritionPlans).
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && nutritionist is not null && client.Gym == nutritionist.Gym && client.Nutritionist is null ||
                 (client is not null && client.Nutritionist is not null && _userManager.GetUserId(User) == client.Nutritionist.UserAccountModel.Id))
             {
+                if (client.Nutritionist is not null && client.Nutritionist.NutritionPlans is not null)
+                {
+                    client.Nutritionist.NutritionPlans = client.Nutritionist.NutritionPlans.Where(a => a.Client != client).ToList();
+                }
                 client.Nutritionist = (client.Nutritionist is null) ? nutritionist : null;
                 client.WantsNutritionist = false;
                 _context.Client.Update(client);
