@@ -31,9 +31,7 @@ namespace NutriFitWeb.Models
         [JsonIgnore]
         public TrainingPlan? TrainingPlan { get; set; }
 
-        [FromForm]
-        [NotMapped]
-        public IFormFileCollection? Files { get; set; }
+        public Photo? ExercisePhoto { get; set; }
 
     }
 

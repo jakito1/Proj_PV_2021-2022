@@ -233,9 +233,9 @@ namespace NutriFitWeb.Controllers
             }
 
             Client? client = await GetClient(id);
-            if (client.ClientProfilePhoto is not null)
+            if (client is not null && client.ClientProfilePhoto is not null)
             {
-                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadImage(client.ClientId);
+                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
             }
 
             if (client is null)
@@ -287,7 +287,7 @@ namespace NutriFitWeb.Controllers
                 }
                 if (clientToUpdate.ClientProfilePhoto is not null)
                 {
-                    clientToUpdate.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadImage(clientToUpdate.ClientId);
+                    clientToUpdate.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
                 }
                 return View(clientToUpdate);
             }

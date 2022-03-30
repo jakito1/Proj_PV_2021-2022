@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NutriFitWeb.Models
+@using NutriFitWeb.Services
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
+@inject IPhotoManagement PhotoManagement
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -61,7 +63,7 @@
         }
 
         <li class="dropdown">
-            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
+            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=@{await PhotoManagement.LoadProfileImage(User.Identity.Name);} alt="accountIcon"/></button>
             <div class="dropdown-content fixAdminAccountSubmenu">
                 @if (User.IsInRole("trainer"))
                 {

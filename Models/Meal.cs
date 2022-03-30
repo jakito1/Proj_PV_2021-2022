@@ -31,14 +31,11 @@ namespace NutriFitWeb.Models
 
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? MealURL { get; set; }
-        /*public List<Picture>? Pictures { get; set; }*/
 
         [JsonIgnore]
         public NutritionPlan? NutritionPlan { get; set; }
 
-        [FromForm]
-        [NotMapped]
-        public IFormFileCollection? Files { get; set; }
+        public Photo? MealProfilePhoto { get; set; }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

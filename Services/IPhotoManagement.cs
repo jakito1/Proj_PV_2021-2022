@@ -6,6 +6,7 @@ namespace NutriFitWeb.Services
     {
         Photo UploadProfilePhoto(IFormFile? file);
 
-        Task<string> LoadImage(int? clientId);
+        Task<string> LoadProfileImage(string? userName);
+
     }
 }
