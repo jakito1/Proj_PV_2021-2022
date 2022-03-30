@@ -10,12 +10,12 @@
 <h1>@ViewData["Title"]</h1>
 <hr />
 <div class="col-md-8 profileDivs">
-    <form asp-action="EditClientSettings">
+    <form asp-action="EditClientSettings" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ClientId" />
         <div class="form-group">
             <label asp-for="Photo" class="control-label listsItemTitle">Foto de Perfil</label>
-            <input asp-for="Photo" class="form-control"/>
+            <input type="file" asp-for="Photo" class="form-control" name="formFile"/>
             <span asp-validation-for="Photo" class="text-danger"></span>
         </div>
         <div class="form-group">
