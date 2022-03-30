@@ -2,7 +2,7 @@
 @using NutriFitWeb.Services
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<UserAccountModel> UserManager
-@inject IHasTrainerOrNutritionist HasTrainerOrNutritionist
+@inject IHasTrainerNutritionistGym HasTrainerNutritionistGym
 @{
     ViewData["Title"] = "Planos de Nutrição";
 }
@@ -26,7 +26,8 @@ else if (User.IsInRole("client"))
         <form asp-action="ShowNutritionPlans" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
-            @if (User.Identity is not null && !await HasTrainerOrNutritionist.ClientHasNutritionist(User.Identity.Name))
+            @if (User.Identity is not null && !await HasTrainerNutritionistGym.ClientHasNutritionist(User.Identity.Name) && 
+            await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
             {
                 <a class="createBtn" asp-controller="Clients" asp-action="RequestNutritionist" 
                 asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Nutricionista</a>
