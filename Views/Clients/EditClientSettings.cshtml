@@ -52,11 +52,6 @@
             <input type="submit" value="Guardar" class="btn btn-primary" />
         </div>
     </form>
-    @if(Model.ClientProfilePhoto is not null)
-    {
-        <img src=@Model.ClientProfilePhoto.PhotoUrl; />
-    }
-
 </div>
 
 @if (User.IsInRole("administrator"))
