@@ -20,7 +20,7 @@ namespace NutriFitWeb.Models
 
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? ExerciseURL ***REMOVED*** get; set; ***REMOVED***
-        public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED***
+        /*public List<Picture>? Pictures ***REMOVED*** get; set; ***REMOVED****/
 
         [Column(TypeName = "nvarchar(24)")]
         public ExerciseType? ExerciseType ***REMOVED*** get; set; ***REMOVED***

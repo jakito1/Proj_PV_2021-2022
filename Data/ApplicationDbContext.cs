@@ -26,7 +26,8 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.Exercise>? Exercise ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.NutritionPlan>? NutritionPlan ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Meal>? Meal ***REMOVED*** get; set; ***REMOVED***
-        public DbSet<NutriFitWeb.Models.Picture>? Picture ***REMOVED*** get; set; ***REMOVED***
+
+        public DbSet<NutriFitWeb.Models.Photo>? Photos ***REMOVED*** get; set; ***REMOVED***
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         ***REMOVED***
@@ -61,10 +62,10 @@ namespace NutriFitWeb.Data
             modelBuilder.Entity<Client>().HasMany(a => a.NutritionPlanRequests).WithOne(a => a.Client)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Exercise>().HasMany(a => a.Pictures).WithOne(a => a.Exercise)
+            /*modelBuilder.Entity<Exercise>().HasMany(a => a.Pictures).WithOne(a => a.Exercise)
                 .OnDelete(DeleteBehavior.ClientCascade);
             modelBuilder.Entity<Meal>().HasMany(a => a.Pictures).WithOne(a => a.Meal)
-                .OnDelete(DeleteBehavior.ClientCascade);
+                .OnDelete(DeleteBehavior.ClientCascade);*/
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
