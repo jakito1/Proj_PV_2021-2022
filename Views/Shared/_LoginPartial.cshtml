@@ -66,16 +66,17 @@
     ***REMOVED***
 
         <li class="dropdown">
-            @*@***REMOVED***
-                var profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
+            @***REMOVED***
+                string? profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
         ***REMOVED***
-            @if(profilePic is not null)
+            @if(profilePic is not null && !string.Equals(profilePic, ""))
             ***REMOVED***
-                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=@***REMOVED***await PhotoManagement.LoadProfileImage(User.Identity.Name);***REMOVED*** alt="accountIcon"/></button>
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">
+                    <div class="accountIconPicDiv"><img class="accountIconPic" src="@profilePic" alt="accountIcon"/></div>
+                </button>
         ***REMOVED***else***REMOVED***
-                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/>)</button>
-        ***REMOVED****@
-            <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
+        ***REMOVED***
             <div class="dropdown-content fixAdminAccountSubmenu">
                 @if (User.IsInRole("trainer"))
                 ***REMOVED***

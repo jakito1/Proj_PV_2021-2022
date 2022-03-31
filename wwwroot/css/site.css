@@ -235,11 +235,21 @@ h1 ***REMOVED***
     height: 1em;
     width: 1em;
     font-size: 1.4em;
+    border-radius: 1em;
 ***REMOVED***
 
 .accountIcon ***REMOVED***
     margin-top: 0em;
 ***REMOVED***
+
+.accountIconPic ***REMOVED***
+    height: 1em;
+    width: 1em;
+    font-size: 1.6em;
+    border-radius: 1em;
+***REMOVED***
+
+
 
 .notificationIcon:hover ***REMOVED***
     height: 1.1em;
@@ -373,7 +383,7 @@ div.titlesMargin ***REMOVED***
     border-radius: 1em;
     background-color: white;
     padding: 1em;
-    padding-top: 3em;
+    padding-top: 5em;
     padding-bottom: 1em;
     margin-bottom: 3em;
     color: black;
@@ -725,7 +735,7 @@ input.btn.btn-danger ***REMOVED***
     background-color: white;
     border-radius: 1em;
     padding: 1em;
-    margin-left: 1.2em;
+    margin-left: 1.3em;
     /*Brings everything to the front*/
     z-index: 1;
     width: 7em;
@@ -820,6 +830,12 @@ label.labelFour ***REMOVED***
     max-width: 80%;
     margin: 1em;
     margin-bottom: 0em;
+    border-radius: 1em;
+***REMOVED***
+
+.profilePhotoDiv***REMOVED***
+    border-style: solid;
+    border-color: lightgrey;
     border-radius: 1em;
 ***REMOVED***
 

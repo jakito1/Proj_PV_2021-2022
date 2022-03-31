@@ -67,11 +67,12 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             return View(await _context.Client.
-                Include(a => a.UserAccountModel).
-                Include(a => a.Gym).
-                Include(a => a.Trainer).
-                Include(a => a.Nutritionist).
-                FirstOrDefaultAsync(a => a.ClientId == id));
+                            Include(a => a.UserAccountModel).
+                            Include(a => a.Gym).
+                            Include(a => a.Trainer).
+                            Include(a => a.Nutritionist).
+                            Include(a => a.ClientProfilePhoto).
+                            FirstOrDefaultAsync(a => a.ClientId == id));
     ***REMOVED***
 
         [Authorize(Roles = "gym")]
