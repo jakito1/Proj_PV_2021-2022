@@ -1,4 +1,6 @@
 ﻿@model NutriFitWeb.Models.Trainer
+@using NutriFitWeb.Services
+@inject IPhotoManagement PhotoManagement
 
 @{
     ViewData["Title"] = "TrainerDetails";
@@ -7,6 +9,17 @@
 <h1 class="detailsTitle">Detalhes do Treinador</h1>
 
 <div class="col-md-6 profileDivs exercisesDiv">
+    <div class="form-group">
+        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.TrainerProfilePhoto)</p>
+        @{
+            string? profilePic = await PhotoManagement.LoadProfileImage(@Model.UserAccountModel.UserName);
+        }
+        @if(Model.TrainerProfilePhoto is not null)
+        {
+            <img class="profilePhoto" src="@profilePic" />
+        }
+    </div>
+    <br />
     <table class="formTables">
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(model => model.TrainerId)</p></th>

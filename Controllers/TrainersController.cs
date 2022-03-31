@@ -95,6 +95,7 @@ namespace NutriFitWeb.Controllers
             return View(await _context.Trainer.
                 Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
+                Include(a => a.TrainerProfilePhoto).
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync());
         }
