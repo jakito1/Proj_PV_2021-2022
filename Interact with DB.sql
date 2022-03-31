@@ -3,8 +3,8 @@ select * from dbo.AspNetUserRoles;
 select * from dbo.AspNetUsers;
 
 select * from dbo.Client;
-select * from dbo.Photos;
 select * from dbo.Trainer;
+select * from dbo.Photos;
 select * from dbo.Nutritionist;
 select * from dbo.TrainingPlan;
 select * from dbo.NutritionPlan;
