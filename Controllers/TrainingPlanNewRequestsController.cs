@@ -13,12 +13,12 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
-    public class TrainingPlanRequestsController : Controller
+    public class TrainingPlanNewRequestsController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
-        public TrainingPlanRequestsController(ApplicationDbContext context,
+        public TrainingPlanNewRequestsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager)
         ***REMOVED***
             _context = context;
@@ -26,7 +26,7 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         [Authorize(Roles = "client, trainer")]
-        public async Task<IActionResult> ShowTrainingPlanRequests(string? searchString, string? currentFilter, int? pageNumber)
+        public async Task<IActionResult> ShowTrainingPlanNewRequests(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
             if (searchString is not null)
             ***REMOVED***
@@ -45,33 +45,33 @@ namespace NutriFitWeb.Controllers
             
 
             HashSet<int>? clientIDs = null;
-            IQueryable<TrainingPlanRequest>? requests = null;
+            IQueryable<TrainingPlanNewRequest>? requests = null;
 
             if (trainer is not null && trainer.Clients is not null)
             ***REMOVED***
                 clientIDs = new(trainer.Clients.Select(a => a.ClientId));
-                requests = _context.TrainingPlanRequest.Where(a => clientIDs.Contains(a.Client.ClientId));
+                requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId));
         ***REMOVED***
 
             if (client is not null)
             ***REMOVED***
-                requests = _context.TrainingPlanRequest.Where(a => a.Client == client);
+                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client);
         ***REMOVED***
 
             if (!string.IsNullOrEmpty(searchString) && trainer is not null && trainer.Clients is not null)
             ***REMOVED***
                 clientIDs = new(trainer.Clients.Select(a => a.ClientId));
-                requests = _context.TrainingPlanRequest.Where(a => clientIDs.Contains(a.Client.ClientId)).
-                    Where(a => a.TrainingPlanRequestName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString));
+                requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId)).
+                    Where(a => a.TrainingPlanNewRequestName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString));
         ***REMOVED***
 
             if (!string.IsNullOrEmpty(searchString) && client is not null)
             ***REMOVED***
-                requests = _context.TrainingPlanRequest.Where(a => a.Client == client).Where(a => a.TrainingPlanRequestName.Contains(searchString));
+                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client).Where(a => a.TrainingPlanNewRequestName.Contains(searchString));
         ***REMOVED***
 
             int pageSize = 5;
-            return View(await PaginatedList<TrainingPlanRequest>.CreateAsync(requests.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<TrainingPlanNewRequest>.CreateAsync(requests.OrderByDescending(a => a.TrainingPlanNewRequestName).AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
         // GET: TrainingPlanRequests/Details/5
@@ -82,25 +82,26 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlanRequest = await _context.TrainingPlanRequest
-                .FirstOrDefaultAsync(m => m.TrainingPlanRequestId == id);
-            if (trainingPlanRequest == null)
+            var trainingPlanNewRequests = await _context.TrainingPlanNewRequests
+                .FirstOrDefaultAsync(m => m.TrainingPlanNewRequestId == id);
+            if (trainingPlanNewRequests == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequests);
     ***REMOVED***
 
 
-        public IActionResult CreateTrainingPlanRequest(int? trainingPlanId)
+        public IActionResult CreateTrainingPlanNewRequest(int? trainingPlanId)
         ***REMOVED***
             return View();
     ***REMOVED***
 
-        [HttpPost, ActionName("CreateTrainingPlanRequest")]
+        [HttpPost, ActionName("CreateTrainingPlanNewRequest")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTrainingPlanRequestPost([Bind("TrainingPlanRequestId,TrainingPlanRequestName, TrainingPlanRequestDescription")] TrainingPlanRequest trainingPlanRequest)
+        public async Task<IActionResult> CreateTrainingPlanNewRequestPost([Bind("TrainingPlanNewRequestId,TrainingPlanNewRequestName, TrainingPlanNewRequestDescription")] 
+            TrainingPlanNewRequest trainingPlanNewRequest)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
@@ -108,14 +109,14 @@ namespace NutriFitWeb.Controllers
                 Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 if (client is not null)
                 ***REMOVED***
-                    trainingPlanRequest.Client = client;
-                    trainingPlanRequest.TrainingPlanDateRequested = DateTime.Now;
-                    _context.Add(trainingPlanRequest);
+                    trainingPlanNewRequest.Client = client;
+                    trainingPlanNewRequest.TrainingPlanNewRequestDate = DateTime.Now;
+                    _context.Add(trainingPlanNewRequest);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowTrainingPlans", "TrainingPlans");
             ***REMOVED***                               
         ***REMOVED***
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequest);
     ***REMOVED***
 
         // GET: TrainingPlanRequests/Edit/5
@@ -126,12 +127,12 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlanRequest = await _context.TrainingPlanRequest.FindAsync(id);
-            if (trainingPlanRequest == null)
+            var trainingPlanNewRequest = await _context.TrainingPlanNewRequests.FindAsync(id);
+            if (trainingPlanNewRequest == null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequest);
     ***REMOVED***
 
         // POST: TrainingPlanRequests/Edit/5
@@ -139,9 +140,9 @@ namespace NutriFitWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrainingPlanRequestId,TrainingPlanRequestDescription,TrainingPlanDateRequested")] TrainingPlanRequest trainingPlanRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("TrainingPlanRequestId,TrainingPlanRequestDescription,TrainingPlanDateRequested")] TrainingPlanNewRequest trainingPlanNewRequest)
         ***REMOVED***
-            if (id != trainingPlanRequest.TrainingPlanRequestId)
+            if (id != trainingPlanNewRequest.TrainingPlanNewRequestId)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
@@ -150,12 +151,12 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 try
                 ***REMOVED***
-                    _context.Update(trainingPlanRequest);
+                    _context.Update(trainingPlanNewRequest);
                     await _context.SaveChangesAsync();
             ***REMOVED***
                 catch (DbUpdateConcurrencyException)
                 ***REMOVED***
-                    if (!TrainingPlanRequestExists(trainingPlanRequest.TrainingPlanRequestId))
+                    if (!TrainingPlanRequestExists(trainingPlanNewRequest.TrainingPlanNewRequestId))
                     ***REMOVED***
                         return NotFound();
                 ***REMOVED***
@@ -166,7 +167,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return RedirectToAction(nameof(Index));
         ***REMOVED***
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequest);
     ***REMOVED***
 
         // GET: TrainingPlanRequests/Delete/5
@@ -177,8 +178,8 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            var trainingPlanRequest = await _context.TrainingPlanRequest
-                .FirstOrDefaultAsync(m => m.TrainingPlanRequestId == id);
+            var trainingPlanRequest = await _context.TrainingPlanNewRequests
+                .FirstOrDefaultAsync(m => m.TrainingPlanNewRequestId == id);
             if (trainingPlanRequest == null)
             ***REMOVED***
                 return NotFound();
@@ -192,15 +193,15 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         ***REMOVED***
-            var trainingPlanRequest = await _context.TrainingPlanRequest.FindAsync(id);
-            _context.TrainingPlanRequest.Remove(trainingPlanRequest);
+            var trainingPlanRequest = await _context.TrainingPlanNewRequests.FindAsync(id);
+            _context.TrainingPlanNewRequests.Remove(trainingPlanRequest);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
     ***REMOVED***
 
         private bool TrainingPlanRequestExists(int id)
         ***REMOVED***
-            return _context.TrainingPlanRequest.Any(e => e.TrainingPlanRequestId == id);
+            return _context.TrainingPlanNewRequests.Any(e => e.TrainingPlanNewRequestId == id);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

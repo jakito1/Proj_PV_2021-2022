@@ -1,4 +1,4 @@
-﻿@model NutriFitWeb.Models.TrainingPlanRequest
+﻿@model NutriFitWeb.Models.TrainingPlanNewRequest
 
 @***REMOVED***
     ViewData["Title"] = "Delete";
@@ -12,21 +12,21 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanRequestDescription)
+            @Html.DisplayNameFor(model => model.TrainingPlanNewRequestDescription)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanRequestDescription)
+            @Html.DisplayFor(model => model.TrainingPlanNewRequestDescription)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanDateRequested)
+            @Html.DisplayNameFor(model => model.TrainingPlanNewRequestDate)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanDateRequested)
+            @Html.DisplayFor(model => model.TrainingPlanNewRequestDate)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="TrainingPlanRequestId" />
+        <input type="hidden" asp-for="TrainingPlanId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

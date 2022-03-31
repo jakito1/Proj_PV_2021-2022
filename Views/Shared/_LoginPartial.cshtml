@@ -37,7 +37,7 @@
                     @if (User.IsInRole("client"))
                     ***REMOVED***
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanRequests" asp-action="ShowTrainingPlanRequests">Pedidos Treino novo</a>
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Pedidos Treino novo</a>
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
                 ***REMOVED***
                 </div>
@@ -55,7 +55,7 @@
         else if (User.IsInRole("trainer"))
         ***REMOVED***
             <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlanRequests" asp-action="ShowTrainingPlanRequests">Pedidos Treino novo</a>
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Pedidos Treino novo</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>

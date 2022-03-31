@@ -10,6 +10,7 @@ select * from dbo.TrainingPlan;
 select * from dbo.NutritionPlan;
 
 select * from dbo.Exercise;
+select * from dbo.TrainingPlanRequest;
 delete from dbo.Photos;
 update dbo.Client set GymId = NULL where ClientId = 1;
 insert into dbo.Client (ClientId, Weight, Height) values (1, 100, 100);

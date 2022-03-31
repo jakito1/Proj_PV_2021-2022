@@ -1,5 +1,5 @@
 ﻿@using NutriFitWeb.Services
-@model PaginatedList<NutriFitWeb.Models.TrainingPlanRequest>
+@model PaginatedList<NutriFitWeb.Models.TrainingPlanNewRequest>
 @inject IHasTrainerNutritionistGym HasTrainerNutritionistGym
 @***REMOVED***
     ViewData["Title"] = "Index";
@@ -8,7 +8,7 @@
 @if (User.IsInRole("trainer"))
 ***REMOVED***
     <div class="titlesMargin">
-        <form asp-action="ShowTrainingPlanRequests" method="get">
+        <form asp-action="ShowTrainingPlanNewRequests" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
         </form>
@@ -18,7 +18,7 @@
 else if (User.IsInRole("client"))
 ***REMOVED***
     <div class="titlesMargin">
-        <form asp-action="ShowTrainingPlanRequests" method="get">
+        <form asp-action="ShowTrainingPlanNewRequests" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>                   
         </form>       
@@ -44,18 +44,18 @@ else if (User.IsInRole("client"))
 @foreach (var item in Model) ***REMOVED***
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanRequestName)
+                @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanRequestDescription)
+                @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanDateRequested)
+                @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TrainingPlanRequestId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TrainingPlanRequestId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TrainingPlanRequestId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TrainingPlanNewRequestId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TrainingPlanNewRequestId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TrainingPlanNewRequestId">Delete</a>
             </td>
         </tr>
 ***REMOVED***
@@ -68,7 +68,7 @@ else if (User.IsInRole("client"))
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
     ***REMOVED***
-        <a asp-action="ShowTrainingPlanRequests"
+        <a asp-action="ShowTrainingPlanNewRequests"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
@@ -78,7 +78,7 @@ else if (User.IsInRole("client"))
 
     @if (nextDisabled != "disabled")
     ***REMOVED***
-        <a asp-action="ShowTrainingPlanRequests"
+        <a asp-action="ShowTrainingPlanNewRequests"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
@@ -95,6 +95,6 @@ else if (User.IsInRole("client"))
 @if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
 ***REMOVED***
     <div class="backBtnDiv">
-        <a asp-action="ShowTrainingPlanRequests" class="backToListBtn">Voltar</a>
+        <a asp-action="ShowTrainingPlanNewRequests" class="backToListBtn">Voltar</a>
     </div>
 ***REMOVED***
