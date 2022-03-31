@@ -45,9 +45,9 @@ namespace NutriFitWeb.Models
         public bool WantsTrainer { get; set; } = false;
 
         public List<TrainingPlan>? TrainingPlans { get; set; }
-        public List<TrainingPlanRequest>? TrainingPlanRequests { get; set; }
+        public List<TrainingPlanNewRequest>? TrainingPlanRequests { get; set; }
         public List<NutritionPlan>? NutritionPlans { get; set; }
-        public List<NutritionPlanRequest>? NutritionPlanRequests { get; set; }
+        public List<NutritionPlanNewRequest>? NutritionPlanRequests { get; set; }
 
 
         public UserAccountModel? UserAccountModel { get; set; }

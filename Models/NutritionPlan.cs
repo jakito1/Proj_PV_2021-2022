@@ -15,6 +15,12 @@ namespace NutriFitWeb.Models
         public Nutritionist? Nutritionist { get; set; }
         public Client? Client { get; set; }
 
+        /*
+        public int? NutritionPlanRequestId { get; set; }
+
+        [ForeignKey("NutritionPlanRequestId")]
+        public NutritionPlanNewRequest? NutritionPlanRequest { get; set; }*/
+
         [NotMapped]
         [Remote(action: "VerifyClientEmail", controller: "NutritionPlans")]
         public string? ClientEmail { get; set; }

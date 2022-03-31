@@ -13,12 +13,12 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
-    public class TrainingPlanRequestsController : Controller
+    public class TrainingPlanNewRequestsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
-        public TrainingPlanRequestsController(ApplicationDbContext context,
+        public TrainingPlanNewRequestsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager)
         {
             _context = context;
@@ -26,7 +26,7 @@ namespace NutriFitWeb.Controllers
         }
 
         [Authorize(Roles = "client, trainer")]
-        public async Task<IActionResult> ShowTrainingPlanRequests(string? searchString, string? currentFilter, int? pageNumber)
+        public async Task<IActionResult> ShowTrainingPlanNewRequests(string? searchString, string? currentFilter, int? pageNumber)
         {
             if (searchString is not null)
             {
@@ -45,33 +45,33 @@ namespace NutriFitWeb.Controllers
             
 
             HashSet<int>? clientIDs = null;
-            IQueryable<TrainingPlanRequest>? requests = null;
+            IQueryable<TrainingPlanNewRequest>? requests = null;
 
             if (trainer is not null && trainer.Clients is not null)
             {
                 clientIDs = new(trainer.Clients.Select(a => a.ClientId));
-                requests = _context.TrainingPlanRequest.Where(a => clientIDs.Contains(a.Client.ClientId));
+                requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId));
             }
 
             if (client is not null)
             {
-                requests = _context.TrainingPlanRequest.Where(a => a.Client == client);
+                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client);
             }
 
             if (!string.IsNullOrEmpty(searchString) && trainer is not null && trainer.Clients is not null)
             {
                 clientIDs = new(trainer.Clients.Select(a => a.ClientId));
-                requests = _context.TrainingPlanRequest.Where(a => clientIDs.Contains(a.Client.ClientId)).
-                    Where(a => a.TrainingPlanRequestName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString));
+                requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId)).
+                    Where(a => a.TrainingPlanNewRequestName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString));
             }
 
             if (!string.IsNullOrEmpty(searchString) && client is not null)
             {
-                requests = _context.TrainingPlanRequest.Where(a => a.Client == client).Where(a => a.TrainingPlanRequestName.Contains(searchString));
+                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client).Where(a => a.TrainingPlanNewRequestName.Contains(searchString));
             }
 
             int pageSize = 5;
-            return View(await PaginatedList<TrainingPlanRequest>.CreateAsync(requests.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<TrainingPlanNewRequest>.CreateAsync(requests.OrderByDescending(a => a.TrainingPlanNewRequestName).AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: TrainingPlanRequests/Details/5
@@ -82,25 +82,26 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlanRequest = await _context.TrainingPlanRequest
-                .FirstOrDefaultAsync(m => m.TrainingPlanRequestId == id);
-            if (trainingPlanRequest == null)
+            var trainingPlanNewRequests = await _context.TrainingPlanNewRequests
+                .FirstOrDefaultAsync(m => m.TrainingPlanNewRequestId == id);
+            if (trainingPlanNewRequests == null)
             {
                 return NotFound();
             }
 
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequests);
         }
 
 
-        public IActionResult CreateTrainingPlanRequest(int? trainingPlanId)
+        public IActionResult CreateTrainingPlanNewRequest(int? trainingPlanId)
         {
             return View();
         }
 
-        [HttpPost, ActionName("CreateTrainingPlanRequest")]
+        [HttpPost, ActionName("CreateTrainingPlanNewRequest")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTrainingPlanRequestPost([Bind("TrainingPlanRequestId,TrainingPlanRequestName, TrainingPlanRequestDescription")] TrainingPlanRequest trainingPlanRequest)
+        public async Task<IActionResult> CreateTrainingPlanNewRequestPost([Bind("TrainingPlanNewRequestId,TrainingPlanNewRequestName, TrainingPlanNewRequestDescription")] 
+            TrainingPlanNewRequest trainingPlanNewRequest)
         {
             if (ModelState.IsValid)
             {
@@ -108,14 +109,14 @@ namespace NutriFitWeb.Controllers
                 Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 if (client is not null)
                 {
-                    trainingPlanRequest.Client = client;
-                    trainingPlanRequest.TrainingPlanDateRequested = DateTime.Now;
-                    _context.Add(trainingPlanRequest);
+                    trainingPlanNewRequest.Client = client;
+                    trainingPlanNewRequest.TrainingPlanNewRequestDate = DateTime.Now;
+                    _context.Add(trainingPlanNewRequest);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowTrainingPlans", "TrainingPlans");
                 }                               
             }
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequest);
         }
 
         // GET: TrainingPlanRequests/Edit/5
@@ -126,12 +127,12 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlanRequest = await _context.TrainingPlanRequest.FindAsync(id);
-            if (trainingPlanRequest == null)
+            var trainingPlanNewRequest = await _context.TrainingPlanNewRequests.FindAsync(id);
+            if (trainingPlanNewRequest == null)
             {
                 return NotFound();
             }
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequest);
         }
 
         // POST: TrainingPlanRequests/Edit/5
@@ -139,9 +140,9 @@ namespace NutriFitWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrainingPlanRequestId,TrainingPlanRequestDescription,TrainingPlanDateRequested")] TrainingPlanRequest trainingPlanRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("TrainingPlanRequestId,TrainingPlanRequestDescription,TrainingPlanDateRequested")] TrainingPlanNewRequest trainingPlanNewRequest)
         {
-            if (id != trainingPlanRequest.TrainingPlanRequestId)
+            if (id != trainingPlanNewRequest.TrainingPlanNewRequestId)
             {
                 return NotFound();
             }
@@ -150,12 +151,12 @@ namespace NutriFitWeb.Controllers
             {
                 try
                 {
-                    _context.Update(trainingPlanRequest);
+                    _context.Update(trainingPlanNewRequest);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TrainingPlanRequestExists(trainingPlanRequest.TrainingPlanRequestId))
+                    if (!TrainingPlanRequestExists(trainingPlanNewRequest.TrainingPlanNewRequestId))
                     {
                         return NotFound();
                     }
@@ -166,7 +167,7 @@ namespace NutriFitWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(trainingPlanRequest);
+            return View(trainingPlanNewRequest);
         }
 
         // GET: TrainingPlanRequests/Delete/5
@@ -177,8 +178,8 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var trainingPlanRequest = await _context.TrainingPlanRequest
-                .FirstOrDefaultAsync(m => m.TrainingPlanRequestId == id);
+            var trainingPlanRequest = await _context.TrainingPlanNewRequests
+                .FirstOrDefaultAsync(m => m.TrainingPlanNewRequestId == id);
             if (trainingPlanRequest == null)
             {
                 return NotFound();
@@ -192,15 +193,15 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var trainingPlanRequest = await _context.TrainingPlanRequest.FindAsync(id);
-            _context.TrainingPlanRequest.Remove(trainingPlanRequest);
+            var trainingPlanRequest = await _context.TrainingPlanNewRequests.FindAsync(id);
+            _context.TrainingPlanNewRequests.Remove(trainingPlanRequest);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TrainingPlanRequestExists(int id)
         {
-            return _context.TrainingPlanRequest.Any(e => e.TrainingPlanRequestId == id);
+            return _context.TrainingPlanNewRequests.Any(e => e.TrainingPlanNewRequestId == id);
         }
     }
 }

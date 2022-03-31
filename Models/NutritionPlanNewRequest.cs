@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 {
-    public class NutritionPlanRequest
+    public class NutritionPlanNewRequest
     {
-        public int NutritionPlanRequestId { get; set; }
+        public int NutritionPlanNewRequestId { get; set; }
         [Required(ErrorMessage = "Campo Obrigatório")]
-        public string? NutritionPlanRequestName { get; set; }
-        public string? NutritionPlanRequestDescription { get; set; }
-        public DateTime? NutritionPlanDateRequested { get; set; }
+        public string? NutritionPlanNewRequestName { get; set; }
+        public string? NutritionPlanNewRequestDescription { get; set; }
+        public DateTime? NutritionPlanNewRequestDate { get; set; }
         public int? NutritionPlanId { get; set; }
 
         [ForeignKey("NutritionPlanId")]
