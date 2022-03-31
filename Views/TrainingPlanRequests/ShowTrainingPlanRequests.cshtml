@@ -1,0 +1,100 @@
+﻿@using NutriFitWeb.Services
+@model PaginatedList<NutriFitWeb.Models.TrainingPlanRequest>
+@inject IHasTrainerNutritionistGym HasTrainerNutritionistGym
+@***REMOVED***
+    ViewData["Title"] = "Index";
+***REMOVED***
+
+@if (User.IsInRole("trainer"))
+***REMOVED***
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlanRequests" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+        </form>
+        
+    </div>
+***REMOVED***
+else if (User.IsInRole("client"))
+***REMOVED***
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlanRequests" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>                   
+        </form>       
+    </div>
+***REMOVED***
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Nome</p>
+            </th>
+            <th>
+                <p>Descrição</p>
+            </th>
+            <th>
+                <p>Data do Pedido</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) ***REMOVED***
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingPlanRequestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingPlanRequestDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingPlanDateRequested)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TrainingPlanRequestId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TrainingPlanRequestId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TrainingPlanRequestId">Delete</a>
+            </td>
+        </tr>
+***REMOVED***
+    </tbody>
+</table>
+@***REMOVED***
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+***REMOVED***
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowTrainingPlanRequests"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+***REMOVED***
+
+    @if (nextDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowTrainingPlanRequests"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+***REMOVED***
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    ***REMOVED***
+        <p class="noMoreResults">Não existem mais resultados</p>
+***REMOVED***
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+***REMOVED***
+    <div class="backBtnDiv">
+        <a asp-action="ShowTrainingPlanRequests" class="backToListBtn">Voltar</a>
+    </div>
+***REMOVED***

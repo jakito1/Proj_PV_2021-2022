@@ -16,7 +16,7 @@ namespace NutriFitWeb.Services
             _userManager = userManager;
     ***REMOVED***
 
-        public async Task<bool> ClientHasNutritionist(string? userName)
+        public async Task<bool> ClientHasNutritionistAndWants(string? userName)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(userName);
             Client? client = null;
@@ -26,12 +26,12 @@ namespace NutriFitWeb.Services
         ***REMOVED***
             if (client is not null && client.Nutritionist is null && !client.WantsNutritionist)
             ***REMOVED***
-                return false;
+                return true;
         ***REMOVED***
-            return true;
+            return false;
     ***REMOVED***
 
-        public async Task<bool> ClientHasTrainer(string? userName)
+        public async Task<bool> ClientHasTrainerAndWants(string? userName)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(userName);
             Client? client = null;
@@ -41,9 +41,9 @@ namespace NutriFitWeb.Services
         ***REMOVED***
             if (client is not null && client.Trainer is null && !client.WantsTrainer)
             ***REMOVED***
-                return false;
+                return true;
         ***REMOVED***
-            return true;
+            return false;
     ***REMOVED***
 
         public async Task<bool> ClientHasGym(string? userName)
@@ -59,6 +59,36 @@ namespace NutriFitWeb.Services
                 return false;
         ***REMOVED***
             return true;
+    ***REMOVED***
+
+        public async Task<bool> ClientHasNutritionist(string? userName)
+        ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(userName);
+            Client? client = null;
+            if (user is not null)
+            ***REMOVED***
+                client = await _context.Client.Include(a => a.Nutritionist).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+        ***REMOVED***
+            if (client is not null && client.Nutritionist is not null)
+            ***REMOVED***
+                return true;
+        ***REMOVED***
+            return false;
+    ***REMOVED***
+
+        public async Task<bool> ClientHasTrainer(string? userName)
+        ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(userName);
+            Client? client = null;
+            if (user is not null)
+            ***REMOVED***
+                client = await _context.Client.Include(a => a.Trainer).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+        ***REMOVED***
+            if (client is not null && client.Trainer is not null)
+            ***REMOVED***
+                return true;
+        ***REMOVED***
+            return false;
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

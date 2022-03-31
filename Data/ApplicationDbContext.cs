@@ -67,5 +67,7 @@ namespace NutriFitWeb.Data
             modelBuilder.Entity<Meal>().HasMany(a => a.Pictures).WithOne(a => a.Meal)
                 .OnDelete(DeleteBehavior.ClientCascade);*/
     ***REMOVED***
+
+        public DbSet<NutriFitWeb.Models.TrainingPlanRequest> TrainingPlanRequest ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 ***REMOVED***
