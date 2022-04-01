@@ -204,8 +204,14 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> DeleteNutritionPlanConfirmed(int id)
         ***REMOVED***
             NutritionPlan? nutritionPlan = await _context.NutritionPlan.FindAsync(id);
-            _context.NutritionPlan.Remove(nutritionPlan);
-            await _context.SaveChangesAsync();
+            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.NutritionPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            if (nutritionist is not null && nutritionPlan is not null && nutritionist.NutritionPlans.Contains(nutritionPlan))
+            ***REMOVED***
+                nutritionPlan.Nutritionist = null;
+                await _context.SaveChangesAsync();
+        ***REMOVED***          
             return RedirectToAction("ShowNutritionPlans");
     ***REMOVED***
 
