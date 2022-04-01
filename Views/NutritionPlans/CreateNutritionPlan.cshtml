@@ -44,10 +44,7 @@
                     <tr>
                         <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
                         <td>
-                            @***REMOVED***
-                                string clientEmail = (string)await ViewBag.ClientEmail;
-                        ***REMOVED***
-                            <p>@clientEmail</p>
+                            <p>@ViewData["ClientEmail"]</p>
                         </td>
                     </tr>
             ***REMOVED***
