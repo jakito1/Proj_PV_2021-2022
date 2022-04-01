@@ -14,7 +14,7 @@ namespace NutriFitWeb.Controllers
         private readonly string SessionKeyClientsUserAccounts;
         private readonly string SessionKeyCurrentTrainer;
         private readonly string SessionKeyTrainingPlanNewRequestId;
-        private readonly ApplicationDbContext _context; 
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
         public TrainingPlansController(ApplicationDbContext context,
@@ -126,7 +126,8 @@ namespace NutriFitWeb.Controllers
                 if (!string.IsNullOrEmpty(trainingPlan.ClientEmail))
                 {
                     clientAccount = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
-                } else if (trainingPlanNewRequestId is not null)
+                }
+                else if (trainingPlanNewRequestId is not null)
                 {
                     clientAccount = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel).FirstOrDefaultAsync();
                 }
@@ -136,12 +137,17 @@ namespace NutriFitWeb.Controllers
                     client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
                 }
 
-                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);               
+                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Clear();
 
-                if(trainingPlanNewRequestId is not null)
+                if (trainingPlanNewRequestId is not null)
                 {
                     trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
+                    TrainingPlanNewRequest? trainingPlanNewRequest = await _context.TrainingPlanNewRequests.FirstOrDefaultAsync(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId);
+                    if (trainingPlanNewRequest is not null)
+                    {
+                        trainingPlanNewRequest.TrainingPlanNewRequestDone = true;
+                    }
                 }
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
@@ -179,6 +185,13 @@ namespace NutriFitWeb.Controllers
             }
 
             TrainingPlan? trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+
+            TrainingPlanEditRequest? trainingPlanEditRequest = null;
+            if (trainingPlanToUpdate is not null)
+            {
+                trainingPlanEditRequest = await _context.TrainingPlanEditRequest.FirstOrDefaultAsync(a => a.TrainingPlan == trainingPlanToUpdate);
+            }
+
             if (await TryUpdateModelAsync<TrainingPlan>(trainingPlanToUpdate, "",
                 u => u.TrainingPlanName, u => u.TrainingPlanDescription))
             {
@@ -191,6 +204,13 @@ namespace NutriFitWeb.Controllers
                 _context.Exercise.RemoveRange(missingRows);
 
                 trainingPlanToUpdate.Exercises = exercises;
+                trainingPlanToUpdate.ToBeEdited = false;
+
+                if (trainingPlanEditRequest is not null)
+                {
+                    trainingPlanEditRequest.TrainingPlanEditRequestDone = true;
+                }
+
                 _context.SaveChanges();
                 return RedirectToAction("ShowTrainingPlans");
             }

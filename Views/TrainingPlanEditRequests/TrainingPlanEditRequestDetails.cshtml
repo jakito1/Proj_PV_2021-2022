@@ -1,0 +1,37 @@
+﻿@model NutriFitWeb.Models.TrainingPlanEditRequest
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingPlanEditRequestDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainingPlanEditRequestDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingPlanEditRequestDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainingPlanEditRequestDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingPlan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainingPlan.TrainingPlanName)
+        </dd>
+    </dl>
+</div>
+
+@if (User.IsInRole("trainer"))
+{
+    <a asp-controller="TrainingPlans" asp-action="EditTrainingPlan" type="submit" asp-route-id="@Model.TrainingPlan.TrainingPlanId" class="createBtn">Editar este plano de treino</a>
+}
+
+<div>
+    <a asp-action="ShowTrainingPlanEditRequests">Back to List</a>
+</div>

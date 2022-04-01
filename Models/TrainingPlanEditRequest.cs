@@ -16,6 +16,8 @@ namespace NutriFitWeb.Models
         [ForeignKey("TrainingPlanId")]
         public TrainingPlan? TrainingPlan { get; set; }
 
+        public bool TrainingPlanEditRequestDone { get; set; } = false;
+
         public Client? Client { get; set; }
     }
 }
