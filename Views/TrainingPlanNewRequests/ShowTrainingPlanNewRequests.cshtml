@@ -53,9 +53,17 @@ else if (User.IsInRole("client"))
                 @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TrainingPlanNewRequestId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TrainingPlanNewRequestId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TrainingPlanNewRequestId">Delete</a>
+                    @if (User.IsInRole("client"))
+                    {
+                        <a asp-action="EditTrainingPlanNewRequest" asp-route-id="@item.TrainingPlanNewRequestId">Edit</a>
+                    }
+                
+                <a asp-action="TrainingPlanNewRequestDetails" asp-route-id="@item.TrainingPlanNewRequestId">Details</a>
+                    @if (User.IsInRole("client"))
+                    {
+                         <a asp-action="DeleteTrainingPlanNewRequest" asp-route-id="@item.TrainingPlanNewRequestId">Delete</a>
+                    }
+               
             </td>
         </tr>
 }

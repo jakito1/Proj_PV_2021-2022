@@ -24,7 +24,12 @@
         </dd>
     </dl>
 </div>
+
+@if (User.IsInRole("trainer"))
+{
+    <a asp-controller="TrainingPlans" asp-action="CreateTrainingPlan" type="submit" asp-route-trainingPlanNewRequestId="@Model.TrainingPlanNewRequestId" class="createBtn">Criar este plano de treino</a>
+}
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.TrainingPlanId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ShowTrainingPlanNewRequests">Back to List</a>
 </div>

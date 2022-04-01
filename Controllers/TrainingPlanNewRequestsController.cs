@@ -38,44 +38,50 @@ namespace NutriFitWeb.Controllers
             }
 
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).Include(a => a.TrainingPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client client = await _context.Client.Include(a => a.TrainingPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             ViewData["CurrentFilter"] = searchString;
             
 
             HashSet<int>? clientIDs = null;
+            HashSet<int?>? trainingPlanIDs = null;
             IQueryable<TrainingPlanNewRequest>? requests = null;
 
             if (trainer is not null && trainer.Clients is not null)
             {
                 clientIDs = new(trainer.Clients.Select(a => a.ClientId));
-                requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId));
+                trainingPlanIDs = new(trainer.TrainingPlans.Select(a => a.TrainingPlanNewRequestId));
+                requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId)).Where(a => !trainingPlanIDs.Contains(a.TrainingPlanNewRequestId));
             }
 
             if (client is not null)
             {
-                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client);
+                trainingPlanIDs = new(client.TrainingPlans.Select(a => a.TrainingPlanNewRequestId));
+                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client).Where(a => !trainingPlanIDs.Contains(a.TrainingPlanNewRequestId));
             }
 
             if (!string.IsNullOrEmpty(searchString) && trainer is not null && trainer.Clients is not null)
             {
                 clientIDs = new(trainer.Clients.Select(a => a.ClientId));
+                trainingPlanIDs = new(trainer.TrainingPlans.Select(a => a.TrainingPlanNewRequestId));
                 requests = _context.TrainingPlanNewRequests.Where(a => clientIDs.Contains(a.Client.ClientId)).
-                    Where(a => a.TrainingPlanNewRequestName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString));
+                    Where(a => a.TrainingPlanNewRequestName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString)).
+                    Where(a => !trainingPlanIDs.Contains(a.TrainingPlanNewRequestId));
             }
 
             if (!string.IsNullOrEmpty(searchString) && client is not null)
             {
-                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client).Where(a => a.TrainingPlanNewRequestName.Contains(searchString));
+                trainingPlanIDs = new(client.TrainingPlans.Select(a => a.TrainingPlanNewRequestId));
+                requests = _context.TrainingPlanNewRequests.Where(a => a.Client == client).Where(a => a.TrainingPlanNewRequestName.Contains(searchString)).
+                    Where(a => !trainingPlanIDs.Contains(a.TrainingPlanNewRequestId));
             }
 
             int pageSize = 5;
             return View(await PaginatedList<TrainingPlanNewRequest>.CreateAsync(requests.OrderByDescending(a => a.TrainingPlanNewRequestName).AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
-        // GET: TrainingPlanRequests/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> TrainingPlanNewRequestDetails(int? id)
         {
             if (id == null)
             {
@@ -119,8 +125,7 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlanNewRequest);
         }
 
-        // GET: TrainingPlanRequests/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditTrainingPlanNewRequest(int? id)
         {
             if (id == null)
             {
@@ -135,12 +140,9 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlanNewRequest);
         }
 
-        // POST: TrainingPlanRequests/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("TrainingPlanNewRequest")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrainingPlanRequestId,TrainingPlanRequestDescription,TrainingPlanDateRequested")] TrainingPlanNewRequest trainingPlanNewRequest)
+        public async Task<IActionResult> EditTrainingPlanNewRequestPost(int id, [Bind("TrainingPlanRequestId,TrainingPlanRequestDescription,TrainingPlanDateRequested")] TrainingPlanNewRequest trainingPlanNewRequest)
         {
             if (id != trainingPlanNewRequest.TrainingPlanNewRequestId)
             {
@@ -170,8 +172,7 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlanNewRequest);
         }
 
-        // GET: TrainingPlanRequests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteTrainingPlanNewRequest(int? id)
         {
             if (id == null)
             {
@@ -188,10 +189,9 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlanRequest);
         }
 
-        // POST: TrainingPlanRequests/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteTrainingPlanNewRequest")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteTrainingPlanNewRequestConfirmed(int id)
         {
             var trainingPlanRequest = await _context.TrainingPlanNewRequests.FindAsync(id);
             _context.TrainingPlanNewRequests.Remove(trainingPlanRequest);

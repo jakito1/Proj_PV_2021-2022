@@ -11,6 +11,11 @@ namespace NutriFitWeb.Models
         public string? TrainingPlanEditRequestDescription { get; set; }
         public DateTime? TrainingPlanEditRequestDate { get; set; }
 
+        public int? TrainingPlanId { get; set; }
+
+        [ForeignKey("TrainingPlanId")]
+        public TrainingPlan? TrainingPlan { get; set; }
+
         public Client? Client { get; set; }
     }
 }
