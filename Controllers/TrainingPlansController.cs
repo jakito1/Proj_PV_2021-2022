@@ -189,7 +189,7 @@ namespace NutriFitWeb.Controllers
             TrainingPlanEditRequest? trainingPlanEditRequest = null;
             if (trainingPlanToUpdate is not null)
             ***REMOVED***
-                trainingPlanEditRequest = await _context.TrainingPlanEditRequest.OrderByDescending(a => a.TrainingPlanEditRequestDate).
+                trainingPlanEditRequest = await _context.TrainingPlanEditRequests.OrderByDescending(a => a.TrainingPlanEditRequestDate).
                     FirstOrDefaultAsync(a => a.TrainingPlan == trainingPlanToUpdate);
         ***REMOVED***
 
@@ -247,7 +247,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 trainingPlan.Trainer = null;
                 await _context.SaveChangesAsync();
-        ***REMOVED***           
+        ***REMOVED***
             return RedirectToAction("ShowTrainingPlans");
     ***REMOVED***
 
