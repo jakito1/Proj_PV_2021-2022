@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
@@ -11,6 +10,8 @@ namespace NutriFitWeb.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string? TrainingPlanNewRequestDescription ***REMOVED*** get; set; ***REMOVED***
         public DateTime? TrainingPlanNewRequestDate ***REMOVED*** get; set; ***REMOVED***
+
+        public bool TrainingPlanNewRequestDone ***REMOVED*** get; set; ***REMOVED*** = false;
 
         public Client? Client ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***

@@ -55,6 +55,11 @@ function showDateOrWeekDayDiv(select) ***REMOVED***
         document.getElementById('MealWeekDayID').style.display = "block";
         document.getElementById('MealDateInputID').value = ''
 ***REMOVED***
+***REMOVED*** 
+
+function hideButtonShowCreateTrainingPlanEditRequestPartial() ***REMOVED***
+    document.getElementById('planEditButton').style.display = "none";
+    document.getElementById('_CreateTrainingPlanEditRequestPartialItem').style.display = "block";
 ***REMOVED***
 
 function limitExerciseRepetitions(input) ***REMOVED***

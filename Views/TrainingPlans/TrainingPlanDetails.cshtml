@@ -1,4 +1,5 @@
 ﻿@model NutriFitWeb.Models.TrainingPlan
+@using NutriFitWeb.Models
 
 @***REMOVED***
     ViewData["Title"] = "Detalhes do Plano de Treino";
@@ -51,6 +52,23 @@
         </div>
 ***REMOVED***
 </div>
+
+@if (User.IsInRole("client") && !Model.ToBeEdited)
+***REMOVED***
+    <div style="display:block;" id="planEditButton">
+        <a class="createBtn" onclick="hideButtonShowCreateTrainingPlanEditRequestPartial()">Pedir Edição deste plano</a>
+    </div>
+
+    <div style="display:none;" id="_CreateTrainingPlanEditRequestPartialItem">
+        @***REMOVED***TrainingPlanEditRequest trainingPlanEditRequest = new() ***REMOVED*** TrainingPlanId = Model.TrainingPlanId ***REMOVED***;***REMOVED***
+        <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
+    </div>
+***REMOVED***
+
+
+
+
+
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
 </div>

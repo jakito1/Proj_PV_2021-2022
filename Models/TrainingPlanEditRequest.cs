@@ -16,6 +16,8 @@ namespace NutriFitWeb.Models
         [ForeignKey("TrainingPlanId")]
         public TrainingPlan? TrainingPlan ***REMOVED*** get; set; ***REMOVED***
 
+        public bool TrainingPlanEditRequestDone ***REMOVED*** get; set; ***REMOVED*** = false;
+
         public Client? Client ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***
 ***REMOVED***

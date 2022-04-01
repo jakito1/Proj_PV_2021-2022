@@ -76,7 +76,7 @@ namespace NutriFitWeb.Services
                 string imageBase64Data = Convert.ToBase64String(photo.PhotoData);
                 return string.Format("data:image/jpg;base64,***REMOVED***0***REMOVED***", imageBase64Data);
         ***REMOVED***
-            return string.Empty;  
-    ***REMOVED*** 
+            return string.Empty;
+    ***REMOVED***
 ***REMOVED***
 ***REMOVED***
