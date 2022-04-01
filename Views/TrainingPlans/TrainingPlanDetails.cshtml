@@ -56,10 +56,10 @@
 @if (User.IsInRole("client") && Model.Trainer is not null && !Model.ToBeEdited)
 {
     <div style="display:block;" id="planEditButton">
-        <a class="createBtn" onclick="hideButtonShowCreateTrainingPlanEditRequestPartial()">Pedir Edição deste plano</a>
+        <button onclick="hideButtonPlanEditRequestPartial()">Pedir Edição deste plano</button>
     </div>
 
-    <div style="display:none;" id="_CreateTrainingPlanEditRequestPartialItem">
+    <div style="display:none;" id="_CreateEditRequestPartialItem">
         @{TrainingPlanEditRequest trainingPlanEditRequest = new() { TrainingPlanId = Model.TrainingPlanId };}
         <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
     </div>

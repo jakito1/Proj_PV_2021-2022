@@ -189,7 +189,7 @@ namespace NutriFitWeb.Controllers
             TrainingPlanEditRequest? trainingPlanEditRequest = null;
             if (trainingPlanToUpdate is not null)
             {
-                trainingPlanEditRequest = await _context.TrainingPlanEditRequest.OrderByDescending(a => a.TrainingPlanEditRequestDate).
+                trainingPlanEditRequest = await _context.TrainingPlanEditRequests.OrderByDescending(a => a.TrainingPlanEditRequestDate).
                     FirstOrDefaultAsync(a => a.TrainingPlan == trainingPlanToUpdate);
             }
 
@@ -247,7 +247,7 @@ namespace NutriFitWeb.Controllers
             {
                 trainingPlan.Trainer = null;
                 await _context.SaveChangesAsync();
-            }           
+            }
             return RedirectToAction("ShowTrainingPlans");
         }
 

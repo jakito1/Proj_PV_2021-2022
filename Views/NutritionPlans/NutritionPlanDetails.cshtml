@@ -51,6 +51,19 @@
         }
     <br />
 </div>
+
+@if (User.IsInRole("client") && Model.Nutritionist is not null && !Model.ToBeEdited)
+{
+    <div style="display:block;" id="planEditButton">
+        <button onclick="hideButtonPlanEditRequestPartial()">Pedir Edição deste plano</button>
+    </div>
+
+    <div style="display:none;" id="_CreateEditRequestPartialItem">
+        @{NutritionPlanEditRequest nutritionPlanEditRequest = new() { NutritionPlanId = Model.NutritionPlanId };}
+        <partial name="~/Views/NutritionPlanEditRequests/_CreateNutritionPlanEditRequestPartial.cshtml" model=@nutritionPlanEditRequest/>
+    </div>
+}
+
 <div class="backBtnDiv">
     <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
 </div>

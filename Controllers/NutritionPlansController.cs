@@ -13,6 +13,7 @@ namespace NutriFitWeb.Controllers
         private readonly string SessionKeyMeals;
         private readonly string SessionKeyClientsUserAccounts;
         private readonly string SessionKeyCurrentNutritionist;
+        private readonly string SessionKeyNutritionPlanNewRequestId;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
@@ -24,6 +25,7 @@ namespace NutriFitWeb.Controllers
             SessionKeyMeals = "_Meals";
             SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
             SessionKeyCurrentNutritionist = "_CurrentNutritionist";
+            SessionKeyNutritionPlanNewRequestId = "_NutritionPlanNewRequestId";
         }
 
         [Authorize(Roles = "client, nutritionist")]
@@ -93,13 +95,18 @@ namespace NutriFitWeb.Controllers
             return View(nutritionPlan);
         }
 
-        public async Task<IActionResult> CreateNutritionPlan()
+        public async Task<IActionResult> CreateNutritionPlan(int? nutritionPlanNewRequestId)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist? nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            HttpContext.Session.Set<Nutritionist>(SessionKeyCurrentNutritionist, nutritionist);
-            HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts,
+            HttpContext.Session.Set(SessionKeyCurrentNutritionist, nutritionist);
+            HttpContext.Session.Set(SessionKeyClientsUserAccounts,
                 await _context.Client.Where(a => a.Nutritionist == nutritionist).Include(a => a.UserAccountModel).ToListAsync());
+            if (nutritionPlanNewRequestId is not null)
+            {
+                ViewBag.ClientEmail = _context.NutritionPlanNewRequests.Where(a => a.NutritionPlanNewRequestId == nutritionPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
+                HttpContext.Session.Set(SessionKeyNutritionPlanNewRequestId, nutritionPlanNewRequestId);
+            }
             return View();
         }
 
@@ -112,12 +119,17 @@ namespace NutriFitWeb.Controllers
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Nutritionist nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                int? nutritionPlanNewRequestId = HttpContext.Session.Get<int?>(SessionKeyNutritionPlanNewRequestId);
 
                 UserAccountModel? clientAccount = null;
 
                 if (!string.IsNullOrEmpty(nutritionPlan.ClientEmail))
                 {
                     clientAccount = await _userManager.FindByEmailAsync(nutritionPlan.ClientEmail);
+                }
+                else if (nutritionPlanNewRequestId is not null)
+                {
+                    clientAccount = await _context.NutritionPlanNewRequests.Where(a => a.NutritionPlanNewRequestId == nutritionPlanNewRequestId).Select(a => a.Client.UserAccountModel).FirstOrDefaultAsync();
                 }
 
                 if (nutritionist is not null && clientAccount is not null)
@@ -128,6 +140,15 @@ namespace NutriFitWeb.Controllers
                 List<Meal> meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
                 HttpContext.Session.Clear();
 
+                if (nutritionPlanNewRequestId is not null)
+                {
+                    nutritionPlan.NutritionPlanNewRequestId = nutritionPlanNewRequestId;
+                    NutritionPlanNewRequest? nutritionPlanNewRequest = await _context.NutritionPlanNewRequests.FirstOrDefaultAsync(a => a.NutritionPlanNewRequestId == nutritionPlanNewRequestId);
+                    if (nutritionPlanNewRequest is not null)
+                    {
+                        nutritionPlanNewRequest.NutritionPlanNewRequestDone = true;
+                    }
+                }
                 nutritionPlan.Meals = meals;
                 nutritionPlan.Nutritionist = nutritionist;
                 nutritionPlan.Client = client;
@@ -163,23 +184,38 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            NutritionPlan? NutritionPlanToUpdate = await _context.NutritionPlan.Include(a => a.Meals).FirstOrDefaultAsync(a => a.NutritionPlanId == id);
-            if (await TryUpdateModelAsync<NutritionPlan>(NutritionPlanToUpdate, "",
+            NutritionPlan? nutritionPlanToUpdate = await _context.NutritionPlan.Include(a => a.Meals).FirstOrDefaultAsync(a => a.NutritionPlanId == id);
+
+            NutritionPlanEditRequest? nutritionPlanEditRequest = null;
+            if (nutritionPlanToUpdate is not null)
+            {
+                nutritionPlanEditRequest = await _context.NutritionPlanEditRequests.OrderByDescending(a => a.NutritionPlanEditRequestDate).
+                    FirstOrDefaultAsync(a => a.NutritionPlan == nutritionPlanToUpdate);
+            }
+
+            if (await TryUpdateModelAsync<NutritionPlan>(nutritionPlanToUpdate, "",
                 u => u.NutritionPlanName, u => u.NutritionPlanDescription))
             {
                 List<Meal> meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
                 HttpContext.Session.Remove(SessionKeyMeals);
 
                 HashSet<int>? excludedIDs = new(meals.Select(a => a.MealId));
-                IEnumerable<Meal>? missingRows = NutritionPlanToUpdate.Meals.Where(a => !excludedIDs.Contains(a.MealId));
+                IEnumerable<Meal>? missingRows = nutritionPlanToUpdate.Meals.Where(a => !excludedIDs.Contains(a.MealId));
 
                 _context.Meal.RemoveRange(missingRows);
 
-                NutritionPlanToUpdate.Meals = meals;
+                nutritionPlanToUpdate.Meals = meals;
+                nutritionPlanToUpdate.ToBeEdited = false;
+
+                if (nutritionPlanEditRequest is not null)
+                {
+                    nutritionPlanEditRequest.NutritionPlanEditRequestDone = true;
+                }
+
                 _context.SaveChanges();
                 return RedirectToAction("ShowNutritionPlans");
             }
-            return View(NutritionPlanToUpdate);
+            return View(nutritionPlanToUpdate);
         }
 
         public async Task<IActionResult> DeleteNutritionPlan(int? id)
@@ -211,7 +247,7 @@ namespace NutriFitWeb.Controllers
             {
                 nutritionPlan.Nutritionist = null;
                 await _context.SaveChangesAsync();
-            }          
+            }
             return RedirectToAction("ShowNutritionPlans");
         }
 
