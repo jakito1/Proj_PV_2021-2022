@@ -13,7 +13,8 @@ namespace NutriFitWeb.Controllers
         private readonly string SessionKeyExercises;
         private readonly string SessionKeyClientsUserAccounts;
         private readonly string SessionKeyCurrentTrainer;
-        private readonly ApplicationDbContext _context;
+        private readonly string SessionKeyTrainingPlanNewRequestId;
+        private readonly ApplicationDbContext _context; 
         private readonly UserManager<UserAccountModel> _userManager;
 
         public TrainingPlansController(ApplicationDbContext context,
@@ -24,6 +25,7 @@ namespace NutriFitWeb.Controllers
             SessionKeyExercises = "_Exercises";
             SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
             SessionKeyCurrentTrainer = "_CurrentTrainer";
+            SessionKeyTrainingPlanNewRequestId = "_TrainingPlanNewRequestId";
     ***REMOVED***
 
         [Authorize(Roles = "client, trainer")]
@@ -93,13 +95,18 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlan);
     ***REMOVED***
 
-        public async Task<IActionResult> CreateTrainingPlan()
+        public async Task<IActionResult> CreateTrainingPlan(int? trainingPlanNewRequestId)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            HttpContext.Session.Set<Trainer>(SessionKeyCurrentTrainer, trainer);
-            HttpContext.Session.Set<List<Client>>(SessionKeyClientsUserAccounts,
+            HttpContext.Session.Set(SessionKeyCurrentTrainer, trainer);
+            HttpContext.Session.Set(SessionKeyClientsUserAccounts,
                 await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync());
+            if (trainingPlanNewRequestId is not null)
+            ***REMOVED***
+                ViewBag.ClientEmail = _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
+                HttpContext.Session.Set(SessionKeyTrainingPlanNewRequestId, trainingPlanNewRequestId);
+        ***REMOVED***
             return View();
     ***REMOVED***
 
@@ -112,12 +119,16 @@ namespace NutriFitWeb.Controllers
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                int? trainingPlanNewRequestId = HttpContext.Session.Get<int?>(SessionKeyTrainingPlanNewRequestId);
 
                 UserAccountModel? clientAccount = null;
 
                 if (!string.IsNullOrEmpty(trainingPlan.ClientEmail))
                 ***REMOVED***
                     clientAccount = await _userManager.FindByEmailAsync(trainingPlan.ClientEmail);
+            ***REMOVED*** else if (trainingPlanNewRequestId is not null)
+                ***REMOVED***
+                    clientAccount = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel).FirstOrDefaultAsync();
             ***REMOVED***
 
                 if (trainer is not null && clientAccount is not null)
@@ -125,9 +136,13 @@ namespace NutriFitWeb.Controllers
                     client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
             ***REMOVED***
 
-                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);               
                 HttpContext.Session.Clear();
 
+                if(trainingPlanNewRequestId is not null)
+                ***REMOVED***
+                    trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
+            ***REMOVED***
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
                 trainingPlan.Client = client;

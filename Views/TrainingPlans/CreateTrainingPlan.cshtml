@@ -33,6 +33,8 @@
                 </tr>
                 @if (User.IsInRole("trainer"))
                 ***REMOVED***
+                @if (ViewBag.ClientEmail is null)
+                ***REMOVED***
                     <tr>
                         <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
                         <td>
@@ -41,6 +43,19 @@
                             <span asp-validation-for="ClientEmail" class="text-danger"></span>
                         </td>
                     </tr>
+            ***REMOVED***else
+                ***REMOVED***
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            @***REMOVED***
+                                string clientEmail = (string)await ViewBag.ClientEmail;
+                        ***REMOVED***
+                            <p>@clientEmail</p>
+                        </td>
+                    </tr>
+            ***REMOVED***
+                
             ***REMOVED***
         </table>
     </form>

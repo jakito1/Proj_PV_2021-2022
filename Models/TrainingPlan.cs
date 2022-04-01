@@ -15,10 +15,10 @@ namespace NutriFitWeb.Models
         public Trainer? Trainer ***REMOVED*** get; set; ***REMOVED***
         public Client? Client ***REMOVED*** get; set; ***REMOVED***
 
-        public int? TrainingPlanEditRequestId ***REMOVED*** get; set; ***REMOVED***
+        public int? TrainingPlanNewRequestId ***REMOVED*** get; set; ***REMOVED***
 
-        [ForeignKey("TrainingPlanEditRequestId")]
-        public TrainingPlanEditRequest? TrainingPlanEditRequest ***REMOVED*** get; set; ***REMOVED***
+        [ForeignKey("TrainingPlanNewRequestId")]
+        public TrainingPlanNewRequest? TrainingPlanNewRequest ***REMOVED*** get; set; ***REMOVED***
 
         [NotMapped]
         [Remote(action: "VerifyClientEmail", controller: "TrainingPlans")]
