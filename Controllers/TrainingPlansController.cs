@@ -104,7 +104,7 @@ namespace NutriFitWeb.Controllers
                 await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync());
             if (trainingPlanNewRequestId is not null)
             {
-                ViewBag.ClientEmail = _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
+                @ViewData["ClientEmail"] = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
                 HttpContext.Session.Set(SessionKeyTrainingPlanNewRequestId, trainingPlanNewRequestId);
             }
             return View();
@@ -141,11 +141,11 @@ namespace NutriFitWeb.Controllers
                 HttpContext.Session.Clear();
 
                 if (trainingPlanNewRequestId is not null)
-                {
-                    trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
+                {                    
                     TrainingPlanNewRequest? trainingPlanNewRequest = await _context.TrainingPlanNewRequests.FirstOrDefaultAsync(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId);
                     if (trainingPlanNewRequest is not null)
                     {
+                        trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
                         trainingPlanNewRequest.TrainingPlanNewRequestDone = true;
                     }
                 }
