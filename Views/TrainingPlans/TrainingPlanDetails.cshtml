@@ -53,7 +53,7 @@
     }
 </div>
 
-@if (User.IsInRole("client") && !Model.ToBeEdited)
+@if (User.IsInRole("client") && Model.Trainer is not null && !Model.ToBeEdited)
 {
     <div style="display:block;" id="planEditButton">
         <a class="createBtn" onclick="hideButtonShowCreateTrainingPlanEditRequestPartial()">Pedir Edição deste plano</a>
@@ -64,10 +64,6 @@
         <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
     </div>
 }
-
-
-
-
 
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
