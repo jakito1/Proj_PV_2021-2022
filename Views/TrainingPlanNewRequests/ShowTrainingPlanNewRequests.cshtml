@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
+<h1>Pedidos de Plano Novo <img src=~/icons/dumbbellsIcon.svg/></h1>
+
 @if (User.IsInRole("trainer"))
 {
     <div class="titlesMargin">
@@ -35,7 +37,7 @@ else if (User.IsInRole("client"))
                 <p>Descrição</p>
             </th>
             <th class="thStyle">
-                <p>Data do Pedido</p>
+                <p>Data</p>
             </th>
             <th class="roundedCornerTableRight thStyle">
                 <p>Ações</p>
@@ -46,20 +48,20 @@ else if (User.IsInRole("client"))
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestName)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestName)</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDescription)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDescription)</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)</p>
             </td>
             <td>                   
-                <a asp-action="TrainingPlanNewRequestDetails" asp-route-id="@item.TrainingPlanNewRequestId">Detalhes</a>
-                    @if (User.IsInRole("client"))
-                    {
-                         <a asp-action="DeleteTrainingPlanNewRequest" asp-route-id="@item.TrainingPlanNewRequestId">Delete</a>
-                    }               
+                <a asp-action="TrainingPlanNewRequestDetails" asp-route-id="@item.TrainingPlanNewRequestId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
+                @if (User.IsInRole("client"))
+                {
+                    <a asp-action="DeleteTrainingPlanNewRequest" asp-route-id="@item.TrainingPlanNewRequestId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
+                }               
             </td>
         </tr>
 }
