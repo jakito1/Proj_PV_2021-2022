@@ -9,13 +9,13 @@
 <div class="col-md-8 profileDivs">
     <form asp-action="EditClientForTrainerAndNutritionist">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ClientId" />      
-
+        <input type="hidden" asp-for="ClientId" /> 
         <table class="formTables">
                 <tr>
                     <th class="alignTableTitles"><label asp-for="Weight" class="control-label listsItemTitle"></label></th>
                     <td>
                         <input asp-for="Weight" class="formsInput" />
+                        <br />
                         <span asp-validation-for="Weight" class="text-danger"></span>
                     </td>
                 </tr>
@@ -23,7 +23,34 @@
                     <th class="alignTableTitles"><label asp-for="Height" class="control-label listsItemTitle"></label></th>
                     <td>
                         <input asp-for="Height" class="formsInput" />
+                        <br />
                         <span asp-validation-for="Height" class="text-danger"></span>
+                    </td>
+                </tr>
+                @if(User.IsInRole("nutritionist"))***REMOVED***
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="LeanMass" class="control-label listsItemTitle"></label></th>
+                        <td>
+                            <input asp-for="LeanMass" class="formsInput" />
+                            <br />
+                            <span asp-validation-for="LeanMass" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="FatMass" class="control-label listsItemTitle"></label></th>
+                        <td>
+                            <input asp-for="FatMass" class="formsInput" />
+                            <br />
+                            <span asp-validation-for="FatMass" class="text-danger"></span>
+                        </td>
+                    </tr>
+            ***REMOVED***
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="OtherClientData" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="OtherClientData" class="formsInput" />
+                        <br />
+                        <span asp-validation-for="OtherClientData" class="text-danger"></span>
                     </td>
                 </tr>
         </table>

@@ -303,7 +303,20 @@ link***REMOVED***
     border-radius: 1em;
 ***REMOVED***
 
-.alignTableTitles***REMOVED***
+.thStyle ***REMOVED***
+    background-color: #00A2E8 !important;
+    color: white;
+***REMOVED***
+
+.roundedCornerTableLeft ***REMOVED***
+    border-top-left-radius: 1em;
+***REMOVED***
+
+.roundedCornerTableRight***REMOVED***
+    border-top-right-radius: 1em;
+***REMOVED***
+
+.alignTableTitles ***REMOVED***
     padding-bottom: 1em;
 ***REMOVED***
 
@@ -581,7 +594,7 @@ input.btn.btn-danger ***REMOVED***
     color: #00A2E8;
     width: 15em;
     height: 2.5em;
-    margin-bottom: 5em;
+    margin-bottom: 1em;
 ***REMOVED***
 
 .searchBtn ***REMOVED***
@@ -819,13 +832,6 @@ label.labelFour ***REMOVED***
     margin-bottom: 1em;
 ***REMOVED***
 
-.tableHeader ***REMOVED***
-    background-color: #00A2E8;
-    color: white;
-    border-style: solid;
-    border-radius: 1em !important;
-***REMOVED***
-
 .profilePhoto***REMOVED***
     max-width: 80%;
     margin: 1em;
@@ -845,4 +851,8 @@ label.labelFour ***REMOVED***
 
 .marginFixChooseFile ***REMOVED***
     margin-bottom: 3em;
+***REMOVED***
+
+.col-md-8***REMOVED***
+    margin: auto;
 ***REMOVED***

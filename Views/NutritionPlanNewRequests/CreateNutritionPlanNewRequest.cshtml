@@ -4,33 +4,38 @@
     ViewData["Title"] = "Create";
 ***REMOVED***
 
-<h1>Create</h1>
-
-<h4>NutritionPlanNewRequest</h4>
+<h2>Requisição de Novo Plano de Nutrição</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 profileDivs exercisesDiv">
         <form asp-action="CreateNutritionPlanNewRequest">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NutritionPlanNewRequestName" class="control-label"></label>
-                <input asp-for="NutritionPlanNewRequestName" class="form-control" />
-                <span asp-validation-for="NutritionPlanNewRequestName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NutritionPlanNewRequestDescription" class="control-label"></label>
-                <input asp-for="NutritionPlanNewRequestDescription" class="form-control" />
-                <span asp-validation-for="NutritionPlanNewRequestDescription" class="text-danger"></span>
-            </div>
+
+            <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="NutritionPlanNewRequestName" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="NutritionPlanNewRequestName" class="formsInput" />
+                        <br />
+                        <span asp-validation-for="NutritionPlanNewRequestName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="NutritionPlanNewRequestDescription" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="NutritionPlanNewRequestDescription" class="formsInput" />
+                        <br />
+                        <span asp-validation-for="NutritionPlanNewRequestDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="ShowNutritionPlanNewRequests">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-controller="NutritionPlans" asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
 </div>
 
 @section Scripts ***REMOVED***

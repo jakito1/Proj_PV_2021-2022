@@ -24,19 +24,19 @@ else if (User.IsInRole("client"))
     </div>
 ***REMOVED***
 
+<div class="col-md-8">
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th class="roundedCornerTableLeft thStyle">
                 Name
             </th>
-            <th>
+            <th class="thStyle">
                 Descrição
             </th>
-            <th>
+            <th class="roundedCornerTableRight thStyle">
                 Data do Pedido
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -62,6 +62,8 @@ else if (User.IsInRole("client"))
 ***REMOVED***
     </tbody>
 </table>
+</div>
+
 @***REMOVED***
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";

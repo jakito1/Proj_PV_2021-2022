@@ -10,12 +10,12 @@
 
 <div class="col-md-6 profileDivs exercisesDiv">
     <div class="form-group">
-        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientProfilePhoto)</p>
         @***REMOVED***
             string? profilePic = await PhotoManagement.LoadProfileImage(@Model.UserAccountModel.UserName);
     ***REMOVED***
         @if(Model.ClientProfilePhoto is not null)
         ***REMOVED***
+            <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientProfilePhoto)</p>
             <img class="profilePhoto" src="@profilePic" />
     ***REMOVED***
     </div>
@@ -141,6 +141,32 @@
             else
             ***REMOVED***
                 <td><p>@Html.DisplayFor(Model => Model.Height) centímetros</p></td>
+        ***REMOVED***
+        </tr>
+    </table>
+    <table class="formTables fixMeasurementsMargin">
+        <tr>
+            <th><p class="control-label listsItemTitle">MG</p></th>
+            <th></th>
+            <th><p class="control-label listsItemTitle">MM</p></th>
+        </tr>
+        <tr>
+            @if (Model.FatMass is null || Model.FatMass == 0)
+            ***REMOVED***
+                <td><p>N/A</p></td>
+        ***REMOVED***
+            else
+            ***REMOVED***
+                <td><p>@Html.DisplayFor(Model => Model.FatMass)%</p></td>
+        ***REMOVED***
+            <td></td>
+            @if (Model.LeanMass is null || Model.LeanMass == 0)
+            ***REMOVED***
+                <td><p>N/A</p></td>
+        ***REMOVED***
+            else
+            ***REMOVED***
+                <td><p>@Html.DisplayFor(Model => Model.LeanMass)%</p></td>
         ***REMOVED***
         </tr>
     </table>
