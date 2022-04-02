@@ -1,9 +1,8 @@
 ﻿@using NutriFitWeb.Services
 @model PaginatedList<NutriFitWeb.Models.TrainingPlanEditRequest>
 
-@***REMOVED***
-    ViewData["Title"] = "Index";
-***REMOVED***
+<h1>Pedidos de Edição de Plano <img src=~/icons/dumbbellsIcon.svg/></h1>
+
 
 @if (User.IsInRole("trainer"))
 ***REMOVED***
@@ -30,34 +29,36 @@ else if (User.IsInRole("client"))
     <thead>
         <tr>
             <th class="roundedCornerTableLeft thStyle">
-                Nome do Plano a Editar
+                <p>Nome</p>
             </th>
             <th class="thStyle">
-                Descrição
+                <p>Descrição</p>
             </th>
             <th class="thStyle">
-                Data do Pedido
+                <p>Data</p>
             </th>
-            <th class="roundedCornerTableRight thStyle">Ações</th>
+            <th class="roundedCornerTableRight thStyle">
+                <p>Ações</p>
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) ***REMOVED***
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlan.TrainingPlanName)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlan.TrainingPlanName)</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDescription)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDescription)</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDate)
+                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDate)</p>
             </td>
             <td>
-                <a asp-action="TrainingPlanEditRequestDetails" asp-route-id="@item.TrainingPlanEditRequestId">Detalhes</a>
+                <a asp-action="TrainingPlanEditRequestDetails" asp-route-id="@item.TrainingPlanEditRequestId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
                     @if (User.IsInRole("client"))
                     ***REMOVED***
-                        <a asp-action="DeleteTrainingPlanEditRequest" asp-route-id="@item.TrainingPlanEditRequestId">Delete</a>
+                        <a asp-action="DeleteTrainingPlanEditRequest" asp-route-id="@item.TrainingPlanEditRequestId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
                 ***REMOVED***                
             </td>
         </tr>
