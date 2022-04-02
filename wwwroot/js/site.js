@@ -57,9 +57,9 @@ function showDateOrWeekDayDiv(select) ***REMOVED***
 ***REMOVED***
 ***REMOVED*** 
 
-function hideButtonShowCreateTrainingPlanEditRequestPartial() ***REMOVED***
+function hideButtonPlanEditRequestPartial() ***REMOVED***
     document.getElementById('planEditButton').style.display = "none";
-    document.getElementById('_CreateTrainingPlanEditRequestPartialItem').style.display = "block";
+    document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
 ***REMOVED***
 
 function limitExerciseRepetitions(input) ***REMOVED***

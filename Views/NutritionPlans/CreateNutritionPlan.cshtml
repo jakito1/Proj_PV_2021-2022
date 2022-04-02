@@ -28,12 +28,26 @@
         </div>
         @if (User.IsInRole("nutritionist"))
         ***REMOVED***
-            <div>
-                <label asp-for="ClientEmail" class="control-label">Cliente &emsp; &nbsp;</label>
-                <input required="true" asp-for="ClientEmail" class="formsInput" />
-                <br />
-                <span asp-validation-for="ClientEmail" class="text-danger"></span>
-            </div>
+            @if (ViewBag.ClientEmail is null)
+                ***REMOVED***
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            <input required="true" asp-for="ClientEmail" class="formsInput" />
+                            <br />
+                            <span asp-validation-for="ClientEmail" class="text-danger"></span>
+                        </td>
+                    </tr>
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            <p>@ViewData["ClientEmail"]</p>
+                        </td>
+                    </tr>
+            ***REMOVED***
     ***REMOVED***
 
     </form>
