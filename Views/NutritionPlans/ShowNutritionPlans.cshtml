@@ -35,7 +35,7 @@ else if (User.IsInRole("client"))
             @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasNutritionist(User.Identity.Name) && 
             await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
             {
-                <a class="createBtn" asp-controller="Clients" asp-action="" 
+                <a class="createBtn" asp-controller="NutritionPlanNewRequests" asp-action="CreateNutritionPlanNewRequest" 
                 asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Novo Plano</a>
             }
             <a class="createBtn" asp-action="CreateNutritionPlan">Criar plano</a>

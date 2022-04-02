@@ -57,9 +57,9 @@ function showDateOrWeekDayDiv(select) {
     }
 } 
 
-function hideButtonShowCreateTrainingPlanEditRequestPartial() {
+function hideButtonPlanEditRequestPartial() {
     document.getElementById('planEditButton').style.display = "none";
-    document.getElementById('_CreateTrainingPlanEditRequestPartialItem').style.display = "block";
+    document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
 }
 
 function limitExerciseRepetitions(input) {

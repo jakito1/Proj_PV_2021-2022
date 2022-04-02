@@ -59,7 +59,7 @@
         <button onclick="hideButtonShowCreateTrainingPlanEditRequestPartial()">Pedir Edição deste plano</button>
     </div>
 
-    <div style="display:none;" id="_CreateTrainingPlanEditRequestPartialItem">
+    <div style="display:none;" id="_CreateEditRequestPartialItem">
         @{TrainingPlanEditRequest trainingPlanEditRequest = new() { TrainingPlanId = Model.TrainingPlanId };}
         <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
     </div>

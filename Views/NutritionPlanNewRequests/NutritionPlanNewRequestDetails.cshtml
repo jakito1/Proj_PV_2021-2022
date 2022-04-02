@@ -1,0 +1,41 @@
+﻿@model NutriFitWeb.Models.NutritionPlanNewRequest
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>NutritionPlanNewRequest</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NutritionPlanNewRequestName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NutritionPlanNewRequestName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NutritionPlanNewRequestDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NutritionPlanNewRequestDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NutritionPlanNewRequestDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NutritionPlanNewRequestDate)
+        </dd>
+    </dl>
+</div>
+
+@if (User.IsInRole("nutritionist"))
+{
+    <a asp-controller="NutritionPlans" asp-action="CreateNutritionPlan" type="submit" asp-route-nutritionPlanNewRequestId="@Model.NutritionPlanNewRequestId" class="createBtn">Criar este plano de nutrição</a>
+}
+
+<div>
+    <a asp-action="ShowNutritionPlanNewRequests">Back to List</a>
+</div>
