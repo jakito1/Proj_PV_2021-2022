@@ -92,3 +92,13 @@ function limitMealForm(input) ***REMOVED***
         input.value = 99999
 ***REMOVED***
 ***REMOVED***
+
+window.addEventListener("load", () => ***REMOVED***
+    const uri = document.getElementById("qrCodeData").getAttribute('data-url');
+    new QRCode(document.getElementById("qrCode"),
+        ***REMOVED***
+            text: uri,
+            width: 150,
+            height: 150
+    ***REMOVED***);
+***REMOVED***);
