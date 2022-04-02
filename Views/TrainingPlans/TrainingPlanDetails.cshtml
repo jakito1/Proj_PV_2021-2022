@@ -55,8 +55,8 @@
 
 @if (User.IsInRole("client") && Model.Trainer is not null && !Model.ToBeEdited)
 ***REMOVED***
-    <div style="display:block;" id="planEditButton">
-        <a class="createBtn" onclick="hideButtonShowCreateTrainingPlanEditRequestPartial()">Pedir Edição deste plano</a>
+    <div style="display:block;" id="planEditButton" class="backBtnDiv">
+        <button onclick="hideButtonShowCreateTrainingPlanEditRequestPartial()">Pedir Edição deste plano</button>
     </div>
 
     <div style="display:none;" id="_CreateTrainingPlanEditRequestPartialItem">
