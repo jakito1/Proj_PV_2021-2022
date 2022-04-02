@@ -37,6 +37,7 @@
                     @if (User.IsInRole("client"))
                     {
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Pedidos Treino novo</a>
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Pedidos Edição Treino</a>
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>

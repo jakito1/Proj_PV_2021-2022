@@ -4,33 +4,37 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>TrainingPlanNewRequest</h4>
+<h2>Requisição de Novo Plano de Treino</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 profileDivs exercisesDiv">
         <form asp-action="CreateTrainingPlanNewRequest">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanNewRequestName" class="control-label"></label>
-                <input asp-for="TrainingPlanNewRequestName" class="form-control" />
-                <span asp-validation-for="TrainingPlanNewRequestName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingPlanNewRequestDescription" class="control-label"></label>
-                <input asp-for="TrainingPlanNewRequestDescription" class="form-control" />
-                <span asp-validation-for="TrainingPlanNewRequestDescription" class="text-danger"></span>
-            </div>
+            <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainingPlanNewRequestName" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="TrainingPlanNewRequestName" class="formsInput" />
+                        <br />
+                        <span asp-validation-for="TrainingPlanNewRequestName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainingPlanNewRequestDescription" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="TrainingPlanNewRequestDescription" class="formsInput" />
+                        <br />
+                        <span asp-validation-for="TrainingPlanNewRequestDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="ShowTrainingPlanNewRequests">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-controller="TrainingPlans" asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
 </div>
 
 @section Scripts {

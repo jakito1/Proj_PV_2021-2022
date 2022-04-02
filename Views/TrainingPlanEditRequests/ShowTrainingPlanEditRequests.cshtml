@@ -25,19 +25,20 @@ else if (User.IsInRole("client"))
     </div>
 }
 
+<div class="col-md-8">
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th class="roundedCornerTableLeft thStyle">
                 Nome do Plano a Editar
             </th>
-            <th>
+            <th class="thStyle">
                 Descrição
             </th>
-            <th>
+            <th class="thStyle">
                 Data do Pedido
             </th>
-            <th></th>
+            <th class="roundedCornerTableRight thStyle">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -53,7 +54,7 @@ else if (User.IsInRole("client"))
                 @Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDate)
             </td>
             <td>
-                <a asp-action="TrainingPlanEditRequestDetails" asp-route-id="@item.TrainingPlanEditRequestId">Details</a> |
+                <a asp-action="TrainingPlanEditRequestDetails" asp-route-id="@item.TrainingPlanEditRequestId">Detalhes</a>
                     @if (User.IsInRole("client"))
                     {
                         <a asp-action="DeleteTrainingPlanEditRequest" asp-route-id="@item.TrainingPlanEditRequestId">Delete</a>
@@ -63,6 +64,8 @@ else if (User.IsInRole("client"))
 }
     </tbody>
 </table>
+</div>
+
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";

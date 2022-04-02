@@ -303,7 +303,20 @@ link{
     border-radius: 1em;
 }
 
-.alignTableTitles{
+.thStyle {
+    background-color: #00A2E8 !important;
+    color: white;
+}
+
+.roundedCornerTableLeft {
+    border-top-left-radius: 1em;
+}
+
+.roundedCornerTableRight{
+    border-top-right-radius: 1em;
+}
+
+.alignTableTitles {
     padding-bottom: 1em;
 }
 
@@ -581,7 +594,7 @@ input.btn.btn-danger {
     color: #00A2E8;
     width: 15em;
     height: 2.5em;
-    margin-bottom: 5em;
+    margin-bottom: 1em;
 }
 
 .searchBtn {
@@ -819,13 +832,6 @@ label.labelFour {
     margin-bottom: 1em;
 }
 
-.tableHeader {
-    background-color: #00A2E8;
-    color: white;
-    border-style: solid;
-    border-radius: 1em !important;
-}
-
 .profilePhoto{
     max-width: 80%;
     margin: 1em;
@@ -845,4 +851,8 @@ label.labelFour {
 
 .marginFixChooseFile {
     margin-bottom: 3em;
+}
+
+.col-md-8{
+    margin: auto;
 }

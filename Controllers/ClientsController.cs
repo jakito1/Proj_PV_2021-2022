@@ -216,7 +216,7 @@ namespace NutriFitWeb.Controllers
                 trainer is not null && trainer.Clients.Contains(client))
             {
                 if (await TryUpdateModelAsync<Client>(client, "",
-                c => c.Weight, c => c.Height))
+                c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData))
                 {
                     await _context.SaveChangesAsync();
                     return LocalRedirect(Url.Content("~/"));
@@ -271,7 +271,7 @@ namespace NutriFitWeb.Controllers
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height, c => c.ClientProfilePhoto))
+                c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData, c => c.ClientProfilePhoto))
             {
                 if (oldPhoto is not null && clientToUpdate.ClientProfilePhoto is not null)
                 {
