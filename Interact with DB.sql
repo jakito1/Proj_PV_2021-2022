@@ -4,6 +4,7 @@ select * from dbo.AspNetUsers;
 
 select * from dbo.Client;
 select * from dbo.Trainer;
+select * from dbo.Machines;
 select * from dbo.Photos;
 select * from dbo.Nutritionist;
 select * from dbo.NutritionPlan;

@@ -12,6 +12,7 @@ namespace NutriFitWeb.Models
         public string? MachineDescription { get; set; }
         public List<Exercise>? MachineExercises { get; set; }
         public Photo? MachineProfilePhoto { get; set; }
+        [Column(TypeName = "nvarchar(24)")]
         public MachineType? MachineType { get; set; }
         public string? MachineQRCodeUri { get; set; }
 

@@ -1,11 +1,7 @@
 ﻿@using NutriFitWeb.Services
 @model PaginatedList<NutriFitWeb.Models.Machine>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
+<h1>Máquinas</h1>
 
 <div class="titlesMargin">
     <form asp-action="ShowMachines" method="get">
@@ -18,19 +14,20 @@
     </form>
 </div>
 
+<div class="col-md-8">
 <table class="table">
     <thead>
         <tr>
-            <th>
-                Nome da máquina
+            <th class="roundedCornerTableLeft thStyle">
+                Nome
             </th>
-            <th>
-                Descrição da máquina
+            <th class="thStyle">
+                Descrição
             </th>
-            <th>
-                Tipo de Máquina
+            <th class="thStyle">
+                Tipo
             </th>
-            <th></th>
+            <th class="roundedCornerTableRight thStyle">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -38,23 +35,23 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MachineName)
+                    <p class="details">@Html.DisplayFor(modelItem => item.MachineName)</p>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MachineDescription)
+                    <p class="details">@Html.DisplayFor(modelItem => item.MachineDescription)</p>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MachineType)
+                    <p class="details">@Html.DisplayFor(modelItem => item.MachineType)</p>
                 </td>
                 <td>
                     @if (User.IsInRole("gym"))
                     {
-                        <a asp-action="EditMachine" asp-route-id="@item.MachineId">Edit</a>
+                        <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
                     }
-                    <a asp-action="MachineDetails" asp-route-id="@item.MachineId">Details</a>
+                    <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
                     @if (User.IsInRole("gym"))
                     {
-                        <a asp-action="DeleteMachine" asp-route-id="@item.MachineId">Delete</a>  
+                        <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>  
                     }
                    
                 </td>
@@ -62,6 +59,7 @@
         }
     </tbody>
 </table>
+</div>
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
