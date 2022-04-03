@@ -92,6 +92,16 @@ function limitMealForm(input) {
         input.value = 99999
     }
 }
+function limitPercentage(input) {
+    if (Math.abs(input.value) > 0) {
+        input.value = Math.abs(input.value);
+    } else {
+        input.value = null;
+    }
+    if (Math.abs(input.value) > 100) {
+        input.value = 100
+    }
+}
 
 window.addEventListener("load", () => {
     const uri = document.getElementById("qrCodeData").getAttribute('data-url');
