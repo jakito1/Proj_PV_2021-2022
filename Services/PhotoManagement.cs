@@ -79,9 +79,8 @@ namespace NutriFitWeb.Services
             return string.Empty;
     ***REMOVED***
 
-        public async Task<string> LoadPhotoById(int? id)
+        public string GetPhotoPath(Photo? photo)
         ***REMOVED***
-            Photo photo = await _context.Photos.FindAsync(id);
             if (photo is not null && photo.PhotoData is not null)
             ***REMOVED***
                 string imageBase64Data = Convert.ToBase64String(photo.PhotoData);
