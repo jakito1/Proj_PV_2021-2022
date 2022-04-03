@@ -1,0 +1,49 @@
+﻿@model NutriFitWeb.Models.Machine
+
+@***REMOVED***
+    ViewData["Title"] = "Edit";
+***REMOVED***
+
+<h1>Edit</h1>
+
+<h4>Machine</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MachineId" />
+            <div class="form-group">
+                <label asp-for="MachineName" class="control-label"></label>
+                <input asp-for="MachineName" class="form-control" />
+                <span asp-validation-for="MachineName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MachineDescription" class="control-label"></label>
+                <input asp-for="MachineDescription" class="form-control" />
+                <span asp-validation-for="MachineDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MachineType" class="control-label"></label>
+                <input asp-for="MachineType" class="form-control" />
+                <span asp-validation-for="MachineType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MachineQRCodeUri" class="control-label"></label>
+                <input asp-for="MachineQRCodeUri" class="form-control" />
+                <span asp-validation-for="MachineQRCodeUri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts ***REMOVED***
+    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+***REMOVED***

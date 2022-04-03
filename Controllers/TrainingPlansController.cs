@@ -242,12 +242,20 @@ namespace NutriFitWeb.Controllers
             TrainingPlan? trainingPlan = await _context.TrainingPlan.FindAsync(id);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer trainer = await _context.Trainer.Include(a => a.TrainingPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             if (trainer is not null && trainingPlan is not null && trainer.TrainingPlans.Contains(trainingPlan))
             ***REMOVED***
                 trainingPlan.Trainer = null;
                 await _context.SaveChangesAsync();
         ***REMOVED***
+
+            if (client is not null && trainingPlan is not null)
+            ***REMOVED***
+                _context.TrainingPlan.Remove(trainingPlan);
+                await _context.SaveChangesAsync();
+        ***REMOVED***
+
             return RedirectToAction("ShowTrainingPlans");
     ***REMOVED***
 
