@@ -49,7 +49,21 @@ else if (User.IsInRole("client"))
                 <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlan.TrainingPlanName)</p>
             </td>
             <td>
-                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDescription)</p>
+                    @if (item.TrainingPlanEditRequestDescription is null || item.TrainingPlanEditRequestDescription == "")
+                    {
+                        <p class="details"><b>N/A</b></p>
+                    }
+                    else
+                    {
+                        string? description = item.TrainingPlanEditRequestDescription;
+                        @if (description.Length > 20)
+                        {
+                            description = description.Substring(0, 20);
+                            <p class="details"><b>@description...</b></p>
+                        }else{
+                            <p class="details"><b>@description</b></p>
+                        }
+                    }
             </td>
             <td>
                 <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDate)</p>

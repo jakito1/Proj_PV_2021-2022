@@ -21,14 +21,14 @@
                 <tr>
                     <th class="alignTableTitles"><label asp-for="TrainingPlanNewRequestDescription" class="control-label listsItemTitle"></label></th>
                     <td>
-                        <input asp-for="TrainingPlanNewRequestDescription" class="formsInput" />
+                        <textarea asp-for="TrainingPlanNewRequestDescription" class="descriptionBox"></textarea>
                         <br />
                         <span asp-validation-for="TrainingPlanNewRequestDescription" class="text-danger"></span>
                     </td>
                 </tr>
             </table>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Enviar" class="btn btn-primary" />
             </div>
         </form>
     </div>

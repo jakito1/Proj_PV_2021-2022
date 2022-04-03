@@ -4,25 +4,30 @@
     ViewData["Title"] = "Remover";
 }
 
-<h1>Apagar Plano de Nutrição</h1>
+<h2>Tem a certeza que pretende apagar este plano de nutrição?</h2>
 
-<hr />
-<p><b>Tem a certeza que pretende apagar este plano de nutrição?</b></p>
-<p class="deleteB">Nome:</p>
-<p><b>@Html.DisplayFor(model => model.NutritionPlanName)</b></p>
-<p class="deleteB">Descrição:</p>
-
-@if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
-{
-    <p><b>N/A</b></p>
-}
-else
-{
-    <p><b>@Html.DisplayFor(model => model.NutritionPlanDescription)</b></p>
-}
+<table class="formTables">
+    <tr>
+        <th><p class="control-label listsItemTitle">Nome</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.NutritionPlanName)</b></p></td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Descrição</p></th>
+        <td>
+            @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
+            {
+                <p><b>N/A</b></p>
+            }
+            else
+            {
+                <p><b>@Html.DisplayFor(model => model.NutritionPlanDescription)</b></p>
+            }
+        </td>
+    </tr>
+</table>
 
 <form asp-action="DeleteNutritionPlan">
     <input type="hidden" asp-for="NutritionPlanId" />
-    <input type="submit" value="Delete" class="btn btn-danger" />
+    <input type="submit" value="Apagar" class="btn btn-danger" />
 </form>
 <a class="backToListBtn" asp-action="ShowNutritionPlans">Voltar</a>
