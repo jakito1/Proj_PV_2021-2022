@@ -20,7 +20,9 @@
     </table>
     @if (User.IsInRole("nutritionist"))
     {
-        <a asp-controller="NutritionPlans" asp-action="CreateNutritionPlan" type="submit" asp-route-nutritionPlanNewRequestId="@Model.NutritionPlanNewRequestId" class="createBtn">Criar este plano de nutrição</a>
+        <div class="form-group">
+            <a asp-controller="NutritionPlans" asp-action="CreateNutritionPlan" type="submit" asp-route-id="@Model.NutritionPlanNewRequestId" class="createBtn">Criar plano de nutrição</a>
+        </div>
     }
 </div>
 
