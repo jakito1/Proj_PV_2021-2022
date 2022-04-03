@@ -1,36 +1,40 @@
 ﻿@model NutriFitWeb.Models.Machine
 
-@***REMOVED***
-    ViewData["Title"] = "Edit";
-***REMOVED***
 
-<h1>Edit</h1>
+<h1>Editar Máquina</h1>
 
-<h4>Machine</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8 profileDivs">
         <form asp-action="EditMachine">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MachineId" />
             <div class="form-group">
-                <label asp-for="MachineName" class="control-label"></label>
-                <input asp-for="MachineName" class="form-control" />
-                <span asp-validation-for="MachineName" class="text-danger"></span>
+                <input type="submit" value="Editar" class="btn btn-primary" />
             </div>
-            <div class="form-group">
-                <label asp-for="MachineDescription" class="control-label"></label>
-                <input asp-for="MachineDescription" class="form-control" />
-                <span asp-validation-for="MachineDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MachineType" class="control-label"></label>
-                <select asp-for="MachineType" class="form-control" asp-items="@Html.GetEnumSelectList<MachineType>()"></select>
-                <span asp-validation-for="MachineType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
+            <table class="formTables">
+            <tr>
+                <th class="alignTableTitles"><label asp-for="MachineName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="MachineName" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="MachineName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="MachineDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="MachineDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="MachineDescription" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="MachineType" class="control-label">Tipo</label></th>
+                <td>
+                    <select asp-for="MachineType" class="formsInput" asp-items="@Html.GetEnumSelectList<MachineType>()"></select>
+                    <span asp-validation-for="MachineType" class="text-danger"></span>
+                </td>
+            </tr>
+            </table>
         </form>
         <div id="_CreateExercisePartialItem">
             <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" model=@Model.MachineExercise />
@@ -39,10 +43,9 @@
             <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" model=@Model.MachineExercises />
         </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="ShowMachines">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
 </div>
 
 @section Scripts ***REMOVED***

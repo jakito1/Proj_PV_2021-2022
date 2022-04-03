@@ -13,13 +13,16 @@ namespace NutriFitWeb.Controllers
         private readonly string SessionKeyExercises;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IPhotoManagement _photoManagement;
 
         public MachinesController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IPhotoManagement photoManagement)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             SessionKeyExercises = "_Exercises";
+            _photoManagement = photoManagement;
     ***REMOVED***
 
         [Authorize(Roles = "client, trainer, nutritionist, gym")]
@@ -92,6 +95,7 @@ namespace NutriFitWeb.Controllers
 
             Machine? machine = await _context.Machines
                 .Include(a => a.MachineExercises)
+                .Include(a => a.MachineProfilePhoto)
                 .FirstOrDefaultAsync(m => m.MachineId == id);
             if (machine == null)
             ***REMOVED***
@@ -110,17 +114,20 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         [HttpPost, ActionName("CreateMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateMachinePost([Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
+        public async Task<IActionResult> CreateMachinePost([Bind("MachineId, MachineProfilePhoto,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine, IFormFile? formFile)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+
                 if (gym is not null)
                 ***REMOVED***
                     List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                     machine.MachineExercises = exercises;
                     machine.MachineGym = gym;
+                    machine.MachineProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
                     _context.Add(machine);
                     await _context.SaveChangesAsync();
                     string baseURL = $"***REMOVED***Request.Scheme***REMOVED***://***REMOVED***Request.Host***REMOVED******REMOVED***Request.PathBase***REMOVED***";
