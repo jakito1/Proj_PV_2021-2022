@@ -34,6 +34,16 @@ namespace NutriFitWebTest
     ***REMOVED***
 
         [Fact]
+        public void Users_ReturnsViewResult()
+        ***REMOVED***
+            var controller = new HomeController(null, null, null, null);
+
+            var result = controller.Users();
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+    ***REMOVED***
+
+        [Fact]
         public void Error_ReturnsViewResult()
         ***REMOVED***
             var controller = new HomeController(new NullLogger<HomeController>(), null, null, null);
