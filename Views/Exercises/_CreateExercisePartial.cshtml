@@ -29,8 +29,8 @@
             <tr>
                 @if (User.IsInRole("client") || User.IsInRole("trainer"))
                 ***REMOVED***
-                    <th><label asp-for="ExerciseDuration" class="control-label labelThree">Duração</label></th>
-                    <th><label asp-for="ExerciseRepetitions" class="control-label labelTwo">Repetições</label></th>
+                    <th><label asp-for="ExerciseDuration" class="control-label">Duração</label></th>
+                    <th><label asp-for="ExerciseRepetitions" class="control-label">Repetições</label></th>
             ***REMOVED***
 
                 <th><label asp-for="ExerciseURL" class="control-label labelOne">Link do Exercício</label></th>
@@ -56,7 +56,7 @@
 
         <table class="formTables">
             <tr>
-                <th><label asp-for="ExerciseType" class="control-label labelOne">Tipo de Exercício</label></th>
+                <th><label asp-for="ExerciseType" class="control-label">Tipo de Exercício</label></th>
                 <th><label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label></th>
             </tr>
             <tr>
