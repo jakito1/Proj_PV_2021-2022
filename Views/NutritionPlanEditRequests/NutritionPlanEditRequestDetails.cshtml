@@ -1,37 +1,31 @@
 ﻿@model NutriFitWeb.Models.NutritionPlanEditRequest
 
-@{
-    ViewData["Title"] = "Details";
-}
+<h1>Detalhes do Pedido</h1>
 
-<div>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NutritionPlanEditRequestDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NutritionPlanEditRequestDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NutritionPlanEditRequestDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NutritionPlan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NutritionPlan.NutritionPlanName)
-        </dd>
-    </dl>
+<div class="col-md-6 profileDivs">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome do plano</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlan.NutritionPlanName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição do Pedido</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data do Pedido</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)</p></td>
+        </tr>
+    </table>
+    @if (User.IsInRole("nutritionist"))
+    {
+        <div class="form-group">
+            <a asp-controller="NutritionPlans" asp-action="EditNutritionPlan" type="submit" asp-route-id="@Model.NutritionPlan.NutritionPlanId" class="createBtn">Editar este plano de nutrição</a>
+        </div>
+        <br />
+    }
 </div>
 
-@if (User.IsInRole("nutritionist"))
-{
-    <a asp-controller="NutritionPlans" asp-action="EditNutritionPlan" type="submit" asp-route-id="@Model.NutritionPlan.NutritionPlanId" class="createBtn">Editar este plano de nutrição</a>
-}
-
-<div>
-    <a asp-action="ShowNutritionPlanEditRequests">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlanEditRequests" class="backToListBtn">Voltar</a>
 </div>

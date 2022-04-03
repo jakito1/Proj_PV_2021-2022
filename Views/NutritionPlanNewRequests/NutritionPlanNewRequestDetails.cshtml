@@ -1,41 +1,32 @@
 ﻿@model NutriFitWeb.Models.NutritionPlanNewRequest
 
-@{
-    ViewData["Title"] = "Details";
-}
 
-<h1>Details</h1>
+<h1>Detalhes do Pedido</h1>
 
-<div>
-    <h4>NutritionPlanNewRequest</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NutritionPlanNewRequestName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NutritionPlanNewRequestName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NutritionPlanNewRequestDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NutritionPlanNewRequestDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NutritionPlanNewRequestDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NutritionPlanNewRequestDate)
-        </dd>
-    </dl>
+<div class="col-md-6 profileDivs">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanNewRequestName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanNewRequestDescription)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanNewRequestDate)</p></td>
+        </tr>
+    </table>
+    @if (User.IsInRole("nutritionist"))
+    {
+        <a asp-controller="NutritionPlans" asp-action="CreateNutritionPlan" type="submit" asp-route-nutritionPlanNewRequestId="@Model.NutritionPlanNewRequestId" class="createBtn">Criar este plano de nutrição</a>
+    }
 </div>
 
-@if (User.IsInRole("nutritionist"))
-{
-    <a asp-controller="NutritionPlans" asp-action="CreateNutritionPlan" type="submit" asp-route-nutritionPlanNewRequestId="@Model.NutritionPlanNewRequestId" class="createBtn">Criar este plano de nutrição</a>
-}
-
-<div>
-    <a asp-action="ShowNutritionPlanNewRequests">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlanNewRequests" class="backToListBtn">Voltar</a>
 </div>
+
+
+

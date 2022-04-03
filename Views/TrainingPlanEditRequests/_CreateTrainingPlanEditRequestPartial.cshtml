@@ -1,21 +1,25 @@
 ﻿@model NutriFitWeb.Models.TrainingPlanEditRequest
 
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8 profileDivs exercisesDiv">
         <form asp-controller="TrainingPlanEditRequests" asp-action="CreateTrainingPlanEditRequest">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TrainingPlanId" />
+            <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainingPlanEditRequestDescription" class="control-label listsItemTitle">Descrição</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea asp-for="TrainingPlanEditRequestDescription" class="descriptionBox"></textarea>
+                        <span asp-validation-for="TrainingPlanEditRequestDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>            
             <div class="form-group">
-                <label asp-for="TrainingPlanEditRequestDescription" class="control-label"></label>
-                <input asp-for="TrainingPlanEditRequestDescription" class="form-control" />
-                <span asp-validation-for="TrainingPlanEditRequestDescription" class="text-danger"></span>
-            </div>            
-            <div class="form-group">
-                <input type="submit" value="Pedir Edição" class="btn btn-primary" />
+                <input type="submit" value="Enviar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
