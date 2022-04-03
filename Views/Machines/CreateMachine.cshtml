@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateMachine">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MachineName" class="control-label"></label>
@@ -24,25 +24,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="MachineType" class="control-label"></label>
-                <input asp-for="MachineType" class="form-control" />
+                <select asp-for="MachineType" class="form-control" asp-items="@Html.GetEnumSelectList<MachineType>()"></select>
                 <span asp-validation-for="MachineType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MachineQRCodeUri" class="control-label"></label>
-                <input asp-for="MachineQRCodeUri" class="form-control" />
-                <span asp-validation-for="MachineQRCodeUri" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+
+        <div id="_CreateExercisePartialItem">
+            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+        </div>
+        <div id="_ShowExercisesPartialList" class="exListMargin">
+            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
+        </div>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ShowMachines">Back to List</a>
 </div>
 
 @section Scripts ***REMOVED***
-    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
 ***REMOVED***

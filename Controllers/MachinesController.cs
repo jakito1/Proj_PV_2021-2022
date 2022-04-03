@@ -20,13 +20,13 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         // GET: Machines
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> ShowMachines()
         ***REMOVED***
             return View(await _context.Machines.ToListAsync());
     ***REMOVED***
 
         // GET: Machines/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> MachineDetails(int? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
@@ -44,7 +44,7 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         // GET: Machines/Create
-        public IActionResult Create()
+        public IActionResult CreateMachine()
         ***REMOVED***
             return View();
     ***REMOVED***
@@ -52,9 +52,9 @@ namespace NutriFitWeb.Controllers
         // POST: Machines/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("CreateMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
+        public async Task<IActionResult> CreateMachinePost([Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
@@ -66,7 +66,7 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         // GET: Machines/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditMachine(int? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
@@ -84,9 +84,9 @@ namespace NutriFitWeb.Controllers
         // POST: Machines/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("EditMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
+        public async Task<IActionResult> EditMachinePost(int id, [Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
         ***REMOVED***
             if (id != machine.MachineId)
             ***REMOVED***
@@ -117,7 +117,7 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         // GET: Machines/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteMachine(int? id)
         ***REMOVED***
             if (id == null)
             ***REMOVED***
@@ -135,9 +135,9 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         // POST: Machines/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteMachineConfirmed(int id)
         ***REMOVED***
             var machine = await _context.Machines.FindAsync(id);
             _context.Machines.Remove(machine);

@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreateMachine">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -20,9 +20,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MachineType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MachineQRCodeUri)
             </th>
             <th></th>
         </tr>
@@ -40,12 +37,9 @@
                 @Html.DisplayFor(modelItem => item.MachineType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MachineQRCodeUri)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MachineId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MachineId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MachineId">Delete</a>
+                <a asp-action="EditMachine" asp-route-id="@item.MachineId">Edit</a> |
+                <a asp-action="MachineDetails" asp-route-id="@item.MachineId">Details</a> |
+                <a asp-action="DeleteMachine" asp-route-id="@item.MachineId">Delete</a>
             </td>
         </tr>
 ***REMOVED***
