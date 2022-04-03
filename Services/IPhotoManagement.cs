@@ -8,5 +8,7 @@ namespace NutriFitWeb.Services
 
         Task<string> LoadProfileImage(string? userName);
 
+        Task<string> LoadPhotoById(int? id);
+
 ***REMOVED***
 ***REMOVED***
