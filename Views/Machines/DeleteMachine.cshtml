@@ -29,17 +29,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MachineType)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MachineQRCodeUri)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MachineQRCodeUri)
-        </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-action="DeleteMachine">
         <input type="hidden" asp-for="MachineId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="ShowMachines">Back to List</a>
     </form>
 </div>

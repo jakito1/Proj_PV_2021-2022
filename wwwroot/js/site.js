@@ -92,6 +92,16 @@ function limitMealForm(input) ***REMOVED***
         input.value = 99999
 ***REMOVED***
 ***REMOVED***
+function limitPercentage(input) ***REMOVED***
+    if (Math.abs(input.value) > 0) ***REMOVED***
+        input.value = Math.abs(input.value);
+***REMOVED*** else ***REMOVED***
+        input.value = null;
+***REMOVED***
+    if (Math.abs(input.value) > 100) ***REMOVED***
+        input.value = 100
+***REMOVED***
+***REMOVED***
 
 window.addEventListener("load", () => ***REMOVED***
     const uri = document.getElementById("qrCodeData").getAttribute('data-url');
