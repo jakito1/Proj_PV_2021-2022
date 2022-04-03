@@ -32,6 +32,8 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.TrainingPlanEditRequest> TrainingPlanEditRequests { get; set; }
         public DbSet<NutriFitWeb.Models.NutritionPlanNewRequest> NutritionPlanNewRequests { get; set; }
         public DbSet<NutriFitWeb.Models.NutritionPlanEditRequest> NutritionPlanEditRequests { get; set; }
+
+        public DbSet<NutriFitWeb.Models.Machine> Machines { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -70,6 +72,7 @@ namespace NutriFitWeb.Data
             modelBuilder.Entity<Meal>().HasOne(a => a.MealProfilePhoto).WithOne()
                 .OnDelete(DeleteBehavior.ClientCascade);*/
         }
+        
 
 
 

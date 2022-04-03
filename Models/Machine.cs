@@ -10,7 +10,6 @@ namespace NutriFitWeb.Models
         public string? MachineName { get; set; }
         public string? MachineDescription { get; set; }
         public List<Exercise>? MachineExercises { get; set; }
-        public ExerciseMuscles? MachineMuscles { get; set; }
         public Photo? MachineProfilePhoto { get; set; }
         public MachineType? MachineType { get; set; }
         public string? MachineQRCodeUri { get; set; }
