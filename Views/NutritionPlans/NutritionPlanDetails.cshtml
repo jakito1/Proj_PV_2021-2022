@@ -43,7 +43,7 @@
                 </td>
             </tr>
         </table>
-        @if(Model.Meals is not null && Model.Meals.Count() != 0)
+        @if(Model.Meals is not null && Model.Meals.Any())
         ***REMOVED***
             <div id="_ShowMealsPartialList" class="plansListDetailsDiv">
                 <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />

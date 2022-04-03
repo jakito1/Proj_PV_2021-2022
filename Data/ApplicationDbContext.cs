@@ -66,13 +66,14 @@ namespace NutriFitWeb.Data
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Client>().HasMany(a => a.NutritionPlanRequests).WithOne(a => a.Client)
                 .OnDelete(DeleteBehavior.Cascade);
-            /*
-            modelBuilder.Entity<Exercise>().HasOne(a => a.ExercisePhoto).WithOne()
-                .OnDelete(DeleteBehavior.ClientCascade);
-            modelBuilder.Entity<Meal>().HasOne(a => a.MealProfilePhoto).WithOne()
-                .OnDelete(DeleteBehavior.ClientCascade);*/
+
+            modelBuilder.Entity<Machine>().HasMany(a => a.MachineExercises).WithOne(a => a.Machine)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Gym>().HasMany(a => a.Machines).WithOne(a => a.MachineGym)
+                .OnDelete(DeleteBehavior.Cascade);
+
     ***REMOVED***
-        
+
 
 
 

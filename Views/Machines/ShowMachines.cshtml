@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Machine>
+﻿@using NutriFitWeb.Services
+@model PaginatedList<NutriFitWeb.Models.Machine>
 
 @***REMOVED***
     ViewData["Title"] = "Index";
@@ -6,42 +7,96 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="CreateMachine">Create New</a>
-</p>
+<div class="titlesMargin">
+    <form asp-action="ShowMachines" method="get">
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Nome da máquina" class="searchBar" />
+        <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+        @if (User.IsInRole("gym"))
+        ***REMOVED***
+            <a class="createBtn" asp-action="CreateMachine">Criar Máquina</a>
+    ***REMOVED***        
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MachineName)
+                Nome da máquina
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MachineDescription)
+                Descrição da máquina
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MachineType)
+                Tipo de Máquina
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) ***REMOVED***
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MachineName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MachineDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MachineType)
-            </td>
-            <td>
-                <a asp-action="EditMachine" asp-route-id="@item.MachineId">Edit</a> |
-                <a asp-action="MachineDetails" asp-route-id="@item.MachineId">Details</a> |
-                <a asp-action="DeleteMachine" asp-route-id="@item.MachineId">Delete</a>
-            </td>
-        </tr>
-***REMOVED***
+        @foreach (var item in Model)
+        ***REMOVED***
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineType)
+                </td>
+                <td>
+                    @if (User.IsInRole("gym"))
+                    ***REMOVED***
+                        <a asp-action="EditMachine" asp-route-id="@item.MachineId">Edit</a>
+                ***REMOVED***
+                    <a asp-action="MachineDetails" asp-route-id="@item.MachineId">Details</a>
+                    @if (User.IsInRole("gym"))
+                    ***REMOVED***
+                        <a asp-action="DeleteMachine" asp-route-id="@item.MachineId">Delete</a>  
+                ***REMOVED***
+                   
+                </td>
+            </tr>
+    ***REMOVED***
     </tbody>
 </table>
+
+@***REMOVED***
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+***REMOVED***
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowMachines"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+***REMOVED***
+
+    @if (nextDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowMachines"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+***REMOVED***
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    ***REMOVED***
+        <p class="noMoreResults">Não existem mais resultados</p>
+***REMOVED***
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+***REMOVED***
+    <div class="backBtnDiv">
+        <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
+    </div>
+***REMOVED***

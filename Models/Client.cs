@@ -25,11 +25,11 @@ namespace NutriFitWeb.Models
 
         [DisplayName("Altura")]
         public double? Height ***REMOVED*** get; set; ***REMOVED***
-        
+
         [DisplayName("Massa Magra")]
         [Range(0, 100)]
         public double? LeanMass ***REMOVED*** get; set; ***REMOVED***
-        
+
         [DisplayName("Massa Gorda")]
         [Range(0, 100)]
         public double? FatMass ***REMOVED*** get; set; ***REMOVED***

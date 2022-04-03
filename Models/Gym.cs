@@ -18,6 +18,7 @@ namespace NutriFitWeb.Models
         public List<Client>? Clients ***REMOVED*** get; set; ***REMOVED***
         public List<Nutritionist>? Nutritionists ***REMOVED*** get; set; ***REMOVED***
         public List<Trainer>? Trainers ***REMOVED*** get; set; ***REMOVED***
+        public List<Machine>? Machines ***REMOVED*** get; set; ***REMOVED***
 
 ***REMOVED***
 ***REMOVED***
