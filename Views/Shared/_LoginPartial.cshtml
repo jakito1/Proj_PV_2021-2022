@@ -34,47 +34,50 @@
             <li class="dropdown">
                 <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Planos</button>
                 <div class="dropdown-content plansSubMenuFix">
-                    @if (User.IsInRole("client"))
-                    ***REMOVED***
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Pedidos Treino novo</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Pedidos Edição Treino</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanNewRequests" asp-action="ShowNutritionPlanNewRequests">Pedidos Nutrição novo</a>
-                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanEditRequests" asp-action="ShowNutritionPlanEditRequests">Pedidos Edição Nutrição</a>
-                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Pedidos</button>
+                <div class="dropdown-content requestsSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Treino Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Edição Treino</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanNewRequests" asp-action="ShowNutritionPlanNewRequests">Nutrição Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanEditRequests" asp-action="ShowNutritionPlanEditRequests">Edição Nutrição</a>
                 </div>
             </li>
     ***REMOVED***
         else if (User.IsInRole("nutritionist"))
         ***REMOVED***
-            <li>
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlanNewRequests" asp-action="ShowNutritionPlanNewRequests">Pedidos Nutrição novo</a>
-            </li>
-            <li>
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlanEditRequests" asp-action="ShowNutritionPlanEditRequests">Pedidos Edição Nutrição</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
             </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Pedidos</button>
+                <div class="dropdown-content requestsSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanNewRequests" asp-action="ShowNutritionPlanNewRequests">Nutrição Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanEditRequests" asp-action="ShowNutritionPlanEditRequests">Edição Nutrição</a>
+                </div>
+            </li>
     ***REMOVED***
         else if (User.IsInRole("trainer"))
-        ***REMOVED***
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Pedidos Treino novo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Pedidos Edição Treino</a>
-            </li>                        
+        ***REMOVED***  
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+            </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Pedidos</button>
+                <div class="dropdown-content requestsSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Treino Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Edição Treino</a>
+                </div>
             </li>
     ***REMOVED***
 

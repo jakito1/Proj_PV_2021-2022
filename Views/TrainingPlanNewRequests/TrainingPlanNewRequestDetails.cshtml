@@ -1,41 +1,32 @@
 ﻿@model NutriFitWeb.Models.TrainingPlanNewRequest
 
-@***REMOVED***
-    ViewData["Title"] = "Details";
+
+<h1>Detalhes do Pedido</h1>
+
+<div class="col-md-6 profileDivs">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanNewRequestName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanNewRequestDescription)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanNewRequestDate)</p></td>
+        </tr>
+    </table>
+    @if (User.IsInRole("trainer"))
+    ***REMOVED***
+        <div class="form-group">
+            <a asp-controller="TrainingPlans" asp-action="CreateTrainingPlan" type="submit" asp-route-trainingPlanNewRequestId="@Model.TrainingPlanNewRequestId" class="createBtn">Criar plano de treino</a>
+        </div>
+        <br />
 ***REMOVED***
-
-<h1>Details</h1>
-
-<div>
-    <h4>TrainingPlanRequest</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanNewRequestName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanNewRequestName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanNewRequestDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanNewRequestDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrainingPlanNewRequestDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainingPlanNewRequestDate)
-        </dd>
-    </dl>
 </div>
 
-@if (User.IsInRole("trainer"))
-***REMOVED***
-    <a asp-controller="TrainingPlans" asp-action="CreateTrainingPlan" type="submit" asp-route-trainingPlanNewRequestId="@Model.TrainingPlanNewRequestId" class="createBtn">Criar plano de treino</a>
-***REMOVED***
-
-<div>
-    <a asp-action="ShowTrainingPlanNewRequests">Back to List</a>
+<div class="backBtnDiv">
+    <a asp-action="ShowTrainingPlanNewRequests" class="backToListBtn">Voltar</a>
 </div>

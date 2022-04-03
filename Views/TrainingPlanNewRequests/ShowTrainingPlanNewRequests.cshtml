@@ -51,7 +51,21 @@ else if (User.IsInRole("client"))
                 <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestName)</p>
             </td>
             <td>
-                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDescription)</p>
+                @if (item.TrainingPlanNewRequestDescription is null || item.TrainingPlanNewRequestDescription == "")
+                    ***REMOVED***
+                        <p class="details"><b>N/A</b></p>
+                ***REMOVED***
+                    else
+                    ***REMOVED***
+                        string? description = item.TrainingPlanNewRequestDescription;
+                        @if (description.Length > 20)
+                        ***REMOVED***
+                            description = description.Substring(0, 20);
+                            <p class="details"><b>@description...</b></p>
+                    ***REMOVED***else***REMOVED***
+                            <p class="details"><b>@description</b></p>
+                    ***REMOVED***
+                ***REMOVED***
             </td>
             <td>
                 <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)</p>
