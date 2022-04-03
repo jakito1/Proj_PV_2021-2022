@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
+using Moq;
+using ViewResult = Microsoft.AspNetCore.Mvc.ViewResult;
 
 namespace NutriFitWebTest
 ***REMOVED***
@@ -55,7 +56,7 @@ namespace NutriFitWebTest
                 Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
 
-        [Fact (Skip = "Can't add data to context")]
+        [Fact (Skip = "Not a unit test, should be integration")]
         public async Task DeleteUserAccount_ReturnsLocalUrl()
         ***REMOVED***
             var controller = new AdminsController(_context);
@@ -72,8 +73,11 @@ namespace NutriFitWebTest
             string? trainerId = mockTrainer.UserAccountModel.Id;
 
              _context.Trainer?.Add(mockTrainer);
+             await _context.SaveChangesAsync();
 
-            var result = await controller.DeleteUserAccount(trainerId, "~/home");
+             var result = await controller.DeleteUserAccount(trainerId, "test");
+
+            Assert.IsType<LocalRedirectResult>(result);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
