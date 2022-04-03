@@ -78,5 +78,16 @@ namespace NutriFitWeb.Services
             }
             return string.Empty;
         }
+
+        public async Task<string> LoadPhotoById(int? id)
+        {
+            Photo photo = await _context.Photos.FindAsync(id);
+            if (photo is not null && photo.PhotoData is not null)
+            {
+                string imageBase64Data = Convert.ToBase64String(photo.PhotoData);
+                return string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+            }
+            return string.Empty;
+        }
     }
 }
