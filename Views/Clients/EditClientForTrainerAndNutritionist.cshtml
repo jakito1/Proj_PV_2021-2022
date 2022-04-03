@@ -31,7 +31,7 @@
                     <tr>
                         <th class="alignTableTitles"><label asp-for="LeanMass" class="control-label listsItemTitle"></label></th>
                         <td>
-                            <input asp-for="LeanMass" class="formsInput" />
+                            <input asp-for="LeanMass" min="1" oninput="limitPercentage(this);" class="formsInput" />
                             <br />
                             <span asp-validation-for="LeanMass" class="text-danger"></span>
                         </td>
@@ -39,7 +39,7 @@
                     <tr>
                         <th class="alignTableTitles"><label asp-for="FatMass" class="control-label listsItemTitle"></label></th>
                         <td>
-                            <input asp-for="FatMass" class="formsInput" />
+                            <input asp-for="FatMass" min="1" oninput="limitPercentage(this);" class="formsInput" />
                             <br />
                             <span asp-validation-for="FatMass" class="text-danger"></span>
                         </td>

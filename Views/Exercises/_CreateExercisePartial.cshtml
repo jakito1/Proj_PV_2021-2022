@@ -4,64 +4,71 @@
 <div class="col-md-12 profileDivs exercisesDiv">
     <h2>Criar exercício</h2>
     <form method="post" id="_CreateExercisePartialForm" data-ajax-begin="UpdateCreateExercise" data-ajax-success="UpdateExercisesList" data-ajax="true"
-        asp-action="CreateExercise" asp-controller="Exercises">
+          asp-action="CreateExercise" asp-controller="Exercises">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <table class="formTables">
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="ExerciseName" class="control-label">Nome</label></th>
-                    <td>
-                        <input asp-for="ExerciseName" class="formsInput"/>
-                        <br />
-                        <span asp-validation-for="ExerciseName" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><label asp-for="ExerciseDescription" class="control-label">Descrição</label></th>
-                    <td>
-                        <textarea asp-for="ExerciseDescription" class="descriptionBox"></textarea>
-                        <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
-                    </td>
-                </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="ExerciseName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="ExerciseName" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="ExerciseName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="ExerciseDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="ExerciseDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="ExerciseDescription" class="text-danger"></span>
+                </td>
+            </tr>
         </table>
 
         <table class="formTables">
-                <tr>
-                    <th><label asp-for="ExerciseDuration" class="control-label">Duração</label></th>
-                    <th><label asp-for="ExerciseRepetitions" class="control-label">Repetições</label></th>
-                    <th><label asp-for="ExerciseURL" class="control-label">Link do Exercício</label></th>
-                </tr>
-                <tr>
+            <tr>
+                @if (User.IsInRole("client") || User.IsInRole("trainer"))
+                {
+                    <th><label asp-for="ExerciseDuration" class="control-label labelThree">Duração</label></th>
+                    <th><label asp-for="ExerciseRepetitions" class="control-label labelTwo">Repetições</label></th>
+                }
+
+                <th><label asp-for="ExerciseURL" class="control-label labelOne">Link do Exercício</label></th>
+            </tr>
+            <tr>
+                @if (User.IsInRole("client") || User.IsInRole("trainer"))
+                {
                     <td>
-                        <input asp-for="ExerciseDuration" min ="1" oninput="limitExerciseDuration(this);" class="formsInput" />
+                        <input asp-for="ExerciseDuration" min="1" oninput="limitExerciseDuration(this);" class="formsInput" />
                         <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
                     </td>
                     <td>
-                        <input asp-for="ExerciseRepetitions" min ="1" oninput="limitExerciseRepetitions(this);" class="formsInput" />
+                        <input asp-for="ExerciseRepetitions" min="1" oninput="limitExerciseRepetitions(this);" class="formsInput" />
                         <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
                     </td>
-                    <td>
-                        <input asp-for="ExerciseURL" class="formsInput" />
-                        <span asp-validation-for="ExerciseURL" class="text-danger"></span>
-                    </td>
-                </tr>
+                }
+                <td>
+                    <input asp-for="ExerciseURL" class="formsInput" />
+                    <span asp-validation-for="ExerciseURL" class="text-danger"></span>
+                </td>
+            </tr>
         </table>
 
         <table class="formTables">
-                <tr>
-                    <th><label asp-for="ExerciseType" class="control-label">Tipo de Exercício</label></th>
-                    <th><label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label></th>
-                </tr>
-                <tr>
-                    <td>
-                        <select asp-for="ExerciseType" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseType>()"></select>
-                        <span asp-validation-for="ExerciseType" class="text-danger"></span>
-                    </td>
-                    <td>
-                        <select asp-for="ExerciseMuscles" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseMuscles>()"></select>
-                        <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
-                    </td>
-                </tr>
+            <tr>
+                <th><label asp-for="ExerciseType" class="control-label labelOne">Tipo de Exercício</label></th>
+                <th><label asp-for="ExerciseMuscles" class="control-label">Músculos Trabalhados</label></th>
+            </tr>
+            <tr>
+                <td>
+                    <select asp-for="ExerciseType" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseType>()"></select>
+                    <span asp-validation-for="ExerciseType" class="text-danger"></span>
+                </td>
+                <td>
+                    <select asp-for="ExerciseMuscles" class="formsInput" asp-items="Html.GetEnumSelectList<ExerciseMuscles>()"></select>
+                    <span asp-validation-for="ExerciseMuscles" class="text-danger"></span>
+                </td>
+            </tr>
         </table>
 
         <div class="form-group">

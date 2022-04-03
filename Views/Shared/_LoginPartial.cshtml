@@ -11,6 +11,9 @@
         @if (User.IsInRole("gym"))
         {
             <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Nutritionists" asp-action="ShowNutritionists">Nutricionistas</a>
             </li>
             <li class="nav-item">
