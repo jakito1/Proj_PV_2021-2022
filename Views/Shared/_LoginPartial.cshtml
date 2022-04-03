@@ -8,9 +8,12 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     ***REMOVED***
-        <li class="nav-item">
-            <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
-        </li>
+        @if (!User.IsInRole("administrator"))
+        ***REMOVED***
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
+            </li>
+    ***REMOVED***
         @if (User.IsInRole("gym"))
         ***REMOVED***
             <li class="nav-item">
@@ -65,7 +68,7 @@
             </li>
     ***REMOVED***
         else if (User.IsInRole("trainer"))
-        ***REMOVED***  
+        ***REMOVED***
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
@@ -134,9 +137,6 @@
 ***REMOVED***
     else
     ***REMOVED***
-        /*<li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>*/
         <li class="nav-item">
             <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
