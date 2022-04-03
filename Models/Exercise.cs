@@ -30,6 +30,9 @@ namespace NutriFitWeb.Models
         [JsonIgnore]
         public TrainingPlan? TrainingPlan { get; set; }
 
+        [JsonIgnore]
+        public Machine? Machine { get; set; }
+
         public Photo? ExercisePhoto { get; set; }
 
     }

@@ -1,31 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
     public class MachinesController : Controller
     {
+        private readonly string SessionKeyExercises;
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccountModel> _userManager;
 
-        public MachinesController(ApplicationDbContext context)
+        public MachinesController(ApplicationDbContext context,
+            UserManager<UserAccountModel> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            SessionKeyExercises = "_Exercises";
         }
 
-        // GET: Machines
-        public async Task<IActionResult> ShowMachines()
+        [Authorize(Roles = "client, trainer, nutritionist, gym")]
+        public async Task<IActionResult> ShowMachines(string? searchString, string? currentFilter, int? pageNumber)
         {
-            return View(await _context.Machines.ToListAsync());
+
+            if (searchString is not null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            HttpContext.Session.Clear();
+            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client client = await _context.Client.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            ViewData["CurrentFilter"] = searchString;
+            IQueryable<Machine>? machines = null;
+
+            if (!string.IsNullOrEmpty(searchString) && gym is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == gym).Where(a => a.MachineName.Contains(searchString));
+            }
+            else if (!string.IsNullOrEmpty(searchString) && trainer is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == trainer.Gym).Where(a => a.MachineName.Contains(searchString));
+            }
+            else if (!string.IsNullOrEmpty(searchString) && nutritionist is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == nutritionist.Gym).Where(a => a.MachineName.Contains(searchString));
+            }
+            else if (!string.IsNullOrEmpty(searchString) && client is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == client.Gym).Where(a => a.MachineName.Contains(searchString));
+            }
+            else if (gym is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == gym);
+            }
+            else if (trainer is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == trainer.Gym);
+            }
+            else if (nutritionist is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == nutritionist.Gym);
+            }
+            else if (client is not null)
+            {
+                machines = _context.Machines.Where(a => a.MachineGym == client.Gym);
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Machine>.CreateAsync(machines.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
-        // GET: Machines/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> MachineDetails(int? id)
         {
             if (id == null)
@@ -33,7 +90,8 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var machine = await _context.Machines
+            Machine? machine = await _context.Machines
+                .Include(a => a.MachineExercises)
                 .FirstOrDefaultAsync(m => m.MachineId == id);
             if (machine == null)
             {
@@ -43,29 +101,38 @@ namespace NutriFitWeb.Controllers
             return View(machine);
         }
 
-        // GET: Machines/Create
+        [Authorize(Roles = "gym")]
         public IActionResult CreateMachine()
         {
             return View();
         }
 
-        // POST: Machines/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "gym")]
         [HttpPost, ActionName("CreateMachine")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateMachinePost([Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(machine);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                if (gym is not null)
+                {
+                    List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                    machine.MachineExercises = exercises;
+                    machine.MachineGym = gym;
+                    _context.Add(machine);
+                    await _context.SaveChangesAsync();
+                    string baseURL = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+                    machine.MachineQRCodeUri = baseURL + "/Machines/MachineDetails/" + machine.MachineId.ToString();
+                    await _context.SaveChangesAsync();
+                }
             }
-            return View(machine);
+            HttpContext.Session.Clear();
+            return RedirectToAction("ShowMachines");
         }
 
-        // GET: Machines/Edit/5
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> EditMachine(int? id)
         {
             if (id == null)
@@ -73,50 +140,54 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var machine = await _context.Machines.FindAsync(id);
+            Machine? machine = await _context.Machines
+                .Include(a => a.MachineExercises)
+                .FirstOrDefaultAsync(a => a.MachineId == id);
             if (machine == null)
             {
                 return NotFound();
             }
+            HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, machine.MachineExercises);
             return View(machine);
         }
 
-        // POST: Machines/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "gym")]
         [HttpPost, ActionName("EditMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditMachinePost(int id, [Bind("MachineId,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine)
+        public async Task<IActionResult> EditMachinePost(int? id)
         {
-            if (id != machine.MachineId)
+            if (id is null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            Machine? machineToUpdate = await _context.Machines.Include(a => a.MachineExercises).FirstOrDefaultAsync(a => a.MachineId == id);
+            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.Include(a => a.Machines).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+
+            if (gym is not null && machineToUpdate is not null && gym.Machines.Contains(machineToUpdate))
             {
-                try
+                if (await TryUpdateModelAsync<Machine>(machineToUpdate, "",
+                    a => a.MachineName, a => a.MachineDescription, a => a.MachineType))
                 {
-                    _context.Update(machine);
+                    List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                    HttpContext.Session.Remove(SessionKeyExercises);
+
+                    HashSet<int>? excludedIDs = new(exercises.Select(a => a.ExerciseId));
+                    IEnumerable<Exercise>? missingRows = machineToUpdate.MachineExercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
+
+                    _context.Exercise.RemoveRange(missingRows);
+
+                    machineToUpdate.MachineExercises = exercises;
+
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("ShowMachines");
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MachineExists(machine.MachineId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
-            return View(machine);
+            return View(machineToUpdate);
         }
 
-        // GET: Machines/Delete/5
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> DeleteMachine(int? id)
         {
             if (id == null)
@@ -124,7 +195,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            var machine = await _context.Machines
+            Machine? machine = await _context.Machines
                 .FirstOrDefaultAsync(m => m.MachineId == id);
             if (machine == null)
             {
@@ -134,20 +205,22 @@ namespace NutriFitWeb.Controllers
             return View(machine);
         }
 
-        // POST: Machines/Delete/5
+        [Authorize(Roles = "gym")]
         [HttpPost, ActionName("DeleteMachine")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteMachineConfirmed(int id)
         {
-            var machine = await _context.Machines.FindAsync(id);
-            _context.Machines.Remove(machine);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            Machine? machine = await _context.Machines.FindAsync(id);
+            UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
+            Gym gym = await _context.Gym.Include(a => a.Machines).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
-        private bool MachineExists(int id)
-        {
-            return _context.Machines.Any(e => e.MachineId == id);
+            if (gym is not null && machine is not null && gym.Machines.Contains(machine))
+            {
+                _context.Machines.Remove(machine);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("ShowMachines");
         }
     }
 }

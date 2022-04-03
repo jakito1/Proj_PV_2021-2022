@@ -10,21 +10,21 @@
         </div>
 
         <table class="formTables">
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="TrainingPlanName" class="control-label">Nome</label></th>
-                    <td>
-                        <input asp-for="TrainingPlanName" class="formsInput" aria-required="true" />
-                        <br />
-                        <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><label asp-for="TrainingPlanDescription" class="control-label">Descrição</label></th>
-                    <td>
-                        <textarea asp-for="TrainingPlanDescription" class="descriptionBox"></textarea>
-                        <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
-                    </td>
-                </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="TrainingPlanName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="TrainingPlanName" class="formsInput" aria-required="true" />
+                    <br />
+                    <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="TrainingPlanDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="TrainingPlanDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
+                </td>
+            </tr>
         </table>
     </form>
     <div id="_CreateExercisePartialItem">

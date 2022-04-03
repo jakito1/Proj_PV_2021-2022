@@ -8,11 +8,11 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        <li class="nav-item">
+            <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
+        </li>
         @if (User.IsInRole("gym"))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Nutritionists" asp-action="ShowNutritionists">Nutricionistas</a>
             </li>
@@ -31,9 +31,6 @@
         }
         else if (User.IsInRole("client"))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="" asp-action="">Ginásio</a>
-            </li>
             <li class="dropdown">
                 <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Planos</button>
                 <div class="dropdown-content plansSubMenuFix">
@@ -72,7 +69,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Pedidos Edição Treino</a>
-            </li>                        
+            </li>
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
@@ -85,33 +82,38 @@
             @{
                 string? profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
             }
-            @if(profilePic is not null && !string.Equals(profilePic, ""))
+            @if (profilePic is not null && !string.Equals(profilePic, ""))
             {
                 <button class="nav-link text-dark menuItem dropdownBtnBorderFix">
-                    <div class="accountIconPicDiv"><img class="accountIconPic" src="@profilePic" alt="accountIcon"/></div>
+                    <div class="accountIconPicDiv"><img class="accountIconPic" src="@profilePic" alt="accountIcon" /></div>
                 </button>
-            }else{
-                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon"/></button>
+            }
+            else
+            {
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon" /></button>
             }
             <div class="dropdown-content fixAdminAccountSubmenu">
                 @if (User.IsInRole("trainer"))
                 {
                     <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Trainers" asp-action="EditTrainerSettings">Perfil</a>
-                }else if (User.IsInRole("nutritionist"))
+                }
+                else if (User.IsInRole("nutritionist"))
                 {
                     <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Nutritionists" asp-action="EditNutritionistSettings">Perfil</a>
-                }else if (User.IsInRole("gym"))
+                }
+                else if (User.IsInRole("gym"))
                 {
                     <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Gyms" asp-action="EditGymSettings">Perfil</a>
-                }else if (User.IsInRole("client"))
+                }
+                else if (User.IsInRole("client"))
                 {
                     <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
                 }
 
-                <a class="btn btn-link subMenuItem" asp-area="Identity" asp-page="/Account/Manage/Index">Conta</a>                
+                <a class="btn btn-link subMenuItem" asp-area="Identity" asp-page="/Account/Manage/Index">Conta</a>
 
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="btn btn-link menuItem subMenuItem logout">Sair &nbsp;<img class="logoutIcon" src=~/icons/logoutIcon.svg alt="logoutIcon"/></button>
+                    <button type="submit" class="btn btn-link menuItem subMenuItem logout">Sair &nbsp;<img class="logoutIcon" src=~/icons/logoutIcon.svg alt="logoutIcon" /></button>
                 </form>
             </div>
         </li>
@@ -121,10 +123,13 @@
             <li class="nav-item notificationBell">
                 <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
             </li>
-        }else{
+        }
+        else
+        {
             <li class="spacingLi"></li>
         }
-    }else
+    }
+    else
     {
         /*<li class="nav-item">
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>

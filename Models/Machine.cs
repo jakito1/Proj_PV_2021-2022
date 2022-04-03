@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 {
@@ -13,6 +14,11 @@ namespace NutriFitWeb.Models
         public Photo? MachineProfilePhoto { get; set; }
         public MachineType? MachineType { get; set; }
         public string? MachineQRCodeUri { get; set; }
+
+        public Gym? MachineGym { get; set; }
+
+        [NotMapped]
+        public Exercise? MachineExercise { get; set; }
     }
 
     public enum MachineType

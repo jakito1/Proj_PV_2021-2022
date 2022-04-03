@@ -8,6 +8,7 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    [Authorize(Roles = "client, trainer")]
     public class TrainingPlansController : Controller
     {
         private readonly string SessionKeyExercises;
@@ -28,7 +29,6 @@ namespace NutriFitWeb.Controllers
             SessionKeyTrainingPlanNewRequestId = "_TrainingPlanNewRequestId";
         }
 
-        [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlans(string? searchString, string? currentFilter, int? pageNumber)
         {
 
@@ -141,7 +141,7 @@ namespace NutriFitWeb.Controllers
                 HttpContext.Session.Clear();
 
                 if (trainingPlanNewRequestId is not null)
-                {                    
+                {
                     TrainingPlanNewRequest? trainingPlanNewRequest = await _context.TrainingPlanNewRequests.FirstOrDefaultAsync(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId);
                     if (trainingPlanNewRequest is not null)
                     {
@@ -212,7 +212,7 @@ namespace NutriFitWeb.Controllers
                     trainingPlanEditRequest.TrainingPlanEditRequestDone = true;
                 }
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("ShowTrainingPlans");
             }
             return View(trainingPlanToUpdate);

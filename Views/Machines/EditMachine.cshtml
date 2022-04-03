@@ -25,13 +25,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="MachineType" class="control-label"></label>
-                <input asp-for="MachineType" class="form-control" />
+                <select asp-for="MachineType" class="form-control" asp-items="@Html.GetEnumSelectList<MachineType>()"></select>
                 <span asp-validation-for="MachineType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+        <div id="_CreateExercisePartialItem">
+            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" model=@Model.MachineExercise />
+        </div>
+        <div id="_ShowExercisesPartialList">
+            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" model=@Model.MachineExercises />
+        </div>
     </div>
 </div>
 
@@ -40,5 +46,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

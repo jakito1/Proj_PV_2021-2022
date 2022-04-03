@@ -141,7 +141,7 @@ namespace NutriFitWeb.Controllers
                 HttpContext.Session.Clear();
 
                 if (nutritionPlanNewRequestId is not null)
-                {                    
+                {
                     NutritionPlanNewRequest? nutritionPlanNewRequest = await _context.NutritionPlanNewRequests.FirstOrDefaultAsync(a => a.NutritionPlanNewRequestId == nutritionPlanNewRequestId);
                     if (nutritionPlanNewRequest is not null)
                     {

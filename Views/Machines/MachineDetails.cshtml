@@ -10,33 +10,38 @@
     <h4>Machine</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MachineName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MachineName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MachineDescription)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MachineDescription)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MachineType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MachineType)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MachineQRCodeUri)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MachineQRCodeUri)
-        </dd>
+        <div id="qrCode"></div>
+        <div id="qrCodeData" data-url="@Model.MachineQRCodeUri"></div>
     </dl>
+    @if (Model.MachineExercises is not null && Model.MachineExercises.Any())
+    {
+        <br />
+        <div id="_ShowExercisesPartialList" class="plansListDetailsDiv">
+            <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.MachineExercises />
+        </div>
+    }
 </div>
 <div>
-    <a asp-action="EditMachine" asp-route-id="@Model?.MachineId">Edit</a> |
     <a asp-action="ShowMachines">Back to List</a>
 </div>

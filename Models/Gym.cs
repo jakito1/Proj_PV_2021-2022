@@ -18,6 +18,7 @@ namespace NutriFitWeb.Models
         public List<Client>? Clients { get; set; }
         public List<Nutritionist>? Nutritionists { get; set; }
         public List<Trainer>? Trainers { get; set; }
+        public List<Machine>? Machines { get; set; }
 
     }
 }
