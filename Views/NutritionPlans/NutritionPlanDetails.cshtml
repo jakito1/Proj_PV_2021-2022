@@ -49,20 +49,19 @@
                 <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
             </div>
     ***REMOVED***
-    <br />
+    
+        @if (User.IsInRole("client") && Model.Nutritionist is not null && !Model.ToBeEdited)
+        ***REMOVED***
+            <div class="form-group">
+                <input id="planEditButton" type="submit" value="Pedir Edição" class="btn btn-primary" onclick="hideButtonPlanEditRequestPartial()"/>
+            </div>
+
+            <div style="display:none;" id="_CreateEditRequestPartialItem">
+                @***REMOVED***NutritionPlanEditRequest nutritionPlanEditRequest = new() ***REMOVED*** NutritionPlanId = Model.NutritionPlanId ***REMOVED***;***REMOVED***
+                <partial name="~/Views/NutritionPlanEditRequests/_CreateNutritionPlanEditRequestPartial.cshtml" model=@nutritionPlanEditRequest/>
+            </div>
+    ***REMOVED***
 </div>
-
-@if (User.IsInRole("client") && Model.Nutritionist is not null && !Model.ToBeEdited)
-***REMOVED***
-    <div style="display:block;" id="planEditButton">
-        <button onclick="hideButtonPlanEditRequestPartial()">Pedir Edição deste plano</button>
-    </div>
-
-    <div style="display:none;" id="_CreateEditRequestPartialItem">
-        @***REMOVED***NutritionPlanEditRequest nutritionPlanEditRequest = new() ***REMOVED*** NutritionPlanId = Model.NutritionPlanId ***REMOVED***;***REMOVED***
-        <partial name="~/Views/NutritionPlanEditRequests/_CreateNutritionPlanEditRequestPartial.cshtml" model=@nutritionPlanEditRequest/>
-    </div>
-***REMOVED***
 
 <div class="backBtnDiv">
     <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>

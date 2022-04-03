@@ -1,11 +1,8 @@
 ﻿@model NutriFitWeb.Models.TrainingPlan
 @using NutriFitWeb.Models
 
-@***REMOVED***
-    ViewData["Title"] = "Detalhes do Plano de Treino";
-***REMOVED***
 
-<h1>@ViewData["Title"]</h1>
+<h1>Detalhes do Plano de Treino</h1>
 <div class="col-md-8 profileDivs exercisesDiv">
         <table class="formTables">
             <tr>
@@ -51,19 +48,19 @@
             <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
         </div>
 ***REMOVED***
+
+    @if (User.IsInRole("client") && Model.Trainer is not null && !Model.ToBeEdited)
+    ***REMOVED***
+        <div class="form-group">
+            <input id="planEditButton" type="submit" value="Pedir Edição" class="btn btn-primary" onclick="hideButtonPlanEditRequestPartial()"/>
+        </div>
+
+        <div class="form-group" style="display:none;" id="_CreateEditRequestPartialItem">
+            @***REMOVED***TrainingPlanEditRequest trainingPlanEditRequest = new() ***REMOVED*** TrainingPlanId = Model.TrainingPlanId ***REMOVED***;***REMOVED***
+            <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
+        </div>
+***REMOVED***
 </div>
-
-@if (User.IsInRole("client") && Model.Trainer is not null && !Model.ToBeEdited)
-***REMOVED***
-    <div style="display:block;" id="planEditButton" class="backBtnDiv">
-        <button onclick="hideButtonPlanEditRequestPartial()">Pedir Edição deste plano</button>
-    </div>
-
-    <div style="display:none;" id="_CreateEditRequestPartialItem">
-        @***REMOVED***TrainingPlanEditRequest trainingPlanEditRequest = new() ***REMOVED*** TrainingPlanId = Model.TrainingPlanId ***REMOVED***;***REMOVED***
-        <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
-    </div>
-***REMOVED***
 
 <div class="backBtnDiv">
     <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
@@ -72,6 +69,6 @@
 
 @section Scripts ***REMOVED***
     @***REMOVED***
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
 ***REMOVED***
 ***REMOVED***

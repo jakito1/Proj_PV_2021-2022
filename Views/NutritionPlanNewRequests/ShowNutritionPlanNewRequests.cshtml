@@ -1,8 +1,7 @@
 ﻿@using NutriFitWeb.Services
 @model PaginatedList<NutriFitWeb.Models.NutritionPlanNewRequest>
-@***REMOVED***
-    ViewData["Title"] = "Index";
-***REMOVED***
+
+<h1>Pedidos de Plano Novo <img src=~/icons/leafIcon.svg/></h1>
 
 @if (User.IsInRole("nutritionist"))
 ***REMOVED***
@@ -29,13 +28,16 @@ else if (User.IsInRole("client"))
     <thead>
         <tr>
             <th class="roundedCornerTableLeft thStyle">
-                Name
+                <p>Name</p>
             </th>
             <th class="thStyle">
-                Descrição
+                <p>Descrição</p>
+            </th>
+            <th class="thStyle">
+                <p>Data</p>
             </th>
             <th class="roundedCornerTableRight thStyle">
-                Data do Pedido
+                <p>Ações</p>
             </th>
         </tr>
     </thead>
@@ -43,19 +45,33 @@ else if (User.IsInRole("client"))
 @foreach (var item in Model) ***REMOVED***
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NutritionPlanNewRequestName)
+                <p class="details">@Html.DisplayFor(modelItem => item.NutritionPlanNewRequestName)</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NutritionPlanNewRequestDescription)
+                @if (item.NutritionPlanNewRequestDescription is null || item.NutritionPlanNewRequestDescription == "")
+                    ***REMOVED***
+                        <p class="details"><b>N/A</b></p>
+                ***REMOVED***
+                    else
+                    ***REMOVED***
+                        string? description = item.NutritionPlanNewRequestDescription;
+                        @if (description.Length > 20)
+                        ***REMOVED***
+                            description = description.Substring(0, 20);
+                            <p class="details"><b>@description...</b></p>
+                    ***REMOVED***else***REMOVED***
+                            <p class="details"><b>@description</b></p>
+                    ***REMOVED***
+                ***REMOVED***
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NutritionPlanNewRequestDate)
+                <p class="details">@Html.DisplayFor(modelItem => item.NutritionPlanNewRequestDate)</p>
             </td>
             <td>
-                <a asp-action="NutritionPlanNewRequestDetails" asp-route-id="@item.NutritionPlanNewRequestId">Details</a>
+                <a asp-action="NutritionPlanNewRequestDetails" asp-route-id="@item.NutritionPlanNewRequestId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
                     @if (User.IsInRole("client"))
                     ***REMOVED***
-                         <a asp-action="DeleteNutritionPlanNewRequest" asp-route-id="@item.NutritionPlanNewRequestId">Delete</a>
+                         <a asp-action="DeleteNutritionPlanNewRequest" asp-route-id="@item.NutritionPlanNewRequestId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
                 ***REMOVED***
             </td>
         </tr>

@@ -55,7 +55,15 @@ a***REMOVED***
     text-decoration: none !important;
 ***REMOVED***
 
-button.navbar-toggler***REMOVED***
+.nutriFitHome ***REMOVED***
+    background-color: #00A2E8;
+    color: white;
+    border-radius: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+***REMOVED***
+
+button.navbar-toggler ***REMOVED***
     border-color: white;
 ***REMOVED***
 
@@ -396,8 +404,8 @@ div.titlesMargin ***REMOVED***
     border-radius: 1em;
     background-color: white;
     padding: 1em;
-    padding-top: 5em;
-    padding-bottom: 1em;
+    padding-top: 3em;
+    padding-bottom: 0.5em;
     margin-bottom: 3em;
     color: black;
     font-weight: bold;
@@ -525,21 +533,28 @@ a.btn.btn-default.disabled ***REMOVED***
     font-weight: bold;
 ***REMOVED***
 
-
+input.btn.btn-primary:hover ***REMOVED***
+    width: 50%;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+    border-width: medium;
+***REMOVED***
 
 input.btn.btn-primary ***REMOVED***
-    text-decoration: none;
+    width: 50%;
     background-color: white;
     color: #00A2E8;
-    border-color: #00A2E8;
-    border-style: solid;
-    border-radius: 1em;
-    border-width: medium;
     font-weight: bold;
-    padding: 1em;
-    padding-left: 2.3em;
-    padding-right: 2.3em;
-    margin-bottom: 4em;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+    border-width: medium;
 ***REMOVED***
 
 .createBtn ***REMOVED***
@@ -550,23 +565,18 @@ input.btn.btn-primary ***REMOVED***
     border-style: solid;
     border-color: #00A2E8;
     border-radius: 1em;
-    padding: 0.5em;
+    padding: 0.5em !important;
 ***REMOVED***
 
-.createBtn:hover***REMOVED***
-    width: 80%;
-    background-color: #00A2E8;
-    color: white;
-    font-weight: bold;
-    border-style: solid;
-    border-color: #00A2E8;
-    border-radius: 1em;
-    padding: 0.5em;
-***REMOVED***
-
-input.btn.btn-primary:hover ***REMOVED***
-    color: white;
-    background-color: #00A2E8;
+.createBtn:hover ***REMOVED***
+        width: 80%;
+        background-color: #00A2E8;
+        color: white;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #00A2E8;
+        border-radius: 1em;
+        padding: 0.5em !important;
 ***REMOVED***
 
 input.btn.btn-danger ***REMOVED***
@@ -575,7 +585,7 @@ input.btn.btn-danger ***REMOVED***
     padding-left: 2em !important;
     padding-right: 2em !important;
     font-size: 2em;
-    margin-bottom: 4em;
+    margin-bottom: 1em;
 ***REMOVED***
 
 .center-content***REMOVED***
@@ -610,6 +620,10 @@ input.btn.btn-danger ***REMOVED***
     border-style: solid;
     border-color: dodgerblue !important;
     border-width: medium;
+***REMOVED***
+
+.btn***REMOVED***
+    padding: 0.375rem;
 ***REMOVED***
 
 .searchIcon***REMOVED***
@@ -758,6 +772,10 @@ input.btn.btn-danger ***REMOVED***
     margin-left: 2.5em;
 ***REMOVED***
 
+.requestsSubMenuFix***REMOVED***
+    margin-left: 1.5em;
+    width: 10em;
+***REMOVED***
 
 .dropdown:hover .dropdown-content ***REMOVED***
     display: block;
