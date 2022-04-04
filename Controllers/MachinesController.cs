@@ -149,11 +149,20 @@ namespace NutriFitWeb.Controllers
 
             Machine? machine = await _context.Machines
                 .Include(a => a.MachineExercises)
+                .Include(a => a.MachineProfilePhoto)
                 .FirstOrDefaultAsync(a => a.MachineId == id);
+
+            if (machine is not null && machine.MachineProfilePhoto is not null)
+            {
+                string? photoPath = _photoManagement.GetPhotoPath(machine.MachineProfilePhoto);
+                machine.MachineProfilePhoto.PhotoUrl = photoPath;
+            }
+
             if (machine == null)
             {
                 return NotFound();
             }
+
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, machine.MachineExercises);
             return View(machine);
         }
@@ -161,7 +170,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         [HttpPost, ActionName("EditMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditMachinePost(int? id)
+        public async Task<IActionResult> EditMachinePost(int? id, IFormFile? formFile)
         {
             if (id is null)
             {
@@ -174,8 +183,18 @@ namespace NutriFitWeb.Controllers
 
             if (gym is not null && machineToUpdate is not null && gym.Machines.Contains(machineToUpdate))
             {
+                Photo? oldPhoto = null;
+                if (machineToUpdate is not null && machineToUpdate.MachineProfilePhoto is not null)
+                {
+                    oldPhoto = machineToUpdate.MachineProfilePhoto;
+                }
+                if (machineToUpdate is not null)
+                {
+                    machineToUpdate.MachineProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
+                }
+
                 if (await TryUpdateModelAsync<Machine>(machineToUpdate, "",
-                    a => a.MachineName, a => a.MachineDescription, a => a.MachineType))
+                    a => a.MachineName, a => a.MachineDescription, a => a.MachineType, a => a.MachineProfilePhoto))
                 {
                     List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                     HttpContext.Session.Remove(SessionKeyExercises);
@@ -189,6 +208,11 @@ namespace NutriFitWeb.Controllers
 
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowMachines");
+                }
+
+                if (machineToUpdate.MachineProfilePhoto is not null)
+                {
+                    machineToUpdate.MachineProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
                 }
             }
             return View(machineToUpdate);
