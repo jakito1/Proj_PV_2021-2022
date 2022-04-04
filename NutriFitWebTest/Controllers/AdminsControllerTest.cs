@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -11,22 +9,7 @@ using ViewResult = Microsoft.AspNetCore.Mvc.ViewResult;
 
 namespace NutriFitWebTest
 ***REMOVED***
-    public class NutrifitContextFixture
-    ***REMOVED***
-        public ApplicationDbContext DbContext ***REMOVED*** get; private set; ***REMOVED***
 
-        public NutrifitContextFixture()
-        ***REMOVED***
-            var connection = new SqliteConnection("Datasource=:memory:");
-            connection.Open();
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlite(connection)
-                .Options;
-            DbContext = new ApplicationDbContext(options);
-
-            DbContext.Database.EnsureCreated();
-    ***REMOVED***
-***REMOVED***
     public class AdminsControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
         private ApplicationDbContext _context;
@@ -39,24 +22,24 @@ namespace NutriFitWebTest
         [Fact]
         public async Task ShowAllUsers_ReturnsViewResult()
         ***REMOVED***
-                var controller = new AdminsController(_context);
+            var controller = new AdminsController(_context);
 
-                var result = await controller.ShowAllUsers(null);
+            var result = await controller.ShowAllUsers(null);
 
-                Assert.IsType<ViewResult>(result);
+            Assert.IsType<ViewResult>(result);
     ***REMOVED***
 
         [Fact]
         public async Task DeleteUserAccount_ReturnsNotFound_WhenAccontDoesntExist()
         ***REMOVED***
-                var controller = new AdminsController(_context);
+            var controller = new AdminsController(_context);
 
-                var result = await controller.DeleteUserAccount(null, null);
+            var result = await controller.DeleteUserAccount(null, null);
 
-                Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
 
-        [Fact (Skip = "Not a unit test, should be integration")]
+        [Fact(Skip = "Not a unit test, should be integration")]
         public async Task DeleteUserAccount_ReturnsLocalUrl()
         ***REMOVED***
             var controller = new AdminsController(_context);
@@ -72,10 +55,10 @@ namespace NutriFitWebTest
 
             string? trainerId = mockTrainer.UserAccountModel.Id;
 
-             _context.Trainer?.Add(mockTrainer);
-             await _context.SaveChangesAsync();
+            _context.Trainer?.Add(mockTrainer);
+            await _context.SaveChangesAsync();
 
-             var result = await controller.DeleteUserAccount(trainerId, "test");
+            var result = await controller.DeleteUserAccount(trainerId, "test");
 
             Assert.IsType<LocalRedirectResult>(result);
     ***REMOVED***
