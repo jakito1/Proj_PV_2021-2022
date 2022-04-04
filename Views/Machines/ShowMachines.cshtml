@@ -9,7 +9,9 @@
         <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
         @if (User.IsInRole("gym"))
         ***REMOVED***
-            <a class="createBtn" asp-action="CreateMachine">Criar Máquina</a>
+            <div class="marginFixChooseFile">
+                <a class="createBtn" asp-action="CreateMachine">Criar Máquina</a>
+            </div>
     ***REMOVED***        
     </form>
 </div>
