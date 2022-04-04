@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
@@ -8,10 +7,12 @@ namespace NutriFitWeb.Controllers
     public class MealsController : Controller
     ***REMOVED***
         private readonly string SessionKeyMeals;
+        private readonly IPhotoManagement _photoManagement;
 
-        public MealsController()
+        public MealsController(IPhotoManagement photoManagement)
         ***REMOVED***
             SessionKeyMeals = "_Meals";
+            _photoManagement = photoManagement;
     ***REMOVED***
 
         public IActionResult ShowMealsList()
@@ -28,15 +29,16 @@ namespace NutriFitWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void CreateMeal([Bind("MealId,MealName,MealDescription,MealCalorie,MealProtein,MealFat,MealCarbohydrate,MealDate,MealWeekDay,MealType,MealURL")] Meal meal)
+        public void CreateMeal([Bind("MealId,MealName,MealDescription,MealCalorie,MealProtein,MealFat,MealCarbohydrate,MealDate,MealWeekDay,MealType,MealURL")] Meal meal,
+            IFormFile? formFile)
         ***REMOVED***
             if (ModelState.IsValid)
             ***REMOVED***
-                List<Meal> meals = new();
+                List<Meal>? meals;
+                meal.MealPhoto = _photoManagement.UploadProfilePhoto(formFile);
                 if (HttpContext.Session.Get<List<Meal>>(SessionKeyMeals) is null)
                 ***REMOVED***
                     HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, new List<Meal>() ***REMOVED*** meal ***REMOVED***);
-                    meals.Add(meal);
             ***REMOVED***
                 else
                 ***REMOVED***

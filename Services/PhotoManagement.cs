@@ -36,8 +36,6 @@ namespace NutriFitWeb.Services
                 memoryStream.Close();
                 memoryStream.Dispose();
 
-                _context.Photos.Add(photo);
-                _context.SaveChanges();
                 return photo;
         ***REMOVED***
             return null;

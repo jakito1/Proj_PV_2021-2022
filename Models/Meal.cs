@@ -34,7 +34,7 @@ namespace NutriFitWeb.Models
         [JsonIgnore]
         public NutritionPlan? NutritionPlan ***REMOVED*** get; set; ***REMOVED***
 
-        public Photo? MealProfilePhoto ***REMOVED*** get; set; ***REMOVED***
+        public Photo? MealPhoto ***REMOVED*** get; set; ***REMOVED***
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

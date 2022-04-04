@@ -82,8 +82,9 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
+            List<Meal>? meals = await _context.Meal.Where(a => a.NutritionPlan.NutritionPlanId == id)
+                .Include(a => a.MealPhoto).ToListAsync();
             NutritionPlan? nutritionPlan = await _context.NutritionPlan
-                .Include(a => a.Meals)
                 .Include(a => a.Nutritionist.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.NutritionPlanId == id);
@@ -91,7 +92,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-
+            nutritionPlan.Meals = meals;
             return View(nutritionPlan);
     ***REMOVED***
 
@@ -165,11 +166,13 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            NutritionPlan? nutritionPlan = await _context.NutritionPlan.Include(a => a.Meals).FirstOrDefaultAsync(a => a.NutritionPlanId == id);
+            NutritionPlan? nutritionPlan = await _context.NutritionPlan.FirstOrDefaultAsync(a => a.NutritionPlanId == id);
             if (nutritionPlan is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
+            List<Meal>? meals = await _context.Meal.Where(a => a.NutritionPlan.NutritionPlanId == id)
+                .Include(a => a.MealPhoto).ToListAsync();
             HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, nutritionPlan.Meals);
             return View(nutritionPlan);
     ***REMOVED***

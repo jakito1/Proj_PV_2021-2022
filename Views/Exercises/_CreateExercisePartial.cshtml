@@ -1,11 +1,24 @@
-﻿@model NutriFitWeb.Models.Exercise
+﻿@using NutriFitWeb.Services
+@model NutriFitWeb.Models.Exercise
+@inject IPhotoManagement PhotoManagement
 
 
 <div class="col-md-12 profileDivs exercisesDiv">
     <h2>Criar exercício</h2>
     <form method="post" id="_CreateExercisePartialForm" data-ajax-begin="UpdateCreateExercise" data-ajax-success="UpdateExercisesList" data-ajax="true"
-          asp-action="CreateExercise" asp-controller="Exercises">
+          asp-action="CreateExercise" asp-controller="Exercises" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="ExercisePhoto" class="control-label listsItemTitle">Foto do Exercicio</label>
+            @if(Model is not null && Model.ExercisePhoto is not null)
+            ***REMOVED***
+                string? exercisePhoto = PhotoManagement.GetPhotoPath(Model.ExercisePhoto);
+                <div><img class="profilePhoto" src="@exercisePhoto" /></div>
+        ***REMOVED***
+            <input type="file" asp-for="ExercisePhoto" class="form-control marginFixChooseFile" name="formFile"/>
+            <span asp-validation-for="ExercisePhoto" class="text-danger"></span>
+        </div>
 
         <table class="formTables">
             <tr>
