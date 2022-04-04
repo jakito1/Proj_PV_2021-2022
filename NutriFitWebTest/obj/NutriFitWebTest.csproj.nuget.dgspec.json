@@ -195,9 +195,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": ***REMOVED***
-            "Microsoft.AspNetCore.App": ***REMOVED***
-              "privateAssets": "none"
-          ***REMOVED***
             "Microsoft.NETCore.App": ***REMOVED***
               "privateAssets": "all"
         ***REMOVED***
