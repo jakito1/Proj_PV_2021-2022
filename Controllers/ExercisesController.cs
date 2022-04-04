@@ -1,5 +1,4 @@
-﻿#nullable disable
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
@@ -8,10 +7,12 @@ namespace NutriFitWeb.Controllers
     public class ExercisesController : Controller
     {
         private readonly string SessionKeyExercises;
+        private readonly IPhotoManagement _photoManagement;
 
-        public ExercisesController()
+        public ExercisesController(IPhotoManagement photoManagement)
         {
             SessionKeyExercises = "_Exercises";
+            _photoManagement = photoManagement;
         }
 
         public IActionResult ShowExercisesList()
@@ -28,16 +29,16 @@ namespace NutriFitWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void CreateExercise([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise)
+        public void CreateExercise([Bind("ExerciseId,ExerciseName,ExerciseDescription,ExerciseDuration,ExerciseRepetitions,ExerciseURL,ExerciseType,ExerciseMuscles")] Exercise exercise,
+            IFormFile? formFile)
         {
             if (ModelState.IsValid)
             {
-
-                List<Exercise> exercises = new();
+                List<Exercise>? exercises;
+                exercise.ExercisePhoto = _photoManagement.UploadProfilePhoto(formFile);
                 if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) is null)
                 {
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() { exercise });
-                    exercises.Add(exercise);
                 }
                 else
                 {

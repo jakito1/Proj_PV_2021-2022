@@ -1,4 +1,6 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
+﻿@using NutriFitWeb.Services
+@model IEnumerable<NutriFitWeb.Models.Exercise>
+@inject IPhotoManagement PhotoManagement
 
 <br />
 <p class="listsItemTitle">Exercícios</p>
@@ -19,6 +21,14 @@
         {
             @foreach (var item in Model)
             {
+                <div class="form-group">
+                    @if (item.ExercisePhoto is not null)
+                    {
+                        string? exercisePhoto = PhotoManagement.GetPhotoPath(item.ExercisePhoto);
+                        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ExercisePhoto)</p>
+                        <img class="profilePhoto" src="@exercisePhoto" />
+                    }
+                </div>
                 <tr>
                     <td class="exercisesData breakText breakTextOtherData">
                         @Html.DisplayFor(modelItem => item.ExerciseName)
@@ -28,12 +38,12 @@
                     <td class="exercisesData">
                         @if (item.ExerciseDuration is not null)
                         {
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p> 
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p>
                         }
                         @if (item.ExerciseRepetitions is not null)
                         {
                             <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições,</p>
-                        }                       
+                        }
                         <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
                         @if (item.ExerciseURL is not null && item.ExerciseURL != "")
                         {

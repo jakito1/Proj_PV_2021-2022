@@ -81,17 +81,17 @@ namespace NutriFitWeb.Controllers
             {
                 return NotFound();
             }
-
+            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan.TrainingPlanId == id)
+                .Include(a => a.ExercisePhoto).ToListAsync();
             TrainingPlan? trainingPlan = await _context.TrainingPlan
-                .Include(a => a.Exercises)
                 .Include(a => a.Trainer.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
-                .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
+                .FirstOrDefaultAsync(m => m.TrainingPlanId == id);    
             if (trainingPlan is null)
             {
                 return NotFound();
             }
-
+            trainingPlan.Exercises = exercises;
             return View(trainingPlan);
         }
 
@@ -165,11 +165,14 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            TrainingPlan? trainingPlan = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan.TrainingPlanId == id)
+                .Include(a => a.ExercisePhoto).ToListAsync();
+            TrainingPlan? trainingPlan = await _context.TrainingPlan.FirstOrDefaultAsync(a => a.TrainingPlanId == id);
             if (trainingPlan is null)
             {
                 return NotFound();
             }
+            trainingPlan.Exercises = exercises;
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, trainingPlan.Exercises);
             return View(trainingPlan);
         }
