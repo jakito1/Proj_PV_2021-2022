@@ -35,22 +35,26 @@ namespace NutriFitWeb.Controllers
         /// <summary>
         /// Redirects to the Index page.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ViewResult</returns>
         public IActionResult Index()
         {
             HttpContext.Session.Clear();
             return View();
         }
 
+        /// <summary>
+        /// Redirects to the Users page.
+        /// </summary>
+        /// <returns>ViewResult</returns>
         public IActionResult Users()
         {
             return View();
         }
 
         /// <summary>
-        /// When an error occurs.
+        /// Redirects to Error Page when an error occurs.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ViewResult</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

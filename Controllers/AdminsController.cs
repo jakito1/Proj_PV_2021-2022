@@ -8,10 +8,17 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// AdminsController class, derives from Controller.
+    /// </summary>
     public class AdminsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public AdminsController(ApplicationDbContext context)
         {
             _context = context;
