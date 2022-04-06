@@ -1,32 +1,30 @@
 ﻿using NutriFitWeb.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest
 {
     public class ClientModelTest
     {
-        Client testCase;
+        private readonly Client testCase;
         public ClientModelTest()
         {
             //Setup
-            testCase = new Client();
-            testCase.ClientId = 1;
-            testCase.ClientFirstName = "TestFirstName";
-            testCase.ClientLastName = "TestLastName";
-            testCase.ClientBirthday = new DateTime(1986, 12, 29);
-            testCase.Weight = 70.3;
-            testCase.Height = 175;
-            testCase.Gym = null;
-            testCase.Nutritionist = null;
-            testCase.Trainer = null;
-            testCase.UserAccountModel = null;
+            testCase = new Client
+            {
+                ClientId = 1,
+                ClientFirstName = "TestFirstName",
+                ClientLastName = "TestLastName",
+                ClientBirthday = new DateTime(1986, 12, 29),
+                Weight = 70.3,
+                Height = 175,
+                Gym = null,
+                Nutritionist = null,
+                Trainer = null,
+                UserAccountModel = null
+            };
         }
-        
+
 
         [Fact]
         public void Client_InitializesCorrectly()
@@ -45,7 +43,7 @@ namespace NutriFitWebTest
             Assert.Equal(expected, actual);
 
         }
-        
+
         [Fact]
         public void Client_TestClientFirstNameIsCorrect()
         {

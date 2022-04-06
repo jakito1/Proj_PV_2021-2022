@@ -6,17 +6,19 @@ namespace NutriFitWebTest.Models
 {
     public class TrainerModelTest
     {
-        Trainer testCase;
+        private readonly Trainer testCase;
 
         public TrainerModelTest()
         {
-            testCase = new Trainer();
-            testCase.TrainerId = 1;
-            testCase.TrainerFirstName = "TestFirstName";
-            testCase.TrainerLastName = "TestLastName";
-            testCase.Gym = null;
-            testCase.UserAccountModel = null;
-            testCase.Clients = new List<Client>();
+            testCase = new Trainer
+            {
+                TrainerId = 1,
+                TrainerFirstName = "TestFirstName",
+                TrainerLastName = "TestLastName",
+                Gym = null,
+                UserAccountModel = null,
+                Clients = new List<Client>()
+            };
         }
 
         [Fact]

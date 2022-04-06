@@ -5,24 +5,20 @@ using NutriFitWeb.Controllers;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 using NutriFitWebTest.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
 {
     public class MealsControllerTest
     {
-        HttpContext _httpContext;
-        IPhotoManagement photoManagement;
-        List<Meal> exercises = null;
+        private readonly HttpContext _httpContext;
+        private readonly IPhotoManagement photoManagement;
+        private readonly List<Meal> exercises = null;
 
         public MealsControllerTest()
         {
-            var mockHttpContext = new Mock<HttpContext>();
+            Mock<HttpContext>? mockHttpContext = new Mock<HttpContext>();
             MockHttpSession mockSession = new MockHttpSession();
             mockSession["_Meals"] = exercises;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -32,7 +28,7 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public void MealsController_Should_Be_Initialized()
         {
-            var controller = new MealsController(photoManagement);
+            MealsController? controller = new MealsController(photoManagement);
             controller.ControllerContext.HttpContext = _httpContext;
 
 
@@ -43,10 +39,10 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public void MealsController_EditMeal_Should_Return_NotFound()
         {
-            var controller = new MealsController(photoManagement);
+            MealsController? controller = new MealsController(photoManagement);
             controller.ControllerContext.HttpContext = _httpContext;
 
-            var result = controller.EditMeal(1);
+            IActionResult? result = controller.EditMeal(1);
 
             Assert.IsType<NotFoundResult>(result);
 
@@ -55,10 +51,10 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public void MealsController_GetCleanCreateMealPartial_Should_Return_PartialViewResult()
         {
-            var controller = new MealsController(photoManagement);
+            MealsController? controller = new MealsController(photoManagement);
             controller.ControllerContext.HttpContext = _httpContext;
 
-            var result = controller.GetCleanCreateMealPartial();
+            IActionResult? result = controller.GetCleanCreateMealPartial();
 
             Assert.IsType<PartialViewResult>(result);
         }
