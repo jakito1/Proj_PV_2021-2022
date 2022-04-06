@@ -8,6 +8,9 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// GymsController class, derives from Controller
+    /// </summary>
     public class GymsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -15,6 +18,13 @@ namespace NutriFitWeb.Controllers
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Application DB context API</param>
+        /// <param name="userManager">User manager API</param>
+        /// <param name="inRoleByUserId">Interface for roles by user id</param>
+        /// <param name="photoManagement">Photo management Interface</param>
         public GymsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId inRoleByUserId,
@@ -26,6 +36,11 @@ namespace NutriFitWeb.Controllers
             _photoManagement = photoManagement;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettings(string? id)
         {
