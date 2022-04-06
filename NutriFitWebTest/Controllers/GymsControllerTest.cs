@@ -1,14 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Principal;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -16,6 +6,10 @@ using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest
@@ -23,14 +17,14 @@ namespace NutriFitWebTest
 
     public class GymsControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
-        private ApplicationDbContext _context;
-        private UserManager<UserAccountModel> _manager;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccountModel> _manager;
 
         public GymsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
 
-            var mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
+            Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
                 new Mock<IPasswordHasher<UserAccountModel>>().Object,
                 new IUserValidator<UserAccountModel>[0],
@@ -62,7 +56,7 @@ namespace NutriFitWebTest
             ***REMOVED***
         ***REMOVED***;
 
-            var users = usersList.AsAsyncQueryable();
+            IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
@@ -72,7 +66,7 @@ namespace NutriFitWebTest
         [Fact]
         public void GymsController_Should_Create()
         ***REMOVED***
-            var controller = new GymsController(_context, _manager, null, null);
+            GymsController? controller = new GymsController(_context, _manager, null, null);
 
             Assert.NotNull(controller);
     ***REMOVED***
@@ -80,9 +74,9 @@ namespace NutriFitWebTest
         [Fact]
         public async Task GymsController_EditGymSettings_Should_Return_BadRequest()
         ***REMOVED***
-            var controller = new GymsController(_context, _manager, null, null);
+            GymsController? controller = new GymsController(_context, _manager, null, null);
 
-            var result = await controller.EditGymSettings(null);
+            IActionResult? result = await controller.EditGymSettings(null);
 
             Assert.IsType<BadRequestResult>(result);
     ***REMOVED***
@@ -90,19 +84,19 @@ namespace NutriFitWebTest
         [Fact]
         public async Task GymsController_EditGymSettingsPost_Should_Return_BadRequest()
         ***REMOVED***
-            var controller = new GymsController(_context, _manager, null, null);
+            GymsController? controller = new GymsController(_context, _manager, null, null);
 
-            var result = await controller.EditGymSettingsPost(null, null);
+            IActionResult? result = await controller.EditGymSettingsPost(null, null);
 
             Assert.IsType<BadRequestResult>(result);
     ***REMOVED***
 
-        [Fact (Skip = "Doesn't work")]
+        [Fact(Skip = "Doesn't work")]
         public async Task GymsController_Edit_Should_Return_ViewResult()
         ***REMOVED***
-            var controller = new GymsController(_context, _manager, null, null);
+            GymsController? controller = new GymsController(_context, _manager, null, null);
 
-            var result = await controller.EditGymSettingsPost("Test User 1", null);
+            IActionResult? result = await controller.EditGymSettingsPost("Test User 1", null);
 
             Assert.IsType<BadRequestResult>(result);
     ***REMOVED***
