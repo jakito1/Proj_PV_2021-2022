@@ -10,9 +10,9 @@ namespace NutriFitWebTest
 
         public NutrifitContextFixture()
         ***REMOVED***
-            var connection = new SqliteConnection("Datasource=:memory:");
+            SqliteConnection? connection = new("Datasource=:memory:");
             connection.Open();
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+            DbContextOptions<ApplicationDbContext>? options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlite(connection)
                 .Options;
             DbContext = new ApplicationDbContext(options);

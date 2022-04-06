@@ -1,13 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Principal;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,28 +7,32 @@ using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
-using Xunit;
 using NutriFitWeb.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace NutriFitWebTest.Controllers
 ***REMOVED***
     public class MachinesControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
-        private ApplicationDbContext _context;
-        private UserManager<UserAccountModel> _manager;
-        private IPhotoManagement _photoManagement;
-        private HttpContext _httpContext;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccountModel> _manager;
+        private readonly IPhotoManagement _photoManagement;
+        private readonly HttpContext _httpContext;
 
         public MachinesControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
 
-            var mockHttpContext = new Mock<HttpContext>();
+            Mock<HttpContext>? mockHttpContext = new Mock<HttpContext>();
             mockHttpContext.Setup(h => h.TraceIdentifier).Returns("Test");
             mockHttpContext.Setup(h => h.Session.Clear());
             _httpContext = mockHttpContext.Object;
 
-            var mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
+            Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
                 new Mock<IPasswordHasher<UserAccountModel>>().Object,
                 new IUserValidator<UserAccountModel>[0],
@@ -69,18 +64,18 @@ namespace NutriFitWebTest.Controllers
             ***REMOVED***
         ***REMOVED***;
 
-            var users = usersList.AsAsyncQueryable();
+            IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
             _manager = mockUserManager.Object;
-            
+
     ***REMOVED***
 
         [Fact]
         public void MachinesController_Should_Create()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
             Assert.NotNull(controller);
     ***REMOVED***
@@ -88,9 +83,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_MachineDetails_Should_Throw_NotFoundResult()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.MachineDetails(null);
+            IActionResult? result = await controller.MachineDetails(null);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -98,9 +93,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_MachineDetails_Should_Throw_NotFoundResult_On_Null_Machine()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.MachineDetails(1);
+            IActionResult? result = await controller.MachineDetails(1);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -108,9 +103,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public void MachinesController_CreateMachine_Should_Return_ViewResult()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = controller.CreateMachine();
+            IActionResult? result = controller.CreateMachine();
 
             Assert.IsType<ViewResult>(result);
     ***REMOVED***
@@ -118,9 +113,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_EditMachine_Should_Throw_NotFoundResult()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.EditMachine(null);
+            IActionResult? result = await controller.EditMachine(null);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -128,9 +123,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_EditMachine_Should_Throw_NotFoundResult_On_Null_Machine()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.EditMachine(1);
+            IActionResult? result = await controller.EditMachine(1);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -138,9 +133,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_EditMachinePost_Should_Throw_NotFoundResult()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.EditMachinePost(null, null);
+            IActionResult? result = await controller.EditMachinePost(null, null);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -148,9 +143,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_DeleteMachine_Should_Throw_NotFoundResult()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.DeleteMachine(null);
+            IActionResult? result = await controller.DeleteMachine(null);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -158,9 +153,9 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task MachinesController_DeleteMachine_Should_Throw_NotFoundResult_On_Null_Machine()
         ***REMOVED***
-            var controller = new MachinesController(_context, _manager, _photoManagement);
+            MachinesController? controller = new MachinesController(_context, _manager, _photoManagement);
 
-            var result = await controller.DeleteMachine(1);
+            IActionResult? result = await controller.DeleteMachine(1);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
