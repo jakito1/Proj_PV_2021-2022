@@ -21,6 +21,7 @@
     <EmbeddedResource Remove="VSdoc\**" />
     <None Remove="NutriFitWebTest\**" />
     <None Remove="VSdoc\**" />
+    <None Remove="identifier.sqlite" />
   </ItemGroup>
 
   <ItemGroup>

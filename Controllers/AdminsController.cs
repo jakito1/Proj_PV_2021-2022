@@ -16,14 +16,21 @@ namespace NutriFitWeb.Controllers
         private readonly ApplicationDbContext _context;
 
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The DB context for the application</param>
         public AdminsController(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
     ***REMOVED***
 
+        /// <summary>
+        /// Shows all users for in the application from a Admin perspective
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>A Paginated ViewResult</returns>
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> ShowAllUsers(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
@@ -51,6 +58,12 @@ namespace NutriFitWeb.Controllers
             return View(await PaginatedList<UserAccountModel>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
+        /// <summary>
+        /// Deletes a user account.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The user account id</param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> DeleteUserAccount(string? id)
         ***REMOVED***
@@ -69,6 +82,12 @@ namespace NutriFitWeb.Controllers
             return View(user);
     ***REMOVED***
 
+        /// <summary>
+        /// Deletes a user account and calls the Http POST method to the API to update the data.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The User account id</param>
+        /// <returns>An Action result</returns>
         [HttpPost, ActionName("DeleteUserAccount")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator")]
@@ -115,6 +134,12 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowAllUsers");
     ***REMOVED***
 
+        /// <summary>
+        /// Edit the User settings action to redirect to the selected user account.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The User account id</param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "administrator")]
         public async Task<IActionResult> EditUserSettings(string? id)
         ***REMOVED***
@@ -131,6 +156,12 @@ namespace NutriFitWeb.Controllers
             return View(userAccountModel);
     ***REMOVED***
 
+        /// <summary>
+        /// Edits a user account and calls the Http POST method to the API to update the data.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The User account id</param>
+        /// <returns>An Action result</returns>
         [HttpPost, ActionName("EditUserSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator")]

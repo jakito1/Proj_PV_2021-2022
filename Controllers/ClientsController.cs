@@ -8,12 +8,22 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
+    /// <summary>
+    /// ClientsController Class derives from Controller
+    /// </summary>
     public class ClientsController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Application DB context</param>
+        /// <param name="userManager">User Manager API</param>
+        /// <param name="isUserInRoleByUserId">Interface to determine if the user is of a given role</param>
+        /// <param name="photoManagement">Photo management Interface</param>
         public ClientsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId isUserInRoleByUserId,
@@ -25,6 +35,13 @@ namespace NutriFitWeb.Controllers
             _photoManagement = photoManagement;
     ***REMOVED***
 
+        /// <summary>
+        /// Shows a paginated View of all the clients.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym, nutritionist, trainer")]
         public async Task<IActionResult> ShowClients(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
@@ -58,6 +75,11 @@ namespace NutriFitWeb.Controllers
             return View(await PaginatedList<Client>.CreateAsync(clients.AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
+        /// <summary>
+        /// Shows a specific client details page, based on client id.
+        /// </summary>
+        /// <param name="id">Client id</param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym, trainer, nutritionist")]
         public async Task<IActionResult> ClientDetails(int? id)
         ***REMOVED***
@@ -75,6 +97,14 @@ namespace NutriFitWeb.Controllers
                             FirstOrDefaultAsync(a => a.ClientId == id));
     ***REMOVED***
 
+        /// <summary>
+        /// Displays the page to change a client's gym status, based on client id.
+        /// Only accessible for the Gym role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ChangeClientGymStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
@@ -117,6 +147,14 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
+        /// <summary>
+        /// Displays the page to change a client's trainer status, based on client id.
+        /// Only accessible for the Trainer role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "trainer")]
         public async Task<IActionResult> ChangeClientTrainerStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
@@ -142,6 +180,14 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
+        /// <summary>
+        /// Displays the page to change a client's nutritionist status, based on client id.
+        /// Only accessible for the Gym role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "nutritionist")]
         public async Task<IActionResult> ChangeClientNutritionistStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
@@ -167,7 +213,12 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
-
+        /// <summary>
+        /// Displays a page to edit the client details.
+        /// Only accessible to the Trainer and Nutritionist roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "trainer, nutritionist")]
         public async Task<IActionResult> EditClientForTrainerAndNutritionist(int? id)
         ***REMOVED***
@@ -193,6 +244,12 @@ namespace NutriFitWeb.Controllers
             return Forbid();
     ***REMOVED***
 
+        /// <summary>
+        /// Http POST method to the API to edit the client for the trainers and nutritionists.
+        /// Only accessible to the Trainer and Nutritionist roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Action result</returns>
         [HttpPost, ActionName("EditClientForTrainerAndNutritionist")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "trainer, nutritionist")]
@@ -225,6 +282,12 @@ namespace NutriFitWeb.Controllers
             return View(client);
     ***REMOVED***
 
+        /// <summary>
+        /// Displays a page to edit the client settings for admins and clients.
+        /// Only accessible to the Administrator and Client roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "administrator, client")]
         public async Task<IActionResult> EditClientSettings(string? id)
         ***REMOVED***
@@ -246,6 +309,12 @@ namespace NutriFitWeb.Controllers
             return View(client);
     ***REMOVED***
 
+        /// <summary>
+        /// Http POST method to the API to edit the client for the admins and clients.
+        /// Only accessible to the Administrator and Client roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Action result</returns>
         [HttpPost, ActionName("EditClientSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, client")]
@@ -296,6 +365,13 @@ namespace NutriFitWeb.Controllers
             return View(clientToUpdate);
     ***REMOVED***
 
+        /// <summary>
+        /// Displays a page for the users to request a trainer.
+        /// Only accessible to the Client role.
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "client")]
         public async Task<IActionResult> RequestTrainer(int? pageNumber, string? currentFilter)
         ***REMOVED***
@@ -315,6 +391,13 @@ namespace NutriFitWeb.Controllers
             return NotFound();
     ***REMOVED***
 
+        /// <summary>
+        /// Displays a page for the users to request a nutritionist.
+        /// Only accessible to the Client role.
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "client")]
         public async Task<IActionResult> RequestNutritionist(int? pageNumber, string? currentFilter)
         ***REMOVED***
@@ -334,6 +417,11 @@ namespace NutriFitWeb.Controllers
             return NotFound();
     ***REMOVED***
 
+        /// <summary>
+        /// Utility method to get a client by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A query result</returns>
         private async Task<Client> GetClient(string? id)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -346,6 +434,12 @@ namespace NutriFitWeb.Controllers
             return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 
+        /// <summary>
+        /// Utility method to get all clients for a gym by client id.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="userID"></param>
+        /// <returns>A query result</returns>
         private IOrderedQueryable<Client> GetClientsForGym(string? searchString, string? userID)
         ***REMOVED***
             if (string.IsNullOrEmpty(searchString))
@@ -365,6 +459,12 @@ namespace NutriFitWeb.Controllers
                 OrderByDescending(a => a.Gym);
     ***REMOVED***
 
+        /// <summary>
+        /// Utility method to get all clients for a trainer by client id.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="userID"></param>
+        /// <returns>A query result</returns>
         private async Task<IOrderedQueryable<Client>> GetClientsForTrainer(string? searchString, string? userID)
         ***REMOVED***
             Trainer? trainer = await _context.Trainer.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == userID);
@@ -390,6 +490,12 @@ namespace NutriFitWeb.Controllers
             return null;
     ***REMOVED***
 
+        /// <summary>
+        /// Utility method to get all clients for a nutritionist by client id.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="userID"></param>
+        /// <returns>A query result</returns>
         private async Task<IOrderedQueryable<Client>> GetClientsForNutritionist(string? searchString, string? userID)
         ***REMOVED***
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == userID);
