@@ -86,7 +86,7 @@ namespace NutriFitWeb.Controllers
             TrainingPlan? trainingPlan = await _context.TrainingPlan
                 .Include(a => a.Trainer.UserAccountModel)
                 .Include(a => a.Client.UserAccountModel)
-                .FirstOrDefaultAsync(m => m.TrainingPlanId == id);    
+                .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
             if (trainingPlan is null)
             {
                 return NotFound();

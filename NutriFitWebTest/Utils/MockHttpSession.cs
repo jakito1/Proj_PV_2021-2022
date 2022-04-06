@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,31 +9,16 @@ namespace NutriFitWebTest.Utils
 {
     public class MockHttpSession : ISession
     {
-        Dictionary<string, object> sessionStorage = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> sessionStorage = new Dictionary<string, object>();
         public object this[string name]
         {
-            get { return sessionStorage[name]; }
-            set { sessionStorage[name] = value; }
+            get => sessionStorage[name];
+            set => sessionStorage[name] = value;
         }
 
-        string ISession.Id
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-        bool ISession.IsAvailable
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-        IEnumerable<string> ISession.Keys
-        {
-            get { return sessionStorage.Keys; }
-        }
+        string ISession.Id => throw new NotImplementedException();
+        bool ISession.IsAvailable => throw new NotImplementedException();
+        IEnumerable<string> ISession.Keys => sessionStorage.Keys;
         void ISession.Clear()
         {
             sessionStorage.Clear();
