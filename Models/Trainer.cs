@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
@@ -9,9 +10,11 @@ namespace NutriFitWeb.Models
         public int TrainerId { get; set; }
 
         [DisplayName("Primeiro Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? TrainerFirstName { get; set; }
 
         [DisplayName("Último Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? TrainerLastName { get; set; }
 
         [DisplayName("Ginásio")]

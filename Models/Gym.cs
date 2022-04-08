@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Models
 {
@@ -8,6 +9,7 @@ namespace NutriFitWeb.Models
         public int GymId { get; set; }
 
         [DisplayName("Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? GymName { get; set; }
 
         [DisplayName("Foto de Perfil")]
