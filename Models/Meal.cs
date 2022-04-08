@@ -10,6 +10,7 @@ namespace NutriFitWeb.Models
         [Required(ErrorMessage = "Este campo é obrigatório.")]
         [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? MealName ***REMOVED*** get; set; ***REMOVED***
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? MealDescription ***REMOVED*** get; set; ***REMOVED***
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** calorias.")]
         public int? MealCalorie ***REMOVED*** get; set; ***REMOVED***

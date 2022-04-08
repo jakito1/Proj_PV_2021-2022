@@ -62,6 +62,14 @@ function hideButtonPlanEditRequestPartial() ***REMOVED***
     document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
 ***REMOVED***
 
+function helpButton() ***REMOVED***
+    if (document.getElementById('helpText').style.display == "none") ***REMOVED***
+        document.getElementById('helpText').style.display = "block";
+***REMOVED*** else ***REMOVED***
+        document.getElementById('helpText').style.display = "none";
+***REMOVED***
+***REMOVED***
+
 function limitExerciseRepetitions(input) ***REMOVED***
     if (Math.abs(input.value) > 0) ***REMOVED***
         input.value = Math.abs(input.value);
