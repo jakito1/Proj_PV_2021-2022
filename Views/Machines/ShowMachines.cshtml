@@ -3,6 +3,14 @@
 
 <h1>Máquinas</h1>
 
+<div class="form-group">
+    <input type="submit" value="Ajuda" class="btn btn-primary" onclick="helpButton()" />
+</div>
+
+<div class="form-group" style="display:none;" id="helpText">
+    <p>Teste</p>
+</div>
+
 <div class="titlesMargin">
     <form asp-action="ShowMachines" method="get">
         <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Nome da máquina" class="searchBar" />
@@ -12,55 +20,55 @@
             <div class="marginFixChooseFile">
                 <a class="createBtn" asp-action="CreateMachine">Criar Máquina</a>
             </div>
-        }        
+        }
     </form>
 </div>
 
 <div class="col-md-8">
-<table class="table">
-    <thead>
-        <tr>
-            <th class="roundedCornerTableLeft thStyle">
-                Nome
-            </th>
-            <th class="thStyle">
-                Descrição
-            </th>
-            <th class="thStyle">
-                Tipo
-            </th>
-            <th class="roundedCornerTableRight thStyle">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.MachineName)</p>
-                </td>
-                <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.MachineDescription)</p>
-                </td>
-                <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.MachineType)</p>
-                </td>
-                <td>
-                    @if (User.IsInRole("gym"))
-                    {
-                        <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
-                    }
-                    <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
-                    @if (User.IsInRole("gym"))
-                    {
-                        <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>  
-                    }
-                   
-                </td>
+                <th class="roundedCornerTableLeft thStyle">
+                    Nome
+                </th>
+                <th class="thStyle">
+                    Descrição
+                </th>
+                <th class="thStyle">
+                    Tipo
+                </th>
+                <th class="roundedCornerTableRight thStyle">Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.MachineName)</p>
+                    </td>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.MachineDescription)</p>
+                    </td>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.MachineType)</p>
+                    </td>
+                    <td>
+                        @if (User.IsInRole("gym"))
+                        {
+                            <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                        }
+                        <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
+                        @if (User.IsInRole("gym"))
+                        {
+                            <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 @{

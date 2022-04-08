@@ -10,6 +10,7 @@ namespace NutriFitWeb.Models
         [Required(ErrorMessage = "Campo Obrigatório (máximo 20 caracteres)")]
         [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ExerciseName { get; set; }
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? ExerciseDescription { get; set; }
 
         [Range(1, 120, ErrorMessage = "Para um treino saudável, deve inserir entre {1} e {2} minutos.")]
@@ -20,7 +21,6 @@ namespace NutriFitWeb.Models
 
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? ExerciseURL { get; set; }
-        /*public List<Picture>? Pictures { get; set; }*/
 
         [Column(TypeName = "nvarchar(24)")]
         public ExerciseType? ExerciseType { get; set; }
