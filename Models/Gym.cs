@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
@@ -8,6 +9,7 @@ namespace NutriFitWeb.Models
         public int GymId ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? GymName ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Foto de Perfil")]
