@@ -2,7 +2,7 @@
   "version": 3,
   "targets": ***REMOVED***
     "net6.0": ***REMOVED***
-      "Castle.Core/4.4.0": ***REMOVED***
+      "Castle.Core/4.4.1": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "NETStandard.Library": "1.6.1",
@@ -71,48 +71,7 @@
       "MessagePackAnalyzer/2.1.152": ***REMOVED***
         "type": "package"
     ***REMOVED***
-      "Microsoft.AspNet.Mvc/5.2.7": ***REMOVED***
-        "type": "package",
-        "dependencies": ***REMOVED***
-          "Microsoft.AspNet.Razor": "[3.2.7, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.7, 3.3.0)"
-      ***REMOVED***
-        "compile": ***REMOVED***
-          "lib/net45/System.Web.Mvc.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net45/System.Web.Mvc.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-      "Microsoft.AspNet.Razor/3.2.7": ***REMOVED***
-        "type": "package",
-        "compile": ***REMOVED***
-          "lib/net45/System.Web.Razor.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net45/System.Web.Razor.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-      "Microsoft.AspNet.WebPages/3.2.7": ***REMOVED***
-        "type": "package",
-        "dependencies": ***REMOVED***
-          "Microsoft.AspNet.Razor": "[3.2.7, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-      ***REMOVED***
-        "compile": ***REMOVED***
-          "lib/net45/System.Web.Helpers.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Deployment.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Razor.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net45/System.Web.Helpers.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Deployment.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Razor.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-      "Microsoft.AspNetCore.Cryptography.Internal/6.0.1": ***REMOVED***
+      "Microsoft.AspNetCore.Cryptography.Internal/6.0.3": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": ***REMOVED******REMOVED***
@@ -121,10 +80,10 @@
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.1": ***REMOVED***
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.1"
+          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.3"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": ***REMOVED******REMOVED***
@@ -133,10 +92,10 @@
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.0": ***REMOVED***
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.0"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.3"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
@@ -148,11 +107,11 @@
           "Microsoft.AspNetCore.App"
         ]
     ***REMOVED***
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.1": ***REMOVED***
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.1",
-          "Microsoft.Extensions.Identity.Stores": "6.0.1"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.3",
+          "Microsoft.Extensions.Identity.Stores": "6.0.3"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
@@ -161,11 +120,11 @@
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Identity.UI/6.0.1": ***REMOVED***
+      "Microsoft.AspNetCore.Identity.UI/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.FileProviders.Embedded": "6.0.1",
-          "Microsoft.Extensions.Identity.Stores": "6.0.1"
+          "Microsoft.Extensions.FileProviders.Embedded": "6.0.3",
+          "Microsoft.Extensions.Identity.Stores": "6.0.3"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll": ***REMOVED******REMOVED***
@@ -947,7 +906,7 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.CodeCoverage/17.1.0": ***REMOVED***
+      "Microsoft.CodeCoverage/16.11.0": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/netcoreapp1.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll": ***REMOVED******REMOVED***
@@ -1021,10 +980,23 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Data.Sqlite.Core/6.0.3": ***REMOVED***
+      "Microsoft.Data.Sqlite/7.0.0-preview.2.22153.1": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "SQLitePCLRaw.core": "2.0.6"
+          "Microsoft.Data.Sqlite.Core": "7.0.0-preview.2.22153.1",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.8-pre20220111224339"
+      ***REMOVED***
+        "compile": ***REMOVED***
+          "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
+      "Microsoft.Data.Sqlite.Core/7.0.0-preview.2.22153.1": ***REMOVED***
+        "type": "package",
+        "dependencies": ***REMOVED***
+          "SQLitePCLRaw.core": "2.0.8-pre20220111224339"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.Data.Sqlite.dll": ***REMOVED******REMOVED***
@@ -1067,16 +1039,16 @@
           "lib/net6.0/Microsoft.DotNet.Scaffolding.Shared.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore/7.0.0-preview.1.22076.6": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.3",
-          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.3",
-          "Microsoft.Extensions.Caching.Memory": "6.0.1",
-          "Microsoft.Extensions.DependencyInjection": "6.0.0",
-          "Microsoft.Extensions.Logging": "6.0.0",
-          "System.Collections.Immutable": "6.0.0",
-          "System.Diagnostics.DiagnosticSource": "6.0.0"
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0-preview.1.22076.6",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.0-preview.1.22076.6",
+          "Microsoft.Extensions.Caching.Memory": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Logging": "7.0.0-preview.1.22076.8",
+          "System.Collections.Immutable": "7.0.0-preview.1.22076.8",
+          "System.Diagnostics.DiagnosticSource": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
@@ -1085,7 +1057,7 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Abstractions/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.0-preview.1.22076.6": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": ***REMOVED******REMOVED***
@@ -1094,7 +1066,7 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Analyzers/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.0-preview.1.22076.6": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
@@ -1103,11 +1075,11 @@
           "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Relational/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Relational/7.0.0-preview.1.22076.6": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore": "6.0.3",
-          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
+          "Microsoft.EntityFrameworkCore": "7.0.0-preview.1.22076.6",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": ***REMOVED******REMOVED***
@@ -1116,11 +1088,11 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Sqlite/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Sqlite/7.0.0-preview.1.22076.6": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "6.0.3",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0-preview.1.22076.6",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.7"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/_._": ***REMOVED******REMOVED***
@@ -1129,12 +1101,12 @@
           "lib/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Sqlite.Core/7.0.0-preview.1.22076.6": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Data.Sqlite.Core": "6.0.3",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.3",
-          "Microsoft.Extensions.DependencyModel": "6.0.0"
+          "Microsoft.Data.Sqlite.Core": "7.0.0-preview.1.22076.6",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.0-preview.1.22076.6",
+          "Microsoft.Extensions.DependencyModel": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll": ***REMOVED******REMOVED***
@@ -1143,11 +1115,11 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.SqlServer/6.0.1": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.SqlServer/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Data.SqlClient": "2.1.4",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.1"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.3"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": ***REMOVED******REMOVED***
@@ -1156,51 +1128,59 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Caching.Abstractions/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.Caching.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.Primitives": "6.0.0"
+          "Microsoft.Extensions.Primitives": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Caching.Abstractions.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Caching.Abstractions.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "build": ***REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Caching.Memory/6.0.1": ***REMOVED***
+      "Microsoft.Extensions.Caching.Memory/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Options": "6.0.0",
-          "Microsoft.Extensions.Primitives": "6.0.0"
+          "Microsoft.Extensions.Caching.Abstractions": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Options": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Primitives": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Caching.Memory.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Caching.Memory.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "build": ***REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Configuration.Abstractions/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.Configuration.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.Primitives": "6.0.0"
+          "Microsoft.Extensions.Primitives": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "build": ***REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.DependencyInjection/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.DependencyInjection/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": ***REMOVED******REMOVED***
@@ -1209,10 +1189,10 @@
           "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": ***REMOVED******REMOVED***
@@ -1221,23 +1201,23 @@
           "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.DependencyModel/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.DependencyModel/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "System.Buffers": "4.5.1",
-          "System.Memory": "4.5.4",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "6.0.0",
-          "System.Text.Json": "6.0.0"
+          "System.Text.Encodings.Web": "7.0.0-preview.1.22076.8",
+          "System.Text.Json": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.DependencyModel.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.DependencyModel.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "build": ***REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "Microsoft.Extensions.FileProviders.Abstractions/6.0.0": ***REMOVED***
@@ -1255,7 +1235,7 @@
           "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.FileProviders.Embedded/6.0.1": ***REMOVED***
+      "Microsoft.Extensions.FileProviders.Embedded/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Extensions.FileProviders.Abstractions": "6.0.0"
@@ -1273,10 +1253,10 @@
           "buildMultiTargeting/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Identity.Core/6.0.1": ***REMOVED***
+      "Microsoft.Extensions.Identity.Core/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.1",
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.3",
           "Microsoft.Extensions.Logging": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0"
       ***REMOVED***
@@ -1287,11 +1267,11 @@
           "lib/net6.0/Microsoft.Extensions.Identity.Core.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Identity.Stores/6.0.1": ***REMOVED***
+      "Microsoft.Extensions.Identity.Stores/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Identity.Core": "6.0.1",
+          "Microsoft.Extensions.Identity.Core": "6.0.3",
           "Microsoft.Extensions.Logging": "6.0.0"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -1301,23 +1281,26 @@
           "lib/net6.0/Microsoft.Extensions.Identity.Stores.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Logging/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.Logging/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.DependencyInjection": "6.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Options": "6.0.0",
-          "System.Diagnostics.DiagnosticSource": "6.0.0"
+          "Microsoft.Extensions.DependencyInjection": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Options": "7.0.0-preview.1.22076.8",
+          "System.Diagnostics.DiagnosticSource": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
-          "lib/netstandard2.1/Microsoft.Extensions.Logging.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Logging.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netstandard2.1/Microsoft.Extensions.Logging.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Logging.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "build": ***REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Logging.Abstractions/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.Logging.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": ***REMOVED******REMOVED***
@@ -1326,26 +1309,29 @@
           "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Options/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.Options/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Primitives": "6.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0-preview.1.22076.8",
+          "Microsoft.Extensions.Primitives": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
-          "lib/netstandard2.1/Microsoft.Extensions.Options.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Options.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netstandard2.1/Microsoft.Extensions.Options.dll": ***REMOVED******REMOVED***
+          "lib/net6.0/Microsoft.Extensions.Options.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "build": ***REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Primitives/6.0.0": ***REMOVED***
+      "Microsoft.Extensions.Primitives/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+          "System.Runtime.CompilerServices.Unsafe": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.Extensions.Primitives.dll": ***REMOVED******REMOVED***
@@ -1354,7 +1340,7 @@
           "lib/net6.0/Microsoft.Extensions.Primitives.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "Microsoft.Identity.Client/4.21.1": ***REMOVED***
@@ -1440,11 +1426,11 @@
           "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.NET.Test.Sdk/17.1.0": ***REMOVED***
+      "Microsoft.NET.Test.Sdk/16.11.0": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.CodeCoverage": "17.1.0",
-          "Microsoft.TestPlatform.TestHost": "17.1.0"
+          "Microsoft.CodeCoverage": "16.11.0",
+          "Microsoft.TestPlatform.TestHost": "16.11.0"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/netcoreapp2.1/_._": ***REMOVED******REMOVED***
@@ -1478,10 +1464,10 @@
           "lib/netstandard1.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.TestPlatform.ObjectModel/17.1.0": ***REMOVED***
+      "Microsoft.TestPlatform.ObjectModel/16.11.0": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "NuGet.Frameworks": "5.11.0",
+          "NuGet.Frameworks": "5.0.0",
           "System.Reflection.Metadata": "1.6.0"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -1575,10 +1561,10 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.TestPlatform.TestHost/17.1.0": ***REMOVED***
+      "Microsoft.TestPlatform.TestHost/16.11.0": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.TestPlatform.ObjectModel": "17.1.0",
+          "Microsoft.TestPlatform.ObjectModel": "16.11.0",
           "Newtonsoft.Json": "9.0.1"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -1855,15 +1841,6 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Web.Infrastructure/1.0.0": ***REMOVED***
-        "type": "package",
-        "compile": ***REMOVED***
-          "lib/net40/Microsoft.Web.Infrastructure.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net40/Microsoft.Web.Infrastructure.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
       "Microsoft.Win32.Primitives/4.3.0": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
@@ -1916,10 +1893,10 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Moq/4.16.1": ***REMOVED***
+      "Moq/4.17.2": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Castle.Core": "4.4.0",
+          "Castle.Core": "4.4.1",
           "System.Threading.Tasks.Extensions": "4.5.4"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -2267,7 +2244,7 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "SendGrid/9.25.1": ***REMOVED***
+      "SendGrid/9.27.0": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Newtonsoft.Json": "9.0.1",
@@ -2280,12 +2257,12 @@
           "lib/netstandard2.0/SendGrid.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.6": ***REMOVED***
+      "SQLitePCLRaw.bundle_e_sqlite3/2.0.8-pre20220111224339": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "SQLitePCLRaw.core": "2.0.6",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.6",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.6"
+          "SQLitePCLRaw.core": "2.0.8-pre20220111224339",
+          "SQLitePCLRaw.lib.e_sqlite3": "2.0.8-pre20220111224339",
+          "SQLitePCLRaw.provider.e_sqlite3": "2.0.8-pre20220111224339"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": ***REMOVED******REMOVED***
@@ -2294,7 +2271,7 @@
           "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "SQLitePCLRaw.core/2.0.6": ***REMOVED***
+      "SQLitePCLRaw.core/2.0.8-pre20220111224339": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "System.Memory": "4.5.3"
@@ -2306,7 +2283,7 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.6": ***REMOVED***
+      "SQLitePCLRaw.lib.e_sqlite3/2.0.8-pre20220111224339": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
@@ -2377,10 +2354,10 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.6": ***REMOVED***
+      "SQLitePCLRaw.provider.e_sqlite3/2.0.8-pre20220111224339": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "SQLitePCLRaw.core": "2.0.6"
+          "SQLitePCLRaw.core": "2.0.8-pre20220111224339"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net5.0/SQLitePCLRaw.provider.e_sqlite3.dll": ***REMOVED******REMOVED***
@@ -2410,13 +2387,20 @@
           "lib/netstandard1.6/System.AppContext.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "System.Buffers/4.5.1": ***REMOVED***
+      "System.Buffers/4.3.0": ***REMOVED***
         "type": "package",
+        "dependencies": ***REMOVED***
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0"
+      ***REMOVED***
         "compile": ***REMOVED***
-          "ref/netcoreapp2.0/_._": ***REMOVED******REMOVED***
+          "lib/netstandard1.1/_._": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
-          "lib/netcoreapp2.0/_._": ***REMOVED******REMOVED***
+          "lib/netstandard1.1/System.Buffers.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "System.Collections/4.3.0": ***REMOVED***
@@ -2451,10 +2435,10 @@
           "lib/netstandard1.3/System.Collections.Concurrent.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "System.Collections.Immutable/6.0.0": ***REMOVED***
+      "System.Collections.Immutable/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+          "System.Runtime.CompilerServices.Unsafe": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/System.Collections.Immutable.dll": ***REMOVED******REMOVED***
@@ -2463,7 +2447,7 @@
           "lib/net6.0/System.Collections.Immutable.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "System.Collections.NonGeneric/4.3.0": ***REMOVED***
@@ -2704,10 +2688,10 @@
           "ref/netstandard1.3/System.Diagnostics.Debug.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "System.Diagnostics.DiagnosticSource/6.0.0": ***REMOVED***
+      "System.Diagnostics.DiagnosticSource/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+          "System.Runtime.CompilerServices.Unsafe": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": ***REMOVED******REMOVED***
@@ -2716,7 +2700,7 @@
           "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "System.Diagnostics.Tools/4.3.0": ***REMOVED***
@@ -3268,7 +3252,7 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "System.Runtime.CompilerServices.Unsafe/6.0.0": ***REMOVED***
+      "System.Runtime.CompilerServices.Unsafe/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": ***REMOVED******REMOVED***
@@ -3277,7 +3261,7 @@
           "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "System.Runtime.Extensions/4.3.0": ***REMOVED***
@@ -3691,10 +3675,10 @@
           "ref/netstandard1.3/System.Text.Encoding.Extensions.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "System.Text.Encodings.Web/6.0.0": ***REMOVED***
+      "System.Text.Encodings.Web/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+          "System.Runtime.CompilerServices.Unsafe": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/System.Text.Encodings.Web.dll": ***REMOVED******REMOVED***
@@ -3703,7 +3687,7 @@
           "lib/net6.0/System.Text.Encodings.Web.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtimeTargets": ***REMOVED***
           "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll": ***REMOVED***
@@ -3712,11 +3696,11 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "System.Text.Json/6.0.0": ***REMOVED***
+      "System.Text.Json/7.0.0-preview.1.22076.8": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "6.0.0"
+          "System.Runtime.CompilerServices.Unsafe": "7.0.0-preview.1.22076.8",
+          "System.Text.Encodings.Web": "7.0.0-preview.1.22076.8"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/System.Text.Json.dll": ***REMOVED******REMOVED***
@@ -3725,7 +3709,7 @@
           "lib/net6.0/System.Text.Json.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "build": ***REMOVED***
-          "buildTransitive/netcoreapp3.1/_._": ***REMOVED******REMOVED***
+          "buildTransitive/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "System.Text.RegularExpressions/4.3.0": ***REMOVED***
@@ -3964,12 +3948,13 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.1",
-          "Microsoft.AspNetCore.Identity.UI": "6.0.1",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.3",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.3",
+          "Microsoft.AspNetCore.Identity.UI": "6.0.3",
+          "Microsoft.EntityFrameworkCore": "6.0.3",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2",
-          "SendGrid": "9.25.1"
+          "SendGrid": "9.27.0"
       ***REMOVED***
         "compile": ***REMOVED***
           "bin/placeholder/NutriFitWeb.dll": ***REMOVED******REMOVED***
@@ -3984,17 +3969,17 @@
 ***REMOVED***
 ***REMOVED***
   "libraries": ***REMOVED***
-    "Castle.Core/4.4.0": ***REMOVED***
-      "sha512": "b5rRL5zeaau1y/5hIbI+6mGw3cwun16YjkHZnV9RRT5UyUIFsgLmNXJ0YnIN9p8Hw7K7AbG1q1UclQVU3DinAQ==",
+    "Castle.Core/4.4.1": ***REMOVED***
+      "sha512": "zanbjWC0Y05gbx4eGXkzVycOQqVOFVeCjVsDSyuao9P4mtN1w3WxxTo193NGC7j3o2u3AJRswaoC6hEbnGACnQ==",
       "type": "package",
-      "path": "castle.core/4.4.0",
+      "path": "castle.core/4.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ASL - Apache Software Foundation License.txt",
         "CHANGELOG.md",
         "LICENSE",
-        "castle.core.4.4.0.nupkg.sha512",
+        "castle.core.4.4.1.nupkg.sha512",
         "castle.core.nuspec",
         "lib/net35/Castle.Core.dll",
         "lib/net35/Castle.Core.xml",
@@ -4118,59 +4103,10 @@
         "tools/uninstall.ps1"
       ]
   ***REMOVED***
-    "Microsoft.AspNet.Mvc/5.2.7": ***REMOVED***
-      "sha512": "m3hUsn48k6Qb5El9A8naTwGTLCdSQKGSpGweqIfiVKltGJzAJJxuXvhhaQQtLCGg3i5V88iGjz0JG72/tlFKlg==",
+    "Microsoft.AspNetCore.Cryptography.Internal/6.0.3": ***REMOVED***
+      "sha512": "x90uNiEssA16NRSJ0nYIBJRC2GVVs2pmvHR88MySsolexasmc449PmWkSVHok+FyA1gLfF0oVA4LjkngkWdlGw==",
       "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-  ***REMOVED***
-    "Microsoft.AspNet.Razor/3.2.7": ***REMOVED***
-      "sha512": "BpWEZ+Ys7g9VAkbAfpG5jr5A1fKcmadCCXv3fYfps5YfTVABJIGV4uc9yvmXKxsNsjL+BzDld2gs+xtgT2gg1g==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.2.7.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-  ***REMOVED***
-    "Microsoft.AspNet.WebPages/3.2.7": ***REMOVED***
-      "sha512": "2jwZFB7PvY+tbdz0ZP4iEo7gMrJxkCQUzoGLh6swUc6ZXl6DoKyDslmGcC/j9PFmJXCRMVIqtRorlPSMU2DuRA==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.2.7.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
-      ]
-  ***REMOVED***
-    "Microsoft.AspNetCore.Cryptography.Internal/6.0.1": ***REMOVED***
-      "sha512": "nWXqkRSqJFnCaSiH6g4Ld2xhjdYhuS7iuWKMlEanhJxo79b939BV5e8j32JLW6bp9O3w8aPeiIa2UnN+Q585ag==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.internal/6.0.1",
+      "path": "microsoft.aspnetcore.cryptography.internal/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4182,14 +4118,14 @@
         "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "microsoft.aspnetcore.cryptography.internal.6.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.6.0.3.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.internal.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.1": ***REMOVED***
-      "sha512": "v/AU/L3M/48mgj3Y7Vavi2ZIrw7PASwj5lERk2bkGVDmQr3+edzJrHscrmdtJ/3OWOOsi3PNyRWMvFnRlbpDLw==",
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.3": ***REMOVED***
+      "sha512": "sOpvnKWMBMK9FEcR6KAbKZvO9XVy1DZvVKXkiZdWXcBKoO4a6I6geNyFHAPfG4Kqayymk3NRalxVt0j6fus8vg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/6.0.1",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4201,14 +4137,14 @@
         "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "microsoft.aspnetcore.cryptography.keyderivation.6.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.6.0.3.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.0": ***REMOVED***
-      "sha512": "1mnjZaEH9LWfbuCfYYil64TZ6G/hnODd+WKBjEbQx5/SPjypj+2LzQ43M09JXWyRvPpjiefl/wxV0q/ACqZLRw==",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "sha512": "sba0OFsscmCi7CepYxKf5J3ENrUSY+UGmc4SZH3jX3EmSx9aqMypBnzNEvzgQaQFnfuedfpaAhu2S2ygSoo9Mg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/6.0.0",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4216,14 +4152,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.3.nupkg.sha512",
         "microsoft.aspnetcore.diagnostics.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.1": ***REMOVED***
-      "sha512": "FklKd0TXUaYExsSLte5k6w2krmHgUrGtbxX+vS4YEOx9yyP3DWYld0TPUplkPbyM/iNv7ou1xK63Yg+tQAiRNA==",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "sha512": "214kfSUvhEqivtGCtRuJXRmELiOgQ4POpn4KHhHCxtxXEvZKMI0KqCrVW5ZO2XA6c1uhOimWU/jYutGhJLhwJg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.1",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4231,14 +4167,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.6.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.6.0.3.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Identity.UI/6.0.1": ***REMOVED***
-      "sha512": "x9f3QEdE5aXV78zcOwq6vYB6n4UTohmotDyspADo9RI1Sv2IKWpn8cbt+oEDJFbqPARja5bpmznEiXwTJowiqQ==",
+    "Microsoft.AspNetCore.Identity.UI/6.0.3": ***REMOVED***
+      "sha512": "pc4y2vU1ew07uZdlitaoi/Yx8DXAGuVUr+8rBk+KTMH6YCfh5yRu1Y5SXo9qxmffinI/wkveQNhXmwgvFcU8Xg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.ui/6.0.1",
+      "path": "microsoft.aspnetcore.identity.ui/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4253,7 +4189,7 @@
         "buildTransitive/Microsoft.AspNetCore.Identity.UI.targets",
         "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll",
         "lib/net6.0/Microsoft.AspNetCore.Identity.UI.xml",
-        "microsoft.aspnetcore.identity.ui.6.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.identity.ui.6.0.3.nupkg.sha512",
         "microsoft.aspnetcore.identity.ui.nuspec",
         "staticwebassets/V4/css/site.css",
         "staticwebassets/V4/favicon.ico",
@@ -5125,10 +5061,10 @@
         "microsoft.codeanalysis.workspaces.msbuild.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.CodeCoverage/17.1.0": ***REMOVED***
-      "sha512": "0N/ZJ71ncCxQWhgtkEYKOgu2oMHa8h1tsOUbhmIKXF8UwtSUCe4vHAsJ3DVcNWRwNfQzSTy263ZE+QF6MdIhhQ==",
+    "Microsoft.CodeCoverage/16.11.0": ***REMOVED***
+      "sha512": "wf6lpAeCqP0KFfbDVtfL50lr7jY1gq0+0oSphyksfLOEygMDXqnaxHK5LPFtMEhYSEtgXdNyXNnEddOqQQUdlQ==",
       "type": "package",
-      "path": "microsoft.codecoverage/17.1.0",
+      "path": "microsoft.codecoverage/16.11.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5155,13 +5091,10 @@
         "build/netstandard1.0/CodeCoverage/msvcp140.dll",
         "build/netstandard1.0/CodeCoverage/msvcp140_atomic_wait.dll",
         "build/netstandard1.0/CodeCoverage/vcruntime140.dll",
-        "build/netstandard1.0/InstrumentationEngine/alpine/x64/VanguardInstrumentationProfiler_x64.config",
+        "build/netstandard1.0/InstrumentationEngine/alpine/x64/ProductionBreakpoints_x64.config",
         "build/netstandard1.0/InstrumentationEngine/alpine/x64/libCoverageInstrumentationMethod.so",
         "build/netstandard1.0/InstrumentationEngine/alpine/x64/libInstrumentationEngine.so",
-        "build/netstandard1.0/InstrumentationEngine/macos/x64/VanguardInstrumentationProfiler_x64.config",
-        "build/netstandard1.0/InstrumentationEngine/macos/x64/libCoverageInstrumentationMethod.dylib",
-        "build/netstandard1.0/InstrumentationEngine/macos/x64/libInstrumentationEngine.dylib",
-        "build/netstandard1.0/InstrumentationEngine/ubuntu/x64/VanguardInstrumentationProfiler_x64.config",
+        "build/netstandard1.0/InstrumentationEngine/ubuntu/x64/ProductionBreakpoints_x64.config",
         "build/netstandard1.0/InstrumentationEngine/ubuntu/x64/libCoverageInstrumentationMethod.so",
         "build/netstandard1.0/InstrumentationEngine/ubuntu/x64/libInstrumentationEngine.so",
         "build/netstandard1.0/InstrumentationEngine/x64/MicrosoftInstrumentationEngine_x64.dll",
@@ -5190,7 +5123,7 @@
         "build/netstandard1.0/zh-Hant/Microsoft.VisualStudio.TraceDataCollector.resources.dll",
         "lib/net45/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
         "lib/netcoreapp1.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
-        "microsoft.codecoverage.17.1.0.nupkg.sha512",
+        "microsoft.codecoverage.16.11.0.nupkg.sha512",
         "microsoft.codecoverage.nuspec"
       ]
   ***REMOVED***
@@ -5349,10 +5282,23 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
   ***REMOVED***
-    "Microsoft.Data.Sqlite.Core/6.0.3": ***REMOVED***
-      "sha512": "3EIhLzG+WeJ2AtmGph8aSA5pH9weDOZ9Fox6oaDSiPvj6TIehzYkdW0ySMAfckTbv8V1vCMeEmtqhwEmyK9fYA==",
+    "Microsoft.Data.Sqlite/7.0.0-preview.2.22153.1": ***REMOVED***
+      "sha512": "WN+WqhUrTRnCU2qkncqvBCYcIPpURFGhsMQNjuOMgRoMVW4l11BFF1bcEWRzVktHFmn0IwT4hLaer3vYNIfi7w==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/6.0.3",
+      "path": "microsoft.data.sqlite/7.0.0-preview.2.22153.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netstandard2.0/_._",
+        "microsoft.data.sqlite.7.0.0-preview.2.22153.1.nupkg.sha512",
+        "microsoft.data.sqlite.nuspec"
+      ]
+  ***REMOVED***
+    "Microsoft.Data.Sqlite.Core/7.0.0-preview.2.22153.1": ***REMOVED***
+      "sha512": "zwDV/B+UqTT3J5L1Ji8CbBPA1enzSP1iOA62G6sHCrJaYg9pgd5DV31/aZM6gjyicr3MJFztcsIDCtco4FQJHw==",
+      "type": "package",
+      "path": "microsoft.data.sqlite.core/7.0.0-preview.2.22153.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5361,7 +5307,7 @@
         "lib/net6.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.6.0.3.nupkg.sha512",
+        "microsoft.data.sqlite.core.7.0.0-preview.2.22153.1.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
   ***REMOVED***
@@ -5400,225 +5346,265 @@
         "microsoft.dotnet.scaffolding.shared.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore/6.0.3": ***REMOVED***
-      "sha512": "f7ZlNOI1wPg/r0zRgvmcLAM3kwuCVGe5cZc8rYoKPDGZs5dgRFe5a43H9FnCXsyFAF6FILB08Nr9RkuNMwd3TQ==",
+    "Microsoft.EntityFrameworkCore/7.0.0-preview.1.22076.6": ***REMOVED***
+      "sha512": "2Sv6HMVyptgM/MQTrh2TXo3BeJsRz4PBHEQS30whY4DFwUj41b/oKgO9fVqlvlZdhqFz872yegA4xNgtTIUYJA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/6.0.3",
+      "path": "microsoft.entityframeworkcore/7.0.0-preview.1.22076.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.7.0.0-preview.1.22076.6.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Abstractions/6.0.3": ***REMOVED***
-      "sha512": "7c6wJtTFj7FDe20IVPDKeCzxWIMu+XDpYi7aYuUo6knu4vDeB3N3F0pjAZgXJ96GwTZYBrjOEwnbpYmfapEz/w==",
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.0-preview.1.22076.6": ***REMOVED***
+      "sha512": "Roa1TCr7cc4V5et77O3sStRRY6o/OS2gg8B+oTVxsQeZQYdLKOOaw7YBedgSriNQzi8Ir7GUkxhs2iPjiSbs+w==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/6.0.3",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.0-preview.1.22076.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.7.0.0-preview.1.22076.6.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Analyzers/6.0.3": ***REMOVED***
-      "sha512": "Ld9HyVABYor3Tq43/sG2JERL94UnDHJPg5PwpkCW4CWsf/CbxHetdecv+bCXA/Hg4q+44sov0GVl4Ywjk4PnyA==",
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.0-preview.1.22076.6": ***REMOVED***
+      "sha512": "L49/Qz4bw1jcwGcmXHSj4L2f9azH3PILrUJfPm4mMFpMNShd35dt1ivzm4cwQhClfIhJaNxSkVYUQJuVYzSa0A==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/6.0.3",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.0-preview.1.22076.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.7.0.0-preview.1.22076.6.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Relational/6.0.3": ***REMOVED***
-      "sha512": "Dga4OH8QxmPT9APr7ZL5R0TvNADOcjDNNvJa8pU3QbPJ6OvRPTlzqAehfEBow0/NXBTKbIO48b4aIJI4VCO7fg==",
+    "Microsoft.EntityFrameworkCore.Relational/7.0.0-preview.1.22076.6": ***REMOVED***
+      "sha512": "Tlo13Qnx/tLllfQaVPOj+zKzoDNeEeuRNbljxzzrzCkI5XjPuYTELtUc1HbZe0K7rstrUfQSC1W8FsqUNDFi0g==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/6.0.3",
+      "path": "microsoft.entityframeworkcore.relational/7.0.0-preview.1.22076.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.7.0.0-preview.1.22076.6.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Sqlite/6.0.3": ***REMOVED***
-      "sha512": "Zz0t+iBdC64fQeBOHr+5IpR/SNhfmxOjM0aI8VA5Xk8wBS/o98YWVXp8kT1iGWS3+K2jDGuusl192LZthLUStQ==",
+    "Microsoft.EntityFrameworkCore.Sqlite/7.0.0-preview.1.22076.6": ***REMOVED***
+      "sha512": "ddutWV9sDMaSHuCX2lt5q7OdSFoH7Ta94r6JTemUkOShAKrnA80cgeXCFv3IbcTSgCJIfqiaU9tvpg9g8ngcRQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite/6.0.3",
+      "path": "microsoft.entityframeworkcore.sqlite/7.0.0-preview.1.22076.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.sqlite.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.7.0.0-preview.1.22076.6.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.3": ***REMOVED***
-      "sha512": "9h4/Icp2jsrhxo6PPeEV0B5UwT24ZwvV1cbdGW7u2YCwl0e8ToBw+IaADtER8l6vwH9y210+oMHmTGOP/kHfyQ==",
+    "Microsoft.EntityFrameworkCore.Sqlite.Core/7.0.0-preview.1.22076.6": ***REMOVED***
+      "sha512": "ItRLVrvxX1GR98M+14ytCLDkDBy0tZ/3vM1M1FGUUPwcX03QTHce9FcABA3odWIha84vOPHrKsvmN0VpYpGdoA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite.core/6.0.3",
+      "path": "microsoft.entityframeworkcore.sqlite.core/7.0.0-preview.1.22076.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.xml",
-        "microsoft.entityframeworkcore.sqlite.core.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.core.7.0.0-preview.1.22076.6.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.SqlServer/6.0.1": ***REMOVED***
-      "sha512": "bXmFi9F7GHT0dMUvuT2b5Pf8TtPnU6sQxZ5pvf3UElva+cD0YqsGI5bJGTx21pcMdw3bVhqzCLrpfA/zgHFyMw==",
+    "Microsoft.EntityFrameworkCore.SqlServer/6.0.3": ***REMOVED***
+      "sha512": "rd1lGh5au10tB6J0Jt3ZLLA78Bs/eQSWgkMSBE9n+cRAs/Db99OfdnxgkK3JqCCyFfp12LAsboWDUCnRhPOskw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/6.0.1",
+      "path": "microsoft.entityframeworkcore.sqlserver/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.6.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.6.0.3.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Caching.Abstractions/6.0.0": ***REMOVED***
-      "sha512": "bcz5sSFJbganH0+YrfvIjJDIcKNW7TL07C4d1eTmXy/wOt52iz4LVogJb6pazs7W0+74j0YpXFErvp++Aq5Bsw==",
+    "Microsoft.Extensions.Caching.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "9R0AVFZ9v1EzO0ofBDdGJe0EJKuFvZwMpbQjp3C96pV21x3sd0vsvYV/0RoTAu6hEc0eokyD33FLmAo4WOgRzQ==",
       "type": "package",
-      "path": "microsoft.extensions.caching.abstractions/6.0.0",
+      "path": "microsoft.extensions.caching.abstractions/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Caching.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.Caching.Abstractions.xml",
+        "buildTransitive/net461/Microsoft.Extensions.Caching.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Caching.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Caching.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Caching.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Caching.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.xml",
-        "microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.caching.abstractions.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.caching.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Caching.Memory/6.0.1": ***REMOVED***
-      "sha512": "B4y+Cev05eMcjf1na0v9gza6GUtahXbtY1JCypIgx3B4Ea/KAgsWyXEmW4q6zMbmTMtKzmPVk09rvFJirvMwTg==",
+    "Microsoft.Extensions.Caching.Memory/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "mInBXjGXnicSMqWaLHysOdCvMlG0IXGJmxxsoJt2Ta1xjbjmUH4vDq+GTUexMAapgYRsOlJ9euJBnttkPNA5og==",
       "type": "package",
-      "path": "microsoft.extensions.caching.memory/6.0.1",
+      "path": "microsoft.extensions.caching.memory/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Caching.Memory.dll",
-        "lib/net461/Microsoft.Extensions.Caching.Memory.xml",
+        "buildTransitive/net461/Microsoft.Extensions.Caching.Memory.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Caching.Memory.targets",
+        "lib/net462/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/net462/Microsoft.Extensions.Caching.Memory.xml",
+        "lib/net6.0/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/net6.0/Microsoft.Extensions.Caching.Memory.xml",
+        "lib/net7.0/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/net7.0/Microsoft.Extensions.Caching.Memory.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.xml",
-        "microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
+        "microsoft.extensions.caching.memory.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.caching.memory.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Configuration.Abstractions/6.0.0": ***REMOVED***
-      "sha512": "qWzV9o+ZRWq+pGm+1dF+R7qTgTYoXvbyowRoBxQJGfqTpqDun2eteerjRQhq5PQ/14S+lqto3Ft4gYaRyl4rdQ==",
+    "Microsoft.Extensions.Configuration.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "AUnCFUnsgIjTgqN9YfUiBO2akbBgrFdGL3Af6wMsTaEQ/CUG5E6AwwHm3p96vZj3m5Tgc0PXw8RZL/yY5dJTzQ==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.abstractions/6.0.0",
+      "path": "microsoft.extensions.configuration.abstractions/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "buildTransitive/net461/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
-        "microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.DependencyInjection/6.0.0": ***REMOVED***
-      "sha512": "k6PWQMuoBDGGHOQTtyois2u4AwyVcIwL2LaSLlTZQm2CYcJ1pxbt6jfAnpWmzENA/wfrYRI/X9DTLoUkE4AsLw==",
+    "Microsoft.Extensions.DependencyInjection/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "BMvlp0PiW+5LysfDr2Iril9F+RISOkPstVfoTv/NCn708D309Pz42hMyTj8sg5/9StUajG4un/Xgjwq5/uWOOQ==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection/6.0.0",
+      "path": "microsoft.extensions.dependencyinjection/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/Microsoft.Extensions.DependencyInjection.dll",
-        "lib/net461/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.xml",
         "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll",
         "lib/net6.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net7.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net7.0/Microsoft.Extensions.DependencyInjection.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
-        "microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": ***REMOVED***
-      "sha512": "xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+    "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "ravYa6D2FfbmNkh7S6PsMRrB4+uN+8ZDxOxk2Neg49uOqNmHTvrN1IgB/CedzgiNQbyJCoAFdTIqKXU4dKSS6A==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
-        "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.DependencyModel/6.0.0": ***REMOVED***
-      "sha512": "TD5QHg98m3+QhgEV1YVoNMl5KtBw/4rjfxLHO0e/YV9bPUBDKntApP4xdrVtGgCeQZHVfC2EXIGsdpRNrr87Pg==",
+    "Microsoft.Extensions.DependencyModel/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "Wjmbvo9i1/ZT1maSNGqKaAD9OQgMhZL6kMhPB156BsJwzJ5WC6FshzVy/kNLSkM8BO1u+84akPfglywlcscVVg==",
       "type": "package",
-      "path": "microsoft.extensions.dependencymodel/6.0.0",
+      "path": "microsoft.extensions.dependencymodel/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.DependencyModel.dll",
-        "lib/net461/Microsoft.Extensions.DependencyModel.xml",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyModel.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyModel.targets",
+        "lib/net462/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net462/Microsoft.Extensions.DependencyModel.xml",
+        "lib/net6.0/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net6.0/Microsoft.Extensions.DependencyModel.xml",
+        "lib/net7.0/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net7.0/Microsoft.Extensions.DependencyModel.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
-        "microsoft.extensions.dependencymodel.6.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.dependencymodel.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -5646,10 +5632,10 @@
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.FileProviders.Embedded/6.0.1": ***REMOVED***
-      "sha512": "EKfRiel8SvFCs2rGVL5NxOEqWvo+ZXZE9VR6w6NsPJQVOB9rU8CQ9w6NjYTLMvMhCzu9XfX4OtPGxGpCRdbDqg==",
+    "Microsoft.Extensions.FileProviders.Embedded/6.0.3": ***REMOVED***
+      "sha512": "LvecdQKBWAm8g88N+aoZ3OehOsTdWJLSaYd4Ag2DFjs4tsAcrJhpft0vtkXAuaANjTjHESOF9I74HxRY6B7h0w==",
       "type": "package",
-      "path": "microsoft.extensions.fileproviders.embedded/6.0.1",
+      "path": "microsoft.extensions.fileproviders.embedded/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5664,15 +5650,15 @@
         "lib/net6.0/Microsoft.Extensions.FileProviders.Embedded.xml",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.dll",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.xml",
-        "microsoft.extensions.fileproviders.embedded.6.0.1.nupkg.sha512",
+        "microsoft.extensions.fileproviders.embedded.6.0.3.nupkg.sha512",
         "microsoft.extensions.fileproviders.embedded.nuspec",
         "tasks/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Identity.Core/6.0.1": ***REMOVED***
-      "sha512": "m5rHD6apZDqOC7H7igyu04QtFRZYbD5rj1senEW+kWDHH2I4YTu40/cVgCMjqXjmiyCwXLsmMLWCq+p2B2Gppg==",
+    "Microsoft.Extensions.Identity.Core/6.0.3": ***REMOVED***
+      "sha512": "sCpESSuSgYl89xl1O+Yl1QXui8x9ORTj1jiGd25LJWZjqF7I3nuveUvkP/Rp2/bM2ffro42FsRJsYyf6VqB+4w==",
       "type": "package",
-      "path": "microsoft.extensions.identity.core/6.0.1",
+      "path": "microsoft.extensions.identity.core/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5684,14 +5670,14 @@
         "lib/net6.0/Microsoft.Extensions.Identity.Core.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
-        "microsoft.extensions.identity.core.6.0.1.nupkg.sha512",
+        "microsoft.extensions.identity.core.6.0.3.nupkg.sha512",
         "microsoft.extensions.identity.core.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Identity.Stores/6.0.1": ***REMOVED***
-      "sha512": "/EjHGlkcQvWJCdnFWIkrPeuxOjrFjp8gHk3C9PxgNG4eW4fKakmKwPcchljl3lRsiOwX2hGeYMzHpX3QRPPE1g==",
+    "Microsoft.Extensions.Identity.Stores/6.0.3": ***REMOVED***
+      "sha512": "r69xvrnPzzyapjEqHVU/7TByTqLdOzrGfUFGcJcMQbCj9tR1tb45EPb90jhUr2ARJDtfI1S2pwQH2ZV4KYfekw==",
       "type": "package",
-      "path": "microsoft.extensions.identity.stores/6.0.1",
+      "path": "microsoft.extensions.identity.stores/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5703,35 +5689,43 @@
         "lib/net6.0/Microsoft.Extensions.Identity.Stores.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
-        "microsoft.extensions.identity.stores.6.0.1.nupkg.sha512",
+        "microsoft.extensions.identity.stores.6.0.3.nupkg.sha512",
         "microsoft.extensions.identity.stores.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Logging/6.0.0": ***REMOVED***
-      "sha512": "eIbyj40QDg1NDz0HBW0S5f3wrLVnKWnDJ/JtZ+yJDFnDj90VoPuoPmFkeaXrtu+0cKm5GRAwoDf+dBWXK0TUdg==",
+    "Microsoft.Extensions.Logging/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "uOC5qF5KTYIii34XGTx9ocTaI5sw/kJl/7g+fcZEW3vy/b2TDu4LlezPxfejeaotdwUQVMVf2xtMkW2jt1J5Tg==",
       "type": "package",
-      "path": "microsoft.extensions.logging/6.0.0",
+      "path": "microsoft.extensions.logging/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Logging.dll",
-        "lib/net461/Microsoft.Extensions.Logging.xml",
+        "buildTransitive/net461/Microsoft.Extensions.Logging.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.targets",
+        "lib/net462/Microsoft.Extensions.Logging.dll",
+        "lib/net462/Microsoft.Extensions.Logging.xml",
+        "lib/net6.0/Microsoft.Extensions.Logging.dll",
+        "lib/net6.0/Microsoft.Extensions.Logging.xml",
+        "lib/net7.0/Microsoft.Extensions.Logging.dll",
+        "lib/net7.0/Microsoft.Extensions.Logging.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Logging.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Logging.xml",
-        "microsoft.extensions.logging.6.0.0.nupkg.sha512",
+        "microsoft.extensions.logging.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.logging.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Logging.Abstractions/6.0.0": ***REMOVED***
-      "sha512": "/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+    "Microsoft.Extensions.Logging.Abstractions/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "hBsEDA5RQ2naY8Ic9KIrPBQsVaElMb3XmelE4PgmNhPLRKqg6GOqOBIRiYD1Z8pQD6UXT2jNGIGRXayvjS1Img==",
       "type": "package",
-      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "path": "microsoft.extensions.logging.abstractions/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5767,61 +5761,75 @@
         "analyzers/dotnet/roslyn4.0/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
         "analyzers/dotnet/roslyn4.0/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
         "build/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/net461/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.Abstractions.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/Microsoft.Extensions.Logging.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Logging.Abstractions.xml",
         "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Logging.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
-        "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.logging.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Options/6.0.0": ***REMOVED***
-      "sha512": "dzXN0+V1AyjOe2xcJ86Qbo233KHuLEY0njf/P2Kw8SfJU+d45HNS2ctJdnEnrWbM9Ye2eFgaC5Mj9otRMU6IsQ==",
+    "Microsoft.Extensions.Options/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "aWIaN03ikUr4ikctUklqtczZxwAsO2UPP+hKVUDo3SLBAi+bY6lpM9WzKzedHkJLZQ7eNXCppPOhCN7xmxzH3A==",
       "type": "package",
-      "path": "microsoft.extensions.options/6.0.0",
+      "path": "microsoft.extensions.options/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Options.dll",
-        "lib/net461/Microsoft.Extensions.Options.xml",
+        "buildTransitive/net461/Microsoft.Extensions.Options.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Options.targets",
+        "lib/net462/Microsoft.Extensions.Options.dll",
+        "lib/net462/Microsoft.Extensions.Options.xml",
+        "lib/net6.0/Microsoft.Extensions.Options.dll",
+        "lib/net6.0/Microsoft.Extensions.Options.xml",
+        "lib/net7.0/Microsoft.Extensions.Options.dll",
+        "lib/net7.0/Microsoft.Extensions.Options.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Options.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
-        "microsoft.extensions.options.6.0.0.nupkg.sha512",
+        "microsoft.extensions.options.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Primitives/6.0.0": ***REMOVED***
-      "sha512": "9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+    "Microsoft.Extensions.Primitives/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "1LUdAOSWD5OD8r1krRLEFNx3k69vSCBD9ZKDhKpVD5/8jqeAUUxhGTNlp2nrilWV7/G1yr6YL7QYwC+d9GMRkw==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/6.0.0",
+      "path": "microsoft.extensions.primitives/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Primitives.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Primitives.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/Microsoft.Extensions.Primitives.dll",
-        "lib/net461/Microsoft.Extensions.Primitives.xml",
+        "lib/net462/Microsoft.Extensions.Primitives.dll",
+        "lib/net462/Microsoft.Extensions.Primitives.xml",
         "lib/net6.0/Microsoft.Extensions.Primitives.dll",
         "lib/net6.0/Microsoft.Extensions.Primitives.xml",
-        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
-        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+        "lib/net7.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net7.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.7.0.0-preview.1.22076.8.nupkg.sha512",
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -5978,10 +5986,10 @@
         "notices/THIRDPARTYNOTICES.txt"
       ]
   ***REMOVED***
-    "Microsoft.NET.Test.Sdk/17.1.0": ***REMOVED***
-      "sha512": "MVKvOsHIfrZrvg+8aqOF5dknO/qWrR1sWZjMPQ1N42MKMlL/zQL30FQFZxPeWfmVKWUWAOmAHYsqB5OerTKziw==",
+    "Microsoft.NET.Test.Sdk/16.11.0": ***REMOVED***
+      "sha512": "f4mbG1SUSkNWF5p7B3Y8ZxMsvKhxCmpZhdl+w6tMtLSUGE7Izi1syU6TkmKOvB2BV66pdbENConFAISOix4ohQ==",
       "type": "package",
-      "path": "microsoft.net.test.sdk/17.1.0",
+      "path": "microsoft.net.test.sdk/16.11.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6008,7 +6016,7 @@
         "lib/netcoreapp1.0/_._",
         "lib/netcoreapp2.1/_._",
         "lib/uap10.0/_._",
-        "microsoft.net.test.sdk.17.1.0.nupkg.sha512",
+        "microsoft.net.test.sdk.16.11.0.nupkg.sha512",
         "microsoft.net.test.sdk.nuspec"
       ]
   ***REMOVED***
@@ -6044,10 +6052,10 @@
         "runtime.json"
       ]
   ***REMOVED***
-    "Microsoft.TestPlatform.ObjectModel/17.1.0": ***REMOVED***
-      "sha512": "OMo/FYnKGy3lZEK0gfitskRM3ga/YBt6MyCyFPq0xNLeybGOQ6HnYNAAvzyePo5WPuMiw3LX+HiuRWNjnas1fA==",
+    "Microsoft.TestPlatform.ObjectModel/16.11.0": ***REMOVED***
+      "sha512": "EiknJx9N9Z30gs7R+HHhki7fA8EiiM3pwD1vkw3bFsBC8kdVq/O7mHf1hrg5aJp+ASO6BoOzQueD2ysfTOy/Bg==",
       "type": "package",
-      "path": "microsoft.testplatform.objectmodel/17.1.0",
+      "path": "microsoft.testplatform.objectmodel/16.11.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6285,14 +6293,14 @@
         "lib/uap10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
         "lib/uap10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll",
         "lib/uap10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
-        "microsoft.testplatform.objectmodel.17.1.0.nupkg.sha512",
+        "microsoft.testplatform.objectmodel.16.11.0.nupkg.sha512",
         "microsoft.testplatform.objectmodel.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.TestPlatform.TestHost/17.1.0": ***REMOVED***
-      "sha512": "JS0JDLniDhIzkSPLHz7N/x1CG8ywJOtwInFDYA3KQvbz+ojGoT5MT2YDVReL1b86zmNRV8339vsTSm/zh0RcMg==",
+    "Microsoft.TestPlatform.TestHost/16.11.0": ***REMOVED***
+      "sha512": "/Q+R0EcCJE8JaYCk+bGReicw/xrB0HhecrYrUcLbn95BnAlaTJrZhoLkUhvtKTAVtqX/AIKWXYtutiU/Q6QUgg==",
       "type": "package",
-      "path": "microsoft.testplatform.testhost/17.1.0",
+      "path": "microsoft.testplatform.testhost/16.11.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6506,7 +6514,7 @@
         "lib/uap10.0/Microsoft.VisualStudio.TestPlatform.Common.dll",
         "lib/uap10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll",
         "lib/uap10.0/testhost.dll",
-        "microsoft.testplatform.testhost.17.1.0.nupkg.sha512",
+        "microsoft.testplatform.testhost.16.11.0.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
       ]
   ***REMOVED***
@@ -7082,18 +7090,6 @@
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Web.Infrastructure/1.0.0": ***REMOVED***
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
-      ]
-  ***REMOVED***
     "Microsoft.Win32.Primitives/4.3.0": ***REMOVED***
       "sha512": "9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
       "type": "package",
@@ -7208,10 +7204,10 @@
         "version.txt"
       ]
   ***REMOVED***
-    "Moq/4.16.1": ***REMOVED***
-      "sha512": "bw3R9q8cVNhWXNpnvWb0OGP4HadS4zvClq+T1zf7AF+tLY1haZ2AvbHidQekf4PDv1T40c6brZeT/V0IBq7cEQ==",
+    "Moq/4.17.2": ***REMOVED***
+      "sha512": "HytUPJ3/uks2UgJ9hIcyXm3YxpFAR4OJzbQwTHltbKGun3lFLhEHs97hiiPj1dY8jV/kasXeihTzDxct6Zf3iQ==",
       "type": "package",
-      "path": "moq/4.16.1",
+      "path": "moq/4.17.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7221,7 +7217,7 @@
         "lib/netstandard2.0/Moq.xml",
         "lib/netstandard2.1/Moq.dll",
         "lib/netstandard2.1/Moq.xml",
-        "moq.4.16.1.nupkg.sha512",
+        "moq.4.17.2.nupkg.sha512",
         "moq.nuspec",
         "moq.png"
       ]
@@ -7650,10 +7646,10 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
   ***REMOVED***
-    "SendGrid/9.25.1": ***REMOVED***
-      "sha512": "vMRMHrpCH2m1GjlCOc0i3Llr539N9H6fDzXiJXnRYup0QC+b2C1y0ns+AXmTsMAtHOT4SARICkN3JgdKFuOm4Q==",
+    "SendGrid/9.27.0": ***REMOVED***
+      "sha512": "kMyXRQ8hmN2bG3tYZ7T31Ufl1kXkpuP5+WBh1BJ32WY31DTnBTCVGURoIqfbTo/tRuQfAYLxra6C8cQGN6kk+A==",
       "type": "package",
-      "path": "sendgrid/9.25.1",
+      "path": "sendgrid/9.27.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7669,45 +7665,46 @@
         "lib/netstandard2.0/SendGrid.dll",
         "lib/netstandard2.0/SendGrid.pdb",
         "lib/netstandard2.0/SendGrid.xml",
-        "sendgrid.9.25.1.nupkg.sha512",
+        "sendgrid.9.27.0.nupkg.sha512",
         "sendgrid.nuspec"
       ]
   ***REMOVED***
-    "SQLitePCLRaw.bundle_e_sqlite3/2.0.6": ***REMOVED***
-      "sha512": "zssYqiaucyGArZfg74rJuzK0ewgZiidsRVrZTmP7JLNvK806gXg6PGA46XzoJGpNPPA5uRcumwvVp6YTYxtQ5w==",
+    "SQLitePCLRaw.bundle_e_sqlite3/2.0.8-pre20220111224339": ***REMOVED***
+      "sha512": "W/LWv7/eXcRn6ovNhIb0xN7fpXZIvFglRzL1Y/N142QD5yq6EQW5CmDCNeaenOlzaSzpqvwILJvMX2VRPp5OsQ==",
       "type": "package",
-      "path": "sqlitepclraw.bundle_e_sqlite3/2.0.6",
+      "path": "sqlitepclraw.bundle_e_sqlite3/2.0.8-pre20220111224339",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
         "lib/Xamarin.tvOS10/SQLitePCLRaw.batteries_v2.dll",
         "lib/net461/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net461/SQLitePCLRaw.nativelibrary.dll",
         "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll",
-        "sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
+        "sqlitepclraw.bundle_e_sqlite3.2.0.8-pre20220111224339.nupkg.sha512",
         "sqlitepclraw.bundle_e_sqlite3.nuspec"
       ]
   ***REMOVED***
-    "SQLitePCLRaw.core/2.0.6": ***REMOVED***
-      "sha512": "Vh8n0dTvwXkCGur2WqQTITvk4BUO8i8h9ucSx3wwuaej3s2S6ZC0R7vqCTf9TfS/I4QkXO6g3W2YQIRFkOcijA==",
+    "SQLitePCLRaw.core/2.0.8-pre20220111224339": ***REMOVED***
+      "sha512": "75WH5k/NdDM7+CvdSyRBAp5uHaQbTT9QyHaFNOkZmJimmuymQZh3FYcTaNQbQH7kX1QYm3sD2o9a/QfPWnTaUw==",
       "type": "package",
-      "path": "sqlitepclraw.core/2.0.6",
+      "path": "sqlitepclraw.core/2.0.8-pre20220111224339",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/SQLitePCLRaw.core.dll",
-        "sqlitepclraw.core.2.0.6.nupkg.sha512",
+        "sqlitepclraw.core.2.0.8-pre20220111224339.nupkg.sha512",
         "sqlitepclraw.core.nuspec"
       ]
   ***REMOVED***
-    "SQLitePCLRaw.lib.e_sqlite3/2.0.6": ***REMOVED***
-      "sha512": "xlstskMKalKQl0H2uLNe0viBM6fvAGLWqKZUQ3twX5y1tSOZKe0+EbXopQKYdbjJytNGI6y5WSKjpI+kVr2Ckg==",
+    "SQLitePCLRaw.lib.e_sqlite3/2.0.8-pre20220111224339": ***REMOVED***
+      "sha512": "g9IeLBoeIIOoGzwtYL9Q1UjTh42t3eDZHEksTkWmSc6Wl8VjMnXITxEwNeslkpc6CCGAjkvCgArGBkVYeTqQsA==",
       "type": "package",
-      "path": "sqlitepclraw.lib.e_sqlite3/2.0.6",
+      "path": "sqlitepclraw.lib.e_sqlite3/2.0.8-pre20220111224339",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "build/net461/SQLitePCLRaw.lib.e_sqlite3.targets",
+        "buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets",
         "lib/net461/_._",
         "lib/netstandard2.0/_._",
         "runtimes/alpine-x64/native/libe_sqlite3.so",
@@ -7725,25 +7722,30 @@
         "runtimes/win-arm64/native/e_sqlite3.dll",
         "runtimes/win-x64/native/e_sqlite3.dll",
         "runtimes/win-x86/native/e_sqlite3.dll",
+        "runtimes/win10-arm/nativeassets/net6.0-windows10/e_sqlite3.dll",
         "runtimes/win10-arm/nativeassets/uap10.0/e_sqlite3.dll",
+        "runtimes/win10-arm64/nativeassets/net6.0-windows10/e_sqlite3.dll",
         "runtimes/win10-arm64/nativeassets/uap10.0/e_sqlite3.dll",
+        "runtimes/win10-x64/nativeassets/net6.0-windows10/e_sqlite3.dll",
         "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3.dll",
+        "runtimes/win10-x86/nativeassets/net6.0-windows10/e_sqlite3.dll",
         "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll",
-        "sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",
+        "sqlitepclraw.lib.e_sqlite3.2.0.8-pre20220111224339.nupkg.sha512",
         "sqlitepclraw.lib.e_sqlite3.nuspec"
       ]
   ***REMOVED***
-    "SQLitePCLRaw.provider.e_sqlite3/2.0.6": ***REMOVED***
-      "sha512": "peXLJbhU+0clVBIPirihM1NoTBqw8ouBpcUsVMlcZ4k6fcL2hwgkctVB2Nt5VsbnOJcPspQL5xQK7QvLpxkMgg==",
+    "SQLitePCLRaw.provider.e_sqlite3/2.0.8-pre20220111224339": ***REMOVED***
+      "sha512": "o+i3QHAvEd/n3ISffXtSO7biZZ02L+DopqMV7jbHFceL2y7shGMkUO9bzaovJaK1s+6+1sYfN44u0P3x37oJMA==",
       "type": "package",
-      "path": "sqlitepclraw.provider.e_sqlite3/2.0.6",
+      "path": "sqlitepclraw.provider.e_sqlite3/2.0.8-pre20220111224339",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net5.0/SQLitePCLRaw.provider.e_sqlite3.dll",
+        "lib/net6.0-windows10/SQLitePCLRaw.provider.e_sqlite3.dll",
         "lib/netstandard2.0/SQLitePCLRaw.provider.e_sqlite3.dll",
         "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll",
-        "sqlitepclraw.provider.e_sqlite3.2.0.6.nupkg.sha512",
+        "sqlitepclraw.provider.e_sqlite3.2.0.8-pre20220111224339.nupkg.sha512",
         "sqlitepclraw.provider.e_sqlite3.nuspec"
       ]
   ***REMOVED***
@@ -7818,35 +7820,19 @@
         "system.appcontext.nuspec"
       ]
   ***REMOVED***
-    "System.Buffers/4.5.1": ***REMOVED***
-      "sha512": "Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
+    "System.Buffers/4.3.0": ***REMOVED***
+      "sha512": "ratu44uTIHgeBeI0dE8DWvmXVBSo4u7ozRZZHOMmK/JPpYyo0dAfgSiHlpiObMQ5lEtEyIXA40sKRYg5J6A8uQ==",
       "type": "package",
-      "path": "system.buffers/4.5.1",
+      "path": "system.buffers/4.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/System.Buffers.dll",
-        "lib/net461/System.Buffers.xml",
-        "lib/netcoreapp2.0/_._",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.1/.xml",
         "lib/netstandard1.1/System.Buffers.dll",
-        "lib/netstandard1.1/System.Buffers.xml",
-        "lib/netstandard2.0/System.Buffers.dll",
-        "lib/netstandard2.0/System.Buffers.xml",
-        "lib/uap10.0.16299/_._",
-        "ref/net45/System.Buffers.dll",
-        "ref/net45/System.Buffers.xml",
-        "ref/netcoreapp2.0/_._",
-        "ref/netstandard1.1/System.Buffers.dll",
-        "ref/netstandard1.1/System.Buffers.xml",
-        "ref/netstandard2.0/System.Buffers.dll",
-        "ref/netstandard2.0/System.Buffers.xml",
-        "ref/uap10.0.16299/_._",
-        "system.buffers.4.5.1.nupkg.sha512",
-        "system.buffers.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "system.buffers.4.3.0.nupkg.sha512",
+        "system.buffers.nuspec"
       ]
   ***REMOVED***
     "System.Collections/4.3.0": ***REMOVED***
@@ -7985,25 +7971,29 @@
         "system.collections.concurrent.nuspec"
       ]
   ***REMOVED***
-    "System.Collections.Immutable/6.0.0": ***REMOVED***
-      "sha512": "l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
+    "System.Collections.Immutable/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "TeMKs9JKjzHtKMy6ZSK9zsY+XSaXNH1f6qafiMaywjwP247ICGlzImQKz4LsewL8R0RLAyewrKRL2U0AuBQCbg==",
       "type": "package",
-      "path": "system.collections.immutable/6.0.0",
+      "path": "system.collections.immutable/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Collections.Immutable.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Collections.Immutable.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Collections.Immutable.dll",
-        "lib/net461/System.Collections.Immutable.xml",
+        "lib/net462/System.Collections.Immutable.dll",
+        "lib/net462/System.Collections.Immutable.xml",
         "lib/net6.0/System.Collections.Immutable.dll",
         "lib/net6.0/System.Collections.Immutable.xml",
+        "lib/net7.0/System.Collections.Immutable.dll",
+        "lib/net7.0/System.Collections.Immutable.xml",
         "lib/netstandard2.0/System.Collections.Immutable.dll",
         "lib/netstandard2.0/System.Collections.Immutable.xml",
-        "system.collections.immutable.6.0.0.nupkg.sha512",
+        "system.collections.immutable.7.0.0-preview.1.22076.8.nupkg.sha512",
         "system.collections.immutable.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -8454,27 +8444,29 @@
         "system.diagnostics.debug.nuspec"
       ]
   ***REMOVED***
-    "System.Diagnostics.DiagnosticSource/6.0.0": ***REMOVED***
-      "sha512": "frQDfv0rl209cKm1lnwTgFPzNigy2EKk1BS3uAvHvlBVKe5cymGyHO+Sj+NLv5VF/AhHsqPIUUwya5oV4CHMUw==",
+    "System.Diagnostics.DiagnosticSource/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "iqeZ+Mz5QuU1UH9/wUIZBj1euJR1v1vT7Pd96Uo29Q+W56GT2egx2xIhViWZslOwqAY1Z0vrklIeTmvnh6rHQg==",
       "type": "package",
-      "path": "system.diagnostics.diagnosticsource/6.0.0",
+      "path": "system.diagnostics.diagnosticsource/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Diagnostics.DiagnosticSource.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Diagnostics.DiagnosticSource.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net461/System.Diagnostics.DiagnosticSource.xml",
-        "lib/net5.0/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net5.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net462/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net462/System.Diagnostics.DiagnosticSource.xml",
         "lib/net6.0/System.Diagnostics.DiagnosticSource.dll",
         "lib/net6.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net7.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net7.0/System.Diagnostics.DiagnosticSource.xml",
         "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
-        "system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.7.0.0-preview.1.22076.8.nupkg.sha512",
         "system.diagnostics.diagnosticsource.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -10324,27 +10316,29 @@
         "version.txt"
       ]
   ***REMOVED***
-    "System.Runtime.CompilerServices.Unsafe/6.0.0": ***REMOVED***
-      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+    "System.Runtime.CompilerServices.Unsafe/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "b2OHecZUPNE1oe0wEGsT+UWoaRLGWRMl2TKSiI8wAfYVhrPXKq7LeYwJUtMaTG7CG6gWI6IXgmL8pkQEYZYO8A==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "path": "system.runtime.compilerservices.unsafe/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Runtime.CompilerServices.Unsafe.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net462/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net462/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net7.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net7.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.7.0.0-preview.1.22076.8.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -11347,37 +11341,41 @@
         "system.text.encoding.extensions.nuspec"
       ]
   ***REMOVED***
-    "System.Text.Encodings.Web/6.0.0": ***REMOVED***
-      "sha512": "Vg8eB5Tawm1IFqj4TVK1czJX89rhFxJo9ELqc/Eiq0eXy13RK00eubyU6TJE6y+GQXjyV5gSfiewDUZjQgSE0w==",
+    "System.Text.Encodings.Web/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "B/XFNYIhqcifcYhJBR89iJp7QTow+hqkxvD7vUnifpZTJvBHcyWh2s0jDQivC8cUIQPmnw0YYsVx6ipKcE1yPw==",
       "type": "package",
-      "path": "system.text.encodings.web/6.0.0",
+      "path": "system.text.encodings.web/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Text.Encodings.Web.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Text.Encodings.Web.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Text.Encodings.Web.dll",
-        "lib/net461/System.Text.Encodings.Web.xml",
+        "lib/net462/System.Text.Encodings.Web.dll",
+        "lib/net462/System.Text.Encodings.Web.xml",
         "lib/net6.0/System.Text.Encodings.Web.dll",
         "lib/net6.0/System.Text.Encodings.Web.xml",
-        "lib/netcoreapp3.1/System.Text.Encodings.Web.dll",
-        "lib/netcoreapp3.1/System.Text.Encodings.Web.xml",
+        "lib/net7.0/System.Text.Encodings.Web.dll",
+        "lib/net7.0/System.Text.Encodings.Web.xml",
         "lib/netstandard2.0/System.Text.Encodings.Web.dll",
         "lib/netstandard2.0/System.Text.Encodings.Web.xml",
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll",
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.xml",
-        "system.text.encodings.web.6.0.0.nupkg.sha512",
+        "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.7.0.0-preview.1.22076.8.nupkg.sha512",
         "system.text.encodings.web.nuspec",
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "System.Text.Json/6.0.0": ***REMOVED***
-      "sha512": "zaJsHfESQvJ11vbXnNlkrR46IaMULk/gHxYsJphzSF+07kTjPHv+Oc14w6QEOfo3Q4hqLJgStUaYB9DBl0TmWg==",
+    "System.Text.Json/7.0.0-preview.1.22076.8": ***REMOVED***
+      "sha512": "/BA7B+nU9VrGNM6eKh06gYdxITho7Hber7yPwR8a+xt1FkNCS6K7JYgKQm1/HiSY7ynigeMmihPIXlF60QhxYg==",
       "type": "package",
-      "path": "system.text.json/6.0.0",
+      "path": "system.text.json/7.0.0-preview.1.22076.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11413,17 +11411,19 @@
         "analyzers/dotnet/roslyn4.0/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
         "analyzers/dotnet/roslyn4.0/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
         "build/System.Text.Json.targets",
+        "buildTransitive/net461/System.Text.Json.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Text.Json.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Text.Json.dll",
-        "lib/net461/System.Text.Json.xml",
+        "lib/net462/System.Text.Json.dll",
+        "lib/net462/System.Text.Json.xml",
         "lib/net6.0/System.Text.Json.dll",
         "lib/net6.0/System.Text.Json.xml",
-        "lib/netcoreapp3.1/System.Text.Json.dll",
-        "lib/netcoreapp3.1/System.Text.Json.xml",
+        "lib/net7.0/System.Text.Json.dll",
+        "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.6.0.0.nupkg.sha512",
+        "system.text.json.7.0.0-preview.1.22076.8.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -12111,11 +12111,10 @@
 ***REMOVED***
   "projectFileDependencyGroups": ***REMOVED***
     "net6.0": [
-      "Microsoft.AspNet.Mvc >= 5.2.7",
-      "Microsoft.Data.Sqlite.Core >= 6.0.3",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.3",
-      "Microsoft.NET.Test.Sdk >= 17.1.0",
-      "Moq >= 4.16.1",
+      "Microsoft.Data.Sqlite >= 7.0.0-preview.2.22153.1",
+      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.0-preview.1.22076.6",
+      "Microsoft.NET.Test.Sdk >= 16.11.0",
+      "Moq >= 4.17.2",
       "NutriFitWeb >= 1.0.0",
       "coverlet.collector >= 3.1.0",
       "xunit >= 2.4.1",
@@ -12123,21 +12122,17 @@
     ]
 ***REMOVED***
   "packageFolders": ***REMOVED***
-    "C:\\Users\\Luís\\.nuget\\packages\\": ***REMOVED******REMOVED***,
-    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": ***REMOVED******REMOVED***
+    "C:\\Users\\Luís\\.nuget\\packages\\": ***REMOVED******REMOVED***
 ***REMOVED***
   "project": ***REMOVED***
     "version": "1.0.0",
     "restore": ***REMOVED***
-      "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+      "projectUniqueName": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
       "projectName": "NutriFitWebTest",
-      "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+      "projectPath": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
       "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-      "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\obj\\",
+      "outputPath": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWebTest\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\Luís\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -12153,8 +12148,8 @@
         "net6.0": ***REMOVED***
           "targetAlias": "net6.0",
           "projectReferences": ***REMOVED***
-            "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
-              "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj"
+            "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
+              "projectPath": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWeb.csproj"
         ***REMOVED***
       ***REMOVED***
     ***REMOVED***
@@ -12169,25 +12164,21 @@
       "net6.0": ***REMOVED***
         "targetAlias": "net6.0",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNet.Mvc": ***REMOVED***
+          "Microsoft.Data.Sqlite": ***REMOVED***
             "target": "Package",
-            "version": "[5.2.7, )"
-        ***REMOVED***
-          "Microsoft.Data.Sqlite.Core": ***REMOVED***
-            "target": "Package",
-            "version": "[6.0.3, )"
+            "version": "[7.0.0-preview.2.22153.1, )"
         ***REMOVED***
           "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
             "target": "Package",
-            "version": "[6.0.3, )"
+            "version": "[7.0.0-preview.1.22076.6, )"
         ***REMOVED***
           "Microsoft.NET.Test.Sdk": ***REMOVED***
             "target": "Package",
-            "version": "[17.1.0, )"
+            "version": "[16.11.0, )"
         ***REMOVED***
           "Moq": ***REMOVED***
             "target": "Package",
-            "version": "[4.16.1, )"
+            "version": "[4.17.2, )"
         ***REMOVED***
           "coverlet.collector": ***REMOVED***
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -12221,50 +12212,8 @@
             "privateAssets": "all"
       ***REMOVED***
       ***REMOVED***
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
   ***REMOVED***
 ***REMOVED***
-***REMOVED***
-  "logs": [
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        "net6.0"
-      ]
   ***REMOVED***
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        "net6.0"
-      ]
-  ***REMOVED***
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        "net6.0"
-      ]
-  ***REMOVED***
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        "net6.0"
-      ]
-***REMOVED***
-  ]
 ***REMOVED***
