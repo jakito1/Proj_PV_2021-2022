@@ -106,5 +106,9 @@ namespace NutriFitWeb.Controllers
             return LocalRedirect(Url.Content(url));
         }
 
+        public IActionResult EditUserSettings()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
