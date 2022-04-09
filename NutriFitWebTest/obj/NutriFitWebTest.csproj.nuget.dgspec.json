@@ -40,6 +40,10 @@
         "net6.0": ***REMOVED***
           "targetAlias": "net6.0",
           "dependencies": ***REMOVED***
+            "LigerShark.WebOptimizer.Core": ***REMOVED***
+              "target": "Package",
+              "version": "[3.0.357, )"
+          ***REMOVED***
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": ***REMOVED***
               "target": "Package",
               "version": "[6.0.3, )"
@@ -52,11 +56,15 @@
               "target": "Package",
               "version": "[6.0.3, )"
           ***REMOVED***
-            "Microsoft.EntityFrameworkCore": ***REMOVED***
+            "Microsoft.AspNetCore.Mvc.Testing": ***REMOVED***
               "target": "Package",
               "version": "[6.0.3, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.SqlServer": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.3, )"
+          ***REMOVED***
+            "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
               "target": "Package",
               "version": "[6.0.3, )"
           ***REMOVED***
@@ -137,31 +145,43 @@
         "net6.0": ***REMOVED***
           "targetAlias": "net6.0",
           "dependencies": ***REMOVED***
+            "Microsoft.AspNet.Mvc": ***REMOVED***
+              "target": "Package",
+              "version": "[5.2.7, )"
+          ***REMOVED***
+            "Microsoft.AspNetCore.Mvc": ***REMOVED***
+              "target": "Package",
+              "version": "[2.2.0, )"
+          ***REMOVED***
             "Microsoft.Data.Sqlite": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.3, )"
+          ***REMOVED***
+            "Microsoft.Data.Sqlite.Core": ***REMOVED***
               "target": "Package",
               "version": "[7.0.0-preview.2.22153.1, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
               "target": "Package",
-              "version": "[7.0.0-preview.1.22076.6, )"
+              "version": "[6.0.3, )"
           ***REMOVED***
             "Microsoft.NET.Test.Sdk": ***REMOVED***
               "target": "Package",
-              "version": "[16.11.0, )"
+              "version": "[17.2.0-preview-20220301-01, )"
           ***REMOVED***
             "Moq": ***REMOVED***
               "target": "Package",
-              "version": "[4.17.2, )"
+              "version": "[4.16.1, )"
           ***REMOVED***
             "coverlet.collector": ***REMOVED***
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.0, )"
+              "version": "[3.1.2, )"
           ***REMOVED***
             "xunit": ***REMOVED***
               "target": "Package",
-              "version": "[2.4.1, )"
+              "version": "[2.4.2-pre.12, )"
           ***REMOVED***
             "xunit.runner.visualstudio": ***REMOVED***
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
