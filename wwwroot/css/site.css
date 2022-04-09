@@ -383,7 +383,6 @@ font-weight: bold;*/
 }
 
 div.titlesMargin {
-    margin-top: 3em;
     margin-bottom: 1em;
 }
 
@@ -602,7 +601,7 @@ input.btn.btn-danger {
     border-color: lightgrey;
     border-radius: 0.5em;
     color: #00A2E8;
-    width: 15em;
+    width: 20em;
     height: 2.5em;
     margin-bottom: 1em;
 }
@@ -873,4 +872,37 @@ label.labelFour {
 
 .col-md-8{
     margin: auto;
+}
+
+.helpDivs {
+    background-color: white;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    margin: auto;
+    padding: 1em;
+}
+
+.helpBtn {
+    width: 6em;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
+}
+
+.helpBtn:hover {
+    width: 6em;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
 }

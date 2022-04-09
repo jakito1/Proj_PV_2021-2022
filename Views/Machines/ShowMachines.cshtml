@@ -1,14 +1,16 @@
 ﻿@using NutriFitWeb.Services
 @model PaginatedList<NutriFitWeb.Models.Machine>
 
-<h1>Máquinas</h1>
+<h1>Máquinas <img class="iconMargin" src="~/icons/machinesIcon.svg" alt="MachinesIcon" /></h1>
 
-<div class="form-group">
-    <input type="submit" value="Ajuda" class="btn btn-primary" onclick="helpButton()" />
-</div>
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
 
-<div class="form-group" style="display:none;" id="helpText">
-    <p>Teste</p>
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    <p>Aqui pode <b>ver as máquinas</b> do ginásio ao qual pertence.</p>
+    @if(User.IsInRole("gym")){
+        <p>Pode também <b>adicionar</b>, <b>remover</b> e <b>editar máquinas</b> do/ao seu ginásio.</p>
+    }
+    <p>Pode ler o <b>Código QR</b> das máquinas do seu ginásio para ver os <b>detalhes</b> diretamente.</p>
 </div>
 
 <div class="titlesMargin">

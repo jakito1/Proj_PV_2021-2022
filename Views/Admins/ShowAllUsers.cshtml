@@ -7,7 +7,14 @@
     ViewData["Title"] = "ShowAllUsers";
 }
 
-<h1>Lista de Utilizadores</h1>
+<h1>Lista de Utilizadores <img class="iconMargin" src="~/icons/clientIcon.svg" alt="clientsIcon" /></h1>
+
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    <p>Aqui pode ver todos os utilizadores da aplicação. Pode <b>desativar contas</b>, <b>editar</b> dados de <b>perfil</b> e dados de <b>conta</b>.</p>
+</div>
+
 <form asp-action="ShowAllUsers" method="get">
     <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar" />
     <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
