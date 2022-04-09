@@ -5,11 +5,14 @@
 <br />
 <p class="listsItemTitle">Exercícios</p>
 
-<table class="table">
+<table class="table exercisesMealsTable">
     <thead class="tableHeader">
         <tr>
             <th class="roundedCornerTableLeft thStyle">
                 Nome/Descrição
+            </th>
+            <th class="thStyle">
+                Foto
             </th>
             <th class="roundedCornerTableRight thStyle">
                 Outros Dados
@@ -21,24 +24,26 @@
         {
             @foreach (var item in Model)
             {
-                <div class="form-group">
-                    @if (item.ExercisePhoto is not null)
-                    {
-                        string? exercisePhoto = PhotoManagement.GetPhotoPath(item.ExercisePhoto);
-                        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ExercisePhoto)</p>
-                        <img class="profilePhoto" src="@exercisePhoto" />
-                    }
-                </div>
+
                 <tr>
                     <td class="exercisesData breakText breakTextOtherData">
                         @Html.DisplayFor(modelItem => item.ExerciseName)
                         <br />
                         @Html.DisplayFor(modelItem => item.ExerciseDescription)
                     </td>
+                    <td>
+                        @if (item.ExercisePhoto is not null)
+                        {
+                            string? exercisePhoto = PhotoManagement.GetPhotoPath(item.ExercisePhoto);
+                            <img class="profilePhoto" src="@exercisePhoto" />
+                        }else{
+                            <p class="exercisesData">N/A</p>
+                        }
+                    </td>
                     <td class="exercisesData">
                         @if (item.ExerciseDuration is not null)
                         {
-                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p>
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minuto(s),</p>
                         }
                         @if (item.ExerciseRepetitions is not null)
                         {

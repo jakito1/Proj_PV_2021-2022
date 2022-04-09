@@ -311,6 +311,10 @@ link{
     border-radius: 1em;
 }
 
+.exercisesMealsTable {
+    table-layout: fixed !important;
+}
+
 .thStyle {
     background-color: #00A2E8 !important;
     color: white;
