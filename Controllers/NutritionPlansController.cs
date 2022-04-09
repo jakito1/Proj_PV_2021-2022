@@ -8,6 +8,9 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// NutritionPlansController class, derives from Controller
+    /// </summary>
     public class NutritionPlansController : Controller
     {
         private readonly string SessionKeyMeals;
@@ -17,6 +20,11 @@ namespace NutriFitWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Application DB context</param>
+        /// <param name="userManager">User manager API from Entity framework</param>
         public NutritionPlansController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager)
         {
@@ -28,6 +36,14 @@ namespace NutriFitWeb.Controllers
             SessionKeyNutritionPlanNewRequestId = "_NutritionPlanNewRequestId";
         }
 
+        /// <summary>
+        /// Renders a paginated view to display all the new Nutrition Plans.
+        /// Only accessible to Client and Nutritionist roles.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "client, nutritionist")]
         public async Task<IActionResult> ShowNutritionPlans(string? searchString, string? currentFilter, int? pageNumber)
         {
@@ -74,7 +90,11 @@ namespace NutriFitWeb.Controllers
             int pageSize = 5;
             return View(await PaginatedList<NutritionPlan>.CreateAsync(plans.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
-
+        /// <summary>
+        /// Renders a view with the details of a new Nutrition plan.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         public async Task<IActionResult> NutritionPlanDetails(int? id)
         {
             if (id is null)
@@ -96,6 +116,11 @@ namespace NutriFitWeb.Controllers
             return View(nutritionPlan);
         }
 
+        /// <summary>
+        /// Renders a view to create a new Nutrition Plan request. 
+        /// </summary>
+        /// <param name="nutritionPlanNewRequestId"></param>
+        /// <returns>A View result</returns>
         public async Task<IActionResult> CreateNutritionPlan(int? nutritionPlanNewRequestId)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -111,6 +136,11 @@ namespace NutriFitWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// HTTP POST action on the API to create a new Nutrition Plan.
+        /// </summary>
+        /// <param name="nutritionPlan"></param>
+        /// <returns>A View result</returns>
         [HttpPost, ActionName("CreateNutritionPlan")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateNutritionPlanPost([Bind("NutritionPlanId,NutritionPlanName,NutritionPlanDescription,ClientEmail")] NutritionPlan nutritionPlan)
@@ -159,6 +189,11 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowNutritionPlans");
         }
 
+        /// <summary>
+        /// Renders a view to Edit a Nutrition Plan, given the id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         public async Task<IActionResult> EditNutritionPlan(int? id)
         {
             if (id is null)
@@ -177,7 +212,11 @@ namespace NutriFitWeb.Controllers
             return View(nutritionPlan);
         }
 
-
+        /// <summary>
+        /// HTTP POST method on the API to Edit a Nutrition plan, by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         [HttpPost, ActionName("EditNutritionPlan")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditNutritionPlanPost(int? id)
@@ -221,6 +260,11 @@ namespace NutriFitWeb.Controllers
             return View(nutritionPlanToUpdate);
         }
 
+        /// <summary>
+        /// Renders a view to Delete a Nutrition plan.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         public async Task<IActionResult> DeleteNutritionPlan(int? id)
         {
             if (id is null)
@@ -238,6 +282,11 @@ namespace NutriFitWeb.Controllers
             return View(nutritionPlan);
         }
 
+        /// <summary>
+        /// HTTP POST action on the API to Delete a Nutrition Plan, by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A RedirectToAction result</returns>
         [HttpPost, ActionName("DeleteNutritionPlan")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteNutritionPlanConfirmed(int id)
@@ -261,6 +310,11 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowNutritionPlans");
         }
 
+        /// <summary>
+        /// Auxiliary method that confirms is a certain email belongs to a client and returns a JSON with the response.
+        /// </summary>
+        /// <param name="nutritionPlan"></param>
+        /// <returns>A JSON result</returns>
         public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] NutritionPlan nutritionPlan)
         {
             List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);

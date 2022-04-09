@@ -8,6 +8,9 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// MachinesController class, derived from Controller
+    /// </summary>
     public class MachinesController : Controller
     {
         private readonly string SessionKeyExercises;
@@ -15,6 +18,12 @@ namespace NutriFitWeb.Controllers
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IPhotoManagement _photoManagement;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Application DB context</param>
+        /// <param name="userManager">User manager API with Entity framework</param>
+        /// <param name="photoManagement">Photo management interface</param>
         public MachinesController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IPhotoManagement photoManagement)
@@ -25,6 +34,14 @@ namespace NutriFitWeb.Controllers
             _photoManagement = photoManagement;
         }
 
+        /// <summary>
+        /// Displays a page with all the machines.
+        /// Only accessible to Client, Trainer, Nutritionist and Gym roles.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "client, trainer, nutritionist, gym")]
         public async Task<IActionResult> ShowMachines(string? searchString, string? currentFilter, int? pageNumber)
         {
@@ -85,6 +102,11 @@ namespace NutriFitWeb.Controllers
             return View(await PaginatedList<Machine>.CreateAsync(machines.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        /// <summary>
+        /// Displays a Machine's details give the machine id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A >View result</returns>
         [AllowAnonymous]
         public async Task<IActionResult> MachineDetails(int? id)
         {
@@ -105,12 +127,24 @@ namespace NutriFitWeb.Controllers
             return View(machine);
         }
 
+        /// <summary>
+        /// Displays page to create a machine.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "gym")]
         public IActionResult CreateMachine()
         {
             return View();
         }
 
+        /// <summary>
+        /// HTTP POST action to create a Machine on the API.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <param name="machine"></param>
+        /// <param name="formFile"></param>
+        /// <returns>RedirectToAction result</returns>
         [Authorize(Roles = "gym")]
         [HttpPost, ActionName("CreateMachine")]
         [ValidateAntiForgeryToken]
@@ -139,6 +173,12 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowMachines");
         }
 
+        /// <summary>
+        /// Displays a page to edit a Machine.
+        /// Only accessible to the Gym role
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> EditMachine(int? id)
         {
@@ -167,6 +207,13 @@ namespace NutriFitWeb.Controllers
             return View(machine);
         }
 
+        /// <summary>
+        /// HTTP POST method to the API to edit a machine.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="formFile"></param>
+        /// <returns>An action result</returns>
         [Authorize(Roles = "gym")]
         [HttpPost, ActionName("EditMachine")]
         [ValidateAntiForgeryToken]
@@ -218,6 +265,12 @@ namespace NutriFitWeb.Controllers
             return View(machineToUpdate);
         }
 
+        /// <summary>
+        /// Displays a page to delete a machine given the id.
+        /// Only accessible to the Gym roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> DeleteMachine(int? id)
         {
@@ -236,6 +289,12 @@ namespace NutriFitWeb.Controllers
             return View(machine);
         }
 
+        /// <summary>
+        /// Action method to delete a machine and redirect to the appropriate action.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym")]
         [HttpPost, ActionName("DeleteMachine")]
         [ValidateAntiForgeryToken]

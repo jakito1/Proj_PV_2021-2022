@@ -8,6 +8,9 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// TrainersController class, derives from Controller
+    /// </summary>
     public class TrainersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -15,6 +18,13 @@ namespace NutriFitWeb.Controllers
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="userManager"></param>
+        /// <param name="inRoleByUserId"></param>
+        /// <param name="photoManagement"></param>
         public TrainersController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId inRoleByUserId,
@@ -25,7 +35,14 @@ namespace NutriFitWeb.Controllers
             _isUserInRoleByUserId = inRoleByUserId;
             _photoManagement = photoManagement;
         }
-
+        /// <summary>
+        /// Renders a view to display all the Trainers.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowTrainers(string? searchString, string? currentFilter, int? pageNumber)
         {
@@ -62,6 +79,15 @@ namespace NutriFitWeb.Controllers
 
         }
 
+
+        /// <summary>
+        /// Action to change the current gym status of a Trainer and redirect to an action.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>A RedirectToAction result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ChangeTrainerGymStatus(int? id, int? pageNumber, string? currentFilter)
         {
@@ -85,6 +111,11 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowTrainers", new { pageNumber, currentFilter });
         }
 
+        /// <summary>
+        /// Renders a view to display a Trainer's details, given the id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         public async Task<IActionResult> TrainerDetails(int? id)
         {
             if (id is null)
@@ -100,6 +131,12 @@ namespace NutriFitWeb.Controllers
                 FirstOrDefaultAsync());
         }
 
+        /// <summary>
+        /// Renders a view to edit a Trainer's settings.
+        /// Only accessible to Administrator and Trainer roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "administrator, trainer")]
         public async Task<IActionResult> EditTrainerSettings(string? id)
         {
@@ -121,6 +158,12 @@ namespace NutriFitWeb.Controllers
             return View(trainer);
         }
 
+        /// <summary>
+        /// HTTP POST method on the API to edit Trainer's settings.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="formFile"></param>
+        /// <returns>A View result</returns>
         [HttpPost, ActionName("EditTrainerSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, trainer")]
@@ -169,7 +212,11 @@ namespace NutriFitWeb.Controllers
             }
             return View(trainerToUpdate);
         }
-
+        /// <summary>
+        /// Returns a query result with the found Trainer given de id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A query result</returns>
         private async Task<Trainer> GetTrainer(string? id)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
