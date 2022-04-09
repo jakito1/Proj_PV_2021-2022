@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
@@ -19,7 +18,6 @@ namespace NutriFitWeb.Models
 
         [DisplayName("Data de Nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "***REMOVED***0:dd/MM/yyyy***REMOVED***")]
         public DateTime? ClientBirthday ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Peso")]
@@ -28,14 +26,40 @@ namespace NutriFitWeb.Models
         [DisplayName("Altura")]
         public double? Height ***REMOVED*** get; set; ***REMOVED***
 
+        [DisplayName("Massa Magra")]
+        [Range(0, 100)]
+        public double? LeanMass ***REMOVED*** get; set; ***REMOVED***
+
+        [DisplayName("Massa Gorda")]
+        [Range(0, 100)]
+        public double? FatMass ***REMOVED*** get; set; ***REMOVED***
+
+        [DisplayName("Outros Dados")]
+        public string? OtherClientData ***REMOVED*** get; set; ***REMOVED***
+
+        [Timestamp]
+        public byte[]? RowVersion ***REMOVED*** get; set; ***REMOVED***
+
         [DisplayName("Ginásio")]
         public Gym? Gym ***REMOVED*** get; set; ***REMOVED***
 
+        [DisplayName("Foto de Perfil")]
+        public Photo? ClientProfilePhoto ***REMOVED*** get; set; ***REMOVED***
+
         [DisplayName("Nutricionista")]
         public Nutritionist? Nutritionist ***REMOVED*** get; set; ***REMOVED***
+        public bool WantsNutritionist ***REMOVED*** get; set; ***REMOVED*** = false;
 
         [DisplayName("Treinador")]
         public Trainer? Trainer ***REMOVED*** get; set; ***REMOVED***
+
+        public bool WantsTrainer ***REMOVED*** get; set; ***REMOVED*** = false;
+
+        public List<TrainingPlan>? TrainingPlans ***REMOVED*** get; set; ***REMOVED***
+        public List<TrainingPlanNewRequest>? TrainingPlanRequests ***REMOVED*** get; set; ***REMOVED***
+        public List<NutritionPlan>? NutritionPlans ***REMOVED*** get; set; ***REMOVED***
+        public List<NutritionPlanNewRequest>? NutritionPlanRequests ***REMOVED*** get; set; ***REMOVED***
+
 
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 ***REMOVED***

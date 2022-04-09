@@ -1,0 +1,65 @@
+﻿@model NutriFitWeb.Models.Machine
+
+
+<h1>Editar Máquina</h1>
+
+    <div class="col-md-8 profileDivs">
+        <form asp-action="EditMachine" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MachineId" />
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MachineProfilePhoto" class="control-label">Foto da Máquina</label>
+                @if(Model.MachineProfilePhoto is not null)
+                ***REMOVED***
+                    <div><img class="profilePhoto" src="@Model.MachineProfilePhoto.PhotoUrl" /></div>
+            ***REMOVED***
+                <input type="file" asp-for="MachineProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
+                <span asp-validation-for="MachineProfilePhoto" class="text-danger"></span>
+            </div>
+
+            <table class="formTables">
+            <tr>
+                <th class="alignTableTitles"><label asp-for="MachineName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="MachineName" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="MachineName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="MachineDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="MachineDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="MachineDescription" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="MachineType" class="control-label">Tipo</label></th>
+                <td>
+                    <select asp-for="MachineType" class="formsInput" asp-items="@Html.GetEnumSelectList<MachineType>()"></select>
+                    <span asp-validation-for="MachineType" class="text-danger"></span>
+                </td>
+            </tr>
+            </table>
+        </form>
+        <div id="_CreateExercisePartialItem">
+            <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" model=@Model.MachineExercise />
+        </div>
+        <div id="_ShowExercisesPartialList">
+            <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" model=@Model.MachineExercises />
+        </div>
+    </div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
+</div>
+
+@section Scripts ***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
+***REMOVED***

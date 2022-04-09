@@ -1,26 +1,39 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Models;
-using NutriFitWeb.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
+using NutriFitWeb.Data;
+using NutriFitWeb.Models;
 using NutriFitWeb.Services;
-using System.Configuration;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+***REMOVED***
+    options.Cookie.Name = ".NutriFitWeb.Session";
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.Cookie.HttpOnly = true;
+***REMOVED***);
+
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IEmailSender>(new EmailSender (builder.Configuration.GetConnectionString("SendGridKey")));
+builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuration.GetConnectionString("SendGridKey")));
 
-builder.Services.AddScoped<ICountUsers, CountUsers>();
+builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
+builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
+builder.Services.AddScoped<IHasTrainerNutritionistGym, HasTrainerNutritionistGym>();
+builder.Services.AddScoped<IPhotoManagement, PhotoManagement>();
 
-builder.Services.AddDefaultIdentity<UserAccountModel>(options => ***REMOVED*** 
+builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
+***REMOVED***
     options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
 ***REMOVED***)
@@ -28,8 +41,13 @@ builder.Services.AddDefaultIdentity<UserAccountModel>(options => ***REMOVED***
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddWebOptimizer(pipeline =>
+***REMOVED***
+    pipeline.MinifyJsFiles("/js/site.js");
+    pipeline.MinifyCssFiles("/css/site.css");
+***REMOVED***);
 
-var app = builder.Build();
+WebApplication? app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -43,10 +61,14 @@ else
     app.UseHsts();
 ***REMOVED***
 
+app.UseWebOptimizer();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

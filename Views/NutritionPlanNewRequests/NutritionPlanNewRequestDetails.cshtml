@@ -1,0 +1,34 @@
+﻿@model NutriFitWeb.Models.NutritionPlanNewRequest
+
+
+<h1>Detalhes do Pedido</h1>
+
+<div class="col-md-6 profileDivs">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanNewRequestName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanNewRequestDescription)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanNewRequestDate)</p></td>
+        </tr>
+    </table>
+    @if (User.IsInRole("nutritionist"))
+    ***REMOVED***
+        <div class="form-group">
+            <a asp-controller="NutritionPlans" asp-action="CreateNutritionPlan" type="submit" asp-route-id="@Model.NutritionPlanNewRequestId" class="createBtn">Criar plano de nutrição</a>
+        </div>
+***REMOVED***
+</div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlanNewRequests" class="backToListBtn">Voltar</a>
+</div>
+
+
+

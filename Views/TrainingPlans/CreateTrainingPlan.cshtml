@@ -1,0 +1,75 @@
+﻿@model NutriFitWeb.Models.TrainingPlan
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserAccountModel> UserManager
+@***REMOVED***
+    ViewData["Title"] = "Criar plano de treino";
+***REMOVED***
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="col-md-8 profileDivs">
+    <form asp-controller="TrainingPlans" asp-action="CreateTrainingPlan">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="submit" value="Criar" class="btn btn-primary createBtn" />
+        </div>
+
+        <table class="formTables">
+            <tr>
+                <th class="alignTableTitles"><label asp-for="TrainingPlanName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="TrainingPlanName" class="formsInput" aria-required="true" />
+                    <br />
+                    <span asp-validation-for="TrainingPlanName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="TrainingPlanDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="TrainingPlanDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="TrainingPlanDescription" class="text-danger"></span>
+                </td>
+            </tr>
+            @if (User.IsInRole("trainer"))
+            ***REMOVED***
+                @if (ViewBag.ClientEmail is null)
+                ***REMOVED***
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            <input required="true" asp-for="ClientEmail" class="formsInput" />
+                            <br />
+                            <span asp-validation-for="ClientEmail" class="text-danger"></span>
+                        </td>
+                    </tr>
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            <p>@ViewData["ClientEmail"]</p>
+                        </td>
+                    </tr>
+            ***REMOVED***
+        ***REMOVED***
+        </table>
+    </form>
+    <div id="_CreateExercisePartialItem">
+        <partial name="~/Views/Exercises/_CreateExercisePartial.cshtml" />
+    </div>
+    <div id="_ShowExercisesPartialList" class="exListMargin">
+        <partial name="~/Views/Exercises/_ShowExercisesPartial.cshtml" />
+    </div>
+</div>
+
+<div class="backBtnDiv">
+    <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar aos planos</a>
+</div>
+
+@section Scripts ***REMOVED***
+    @***REMOVED***
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+***REMOVED***
+***REMOVED***

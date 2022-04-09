@@ -2,12 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
@@ -19,7 +16,6 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
     ***REMOVED***
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly SignInManager<UserAccountModel> _signInManager;
-        private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
         /// <summary>
         /// Build the TwoFactorAuthenticationModel model to be used when the user wants to view a page where it's requested a 2FA code.
@@ -28,11 +24,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public TwoFactorAuthenticationModel(
-            UserManager<UserAccountModel> userManager, SignInManager<UserAccountModel> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
+            UserManager<UserAccountModel> userManager, SignInManager<UserAccountModel> signInManager)
         ***REMOVED***
             _userManager = userManager;
             _signInManager = signInManager;
-            _logger = logger;
     ***REMOVED***
 
         /// <summary>
@@ -68,13 +63,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            HasAuthenticator = await _userManager.GetAuthenticatorKeyAsync(user) != null;
+            HasAuthenticator = await _userManager.GetAuthenticatorKeyAsync(user) is not null;
             Is2faEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
             IsMachineRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user);
             RecoveryCodesLeft = await _userManager.CountRecoveryCodesAsync(user);
@@ -89,8 +84,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***

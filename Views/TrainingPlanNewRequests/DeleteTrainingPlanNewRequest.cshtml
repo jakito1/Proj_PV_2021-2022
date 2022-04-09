@@ -1,0 +1,38 @@
+﻿@model NutriFitWeb.Models.TrainingPlanNewRequest
+
+
+<h2>Tem a certeza que pretende apagar este pedido?</h2>
+<div class="col-md-6 profileDivs">
+<table class="formTables">
+    <tr>
+        <th><p class="control-label listsItemTitle">Nome</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlanNewRequestName)</b></p></td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Descrição</p></th>
+        <td>
+            @if (Model.TrainingPlanNewRequestDescription is null || Model.TrainingPlanNewRequestDescription == "")
+            ***REMOVED***
+                <p><b>N/A</b></p>
+        ***REMOVED***
+            else
+            ***REMOVED***
+                <p><b>@Html.DisplayFor(model => model.TrainingPlanNewRequestDescription)</b></p>
+        ***REMOVED***
+        </td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Data</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlanNewRequestDate)</b></p></td>
+    </tr>
+</table>
+
+<form asp-action="DeleteTrainingPlanNewRequest">
+    <input type="hidden" asp-for="TrainingPlanNewRequestId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+</div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowTrainingPlanNewRequests" class="backToListBtn">Voltar</a>
+</div>

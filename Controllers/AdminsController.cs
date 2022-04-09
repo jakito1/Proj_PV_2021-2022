@@ -4,106 +4,182 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
+    /// <summary>
+    /// AdminsController class, derives from Controller.
+    /// </summary>
     public class AdminsController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">The DB context for the application</param>
         public AdminsController(ApplicationDbContext context)
         ***REMOVED***
             _context = context;
     ***REMOVED***
 
+        /// <summary>
+        /// Shows all users for in the application from a Admin perspective
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>A Paginated ViewResult</returns>
         [Authorize(Roles = "administrator")]
-        public async Task<IActionResult> ShowAllUsers(string? email)
+        public async Task<IActionResult> ShowAllUsers(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
-            IdentityRole? adminRole = await _context.Roles.Where(a => a.Name == "administrator").FirstOrDefaultAsync();
-            var admin = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
-
-            if (email == null)
+            if (searchString is not null)
             ***REMOVED***
-                return View(_context.Users.Where(p => admin.All(p2 => p2.UserId != p.Id)));
+                pageNumber = 1;
+        ***REMOVED***
+            else
+            ***REMOVED***
+                searchString = currentFilter;
         ***REMOVED***
 
-            return View(_context.Users.Where(p => admin.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(email)));
+            ViewData["CurrentFilter"] = searchString;
 
+            IdentityRole? adminRole = await _context.Roles.FirstOrDefaultAsync(a => a.Name == "administrator");
+            IQueryable<IdentityUserRole<string>>? admins = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
+
+            IQueryable<UserAccountModel>? users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id));
+            if (!string.IsNullOrEmpty(searchString))
+            ***REMOVED***
+                users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(searchString));
+        ***REMOVED***
+
+            int pageSize = 3;
+            return View(await PaginatedList<UserAccountModel>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
-        
-        public async Task<IActionResult> DeleteUserAccount(string? id, string? url)
+        /// <summary>
+        /// Deletes a user account.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The user account id</param>
+        /// <returns>An Action result</returns>
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> DeleteUserAccount(string? id)
         ***REMOVED***
-            if (id == null)
+            if (id is null)
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
+
+            UserAccountModel? user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (user is null)
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
 
-            Trainer? trainer = await _context.Trainer.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-            Nutritionist? nutritionist = await _context.Nutritionist.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-            Gym? gym = await _context.Gym.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
-            Client? client = await _context.Client.Where(a => a.UserAccountModel.Id == id).FirstOrDefaultAsync();
+            return View(user);
+    ***REMOVED***
 
-
-
-            if (trainer != null)
+        /// <summary>
+        /// Deletes a user account and calls the Http POST method to the API to update the data.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The User account id</param>
+        /// <returns>An Action result</returns>
+        [HttpPost, ActionName("DeleteUserAccount")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> DeleteUserAccountPost(string? id)
+        ***REMOVED***
+            if (id is null)
             ***REMOVED***
-                var clients = _context.Client.Where(a => a.Trainer == trainer);
+                return BadRequest();
+        ***REMOVED***
 
-                foreach (var c in clients)
-                ***REMOVED***
-                    c.Trainer = null;
-                    _context.Client.Update(c);
+            Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+            Nutritionist? nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+            Gym? gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+
+            if (trainer is not null)
             ***REMOVED***
-
                 _context.Trainer.Remove(trainer);
         ***REMOVED***
-            if (nutritionist != null)
-            ***REMOVED***
-                var clients = _context.Client.Where(a => a.Nutritionist == nutritionist);
-
-                foreach (var c in clients)
-                ***REMOVED***
-                    c.Nutritionist = null;
-                    _context.Client.Update(c);
+            if (nutritionist is not null)
             ***REMOVED***
                 _context.Nutritionist.Remove(nutritionist);
         ***REMOVED***
-            if (client != null)
+
+            if (client is not null)
             ***REMOVED***
                 _context.Client.Remove(client);
         ***REMOVED***
-            if (gym != null)
-            ***REMOVED***
-                var clients = _context.Client.
-                    Where(a => a.Gym == gym);
-                var trainers = _context.Trainer.
-                    Where(a => a.Gym == gym);
-                var nutritionists = _context.Nutritionist.
-                    Where(a => a.Gym == gym);
 
-                foreach (var c in clients)
-                ***REMOVED***
-                    c.Gym = null;
-                    _context.Client.Update(c);
+            if (gym is not null)
             ***REMOVED***
-                foreach (var n in nutritionists)
-                ***REMOVED***
-                    n.Gym = null;
-                    _context.Nutritionist.Update(n);
-            ***REMOVED***
-                foreach (var t in trainers)
-                ***REMOVED***
-                    t.Gym = null;
-                    _context.Trainer.Update(t);
-            ***REMOVED***
-
-                await _context.SaveChangesAsync();
                 _context.Gym.Remove(gym);
-        ***REMOVED***          
-                 
-            _context.Users.Remove(await _context.Users.Where(a => a.Id == id).FirstOrDefaultAsync());
+        ***REMOVED***
+
+            UserAccountModel? user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (user is not null)
+            ***REMOVED***
+                _context.Users.Remove(user);
+        ***REMOVED***
+
             await _context.SaveChangesAsync();
-            return LocalRedirect(Url.Content(url));
+
+            return RedirectToAction("ShowAllUsers");
+    ***REMOVED***
+
+        /// <summary>
+        /// Edit the User settings action to redirect to the selected user account.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The User account id</param>
+        /// <returns>An Action result</returns>
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> EditUserSettings(string? id)
+        ***REMOVED***
+            if (string.IsNullOrEmpty(id))
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
+
+            UserAccountModel? userAccountModel = await _context.Users.FindAsync(id);
+            if (userAccountModel is null)
+            ***REMOVED***
+                return NotFound();
+        ***REMOVED***
+            return View(userAccountModel);
+    ***REMOVED***
+
+        /// <summary>
+        /// Edits a user account and calls the Http POST method to the API to update the data.
+        /// Only accessible for Administrator role.
+        /// </summary>
+        /// <param name="id">The User account id</param>
+        /// <returns>An Action result</returns>
+        [HttpPost, ActionName("EditUserSettings")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrator")]
+        public async Task<IActionResult> EditUserSettingsPost(string? id)
+        ***REMOVED***
+            if (string.IsNullOrEmpty(id))
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
+
+            UserAccountModel? userToUpdate = await _context.Users.FindAsync(id);
+            if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "",
+                u => u.PhoneNumber, u => u.UserName))
+            ***REMOVED***
+                _context.SaveChanges();
+                return RedirectToAction("ShowAllUsers");
+        ***REMOVED***
+            return View(userToUpdate);
     ***REMOVED***
 
         public IActionResult EditUserSettings()

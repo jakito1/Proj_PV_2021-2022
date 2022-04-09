@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Nutritionist>
+﻿@model PaginatedList<NutriFitWeb.Models.Nutritionist>
 @using NutriFitWeb.Services
 @using NutriFitWeb.Models
 @using Microsoft.AspNetCore.Identity
@@ -9,37 +9,71 @@
     ViewData["Title"] = "ShowNutritionists";
 ***REMOVED***
 
-@***REMOVED***string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);***REMOVED***
-@***REMOVED***string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;***REMOVED***
-@***REMOVED***string? returnUrl = $"***REMOVED***routeUrl***REMOVED******REMOVED***qsPath***REMOVED***";***REMOVED***
-
 <h1>Nutricionistas</h1>
-
-<form asp-action="ShowNutritionists" asp-route-id=email method="get">
-    <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
-    <button type="submit" class="searchBtn"><i class="fa fa-search"></i></button>
+<form asp-action="ShowNutritionists" method="get">
+    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar" />
+    <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
 </form>
 
-@foreach (var item in Model) ***REMOVED***
+@foreach (var item in Model)
+***REMOVED***
     <div class="listsDiv">
-        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.UserName):</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
-        <br>
-        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.Email):</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
+        <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder">UserName</b> @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
+        <p class="listsItem"><img src="~/icons/emailIcon.svg"/> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
-            @if(item.Gym == null)***REMOVED***
-                <a asp-action="AddNutritionistToGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl class="fas fa-plus-circle icons addIcon"></a>
-        ***REMOVED***else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)***REMOVED***                   
-                <a asp-action="RemoveNutritionistFromGym" asp-route-id="@item.NutritionistId" asp-route-url=@returnUrl class="fas fa-minus-circle icons removeIcon"></a> 
-        ***REMOVED***
 
-            <a asp-action="NutritionistDetails" asp-route-id="@item.NutritionistId" class="fa fa-info-circle icons"></a>
+            <a asp-action="ChangeNutritionistGymStatus" asp-route-id="@item.NutritionistId"
+           asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                @if (item.Gym is null)
+                ***REMOVED***
+                    <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
+            ***REMOVED***
+                else if (UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)
+                ***REMOVED***
+                    <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
+            ***REMOVED***
+            </a>
+
+            <a asp-action="NutritionistDetails" asp-route-id="@item.NutritionistId">
+                <img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" />
+            </a>
         </div>
     </div>
 ***REMOVED***
 
-@if (!string.IsNullOrEmpty(qsPath))
+@***REMOVED***
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+***REMOVED***
+
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowNutritionists"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+***REMOVED***
+
+    @if (nextDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowNutritionists"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+***REMOVED***
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    ***REMOVED***
+        <p class="noMoreResults">Não existem mais resultados</p>
+***REMOVED***
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowNutritionists" class="backToListBtn">Voltar</a>

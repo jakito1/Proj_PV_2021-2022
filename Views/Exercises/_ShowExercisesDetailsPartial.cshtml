@@ -1,0 +1,57 @@
+﻿@using NutriFitWeb.Services
+@model IEnumerable<NutriFitWeb.Models.Exercise>
+@inject IPhotoManagement PhotoManagement
+
+<br />
+<p class="listsItemTitle">Exercícios</p>
+
+<table class="table">
+    <thead class="tableHeader">
+        <tr>
+            <th class="roundedCornerTableLeft thStyle">
+                Nome/Descrição
+            </th>
+            <th class="roundedCornerTableRight thStyle">
+                Outros Dados
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        ***REMOVED***
+            @foreach (var item in Model)
+            ***REMOVED***
+                <div class="form-group">
+                    @if (item.ExercisePhoto is not null)
+                    ***REMOVED***
+                        string? exercisePhoto = PhotoManagement.GetPhotoPath(item.ExercisePhoto);
+                        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ExercisePhoto)</p>
+                        <img class="profilePhoto" src="@exercisePhoto" />
+                ***REMOVED***
+                </div>
+                <tr>
+                    <td class="exercisesData breakText breakTextOtherData">
+                        @Html.DisplayFor(modelItem => item.ExerciseName)
+                        <br />
+                        @Html.DisplayFor(modelItem => item.ExerciseDescription)
+                    </td>
+                    <td class="exercisesData">
+                        @if (item.ExerciseDuration is not null)
+                        ***REMOVED***
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minutos,</p>
+                    ***REMOVED***
+                        @if (item.ExerciseRepetitions is not null)
+                        ***REMOVED***
+                            <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições,</p>
+                    ***REMOVED***
+                        <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
+                        @if (item.ExerciseURL is not null && item.ExerciseURL != "")
+                        ***REMOVED***
+                            <a class="videosUrl" href="@item.ExerciseURL" target="_blank">Vídeo do Exercício</a>
+                    ***REMOVED***
+                    </td>
+                </tr>
+        ***REMOVED***
+    ***REMOVED***
+    </tbody>
+</table>
