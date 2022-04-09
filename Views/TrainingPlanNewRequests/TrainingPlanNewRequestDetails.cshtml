@@ -1,0 +1,32 @@
+﻿@model NutriFitWeb.Models.TrainingPlanNewRequest
+
+
+<h1>Detalhes do Pedido</h1>
+
+<div class="col-md-6 profileDivs">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanNewRequestName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanNewRequestDescription)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanNewRequestDate)</p></td>
+        </tr>
+    </table>
+    @if (User.IsInRole("trainer"))
+    {
+        <div class="form-group">
+            <a asp-controller="TrainingPlans" asp-action="CreateTrainingPlan" type="submit" asp-route-trainingPlanNewRequestId="@Model.TrainingPlanNewRequestId" class="createBtn">Criar plano de treino</a>
+        </div>
+        <br />
+    }
+</div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowTrainingPlanNewRequests" class="backToListBtn">Voltar</a>
+</div>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 {
@@ -17,8 +18,12 @@ namespace NutriFitWeb.Models
         public Gym? Gym { get; set; }
 
         public UserAccountModel? UserAccountModel { get; set; }
+        [DisplayName("Foto de Perfil")]
+        public Photo? NutritionistProfilePhoto { get; set; }
 
+        [JsonIgnore]
         public List<Client>? Clients { get; set; }
+        public List<NutritionPlan>? NutritionPlans { get; set; }
 
     }
 }

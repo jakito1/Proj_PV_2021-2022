@@ -1,0 +1,49 @@
+﻿@model IEnumerable<NutriFitWeb.Models.Meal>
+
+
+<h2 class="h2Fix">Refeições</h2>
+
+<table class="table">
+    <thead class="tableHeader">
+        <tr>
+            <th class="roundedCornerTableLeft thStyle">
+                Nome da Refeição
+            </th>
+            <th class="thStyle">
+                Descrição
+            </th>
+            <th class="roundedCornerTableRight thStyle">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.MealName)
+                    </td>
+                    <td>
+                        @if (String.IsNullOrEmpty(item.value.MealDescription))
+                        {
+                            <p>N/A</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.value.MealDescription)
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="DeleteMeal" asp-controller="Meals" data-ajax="true" data-ajax-update="#_ShowMealsPartialList"
+                   asp-route-id="@item.i"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                        <a asp-action="EditMeal" asp-controller="Meals" data-ajax="true" data-ajax-success="UpdateMealsList"
+                   data-ajax-update="#_CreateMealPartialItem" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<br />

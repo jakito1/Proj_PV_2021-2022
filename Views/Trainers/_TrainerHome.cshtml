@@ -1,0 +1,32 @@
+﻿@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@model NutriFitWeb.Models.Trainer
+@inject SignInManager<UserAccountModel> SignInManager
+@inject UserManager<UserAccountModel> UserManager
+
+@inject IGetUsersLists GetUsersLists
+
+@{
+    ViewData["Title"] = "Gym Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
+    <div class="statistics">
+        <div class= statisticsCount>
+            <p><b class="listsItemTitle homeTitlesFix control-label">Clientes</b><b class="itemsLeftMargin">@GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Count()</b></p>
+            <br />
+            <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b class="itemsLeftMargin">@GetUsersLists.GetTrainerGym(UserManager.GetUserId(User))</b></p>
+            <br />
+        </div>
+        <div class="newUsersDiv">
+            <p><b class="listsItemTitle">Clientes mais recentes</b></p>
+            @foreach (var item in GetUsersLists.GetUsersForTrainer(UserManager.GetUserId(User)).Take(3))
+            {
+                <br />
+                <p class="recentClientsGym"><b>@item.UserName.ToUpper()</b></p>
+            }
+        </div>
+    </div>
+    <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
+</div>

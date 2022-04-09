@@ -1,33 +1,65 @@
 ﻿@model NutriFitWeb.Models.Trainer
+@using NutriFitWeb.Services
+@inject IPhotoManagement PhotoManagement
 
 @{
     ViewData["Title"] = "TrainerDetails";
 }
 
-<h1>Detalhes do Treinador</h1>
+<h1 class="detailsTitle">Detalhes do Treinador</h1>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2 listsItemTitle">
-            @Html.DisplayNameFor(model => model.TrainerId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainerId)
-        </dd>
-        <dt class = "col-sm-2 listsItemTitle">
-            @Html.DisplayNameFor(model => model.TrainerFirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainerFirstName)
-        </dd>
-        <dt class = "col-sm-2 listsItemTitle">
-            @Html.DisplayNameFor(model => model.TrainerLastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrainerLastName)
-        </dd>
-    </dl>
+<div class="col-md-6 profileDivs exercisesDiv">
+    <div class="form-group">
+        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.TrainerProfilePhoto)</p>
+        @{
+            string? profilePic = await PhotoManagement.LoadProfileImage(@Model.UserAccountModel.UserName);
+        }
+        @if(Model.TrainerProfilePhoto is not null)
+        {
+            <img class="profilePhoto" src="@profilePic" />
+        }
+    </div>
+    <br />
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(model => model.TrainerId)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainerId)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.UserName)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.UserName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome Completo</p></th>
+            @if ((Model.TrainerFirstName is null || Model.TrainerFirstName == "") && (Model.TrainerLastName is null || Model.TrainerLastName == ""))
+            {
+                <td><p class="itemsLeftMargin">N/A</p></td>
+            }else if(Model.TrainerFirstName is null || Model.TrainerFirstName == "")
+            {
+                <td><p class="itemsLeftMargin">@Model.TrainerLastName</p></td>
+            }else if (Model.TrainerLastName is null || Model.TrainerLastName == "")
+            {
+                <td><p class="itemsLeftMargin">@Model.TrainerFirstName</p></td>
+            }else{
+                <td><p class="itemsLeftMargin">@Model.TrainerFirstName @Model.TrainerLastName</p></td>
+            }
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.Email)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.Email)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.PhoneNumber)</p></th>
+            @if(Model.UserAccountModel.PhoneNumber is null)
+            {
+                <td><p class="itemsLeftMargin">N/A</p></td>
+            }
+            else
+            {
+                <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.PhoneNumber)</p></td>
+            }
+        </tr>
+    </table>
 </div>
 <div class="backBtnDiv">
     <a asp-action="ShowTrainers" class="backToListBtn">Voltar</a>

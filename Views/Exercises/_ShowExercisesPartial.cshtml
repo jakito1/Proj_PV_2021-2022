@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NutriFitWeb.Models.Exercise>
+
+
+<h2 class="h2Fix">Exercícios</h2>
+
+<table class="table">
+    <thead class="tableHeader">
+        <tr>
+            <th class="roundedCornerTableLeft thStyle">
+                Nome do Exercício
+            </th>
+            <th class="thStyle">
+                Descrição
+            </th>
+            <th class="roundedCornerTableRight thStyle">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                <tr>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.value.ExerciseName)</p>
+                    </td>
+                    <td>
+                        @if (String.IsNullOrEmpty(item.value.ExerciseDescription))
+                        {
+                            <p class="details">N/A</p>
+                        }else{
+                            <p class="details">@Html.DisplayFor(modelItem => item.value.ExerciseDescription)</p>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
+                   asp-route-id="@item.i"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                        <a asp-action="EditExercise" asp-controller="Exercises" data-ajax="true" data-ajax-success="UpdateExercisesList"
+                   data-ajax-update="#_CreateExercisePartialItem" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<br />

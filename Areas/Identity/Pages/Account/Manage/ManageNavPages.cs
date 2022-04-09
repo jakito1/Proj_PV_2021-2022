@@ -2,11 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace  NutriFitWeb.Areas.Identity.Pages.Account.Manage
+namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
     /// <summary>
     ///     ManageNavPages class.
@@ -58,56 +56,80 @@ namespace  NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
+        public static string IndexNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, Index);
+        }
 
         /// <summary>
         /// Tries to create the Email page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
+        public static string EmailNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, Email);
+        }
 
         /// <summary>
         /// Tries to create the ChangePassword page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
+        public static string ChangePasswordNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, ChangePassword);
+        }
 
         /// <summary>
         /// Tries to create the DownloadPersonalData page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string DownloadPersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, DownloadPersonalData);
+        public static string DownloadPersonalDataNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, DownloadPersonalData);
+        }
 
         /// <summary>
         /// Tries to create the DeletePersonalData page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string DeletePersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, DeletePersonalData);
+        public static string DeletePersonalDataNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, DeletePersonalData);
+        }
 
         /// <summary>
         /// Tries to create the ExternalLogins page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
+        public static string ExternalLoginsNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, ExternalLogins);
+        }
 
         /// <summary>
         /// Tries to create the PersonalData page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string PersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, PersonalData);
+        public static string PersonalDataNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, PersonalData);
+        }
 
         /// <summary>
         /// Tries to create the TwoFactorAuthentication page.
         /// </summary>
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
-        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
+        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, TwoFactorAuthentication);
+        }
 
         /// <summary>
         /// Tries to create the requested page.
@@ -117,7 +139,7 @@ namespace  NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public static string PageNavClass(ViewContext viewContext, string page)
         {
-            var activePage = viewContext.ViewData["ActivePage"] as string
+            string activePage = viewContext.ViewData["ActivePage"] as string
                 ?? Path.GetFileNameWithoutExtension(viewContext.ActionDescriptor.DisplayName);
             return string.Equals(activePage, page, StringComparison.OrdinalIgnoreCase) ? "active" : null;
         }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System.Threading.Tasks;
 
 namespace NutriFitWeb.Services
 {
@@ -37,10 +35,10 @@ namespace NutriFitWeb.Services
             return Execute(Options, subject, message, email);
         }
 
-        private Task Execute(string apiKey, string subject, string message, string email)
+        private static Task Execute(string apiKey, string subject, string message, string email)
         {
-            var client = new SendGridClient(apiKey);
-            var msg = new SendGridMessage()
+            SendGridClient? client = new(apiKey);
+            SendGridMessage? msg = new()
             {
                 From = new EmailAddress("nutrifit.web@protonmail.com", "NutriFit"),
                 Subject = subject,

@@ -1,0 +1,120 @@
+﻿@using NutriFitWeb.Services
+@model NutriFitWeb.Models.Meal
+@inject IPhotoManagement PhotoManagement
+
+<div class="col-md-12 profileDivs exercisesDiv tableWrapper">
+    <h2>Adicionar refeição</h2>
+    <form method="post" id="_CreateMealPartialForm" data-ajax-begin="UpdateCreateMeal" data-ajax-success="UpdateMealsList" data-ajax="true"
+          asp-action="CreateMeal" asp-controller="Meals" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="MealPhoto" class="control-label listsItemTitle">Foto da Refeição</label>
+            @if (Model is not null && Model.MealPhoto is not null)
+            {
+                string? mealPhoto = PhotoManagement.GetPhotoPath(Model.MealPhoto);
+                <div><img class="profilePhoto" src="@mealPhoto" /></div>
+            }
+            <input type="file" asp-for="MealPhoto" class="form-control marginFixChooseFile" name="formFile" />
+            <span asp-validation-for="MealPhoto" class="text-danger"></span>
+        </div>
+
+        <table class="formTables">
+            <tr>
+                <th class="alignTableTitles"><label asp-for="MealName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="MealName" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="MealName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="MealDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="MealDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="MealDescription" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+
+        <table class="formTables">
+            <tr>
+                <th><label asp-for="MealCalorie" class="control-label">Calorias</label></th>
+                <th><label asp-for="MealProtein" class="control-label">Proteína</label></th>
+            </tr>
+            <tr>
+                <td>
+                    <input asp-for="MealCalorie" min="1" oninput="limitMealForm(this);" class="formsInput" />
+                    <span asp-validation-for="MealCalorie" class="text-danger"></span>
+                </td>
+                <td>
+                    <input asp-for="MealProtein" min="1" oninput="limitMealForm(this);" class="formsInput" />
+                    <span asp-validation-for="MealProtein" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+
+        <table class="formTables">
+            <tr>
+                <th><label asp-for="MealFat" class="control-label">Gordura</label></th>
+                <th><label asp-for="MealCarbohydrate" class="control-label">Carboidratos</label></th>
+            </tr>
+            <tr>
+                <td>
+                    <input asp-for="MealFat" min="1" oninput="limitMealForm(this);" class="formsInput" />
+                    <span asp-validation-for="MealFat" class="text-danger"></span>
+                </td>
+                <td>
+                    <input asp-for="MealCarbohydrate" min="1" oninput="limitMealForm(this);" class="formsInput" />
+                    <span asp-validation-for="MealCarbohydrate" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+
+        <table class="formTables">
+            <label for="dateOrWeekDaySelect" class="control-label">Data/Dia da Semana</label>
+            <select class="formsInput selectDropDwn" name="dateOrWeekDaySelect" onchange="showDateOrWeekDayDiv(this)" id="dateOrWeekDaySelect">
+                <option value="1">Data</option>
+                <option value="2">Dia de Semana</option>
+            </select>
+            <div style="display:block;" id="MealDateID">
+                <input required="true" id="MealDateInputID" asp-for="MealDate" class="formsInput" />
+                <br />
+                <span asp-validation-for="MealDate" class="text-danger"></span>
+            </div>
+            <div style="display:none;" id="MealWeekDayID">
+                <select required="true" id="MealWeekDaySelectID" asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()">
+                    <option value="">Selecione um dia da semana</option>
+                </select>
+                <br />
+                <span asp-validation-for="MealWeekDay" class="text-danger"></span>
+            </div>
+        </table>
+
+        <table class="formTables">
+            <tr>
+                <th><label asp-for="MealType" class="control-label">Tipo</label></th>
+                <th><label asp-for="MealURL" class="control-label">Link da refeição</label></th>
+            </tr>
+            <tr>
+                <td>
+                    <select asp-for="MealType" class="formsInput" asp-items="Html.GetEnumSelectList<MealType>()"></select>
+                    <span asp-validation-for="MealType" class="text-danger"></span>
+                </td>
+                <td>
+                    <input asp-for="MealURL" class="formsInput" />
+                    <span asp-validation-for="MealURL" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+
+        <div><input type="submit" value="Adicionar" class="btn btn-primary" /></div>
+    </form>
+</div>
+
+@section Scripts {
+
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
