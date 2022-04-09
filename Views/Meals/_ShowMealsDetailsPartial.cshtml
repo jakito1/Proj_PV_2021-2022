@@ -5,11 +5,14 @@
 <br />
 <p class="listsItemTitle">Refeições</p>
 
-<table class="table">
+<table class="table exercisesMealsTable">
     <thead class="tableHeader">
         <tr>
             <th class="roundedCornerTableLeft thStyle">
                 Nome/Descrição
+            </th>
+            <th class="thStyle">
+                Foto
             </th>
             <th class="roundedCornerTableRight thStyle">
                 Outros Dados
@@ -21,19 +24,20 @@
         ***REMOVED***
             @foreach (var item in Model)
             ***REMOVED***
-                <div class="form-group">                   
-                    @if (item.MealPhoto is not null)
-                    ***REMOVED***
-                        string? mealPhoto = PhotoManagement.GetPhotoPath(item.MealPhoto);
-                        <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.MealPhoto)</p>
-                        <img class="profilePhoto" src="@mealPhoto" />
-                ***REMOVED***
-                </div>
                 <tr>
                     <td class="exercisesData breakText breakTextOtherData">
                         <p>@Html.DisplayFor(modelItem => item.MealName)</p>
                         <br />
                         <p>@Html.DisplayFor(modelItem => item.MealDescription)</p>
+                    </td>
+                    <td>
+                        @if (item.MealPhoto is not null)
+                        ***REMOVED***
+                            string? mealPhoto = PhotoManagement.GetPhotoPath(item.MealPhoto);
+                            <img class="profilePhoto" src="@mealPhoto" />
+                    ***REMOVED***else***REMOVED***
+                            <p class="exercisesData">N/A</p>
+                    ***REMOVED***
                     </td>
                     <td class="exercisesData">
                         @if (item.MealDate is not null)

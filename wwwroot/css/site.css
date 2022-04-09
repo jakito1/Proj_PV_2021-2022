@@ -311,6 +311,10 @@ link***REMOVED***
     border-radius: 1em;
 ***REMOVED***
 
+.exercisesMealsTable ***REMOVED***
+    table-layout: fixed !important;
+***REMOVED***
+
 .thStyle ***REMOVED***
     background-color: #00A2E8 !important;
     color: white;
