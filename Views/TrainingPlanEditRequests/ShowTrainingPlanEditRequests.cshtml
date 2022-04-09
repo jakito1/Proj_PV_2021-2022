@@ -3,6 +3,17 @@
 
 <h1>Pedidos de Edição de Plano <img src=~/icons/dumbbellsIcon.svg/></h1>
 
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    
+    @if(User.IsInRole("trainer"))***REMOVED***
+        <p>Aqui pode <b>ver os pedidos</b> de <b>edição de planos de treino</b> dos clientes associados.</p>
+        <p>Nos <b>detalhes</b> de um pedido, pode então proceder à <b>edição</b> de um <b>plano de treino</b>.</p>
+***REMOVED***else if(User.IsInRole("client"))***REMOVED***
+        <p>Aqui pode <b>ver e apagar os pedidos</b> de <b>edição de planos de treino</b> que requisitou.</p>
+***REMOVED***
+</div>
 
 @if (User.IsInRole("trainer"))
 ***REMOVED***
