@@ -4,39 +4,80 @@ using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
 {
+    /// <summary>
+    /// Exercise class
+    /// </summary>
     public class Exercise
     {
+        /// <summary>
+        /// Gets and Sets the exercise id.
+        /// </summary>
         public int ExerciseId { get; set; }
+        /// <summary>
+        /// Gets and Sets the exercise name.
+        /// </summary>
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string? ExerciseName { get; set; }
+        /// <summary>
+        /// Gets and Sets the exercise description.
+        /// </summary>
         public string? ExerciseDescription { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the exercise duration.
+        /// </summary>
         [Range(1, 120, ErrorMessage = "Para um treino saudável, deve inserir entre {1} e {2} minutos.")]
         public int? ExerciseDuration { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the exercise repetitions.
+        /// </summary>
         [Range(1, 999, ErrorMessage = "Para um treino saudável, deve inserir entre {1} e {2} repetições.")]
         public int? ExerciseRepetitions { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the exercise url.
+        /// </summary>
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? ExerciseURL { get; set; }
         /*public List<Picture>? Pictures { get; set; }*/
 
+        /// <summary>
+        /// Gets and Sets the exercise type.
+        /// Types of: ExerciseType.CARDIO, ExerciseType.STRENGTH
+        /// </summary>
         [Column(TypeName = "nvarchar(24)")]
         public ExerciseType? ExerciseType { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the exercise muscle group.
+        /// Types of: ExerciseMuscles.LEGS,ExerciseMuscles.ARMS,ExerciseMuscles.BACK
+        /// </summary>
         [Column(TypeName = "nvarchar(24)")]
         public ExerciseMuscles? ExerciseMuscles { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the current trining plan associated with the exercise.
+        /// </summary>
         [JsonIgnore]
         public TrainingPlan? TrainingPlan { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the current machine associated with the exercise.
+        /// </summary>
         [JsonIgnore]
         public Machine? Machine { get; set; }
 
+        /// <summary>
+        /// Gets and Sets the exercise photo.
+        /// </summary>
         public Photo? ExercisePhoto { get; set; }
 
     }
 
+    /// <summary>
+    /// Types of exercises, with 2 types.
+    /// </summary>
     public enum ExerciseType
     {
         [Display(Name = "Cardio")]
@@ -45,6 +86,9 @@ namespace NutriFitWeb.Models
         STRENGHT
     }
 
+    /// <summary>
+    /// Exercise muscles with 3 muscle groups.
+    /// </summary>
     public enum ExerciseMuscles
     {
         [Display(Name = "Pernas")]
