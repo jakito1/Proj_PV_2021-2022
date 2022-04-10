@@ -3,6 +3,9 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
 {
+    /// <summary>
+    /// GetUsersList class, implements IGetUsersLists
+    /// </summary>
     public class GetUsersLists : IGetUsersLists
     {
         private readonly ApplicationDbContext _context;

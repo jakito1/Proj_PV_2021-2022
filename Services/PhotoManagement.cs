@@ -5,6 +5,9 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
 {
+    /// <summary>
+    /// PhotoManagement class, implements IPhotoManagement
+    /// </summary>
     public class PhotoManagement : IPhotoManagement
     {
         private readonly ApplicationDbContext _context;
