@@ -16,7 +16,6 @@ namespace NutriFitWeb.Models
         /// <summary>
         /// Gets and Sets the exercise name.
         /// </summary>
-        [Required(ErrorMessage = "Campo Obrigatório")]
         [Required(ErrorMessage = "Campo Obrigatório (máximo 20 caracteres)")]
         [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ExerciseName { get; set; }
