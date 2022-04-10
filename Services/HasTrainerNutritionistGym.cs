@@ -5,6 +5,9 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
 {
+    /// <summary>
+    /// HasTrainerNutritionistGym class, implements IHasTrainerNutritionistGym
+    /// </summary>
     public class HasTrainerNutritionistGym : IHasTrainerNutritionistGym
     {
         private readonly ApplicationDbContext _context;

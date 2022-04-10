@@ -8,6 +8,9 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    /// <summary>
+    /// TrainingPlanEditRequestsController class, derives from Controller
+    /// </summary>
     public class TrainingPlanEditRequestsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +23,15 @@ namespace NutriFitWeb.Controllers
             _userManager = userManager;
         }
 
+
+        /// <summary>
+        /// Renders a paginated view with all the Training plan edit requests.
+        /// Only accessible to Client and Trainer role.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> ShowTrainingPlanEditRequests(string? searchString, string? currentFilter, int? pageNumber)
         {
@@ -71,6 +83,12 @@ namespace NutriFitWeb.Controllers
             return View(await PaginatedList<TrainingPlanEditRequest>.CreateAsync(requests.OrderByDescending(a => a.TrainingPlanEditRequestDate).AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        /// <summary>
+        /// Renders a view to edit the Training plan request, given the id.
+        /// Only accessible to the Client and Trainer roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "client, trainer")]
         public async Task<IActionResult> TrainingPlanEditRequestDetails(int? id)
         {
@@ -90,6 +108,12 @@ namespace NutriFitWeb.Controllers
             return View(trainingPlanEditRequest);
         }
 
+        /// <summary>
+        /// HTTP POST action on the API to create a new Training plan edit request.
+        /// Only accessible to the Client role.
+        /// </summary>
+        /// <param name="trainingPlanEditRequest"></param>
+        /// <returns>A RedirectToAction result</returns>
         [Authorize(Roles = "client")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -120,6 +144,12 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowTrainingPlans", "TrainingPlans");
         }
 
+        /// <summary>
+        /// Renders a view to Delete a Training plan edit request, given the id.
+        /// Only accessible to the Client role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View request</returns>
         [Authorize(Roles = "client")]
         public async Task<IActionResult> DeleteTrainingPlanEditRequest(int? id)
         {
@@ -144,6 +174,12 @@ namespace NutriFitWeb.Controllers
 
         }
 
+        /// <summary>
+        /// HTTP POST method on the API to delete a Training plan edit request and redirect to another page.
+        /// Only accessible for the Client role.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A RedirectToAction result</returns>
         [Authorize(Roles = "client")]
         [HttpPost, ActionName("DeleteTrainingPlanEditRequest")]
         [ValidateAntiForgeryToken]
