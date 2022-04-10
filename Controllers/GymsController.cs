@@ -37,10 +37,11 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         /// <summary>
-        /// 
+        /// Displays the page to edit the gym settings.
+        /// Only accessible to Administrator and Gym roles.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>A View result</returns>
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettings(string? id)
         ***REMOVED***
@@ -62,6 +63,13 @@ namespace NutriFitWeb.Controllers
             return View(gym);
     ***REMOVED***
 
+        /// <summary>
+        /// HTTP Post method on the API to edit the gym settings.
+        /// Only accessible to Administrator and Gym roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="formFile"></param>
+        /// <returns>View result</returns>
         [HttpPost, ActionName("EditGymSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, gym")]
@@ -111,6 +119,11 @@ namespace NutriFitWeb.Controllers
             return View(gymToUpdate);
     ***REMOVED***
 
+        /// <summary>
+        /// Get a gym by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A query with the Gym details</returns>
         private async Task<Gym> GetGym(string? id)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);

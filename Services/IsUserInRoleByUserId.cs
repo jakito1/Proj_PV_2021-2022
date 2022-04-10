@@ -4,6 +4,9 @@ using NutriFitWeb.Data;
 
 namespace NutriFitWeb.Services
 ***REMOVED***
+    /// <summary>
+    /// IsUserInRoleByUserId class, implements IIsUserInRoleByUserId
+    /// </summary>
     public class IsUserInRoleByUserId : IIsUserInRoleByUserId
     ***REMOVED***
         private readonly ApplicationDbContext _context;

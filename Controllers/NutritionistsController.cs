@@ -8,12 +8,22 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
+    /// <summary>
+    /// NutritionistsController class, derives from Controler
+    /// </summary>
     public class NutritionistsController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Application DB context</param>
+        /// <param name="userManager">User manager API with Entity framework</param>
+        /// <param name="inRoleByUserId">Helper interface for roles</param>
+        /// <param name="photoManagement">Photo management Interface</param>
         public NutritionistsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId inRoleByUserId,
@@ -25,6 +35,14 @@ namespace NutriFitWeb.Controllers
             _photoManagement = photoManagement;
     ***REMOVED***
 
+        /// <summary>
+        /// Renders a view to display all the nutritionists.
+        /// Only accessible to the Gym role.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="currentFilter"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns>An Action result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowNutritionists(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
@@ -60,6 +78,13 @@ namespace NutriFitWeb.Controllers
             return View(await PaginatedList<Nutritionist>.CreateAsync(nutritionists.AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
+        /// <summary>
+        /// Action to change the current gym status of a Nutritionist and redirect to an action.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="currentFilter"></param>
+        /// <returns>A RedirectToAction result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ChangeNutritionistGymStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
@@ -82,6 +107,11 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowNutritionists", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
     ***REMOVED***
 
+        /// <summary>
+        /// Renders a view to display a Nutritionist's details, given the id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A View result</returns>
         public async Task<IActionResult> NutritionistDetails(int? id)
         ***REMOVED***
             if (id is null)
@@ -96,6 +126,12 @@ namespace NutriFitWeb.Controllers
                 FirstOrDefaultAsync(a => a.NutritionistId == id));
     ***REMOVED***
 
+        /// <summary>
+        /// Renders a view to edit a Nutritionist's settings.
+        /// Only accessible to Administrator and Nutritionist roles.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "administrator, nutritionist")]
         public async Task<IActionResult> EditNutritionistSettings(string? id)
         ***REMOVED***
@@ -117,6 +153,12 @@ namespace NutriFitWeb.Controllers
             return View(nutritionist);
     ***REMOVED***
 
+        /// <summary>
+        /// HTTP POST method on the API to edit Nutritionist's settings.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="formFile"></param>
+        /// <returns>A View result</returns>
         [HttpPost, ActionName("EditNutritionistSettings")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, nutritionist")]
@@ -166,6 +208,11 @@ namespace NutriFitWeb.Controllers
             return View(nutritionistToUpdate);
     ***REMOVED***
 
+        /// <summary>
+        /// Returns a query result with the found Nutritionist given de id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A query result</returns>
         private async Task<Nutritionist> GetNutritionist(string? id)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
