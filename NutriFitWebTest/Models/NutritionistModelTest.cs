@@ -1,26 +1,24 @@
 ﻿using NutriFitWeb.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest
 ***REMOVED***
     public class NutritionistModelTest
     ***REMOVED***
-        Nutritionist testCase;
+        private readonly Nutritionist testCase;
 
         public NutritionistModelTest()
         ***REMOVED***
-            testCase = new Nutritionist();
-            testCase.NutritionistId = 1;
-            testCase.NutritionistFirstName = "TestFirstName";
-            testCase.NutritionistLastName = "TestLastName";
-            testCase.Gym = null;
-            testCase.UserAccountModel = null;
-            testCase.Clients = new List<Client>();
+            testCase = new Nutritionist
+            ***REMOVED***
+                NutritionistId = 1,
+                NutritionistFirstName = "TestFirstName",
+                NutritionistLastName = "TestLastName",
+                Gym = null,
+                UserAccountModel = null,
+                Clients = new List<Client>()
+        ***REMOVED***;
     ***REMOVED***
 
         [Fact]

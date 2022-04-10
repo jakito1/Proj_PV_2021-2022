@@ -31,10 +31,6 @@
   <string>externalFilesFolder</string>
   <string>templateLocale</string>
   <string>fileNamingConvention</string>
-  <string>generateVbSyntax</string>
-  <string>generateCsharpSyntax</string>
-  <string>generateCppSyntax</string>
-  <string>generateJscriptSyntax</string>
   <string>helpTitle</string>
   <string>customTopics</string>
   <string>ListNamespacesWithShortNames</string>
@@ -117,7 +113,9 @@
       <add key="VBdocman_rootNamespaceText"><![CDATA[]]></add>
       <add key="VBdocman_comModulesSaveExcluded"><![CDATA[-1]]></add>
       <add key="VBdocman_fileNamingConvention"><![CDATA[1]]></add>
+      <add key="VBdocman_comPrivateProtected"><![CDATA[0]]></add>
     </SettingsGroup>
     <add key="VBdocman_NutriFitWeb"><![CDATA[default]]></add>
+    <add key="VBdocman_NutriFitWebTest"><![CDATA[default]]></add>
   </appSettings>
 </configuration>

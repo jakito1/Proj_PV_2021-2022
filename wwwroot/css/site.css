@@ -150,7 +150,7 @@ button ***REMOVED***
 h1 ***REMOVED***
     color: #00A2E8 !important;
     font-weight: 900 !important;
-    font-size: 480% !important;
+    font-size: 400% !important;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 0.4em;
 ***REMOVED***
@@ -311,6 +311,10 @@ link***REMOVED***
     border-radius: 1em;
 ***REMOVED***
 
+.exercisesMealsTable ***REMOVED***
+    table-layout: fixed !important;
+***REMOVED***
+
 .thStyle ***REMOVED***
     background-color: #00A2E8 !important;
     color: white;
@@ -383,7 +387,6 @@ font-weight: bold;*/
 ***REMOVED***
 
 div.titlesMargin ***REMOVED***
-    margin-top: 3em;
     margin-bottom: 1em;
 ***REMOVED***
 
@@ -602,7 +605,7 @@ input.btn.btn-danger ***REMOVED***
     border-color: lightgrey;
     border-radius: 0.5em;
     color: #00A2E8;
-    width: 15em;
+    width: 20em;
     height: 2.5em;
     margin-bottom: 1em;
 ***REMOVED***
@@ -851,7 +854,7 @@ label.labelFour ***REMOVED***
 ***REMOVED***
 
 .profilePhoto***REMOVED***
-    max-width: 80%;
+    max-width: 10em;
     margin: 1em;
     margin-bottom: 0em;
     border-radius: 1em;
@@ -873,4 +876,37 @@ label.labelFour ***REMOVED***
 
 .col-md-8***REMOVED***
     margin: auto;
+***REMOVED***
+
+.helpDivs ***REMOVED***
+    background-color: white;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    margin: auto;
+    padding: 1em;
+***REMOVED***
+
+.helpBtn ***REMOVED***
+    width: 6em;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
+***REMOVED***
+
+.helpBtn:hover ***REMOVED***
+    width: 6em;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
 ***REMOVED***

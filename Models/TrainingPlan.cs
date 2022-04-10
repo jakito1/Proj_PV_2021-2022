@@ -8,7 +8,9 @@ namespace NutriFitWeb.Models
     ***REMOVED***
         public int TrainingPlanId ***REMOVED*** get; set; ***REMOVED***
         [Required(ErrorMessage = "Campo Obrigatório")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? TrainingPlanName ***REMOVED*** get; set; ***REMOVED***
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? TrainingPlanDescription ***REMOVED*** get; set; ***REMOVED***
 
         public List<Exercise>? Exercises ***REMOVED*** get; set; ***REMOVED***

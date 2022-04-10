@@ -1,13 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Principal;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,6 +7,13 @@ using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest
@@ -78,17 +76,17 @@ namespace NutriFitWebTest
         public Expression Expression => Expression.Empty();
         public IQueryProvider Provider => new EnumerableQuery<T>(Expression);
 ***REMOVED***
-    
+
     public class ClientsControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
-        private ApplicationDbContext _context;
-        private UserManager<UserAccountModel> _manager;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccountModel> _manager;
 
         public ClientsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
 
-            var mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
+            Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
                 new Mock<IPasswordHasher<UserAccountModel>>().Object,
                 new IUserValidator<UserAccountModel>[0],
@@ -120,39 +118,43 @@ namespace NutriFitWebTest
             ***REMOVED***
         ***REMOVED***;
 
-            var users = usersList.AsAsyncQueryable();
+            IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
             _manager = mockUserManager.Object;
     ***REMOVED***
 
-        [Fact (Skip = "Doesn't work")]
+        [Fact(Skip = "Doesn't work")]
         public async Task Clients_TestShowClientsReturnsViewOnNullEmail()
         ***REMOVED***
-            var controllerContext = new ControllerContext()
+            ControllerContext? controllerContext = new ControllerContext()
             ***REMOVED***
                 HttpContext = Mock.Of<HttpContext>(ctx => ctx.User.Identity.Name == "User")
         ***REMOVED***;
-            var controller = new ClientsController(_context, _manager, null, null);
-            controller.ControllerContext = controllerContext;
+            ClientsController? controller = new ClientsController(_context, _manager, null, null)
+            ***REMOVED***
+                ControllerContext = controllerContext
+        ***REMOVED***;
 
-            var result = await controller.ShowClients(null, null, null);
+            IActionResult? result = await controller.ShowClients(null, null, null);
 
             Assert.IsType<ViewResult>(result);
     ***REMOVED***
 
-        [Fact (Skip = "Doesn't work")]
+        [Fact(Skip = "Doesn't work")]
         public async Task Clients_TestShowClientsReturnsViewOnNonNullEmail()
         ***REMOVED***
-            var controllerContext = new ControllerContext()
+            ControllerContext? controllerContext = new ControllerContext()
             ***REMOVED***
                 HttpContext = Mock.Of<HttpContext>(ctx => ctx.User.Identity.Name == "User")
         ***REMOVED***;
-            var controller = new ClientsController(_context, _manager, null, null);
-            controller.ControllerContext = controllerContext;
+            ClientsController? controller = new ClientsController(_context, _manager, null, null)
+            ***REMOVED***
+                ControllerContext = controllerContext
+        ***REMOVED***;
 
-            var result = await controller.ShowClients("testuser1@email.com", null, null);
+            IActionResult? result = await controller.ShowClients("testuser1@email.com", null, null);
 
             Assert.IsType<ViewResult>(result);
     ***REMOVED***
@@ -160,9 +162,9 @@ namespace NutriFitWebTest
         [Fact]
         public async Task Clients_TestClientDetailsNotFoundOnNullDetails()
         ***REMOVED***
-            var controller = new ClientsController(_context, _manager, null, null);
+            ClientsController? controller = new ClientsController(_context, _manager, null, null);
 
-            var result = await controller.ClientDetails(null);
+            IActionResult? result = await controller.ClientDetails(null);
 
             Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
@@ -170,20 +172,20 @@ namespace NutriFitWebTest
         [Fact]
         public async Task Clients_TestClientDetailsReturnsViewResult()
         ***REMOVED***
-            var controller = new ClientsController(_context, _manager, null, null);
+            ClientsController? controller = new ClientsController(_context, _manager, null, null);
 
             Client mockClient = new Client()
             ***REMOVED***
                 ClientId = 1
         ***REMOVED***;
 
-            var clientId = mockClient.ClientId;
+            int clientId = mockClient.ClientId;
 
-            var result = await controller.ClientDetails(clientId);
+            IActionResult? result = await controller.ClientDetails(clientId);
 
             Assert.IsType<ViewResult>(result);
     ***REMOVED***
 ***REMOVED***
-    
+
 ***REMOVED***
 
