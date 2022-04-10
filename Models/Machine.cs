@@ -8,7 +8,9 @@ namespace NutriFitWeb.Models
         public int MachineId { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório.")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? MachineName { get; set; }
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? MachineDescription { get; set; }
         public List<Exercise>? MachineExercises { get; set; }
         public Photo? MachineProfilePhoto { get; set; }

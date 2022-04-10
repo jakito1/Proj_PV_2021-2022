@@ -9,6 +9,19 @@
 
 <h1>@ViewData["Title"] <img class="iconMargin" src="~/icons/leafIcon.svg" alt="leafIcon"/></h1>
 
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    <p>Aqui pode <b>ver/criar os seus planos de nutrição</b>.</p>
+    @if (User.IsInRole("nutritionist"))
+    {
+        <p>Pode também <b>remover</b> e <b>editar planos</b>.</p>
+    }else if (User.IsInRole("client"))
+    {
+        <p>Pode também <b>ver</b> os planos que <b>requisitou</b> ao seu nutricionista, <b>requisitar um nutricionista</b> e <b>requisitar</b>, <b>remover</b> e <b>editar planos</b>.</p>
+    }
+</div>
+
 @if (User.IsInRole("nutritionist"))
 {
     <div class="titlesMargin">

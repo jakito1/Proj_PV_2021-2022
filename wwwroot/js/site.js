@@ -62,6 +62,14 @@ function hideButtonPlanEditRequestPartial() {
     document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
 }
 
+function helpButton() {
+    if (document.getElementById('helpText').style.display == "none") {
+        document.getElementById('helpText').style.display = "block";
+    } else {
+        document.getElementById('helpText').style.display = "none";
+    }
+}
+
 function limitExerciseRepetitions(input) {
     if (Math.abs(input.value) > 0) {
         input.value = Math.abs(input.value);

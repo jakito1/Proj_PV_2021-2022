@@ -10,9 +10,11 @@ namespace NutriFitWeb.Models
         public int ClientId { get; set; }
 
         [DisplayName("Primeiro Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ClientFirstName { get; set; }
 
         [DisplayName("Último Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ClientLastName { get; set; }
 
 

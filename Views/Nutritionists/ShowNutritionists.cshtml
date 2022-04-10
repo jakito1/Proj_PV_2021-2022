@@ -9,7 +9,14 @@
     ViewData["Title"] = "ShowNutritionists";
 }
 
-<h1>Nutricionistas</h1>
+<h1>Nutricionistas <img class="iconMargin" src="~/icons/nutritionIcon.svg" alt="nutritionistIcon" /></h1>
+
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    <p>Aqui pode <b>adicionar</b>, <b>remover</b> e <b>ver os detalhes</b> de <b>Nutricionistas</b>.</p>
+</div>
+
 <form asp-action="ShowNutritionists" method="get">
     <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar" />
     <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>

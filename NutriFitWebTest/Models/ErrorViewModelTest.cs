@@ -5,12 +5,14 @@ namespace NutriFitWebTest.Models
 {
     public class ErrorViewModelTest
     {
-        ErrorViewModel testCase;
+        private readonly ErrorViewModel testCase;
 
         public ErrorViewModelTest()
         {
-            testCase = new ErrorViewModel();
-            testCase.RequestId = "TestRequestId";
+            testCase = new ErrorViewModel
+            {
+                RequestId = "TestRequestId"
+            };
         }
 
         [Fact]
@@ -38,7 +40,7 @@ namespace NutriFitWebTest.Models
 
             Assert.Equal(expected, actual);
         }
-        
+
         [Fact]
         public void ErrorViewModel_TestShowRequestIdReturnsFalseOnRequestIdNotPresent()
         {
