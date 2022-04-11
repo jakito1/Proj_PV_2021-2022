@@ -27,7 +27,7 @@
         </div>
         @if (User.IsInRole("nutritionist"))
         ***REMOVED***
-            @if (ViewBag.ClientEmail is null)
+            @if (ViewData["ClientEmail"] is null)
                 ***REMOVED***
                     <tr>
                         <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>

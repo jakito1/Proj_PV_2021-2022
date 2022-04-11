@@ -109,6 +109,7 @@ namespace NutriFitWeb.Controllers
             if (nutritionPlanNewRequestId is not null)
             ***REMOVED***
                 ViewData["ClientEmail"] = await _context.NutritionPlanNewRequests.Where(a => a.NutritionPlanNewRequestId == nutritionPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
+                var temp = ViewData["ClientEmail"];
                 HttpContext.Session.Set(SessionKeyNutritionPlanNewRequestId, nutritionPlanNewRequestId);
         ***REMOVED***
             return View();

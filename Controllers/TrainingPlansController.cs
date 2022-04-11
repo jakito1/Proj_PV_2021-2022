@@ -107,7 +107,7 @@ namespace NutriFitWeb.Controllers
                 await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync());
             if (trainingPlanNewRequestId is not null)
             ***REMOVED***
-                @ViewData["ClientEmail"] = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
+                ViewData["ClientEmail"] = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
                 HttpContext.Session.Set(SessionKeyTrainingPlanNewRequestId, trainingPlanNewRequestId);
         ***REMOVED***
             return View();
