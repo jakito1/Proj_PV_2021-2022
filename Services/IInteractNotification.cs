@@ -6,5 +6,7 @@ namespace NutriFitWeb.Services
     ***REMOVED***
         Task Create(string? notificationMessage, UserAccountModel notificationReceiver);
         Task<List<Notification>> GetLastFive(string? userName);
+
+        Task<bool> NotificationsExist(string? userName);
 ***REMOVED***
 ***REMOVED***

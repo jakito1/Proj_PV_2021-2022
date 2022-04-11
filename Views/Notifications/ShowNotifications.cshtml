@@ -25,10 +25,10 @@
         ***REMOVED***
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NotificationMessage)
+                    <p class="details">@Html.DisplayFor(modelItem => item.NotificationMessage)</p>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NotificationTime)
+                    <p class="details">@Html.DisplayFor(modelItem => item.NotificationTime)</p>
                 </td>
                 <td>
                     <a asp-action="DeleteNotification" asp-route-id="@item.NotificationId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>

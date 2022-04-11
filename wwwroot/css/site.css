@@ -244,6 +244,22 @@ h1 ***REMOVED***
     width: 1em;
     font-size: 1.4em;
     border-radius: 1em;
+    border-style: none !important;
+***REMOVED***
+
+.notificationAlertIcon ***REMOVED***
+    margin-top: 0.3em;
+    text-decoration: none !important;
+    height: 1em;
+    width: 1em;
+    font-size: 1.4em;
+    border-style: none !important;
+***REMOVED***
+
+.NotificationsSubMenuFix ***REMOVED***
+    margin-top: 0.5em;
+    margin-left: -9.2em !important;
+    width: 16em !important;
 ***REMOVED***
 
 .accountIcon ***REMOVED***
@@ -255,13 +271,6 @@ h1 ***REMOVED***
     width: 1em;
     font-size: 1.6em;
     border-radius: 1em;
-***REMOVED***
-
-
-
-.notificationIcon:hover ***REMOVED***
-    height: 1.1em;
-    width: 1.1em;
 ***REMOVED***
 
 .icons ***REMOVED***
@@ -909,4 +918,13 @@ label.labelFour ***REMOVED***
     border-color: #00A2E8;
     border-width: medium;
     padding: 0.5em;
+***REMOVED***
+
+.notificationInMenu***REMOVED***
+    background-color: lightgrey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
+    padding: 0.5em;
+    margin-bottom: 0.5em !important;
 ***REMOVED***
