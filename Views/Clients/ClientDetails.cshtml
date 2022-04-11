@@ -45,6 +45,10 @@
             }
         </tr>
         <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientSex)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.ClientSex)</p></td>
+        </tr>
+        <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientBirthday)</p></th>
             @if (Model.ClientBirthday is null)
             {

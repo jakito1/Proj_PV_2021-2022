@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 {
@@ -57,6 +58,7 @@ namespace NutriFitWeb.Models
         public bool WantsTrainer { get; set; } = false;
 
         [Column(TypeName = "nvarchar(24)")]
+        [DisplayName("Sexo")]
         public ClientSex? ClientSex { get; set; }
 
         public List<TrainingPlan>? TrainingPlans { get; set; }
