@@ -12,12 +12,15 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly ICreateNotification _createNotification;
 
         public NutritionPlanNewRequestsController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            ICreateNotification createNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
+            _createNotification = createNotification;
     ***REMOVED***
 
         [Authorize(Roles = "client, nutritionist")]
@@ -103,9 +106,12 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                if (client is not null)
+                Client client = await _context.Client
+                    .Include(a => a.Nutritionist.UserAccountModel)
+                    .FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                if (client is not null && client.Nutritionist is not null)
                 ***REMOVED***
+                    _createNotification.Create($"O utilizador ***REMOVED***user.UserName***REMOVED*** requisitou um novo plano de treino.", client.Nutritionist.UserAccountModel);
                     nutritionPlanNewRequest.Client = client;
                     nutritionPlanNewRequest.NutritionPlanNewRequestDate = DateTime.Now;
                     _context.Add(nutritionPlanNewRequest);
