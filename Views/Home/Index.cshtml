@@ -15,6 +15,10 @@
     {
         <partial name="~/Views/Trainers/_TrainerHome.cshtml" />
     }
+    else if (User.IsInRole("nutritionist"))
+    {
+        <partial name="~/Views/Nutritionists/_NutritionistHome.cshtml" />
+    }
     else
     {
         <h1 class="notLoggedInHome">Bem Vindo ao <b class="nutriFitHome">NutriFit</b></h1>

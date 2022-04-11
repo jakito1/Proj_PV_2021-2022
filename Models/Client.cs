@@ -41,6 +41,8 @@ namespace NutriFitWeb.Models
         public string? OtherClientData { get; set; }
 
         public DateTime? DateAddedToGym { get; set; }
+        public DateTime? DateAddedToTrainer { get; set; }
+        public DateTime? DateAddedToNutritionist { get; set; }
 
         [DisplayName("Ginásio")]
         public Gym? Gym { get; set; }

@@ -149,10 +149,12 @@ namespace NutriFitWeb.Controllers
                 client.Trainer = (client.Trainer is null) ? trainer : null;
                 if (client.Trainer is null)
                 {
-                    await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} já não é seu treinador.", client.UserAccountModel);
+                    client.DateAddedToTrainer = null;
+                    await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} já não é seu treinador.", client.UserAccountModel);                   
                 }
                 else
                 {
+                    client.DateAddedToTrainer = DateTime.Now;
                     await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} é agora o seu treinador.", client.UserAccountModel);
                 }
                 client.WantsTrainer = false;
@@ -183,10 +185,12 @@ namespace NutriFitWeb.Controllers
                 client.Nutritionist = (client.Nutritionist is null) ? nutritionist : null;
                 if (client.Nutritionist is null)
                 {
+                    client.DateAddedToNutritionist = null;
                     await _interactNotification.Create($"O {nutritionist.UserAccountModel.UserName} já não é seu nutricionista.", client.UserAccountModel);
                 }
                 else
                 {
+                    client.DateAddedToNutritionist = DateTime.Now;
                     await _interactNotification.Create($"O {nutritionist.UserAccountModel.UserName} é agora o seu nutricionista.", client.UserAccountModel);
                 }
                 client.WantsNutritionist = false;

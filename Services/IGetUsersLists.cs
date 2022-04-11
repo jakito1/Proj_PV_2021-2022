@@ -6,6 +6,7 @@ namespace NutriFitWeb.Services
     {
         IEnumerable<UserAccountModel> GetUsersForGym(string userType, string loggedIn);
         IEnumerable<UserAccountModel> GetUsersForTrainer(string loggedIn);
+        IEnumerable<UserAccountModel> GetUsersForNutritionist(string loggedIn);
         string GetTrainerGym(string loggedIn);
     }
 }
