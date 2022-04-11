@@ -151,10 +151,10 @@ namespace NutriFitWeb.Controllers
                     if (nutritionPlanNewRequest is not null)
                     ***REMOVED***
                         nutritionPlan.NutritionPlanNewRequestId = nutritionPlanNewRequestId;
-                        nutritionPlanNewRequest.NutritionPlanNewRequestDone = true;
-                        await _interactNotification.Create($"O seu novo plano de nutrição está pronto.", client.UserAccountModel);
+                        nutritionPlanNewRequest.NutritionPlanNewRequestDone = true;                       
                 ***REMOVED***
             ***REMOVED***
+                await _interactNotification.Create($"O seu novo plano de nutrição está pronto.", client.UserAccountModel);
                 nutritionPlan.Meals = meals;
                 nutritionPlan.Nutritionist = nutritionist;
                 nutritionPlan.Client = client;
@@ -207,11 +207,12 @@ namespace NutriFitWeb.Controllers
                 List<Meal> meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
                 HttpContext.Session.Remove(SessionKeyMeals);
 
-                HashSet<int>? excludedIDs = new(meals.Select(a => a.MealId));
-                IEnumerable<Meal>? missingRows = nutritionPlanToUpdate.Meals.Where(a => !excludedIDs.Contains(a.MealId));
-
-                _context.Meal.RemoveRange(missingRows);
-
+                if (meals is not null && meals.Any())
+                ***REMOVED***
+                    HashSet<int>? excludedIDs = new(meals.Select(a => a.MealId));
+                    IEnumerable<Meal>? missingRows = nutritionPlanToUpdate.Meals.Where(a => !excludedIDs.Contains(a.MealId));
+                    _context.Meal.RemoveRange(missingRows);
+            ***REMOVED***
                 nutritionPlanToUpdate.Meals = meals;
                 nutritionPlanToUpdate.ToBeEdited = false;
 
