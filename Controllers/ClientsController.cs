@@ -308,7 +308,8 @@ namespace NutriFitWeb.Controllers
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData, c => c.ClientProfilePhoto))
+                c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData,
+                c => c.ClientProfilePhoto, c => c.ClientSex))
             {
                 if (oldPhoto is not null && clientToUpdate.ClientProfilePhoto is not null)
                 {
