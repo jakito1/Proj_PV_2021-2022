@@ -111,7 +111,7 @@ namespace NutriFitWeb.Controllers
                     .FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 if (client is not null && client.Nutritionist is not null)
                 {
-                    _interactNotification.Create($"O utilizador {user.UserName} requisitou um novo plano de treino.", client.Nutritionist.UserAccountModel);
+                    await _interactNotification.Create($"O utilizador {user.UserName} requisitou um novo plano de nutrição.", client.Nutritionist.UserAccountModel);
                     nutritionPlanNewRequest.Client = client;
                     nutritionPlanNewRequest.NutritionPlanNewRequestDate = DateTime.Now;
                     _context.Add(nutritionPlanNewRequest);

@@ -12,12 +12,15 @@ namespace NutriFitWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IInteractNotification _interactNotification;
 
         public TrainingPlanNewRequestsController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IInteractNotification interactNotification)
         {
             _context = context;
             _userManager = userManager;
+            _interactNotification = interactNotification;
         }
 
         [Authorize(Roles = "client, trainer")]
@@ -104,9 +107,10 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             {
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client client = await _context.Client.Include(a => a.Trainer.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 if (client is not null)
                 {
+                    await _interactNotification.Create($"O utilizador {user.UserName} requisitou um novo plano de treino.", client.Trainer.UserAccountModel);
                     trainingPlanNewRequest.Client = client;
                     trainingPlanNewRequest.TrainingPlanNewRequestDate = DateTime.Now;
                     _context.Add(trainingPlanNewRequest);

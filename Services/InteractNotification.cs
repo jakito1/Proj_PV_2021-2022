@@ -46,7 +46,7 @@ namespace NutriFitWeb.Services
 
         public async Task<bool> NotificationsExist(string? userName)
         {
-            var notifications = await GetLastFive(userName);
+            List<Notification>? notifications = await GetLastFive(userName);
             return notifications.Any();
         }
 

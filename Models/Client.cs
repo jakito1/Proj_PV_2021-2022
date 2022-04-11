@@ -39,8 +39,7 @@ namespace NutriFitWeb.Models
         [DisplayName("Outros Dados")]
         public string? OtherClientData { get; set; }
 
-        [Timestamp]
-        public byte[]? RowVersion { get; set; }
+        public DateTime? DateAddedToGym { get; set; }
 
         [DisplayName("Ginásio")]
         public Gym? Gym { get; set; }

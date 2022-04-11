@@ -17,12 +17,15 @@ namespace NutriFitWeb.Controllers
         private readonly string SessionKeyTrainingPlanNewRequestId;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IInteractNotification _interactNotification;
 
         public TrainingPlansController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IInteractNotification interactNotification)
         {
             _context = context;
             _userManager = userManager;
+            _interactNotification = interactNotification;
             SessionKeyExercises = "_Exercises";
             SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
             SessionKeyCurrentTrainer = "_CurrentTrainer";
@@ -118,7 +121,7 @@ namespace NutriFitWeb.Controllers
             {
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client client = await _context.Client.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 int? trainingPlanNewRequestId = HttpContext.Session.Get<int?>(SessionKeyTrainingPlanNewRequestId);
 
                 UserAccountModel? clientAccount = null;
@@ -147,6 +150,7 @@ namespace NutriFitWeb.Controllers
                     {
                         trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
                         trainingPlanNewRequest.TrainingPlanNewRequestDone = true;
+                        await _interactNotification.Create($"O seu novo plano de treino está pronto.", client.UserAccountModel);
                     }
                 }
                 trainingPlan.Exercises = exercises;
@@ -187,7 +191,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            TrainingPlan? trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+            TrainingPlan? trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).Include(a => a.Client.UserAccountModel).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
 
             TrainingPlanEditRequest? trainingPlanEditRequest = null;
             if (trainingPlanToUpdate is not null)
@@ -213,6 +217,7 @@ namespace NutriFitWeb.Controllers
                 if (trainingPlanEditRequest is not null)
                 {
                     trainingPlanEditRequest.TrainingPlanEditRequestDone = true;
+                    await _interactNotification.Create($"O seu plano de treino foi editado com sucesso.", trainingPlanToUpdate.Client.UserAccountModel);
                 }
 
                 await _context.SaveChangesAsync();

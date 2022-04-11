@@ -17,7 +17,7 @@ namespace NutriFitWeb.Services
             IQueryable<string>? role = from a in _context.Roles where a.Name == userType select a.Id;
             if (userType == "client")
             {
-                return _context.Client.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).OrderByDescending(a => a.RowVersion).Select(a => a.UserAccountModel);
+                return _context.Client.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).OrderByDescending(a => a.DateAddedToGym).Select(a => a.UserAccountModel);
             }
             else if (userType == "trainer")
             {
@@ -33,7 +33,7 @@ namespace NutriFitWeb.Services
         public IEnumerable<UserAccountModel> GetUsersForTrainer(string loggedIn)
         {
             IQueryable<int>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.Id == loggedIn select a.TrainerId;
-            return _context.Client.Where(a => a.Trainer.TrainerId == loggedInTrainer.FirstOrDefault()).OrderByDescending(a => a.RowVersion).Select(a => a.UserAccountModel);
+            return _context.Client.Where(a => a.Trainer.TrainerId == loggedInTrainer.FirstOrDefault()).OrderByDescending(a => a.DateAddedToGym).Select(a => a.UserAccountModel);
         }
 
         public string GetTrainerGym(string loggedIn)

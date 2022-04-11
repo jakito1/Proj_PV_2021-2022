@@ -14,16 +14,19 @@ namespace NutriFitWeb.Controllers
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
+        private readonly IInteractNotification _interactNotification;
 
         public TrainersController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId inRoleByUserId,
-            IPhotoManagement photoManagement)
+            IPhotoManagement photoManagement,
+            IInteractNotification interactNotification)
         {
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
             _photoManagement = photoManagement;
+            _interactNotification = interactNotification;
         }
 
         [Authorize(Roles = "gym")]
@@ -71,6 +74,7 @@ namespace NutriFitWeb.Controllers
                 Include(a => a.Gym).
                 Include(a => a.Clients).
                 Include(a => a.TrainingPlans).
+                Include(a => a.UserAccountModel).
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
 
@@ -79,6 +83,11 @@ namespace NutriFitWeb.Controllers
             {
                 trainer.Clients = null;
                 trainer.TrainingPlans = null;
+                await _interactNotification.Create("Foi removido do seu ginásio.", trainer.UserAccountModel);
+            }
+            else
+            {
+                await _interactNotification.Create($"Foi adicionado ao ginásio {trainer.Gym.GymName}.", trainer.UserAccountModel);
             }
             await _context.SaveChangesAsync();
 
@@ -156,16 +165,18 @@ namespace NutriFitWeb.Controllers
                     trainerToUpdate.TrainerProfilePhoto = oldPhoto;
                 }
 
-                await _context.SaveChangesAsync();
-                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-                {
-                    return RedirectToAction("ShowAllUsers", "Admins");
-                }
                 if (trainerToUpdate.TrainerProfilePhoto is not null)
                 {
                     trainerToUpdate.TrainerProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
                 }
-                return View(trainerToUpdate);
+                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
+                {
+                    await _interactNotification.Create($"O administrador alterou parte do seu perfil.", trainerToUpdate.UserAccountModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ShowAllUsers", "Admins");
+                }
+
+                await _context.SaveChangesAsync();
             }
             return View(trainerToUpdate);
         }
@@ -175,11 +186,15 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             {
-                return _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
+                return _context.Trainer
+                    .Include(a => a.UserAccountModel)
+                    .Include(a => a.TrainerProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
             }
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Trainer
+                .Include(a => a.UserAccountModel)
+                .Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
         }
     }
 }
