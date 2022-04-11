@@ -149,10 +149,10 @@ namespace NutriFitWeb.Controllers
                     if (trainingPlanNewRequest is not null)
                     {
                         trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
-                        trainingPlanNewRequest.TrainingPlanNewRequestDone = true;
-                        await _interactNotification.Create($"O seu novo plano de treino está pronto.", client.UserAccountModel);
+                        trainingPlanNewRequest.TrainingPlanNewRequestDone = true;                       
                     }
                 }
+                await _interactNotification.Create($"O seu novo plano de treino está pronto.", client.UserAccountModel);
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
                 trainingPlan.Client = client;
@@ -169,13 +169,13 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
             }
 
-            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan.TrainingPlanId == id)
-                .Include(a => a.ExercisePhoto).ToListAsync();
             TrainingPlan? trainingPlan = await _context.TrainingPlan.FirstOrDefaultAsync(a => a.TrainingPlanId == id);
             if (trainingPlan is null)
             {
                 return NotFound();
             }
+            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan.TrainingPlanId == id)
+                .Include(a => a.ExercisePhoto).ToListAsync();
             trainingPlan.Exercises = exercises;
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, trainingPlan.Exercises);
             return View(trainingPlan);
@@ -205,11 +205,12 @@ namespace NutriFitWeb.Controllers
             {
                 List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Remove(SessionKeyExercises);
-
-                HashSet<int>? excludedIDs = new(exercises.Select(a => a.ExerciseId));
-                IEnumerable<Exercise>? missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
-
-                _context.Exercise.RemoveRange(missingRows);
+                if (exercises is not null && exercises.Any())
+                {
+                    HashSet<int>? excludedIDs = new(exercises.Select(a => a.ExerciseId));
+                    IEnumerable<Exercise>? missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
+                    _context.Exercise.RemoveRange(missingRows);
+                }
 
                 trainingPlanToUpdate.Exercises = exercises;
                 trainingPlanToUpdate.ToBeEdited = false;
