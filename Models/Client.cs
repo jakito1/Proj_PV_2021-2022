@@ -56,12 +56,23 @@ namespace NutriFitWeb.Models
 
         public bool WantsTrainer ***REMOVED*** get; set; ***REMOVED*** = false;
 
+        [Column(TypeName = "nvarchar(24)")]
+        public ClientSex? ClientSex ***REMOVED*** get; set; ***REMOVED***
+
         public List<TrainingPlan>? TrainingPlans ***REMOVED*** get; set; ***REMOVED***
         public List<TrainingPlanNewRequest>? TrainingPlanRequests ***REMOVED*** get; set; ***REMOVED***
         public List<NutritionPlan>? NutritionPlans ***REMOVED*** get; set; ***REMOVED***
         public List<NutritionPlanNewRequest>? NutritionPlanRequests ***REMOVED*** get; set; ***REMOVED***
-
-
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
+
+***REMOVED***
+    public enum ClientSex
+    ***REMOVED***
+        [Display(Name = "Nenhum")]
+        NONE,
+        [Display(Name = "Masculino")]
+        MALE,
+        [Display(Name = "Feminino")]
+        FEMALE
 ***REMOVED***
 ***REMOVED***
