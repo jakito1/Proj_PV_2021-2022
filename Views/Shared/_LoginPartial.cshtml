@@ -127,7 +127,7 @@
         @if (!(User.IsInRole("administrator")))
         {
             <li class="nav-item notificationBell">
-                <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
+                <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
             </li>
         }
         else

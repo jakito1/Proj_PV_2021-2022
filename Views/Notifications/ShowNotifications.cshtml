@@ -1,0 +1,77 @@
+﻿@using NutriFitWeb.Services
+@model PaginatedList<NutriFitWeb.Models.Notification>
+
+<div class="titlesMargin">
+    <form asp-action="ShowNotifications" method="get">
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Conteúdo da Notificação" class="searchBar" />
+        <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Conteúdo
+            </th>
+            <th>
+                Data
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificationMessage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificationTime)
+                </td>
+                <td>
+                    <a asp-action="DeleteNotification" asp-route-id="@item.NotificationId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    {
+        <a asp-action="ShowNotifications"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+    }
+
+    @if (nextDisabled != "disabled")
+    {
+        <a asp-action="ShowNotifications"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+    }
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    {
+        <p class="noMoreResults">Não existem mais resultados</p>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+{
+    <div class="backBtnDiv">
+        <a asp-action="ShowNotifications" class="backToListBtn">Voltar</a>
+    </div>
+}
