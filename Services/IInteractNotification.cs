@@ -2,8 +2,9 @@
 
 namespace NutriFitWeb.Services
 {
-    public interface ICreateNotification
+    public interface IInteractNotification
     {
         Task Create(string? notificationMessage, UserAccountModel notificationReceiver);
+        Task<List<Notification>> GetLastFive(string? userName);
     }
 }
