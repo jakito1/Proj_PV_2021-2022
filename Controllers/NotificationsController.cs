@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
@@ -49,7 +48,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             int pageSize = 5;
-            return View(await PaginatedList<Notification>.CreateAsync(notifications.OrderBy(a => a.NotificationTime).AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<Notification>.CreateAsync(notifications.OrderByDescending(a => a.NotificationTime).AsNoTracking(), pageNumber ?? 1, pageSize));
     ***REMOVED***
 
         public async Task<IActionResult> DeleteNotification(int? id)
@@ -60,7 +59,7 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Notification? notification = await _context.Notifications.Include(a => a.NotificationReceiver).FirstOrDefaultAsync(a => a.NotificationId == id); 
+            Notification? notification = await _context.Notifications.Include(a => a.NotificationReceiver).FirstOrDefaultAsync(a => a.NotificationId == id);
             if (user is not null && notification is not null && notification.NotificationReceiver == user)
             ***REMOVED***
                 _context.Notifications.Remove(notification);

@@ -7,17 +7,17 @@
         <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
     </form>
 </div>
-
+<div class="col-md-8">
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th class="roundedCornerTableLeft thStyle">
                 Conteúdo
             </th>
-            <th>
+            <th class="thStyle">
                 Data
             </th>
-            <th></th>
+            <th class="roundedCornerTableRight thStyle">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -37,7 +37,7 @@
     ***REMOVED***
     </tbody>
 </table>
-
+</div>
 @***REMOVED***
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
@@ -65,7 +65,7 @@
 
     @if (prevDisabled == "disabled" && nextDisabled == "disabled")
     ***REMOVED***
-        <p class="noMoreResults">Não existem mais resultados</p>
+        <p class="noMoreResults">Não existem mais notificações</p>
 ***REMOVED***
 </div>
 

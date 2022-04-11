@@ -31,7 +31,7 @@ builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
 builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
 builder.Services.AddScoped<IHasTrainerNutritionistGym, HasTrainerNutritionistGym>();
 builder.Services.AddScoped<IPhotoManagement, PhotoManagement>();
-builder.Services.AddScoped<ICreateNotification, CreateNotification>();
+builder.Services.AddScoped<IInteractNotification, InteractNotification>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
 ***REMOVED***

@@ -4,6 +4,7 @@
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
 @inject IPhotoManagement PhotoManagement
+@inject IInteractNotification InteractNotification;
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -128,6 +129,13 @@
         ***REMOVED***
             <li class="nav-item notificationBell">
                 <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
+            </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Planos</button>
+                <div class="dropdown-content plansSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
+                </div>
             </li>
     ***REMOVED***
         else

@@ -2,8 +2,9 @@
 
 namespace NutriFitWeb.Services
 ***REMOVED***
-    public interface ICreateNotification
+    public interface IInteractNotification
     ***REMOVED***
         Task Create(string? notificationMessage, UserAccountModel notificationReceiver);
+        Task<List<Notification>> GetLastFive(string? userName);
 ***REMOVED***
 ***REMOVED***
