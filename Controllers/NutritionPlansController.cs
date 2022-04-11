@@ -16,12 +16,15 @@ namespace NutriFitWeb.Controllers
         private readonly string SessionKeyNutritionPlanNewRequestId;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IInteractNotification _interactNotification;
 
         public NutritionPlansController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IInteractNotification interactNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
+            _interactNotification = interactNotification;
             SessionKeyMeals = "_Meals";
             SessionKeyClientsUserAccounts = "_ClientsUserAccounts";
             SessionKeyCurrentNutritionist = "_CurrentNutritionist";
@@ -119,7 +122,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Nutritionist nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client client = await _context.Client.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 int? nutritionPlanNewRequestId = HttpContext.Session.Get<int?>(SessionKeyNutritionPlanNewRequestId);
 
                 UserAccountModel? clientAccount = null;
@@ -148,6 +151,7 @@ namespace NutriFitWeb.Controllers
                     ***REMOVED***
                         nutritionPlan.NutritionPlanNewRequestId = nutritionPlanNewRequestId;
                         nutritionPlanNewRequest.NutritionPlanNewRequestDone = true;
+                        await _interactNotification.Create($"O seu novo plano de nutrição está pronto.", client.UserAccountModel);
                 ***REMOVED***
             ***REMOVED***
                 nutritionPlan.Meals = meals;
@@ -187,7 +191,7 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            NutritionPlan? nutritionPlanToUpdate = await _context.NutritionPlan.Include(a => a.Meals).FirstOrDefaultAsync(a => a.NutritionPlanId == id);
+            NutritionPlan? nutritionPlanToUpdate = await _context.NutritionPlan.Include(a => a.Meals).Include(a => a.Client.UserAccountModel).FirstOrDefaultAsync(a => a.NutritionPlanId == id);
 
             NutritionPlanEditRequest? nutritionPlanEditRequest = null;
             if (nutritionPlanToUpdate is not null)
@@ -213,9 +217,10 @@ namespace NutriFitWeb.Controllers
                 if (nutritionPlanEditRequest is not null)
                 ***REMOVED***
                     nutritionPlanEditRequest.NutritionPlanEditRequestDone = true;
+                    await _interactNotification.Create($"O seu plano de nutrição foi editado com sucesso.", nutritionPlanToUpdate.Client.UserAccountModel);
             ***REMOVED***
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("ShowNutritionPlans");
         ***REMOVED***
             return View(nutritionPlanToUpdate);

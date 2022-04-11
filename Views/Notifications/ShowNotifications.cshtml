@@ -1,5 +1,6 @@
 ﻿@using NutriFitWeb.Services
 @model PaginatedList<NutriFitWeb.Models.Notification>
+@inject IInteractNotification InteractNotification;
 
 <div class="titlesMargin">
     <form asp-action="ShowNotifications" method="get">
@@ -7,36 +8,44 @@
         <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
     </form>
 </div>
+@if (await InteractNotification.NotificationsExist(User.Identity.Name))
+***REMOVED***
+    <div class="marginFixChooseFile">
+        <a class="createBtn" asp-action="RemoveAll">Limpar Notificações</a>
+    </div>
+***REMOVED***
+
 <div class="col-md-8">
-<table class="table">
-    <thead>
-        <tr>
-            <th class="roundedCornerTableLeft thStyle">
-                Conteúdo
-            </th>
-            <th class="thStyle">
-                Data
-            </th>
-            <th class="roundedCornerTableRight thStyle">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        ***REMOVED***
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.NotificationMessage)</p>
-                </td>
-                <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.NotificationTime)</p>
-                </td>
-                <td>
-                    <a asp-action="DeleteNotification" asp-route-id="@item.NotificationId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
-                </td>
+                <th class="roundedCornerTableLeft thStyle">
+                    Conteúdo
+                </th>
+                <th class="thStyle">
+                    Data
+                </th>
+                <th class="roundedCornerTableRight thStyle">Ações</th>
             </tr>
-    ***REMOVED***
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            ***REMOVED***
+                <tr>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.NotificationMessage)</p>
+                    </td>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.NotificationTime)</p>
+                    </td>
+                    <td>
+                        <a asp-action="DeleteNotification" asp-route-id="@item.NotificationId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                    </td>
+                </tr>
+        ***REMOVED***
+        </tbody>
+    </table>
+
 </div>
 @***REMOVED***
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";

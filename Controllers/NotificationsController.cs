@@ -67,6 +67,21 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             return RedirectToAction("ShowNotifications");
     ***REMOVED***
+        public async Task<IActionResult> RemoveAll()
+        ***REMOVED***
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            IQueryable<Notification>? notifications = null;
+            if (user is not null)
+            ***REMOVED***
+                notifications = _context.Notifications.Include(a => a.NotificationReceiver).Where(a => a.NotificationReceiver == user);
+        ***REMOVED***            
+            if (user is not null && notifications is not null && notifications.Any())
+            ***REMOVED***
+                _context.Notifications.RemoveRange(notifications);
+                await _context.SaveChangesAsync();
+        ***REMOVED***
+            return RedirectToAction("ShowNotifications");
+    ***REMOVED***
 
 ***REMOVED***
 ***REMOVED***

@@ -14,16 +14,19 @@ namespace NutriFitWeb.Controllers
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
+        private readonly IInteractNotification _interactNotification;
 
         public GymsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId inRoleByUserId,
-            IPhotoManagement photoManagement)
+            IPhotoManagement photoManagement,
+            IInteractNotification interactNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
             _photoManagement = photoManagement;
+            _interactNotification = interactNotification;
     ***REMOVED***
 
         [Authorize(Roles = "administrator, gym")]
@@ -82,15 +85,16 @@ namespace NutriFitWeb.Controllers
                     gymToUpdate.GymProfilePhoto = oldPhoto;
             ***REMOVED***
 
-                await _context.SaveChangesAsync();
-                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-                ***REMOVED***
-                    return RedirectToAction("ShowAllUsers", "Admins");
-            ***REMOVED***
                 if (gymToUpdate.GymProfilePhoto is not null)
                 ***REMOVED***
                     gymToUpdate.GymProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
             ***REMOVED***
+                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
+                ***REMOVED***
+                    await _interactNotification.Create($"O administrador alterou parte do seu perfil.", gymToUpdate.UserAccountModel);
+                    return RedirectToAction("ShowAllUsers", "Admins");
+            ***REMOVED***
+                await _context.SaveChangesAsync();
                 return View(gymToUpdate);
         ***REMOVED***
             return View(gymToUpdate);
@@ -101,11 +105,15 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
-                return _context.Gym.Include(a => a.GymProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
+                return _context.Gym
+                    .Include(a => a.UserAccountModel)
+                    .Include(a => a.GymProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Gym.Include(a => a.GymProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Gym
+                .Include(a => a.UserAccountModel)
+                .Include(a => a.GymProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

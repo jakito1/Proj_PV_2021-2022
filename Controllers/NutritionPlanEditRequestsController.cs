@@ -12,12 +12,15 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IInteractNotification _interactNotification;
 
         public NutritionPlanEditRequestsController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IInteractNotification interactNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
+            _interactNotification = interactNotification;
     ***REMOVED***
 
         [Authorize(Roles = "client, nutritionist")]
@@ -98,7 +101,7 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             ***REMOVED***
                 UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Client? client = await _context.Client.Include(a => a.NutritionPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client? client = await _context.Client.Include(a => a.NutritionPlans).Include(a => a.Nutritionist.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 NutritionPlan? trainingPlan = await _context.NutritionPlan.FirstOrDefaultAsync(a => a.NutritionPlanId == trainingPlanEditRequest.NutritionPlanId);
                 IQueryable<NutritionPlanEditRequest>? amountEditRequests = null;
                 if (trainingPlan is not null)
@@ -106,13 +109,15 @@ namespace NutriFitWeb.Controllers
                     amountEditRequests = _context.NutritionPlanEditRequests.Where(a => a.NutritionPlan == trainingPlan).Where(a => a.NutritionPlanEditRequestDone == false);
             ***REMOVED***
 
-                if (client is not null && trainingPlan is not null && client.NutritionPlans.Contains(trainingPlan) &&
+                if (client is not null && client.Nutritionist is not null && trainingPlan is not null &&
+                    client.NutritionPlans.Contains(trainingPlan) &&
                     amountEditRequests is not null && !amountEditRequests.Any())
                 ***REMOVED***
                     trainingPlan.ToBeEdited = true;
                     trainingPlanEditRequest.NutritionPlanEditRequestDate = DateTime.Now;
                     trainingPlanEditRequest.Client = client;
                     _context.Add(trainingPlanEditRequest);
+                    await _interactNotification.Create($"O utilizador ***REMOVED***user.UserName***REMOVED*** requisitou a edição de um plano de nutrição.", client.Nutritionist.UserAccountModel);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("NutritionPlanDetails", "NutritionPlans", new ***REMOVED*** id = trainingPlanEditRequest.NutritionPlanId ***REMOVED***);
             ***REMOVED***

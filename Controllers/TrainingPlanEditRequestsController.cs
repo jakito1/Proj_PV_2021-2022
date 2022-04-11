@@ -12,12 +12,15 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
+        private readonly IInteractNotification _interactNotification;
 
         public TrainingPlanEditRequestsController(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+            UserManager<UserAccountModel> userManager,
+            IInteractNotification interactNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
+            _interactNotification = interactNotification;
     ***REMOVED***
 
         [Authorize(Roles = "client, trainer")]
@@ -98,7 +101,7 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             ***REMOVED***
                 UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Client? client = await _context.Client.Include(a => a.TrainingPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client? client = await _context.Client.Include(a => a.TrainingPlans).Include(a => a.Trainer.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 TrainingPlan? trainingPlan = await _context.TrainingPlan.FirstOrDefaultAsync(a => a.TrainingPlanId == trainingPlanEditRequest.TrainingPlanId);
                 IQueryable<TrainingPlanEditRequest>? amountEditRequests = null;
                 if (trainingPlan is not null)
@@ -113,6 +116,7 @@ namespace NutriFitWeb.Controllers
                     trainingPlanEditRequest.TrainingPlanEditRequestDate = DateTime.Now;
                     trainingPlanEditRequest.Client = client;
                     _context.Add(trainingPlanEditRequest);
+                    await _interactNotification.Create($"O utilizador ***REMOVED***user.UserName***REMOVED*** requisitou a edição de um plano de treino.", client.Trainer.UserAccountModel);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("TrainingPlanDetails", "TrainingPlans", new ***REMOVED*** id = trainingPlanEditRequest.TrainingPlanId ***REMOVED***);
             ***REMOVED***
