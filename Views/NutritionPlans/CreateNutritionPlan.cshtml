@@ -14,20 +14,26 @@
         <div class="form-group">
             <input type="submit" value="Criar" class="btn btn-primary createBtn" />
         </div>
-        <div>
-            <label asp-for="NutritionPlanName" class="control-label">Nome &emsp; &ensp;</label>
-            <input asp-for="NutritionPlanName" class="formsInput nameInput" />
-            <br />
-            <span asp-validation-for="NutritionPlanName" class="text-danger"></span>
-        </div>
-        <div>
-            <label asp-for="NutritionPlanDescription" class="control-label">Descrição &nbsp;</label>
-            <textarea asp-for="NutritionPlanDescription" class="descriptionBox"></textarea>
-            <span asp-validation-for="NutritionPlanDescription" class="text-danger"></span>
-        </div>
-        @if (User.IsInRole("nutritionist"))
-        ***REMOVED***
-            @if (ViewData["ClientEmail"] is null)
+
+        <table class="formTables">
+            <tr>
+                <th class="alignTableTitles"><label asp-for="NutritionPlanName" class="control-label">Nome</label></th>
+                <td>
+                    <input asp-for="NutritionPlanName" class="formsInput" aria-required="true" />
+                    <br />
+                    <span asp-validation-for="NutritionPlanName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th><label asp-for="NutritionPlanDescription" class="control-label">Descrição</label></th>
+                <td>
+                    <textarea asp-for="NutritionPlanDescription" class="descriptionBox"></textarea>
+                    <span asp-validation-for="NutritionPlanDescription" class="text-danger"></span>
+                </td>
+            </tr>
+            @if (User.IsInRole("nutritionist"))
+            ***REMOVED***
+                @if (ViewData["ClientEmail"] is null)
                 ***REMOVED***
                     <tr>
                         <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
@@ -47,7 +53,8 @@
                         </td>
                     </tr>
             ***REMOVED***
-    ***REMOVED***
+        ***REMOVED***
+            </table>
 
     </form>
     <div id="_CreateMealPartialItem">

@@ -181,7 +181,7 @@ namespace NutriFitWeb.Controllers
                     client.Nutritionist.NutritionPlans = client.Nutritionist.NutritionPlans.Where(a => a.Client != client).ToList();
             ***REMOVED***
                 client.Nutritionist = (client.Nutritionist is null) ? nutritionist : null;
-                if (client.Trainer is null)
+                if (client.Nutritionist is null)
                 ***REMOVED***
                     await _interactNotification.Create($"O ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** já não é seu nutricionista.", client.UserAccountModel);
             ***REMOVED***
