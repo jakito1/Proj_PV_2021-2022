@@ -127,14 +127,19 @@
 
         @if (!(User.IsInRole("administrator")))
         {
-            <li class="nav-item notificationBell">
-                <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
-            </li>
             <li class="dropdown">
-                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Planos</button>
-                <div class="dropdown-content plansSubMenuFix">
-                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
-                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
+                @if (await InteractNotification.NotificationsExist(User.Identity.Name))
+                {
+                    <a class="nav-link text-dark menuItem iconBorder"><img class="notificationAlertIcon" src="~/icons/notificationAlertIcon.svg" alt="notificationsIcon" /></a>
+                }else{
+                    <a class="nav-link text-dark menuItem iconBorder"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
+                }
+                <div class="dropdown-content NotificationsSubMenuFix">
+                    @foreach (var notification in await InteractNotification.GetLastFive(User.Identity.Name))
+                    {
+                        <p class="notificationInMenu">@notification.NotificationMessage (@notification.NotificationTime)</p>
+                    }
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications">Ver Tudo</a>
                 </div>
             </li>
         }

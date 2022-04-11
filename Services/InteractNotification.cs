@@ -38,10 +38,16 @@ namespace NutriFitWeb.Services
                 result = await _context.Notifications
                     .Where(a => a.NotificationReceiver == userAccount)
                     .OrderByDescending(a => a.NotificationTime)
-                    .Take(5)
+                    .Take(3)
                     .ToListAsync();
             }
             return result;
+        }
+
+        public async Task<bool> NotificationsExist(string? userName)
+        {
+            var notifications = await GetLastFive(userName);
+            return notifications.Any();
         }
 
     }

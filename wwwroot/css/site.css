@@ -244,6 +244,22 @@ h1 {
     width: 1em;
     font-size: 1.4em;
     border-radius: 1em;
+    border-style: none !important;
+}
+
+.notificationAlertIcon {
+    margin-top: 0.3em;
+    text-decoration: none !important;
+    height: 1em;
+    width: 1em;
+    font-size: 1.4em;
+    border-style: none !important;
+}
+
+.NotificationsSubMenuFix {
+    margin-top: 0.5em;
+    margin-left: -9.2em !important;
+    width: 16em !important;
 }
 
 .accountIcon {
@@ -255,13 +271,6 @@ h1 {
     width: 1em;
     font-size: 1.6em;
     border-radius: 1em;
-}
-
-
-
-.notificationIcon:hover {
-    height: 1.1em;
-    width: 1.1em;
 }
 
 .icons {
@@ -909,4 +918,13 @@ label.labelFour {
     border-color: #00A2E8;
     border-width: medium;
     padding: 0.5em;
+}
+
+.notificationInMenu{
+    background-color: lightgrey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
+    padding: 0.5em;
+    margin-bottom: 0.5em !important;
 }
