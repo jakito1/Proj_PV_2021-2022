@@ -80,6 +80,7 @@ namespace NutriFitWeb.Controllers
                 _context.Notifications.RemoveRange(notifications);
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToAction("ShowNotifications");
         }
 

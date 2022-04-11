@@ -29,7 +29,7 @@ namespace NutriFitWeb.Services
                 });
             }
         }
-        public async Task<List<Notification>> GetLastFive(string? userName)
+        public async Task<List<Notification>> GetLastThree(string? userName)
         {
             UserAccountModel userAccount = await _userManager.FindByNameAsync(userName);
             List<Notification>? result = new();
@@ -46,7 +46,7 @@ namespace NutriFitWeb.Services
 
         public async Task<bool> NotificationsExist(string? userName)
         {
-            List<Notification>? notifications = await GetLastFive(userName);
+            List<Notification>? notifications = await GetLastThree(userName);
             return notifications.Any();
         }
 

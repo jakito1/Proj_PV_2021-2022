@@ -135,11 +135,20 @@
                     <a class="nav-link text-dark menuItem iconBorder"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
                 }
                 <div class="dropdown-content NotificationsSubMenuFix">
-                    @foreach (var notification in await InteractNotification.GetLastFive(User.Identity.Name))
+                    @foreach (var notification in await InteractNotification.GetLastThree(User.Identity.Name))
                     {
-                        <p class="notificationInMenu">@notification.NotificationMessage (@notification.NotificationTime)</p>
+                        <div class="notificationInMenu">
+                            <p>@notification.NotificationMessage</p>
+                            <p>(@notification.NotificationTime)</p>
+                        </div>
                     }
-                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications">Ver Tudo</a>
+                    @if (await InteractNotification.NotificationsExist(User.Identity.Name))
+                    {
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications">Ver Tudo</a>
+                    }else{
+                        <p class="details">Não tem notificações</p>
+                    }
+                    
                 </div>
             </li>
         }
