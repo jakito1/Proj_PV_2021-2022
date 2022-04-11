@@ -24,7 +24,6 @@
             <input type="file" asp-for="ClientProfilePhoto" class="form-control marginFixChooseFile" name="formFile" />
             <span asp-validation-for="ClientProfilePhoto" class="text-danger"></span>
         </div>
-        @*<select required="true" id="MealWeekDaySelectID" asp-for="MealWeekDay" class="formsInput" asp-items="Html.GetEnumSelectList<MealWeekDay>()"></select>*@
 
 
         <table class="formTables">
@@ -40,6 +39,14 @@
                 <td>
                     <input asp-for="ClientLastName" class="formsInput" />
                     <span asp-validation-for="ClientLastName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="ClientSex" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <select asp-for="ClientSex" class="formsInput" asp-items="Html.GetEnumSelectList<ClientSex>()"></select>
+                    <br />
+                    <span asp-validation-for="ClientSex" class="text-danger"></span>
                 </td>
             </tr>
             <tr>
