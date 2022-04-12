@@ -109,7 +109,6 @@ namespace NutriFitWeb.Controllers
             if (nutritionPlanNewRequestId is not null)
             ***REMOVED***
                 ViewData["ClientEmail"] = await _context.NutritionPlanNewRequests.Where(a => a.NutritionPlanNewRequestId == nutritionPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
-                var temp = ViewData["ClientEmail"];
                 HttpContext.Session.Set(SessionKeyNutritionPlanNewRequestId, nutritionPlanNewRequestId);
         ***REMOVED***
             return View();
@@ -151,7 +150,7 @@ namespace NutriFitWeb.Controllers
                     if (nutritionPlanNewRequest is not null)
                     ***REMOVED***
                         nutritionPlan.NutritionPlanNewRequestId = nutritionPlanNewRequestId;
-                        nutritionPlanNewRequest.NutritionPlanNewRequestDone = true;                       
+                        nutritionPlanNewRequest.NutritionPlanNewRequestDone = true;
                 ***REMOVED***
             ***REMOVED***
                 await _interactNotification.Create($"O seu novo plano de nutrição está pronto.", client.UserAccountModel);

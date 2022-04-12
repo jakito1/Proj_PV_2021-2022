@@ -149,7 +149,7 @@ namespace NutriFitWeb.Controllers
                     if (trainingPlanNewRequest is not null)
                     ***REMOVED***
                         trainingPlan.TrainingPlanNewRequestId = trainingPlanNewRequestId;
-                        trainingPlanNewRequest.TrainingPlanNewRequestDone = true;                       
+                        trainingPlanNewRequest.TrainingPlanNewRequestDone = true;
                 ***REMOVED***
             ***REMOVED***
                 await _interactNotification.Create($"O seu novo plano de treino está pronto.", client.UserAccountModel);

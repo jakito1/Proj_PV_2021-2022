@@ -74,7 +74,7 @@ namespace NutriFitWeb.Controllers
             if (user is not null)
             ***REMOVED***
                 notifications = _context.Notifications.Include(a => a.NotificationReceiver).Where(a => a.NotificationReceiver == user);
-        ***REMOVED***            
+        ***REMOVED***
             if (user is not null && notifications is not null && notifications.Any())
             ***REMOVED***
                 _context.Notifications.RemoveRange(notifications);
