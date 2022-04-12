@@ -150,7 +150,7 @@ namespace NutriFitWeb.Controllers
                 if (client.Trainer is null)
                 {
                     client.DateAddedToTrainer = null;
-                    await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} já não é seu treinador.", client.UserAccountModel);                   
+                    await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} já não é seu treinador.", client.UserAccountModel);
                 }
                 else
                 {
@@ -345,13 +345,17 @@ namespace NutriFitWeb.Controllers
         {
             UserAccountModel? user = null;
             Client? client = null;
-            if (User.Identity is not null)
+            if (User.Identity is not null && _context.Client is not null)
             {
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (user is not null)
+                client = await _context.Client.Include(a => a.Gym).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                if (user is not null && client is not null && client.Gym is not null)
                 {
-                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                     client.WantsTrainer = true;
+                    foreach (Trainer trainer in _context.Trainer.Include(a => a.UserAccountModel).Where(a => a.Gym == client.Gym))
+                    {
+                        await _interactNotification.Create($"O cliente '{client.UserAccountModel.UserName}' está à procura de um treinador.", trainer.UserAccountModel);
+                    }
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowTrainingPlans", "TrainingPlans", new { pageNumber, currentFilter });
                 }
@@ -364,13 +368,17 @@ namespace NutriFitWeb.Controllers
         {
             UserAccountModel? user = null;
             Client? client = null;
-            if (User.Identity is not null)
+            if (User.Identity is not null && _context.Client is not null)
             {
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (user is not null)
+                client = await _context.Client.Include(a => a.Gym).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                if (user is not null && client is not null && client.Gym is not null)
                 {
-                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                     client.WantsNutritionist = true;
+                    foreach (Nutritionist nutritionist in _context.Nutritionist.Include(a => a.UserAccountModel).Where(a => a.Gym == client.Gym))
+                    {
+                        await _interactNotification.Create($"O cliente '{client.UserAccountModel.UserName}' está à procura de um nutricionista.", nutritionist.UserAccountModel);
+                    }
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowNutritionPlans", "NutritionPlans", new { pageNumber, currentFilter });
                 }
