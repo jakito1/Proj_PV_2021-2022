@@ -12,7 +12,7 @@
         <div class= statisticsCount>
             <p><b class="listsItemTitle homeTitlesFix control-label">Clientes</b><b class="itemsLeftMargin">@Statistics.GetUsersForTrainer(UserManager.GetUserId(User)).Count()</b></p>
             <br />
-            <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b class="itemsLeftMargin">@await Statistics.GetTrainerGym(UserManager.GetUserId(User))</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b class="itemsLeftMargin">@await Statistics.GetUserGym(UserManager.GetUserId(User))</b></p>
             <br />
         </div>
         <div class="newUsersDiv">
