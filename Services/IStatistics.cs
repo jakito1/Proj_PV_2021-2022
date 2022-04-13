@@ -2,7 +2,7 @@
 
 namespace NutriFitWeb.Services
 {
-    public interface IGetUsersLists
+    public interface IStatistics
     {
         IEnumerable<UserAccountModel> GetUsersForGym(string userType, string loggedIn);
         IEnumerable<UserAccountModel> GetUsersForTrainer(string loggedIn);

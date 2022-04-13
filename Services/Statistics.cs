@@ -3,10 +3,10 @@ using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
 {
-    public class GetUsersLists : IGetUsersLists
+    public class Statistics : IStatistics
     {
         private readonly ApplicationDbContext _context;
-        public GetUsersLists(ApplicationDbContext context)
+        public Statistics(ApplicationDbContext context)
         {
             _context = context;
         }
