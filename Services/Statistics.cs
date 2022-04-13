@@ -8,17 +8,14 @@ namespace NutriFitWeb.Services
     public class Statistics : IStatistics
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<UserAccountModel> _userManager;
-        public Statistics(ApplicationDbContext context,
-            UserManager<UserAccountModel> userManager)
+        public Statistics(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
-        public IEnumerable<UserAccountModel> GetUsersForGym(string userType, string loggedIn)
+        public IEnumerable<UserAccountModel>? GetUsersForGym(string? userType, string? userName)
         {
-            IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.Id == loggedIn select a.GymId;
+            IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.UserName == userName select a.GymId;
             IQueryable<string>? role = from a in _context.Roles where a.Name == userType select a.Id;
             if (userType == "client")
             {
@@ -35,46 +32,42 @@ namespace NutriFitWeb.Services
             return null;
         }
 
-        public IEnumerable<UserAccountModel> GetUsersForTrainer(string loggedIn)
+        public IEnumerable<UserAccountModel>? GetUsersForTrainer(string? userName)
         {
-            IQueryable<int>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.Id == loggedIn select a.TrainerId;
+            IQueryable<int>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.UserName == userName select a.TrainerId;
             return _context.Client.Where(a => a.Trainer.TrainerId == loggedInTrainer.FirstOrDefault()).OrderByDescending(a => a.DateAddedToTrainer).Select(a => a.UserAccountModel);
         }
-        public IEnumerable<UserAccountModel> GetUsersForNutritionist(string loggedIn)
+        public IEnumerable<UserAccountModel>? GetUsersForNutritionist(string? userName)
         {
-            IQueryable<int>? loggedInNutritionist = from a in _context.Nutritionist where a.UserAccountModel.Id == loggedIn select a.NutritionistId;
+            IQueryable<int>? loggedInNutritionist = from a in _context.Nutritionist where a.UserAccountModel.UserName == userName select a.NutritionistId;
             return _context.Client.Where(a => a.Nutritionist.NutritionistId == loggedInNutritionist.FirstOrDefault()).OrderByDescending(a => a.DateAddedToNutritionist).Select(a => a.UserAccountModel);
         }
 
-        public async Task<string> GetUserGym(string loggedIn)
+        public async Task<string> GetUserGym(string? userName)
         {
-            UserAccountModel user = await _userManager.FindByNameAsync(loggedIn);
             Gym? gym = null;
-            if (user is not null)
-            {
-                Client client = await _context.Client.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel == user);
-                Trainer trainer = await _context.Trainer.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel == user);
-                Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel == user);
+            Client? client = await _context.Client.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Trainer? trainer = await _context.Trainer.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
 
-                if (client is not null && client.Gym is not null)
-                {
-                    gym = client.Gym;
-                }
-                else if (trainer is not null && trainer.Gym is not null)
-                {
-                    gym = trainer.Gym;
-                }
-                else if (nutritionist is not null && nutritionist.Gym is not null)
-                {
-                    gym = nutritionist.Gym;
-                }
+            if (client is not null && client.Gym is not null)
+            {
+                gym = client.Gym;
+            }
+            else if (trainer is not null && trainer.Gym is not null)
+            {
+                gym = trainer.Gym;
+            }
+            else if (nutritionist is not null && nutritionist.Gym is not null)
+            {
+                gym = nutritionist.Gym;
             }
             return (gym is null || string.IsNullOrEmpty(gym.GymName)) ? "" : gym.GymName;
         }
 
-        public async Task<double> GetClientBMI(string? loggedIn)
+        public async Task<double> GetClientBMI(string? userName)
         {
-            Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
             if (client is not null && client.Weight is not null && client.Weight > 0 &&
                     client.Height is not null && client.Height > 0)
             {
@@ -83,11 +76,11 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
-        public async Task<double> GetClientsAvgBMI(string? loggedIn)
+        public async Task<double> GetClientsAvgBMI(string? userName)
         {
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Trainer? trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Gym? gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
@@ -104,11 +97,11 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
-        public async Task<double> GetClientsAvgHeight(string? loggedIn)
+        public async Task<double> GetClientsAvgHeight(string? userName)
         {
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Trainer? trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Gym? gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
@@ -125,11 +118,11 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
-        public async Task<double> GetClientsAvgWeight(string? loggedIn)
+        public async Task<double> GetClientsAvgWeight(string? userName)
         {
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Trainer? trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Gym? gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
@@ -146,11 +139,11 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
-        public async Task<double> GetClientsAvgLeanMass(string? loggedIn)
+        public async Task<double> GetClientsAvgLeanMass(string? userName)
         {
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Trainer? trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Gym? gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
@@ -167,11 +160,11 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
-        public async Task<double> GetClientsAvgFatMass(string? loggedIn)
+        public async Task<double> GetClientsAvgFatMass(string? userName)
         {
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Trainer? trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            Gym? gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {

@@ -4,15 +4,15 @@ namespace NutriFitWeb.Services
 {
     public interface IStatistics
     {
-        IEnumerable<UserAccountModel> GetUsersForGym(string userType, string loggedIn);
-        IEnumerable<UserAccountModel> GetUsersForTrainer(string loggedIn);
-        IEnumerable<UserAccountModel> GetUsersForNutritionist(string loggedIn);
-        Task<string> GetUserGym(string loggedIn);
-        Task<double> GetClientBMI(string? loggedIn);
-        Task<double> GetClientsAvgBMI(string? loggedIn);
-        Task<double> GetClientsAvgHeight(string? loggedIn);
-        Task<double> GetClientsAvgWeight(string? loggedIn);
-        Task<double> GetClientsAvgLeanMass(string? loggedIn);
-        Task<double> GetClientsAvgFatMass(string? loggedIn);
+        IEnumerable<UserAccountModel>? GetUsersForGym(string userType, string userName);
+        IEnumerable<UserAccountModel>? GetUsersForTrainer(string userName);
+        IEnumerable<UserAccountModel>? GetUsersForNutritionist(string userName);
+        Task<string> GetUserGym(string userName);
+        Task<double> GetClientBMI(string? userName);
+        Task<double> GetClientsAvgBMI(string? userName);
+        Task<double> GetClientsAvgHeight(string? userName);
+        Task<double> GetClientsAvgWeight(string? userName);
+        Task<double> GetClientsAvgLeanMass(string? userName);
+        Task<double> GetClientsAvgFatMass(string? userName);
     }
 }
