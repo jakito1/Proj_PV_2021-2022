@@ -2,9 +2,6 @@
 @using NutriFitWeb.Services
 @inject IPhotoManagement PhotoManagement
 
-@***REMOVED***
-    ViewData["Title"] = "Details";
-***REMOVED***
 
 <h1 class="detailsTitle">Detalhes do Cliente</h1>
 
@@ -101,6 +98,8 @@
             ***REMOVED***else***REMOVED***
                     <td><p class="itemsLeftMargin">@Model.Trainer.TrainerFirstName @Model.Trainer.TrainerLastName</p></td>
             ***REMOVED***
+        ***REMOVED***else***REMOVED***
+                <td><p class="itemsLeftMargin">N/A</p></td>
         ***REMOVED***
         </tr>
         <tr>
@@ -119,6 +118,8 @@
             ***REMOVED***else***REMOVED***
                     <td><p class="itemsLeftMargin">@Model.Nutritionist.NutritionistFirstName @Model.Nutritionist.NutritionistLastName</p></td>
             ***REMOVED***
+        ***REMOVED***else***REMOVED***
+                <td><p class="itemsLeftMargin">N/A</p></td>
         ***REMOVED***
         </tr>
     </table>
