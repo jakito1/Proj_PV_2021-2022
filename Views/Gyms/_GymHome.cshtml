@@ -33,9 +33,9 @@
             <th class="listsItemTitle">IMC</th>
         </tr>
         <tr>
-            <td class="statisticsValues"></td>
-            <td class="statisticsValues"></td>
-            <td class="statisticsValues"></td>
+            <td class="statisticsValues">@await Statistics.GetClientsAvgWeight(User.Identity.Name)</td>
+            <td class="statisticsValues">@await Statistics.GetClientsAvgHeight(User.Identity.Name)</td>
+            <td class="statisticsValues">@await Statistics.GetClientsAvgBMI(User.Identity.Name)</td>
         </tr>
     </table>
 
