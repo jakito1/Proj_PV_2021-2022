@@ -192,13 +192,14 @@ namespace NutriFitWeb.Services
                 double gymBMIAvg = await GetClientsAvgBMI(gym.UserAccountModel.UserName);
                 double clientCurrentBMI = await GetClientBMI(userName);
                 double BMIDiff = gymBMIAvg - clientCurrentBMI;
+                string BMIDiffString = string.Format("***REMOVED***0:0.00***REMOVED***", Math.Abs(BMIDiff));
                 if (BMIDiff > 0)
                 ***REMOVED***
-                    return $"O seu IMC está ***REMOVED***BMIDiff***REMOVED*** pontos abaixo da média do ginásio.";
+                    return $"O seu IMC está ***REMOVED***BMIDiffString***REMOVED*** pontos abaixo da média do ginásio.";
             ***REMOVED***
                 else if (BMIDiff < 0)
                 ***REMOVED***
-                    return $"O seu IMC está ***REMOVED***BMIDiff * -1***REMOVED*** pontos acima da média do ginásio.";
+                    return $"O seu IMC está ***REMOVED***BMIDiffString***REMOVED*** pontos acima da média do ginásio.";
             ***REMOVED***
                 else if (BMIDiff == 0)
                 ***REMOVED***

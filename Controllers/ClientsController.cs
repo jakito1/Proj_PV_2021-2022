@@ -296,7 +296,6 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return BadRequest();
         ***REMOVED***
-
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
 
