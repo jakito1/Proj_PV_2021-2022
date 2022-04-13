@@ -14,6 +14,7 @@ select * from dbo.Exercise;
 select * from dbo.TrainingPlan;
 select * from dbo.TrainingPlanEditRequest;
 select * from dbo.TrainingPlanNewRequests;
+select * from dbo.Notifications;
 
 delete from dbo.Photos;
 update dbo.Client set GymId = NULL where ClientId = 1;

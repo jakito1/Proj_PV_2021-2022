@@ -52,11 +52,11 @@
                 @if (User.IsInRole("client") || User.IsInRole("trainer"))
                 ***REMOVED***
                     <td>
-                        <input asp-for="ExerciseDuration" min="1" oninput="limitExerciseDuration(this);" class="formsInput" />
+                        <input asp-for="ExerciseDuration" class="formsInput" />
                         <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
                     </td>
                     <td>
-                        <input asp-for="ExerciseRepetitions" min="1" oninput="limitExerciseRepetitions(this);" class="formsInput" />
+                        <input asp-for="ExerciseRepetitions" class="formsInput" />
                         <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
                     </td>
             ***REMOVED***
