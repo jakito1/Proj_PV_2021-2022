@@ -70,47 +70,6 @@ function helpButton() ***REMOVED***
 ***REMOVED***
 ***REMOVED***
 
-function limitExerciseRepetitions(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 999) ***REMOVED***
-        input.value = 999
-***REMOVED***
-***REMOVED***
-function limitExerciseDuration(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 120) ***REMOVED***
-        input.value = 120
-***REMOVED***
-***REMOVED***
-function limitMealForm(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 99999) ***REMOVED***
-        input.value = 99999
-***REMOVED***
-***REMOVED***
-function limitPercentage(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 100) ***REMOVED***
-        input.value = 100
-***REMOVED***
-***REMOVED***
-
 window.addEventListener("load", () => ***REMOVED***
     const uri = document.getElementById("qrCodeData").getAttribute('data-url');
     new QRCode(document.getElementById("qrCode"),

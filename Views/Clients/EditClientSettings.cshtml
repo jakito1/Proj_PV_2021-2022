@@ -31,6 +31,7 @@
                 <th class="alignTableTitles"><label asp-for="ClientFirstName" class="control-label listsItemTitle"></label></th>
                 <td>
                     <input asp-for="ClientFirstName" class="formsInput" />
+                    <br />
                     <span asp-validation-for="ClientFirstName" class="text-danger"></span>
                 </td>
             </tr>
@@ -38,6 +39,7 @@
                 <th class="alignTableTitles"><label asp-for="ClientLastName" class="control-label listsItemTitle"></label></th>
                 <td>
                     <input asp-for="ClientLastName" class="formsInput" />
+                    <br />
                     <span asp-validation-for="ClientLastName" class="text-danger"></span>
                 </td>
             </tr>
@@ -53,13 +55,15 @@
                 <th class="alignTableTitles"><label asp-for="ClientBirthday" class="control-label listsItemTitle"></label></th>
                 <td>
                     <input asp-for="ClientBirthday" class="formsInput" />
+                    <br />
                     <span asp-validation-for="ClientBirthday" class="text-danger"></span>
                 </td>
             </tr>
             <tr>
                 <th class="alignTableTitles"><label asp-for="Weight" class="control-label listsItemTitle"></label></th>
                 <td>
-                    <input asp-for="Weight" class="formsInput" />
+                    <input asp-for="Weight" class="formsInput"/>
+                    <br />
                     <span asp-validation-for="Weight" class="text-danger"></span>
                 </td>
             </tr>
@@ -67,20 +71,23 @@
                 <th class="alignTableTitles"><label asp-for="Height" class="control-label listsItemTitle"></label></th>
                 <td>
                     <input asp-for="Height" class="formsInput" />
+                    <br />
                     <span asp-validation-for="Height" class="text-danger"></span>
                 </td>
             </tr>
             <tr>
                 <th class="alignTableTitles"><label asp-for="LeanMass" class="control-label listsItemTitle"></label></th>
                 <td>
-                    <input asp-for="LeanMass" min="1" oninput="limitPercentage(this);" class="formsInput" />
+                    <input asp-for="LeanMass" class="formsInput" />
+                    <br />
                     <span asp-validation-for="LeanMass" class="text-danger"></span>
                 </td>
             </tr>
             <tr>
                 <th class="alignTableTitles"><label asp-for="FatMass" class="control-label listsItemTitle"></label></th>
                 <td>
-                    <input asp-for="FatMass" min="1" oninput="limitPercentage(this);" class="formsInput" />
+                    <input asp-for="FatMass" class="formsInput" />
+                    <br />
                     <span asp-validation-for="FatMass" class="text-danger"></span>
                 </td>
             </tr>
@@ -88,6 +95,7 @@
                 <th class="alignTableTitles"><label asp-for="OtherClientData" class="control-label listsItemTitle"></label></th>
                 <td>
                     <input asp-for="OtherClientData" class="formsInput" />
+                    <br />
                     <span asp-validation-for="OtherClientData" class="text-danger"></span>
                 </td>
             </tr>

@@ -24,17 +24,19 @@ namespace NutriFitWeb.Models
         public DateTime? ClientBirthday ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Peso")]
+        [Range(0.0, 999.9, ErrorMessage = "Indique um valor entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** quilogramas.")]
         public double? Weight ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Altura")]
-        public double? Height ***REMOVED*** get; set; ***REMOVED***
+        [Range(1, 999, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** centímetros.")]
+        public int? Height ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Massa Magra")]
-        [Range(0, 100)]
+        [Range(0.1, 100.0, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED***.")]
         public double? LeanMass ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Massa Gorda")]
-        [Range(0, 100)]
+        [Range(0.1, 100.0, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED***.")]
         public double? FatMass ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Outros Dados")]
