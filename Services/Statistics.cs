@@ -156,7 +156,8 @@ namespace NutriFitWeb.Services
                     if (client is not null && client.Weight is not null && client.Weight > 0 &&
                     client.Height is not null && client.Height > 0)
                     ***REMOVED***
-                        avgBMI += (double)(client.Weight / (client.Height * client.Height));
+                        double tempHeight = (double)client.Height / 100;
+                        avgBMI += (double)(client.Weight / (tempHeight * tempHeight));
                 ***REMOVED***
             ***REMOVED***
                 avgBMI /= clients.Count;
