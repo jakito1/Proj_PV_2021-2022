@@ -695,20 +695,42 @@ input.btn.btn-danger ***REMOVED***
     margin-top: 4em;
 ***REMOVED***
 
-.statistics ***REMOVED***
-    margin-top: 3em;
+.homePageTitle ***REMOVED***
+    background-color: white;
+    color: #00A2E8;
+    font-size: 300%;
+    border-radius: 1em;
+    width: 6em;
 ***REMOVED***
 
-.statisticsCount***REMOVED***
-    background-color: white;
+.statisticsTable ***REMOVED***
+    background-color: lightgrey;
     border-radius: 1em;
-    max-width: 50%;
-    padding-top: 1em;
-    padding-bottom: 0.1em;
-    margin-left: auto;
-    margin-right:auto;
-    text-align: center;
+    width: 30em;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 1em;
+    border-style: solid;
+    border-color: grey;
 ***REMOVED***
+
+.statisticsValues ***REMOVED***
+    color: #00A2E8;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 2em;
+    padding: 1em;
+***REMOVED***
+
+.statisticsTableHeaderFix***REMOVED***
+    color: lightgrey !important;
+    background-color: lightgrey !important;
+***REMOVED***
+
+.statisticsMargin ***REMOVED***
+    margin-bottom: 2em;
+***REMOVED***
+
 
 .recentClientsGym ***REMOVED***
     background-color: lightgrey;
