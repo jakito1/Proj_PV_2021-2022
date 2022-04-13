@@ -70,47 +70,6 @@ function helpButton() {
     }
 }
 
-function limitExerciseRepetitions(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 999) {
-        input.value = 999
-    }
-}
-function limitExerciseDuration(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 120) {
-        input.value = 120
-    }
-}
-function limitMealForm(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 99999) {
-        input.value = 99999
-    }
-}
-function limitPercentage(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 100) {
-        input.value = 100
-    }
-}
-
 window.addEventListener("load", () => {
     const uri = document.getElementById("qrCodeData").getAttribute('data-url');
     new QRCode(document.getElementById("qrCode"),
