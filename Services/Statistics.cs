@@ -80,6 +80,48 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
+        public async Task<double> GetClientsAvgHeight(string? loggedIn)
+        {
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+
+            if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
+            {
+                return AvgHeight(trainer.Clients);
+            }
+            if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
+            {
+                return AvgHeight(nutritionist.Clients);
+            }
+            if (gym is not null && gym.Clients is not null && gym.Clients.Any())
+            {
+                return AvgHeight(gym.Clients);
+            }
+            return 0;
+        }
+
+        public async Task<double> GetClientsAvgWeight(string? loggedIn)
+        {
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+
+            if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
+            {
+                return AvgWeight(trainer.Clients);
+            }
+            if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
+            {
+                return AvgWeight(nutritionist.Clients);
+            }
+            if (gym is not null && gym.Clients is not null && gym.Clients.Any())
+            {
+                return AvgWeight(gym.Clients);
+            }
+            return 0;
+        }
+
         private static double AvgBMI(List<Client>? clients)
         {
             double avgBMI = 0;
@@ -97,6 +139,40 @@ namespace NutriFitWeb.Services
             }
             return avgBMI;
         }
+        private static double AvgHeight(List<Client>? clients)
+        {
+            double avgHeight = 0;
+            if (clients is not null && clients.Any())
+            {
+                foreach (Client client in clients)
+                {
+                    if (client.Height is not null && client.Height > 0)
+                    {
+                        avgHeight += (double)client.Height;
+                    }
+                }
+                avgHeight /= clients.Count;
+            }
+            return avgHeight;
+        }
+        private static double AvgWeight(List<Client>? clients)
+        {
+            double avgWeight = 0;
+            if (clients is not null && clients.Any())
+            {
+                foreach (Client client in clients)
+                {
+                    if (client is not null && client.Weight is not null && client.Weight > 0 &&
+                    client.Height is not null && client.Height > 0)
+                    {
+                        avgWeight += (double)client.Weight;
+                    }
+                }
+                avgWeight /= clients.Count;
+            }
+            return avgWeight;
+        }
+
 
     }
 }
