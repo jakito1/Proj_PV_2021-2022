@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 
@@ -7,9 +8,12 @@ namespace NutriFitWeb.Services
     public class Statistics : IStatistics
     ***REMOVED***
         private readonly ApplicationDbContext _context;
-        public Statistics(ApplicationDbContext context)
+        private readonly UserManager<UserAccountModel> _userManager;
+        public Statistics(ApplicationDbContext context,
+            UserManager<UserAccountModel> userManager)
         ***REMOVED***
             _context = context;
+            _userManager = userManager;
     ***REMOVED***
 
         public IEnumerable<UserAccountModel> GetUsersForGym(string userType, string loggedIn)
@@ -42,10 +46,30 @@ namespace NutriFitWeb.Services
             return _context.Client.Where(a => a.Nutritionist.NutritionistId == loggedInNutritionist.FirstOrDefault()).OrderByDescending(a => a.DateAddedToNutritionist).Select(a => a.UserAccountModel);
     ***REMOVED***
 
-        public async Task<string> GetTrainerGym(string loggedIn)
+        public async Task<string> GetUserGym(string loggedIn)
         ***REMOVED***
-            Gym? gym = await _context.Trainer.Where(a => a.UserAccountModel.Id == loggedIn).Select(a => a.Gym).FirstOrDefaultAsync();
-            return (gym is null) ? "" : gym.GymName;
+            UserAccountModel user = await _userManager.FindByNameAsync(loggedIn);
+            Gym? gym = null;
+            if (user is not null)
+            ***REMOVED***
+                Client client = await _context.Client.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel == user);
+                Trainer trainer = await _context.Trainer.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel == user);
+                Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel == user);
+
+                if (client is not null && client.Gym is not null)
+                ***REMOVED***
+                    gym = client.Gym;
+            ***REMOVED***
+                else if (trainer is not null && trainer.Gym is not null)
+                ***REMOVED***
+                    gym = trainer.Gym;
+            ***REMOVED***
+                else if (nutritionist is not null && nutritionist.Gym is not null)
+                ***REMOVED***
+                    gym = nutritionist.Gym;
+            ***REMOVED***
+        ***REMOVED***
+            return (gym is null || string.IsNullOrEmpty(gym.GymName)) ? "" : gym.GymName;
     ***REMOVED***
 
         public async Task<double> GetClientBMI(string? loggedIn)
