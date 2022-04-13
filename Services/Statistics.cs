@@ -71,7 +71,7 @@ namespace NutriFitWeb.Services
                     client.Height is not null && client.Height > 0)
             {
                 double tempHeight = (double)client.Height / 100;
-                return (double)(client.Weight / (tempHeight * tempHeight));
+                return Math.Round((double)(client.Weight / (tempHeight * tempHeight)), 2);
             }
             return 0;
         }
@@ -79,9 +79,9 @@ namespace NutriFitWeb.Services
         public async Task<double> GetClientLeanMass(string? userName)
         {
             Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
-            if (client is not null && client.FatMass is not null)
+            if (client is not null && client.LeanMass is not null)
             {
-                return (double)client.FatMass;
+                return (double)client.LeanMass;
             }
             return 0;
         }
@@ -89,9 +89,9 @@ namespace NutriFitWeb.Services
         public async Task<double> GetClientFatMass(string? userName)
         {
             Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
-            if (client is not null && client.LeanMass is not null)
+            if (client is not null && client.FatMass is not null)
             {
-                return (double)client.LeanMass;
+                return (double)client.FatMass;
             }
             return 0;
         }
@@ -104,15 +104,15 @@ namespace NutriFitWeb.Services
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
-                return AvgBMI(trainer.Clients);
+                return Math.Round(AvgBMI(trainer.Clients), 2);
             }
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
             {
-                return AvgBMI(nutritionist.Clients);
+                return Math.Round(AvgBMI(nutritionist.Clients), 2);
             }
             if (gym is not null && gym.Clients is not null && gym.Clients.Any())
             {
-                return AvgBMI(gym.Clients);
+                return Math.Round(AvgBMI(gym.Clients), 2);
             }
             return 0;
         }
@@ -125,15 +125,15 @@ namespace NutriFitWeb.Services
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
-                return AvgHeight(trainer.Clients);
+                return Math.Round(AvgHeight(trainer.Clients), 2);
             }
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
             {
-                return AvgHeight(nutritionist.Clients);
+                return Math.Round(AvgHeight(nutritionist.Clients), 2);
             }
             if (gym is not null && gym.Clients is not null && gym.Clients.Any())
             {
-                return AvgHeight(gym.Clients);
+                return Math.Round(AvgHeight(gym.Clients), 2);
             }
             return 0;
         }
@@ -146,15 +146,15 @@ namespace NutriFitWeb.Services
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
-                return AvgWeight(trainer.Clients);
+                return Math.Round(AvgWeight(trainer.Clients), 2);
             }
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
             {
-                return AvgWeight(nutritionist.Clients);
+                return Math.Round(AvgWeight(nutritionist.Clients), 2);
             }
             if (gym is not null && gym.Clients is not null && gym.Clients.Any())
             {
-                return AvgWeight(gym.Clients);
+                return Math.Round(AvgWeight(gym.Clients), 2);
             }
             return 0;
         }
@@ -167,15 +167,15 @@ namespace NutriFitWeb.Services
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
-                return AvgLeanMass(trainer.Clients);
+                return Math.Round(AvgLeanMass(trainer.Clients), 2);
             }
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
             {
-                return AvgLeanMass(nutritionist.Clients);
+                return Math.Round(AvgLeanMass(nutritionist.Clients), 2);
             }
             if (gym is not null && gym.Clients is not null && gym.Clients.Any())
             {
-                return AvgLeanMass(gym.Clients);
+                return Math.Round(AvgLeanMass(gym.Clients), 2);
             }
             return 0;
         }
@@ -188,15 +188,15 @@ namespace NutriFitWeb.Services
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
-                return AvgFatMass(trainer.Clients);
+                return Math.Round(AvgFatMass(trainer.Clients), 2);
             }
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
             {
-                return AvgFatMass(nutritionist.Clients);
+                return Math.Round(AvgFatMass(nutritionist.Clients), 2);
             }
             if (gym is not null && gym.Clients is not null && gym.Clients.Any())
             {
-                return AvgFatMass(gym.Clients);
+                return Math.Round(AvgFatMass(gym.Clients), 2);
             }
             return 0;
         }
@@ -211,14 +211,13 @@ namespace NutriFitWeb.Services
                 double gymBMIAvg = await GetClientsAvgBMI(gym.UserAccountModel.UserName);
                 double clientCurrentBMI = await GetClientBMI(userName);
                 double BMIDiff = gymBMIAvg - clientCurrentBMI;
-                string BMIDiffString = string.Format("{0:0.00}", Math.Abs(BMIDiff));
                 if (BMIDiff > 0)
                 {
-                    return $"O seu IMC está {BMIDiffString} pontos abaixo da média do ginásio.";
+                    return $"O seu IMC está {Math.Round(BMIDiff, 2)} pontos abaixo da média do ginásio.";
                 }
                 else if (BMIDiff < 0)
                 {
-                    return $"O seu IMC está {BMIDiffString} pontos acima da média do ginásio.";
+                    return $"O seu IMC está {Math.Round(Math.Abs(BMIDiff), 2)} pontos acima da média do ginásio.";
                 }
                 else if (BMIDiff == 0)
                 {
@@ -236,17 +235,16 @@ namespace NutriFitWeb.Services
                 Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
 
                 double gymLeanAvgMass = await GetClientsAvgLeanMass(gym.UserAccountModel.UserName);
-                double LeanMassDiff = gymLeanAvgMass - (double)client.LeanMass;
-                string LeanMassDiffString = string.Format("{0:0.00}", Math.Abs(LeanMassDiff));
-                if (LeanMassDiff > 0)
+                double leanMassDiff = gymLeanAvgMass - (double)client.LeanMass;
+                if (leanMassDiff > 0)
                 {
-                    return $"A sua massa magra está {LeanMassDiffString} pontos percentuais abaixo da média do ginásio.";
+                    return $"A sua massa magra está {Math.Round(leanMassDiff, 2)} pontos percentuais abaixo da média do ginásio.";
                 }
-                else if (LeanMassDiff < 0)
+                else if (leanMassDiff < 0)
                 {
-                    return $"A sua massa magra está {LeanMassDiffString} pontos percentuais acima da média do ginásio.";
+                    return $"A sua massa magra está {Math.Round(Math.Abs(leanMassDiff), 2)} pontos percentuais acima da média do ginásio.";
                 }
-                else if (LeanMassDiff == 0)
+                else if (leanMassDiff == 0)
                 {
                     return "A sua massa magra está na média do ginásio.";
                 }
@@ -262,17 +260,16 @@ namespace NutriFitWeb.Services
                 Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
 
                 double gymFatAvgMass = await GetClientsAvgFatMass(gym.UserAccountModel.UserName);
-                double FatMassDiff = gymFatAvgMass - (double)client.FatMass;
-                string FatMassDiffString = string.Format("{0:0.00}", Math.Abs(FatMassDiff));
-                if (FatMassDiff > 0)
+                double fatMassDiff = gymFatAvgMass - (double)client.FatMass;
+                if (fatMassDiff > 0)
                 {
-                    return $"A sua massa gorda está {FatMassDiffString} pontos percentuais abaixo da média do ginásio.";
+                    return $"A sua massa gorda está {Math.Round(fatMassDiff, 2)} pontos percentuais abaixo da média do ginásio.";
                 }
-                else if (FatMassDiff < 0)
+                else if (fatMassDiff < 0)
                 {
-                    return $"A sua massa gorda está {FatMassDiffString} pontos percentuais acima da média do ginásio.";
+                    return $"A sua massa gorda está {Math.Round(Math.Abs(fatMassDiff), 2)} pontos percentuais acima da média do ginásio.";
                 }
-                else if (FatMassDiff == 0)
+                else if (fatMassDiff == 0)
                 {
                     return "A sua massa gorda está na média do ginásio.";
                 }
