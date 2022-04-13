@@ -89,7 +89,7 @@
             @{
                 string? profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
             }
-            @if (profilePic is not null && !string.Equals(profilePic, ""))
+            @if (!string.IsNullOrEmpty(profilePic))
             {
                 <button class="nav-link text-dark menuItem dropdownBtnBorderFix">
                     <div class="accountIconPicDiv"><img class="accountIconPic" src="@profilePic" alt="accountIcon" /></div>
