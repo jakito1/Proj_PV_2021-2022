@@ -181,6 +181,32 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
+        public async Task<string> ClientBMICompared(string? userName)
+        {
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            if (client is not null && client.Gym is not null)
+            {
+                Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
+
+                double gymBMIAvg = await GetClientsAvgBMI(gym.UserAccountModel.UserName);
+                double clientCurrentBMI = await GetClientBMI(userName);
+                double BMIDiff = gymBMIAvg - clientCurrentBMI;
+                if (BMIDiff > 0)
+                {
+                    return $"O seu IMC está {BMIDiff} pontos abaixo da média do ginásio.";
+                }
+                else if (BMIDiff < 0)
+                {
+                    return $"O seu IMC está {BMIDiff * -1} pontos acima da média do ginásio.";
+                }
+                else if (BMIDiff == 0)
+                {
+                    return "O seu IMC está na média do ginásio.";
+                }
+            }
+            return string.Empty;
+        }
+
         private static double AvgBMI(List<Client>? clients)
         {
             double avgBMI = 0;
