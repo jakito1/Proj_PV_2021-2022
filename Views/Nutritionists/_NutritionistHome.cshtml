@@ -3,27 +3,78 @@
 @model NutriFitWeb.Models.Nutritionist
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
-
+@inject IPhotoManagement PhotoManagement
 @inject IStatistics Statistics
 
 
-<div class="text-center">
-    <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
-    <div class="statistics">
-        <div class= statisticsCount>
-            <p><b class="listsItemTitle homeTitlesFix control-label">Clientes</b><b class="itemsLeftMargin">@Statistics.GetUsersForNutritionist(UserManager.GetUserId(User)).Count()</b></p>
-            <br />
-            <p><b class="listsItemTitle homeTitlesFix">Ginásio</b><b class="itemsLeftMargin">@await Statistics.GetUserGym(UserManager.GetUserId(User))</b></p>
-            <br />
+<h2 class="homePageTitle">@User.Identity?.Name?.ToUpper()</h2>
+<div class="md-col-6">
+    <table class="statisticsTable statisticsMargin">
+        <tr>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            <th class="listsItemTitle">O seu Ginásio</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+        </tr>
+        <tr>
+            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+            <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name)</td>
+            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+        </tr>
+    </table>
+
+    @if (Statistics.GetUsersForNutritionist(User.Identity.Name).Any())
+    ***REMOVED***
+        <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
+        <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+            <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
         </div>
-        <div class="newUsersDiv">
-            <p><b class="listsItemTitle">Clientes mais recentes</b></p>
-            @foreach (var item in Statistics.GetUsersForNutritionist(UserManager.GetUserId(User)).Take(3))
+        <br />
+
+        <table class="statisticsTable statisticsMargin">
+            <tr>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                <th class="listsItemTitle">Médias</th>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            </tr>
+            <tr>
+                <th class="listsItemTitle">Peso</th>
+                <th class="listsItemTitle">Altura</th>
+                <th class="listsItemTitle">IMC</th>
+            </tr>
+            <tr>
+                <td class="statisticsValues">@await Statistics.GetClientsAvgWeight(User.Identity.Name) kg</td>
+                <td class="statisticsValues">@await Statistics.GetClientsAvgHeight(User.Identity.Name) cm</td>
+                <td class="statisticsValues">@await Statistics.GetClientsAvgBMI(User.Identity.Name) kg/m²</td>
+            </tr>
+            <tr>
+                <td class="statisticsValues">@await Statistics.GetClientsAvgFatMass(User.Identity.Name) %</td>
+                <td><img src="~/icons/healthIcon.svg" /></td>
+                <td class="statisticsValues">@await Statistics.GetClientsAvgLeanMass(User.Identity.Name) %</td>
+            </tr>
+        </table>
+
+        <table class="statisticsTable statisticsMargin">
+            <tr>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                <th class="listsItemTitle">Clientes mais recentes</th>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            </tr>
+            <tr>
+                @foreach (var item in Statistics.GetUsersForNutritionist(User.Identity.Name).Take(3))
+                ***REMOVED***
+                    string? profilePic = await PhotoManagement.LoadProfileImage(@item.UserName);
+                    <td class="statisticsValues">
+                        @item.UserName.ToUpper()
+                        @if (!string.IsNullOrEmpty(profilePic))
+                        ***REMOVED***
+                            <img class="accountIconPic" src="@profilePic" alt="accountIcon" />
+                    ***REMOVED***
+                    </td>
+
             ***REMOVED***
-                <br />
-                <p class="recentClientsGym"><b>@item.UserName.ToUpper()</b></p>
-        ***REMOVED***
-        </div>
-    </div>
+            </tr>
+        </table>
+***REMOVED***
+
     <img src="~/images/nutritionBanner.png" alt="nutritionBanner" class="gymHomeImage" />
 </div>
