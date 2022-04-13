@@ -9,6 +9,8 @@ namespace NutriFitWeb.Services
         IEnumerable<UserAccountModel>? GetUsersForNutritionist(string userName);
         Task<string> GetUserGym(string userName);
         Task<double> GetClientBMI(string? userName);
+        Task<double> GetClientLeanMass(string? userName);
+        Task<double> GetClientFatMass(string? userName);
         Task<double> GetClientsAvgBMI(string? userName);
         Task<double> GetClientsAvgHeight(string? userName);
         Task<double> GetClientsAvgWeight(string? userName);

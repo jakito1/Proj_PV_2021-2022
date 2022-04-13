@@ -76,6 +76,26 @@ namespace NutriFitWeb.Services
             return 0;
         }
 
+        public async Task<double> GetClientLeanMass(string? userName)
+        {
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            if (client is not null && client.FatMass is not null)
+            {
+                return (double)client.FatMass;
+            }
+            return 0;
+        }
+
+        public async Task<double> GetClientFatMass(string? userName)
+        {
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            if (client is not null && client.LeanMass is not null)
+            {
+                return (double)client.LeanMass;
+            }
+            return 0;
+        }
+
         public async Task<double> GetClientsAvgBMI(string? userName)
         {
             Trainer? trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
