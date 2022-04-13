@@ -6,30 +6,34 @@
 
 @inject IStatistics Statistics
 
-@{
-    ViewData["Title"] = "Gym Home Page";
-}
+<h2 class="homePageTitle">@User.Identity?.Name.ToUpper()</h2>
+<div class="md-col-6">
+    <table class="statisticsTable statisticsMargin">
+        <tr>
+            <th class="listsItemTitle">Clientes</th>
+            <th class="listsItemTitle">Treinadores</th>
+            <th class="listsItemTitle">Nutricionistas</th>
+        </tr>
+        <tr>
+            <td class="statisticsValues">@Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</td>
+            <td class="statisticsValues">@Statistics.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</td>
+            <td class="statisticsValues">@Statistics.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</td>
+        </tr>
+    </table>
 
-<div class="text-center">
-    <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
-    <div class="statistics">
-        <div class="statisticsCount">
-            <p><b class="listsItemTitle homeTitlesFix">Clientes</b><b>@Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
-            <br />
-            <p><b class="listsItemTitle homeTitlesFix">Treinadores</b><b>@Statistics.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
-            <br />
-            <p><b class="listsItemTitle homeTitlesFix">Nutricionistas</b><b>@Statistics.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
-            <br />
-        </div>
-
-        <div class="newUsersDiv">
-            <p><b class="listsItemTitle">Clientes mais recentes</b></p>
+    <table class="statisticsTable statisticsMargin">
+        <tr>
+            <th class="listsItemTitle statisticsTableHeaderFix">Clientes</th>
+            <th class="listsItemTitle">Clientes mais recentes</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">Nutricionistas</th>
+        </tr>
+        <tr>
             @foreach (var item in Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Take(3))
             {
-                <br />
-                <p class="recentClientsGym"><b>@item.UserName.ToUpper()</b></p>
+            
+                <td class="statisticsValues">@item.UserName.ToUpper()</td>
             }
-        </div>
-    </div>
+        </tr>
+    </table>
     <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
 </div>

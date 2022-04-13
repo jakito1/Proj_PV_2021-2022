@@ -695,20 +695,42 @@ input.btn.btn-danger {
     margin-top: 4em;
 }
 
-.statistics {
-    margin-top: 3em;
+.homePageTitle {
+    background-color: white;
+    color: #00A2E8;
+    font-size: 300%;
+    border-radius: 1em;
+    width: 6em;
 }
 
-.statisticsCount{
-    background-color: white;
+.statisticsTable {
+    background-color: lightgrey;
     border-radius: 1em;
-    max-width: 50%;
-    padding-top: 1em;
-    padding-bottom: 0.1em;
-    margin-left: auto;
-    margin-right:auto;
-    text-align: center;
+    width: 30em;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 1em;
+    border-style: solid;
+    border-color: grey;
 }
+
+.statisticsValues {
+    color: #00A2E8;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 2em;
+    padding: 1em;
+}
+
+.statisticsTableHeaderFix{
+    color: lightgrey !important;
+    background-color: lightgrey !important;
+}
+
+.statisticsMargin {
+    margin-bottom: 2em;
+}
+
 
 .recentClientsGym {
     background-color: lightgrey;
