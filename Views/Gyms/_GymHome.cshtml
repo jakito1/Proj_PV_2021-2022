@@ -4,7 +4,7 @@
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
 
-@inject IGetUsersLists GetUsersLists
+@inject IStatistics Statistics
 
 @***REMOVED***
     ViewData["Title"] = "Gym Home Page";
@@ -14,17 +14,17 @@
     <h1 class="display-4">@User.Identity?.Name.ToUpper()</h1>
     <div class="statistics">
         <div class="statisticsCount">
-            <p><b class="listsItemTitle homeTitlesFix">Clientes</b><b>@GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Clientes</b><b>@Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</b></p>
             <br />
-            <p><b class="listsItemTitle homeTitlesFix">Treinadores</b><b>@GetUsersLists.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Treinadores</b><b>@Statistics.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</b></p>
             <br />
-            <p><b class="listsItemTitle homeTitlesFix">Nutricionistas</b><b>@GetUsersLists.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
+            <p><b class="listsItemTitle homeTitlesFix">Nutricionistas</b><b>@Statistics.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</b></p>
             <br />
         </div>
 
         <div class="newUsersDiv">
             <p><b class="listsItemTitle">Clientes mais recentes</b></p>
-            @foreach (var item in GetUsersLists.GetUsersForGym("client", UserManager.GetUserId(User)).Take(3))
+            @foreach (var item in Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Take(3))
             ***REMOVED***
                 <br />
                 <p class="recentClientsGym"><b>@item.UserName.ToUpper()</b></p>

@@ -28,7 +28,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuration.GetConnectionString("SendGridKey")));
 
 builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
-builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
+builder.Services.AddScoped<IStatistics, Statistics>();
 builder.Services.AddScoped<IHasTrainerNutritionistGym, HasTrainerNutritionistGym>();
 builder.Services.AddScoped<IPhotoManagement, PhotoManagement>();
 builder.Services.AddScoped<IInteractNotification, InteractNotification>();
