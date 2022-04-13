@@ -146,6 +146,48 @@ namespace NutriFitWeb.Services
             return 0;
     ***REMOVED***
 
+        public async Task<double> GetClientsAvgLeanMass(string? loggedIn)
+        ***REMOVED***
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+
+            if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
+            ***REMOVED***
+                return AvgLeanMass(trainer.Clients);
+        ***REMOVED***
+            if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
+            ***REMOVED***
+                return AvgLeanMass(nutritionist.Clients);
+        ***REMOVED***
+            if (gym is not null && gym.Clients is not null && gym.Clients.Any())
+            ***REMOVED***
+                return AvgLeanMass(gym.Clients);
+        ***REMOVED***
+            return 0;
+    ***REMOVED***
+
+        public async Task<double> GetClientsAvgFatMass(string? loggedIn)
+        ***REMOVED***
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+
+            if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
+            ***REMOVED***
+                return AvgFatMass(trainer.Clients);
+        ***REMOVED***
+            if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Any())
+            ***REMOVED***
+                return AvgFatMass(nutritionist.Clients);
+        ***REMOVED***
+            if (gym is not null && gym.Clients is not null && gym.Clients.Any())
+            ***REMOVED***
+                return AvgFatMass(gym.Clients);
+        ***REMOVED***
+            return 0;
+    ***REMOVED***
+
         private static double AvgBMI(List<Client>? clients)
         ***REMOVED***
             double avgBMI = 0;
@@ -198,6 +240,37 @@ namespace NutriFitWeb.Services
             return avgWeight;
     ***REMOVED***
 
-
+        private static double AvgLeanMass(List<Client>? clients)
+        ***REMOVED***
+            double avgLeanMass = 0;
+            if (clients is not null && clients.Any())
+            ***REMOVED***
+                foreach (Client client in clients)
+                ***REMOVED***
+                    if (client is not null && client.LeanMass is not null && client.LeanMass > 0)
+                    ***REMOVED***
+                        avgLeanMass += (double)client.LeanMass;
+                ***REMOVED***
+            ***REMOVED***
+                avgLeanMass /= clients.Count;
+        ***REMOVED***
+            return avgLeanMass;
+    ***REMOVED***
+        private static double AvgFatMass(List<Client>? clients)
+        ***REMOVED***
+            double avgFatMass = 0;
+            if (clients is not null && clients.Any())
+            ***REMOVED***
+                foreach (Client client in clients)
+                ***REMOVED***
+                    if (client is not null && client.FatMass is not null && client.FatMass > 0)
+                    ***REMOVED***
+                        avgFatMass += (double)client.FatMass;
+                ***REMOVED***
+            ***REMOVED***
+                avgFatMass /= clients.Count;
+        ***REMOVED***
+            return avgFatMass;
+    ***REMOVED***
 ***REMOVED***
 ***REMOVED***
