@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 
@@ -204,6 +203,58 @@ namespace NutriFitWeb.Services
                 else if (BMIDiff == 0)
                 {
                     return "O seu IMC está na média do ginásio.";
+                }
+            }
+            return string.Empty;
+        }
+
+        public async Task<string> ClientLeanMassCompared(string? userName)
+        {
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            if (client is not null && client.Gym is not null && client.LeanMass is not null)
+            {
+                Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
+
+                double gymLeanAvgMass = await GetClientsAvgLeanMass(gym.UserAccountModel.UserName);
+                double LeanMassDiff = gymLeanAvgMass - (double)client.LeanMass;
+                string LeanMassDiffString = string.Format("{0:0.00}", Math.Abs(LeanMassDiff));
+                if (LeanMassDiff > 0)
+                {
+                    return $"A sua massa magra está {LeanMassDiffString} pontos percentuais abaixo da média do ginásio.";
+                }
+                else if (LeanMassDiff < 0)
+                {
+                    return $"A sua massa magra está {LeanMassDiffString} pontos percentuais acima da média do ginásio.";
+                }
+                else if (LeanMassDiff == 0)
+                {
+                    return "A sua massa magra está na média do ginásio.";
+                }
+            }
+            return string.Empty;
+        }
+
+        public async Task<string> ClientFatMassCompared(string? userName)
+        {
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            if (client is not null && client.Gym is not null && client.FatMass is not null)
+            {
+                Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
+
+                double gymFatAvgMass = await GetClientsAvgFatMass(gym.UserAccountModel.UserName);
+                double FatMassDiff = gymFatAvgMass - (double)client.FatMass;
+                string FatMassDiffString = string.Format("{0:0.00}", Math.Abs(FatMassDiff));
+                if (FatMassDiff > 0)
+                {
+                    return $"A sua massa gorda está {FatMassDiffString} pontos percentuais abaixo da média do ginásio.";
+                }
+                else if (FatMassDiff < 0)
+                {
+                    return $"A sua massa gorda está {FatMassDiffString} pontos percentuais acima da média do ginásio.";
+                }
+                else if (FatMassDiff == 0)
+                {
+                    return "A sua massa gorda está na média do ginásio.";
                 }
             }
             return string.Empty;
