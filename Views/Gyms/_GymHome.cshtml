@@ -23,9 +23,27 @@
 
     <table class="statisticsTable statisticsMargin">
         <tr>
-            <th class="listsItemTitle statisticsTableHeaderFix">Clientes</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            <th class="listsItemTitle">Médias</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+        </tr>
+        <tr>
+            <th class="listsItemTitle">Peso</th>
+            <th class="listsItemTitle">Altura</th>
+            <th class="listsItemTitle">IMC</th>
+        </tr>
+        <tr>
+            <td class="statisticsValues"></td>
+            <td class="statisticsValues"></td>
+            <td class="statisticsValues"></td>
+        </tr>
+    </table>
+
+    <table class="statisticsTable statisticsMargin">
+        <tr>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
             <th class="listsItemTitle">Clientes mais recentes</th>
-            <th class="listsItemTitle statisticsTableHeaderFix">Nutricionistas</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
         </tr>
         <tr>
             @foreach (var item in Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Take(3))
