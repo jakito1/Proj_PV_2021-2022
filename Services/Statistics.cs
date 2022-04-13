@@ -181,6 +181,32 @@ namespace NutriFitWeb.Services
             return 0;
     ***REMOVED***
 
+        public async Task<string> ClientBMICompared(string? userName)
+        ***REMOVED***
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == userName);
+            if (client is not null && client.Gym is not null)
+            ***REMOVED***
+                Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
+
+                double gymBMIAvg = await GetClientsAvgBMI(gym.UserAccountModel.UserName);
+                double clientCurrentBMI = await GetClientBMI(userName);
+                double BMIDiff = gymBMIAvg - clientCurrentBMI;
+                if (BMIDiff > 0)
+                ***REMOVED***
+                    return $"O seu IMC está ***REMOVED***BMIDiff***REMOVED*** pontos abaixo da média do ginásio.";
+            ***REMOVED***
+                else if (BMIDiff < 0)
+                ***REMOVED***
+                    return $"O seu IMC está ***REMOVED***BMIDiff * -1***REMOVED*** pontos acima da média do ginásio.";
+            ***REMOVED***
+                else if (BMIDiff == 0)
+                ***REMOVED***
+                    return "O seu IMC está na média do ginásio.";
+            ***REMOVED***
+        ***REMOVED***
+            return string.Empty;
+    ***REMOVED***
+
         private static double AvgBMI(List<Client>? clients)
         ***REMOVED***
             double avgBMI = 0;
