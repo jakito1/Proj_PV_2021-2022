@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
+using System.Globalization;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
 // Add services to the container.
 string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -28,9 +30,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuration.GetConnectionString("SendGridKey")));
 
 builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
-builder.Services.AddScoped<IGetUsersLists, GetUsersLists>();
+builder.Services.AddScoped<IStatistics, Statistics>();
 builder.Services.AddScoped<IHasTrainerNutritionistGym, HasTrainerNutritionistGym>();
 builder.Services.AddScoped<IPhotoManagement, PhotoManagement>();
+builder.Services.AddScoped<IInteractNotification, InteractNotification>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
 {
@@ -72,6 +75,8 @@ app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",

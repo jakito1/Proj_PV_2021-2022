@@ -2,9 +2,6 @@
 @using NutriFitWeb.Services
 @inject IPhotoManagement PhotoManagement
 
-@{
-    ViewData["Title"] = "Details";
-}
 
 <h1 class="detailsTitle">Detalhes do Cliente</h1>
 
@@ -43,6 +40,10 @@
             }else{
                 <td><p class="itemsLeftMargin">@Model.ClientFirstName @Model.ClientLastName</p></td>
             }
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientSex)</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.ClientSex)</p></td>
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientBirthday)</p></th>
@@ -97,6 +98,8 @@
                 }else{
                     <td><p class="itemsLeftMargin">@Model.Trainer.TrainerFirstName @Model.Trainer.TrainerLastName</p></td>
                 }
+            }else{
+                <td><p class="itemsLeftMargin">N/A</p></td>
             }
         </tr>
         <tr>
@@ -115,6 +118,8 @@
                 }else{
                     <td><p class="itemsLeftMargin">@Model.Nutritionist.NutritionistFirstName @Model.Nutritionist.NutritionistLastName</p></td>
                 }
+            }else{
+                <td><p class="itemsLeftMargin">N/A</p></td>
             }
         </tr>
     </table>

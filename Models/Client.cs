@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 {
@@ -44,6 +45,7 @@ namespace NutriFitWeb.Models
         /// Display name = Peso
         /// </summary>
         [DisplayName("Peso")]
+        [Range(0.0, 999.9, ErrorMessage = "Indique um valor entre {1} e {2} quilogramas.")]
         public double? Weight { get; set; }
 
         /// <summary>
@@ -51,14 +53,15 @@ namespace NutriFitWeb.Models
         /// Display name = Altura
         /// </summary>
         [DisplayName("Altura")]
-        public double? Height { get; set; }
+        [Range(1, 999, ErrorMessage = "Indique um valor inteiro entre {1} e {2} centímetros.")]
+        public int? Height { get; set; }
 
         /// <summary>
         /// Gets and Sets the Client lean mass.
         /// Display name = Massa Magra
         /// </summary>
         [DisplayName("Massa Magra")]
-        [Range(0, 100)]
+        [Range(0.1, 100.0, ErrorMessage = "Indique um valor inteiro entre {1} e {2}.")]
         public double? LeanMass { get; set; }
 
         /// <summary>
@@ -66,7 +69,7 @@ namespace NutriFitWeb.Models
         /// Display name = Massa Gorda
         /// </summary>
         [DisplayName("Massa Gorda")]
-        [Range(0, 100)]
+        [Range(0.1, 100.0, ErrorMessage = "Indique um valor inteiro entre {1} e {2}.")]
         public double? FatMass { get; set; }
 
         /// <summary>
@@ -76,11 +79,9 @@ namespace NutriFitWeb.Models
         [DisplayName("Outros Dados")]
         public string? OtherClientData { get; set; }
 
-        /// <summary>
-        /// Gets and Sets a Row version.
-        /// </summary>
-        [Timestamp]
-        public byte[]? RowVersion { get; set; }
+        public DateTime? DateAddedToGym { get; set; }
+        public DateTime? DateAddedToTrainer { get; set; }
+        public DateTime? DateAddedToNutritionist { get; set; }
 
         /// <summary>
         /// Gets and Sets the Gym associated to the client.
@@ -120,6 +121,10 @@ namespace NutriFitWeb.Models
         /// </summary>
         public bool WantsTrainer { get; set; } = false;
 
+        [Column(TypeName = "nvarchar(24)")]
+        [DisplayName("Sexo")]
+        public ClientSex? ClientSex { get; set; }
+
         /// <summary>
         /// Gets and Sets the training plan list of the client.
         /// </summary>
@@ -136,7 +141,17 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the nutrition plan request list of the client.
         /// </summary>
         public List<NutritionPlanNewRequest>? NutritionPlanRequests { get; set; }
+        public UserAccountModel? UserAccountModel { get; set; }
 
+    }
+    public enum ClientSex
+    {
+        [Display(Name = "Nenhum")]
+        NONE,
+        [Display(Name = "Masculino")]
+        MALE,
+        [Display(Name = "Feminino")]
+        FEMALE
         /// <summary>
         /// Gets and Sets the client's user account model.
         /// </summary>

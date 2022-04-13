@@ -14,14 +14,17 @@ namespace NutriFitWeb.Controllers
     public class AdminsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IInteractNotification _interactNotification;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="context">The DB context for the application</param>
-        public AdminsController(ApplicationDbContext context)
+        /// <param name="context"></param>
+        public AdminsController(ApplicationDbContext context,
+            IInteractNotification interactNotification)
         {
             _context = context;
+            _interactNotification = interactNotification;
         }
 
         /// <summary>
@@ -176,7 +179,8 @@ namespace NutriFitWeb.Controllers
             if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "",
                 u => u.PhoneNumber, u => u.UserName))
             {
-                _context.SaveChanges();
+                await _interactNotification.Create($"O administrador alterou parte da sua conta.", userToUpdate);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("ShowAllUsers");
             }
             return View(userToUpdate);
