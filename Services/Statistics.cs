@@ -47,11 +47,11 @@ namespace NutriFitWeb.Services
             Gym? gym = await _context.Trainer.Where(a => a.UserAccountModel.Id == loggedIn).Select(a => a.Gym).FirstOrDefaultAsync();
             return (gym is null) ? "" : gym.GymName;
         }
-        
+
         public async Task<double> GetClientBMI(string? loggedIn)
         {
             Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
-            if (client is not null && client.Weight is not null && client.Weight > 0 && 
+            if (client is not null && client.Weight is not null && client.Weight > 0 &&
                     client.Height is not null && client.Height > 0)
             {
                 return (double)(client.Weight / (client.Height * client.Height));
@@ -63,6 +63,7 @@ namespace NutriFitWeb.Services
         {
             Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
             Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
+            Gym gym = await _context.Gym.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.UserName == loggedIn);
 
             if (trainer is not null && trainer.Clients is not null && trainer.Clients.Any())
             {
@@ -72,6 +73,10 @@ namespace NutriFitWeb.Services
             {
                 return AvgBMI(nutritionist.Clients);
             }
+            if (gym is not null && gym.Clients is not null && gym.Clients.Any())
+            {
+                return AvgBMI(gym.Clients);
+            }
             return 0;
         }
 
@@ -79,14 +84,14 @@ namespace NutriFitWeb.Services
         {
             double avgBMI = 0;
             if (clients is not null && clients.Any())
-            {              
+            {
                 foreach (Client client in clients)
                 {
                     if (client is not null && client.Weight is not null && client.Weight > 0 &&
                     client.Height is not null && client.Height > 0)
                     {
                         avgBMI += (double)(client.Weight / (client.Height * client.Height));
-                    }                    
+                    }
                 }
                 avgBMI /= clients.Count;
             }

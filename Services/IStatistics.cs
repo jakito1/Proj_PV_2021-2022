@@ -9,6 +9,6 @@ namespace NutriFitWeb.Services
         IEnumerable<UserAccountModel> GetUsersForNutritionist(string loggedIn);
         Task<string> GetTrainerGym(string loggedIn);
         Task<double> GetClientBMI(string? loggedIn);
-        Task<double> GetClientsAvgBMI(string? loggedIn)
+        Task<double> GetClientsAvgBMI(string? loggedIn);
     }
 }
