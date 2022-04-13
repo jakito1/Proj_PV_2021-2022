@@ -71,7 +71,8 @@ namespace NutriFitWeb.Services
             if (client is not null && client.Weight is not null && client.Weight > 0 &&
                     client.Height is not null && client.Height > 0)
             {
-                return (double)(client.Weight / (client.Height * client.Height));
+                double tempHeight = (double)client.Height / 100;
+                return (double)(client.Weight / (tempHeight * tempHeight));
             }
             return 0;
         }

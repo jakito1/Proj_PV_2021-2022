@@ -18,6 +18,9 @@
     else if (User.IsInRole("nutritionist"))
     {
         <partial name="~/Views/Nutritionists/_NutritionistHome.cshtml" />
+    }else if (User.IsInRole("client"))
+    {
+        <partial name="~/Views/Clients/_ClientHome.cshtml" />
     }
     else
     {

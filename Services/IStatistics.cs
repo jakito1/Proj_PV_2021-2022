@@ -14,5 +14,6 @@ namespace NutriFitWeb.Services
         Task<double> GetClientsAvgWeight(string? userName);
         Task<double> GetClientsAvgLeanMass(string? userName);
         Task<double> GetClientsAvgFatMass(string? userName);
+        Task<string> ClientBMICompared(string? userName);
     }
 }

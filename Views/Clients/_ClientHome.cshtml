@@ -1,0 +1,57 @@
+﻿@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@model NutriFitWeb.Models.Client
+@inject SignInManager<UserAccountModel> SignInManager
+@inject IStatistics Statistics
+
+
+<h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity?.Name?.ToUpper()!</h2>
+<div class="md-col-6">
+    <table class="statisticsTable statisticsMargin">
+        <tr>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            <th class="listsItemTitle">O seu Ginásio</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+        </tr>
+        <tr>
+            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+            @if (!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name)))
+            {
+                <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name)</td>
+            }
+            else
+            {
+                <td class="statisticsValues">N/A</td>
+            }
+            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+        </tr>
+    </table>
+
+    <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
+    <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+        <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
+    </div>
+    <br />
+
+    <table class="statisticsTable statisticsMargin">
+        <tr>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            <th class="listsItemTitle">O seu IMC</th>
+            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+        </tr>
+        <tr>
+            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+            <td class="statisticsValues">
+                @await Statistics.GetClientBMI(User.Identity.Name) kg/m²
+            </td>
+            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="statisticsValues">
+                @await Statistics.ClientBMICompared(User.Identity.Name)
+            </td>
+        </tr>
+    </table>
+
+    <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
+</div>

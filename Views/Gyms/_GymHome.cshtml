@@ -2,11 +2,10 @@
 @using Microsoft.AspNetCore.Identity
 @model NutriFitWeb.Models.Gym
 @inject SignInManager<UserAccountModel> SignInManager
-@inject UserManager<UserAccountModel> UserManager
 @inject IPhotoManagement PhotoManagement
 @inject IStatistics Statistics
 
-<h2 class="homePageTitle">@User.Identity?.Name?.ToUpper()</h2>
+<h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity?.Name?.ToUpper()!</h2>
 <div class="md-col-6">
     <table class="statisticsTable statisticsMargin">
         <tr>
@@ -15,13 +14,13 @@
             <th class="listsItemTitle">Nutricionistas</th>
         </tr>
         <tr>
-            <td class="statisticsValues">@Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Count()</td>
-            <td class="statisticsValues">@Statistics.GetUsersForGym("trainer", UserManager.GetUserId(User)).Count()</td>
-            <td class="statisticsValues">@Statistics.GetUsersForGym("nutritionist", UserManager.GetUserId(User)).Count()</td>
+            <td class="statisticsValues">@Statistics.GetUsersForGym("client", User.Identity.Name).Count()</td>
+            <td class="statisticsValues">@Statistics.GetUsersForGym("trainer", User.Identity.Name).Count()</td>
+            <td class="statisticsValues">@Statistics.GetUsersForGym("nutritionist", User.Identity.Name).Count()</td>
         </tr>
     </table>
 
-    @if (Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Any())
+    @if (Statistics.GetUsersForGym("client", User.Identity.Name).Any())
     {
         <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
         <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
@@ -59,7 +58,7 @@
                 <th class="listsItemTitle statisticsTableHeaderFix">********</th>
             </tr>
             <tr>
-                @foreach (var item in Statistics.GetUsersForGym("client", UserManager.GetUserId(User)).Take(3))
+                @foreach (var item in Statistics.GetUsersForGym("client", User.Identity.Name).Take(3))
                 {
                     string? profilePic = await PhotoManagement.LoadProfileImage(@item.UserName);
                     <td class="statisticsValues">

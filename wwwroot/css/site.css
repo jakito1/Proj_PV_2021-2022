@@ -703,6 +703,10 @@ input.btn.btn-danger {
     width: fit-content;
 }
 
+.welcome{
+    font-weight: 100;
+}
+
 .statisticsTable {
     background-color: lightgrey;
     border-radius: 1em;
