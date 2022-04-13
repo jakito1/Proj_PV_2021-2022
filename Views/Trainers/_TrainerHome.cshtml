@@ -2,11 +2,10 @@
 @using Microsoft.AspNetCore.Identity
 @model NutriFitWeb.Models.Trainer
 @inject SignInManager<UserAccountModel> SignInManager
-@inject UserManager<UserAccountModel> UserManager
 @inject IPhotoManagement PhotoManagement
 @inject IStatistics Statistics
 
-<h2 class="homePageTitle">@User.Identity?.Name?.ToUpper()</h2>
+<h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity?.Name?.ToUpper()!</h2>
 <div class="md-col-6">
     <table class="statisticsTable statisticsMargin">
         <tr>
@@ -16,7 +15,12 @@
         </tr>
         <tr>
             <td class="listsItemTitle statisticsTableHeaderFix">********</td>
-            <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name)</td>
+            @if(!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name)))
+            ***REMOVED***
+                <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name)</td>
+        ***REMOVED***else***REMOVED***
+                <td class="statisticsValues">N/A</td>
+        ***REMOVED***
             <td class="listsItemTitle statisticsTableHeaderFix">********</td>
         </tr>
     </table>
