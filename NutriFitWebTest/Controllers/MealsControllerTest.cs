@@ -14,7 +14,7 @@ namespace NutriFitWebTest.Controllers
     ***REMOVED***
         private readonly HttpContext _httpContext;
         private readonly IPhotoManagement photoManagement;
-        private readonly List<Meal> exercises = null;
+        private readonly List<Meal>? exercises = null;
 
         public MealsControllerTest()
         ***REMOVED***
@@ -23,6 +23,7 @@ namespace NutriFitWebTest.Controllers
             mockSession["_Meals"] = exercises;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
             _httpContext = mockHttpContext.Object;
+            photoManagement = Mock.Of<IPhotoManagement>();
     ***REMOVED***
 
         [Fact]

@@ -13,16 +13,14 @@ using Xunit;
 
 namespace NutriFitWebTest.Controllers
 ***REMOVED***
-    public class NutritionPlanNewRequestsControllerTest : IClassFixture<NutrifitContextFixture>
+    public class NotificationsControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _manager;
-        private IInteractNotification mockInteractNotification;
 
-        public NutritionPlanNewRequestsControllerTest(NutrifitContextFixture contextFixture)
+        public NotificationsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
-            mockInteractNotification = Mock.Of<IInteractNotification>();
 
             Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
@@ -64,9 +62,9 @@ namespace NutriFitWebTest.Controllers
     ***REMOVED***
 
         [Fact]
-        public void NutritionPlanNewRequestsController_Should_Create()
+        public void NotificationsController_Should_Create()
         ***REMOVED***
-            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+            NotificationsController controller = new NotificationsController(_context, _manager);
 
             Assert.NotNull(controller);
     ***REMOVED***
