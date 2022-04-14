@@ -2,7 +2,7 @@
   "version": 3,
   "targets": ***REMOVED***
     "net6.0": ***REMOVED***
-      "Castle.Core/4.4.0": ***REMOVED***
+      "Castle.Core/4.4.1": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "NETStandard.Library": "1.6.1",
@@ -89,47 +89,6 @@
     ***REMOVED***
       "MessagePackAnalyzer/2.1.152": ***REMOVED***
         "type": "package"
-    ***REMOVED***
-      "Microsoft.AspNet.Mvc/5.2.7": ***REMOVED***
-        "type": "package",
-        "dependencies": ***REMOVED***
-          "Microsoft.AspNet.Razor": "[3.2.7, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.7, 3.3.0)"
-      ***REMOVED***
-        "compile": ***REMOVED***
-          "lib/net45/System.Web.Mvc.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net45/System.Web.Mvc.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-      "Microsoft.AspNet.Razor/3.2.7": ***REMOVED***
-        "type": "package",
-        "compile": ***REMOVED***
-          "lib/net45/System.Web.Razor.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net45/System.Web.Razor.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-      "Microsoft.AspNet.WebPages/3.2.7": ***REMOVED***
-        "type": "package",
-        "dependencies": ***REMOVED***
-          "Microsoft.AspNet.Razor": "[3.2.7, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-      ***REMOVED***
-        "compile": ***REMOVED***
-          "lib/net45/System.Web.Helpers.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Deployment.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Razor.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net45/System.Web.Helpers.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Deployment.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.Razor.dll": ***REMOVED******REMOVED***,
-          "lib/net45/System.Web.WebPages.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
     ***REMOVED***
       "Microsoft.AspNetCore.Antiforgery/2.2.0": ***REMOVED***
         "type": "package",
@@ -1625,10 +1584,10 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Data.Sqlite/6.0.3": ***REMOVED***
+      "Microsoft.Data.Sqlite/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Data.Sqlite.Core": "6.0.3",
+          "Microsoft.Data.Sqlite.Core": "6.0.4",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -1684,11 +1643,11 @@
           "lib/net6.0/Microsoft.DotNet.Scaffolding.Shared.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.3",
-          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.3",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.4",
+          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.4",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.Logging": "6.0.0",
@@ -1702,7 +1661,7 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Abstractions/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Abstractions/6.0.4": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": ***REMOVED******REMOVED***
@@ -1711,7 +1670,7 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Analyzers/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Analyzers/6.0.4": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
@@ -1720,10 +1679,10 @@
           "lib/netstandard2.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Relational/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Relational/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore": "6.0.3",
+          "Microsoft.EntityFrameworkCore": "6.0.4",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -1733,10 +1692,10 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Sqlite/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Sqlite/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "6.0.3",
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "6.0.4",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -1746,11 +1705,11 @@
           "lib/net6.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Data.Sqlite.Core": "6.0.3",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.3",
+          "Microsoft.Data.Sqlite.Core": "6.0.4",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.4",
           "Microsoft.Extensions.DependencyModel": "6.0.0"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -2830,15 +2789,6 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Web.Infrastructure/1.0.0": ***REMOVED***
-        "type": "package",
-        "compile": ***REMOVED***
-          "lib/net40/Microsoft.Web.Infrastructure.dll": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "runtime": ***REMOVED***
-          "lib/net40/Microsoft.Web.Infrastructure.dll": ***REMOVED******REMOVED***
-    ***REMOVED***
-    ***REMOVED***
       "Microsoft.Win32.Primitives/4.3.0": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
@@ -2891,10 +2841,10 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Moq/4.16.1": ***REMOVED***
+      "Moq/4.17.2": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Castle.Core": "4.4.0",
+          "Castle.Core": "4.4.1",
           "System.Threading.Tasks.Extensions": "4.5.4"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -5031,17 +4981,17 @@
 ***REMOVED***
 ***REMOVED***
   "libraries": ***REMOVED***
-    "Castle.Core/4.4.0": ***REMOVED***
-      "sha512": "b5rRL5zeaau1y/5hIbI+6mGw3cwun16YjkHZnV9RRT5UyUIFsgLmNXJ0YnIN9p8Hw7K7AbG1q1UclQVU3DinAQ==",
+    "Castle.Core/4.4.1": ***REMOVED***
+      "sha512": "zanbjWC0Y05gbx4eGXkzVycOQqVOFVeCjVsDSyuao9P4mtN1w3WxxTo193NGC7j3o2u3AJRswaoC6hEbnGACnQ==",
       "type": "package",
-      "path": "castle.core/4.4.0",
+      "path": "castle.core/4.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ASL - Apache Software Foundation License.txt",
         "CHANGELOG.md",
         "LICENSE",
-        "castle.core.4.4.0.nupkg.sha512",
+        "castle.core.4.4.1.nupkg.sha512",
         "castle.core.nuspec",
         "lib/net35/Castle.Core.dll",
         "lib/net35/Castle.Core.xml",
@@ -5178,55 +5128,6 @@
         "messagepackanalyzer.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
-      ]
-  ***REMOVED***
-    "Microsoft.AspNet.Mvc/5.2.7": ***REMOVED***
-      "sha512": "m3hUsn48k6Qb5El9A8naTwGTLCdSQKGSpGweqIfiVKltGJzAJJxuXvhhaQQtLCGg3i5V88iGjz0JG72/tlFKlg==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-  ***REMOVED***
-    "Microsoft.AspNet.Razor/3.2.7": ***REMOVED***
-      "sha512": "BpWEZ+Ys7g9VAkbAfpG5jr5A1fKcmadCCXv3fYfps5YfTVABJIGV4uc9yvmXKxsNsjL+BzDld2gs+xtgT2gg1g==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.2.7.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-  ***REMOVED***
-    "Microsoft.AspNet.WebPages/3.2.7": ***REMOVED***
-      "sha512": "2jwZFB7PvY+tbdz0ZP4iEo7gMrJxkCQUzoGLh6swUc6ZXl6DoKyDslmGcC/j9PFmJXCRMVIqtRorlPSMU2DuRA==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.2.7.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
       ]
   ***REMOVED***
     "Microsoft.AspNetCore.Antiforgery/2.2.0": ***REMOVED***
@@ -6959,16 +6860,16 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
   ***REMOVED***
-    "Microsoft.Data.Sqlite/6.0.3": ***REMOVED***
-      "sha512": "7KR/Jde8nsii7aKWkT7VBmbOM6XuXD8tNImA0C69qPygtcNZXhqryVlINsQwd1FcpjCFXdBUjagml0I8MJ8++w==",
+    "Microsoft.Data.Sqlite/6.0.4": ***REMOVED***
+      "sha512": "9jhBB4WYRXMIB9AwIRz4omdxNqZSFFj8ESilpH2hF9x+btVXzbrNCk/yK7Km4UQTr2QUoRlZrjFBmhecIwgCCQ==",
       "type": "package",
-      "path": "microsoft.data.sqlite/6.0.3",
+      "path": "microsoft.data.sqlite/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/netstandard2.0/_._",
-        "microsoft.data.sqlite.6.0.3.nupkg.sha512",
+        "microsoft.data.sqlite.6.0.4.nupkg.sha512",
         "microsoft.data.sqlite.nuspec"
       ]
   ***REMOVED***
@@ -7023,86 +6924,86 @@
         "microsoft.dotnet.scaffolding.shared.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore/6.0.3": ***REMOVED***
-      "sha512": "f7ZlNOI1wPg/r0zRgvmcLAM3kwuCVGe5cZc8rYoKPDGZs5dgRFe5a43H9FnCXsyFAF6FILB08Nr9RkuNMwd3TQ==",
+    "Microsoft.EntityFrameworkCore/6.0.4": ***REMOVED***
+      "sha512": "gTh3SJsF5WNjEmG32kYc3U4tjeTIv55QOrwHAJcF/xtrIVMteDHMArGC35N0dw86WFY0v8yFkKYKOIOln4jkfQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/6.0.3",
+      "path": "microsoft.entityframeworkcore/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Abstractions/6.0.3": ***REMOVED***
-      "sha512": "7c6wJtTFj7FDe20IVPDKeCzxWIMu+XDpYi7aYuUo6knu4vDeB3N3F0pjAZgXJ96GwTZYBrjOEwnbpYmfapEz/w==",
+    "Microsoft.EntityFrameworkCore.Abstractions/6.0.4": ***REMOVED***
+      "sha512": "jycTQF0FUJp10cGWBmtsyFhQNeISU9CltDRKCaNiX4QRSEFzgRgaFN4vAFK0T+G5etmXugyddijE4NWCGtgznQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/6.0.3",
+      "path": "microsoft.entityframeworkcore.abstractions/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Analyzers/6.0.3": ***REMOVED***
-      "sha512": "Ld9HyVABYor3Tq43/sG2JERL94UnDHJPg5PwpkCW4CWsf/CbxHetdecv+bCXA/Hg4q+44sov0GVl4Ywjk4PnyA==",
+    "Microsoft.EntityFrameworkCore.Analyzers/6.0.4": ***REMOVED***
+      "sha512": "t12WodVyGGP2CuLo7R1qwcawHY5zlg+GiQzvkceZpsjcFJVyTFFBFDPg1isBtzurLzWsl+G3z5fVXeic90mPxg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/6.0.3",
+      "path": "microsoft.entityframeworkcore.analyzers/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Relational/6.0.3": ***REMOVED***
-      "sha512": "Dga4OH8QxmPT9APr7ZL5R0TvNADOcjDNNvJa8pU3QbPJ6OvRPTlzqAehfEBow0/NXBTKbIO48b4aIJI4VCO7fg==",
+    "Microsoft.EntityFrameworkCore.Relational/6.0.4": ***REMOVED***
+      "sha512": "E867NbEXYRTElBF5ff+1AN5Awa1jkORy/Rrm0ueibaTAV5uw89LsLoH6yTe+b9urZTWMHtLfGd1RDdNjk8+KzA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/6.0.3",
+      "path": "microsoft.entityframeworkcore.relational/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Sqlite/6.0.3": ***REMOVED***
-      "sha512": "Zz0t+iBdC64fQeBOHr+5IpR/SNhfmxOjM0aI8VA5Xk8wBS/o98YWVXp8kT1iGWS3+K2jDGuusl192LZthLUStQ==",
+    "Microsoft.EntityFrameworkCore.Sqlite/6.0.4": ***REMOVED***
+      "sha512": "nn3UB4PxqnECcEWJPcIKrcuGnevf/lPd/LqFgLVYgqYe8teVqpI/yCKSDOPkEkrAbjWAB0Sgx+q59XpT5YphKQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite/6.0.3",
+      "path": "microsoft.entityframeworkcore.sqlite/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.sqlite.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.3": ***REMOVED***
-      "sha512": "9h4/Icp2jsrhxo6PPeEV0B5UwT24ZwvV1cbdGW7u2YCwl0e8ToBw+IaADtER8l6vwH9y210+oMHmTGOP/kHfyQ==",
+    "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.4": ***REMOVED***
+      "sha512": "yO6XZA8FQkBLiTtClesWClL3Z1QEqT9vRoDDf/IOPkmsjzjedg2GzkNCauRGk/XnsZZ1qcz55TuJBO+1jNDIaA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite.core/6.0.3",
+      "path": "microsoft.entityframeworkcore.sqlite.core/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.xml",
-        "microsoft.entityframeworkcore.sqlite.core.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.core.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
   ***REMOVED***
@@ -9138,18 +9039,6 @@
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Web.Infrastructure/1.0.0": ***REMOVED***
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
-      ]
-  ***REMOVED***
     "Microsoft.Win32.Primitives/4.3.0": ***REMOVED***
       "sha512": "9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
       "type": "package",
@@ -9264,10 +9153,10 @@
         "version.txt"
       ]
   ***REMOVED***
-    "Moq/4.16.1": ***REMOVED***
-      "sha512": "bw3R9q8cVNhWXNpnvWb0OGP4HadS4zvClq+T1zf7AF+tLY1haZ2AvbHidQekf4PDv1T40c6brZeT/V0IBq7cEQ==",
+    "Moq/4.17.2": ***REMOVED***
+      "sha512": "HytUPJ3/uks2UgJ9hIcyXm3YxpFAR4OJzbQwTHltbKGun3lFLhEHs97hiiPj1dY8jV/kasXeihTzDxct6Zf3iQ==",
       "type": "package",
-      "path": "moq/4.16.1",
+      "path": "moq/4.17.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -9277,7 +9166,7 @@
         "lib/netstandard2.0/Moq.xml",
         "lib/netstandard2.1/Moq.dll",
         "lib/netstandard2.1/Moq.xml",
-        "moq.4.16.1.nupkg.sha512",
+        "moq.4.17.2.nupkg.sha512",
         "moq.nuspec",
         "moq.png"
       ]
@@ -14349,13 +14238,12 @@
 ***REMOVED***
   "projectFileDependencyGroups": ***REMOVED***
     "net6.0": [
-      "Microsoft.AspNet.Mvc >= 5.2.7",
       "Microsoft.AspNetCore.Mvc >= 2.2.0",
-      "Microsoft.Data.Sqlite >= 6.0.3",
+      "Microsoft.Data.Sqlite >= 6.0.4",
       "Microsoft.Data.Sqlite.Core >= 7.0.0-preview.2.22153.1",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.3",
+      "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.4",
       "Microsoft.NET.Test.Sdk >= 17.2.0-preview-20220301-01",
-      "Moq >= 4.16.1",
+      "Moq >= 4.17.2",
       "NutriFitWeb >= 1.0.0",
       "coverlet.collector >= 3.1.2",
       "xunit >= 2.4.2-pre.12",
@@ -14363,17 +14251,21 @@
     ]
 ***REMOVED***
   "packageFolders": ***REMOVED***
-    "C:\\Users\\Luís\\.nuget\\packages\\": ***REMOVED******REMOVED***
+    "C:\\Users\\Luís\\.nuget\\packages\\": ***REMOVED******REMOVED***,
+    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": ***REMOVED******REMOVED***
 ***REMOVED***
   "project": ***REMOVED***
     "version": "1.0.0",
     "restore": ***REMOVED***
-      "projectUniqueName": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+      "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
       "projectName": "NutriFitWebTest",
-      "projectPath": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
+      "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
       "packagesPath": "C:\\Users\\Luís\\.nuget\\packages\\",
-      "outputPath": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWebTest\\obj\\",
+      "outputPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\Luís\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -14389,8 +14281,8 @@
         "net6.0": ***REMOVED***
           "targetAlias": "net6.0",
           "projectReferences": ***REMOVED***
-            "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
-              "projectPath": "E:\\IPS\\2022\\PV\\Projecto\\nutrifitweb\\NutriFitWeb.csproj"
+            "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
+              "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj"
         ***REMOVED***
       ***REMOVED***
     ***REMOVED***
@@ -14405,17 +14297,13 @@
       "net6.0": ***REMOVED***
         "targetAlias": "net6.0",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNet.Mvc": ***REMOVED***
-            "target": "Package",
-            "version": "[5.2.7, )"
-        ***REMOVED***
           "Microsoft.AspNetCore.Mvc": ***REMOVED***
             "target": "Package",
             "version": "[2.2.0, )"
         ***REMOVED***
           "Microsoft.Data.Sqlite": ***REMOVED***
             "target": "Package",
-            "version": "[6.0.3, )"
+            "version": "[6.0.4, )"
         ***REMOVED***
           "Microsoft.Data.Sqlite.Core": ***REMOVED***
             "target": "Package",
@@ -14423,7 +14311,7 @@
         ***REMOVED***
           "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
             "target": "Package",
-            "version": "[6.0.3, )"
+            "version": "[6.0.4, )"
         ***REMOVED***
           "Microsoft.NET.Test.Sdk": ***REMOVED***
             "target": "Package",
@@ -14431,7 +14319,7 @@
         ***REMOVED***
           "Moq": ***REMOVED***
             "target": "Package",
-            "version": "[4.16.1, )"
+            "version": "[4.17.2, )"
         ***REMOVED***
           "coverlet.collector": ***REMOVED***
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -14465,50 +14353,8 @@
             "privateAssets": "all"
       ***REMOVED***
       ***REMOVED***
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
   ***REMOVED***
 ***REMOVED***
-***REMOVED***
-  "logs": [
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        "net6.0"
-      ]
   ***REMOVED***
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        "net6.0"
-      ]
-  ***REMOVED***
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        "net6.0"
-      ]
-  ***REMOVED***
-    ***REMOVED***
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        "net6.0"
-      ]
-***REMOVED***
-  ]
 ***REMOVED***

@@ -8,26 +8,29 @@ using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
+using NutriFitWeb.Services;
 using System.Threading.Tasks;
 using Xunit;
 using ViewResult = Microsoft.AspNetCore.Mvc.ViewResult;
 
-namespace NutriFitWebTest
+namespace NutriFitWebTest.Controllers
 ***REMOVED***
 
     public class AdminsControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
         private readonly ApplicationDbContext _context;
+        private IInteractNotification mockInteractNotification;
 
         public AdminsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
+            mockInteractNotification = Mock.Of<IInteractNotification>();
     ***REMOVED***
 
         [Fact(Skip = "Doesn't work")]
         public async Task ShowAllUsers_ReturnsViewResult()
         ***REMOVED***
-            AdminsController? controller = new AdminsController(_context);
+            AdminsController? controller = new AdminsController(_context, mockInteractNotification);
             DefaultHttpContext? httpContext = new DefaultHttpContext();
             ModelStateDictionary? modelState = new ModelStateDictionary();
             ActionContext? actionContext = new ActionContext(httpContext, new RouteData(), new PageActionDescriptor(), modelState);
@@ -47,7 +50,7 @@ namespace NutriFitWebTest
         [Fact]
         public async Task DeleteUserAccount_ReturnsNotFound_WhenAccontDoesntExist()
         ***REMOVED***
-            AdminsController? controller = new AdminsController(_context);
+            AdminsController? controller = new AdminsController(_context, mockInteractNotification);
 
             IActionResult? result = await controller.DeleteUserAccount(null);
 
@@ -57,7 +60,7 @@ namespace NutriFitWebTest
         [Fact(Skip = "Not a unit test, should be integration")]
         public async Task DeleteUserAccount_ReturnsLocalUrl()
         ***REMOVED***
-            AdminsController? controller = new AdminsController(_context);
+            AdminsController? controller = new AdminsController(_context, mockInteractNotification);
             Trainer mockTrainer = new()
             ***REMOVED***
                 TrainerId = 1,
