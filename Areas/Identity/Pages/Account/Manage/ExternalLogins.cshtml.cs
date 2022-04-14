@@ -2,11 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -67,8 +62,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
@@ -84,7 +79,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 passwordHash = await userPasswordStore.GetPasswordHashAsync(user, HttpContext.RequestAborted);
         ***REMOVED***
 
-            ShowRemoveButton = passwordHash != null || CurrentLogins.Count > 1;
+            ShowRemoveButton = passwordHash is not null || CurrentLogins.Count > 1;
             return Page();
     ***REMOVED***
 
@@ -96,13 +91,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnPostRemoveLoginAsync(string loginProvider, string providerKey)
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
+            IdentityResult result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
             if (!result.Succeeded)
             ***REMOVED***
                 StatusMessage = "The external login was not removed.";
@@ -125,8 +120,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             // Request a redirect to the external login provider to link a login for the current user
-            var redirectUrl = Url.Page("./ExternalLogins", pageHandler: "LinkLoginCallback");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
+            string redirectUrl = Url.Page("./ExternalLogins", pageHandler: "LinkLoginCallback");
+            AuthenticationProperties properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
             return new ChallengeResult(provider, properties);
     ***REMOVED***
 
@@ -137,20 +132,20 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <exception cref="InvalidOperationException">Thrown when an error occurs while obtaining the external logins informations</exception>
         public async Task<IActionResult> OnGetLinkLoginCallbackAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
                 return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            var userId = await _userManager.GetUserIdAsync(user);
-            var info = await _signInManager.GetExternalLoginInfoAsync(userId);
-            if (info == null)
+            string userId = await _userManager.GetUserIdAsync(user);
+            ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync(userId);
+            if (info is null)
             ***REMOVED***
                 throw new InvalidOperationException($"Unexpected error occurred loading external login info.");
         ***REMOVED***
 
-            var result = await _userManager.AddLoginAsync(user, info);
+            IdentityResult result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             ***REMOVED***
                 StatusMessage = "The external login was not added. External logins can only be associated with one account.";

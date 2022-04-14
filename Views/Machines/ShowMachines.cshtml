@@ -1,0 +1,102 @@
+﻿@using NutriFitWeb.Services
+@model PaginatedList<NutriFitWeb.Models.Machine>
+
+<h1>Máquinas</h1>
+
+<div class="titlesMargin">
+    <form asp-action="ShowMachines" method="get">
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Nome da máquina" class="searchBar" />
+        <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+        @if (User.IsInRole("gym"))
+        ***REMOVED***
+            <div class="marginFixChooseFile">
+                <a class="createBtn" asp-action="CreateMachine">Criar Máquina</a>
+            </div>
+    ***REMOVED***        
+    </form>
+</div>
+
+<div class="col-md-8">
+<table class="table">
+    <thead>
+        <tr>
+            <th class="roundedCornerTableLeft thStyle">
+                Nome
+            </th>
+            <th class="thStyle">
+                Descrição
+            </th>
+            <th class="thStyle">
+                Tipo
+            </th>
+            <th class="roundedCornerTableRight thStyle">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        ***REMOVED***
+            <tr>
+                <td>
+                    <p class="details">@Html.DisplayFor(modelItem => item.MachineName)</p>
+                </td>
+                <td>
+                    <p class="details">@Html.DisplayFor(modelItem => item.MachineDescription)</p>
+                </td>
+                <td>
+                    <p class="details">@Html.DisplayFor(modelItem => item.MachineType)</p>
+                </td>
+                <td>
+                    @if (User.IsInRole("gym"))
+                    ***REMOVED***
+                        <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                ***REMOVED***
+                    <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
+                    @if (User.IsInRole("gym"))
+                    ***REMOVED***
+                        <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>  
+                ***REMOVED***
+                   
+                </td>
+            </tr>
+    ***REMOVED***
+    </tbody>
+</table>
+</div>
+
+@***REMOVED***
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+***REMOVED***
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowMachines"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+***REMOVED***
+
+    @if (nextDisabled != "disabled")
+    ***REMOVED***
+        <a asp-action="ShowMachines"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+***REMOVED***
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    ***REMOVED***
+        <p class="noMoreResults">Não existem mais resultados</p>
+***REMOVED***
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+***REMOVED***
+    <div class="backBtnDiv">
+        <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
+    </div>
+***REMOVED***

@@ -1,11 +1,19 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NutriFitWeb.Models
+@using NutriFitWeb.Services
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
+@inject IPhotoManagement PhotoManagement
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-***REMOVED***
+    @if (SignInManager.IsSignedIn(User))
+    ***REMOVED***
+        @if (!User.IsInRole("administrator"))
+        ***REMOVED***
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
+            </li>
+    ***REMOVED***
         @if (User.IsInRole("gym"))
         ***REMOVED***
             <li class="nav-item">
@@ -17,41 +25,120 @@
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
             </li>
-    ***REMOVED***else if (User.IsInRole("administrator"))
+    ***REMOVED***
+        else if (User.IsInRole("administrator"))
         ***REMOVED***
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Admins" asp-action="ShowAllUsers">Utilizadores</a>
             </li>
     ***REMOVED***
+        else if (User.IsInRole("client"))
+        ***REMOVED***
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Planos</button>
+                <div class="dropdown-content plansSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Pedidos</button>
+                <div class="dropdown-content requestsSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Treino Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Edição Treino</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanNewRequests" asp-action="ShowNutritionPlanNewRequests">Nutrição Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanEditRequests" asp-action="ShowNutritionPlanEditRequests">Edição Nutrição</a>
+                </div>
+            </li>
+    ***REMOVED***
+        else if (User.IsInRole("nutritionist"))
+        ***REMOVED***
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="NutritionPlans" asp-action="ShowNutritionPlans">Nutrição</a>
+            </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Pedidos</button>
+                <div class="dropdown-content requestsSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanNewRequests" asp-action="ShowNutritionPlanNewRequests">Nutrição Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="NutritionPlanEditRequests" asp-action="ShowNutritionPlanEditRequests">Edição Nutrição</a>
+                </div>
+            </li>
+    ***REMOVED***
+        else if (User.IsInRole("trainer"))
+        ***REMOVED***
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Clients" asp-action="ShowClients">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark menuItem" asp-area="" asp-controller="TrainingPlans" asp-action="ShowTrainingPlans">Treinos</a>
+            </li>
+            <li class="dropdown">
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">Pedidos</button>
+                <div class="dropdown-content requestsSubMenuFix">
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanNewRequests" asp-action="ShowTrainingPlanNewRequests">Treino Novo</a>
+                    <a class="btn btn-link subMenuItem" asp-area="" asp-controller="TrainingPlanEditRequests" asp-action="ShowTrainingPlanEditRequests">Edição Treino</a>
+                </div>
+            </li>
+    ***REMOVED***
+
+        <li class="dropdown">
+            @***REMOVED***
+                string? profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
+        ***REMOVED***
+            @if (profilePic is not null && !string.Equals(profilePic, ""))
+            ***REMOVED***
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix">
+                    <div class="accountIconPicDiv"><img class="accountIconPic" src="@profilePic" alt="accountIcon" /></div>
+                </button>
+        ***REMOVED***
+            else
+            ***REMOVED***
+                <button class="nav-link text-dark menuItem dropdownBtnBorderFix"><img class="accountIcon" src=~/icons/accountIcon.svg alt="accountIcon" /></button>
+        ***REMOVED***
+            <div class="dropdown-content fixAdminAccountSubmenu">
+                @if (User.IsInRole("trainer"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Trainers" asp-action="EditTrainerSettings">Perfil</a>
+            ***REMOVED***
+                else if (User.IsInRole("nutritionist"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Nutritionists" asp-action="EditNutritionistSettings">Perfil</a>
+            ***REMOVED***
+                else if (User.IsInRole("gym"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Gyms" asp-action="EditGymSettings">Perfil</a>
+            ***REMOVED***
+                else if (User.IsInRole("client"))
+                ***REMOVED***
+                    <a class="btn btn-link subMenuItem" asp-route-id="@User.Identity.Name" asp-area="" asp-controller="Clients" asp-action="EditClientSettings">Perfil</a>
+            ***REMOVED***
+
+                <a class="btn btn-link subMenuItem" asp-area="Identity" asp-page="/Account/Manage/Index">Conta</a>
+
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new ***REMOVED*** area = "" ***REMOVED***)">
+                    <button type="submit" class="btn btn-link menuItem subMenuItem logout">Sair &nbsp;<img class="logoutIcon" src=~/icons/logoutIcon.svg alt="logoutIcon" /></button>
+                </form>
+            </div>
+        </li>
 
         @if (!(User.IsInRole("administrator")))
         ***REMOVED***
-            <li class="nav-item">
-                <a  class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-            </li>
-    ***REMOVED***
-        
-    <li class="nav-item logoutClick">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new ***REMOVED*** area = "" ***REMOVED***)">
-            <button  type="submit" class="nav-link btn btn-link text-dark menuItem">Logout</button>
-        </form>
-    </li>
-
-    @if (!(User.IsInRole("administrator")))
-        ***REMOVED***
             <li class="nav-item notificationBell">
-                <a  class="nav-link text-dark menuItem" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-bell"></i></a>    
+                <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
             </li>
     ***REMOVED***
-    
+        else
+        ***REMOVED***
+            <li class="spacingLi"></li>
+    ***REMOVED***
 ***REMOVED***
-else
-***REMOVED***
-    /*<li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>*/
-    <li class="nav-item">
-        <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+    else
+    ***REMOVED***
+        <li class="nav-item">
+            <a class="nav-link text-dark menuItem" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
 ***REMOVED***
 </ul>

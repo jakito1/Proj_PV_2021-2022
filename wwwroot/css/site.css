@@ -10,6 +10,26 @@ html ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 
+h2 ***REMOVED***
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    padding: 0.3em;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 1em;
+    border-radius: 1em;
+***REMOVED***
+
+.h2Fix***REMOVED***
+    margin-top: 1em;
+***REMOVED***
+
+h3 ***REMOVED***
+    margin-top: 2em;
+    color: #00A2E8;
+***REMOVED***
+
 html ***REMOVED***
   position: relative;
   min-height: 100%;
@@ -23,7 +43,52 @@ body ***REMOVED***
     margin-bottom: 60px;
     background-color: white;
     font-family: 'Roboto', sans-serif;
-    overflow: scroll !important
+    overflow: scroll !important;
+    background-image: url("../images//background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+***REMOVED***
+
+a***REMOVED***
+    text-decoration: none !important;
+***REMOVED***
+
+.nutriFitHome ***REMOVED***
+    background-color: #00A2E8;
+    color: white;
+    border-radius: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+***REMOVED***
+
+button.navbar-toggler ***REMOVED***
+    border-color: white;
+***REMOVED***
+
+.navbar-light .navbar-toggler-icon ***REMOVED***
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+***REMOVED***
+
+.iconMargin***REMOVED***
+    margin-bottom: 0.2em;
+***REMOVED***
+
+.formsInput ***REMOVED***
+    border-color: lightgrey;
+    text-decoration: none;
+    border-style: solid;
+    border-radius: 1em;
+    height: 2.5em;
+    width: 15em;
+    padding-left: 0.5em;
+    margin: auto;
+    margin-bottom: 1em;
+***REMOVED***
+
+.formsElemsDivs ***REMOVED***
+    margin: 0em;
 ***REMOVED***
 
 /* NutriFitWeb Header Title / Home Button */
@@ -40,6 +105,10 @@ body ***REMOVED***
 
 .navbar-light:hover .navbar-brand:hover ***REMOVED***
     color: dodgerblue;
+***REMOVED***
+
+p***REMOVED***
+    margin-bottom: 0em !important;
 ***REMOVED***
 
 /* Header */
@@ -81,8 +150,9 @@ button ***REMOVED***
 h1 ***REMOVED***
     color: #00A2E8 !important;
     font-weight: 900 !important;
-    font-size: 500% !important;
+    font-size: 480% !important;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.4em;
 ***REMOVED***
 
 /* Different type of authentication section */
@@ -135,8 +205,18 @@ h1 ***REMOVED***
     margin-top: auto !important;
     margin-bottom: auto !important;
     margin-left: 50px;
+    text-decoration: none;
+    color: white;
 ***REMOVED***
 
+.subMenuItem***REMOVED***
+    background-color: white;
+***REMOVED***
+
+.details ***REMOVED***
+    font-weight: bold;
+    color: black;
+***REMOVED***
 
 .logoutClick:active ***REMOVED***
     border-color: red !important;
@@ -150,103 +230,647 @@ h1 ***REMOVED***
 .imageHome ***REMOVED***
     max-width: 100%;
     max-height: 100%;
+    border-radius: 1em;
 ***REMOVED***
-
-.notificationBell***REMOVED***
-    margin-right: 20px;
-    color: white;
-    font-size: 1.8em;
-***REMOVED***
-
-.mainPageGyms  ***REMOVED***
-    color: #00A2E8 !important;
-    font-weight: bold !important;
-    margin: 50px !important;
-***REMOVED***
-
 
 .menuItem:hover ***REMOVED***
     color: lightgrey !important;
 ***REMOVED***
 
-.icons ***REMOVED***
+.notificationIcon, .accountIcon ***REMOVED***
+    margin-top: 0.3em;
     text-decoration: none !important;
-    font-size: 3em;
-***REMOVED***
-
-.table***REMOVED***
-    margin-top: 50px !important;
-***REMOVED***
-
-.listsDiv ***REMOVED***
-    margin: 1em !important;
-    padding: 1em !important;
-    border-style: solid;
+    height: 1em;
+    width: 1em;
+    font-size: 1.4em;
     border-radius: 1em;
-    border-color: lightgrey;
 ***REMOVED***
 
-.listsItem***REMOVED***
-    font-size: 1em;
-    margin: 1em;
+.accountIcon ***REMOVED***
+    margin-top: 0em;
 ***REMOVED***
 
-.listsItemTitle ***REMOVED***
-    color: #00A2E8;
+.accountIconPic ***REMOVED***
+    height: 1em;
+    width: 1em;
+    font-size: 1.6em;
+    border-radius: 1em;
 ***REMOVED***
 
-.removeIcon***REMOVED***
-    color: red;
+
+
+.notificationIcon:hover ***REMOVED***
+    height: 1.1em;
+    width: 1.1em;
+***REMOVED***
+
+.icons ***REMOVED***
+    height: 3em;
+    width: 3em;
+***REMOVED***
+
+link***REMOVED***
+    text-decoration: none;
+***REMOVED***
+
+.icons:hover ***REMOVED***
+    padding: 2px;
+    border-style: solid;
+    border-radius: 1.5em;
 ***REMOVED***
 
 .removeIcon:hover***REMOVED***
-    color: darkred;
+    border-color: red;
 ***REMOVED***
 
-.addIcon***REMOVED***
-    color: green;
+.editProfileIcon***REMOVED***
+    border-color: dodgerblue;
 ***REMOVED***
 
 .addIcon:hover ***REMOVED***
-    color: darkgreen;
+    border-color: green;
+***REMOVED***
+
+.detailsIcon:hover ***REMOVED***
+    border-color: #00A2E8;
+***REMOVED***
+
+.iconBorder ***REMOVED***
+    margin-top: 5px;
+    padding: 0px;
+***REMOVED***
+
+.table ***REMOVED***
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6em;
+    max-width: 80%;
+    color: #00A2E8;
+    background-color: white;
+    border-radius: 1em;
+***REMOVED***
+
+.thStyle ***REMOVED***
+    background-color: #00A2E8 !important;
+    color: white;
+***REMOVED***
+
+.roundedCornerTableLeft ***REMOVED***
+    border-top-left-radius: 1em;
+***REMOVED***
+
+.roundedCornerTableRight***REMOVED***
+    border-top-right-radius: 1em;
+***REMOVED***
+
+.alignTableTitles ***REMOVED***
+    padding-bottom: 1em;
+***REMOVED***
+
+.formTables ***REMOVED***
+    margin: auto;
+    margin-bottom: 2em;
+***REMOVED***
+
+.fixMeasurementsMargin ***REMOVED***
+    border-collapse: separate;
+    border-spacing: 1em 0.5em;
+***REMOVED***
+
+.tableWrapper ***REMOVED***
+    display: table;
+***REMOVED***
+
+tr ***REMOVED***
+    border-radius: 1em;
+***REMOVED***
+
+.listsDiv ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    border-color: grey;
+    background-color: lightgrey;
+    max-width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    /*Breaks line if text is out of div bounds*/
+    word-wrap: break-word;
+***REMOVED***
+
+/*border-style: solid;
+border-radius: 1em;
+border-color: #00A2E8;
+background-color: white;
+padding: 1em;
+padding-top: 4em;
+padding-bottom: 0px;
+color: #00A2E8;
+font-weight: bold;*/
+
+.exercisesDiv ***REMOVED***
+    max-width: 95%;
+    margin: 1em auto;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 1em;
+***REMOVED***
+
+.exListMargin***REMOVED***
+    margin-top: 1em;
+***REMOVED***
+
+div.titlesMargin ***REMOVED***
+    margin-top: 3em;
+    margin-bottom: 1em;
+***REMOVED***
+
+.detailsTitle ***REMOVED***
+    margin-bottom: 1em;
+***REMOVED***
+
+.pagesDiv ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #00A2E8;
+***REMOVED***
+
+.profileDivs ***REMOVED***
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 0.5em;
+    margin-bottom: 3em;
+    color: black;
+    font-weight: bold;
+    margin: auto;
+    display: table;
+***REMOVED***
+
+.detailsDivs ***REMOVED***
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+    margin-bottom: 3em;
+    color: black;
+    font-weight: bold;
+    max-width: 65%;
+    margin:auto;
+***REMOVED***
+
+div.form-group ***REMOVED***
+    max-width: 60%;
+    margin: auto;
+    text-align: center;
+***REMOVED***
+
+.form-control***REMOVED***
+    border-radius: 1em;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: medium;
+***REMOVED***
+
+.profilePic ***REMOVED***
+    border-radius: 1em;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: medium;
+***REMOVED***
+
+.control-label ***REMOVED***
+    font-weight: bold;
+    color: #00A2E8;
+    padding-right: 1em;
+***REMOVED***
+
+.itemsLeftMargin***REMOVED***
+    padding-left: 1em;
+***REMOVED***
+
+a.btn.btn-default:hover ***REMOVED***
+    border-radius: 0.8em;
+    color: white;
+    background-color: #00A2E8;
+***REMOVED***
+
+a.btn.btn-default ***REMOVED***
+    color: #00A2E8;
+***REMOVED***
+
+a.btn.btn-default.disabled ***REMOVED***
+    color: #212529; 
+***REMOVED***
+
+.noMoreResults ***REMOVED***
+    text-align: center;
+    margin: 0.2em;
+    color: #00A2E8;
+    font-weight: bold;
+***REMOVED***
+
+.listsItem ***REMOVED***
+    font-size: 1em;
+    margin: 1.5em 0.5em;
+    font-weight: bold;
+***REMOVED***
+
+.listsItemTitle ***REMOVED***
+    background-color: #00A2E8;
+    color: white;
+    border-style: solid;
+    border-color: #00A2E8;
+    padding: 0.3em;
+    border-radius: 1em;
+    font-size: 1em;
+    width: 9em;
+    margin: auto;
+***REMOVED***
+
+.homeTitlesFix ***REMOVED***
+    margin-right: 0.5em;
+***REMOVED***
+
+.showListsBorder ***REMOVED***
+    border-color: white;
+***REMOVED***
+
+.allUsersTitleFix ***REMOVED***
+    padding-right: 0em;
 ***REMOVED***
 
 .gymHomeImage ***REMOVED***
-    max-width: 70%;
-    height: auto;
+    max-width: 50%;
+    border-radius: 1em;
 ***REMOVED***
 
 .backToListBtn ***REMOVED***
-    text-decoration: none;
-    background-color: #00A2E8;
-    color: white;
-    border-color: #00A2E8;
+    width: 100%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
     border-style: solid;
+    border-color: #00A2E8;
     border-radius: 1em;
-    padding: 10px;
+    padding: 1em;
 ***REMOVED***
 
-.backToListBtn:hover ***REMOVED***
-    color: lightgrey;
+.backToListBtn:hover***REMOVED***
+    background-color: #00A2E8;
+    color: white;
+***REMOVED***
+
+.deleteB ***REMOVED***
+    color: #00A2E8;
+    font-weight: bold;
+***REMOVED***
+
+input.btn.btn-primary:hover ***REMOVED***
+    width: 50%;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+    border-width: medium;
+***REMOVED***
+
+input.btn.btn-primary ***REMOVED***
+    width: 50%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+    border-width: medium;
+***REMOVED***
+
+.createBtn ***REMOVED***
+    width: 80%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+***REMOVED***
+
+.createBtn:hover ***REMOVED***
+        width: 80%;
+        background-color: #00A2E8;
+        color: white;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #00A2E8;
+        border-radius: 1em;
+        padding: 0.5em !important;
+***REMOVED***
+
+input.btn.btn-danger ***REMOVED***
+    border-radius: 1em !important;
+    padding: 20px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    font-size: 2em;
+    margin-bottom: 1em;
+***REMOVED***
+
+.center-content***REMOVED***
+    margin-left: auto;
+    margin-right:auto;
 ***REMOVED***
 
 .backBtnDiv***REMOVED***
-    margin-top: 100px;
+    margin-top: 2em;
 ***REMOVED***
 
 .searchBar ***REMOVED***
-    border-color: #00A2E8;
+    border-style: solid;
+    border-color: lightgrey;
     border-radius: 0.5em;
     color: #00A2E8;
-    width: 195px;
+    width: 15em;
+    height: 2.5em;
+    margin-bottom: 1em;
 ***REMOVED***
 
-    .searchBar:focus ***REMOVED***
-        border-color: #00A2E8;
+.searchBtn ***REMOVED***
+    border-style: solid;
+    border-radius: 1em !important;
+    border-color: #00A2E8 !important;
+    height: 2.5em;
+    width: 3.4em;
 ***REMOVED***
 
-.searchBtn***REMOVED***
-    border-radius: 0.5em;
+.searchBtn:hover ***REMOVED***
+    background-color: dodgerblue !important;
+    border-style: solid;
+    border-color: dodgerblue !important;
+    border-width: medium;
+***REMOVED***
+
+.btn***REMOVED***
+    padding: 0.375rem;
+***REMOVED***
+
+.searchIcon***REMOVED***
+    height: 1.2em;
+    width: 1.2em;
+***REMOVED***
+
+.editLink***REMOVED***
+    background-color: grey;
+    padding: 1em;
+    border-radius: 4em;
+***REMOVED***
+
+.editLink:hover ***REMOVED***
+    background-color: grey;
+    padding: 1em;
+    border-color: darkgrey;
+    border-style: solid;
+    border-radius: 4em;
+***REMOVED***
+     
+.editIcon ***REMOVED***
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+***REMOVED***
+
+.editIcon:hover ***REMOVED***
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
+***REMOVED***
+
+.row ***REMOVED***
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+***REMOVED***
+
+.userType ***REMOVED***
+    margin: -16px;
+    margin-left: 0px;
+    color: dimgrey;
+    font-size: 0.9em;
+***REMOVED***
+
+.settingsMenu ***REMOVED***
+    border-style: solid;
+    border-radius: 0.8em;
     border-color: #00A2E8;
-    color: white;
+    background-color: white;
+    margin: auto;
+    margin-top: 4em;
+***REMOVED***
+
+.statistics ***REMOVED***
+    margin-top: 3em;
+***REMOVED***
+
+.statisticsCount***REMOVED***
+    background-color: white;
+    border-radius: 1em;
+    max-width: 50%;
+    padding-top: 1em;
+    padding-bottom: 0.1em;
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+***REMOVED***
+
+.recentClientsGym ***REMOVED***
+    background-color: lightgrey;
+    color: #00A2E8;
+    border-radius: 1em;
+    padding: 1em;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: small;
+***REMOVED***
+
+.newUsersDiv ***REMOVED***
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 2em;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+***REMOVED***
+
+.videosUrl ***REMOVED***
+    text-decoration: none;
+    color: #00A2E8;
+    border-radius: 0.5em;
+    background-color: lightgrey;
+    padding: 0.3em;
+***REMOVED***
+
+.exercisesData***REMOVED***
+    font-weight: bold;
+    color: black;
+***REMOVED***
+
+.breakText***REMOVED***
+    word-break: break-word;
+***REMOVED***
+
+.breakTextOtherData ***REMOVED***
+    width: 60%;
+***REMOVED***
+
+.plansListDetailsDiv ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+    margin: 1em 0em;
+    padding: 1em 0em;
+***REMOVED***
+
+.dropdown ***REMOVED***
+    position: relative;
+    display: inline-block;
+    margin-right: 0em;
+***REMOVED***
+
+.dropdown-content ***REMOVED***
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 1em;
+    padding: 1em;
+    margin-left: 1.3em;
+    /*Brings everything to the front*/
+    z-index: 1;
+    width: 7em;
+***REMOVED***
+
+.plansSubMenuFix***REMOVED***
+    margin-left: 2.5em;
+***REMOVED***
+
+.requestsSubMenuFix***REMOVED***
+    margin-left: 1.5em;
+    width: 10em;
+***REMOVED***
+
+.dropdown:hover .dropdown-content ***REMOVED***
+    display: block;
+    text-align: center;
+***REMOVED***
+
+.dropdown:hover .dropbtn ***REMOVED***
+    background-color: white;
+
+***REMOVED***
+
+.dropdownBtnBorderFix ***REMOVED***
+    border-style: none;
+***REMOVED***
+
+button.subMenuItem, a.subMenuItem ***REMOVED***
+    background-color: white !important;
+    color: #00A2E8;
+    margin-left: 0em;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 1em;
+***REMOVED***
+
+button.subMenuItem:hover, a.subMenuItem:hover ***REMOVED***
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    color: white !important;
+    background-color: #00A2E8 !important;
+***REMOVED***
+
+
+.logout:hover .logoutIcon ***REMOVED***
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(1000%) contrast(105%);
+***REMOVED***
+
+.logout***REMOVED***
+    color:red !important;
+***REMOVED***
+
+.spacingLi ***REMOVED***
+    margin-left: 2em;
+***REMOVED***
+
+label.labelOne***REMOVED***
+    margin-right: 2.5em !important;
+***REMOVED***
+
+label.labelTwo ***REMOVED***
+    margin-right: 1em !important;
+***REMOVED***
+
+label.labelThree ***REMOVED***
+    margin-right: 2em !important;
+***REMOVED***
+
+label.labelFour ***REMOVED***
+    margin-right: 1.2em !important;
+***REMOVED***
+
+.descriptionBox ***REMOVED***
+    vertical-align: middle;
+    height: 6em;
+    border-style: solid;
+    border-radius: 1em;
+    border-width: 0.2em;
+    border-color: lightgrey;
+    width: 15em;
+    padding: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+***REMOVED***
+
+.profilePhoto***REMOVED***
+    max-width: 80%;
+    margin: 1em;
+    margin-bottom: 0em;
+    border-radius: 1em;
+***REMOVED***
+
+.profilePhotoDiv***REMOVED***
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 1em;
+***REMOVED***
+
+.profilePicMenu ***REMOVED***
+    max-width: 80%;
+***REMOVED***
+
+.marginFixChooseFile ***REMOVED***
+    margin-bottom: 3em;
+***REMOVED***
+
+.col-md-8***REMOVED***
+    margin: auto;
 ***REMOVED***

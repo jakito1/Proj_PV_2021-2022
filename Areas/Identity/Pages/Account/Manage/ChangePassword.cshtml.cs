@@ -2,14 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 ***REMOVED***
@@ -60,24 +57,24 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Palavra-passe Atual")]
             public string OldPassword ***REMOVED*** get; set; ***REMOVED***
 
             /// <summary>
             ///     Gets or sets the new user password.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The ***REMOVED***0***REMOVED*** must be at least ***REMOVED***2***REMOVED*** and at max ***REMOVED***1***REMOVED*** characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A ***REMOVED***0***REMOVED*** deve conter pelo menos ***REMOVED***2***REMOVED*** e no máximo ***REMOVED***1***REMOVED*** caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Nova palavra-passe")]
             public string NewPassword ***REMOVED*** get; set; ***REMOVED***
 
             /// <summary>
             ///     Gets or sets the repeated new user password.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Confirme a nova palavra-passe")]
+            [Compare("NewPassword", ErrorMessage = "A nova palavra-passe e a confirmação da nova palavra-passe não correspondem.")]
             public string ConfirmPassword ***REMOVED*** get; set; ***REMOVED***
     ***REMOVED***
 
@@ -87,13 +84,13 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         ***REMOVED***
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
+                return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            var hasPassword = await _userManager.HasPasswordAsync(user);
+            bool hasPassword = await _userManager.HasPasswordAsync(user);
             if (!hasPassword)
             ***REMOVED***
                 return RedirectToPage("./SetPassword");
@@ -114,16 +111,16 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 return Page();
         ***REMOVED***
 
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
+                return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
         ***REMOVED***
 
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
+            IdentityResult changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
             if (!changePasswordResult.Succeeded)
             ***REMOVED***
-                foreach (var error in changePasswordResult.Errors)
+                foreach (IdentityError error in changePasswordResult.Errors)
                 ***REMOVED***
                     ModelState.AddModelError(string.Empty, error.Description);
             ***REMOVED***
@@ -131,8 +128,8 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         ***REMOVED***
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Palavra-passe atualizada com sucesso");
+            StatusMessage = "A sua palavra-passe foi atualizada.";
 
             return RedirectToPage();
     ***REMOVED***
