@@ -62,44 +62,11 @@ function hideButtonPlanEditRequestPartial() {
     document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
 }
 
-function limitExerciseRepetitions(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
+function helpButton() {
+    if (document.getElementById('helpText').style.display == "none") {
+        document.getElementById('helpText').style.display = "block";
     } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 999) {
-        input.value = 999
-    }
-}
-function limitExerciseDuration(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 120) {
-        input.value = 120
-    }
-}
-function limitMealForm(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 99999) {
-        input.value = 99999
-    }
-}
-function limitPercentage(input) {
-    if (Math.abs(input.value) > 0) {
-        input.value = Math.abs(input.value);
-    } else {
-        input.value = null;
-    }
-    if (Math.abs(input.value) > 100) {
-        input.value = 100
+        document.getElementById('helpText').style.display = "none";
     }
 }
 

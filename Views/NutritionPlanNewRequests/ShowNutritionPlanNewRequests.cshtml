@@ -3,6 +3,18 @@
 
 <h1>Pedidos de Plano Novo <img src=~/icons/leafIcon.svg/></h1>
 
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    @if(User.IsInRole("nutritionist")){
+        <p>Aqui pode <b>ver os pedidos</b> de <b>novo plano de nutrição</b> dos clientes associados.</p>
+        <p>Nos <b>detalhes</b> de um pedido, pode então proceder à <b>criação</b> de um <b>novo plano de nutrição</b>.</p>
+    }else if(User.IsInRole("client")){
+        <p>Aqui pode <b>ver e apagar os pedidos</b> de <b>novos planos de nutrição</b> que requisitou.</p>
+    }
+</div>
+
+
 @if (User.IsInRole("nutritionist"))
 {
     <div class="titlesMargin">

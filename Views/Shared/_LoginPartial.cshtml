@@ -4,11 +4,12 @@
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
 @inject IPhotoManagement PhotoManagement
+@inject IInteractNotification InteractNotification;
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        @if (!User.IsInRole("administrator"))
+        @if (!User.IsInRole("administrator") && !User.IsInRole("nutritionist"))
         {
             <li class="nav-item">
                 <a class="nav-link text-dark menuItem" asp-area="" asp-controller="Machines" asp-action="ShowMachines">Máquinas</a>
@@ -88,7 +89,7 @@
             @{
                 string? profilePic = await PhotoManagement.LoadProfileImage(User.Identity.Name);
             }
-            @if (profilePic is not null && !string.Equals(profilePic, ""))
+            @if (!string.IsNullOrEmpty(profilePic))
             {
                 <button class="nav-link text-dark menuItem dropdownBtnBorderFix">
                     <div class="accountIconPicDiv"><img class="accountIconPic" src="@profilePic" alt="accountIcon" /></div>
@@ -126,8 +127,29 @@
 
         @if (!(User.IsInRole("administrator")))
         {
-            <li class="nav-item notificationBell">
-                <a class="nav-link text-dark menuItem iconBorder" asp-area="" asp-controller="Home" asp-action="Index"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
+            <li class="dropdown">
+                @if (await InteractNotification.NotificationsExist(User.Identity.Name))
+                {
+                    <a class="nav-link text-dark menuItem iconBorder"><img class="notificationAlertIcon" src="~/icons/notificationAlertIcon.svg" alt="notificationsIcon" /></a>
+                }else{
+                    <a class="nav-link text-dark menuItem iconBorder"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
+                }
+                <div class="dropdown-content NotificationsSubMenuFix">
+                    @foreach (var notification in await InteractNotification.GetLastThree(User.Identity.Name))
+                    {
+                        <div class="notificationInMenu">
+                            <p>@notification.NotificationMessage</p>
+                            <p>(@notification.NotificationTime)</p>
+                        </div>
+                    }
+                    @if (await InteractNotification.NotificationsExist(User.Identity.Name))
+                    {
+                        <a class="btn btn-link subMenuItem" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications">Ver Tudo</a>
+                    }else{
+                        <p class="details">Não tem notificações</p>
+                    }
+                    
+                </div>
             </li>
         }
         else

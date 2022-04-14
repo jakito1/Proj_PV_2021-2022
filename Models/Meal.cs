@@ -17,10 +17,12 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the Meal name.
         /// </summary>
         [Required(ErrorMessage = "Este campo é obrigatório.")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? MealName { get; set; }
         /// <summary>
         /// Gets and Sets the Meal description.
         /// </summary>
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? MealDescription { get; set; }
         /// <summary>
         /// Gets and Sets the Meal calories.

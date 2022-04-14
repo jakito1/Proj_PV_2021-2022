@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
@@ -19,12 +20,14 @@ namespace NutriFitWeb.Models
         /// Display name = Primeiro Nome
         /// </summary>
         [DisplayName("Primeiro Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? TrainerFirstName { get; set; }
         // <summary>
         /// Gets and Sets the Trainer last name.
         /// Display name = Último Nome
         /// </summary>
         [DisplayName("Último Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? TrainerLastName { get; set; }
         /// <summary>
         /// Gets and Sets the Trainer associated Gym.

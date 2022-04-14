@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace NutriFitWebTest
+namespace NutriFitWebTest.Models
 {
     public class ClientModelTest
     {

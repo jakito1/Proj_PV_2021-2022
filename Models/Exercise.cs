@@ -16,11 +16,13 @@ namespace NutriFitWeb.Models
         /// <summary>
         /// Gets and Sets the exercise name.
         /// </summary>
-        [Required(ErrorMessage = "Campo Obrigatório")]
+        [Required(ErrorMessage = "Campo Obrigatório (máximo 20 caracteres)")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ExerciseName { get; set; }
         /// <summary>
         /// Gets and Sets the exercise description.
         /// </summary>
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? ExerciseDescription { get; set; }
 
         /// <summary>
@@ -40,7 +42,6 @@ namespace NutriFitWeb.Models
         /// </summary>
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
         public string? ExerciseURL { get; set; }
-        /*public List<Picture>? Pictures { get; set; }*/
 
         /// <summary>
         /// Gets and Sets the exercise type.
