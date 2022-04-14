@@ -1,6 +1,8 @@
-﻿namespace NutriFitWebTest;
-
-public class NutritionistsControllerTest
+﻿namespace NutriFitWebTest.Controllers
 {
-    //TODO
+    public class NutritionistsControllerTest
+    {
+        //TODO
+    }
 }
+

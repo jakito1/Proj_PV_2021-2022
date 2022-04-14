@@ -5,7 +5,7 @@ using NutriFitWeb.Controllers;
 using NutriFitWeb.Models;
 using Xunit;
 
-namespace NutriFitWebTest
+namespace NutriFitWebTest.Controllers
 {
     public class HomeControllerTest
     {

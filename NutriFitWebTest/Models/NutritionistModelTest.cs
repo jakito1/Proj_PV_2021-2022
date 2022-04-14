@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace NutriFitWebTest
+namespace NutriFitWebTest.Models
 {
     public class NutritionistModelTest
     {

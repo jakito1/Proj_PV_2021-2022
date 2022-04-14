@@ -141,6 +141,9 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the nutrition plan request list of the client.
         /// </summary>
         public List<NutritionPlanNewRequest>? NutritionPlanRequests { get; set; }
+        /// <summary>
+        /// Gets and Sets the client's user account model.
+        /// </summary>
         public UserAccountModel? UserAccountModel { get; set; }
 
     }
@@ -152,9 +155,5 @@ namespace NutriFitWeb.Models
         MALE,
         [Display(Name = "Feminino")]
         FEMALE
-        /// <summary>
-        /// Gets and Sets the client's user account model.
-        /// </summary>
-        public UserAccountModel? UserAccountModel { get; set; }
     }
 }
