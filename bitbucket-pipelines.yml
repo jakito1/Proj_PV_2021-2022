@@ -24,7 +24,7 @@ pipelines:
             script:
               - export SOLUTION_NAME=NutrifitWeb
               - export REPORTS_PATH=linter-reports
-              - dotnet new tool-manifest
+              - dotnet new tool-manifest --force
               - dotnet tool install JetBrains.ReSharper.GlobalTools
               - dotnet tool restore
               - dotnet jb inspectcode $***REMOVED***SOLUTION_NAME***REMOVED***.sln --output="$***REMOVED***REPORTS_PATH***REMOVED***/jb-$***REMOVED***BITBUCKET_BUILD_NUMBER***REMOVED***.xml"
