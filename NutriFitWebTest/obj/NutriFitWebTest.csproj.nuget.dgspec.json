@@ -175,6 +175,10 @@
               "target": "Package",
               "version": "[4.17.2, )"
           ***REMOVED***
+            "XunitXml.TestLogger": ***REMOVED***
+              "target": "Package",
+              "version": "[3.0.70, )"
+          ***REMOVED***
             "coverlet.collector": ***REMOVED***
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
