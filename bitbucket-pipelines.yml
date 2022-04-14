@@ -15,7 +15,7 @@ pipelines:
             script:
               - REPORTS_PATH=./test-reports/build_$***REMOVED***BITBUCKET_BUILD_NUMBER***REMOVED***
               - dotnet restore
-              - dotnet build --no-restore --configuration Release
+              - dotnet build --no-restore
               - dotnet test --no-build --configuration Release --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
         - step:
             name: Lint the code
