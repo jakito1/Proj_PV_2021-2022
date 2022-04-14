@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NutriFitWeb.Models
 ***REMOVED***
@@ -20,6 +21,7 @@ namespace NutriFitWeb.Models
         /// Display name = Primeiro Nome
         /// </summary>
         [DisplayName("Primeiro Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ClientFirstName ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
@@ -27,6 +29,7 @@ namespace NutriFitWeb.Models
         /// Display name = Último Nome
         /// </summary>
         [DisplayName("Último Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? ClientLastName ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace NutriFitWeb.Models
         /// Display name = Peso
         /// </summary>
         [DisplayName("Peso")]
+        [Range(0.0, 999.9, ErrorMessage = "Indique um valor entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** quilogramas.")]
         public double? Weight ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
@@ -49,14 +53,15 @@ namespace NutriFitWeb.Models
         /// Display name = Altura
         /// </summary>
         [DisplayName("Altura")]
-        public double? Height ***REMOVED*** get; set; ***REMOVED***
+        [Range(1, 999, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** centímetros.")]
+        public int? Height ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
         /// Gets and Sets the Client lean mass.
         /// Display name = Massa Magra
         /// </summary>
         [DisplayName("Massa Magra")]
-        [Range(0, 100)]
+        [Range(0.1, 100.0, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED***.")]
         public double? LeanMass ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
@@ -64,7 +69,7 @@ namespace NutriFitWeb.Models
         /// Display name = Massa Gorda
         /// </summary>
         [DisplayName("Massa Gorda")]
-        [Range(0, 100)]
+        [Range(0.1, 100.0, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED***.")]
         public double? FatMass ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
@@ -74,11 +79,9 @@ namespace NutriFitWeb.Models
         [DisplayName("Outros Dados")]
         public string? OtherClientData ***REMOVED*** get; set; ***REMOVED***
 
-        /// <summary>
-        /// Gets and Sets a Row version.
-        /// </summary>
-        [Timestamp]
-        public byte[]? RowVersion ***REMOVED*** get; set; ***REMOVED***
+        public DateTime? DateAddedToGym ***REMOVED*** get; set; ***REMOVED***
+        public DateTime? DateAddedToTrainer ***REMOVED*** get; set; ***REMOVED***
+        public DateTime? DateAddedToNutritionist ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>
         /// Gets and Sets the Gym associated to the client.
@@ -118,6 +121,10 @@ namespace NutriFitWeb.Models
         /// </summary>
         public bool WantsTrainer ***REMOVED*** get; set; ***REMOVED*** = false;
 
+        [Column(TypeName = "nvarchar(24)")]
+        [DisplayName("Sexo")]
+        public ClientSex? ClientSex ***REMOVED*** get; set; ***REMOVED***
+
         /// <summary>
         /// Gets and Sets the training plan list of the client.
         /// </summary>
@@ -134,10 +141,19 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the nutrition plan request list of the client.
         /// </summary>
         public List<NutritionPlanNewRequest>? NutritionPlanRequests ***REMOVED*** get; set; ***REMOVED***
-
         /// <summary>
         /// Gets and Sets the client's user account model.
         /// </summary>
         public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
+
+***REMOVED***
+    public enum ClientSex
+    ***REMOVED***
+        [Display(Name = "Nenhum")]
+        NONE,
+        [Display(Name = "Masculino")]
+        MALE,
+        [Display(Name = "Feminino")]
+        FEMALE
 ***REMOVED***
 ***REMOVED***

@@ -62,44 +62,11 @@ function hideButtonPlanEditRequestPartial() ***REMOVED***
     document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
 ***REMOVED***
 
-function limitExerciseRepetitions(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
+function helpButton() ***REMOVED***
+    if (document.getElementById('helpText').style.display == "none") ***REMOVED***
+        document.getElementById('helpText').style.display = "block";
 ***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 999) ***REMOVED***
-        input.value = 999
-***REMOVED***
-***REMOVED***
-function limitExerciseDuration(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 120) ***REMOVED***
-        input.value = 120
-***REMOVED***
-***REMOVED***
-function limitMealForm(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 99999) ***REMOVED***
-        input.value = 99999
-***REMOVED***
-***REMOVED***
-function limitPercentage(input) ***REMOVED***
-    if (Math.abs(input.value) > 0) ***REMOVED***
-        input.value = Math.abs(input.value);
-***REMOVED*** else ***REMOVED***
-        input.value = null;
-***REMOVED***
-    if (Math.abs(input.value) > 100) ***REMOVED***
-        input.value = 100
+        document.getElementById('helpText').style.display = "none";
 ***REMOVED***
 ***REMOVED***
 

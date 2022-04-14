@@ -10,78 +10,95 @@
 ***REMOVED***
 
 <h1>@ViewData["Title"]</h1>
-<hr />
+
 <div class="col-md-8 profileDivs">
     <form asp-action="EditClientSettings" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ClientId" />
         <div class="form-group">
             <label asp-for="ClientProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
-            @if(Model.ClientProfilePhoto is not null)
+            @if (Model.ClientProfilePhoto is not null)
             ***REMOVED***
                 <div><img class="profilePhoto" src="@Model.ClientProfilePhoto.PhotoUrl" /></div>
         ***REMOVED***
-            <input type="file" asp-for="ClientProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
+            <input type="file" asp-for="ClientProfilePhoto" class="form-control marginFixChooseFile" name="formFile" />
             <span asp-validation-for="ClientProfilePhoto" class="text-danger"></span>
         </div>
 
+
         <table class="formTables">
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="ClientFirstName" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="ClientFirstName" class="formsInput" />
-                        <span asp-validation-for="ClientFirstName" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="ClientLastName" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="ClientLastName" class="formsInput" />
-                        <span asp-validation-for="ClientLastName" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="ClientBirthday" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="ClientBirthday" class="formsInput" />
-                        <span asp-validation-for="ClientBirthday" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="Weight" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="Weight" class="formsInput" />
-                        <span asp-validation-for="Weight" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="Height" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="Height" class="formsInput" />
-                        <span asp-validation-for="Height" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="LeanMass" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="LeanMass" min="1" oninput="limitPercentage(this);" class="formsInput" />
-                        <span asp-validation-for="LeanMass" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="FatMass" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="FatMass" min="1" oninput="limitPercentage(this);" class="formsInput" />
-                        <span asp-validation-for="FatMass" class="text-danger"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="alignTableTitles"><label asp-for="OtherClientData" class="control-label listsItemTitle"></label></th>
-                    <td>
-                        <input asp-for="OtherClientData" class="formsInput" />
-                        <span asp-validation-for="OtherClientData" class="text-danger"></span>
-                    </td>
-                </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="ClientFirstName" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="ClientFirstName" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="ClientFirstName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="ClientLastName" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="ClientLastName" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="ClientLastName" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="ClientSex" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <select asp-for="ClientSex" class="formsInput" asp-items="Html.GetEnumSelectList<ClientSex>()"></select>
+                    <br />
+                    <span asp-validation-for="ClientSex" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="ClientBirthday" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="ClientBirthday" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="ClientBirthday" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="Weight" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="Weight" class="formsInput" type="number" step="0.1"/>
+                    <br />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="Height" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="Height" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="LeanMass" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="LeanMass" class="formsInput" type="number" step="0.1"/>
+                    <br />
+                    <span asp-validation-for="LeanMass" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="FatMass" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="FatMass" class="formsInput" type="number" step="0.1"/>
+                    <br />
+                    <span asp-validation-for="FatMass" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="alignTableTitles"><label asp-for="OtherClientData" class="control-label listsItemTitle"></label></th>
+                <td>
+                    <input asp-for="OtherClientData" class="formsInput" />
+                    <br />
+                    <span asp-validation-for="OtherClientData" class="text-danger"></span>
+                </td>
+            </tr>
         </table>
 
         <div class="form-group">
@@ -93,7 +110,7 @@
 @if (User.IsInRole("administrator"))
 ***REMOVED***
     <div class="backBtnDiv">
-    
+
         <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
     </div>
 ***REMOVED***

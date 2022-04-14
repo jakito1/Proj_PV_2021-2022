@@ -18,6 +18,7 @@ namespace NutriFitWeb.Models
         /// </summary>
         [Required(ErrorMessage = "Campo Obrigatório")]
         [DisplayName("Nome")]
+        [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
         public string? TrainingPlanNewRequestName ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the new request description.
@@ -25,6 +26,7 @@ namespace NutriFitWeb.Models
         /// </summary>
         [Required(ErrorMessage = "Campo Obrigatório")]
         [DisplayName("Descrição")]
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? TrainingPlanNewRequestDescription ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the new request date.

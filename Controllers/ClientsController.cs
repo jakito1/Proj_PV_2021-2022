@@ -17,6 +17,7 @@ namespace NutriFitWeb.Controllers
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
+        private readonly IInteractNotification _interactNotification;
         /// <summary>
         /// Constructor
         /// </summary>
@@ -27,12 +28,14 @@ namespace NutriFitWeb.Controllers
         public ClientsController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId isUserInRoleByUserId,
-            IPhotoManagement photoManagement)
+            IPhotoManagement photoManagement,
+            IInteractNotification interactNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = isUserInRoleByUserId;
             _photoManagement = photoManagement;
+            _interactNotification = interactNotification;
     ***REMOVED***
 
         /// <summary>
@@ -118,6 +121,7 @@ namespace NutriFitWeb.Controllers
             Include(a => a.Nutritionist.NutritionPlans).
             Include(a => a.TrainingPlanRequests).
             Include(a => a.NutritionPlanRequests).
+            Include(a => a.UserAccountModel).
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && gym is not null && client.Gym is null ||
@@ -140,6 +144,13 @@ namespace NutriFitWeb.Controllers
                     client.WantsNutritionist = false;
                     client.TrainingPlanRequests = null;
                     client.NutritionPlanRequests = null;
+                    client.DateAddedToGym = null;
+                    await _interactNotification.Create("Foi removido do seu ginásio.", client.UserAccountModel);
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    client.DateAddedToGym = DateTime.Now;
+                    await _interactNotification.Create($"Foi adicionado ao ginásio ***REMOVED***client.Gym.GymName***REMOVED***.", client.UserAccountModel);
             ***REMOVED***
                 _context.Client.Update(client);
                 await _context.SaveChangesAsync();
@@ -159,10 +170,11 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> ChangeClientTrainerStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = await _context.Client.
             Include(a => a.Trainer).
             Include(a => a.Trainer.TrainingPlans).
+            Include(a => a.UserAccountModel).
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && trainer is not null && client.Gym == trainer.Gym && client.Trainer is null ||
@@ -173,6 +185,16 @@ namespace NutriFitWeb.Controllers
                     client.Trainer.TrainingPlans = client.Trainer.TrainingPlans.Where(a => a.Client != client).ToList();
             ***REMOVED***
                 client.Trainer = (client.Trainer is null) ? trainer : null;
+                if (client.Trainer is null)
+                ***REMOVED***
+                    client.DateAddedToTrainer = null;
+                    await _interactNotification.Create($"O ***REMOVED***trainer.UserAccountModel.UserName***REMOVED*** já não é seu treinador.", client.UserAccountModel);
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    client.DateAddedToTrainer = DateTime.Now;
+                    await _interactNotification.Create($"O ***REMOVED***trainer.UserAccountModel.UserName***REMOVED*** é agora o seu treinador.", client.UserAccountModel);
+            ***REMOVED***
                 client.WantsTrainer = false;
                 _context.Client.Update(client);
                 await _context.SaveChangesAsync();
@@ -192,10 +214,11 @@ namespace NutriFitWeb.Controllers
         public async Task<IActionResult> ChangeClientNutritionistStatus(int? id, int? pageNumber, string? currentFilter)
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Nutritionist nutritionist = await _context.Nutritionist.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Client? client = await _context.Client.
             Include(a => a.Nutritionist).
             Include(a => a.Nutritionist.NutritionPlans).
+            Include(a => a.UserAccountModel).
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && nutritionist is not null && client.Gym == nutritionist.Gym && client.Nutritionist is null ||
@@ -206,6 +229,16 @@ namespace NutriFitWeb.Controllers
                     client.Nutritionist.NutritionPlans = client.Nutritionist.NutritionPlans.Where(a => a.Client != client).ToList();
             ***REMOVED***
                 client.Nutritionist = (client.Nutritionist is null) ? nutritionist : null;
+                if (client.Nutritionist is null)
+                ***REMOVED***
+                    client.DateAddedToNutritionist = null;
+                    await _interactNotification.Create($"O ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** já não é seu nutricionista.", client.UserAccountModel);
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    client.DateAddedToNutritionist = DateTime.Now;
+                    await _interactNotification.Create($"O ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** é agora o seu nutricionista.", client.UserAccountModel);
+            ***REMOVED***
                 client.WantsNutritionist = false;
                 _context.Client.Update(client);
                 await _context.SaveChangesAsync();
@@ -260,10 +293,10 @@ namespace NutriFitWeb.Controllers
                 return BadRequest();
         ***REMOVED***
 
-            Client? client = await _context.Client.FindAsync(id);
+            Client? client = await _context.Client.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.ClientId == id);
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Trainer trainer = await _context.Trainer.Include(a => a.Clients).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer trainer = await _context.Trainer.Include(a => a.Clients).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             if (client is null)
             ***REMOVED***
@@ -274,6 +307,14 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 if (await TryUpdateModelAsync<Client>(client, "",
                 c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData))
+                ***REMOVED***
+                    if (trainer is not null)
+                    ***REMOVED***
+                        await _interactNotification.Create($"O treinador ***REMOVED***trainer.UserAccountModel.UserName***REMOVED*** alterou algumas informações do seu perfil.", client.UserAccountModel);
+                ***REMOVED***
+                    else if (nutritionist is not null)
+                    ***REMOVED***
+                        await _interactNotification.Create($"O nutricionista ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** alterou algumas informações do seu perfil.", client.UserAccountModel);
                 ***REMOVED***
                     await _context.SaveChangesAsync();
                     return LocalRedirect(Url.Content("~/"));
@@ -324,7 +365,6 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return BadRequest();
         ***REMOVED***
-
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
 
@@ -340,7 +380,8 @@ namespace NutriFitWeb.Controllers
 
             if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.ClientFirstName, c => c.ClientLastName, c => c.ClientBirthday,
-                c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData, c => c.ClientProfilePhoto))
+                c => c.Weight, c => c.Height, c => c.LeanMass, c => c.FatMass, c => c.OtherClientData,
+                c => c.ClientProfilePhoto, c => c.ClientSex))
             ***REMOVED***
                 if (oldPhoto is not null && clientToUpdate.ClientProfilePhoto is not null)
                 ***REMOVED***
@@ -351,15 +392,17 @@ namespace NutriFitWeb.Controllers
                     clientToUpdate.ClientProfilePhoto = oldPhoto;
             ***REMOVED***
 
-                await _context.SaveChangesAsync();
-                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-                ***REMOVED***
-                    return RedirectToAction("ShowAllUsers", "Admins");
-            ***REMOVED***
                 if (clientToUpdate.ClientProfilePhoto is not null)
                 ***REMOVED***
                     clientToUpdate.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
             ***REMOVED***
+                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
+                ***REMOVED***
+                    await _interactNotification.Create($"O administrador alterou parte do seu perfil.", clientToUpdate.UserAccountModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ShowAllUsers", "Admins");
+            ***REMOVED***
+                await _context.SaveChangesAsync();
                 return View(clientToUpdate);
         ***REMOVED***
             return View(clientToUpdate);
@@ -377,13 +420,17 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             UserAccountModel? user = null;
             Client? client = null;
-            if (User.Identity is not null)
+            if (User.Identity is not null && _context.Client is not null)
             ***REMOVED***
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (user is not null)
+                client = await _context.Client.Include(a => a.Gym).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                if (user is not null && client is not null && client.Gym is not null)
                 ***REMOVED***
-                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                     client.WantsTrainer = true;
+                    foreach (Trainer trainer in _context.Trainer.Include(a => a.UserAccountModel).Where(a => a.Gym == client.Gym))
+                    ***REMOVED***
+                        await _interactNotification.Create($"O cliente '***REMOVED***client.UserAccountModel.UserName***REMOVED***' está à procura de um treinador.", trainer.UserAccountModel);
+                ***REMOVED***
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowTrainingPlans", "TrainingPlans", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
             ***REMOVED***
@@ -403,13 +450,17 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             UserAccountModel? user = null;
             Client? client = null;
-            if (User.Identity is not null)
+            if (User.Identity is not null && _context.Client is not null)
             ***REMOVED***
                 user = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (user is not null)
+                client = await _context.Client.Include(a => a.Gym).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                if (user is not null && client is not null && client.Gym is not null)
                 ***REMOVED***
-                    client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                     client.WantsNutritionist = true;
+                    foreach (Nutritionist nutritionist in _context.Nutritionist.Include(a => a.UserAccountModel).Where(a => a.Gym == client.Gym))
+                    ***REMOVED***
+                        await _interactNotification.Create($"O cliente '***REMOVED***client.UserAccountModel.UserName***REMOVED***' está à procura de um nutricionista.", nutritionist.UserAccountModel);
+                ***REMOVED***
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowNutritionPlans", "NutritionPlans", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
             ***REMOVED***

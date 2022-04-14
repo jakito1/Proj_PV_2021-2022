@@ -17,6 +17,7 @@ namespace NutriFitWeb.Controllers
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
         private readonly IPhotoManagement _photoManagement;
+        private readonly IInteractNotification _interactNotification;
 
         /// <summary>
         /// Constructor
@@ -28,12 +29,14 @@ namespace NutriFitWeb.Controllers
         public TrainersController(ApplicationDbContext context,
             UserManager<UserAccountModel> userManager,
             IIsUserInRoleByUserId inRoleByUserId,
-            IPhotoManagement photoManagement)
+            IPhotoManagement photoManagement,
+            IInteractNotification interactNotification)
         ***REMOVED***
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
             _photoManagement = photoManagement;
+            _interactNotification = interactNotification;
     ***REMOVED***
         /// <summary>
         /// Renders a view to display all the Trainers.
@@ -97,6 +100,7 @@ namespace NutriFitWeb.Controllers
                 Include(a => a.Gym).
                 Include(a => a.Clients).
                 Include(a => a.TrainingPlans).
+                Include(a => a.UserAccountModel).
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
 
@@ -105,6 +109,11 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 trainer.Clients = null;
                 trainer.TrainingPlans = null;
+                await _interactNotification.Create("Foi removido do seu ginásio.", trainer.UserAccountModel);
+        ***REMOVED***
+            else
+            ***REMOVED***
+                await _interactNotification.Create($"Foi adicionado ao ginásio ***REMOVED***trainer.Gym.GymName***REMOVED***.", trainer.UserAccountModel);
         ***REMOVED***
             await _context.SaveChangesAsync();
 
@@ -199,16 +208,18 @@ namespace NutriFitWeb.Controllers
                     trainerToUpdate.TrainerProfilePhoto = oldPhoto;
             ***REMOVED***
 
-                await _context.SaveChangesAsync();
-                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-                ***REMOVED***
-                    return RedirectToAction("ShowAllUsers", "Admins");
-            ***REMOVED***
                 if (trainerToUpdate.TrainerProfilePhoto is not null)
                 ***REMOVED***
                     trainerToUpdate.TrainerProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
             ***REMOVED***
-                return View(trainerToUpdate);
+                if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
+                ***REMOVED***
+                    await _interactNotification.Create($"O administrador alterou parte do seu perfil.", trainerToUpdate.UserAccountModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("ShowAllUsers", "Admins");
+            ***REMOVED***
+
+                await _context.SaveChangesAsync();
         ***REMOVED***
             return View(trainerToUpdate);
     ***REMOVED***
@@ -222,11 +233,15 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
-                return _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
+                return _context.Trainer
+                    .Include(a => a.UserAccountModel)
+                    .Include(a => a.TrainerProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
         ***REMOVED***
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Trainer
+                .Include(a => a.UserAccountModel)
+                .Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

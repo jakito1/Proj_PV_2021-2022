@@ -9,7 +9,14 @@
     ViewData["Title"] = "ShowTrainers";
 ***REMOVED***
 
-<h1>Treinadores</h1>
+<h1>Treinadores <img class="iconMargin" src="~/icons/trainerIcon.svg" alt="TrainerIcon" /></h1>
+
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+    <p>Aqui pode <b>adicionar</b>, <b>remover</b> e <b>ver os detalhes</b> de <b>Treinadores</b>.</p>
+</div>
+
 <form asp-action="ShowTrainers" method="get">
     <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar" />
     <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>

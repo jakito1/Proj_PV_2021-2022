@@ -16,6 +16,7 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the edit request description.
         /// </summary>
         [Required(ErrorMessage = "Campo Obrigatório")]
+        [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? NutritionPlanEditRequestDescription ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the edit request date.

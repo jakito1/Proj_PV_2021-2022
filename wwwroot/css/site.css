@@ -150,7 +150,7 @@ button ***REMOVED***
 h1 ***REMOVED***
     color: #00A2E8 !important;
     font-weight: 900 !important;
-    font-size: 480% !important;
+    font-size: 400% !important;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 0.4em;
 ***REMOVED***
@@ -244,6 +244,22 @@ h1 ***REMOVED***
     width: 1em;
     font-size: 1.4em;
     border-radius: 1em;
+    border-style: none !important;
+***REMOVED***
+
+.notificationAlertIcon ***REMOVED***
+    margin-top: 0.3em;
+    text-decoration: none !important;
+    height: 1em;
+    width: 1em;
+    font-size: 1.4em;
+    border-style: none !important;
+***REMOVED***
+
+.NotificationsSubMenuFix ***REMOVED***
+    margin-top: 0.5em;
+    margin-left: -9.2em !important;
+    width: 16em !important;
 ***REMOVED***
 
 .accountIcon ***REMOVED***
@@ -255,13 +271,6 @@ h1 ***REMOVED***
     width: 1em;
     font-size: 1.6em;
     border-radius: 1em;
-***REMOVED***
-
-
-
-.notificationIcon:hover ***REMOVED***
-    height: 1.1em;
-    width: 1.1em;
 ***REMOVED***
 
 .icons ***REMOVED***
@@ -309,6 +318,10 @@ link***REMOVED***
     color: #00A2E8;
     background-color: white;
     border-radius: 1em;
+***REMOVED***
+
+.exercisesMealsTable ***REMOVED***
+    table-layout: fixed !important;
 ***REMOVED***
 
 .thStyle ***REMOVED***
@@ -383,7 +396,6 @@ font-weight: bold;*/
 ***REMOVED***
 
 div.titlesMargin ***REMOVED***
-    margin-top: 3em;
     margin-bottom: 1em;
 ***REMOVED***
 
@@ -602,7 +614,7 @@ input.btn.btn-danger ***REMOVED***
     border-color: lightgrey;
     border-radius: 0.5em;
     color: #00A2E8;
-    width: 15em;
+    width: 20em;
     height: 2.5em;
     margin-bottom: 1em;
 ***REMOVED***
@@ -683,19 +695,53 @@ input.btn.btn-danger ***REMOVED***
     margin-top: 4em;
 ***REMOVED***
 
-.statistics ***REMOVED***
-    margin-top: 3em;
+.homePageTitle ***REMOVED***
+    background-color: white;
+    color: #00A2E8;
+    font-size: 300%;
+    border-radius: 0.5em;
+    width: fit-content;
 ***REMOVED***
 
-.statisticsCount***REMOVED***
-    background-color: white;
+.welcome***REMOVED***
+    font-weight: 100;
+***REMOVED***
+
+.statisticsTable ***REMOVED***
+    background-color: lightgrey;
     border-radius: 1em;
-    max-width: 50%;
-    padding-top: 1em;
-    padding-bottom: 0.1em;
-    margin-left: auto;
-    margin-right:auto;
-    text-align: center;
+    width: 30em;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 1em;
+    border-style: solid;
+    border-color: grey;
+***REMOVED***
+
+.statisticsValues ***REMOVED***
+    color: #00A2E8;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 2em;
+    padding: 1em;
+***REMOVED***
+
+.statisticsTableHeaderFix***REMOVED***
+    color: lightgrey !important;
+    background-color: lightgrey !important;
+***REMOVED***
+
+.statisticsMargin ***REMOVED***
+    margin-bottom: 2em;
+***REMOVED***
+
+.imcTableFix ***REMOVED***
+    padding: 0.5em 0em !important;
+***REMOVED***
+
+.imcChart ***REMOVED***
+    max-width: 100%;
+    max-height: 100%;
 ***REMOVED***
 
 .recentClientsGym ***REMOVED***
@@ -851,7 +897,7 @@ label.labelFour ***REMOVED***
 ***REMOVED***
 
 .profilePhoto***REMOVED***
-    max-width: 80%;
+    max-width: 10em;
     margin: 1em;
     margin-bottom: 0em;
     border-radius: 1em;
@@ -873,4 +919,46 @@ label.labelFour ***REMOVED***
 
 .col-md-8***REMOVED***
     margin: auto;
+***REMOVED***
+
+.helpDivs ***REMOVED***
+    background-color: white;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    margin: auto;
+    padding: 1em;
+***REMOVED***
+
+.helpBtn ***REMOVED***
+    width: 6em;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
+***REMOVED***
+
+.helpBtn:hover ***REMOVED***
+    width: 6em;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
+***REMOVED***
+
+.notificationInMenu***REMOVED***
+    background-color: lightgrey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
+    padding: 0.5em;
+    margin-bottom: 0.5em !important;
 ***REMOVED***
