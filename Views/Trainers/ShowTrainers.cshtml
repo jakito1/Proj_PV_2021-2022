@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NutriFitWeb.Models.Trainer>
+﻿@model PaginatedList<NutriFitWeb.Models.Trainer>
 @using NutriFitWeb.Models
 @using NutriFitWeb.Services
 @using Microsoft.AspNetCore.Identity
@@ -9,37 +9,71 @@
     ViewData["Title"] = "ShowTrainers";
 }
 
-@{string? routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);}
-@{string? qsPath = ViewContext.HttpContext.Request.QueryString.Value;}
-@{string? returnUrl = $"{routeUrl}{qsPath}";}
-
 <h1>Treinadores</h1>
-
-<form asp-action="ShowTrainers" asp-route-id=email method="get">
-    <input type="text" name="email" placeholder="Insira o email do utilizador" class="searchBar"/>
-    <button type="submit" class="searchBtn"><i class="fa fa-search"></i></button>
+<form asp-action="ShowTrainers" method="get">
+    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o email do utilizador" class="searchBar" />
+    <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
 </form>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <div class="listsDiv">
-        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.UserName):</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
-        <br>
-        <b class="listsItem listsItemTitle">@Html.DisplayNameFor(model => model.UserAccountModel.Email):</b>
-        <p class="listsItem">@Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
+        <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder">UserName</b> @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
+        <p class="listsItem"><img src="~/icons/emailIcon.svg"/> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
-            @if(item.Gym == null){
-                <a asp-action="AddTrainerToGym" asp-route-id="@item.TrainerId" asp-route-url=@returnUrl class="fas fa-plus-circle icons addIcon"></a>
-            }else if(UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id){                   
-                <a asp-action="RemoveTrainerFromGym" asp-route-id="@item.TrainerId" asp-route-url=@returnUrl class="fas fa-minus-circle icons removeIcon"></a> 
-            }
 
-            <a asp-action="TrainerDetails" asp-route-id="@item.TrainerId" class="fa fa-info-circle icons"></a>
+            <a asp-action="ChangeTrainerGymStatus" asp-route-id="@item.TrainerId"
+           asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                @if (item.Gym is null)
+                {
+                    <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
+                }
+                else if (UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)
+                {
+                    <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
+                }
+            </a>
+
+            <a asp-action="TrainerDetails" asp-route-id="@item.TrainerId">
+                <img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" />
+            </a>
         </div>
     </div>
 }
 
-@if (!string.IsNullOrEmpty(qsPath))
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainers"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+    }
+
+    @if (nextDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainers"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+    }
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    {
+        <p class="noMoreResults">Não existem mais resultados</p>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
 {
     <div class="backBtnDiv">
         <a asp-action="ShowTrainers" class="backToListBtn">Voltar</a>

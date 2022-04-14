@@ -1,0 +1,155 @@
+﻿@model PaginatedList<NutriFitWeb.Models.TrainingPlan>
+@using NutriFitWeb.Services
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserAccountModel> UserManager
+@inject IHasTrainerNutritionistGym HasTrainerNutritionistGym
+@{
+    ViewData["Title"] = "Planos de Treino";
+}
+
+<h1>@ViewData["Title"] <img class="iconMargin" src="~/icons/dumbbellsIcon.svg" alt="dumbbellsIcon" /></h1>
+
+@if (User.IsInRole("trainer"))
+{
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlans" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+            <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
+        </form>
+    </div>
+}
+else if (User.IsInRole("client"))
+{
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlans" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+            <div class="marginFixChooseFile">
+                @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasTrainerAndWants(User.Identity.Name) &&
+               await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
+                {
+                    <a class="createBtn" asp-controller="Clients" asp-action="RequestTrainer"
+               asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Treinador</a>
+                }
+                @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasTrainer(User.Identity.Name) &&
+               await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
+                {
+                    <a class="createBtn" asp-controller="TrainingPlanNewRequests" asp-action="CreateTrainingPlanNewRequest"
+               asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Novo Plano</a>
+                }
+                <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
+            </div>
+        </form>
+    </div>
+}
+
+<div class="col-md-8">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="roundedCornerTableLeft thStyle">
+                    Nome
+                </th>
+                <th class="thStyle">
+                    Descrição
+                </th>
+                @if (User.IsInRole("trainer"))
+                {
+                    <th class="thStyle">
+                        Cliente
+                    </th>
+                }
+                <th class="roundedCornerTableRight thStyle">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
+                    </td>
+                    <td>
+                        @if (item.TrainingPlanDescription is null || item.TrainingPlanDescription == "")
+                        {
+                            <p class="details"><b>N/A</b></p>
+                        }
+                        else
+                        {
+                            string description = item.TrainingPlanDescription;
+                            if (description.Length > 20)
+                            {
+                                description = description.Substring(0, 20);
+                                <p class="details"><b>@description...</b></p>
+                            }
+                            else
+                            {
+                                <p class="details"><b>@description</b></p>
+                            }
+                        }
+                    </td>
+                    @if (User.IsInRole("trainer"))
+                    {
+                        if (item.Client is not null)
+                        {
+                            <td>
+                                <p class="details">@Html.DisplayFor(modelItem => item.Client.UserAccountModel.Email)</p>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <p class="details"><b>N/A</b></p>
+                            </td>
+                        }
+                    }
+
+                    <td>
+                        <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                        <a asp-action="TrainingPlanDetails" asp-route-id="@item.TrainingPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
+                        <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainingPlans"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+    }
+
+    @if (nextDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainingPlans"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+    }
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    {
+        <p class="noMoreResults">Não existem mais resultados</p>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+{
+    <div class="backBtnDiv">
+        <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
+    </div>
+}

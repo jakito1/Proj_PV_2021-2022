@@ -1,0 +1,49 @@
+﻿@model NutriFitWeb.Models.Gym
+
+@{
+    ViewData["Title"] = "Editar perfil do Ginásio";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="col-md-4 profileDivs">
+    <form asp-action="EditGymSettings"  enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="GymId" />
+        <div class="form-group">
+            <label asp-for="GymProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
+            @if(Model.GymProfilePhoto is not null)
+            {
+                <img class="profilePhoto" src="@Model.GymProfilePhoto.PhotoUrl" />
+            }
+            <input type="file" asp-for="GymProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
+            <span asp-validation-for="GymProfilePhoto" class="text-danger"></span>
+        </div>
+
+        <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="GymName" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="GymName" class="formsInput" />
+                        <span asp-validation-for="GymName" class="text-danger"></span>
+                    </td>
+                </tr>
+        </table>
+
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div class="backBtnDiv">
+    @if (User.IsInRole("administrator"))
+    {
+        <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
+    }
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
@@ -12,9 +11,6 @@ namespace NutriFitWeb.Controllers
     /// </summary>
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<UserAccountModel> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
         /// <summary>
         /// Build the HomeController to be used on the main page.
@@ -22,50 +18,43 @@ namespace NutriFitWeb.Controllers
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
         /// <param name="roleManager">Provides the APIs for managing roles in a persistence store.</param>
-        public HomeController(ILogger<HomeController> logger,
-            UserManager<UserAccountModel> userManager,
+        public HomeController(UserManager<UserAccountModel> userManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext context)
         {
-            _logger = logger;
-            _userManager = userManager;
-            _roleManager = roleManager;
             try
             {
                 SeedData.Seed(userManager, roleManager, context).Wait();
-            } catch
+            }
+            catch
             {
-              
+
             }
         }
 
         /// <summary>
         /// Redirects to the Index page.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ViewResult</returns>
         public IActionResult Index()
         {
+            HttpContext.Session.Clear();
             return View();
         }
 
         /// <summary>
-        /// Redirects to the Privacy page.
+        /// Redirects to the Users page.
         /// </summary>
-        /// <returns></returns>
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        /// <returns>ViewResult</returns>
         public IActionResult Users()
         {
             return View();
         }
 
         /// <summary>
-        /// When an error occurs.
+        /// Redirects to Error Page when an error occurs.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ViewResult</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

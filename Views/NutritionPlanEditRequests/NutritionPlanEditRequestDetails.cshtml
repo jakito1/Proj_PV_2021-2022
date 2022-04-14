@@ -1,0 +1,30 @@
+﻿@model NutriFitWeb.Models.NutritionPlanEditRequest
+
+<h1>Detalhes do Pedido</h1>
+
+<div class="col-md-6 profileDivs">
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome do plano</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlan.NutritionPlanName)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição do Pedido</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)</p></td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data do Pedido</p></th>
+            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)</p></td>
+        </tr>
+    </table>
+    @if (User.IsInRole("nutritionist"))
+    {
+        <div class="form-group">
+            <a asp-controller="NutritionPlans" asp-action="EditNutritionPlan" type="submit" asp-route-id="@Model.NutritionPlan.NutritionPlanId" class="createBtn">Editar plano de nutrição</a>
+        </div>
+    }
+</div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlanEditRequests" class="backToListBtn">Voltar</a>
+</div>

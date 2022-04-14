@@ -2,19 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
@@ -82,7 +75,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             /// <summary>
             ///     Gets or sets if the user selected the "Remember me?" option.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Lembrar conta?")]
             public bool RememberMe { get; set; }
         }
 
@@ -124,14 +117,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
+                UserAccountModel user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
 
-                var result = SignInResult.Failed;
-                if (user != null)
+                SignInResult result = SignInResult.Failed;
+                if (user is not null)
                 {
                     result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 };
-                
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -139,7 +132,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
@@ -148,7 +141,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tentativa de Login inválida.");
                     return Page();
                 }
             }

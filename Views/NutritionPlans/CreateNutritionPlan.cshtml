@@ -1,0 +1,70 @@
+﻿@model NutriFitWeb.Models.NutritionPlan
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserAccountModel> UserManager
+
+@{
+    ViewData["Title"] = "Criar plano de nutrição";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="col-md-8 profileDivs">
+    <form asp-controller="NutritionPlans" asp-action="CreateNutritionPlan">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="submit" value="Criar" class="btn btn-primary createBtn" />
+        </div>
+        <div>
+            <label asp-for="NutritionPlanName" class="control-label">Nome &emsp; &ensp;</label>
+            <input asp-for="NutritionPlanName" class="formsInput nameInput" />
+            <br />
+            <span asp-validation-for="NutritionPlanName" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="NutritionPlanDescription" class="control-label">Descrição &nbsp;</label>
+            <textarea asp-for="NutritionPlanDescription" class="descriptionBox"></textarea>
+            <span asp-validation-for="NutritionPlanDescription" class="text-danger"></span>
+        </div>
+        @if (User.IsInRole("nutritionist"))
+        {
+            @if (ViewBag.ClientEmail is null)
+                {
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            <input required="true" asp-for="ClientEmail" class="formsInput" />
+                            <br />
+                            <span asp-validation-for="ClientEmail" class="text-danger"></span>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
+                        <td>
+                            <p>@ViewData["ClientEmail"]</p>
+                        </td>
+                    </tr>
+                }
+        }
+
+    </form>
+    <div id="_CreateMealPartialItem">
+        <partial name="~/Views/Meals/_CreateMealPartial.cshtml" />
+    </div>
+    <div id="_ShowMealsPartialList" class="exListMargin">
+        <partial name="~/Views/Meals/_ShowMealsPartial.cshtml" />
+    </div>
+</div>
+
+<div class="backBtnDiv">
+    <a class="backToListBtn" asp-action="ShowNutritionPlans">Voltar aos planos</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

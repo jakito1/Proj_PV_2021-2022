@@ -1,0 +1,26 @@
+﻿@model NutriFitWeb.Models.NutritionPlanEditRequest
+
+    <div class="col-md-8 profileDivs exercisesDiv">
+        <form asp-controller="NutritionPlanEditRequests" asp-action="CreateNutritionPlanEditRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NutritionPlanId" />
+            <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="NutritionPlanEditRequestDescription" class="control-label listsItemTitle">Descrição</label></th>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea asp-for="NutritionPlanEditRequestDescription" class="descriptionBox"></textarea>
+                        <span asp-validation-for="NutritionPlanEditRequestDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>            
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

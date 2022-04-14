@@ -1,0 +1,39 @@
+﻿@model NutriFitWeb.Models.NutritionPlanNewRequest
+
+
+<h2>Tem a certeza que pretende apagar este pedido?</h2>
+<div class="col-md-6 profileDivs">
+<table class="formTables">
+    <tr>
+        <th><p class="control-label listsItemTitle">Nome</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.NutritionPlanNewRequestName)</b></p></td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Descrição</p></th>
+        <td>
+            @if (Model.NutritionPlanNewRequestDescription is null || Model.NutritionPlanNewRequestDescription == "")
+            {
+                <p><b>N/A</b></p>
+            }
+            else
+            {
+                <p><b>@Html.DisplayFor(model => model.NutritionPlanNewRequestDescription)</b></p>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Data</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.NutritionPlanNewRequestDate)</b></p></td>
+    </tr>
+</table>
+
+<form asp-action="DeleteNutritionPlanNewRequest">
+    <input type="hidden" asp-for="NutritionPlanNewRequestId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+</div>
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlanNewRequests" class="backToListBtn">Voltar</a>
+</div>
+
+
