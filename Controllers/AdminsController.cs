@@ -185,10 +185,5 @@ namespace NutriFitWeb.Controllers
             }
             return View(userToUpdate);
         }
-
-        public IActionResult EditUserSettings()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
