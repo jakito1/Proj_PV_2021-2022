@@ -21,11 +21,15 @@ namespace NutriFitWebTest.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _manager;
         private IInteractNotification mockInteractNotification;
+        private IIsUserInRoleByUserId _isUserInRoleByUserId;
+        private IPhotoManagement _photoManager;
 
         public GymsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
             mockInteractNotification = Mock.Of<IInteractNotification>();
+            _isUserInRoleByUserId = Mock.Of<IIsUserInRoleByUserId>();
+            _photoManager = Mock.Of<IPhotoManagement>();
 
             Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
@@ -69,7 +73,7 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public void GymsController_Should_Create()
         ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, null, null, mockInteractNotification);
+            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
 
             Assert.NotNull(controller);
     ***REMOVED***
@@ -77,7 +81,7 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task GymsController_EditGymSettings_Should_Return_BadRequest()
         ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, null, null, mockInteractNotification);
+            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
 
             IActionResult? result = await controller.EditGymSettings(null);
 
@@ -87,21 +91,22 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task GymsController_EditGymSettingsPost_Should_Return_BadRequest()
         ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, null, null, mockInteractNotification);
+            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
 
             IActionResult? result = await controller.EditGymSettingsPost(null, null);
 
             Assert.IsType<BadRequestResult>(result);
     ***REMOVED***
 
-        [Fact(Skip = "Doesn't work")]
+        [Fact (Skip = "Broken")]
         public async Task GymsController_Edit_Should_Return_ViewResult()
         ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, null, null, mockInteractNotification);
+
+            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
 
             IActionResult? result = await controller.EditGymSettingsPost("Test User 1", null);
 
-            Assert.IsType<BadRequestResult>(result);
+            Assert.Null(result);
     ***REMOVED***
 
 ***REMOVED***
