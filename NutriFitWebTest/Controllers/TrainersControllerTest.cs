@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -9,6 +10,7 @@ using NutriFitWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
@@ -73,6 +75,66 @@ namespace NutriFitWebTest.Controllers
             TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
 
             Assert.NotNull(controller);
+        }
+
+        [Fact (Skip = "Broken")]
+        public async Task TrainersController_ShowTrainers_Should_Return_ActionResult()
+        {
+            TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.ShowTrainers("", "testuser1@email.com", 1);
+
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task TrainersController_TrainersDetails_Should_Return_NotFoundResult()
+        {
+            TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.TrainerDetails(null);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task TrainersController_TrainersDetails_Should_Return_ViewResult()
+        {
+            TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.TrainerDetails(1);
+
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task TrainersController_EditTrainerSettings_Should_Return_BadRequestResult()
+        {
+            TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.EditTrainerSettings(null);
+
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Fact (Skip ="Broken")]
+        public async Task TrainersController_EditTrainerSettings_Should_Return_NotFoundResult()
+        {
+            TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+            
+            var result = await controller.EditTrainerSettings("1");
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task TrainersController_EditTrainerSettingsPost_Should_Return_BadRequestResult()
+        {
+            TrainersController controller = new TrainersController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.EditTrainerSettingsPost(null, null);
+
+            Assert.IsType<BadRequestResult>(result);
         }
     }
 }
