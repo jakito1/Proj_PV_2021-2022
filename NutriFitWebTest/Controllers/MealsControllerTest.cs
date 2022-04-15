@@ -59,5 +59,16 @@ namespace NutriFitWebTest.Controllers
 
             Assert.IsType<PartialViewResult>(result);
         }
+
+        [Fact]
+        public void MealsController_DeleteMeal_Should_Give_PartialView()
+        {
+            MealsController? controller = new MealsController(photoManagement);
+            controller.ControllerContext.HttpContext = _httpContext;
+
+            IActionResult? result = controller.DeleteMeal(1);
+
+            Assert.IsType<PartialViewResult>(result);
+        }
     }
 }
