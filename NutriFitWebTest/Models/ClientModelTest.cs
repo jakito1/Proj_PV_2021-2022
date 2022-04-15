@@ -1,4 +1,5 @@
-﻿using NutriFitWeb.Models;
+﻿using Moq;
+using NutriFitWeb.Models;
 using System;
 using Xunit;
 
