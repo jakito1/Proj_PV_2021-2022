@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -9,6 +11,8 @@ using NutriFitWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
@@ -73,6 +77,78 @@ namespace NutriFitWebTest.Controllers
             NutritionistsController controller = new NutritionistsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
 
             Assert.NotNull(controller);
+        }
+
+        [Fact]
+        public async Task NutritionistsController_Details_Should_Return_NotFoundResult()
+        {
+            NutritionistsController controller = new NutritionistsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.NutritionistDetails(null);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionistsController_Details_Should_Return_ViewResult()
+        {
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            {
+                HttpContext = fakeHttpContext.Object
+            };
+
+            NutritionistsController controller = new NutritionistsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.NutritionistDetails(1);
+
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionistsController_EditNutritionistSettings_Should_Return_BadRequestResult()
+        {
+            NutritionistsController controller = new NutritionistsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.EditNutritionistSettings(null);
+
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Fact (Skip = "Broken")]
+        public async Task NutritionistsController_EditNutritionistSettings_Should_Return_ViewResult()
+        {
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            {
+                HttpContext = fakeHttpContext.Object
+            };
+
+            NutritionistsController controller = new NutritionistsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.EditNutritionistSettings("test id");
+
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionistsController_EditNutritionistSettingsPost_Should_Return_BadRequestResult()
+        {
+            NutritionistsController controller = new NutritionistsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
+
+            var result = await controller.EditNutritionistSettingsPost(null, null);
+
+            Assert.IsType<BadRequestResult>(result);
         }
     }
 }

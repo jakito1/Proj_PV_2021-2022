@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -10,6 +11,7 @@ using NutriFitWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -101,8 +103,18 @@ namespace NutriFitWebTest.Controllers
         [Fact (Skip = "Broken")]
         public async Task GymsController_Edit_Should_Return_ViewResult()
         {
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            {
+                HttpContext = fakeHttpContext.Object
+            };
 
             GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
 
             IActionResult? result = await controller.EditGymSettingsPost("Test User 1", null);
 

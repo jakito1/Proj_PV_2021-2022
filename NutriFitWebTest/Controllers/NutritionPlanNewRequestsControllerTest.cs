@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MockQueryable.Moq;
 using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
@@ -9,6 +12,8 @@ using NutriFitWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
@@ -56,10 +61,76 @@ namespace NutriFitWebTest.Controllers
                 }
             };
 
+            IList<Client> clientsList = new List<Client>
+            {
+                new Client()
+                {
+                    ClientBirthday = DateTime.Now,
+                    ClientFirstName = "Test Client 1",
+                    ClientId = 1,
+                    ClientLastName = "Last Name",
+                    ClientProfilePhoto = null,
+                    ClientSex = ClientSex.MALE,
+                    DateAddedToGym = DateTime.Now,
+                    DateAddedToNutritionist = DateTime.Now,
+                    DateAddedToTrainer = DateTime.Now,
+                    FatMass = 60,
+                    Gym = new Gym(),
+                    Height = 175,
+                    LeanMass = 15,
+                    Nutritionist = new Nutritionist(),
+                    NutritionPlanRequests = null,
+                    NutritionPlans = null,
+                    OtherClientData = "",
+                    Trainer = new Trainer(),
+                    TrainingPlanRequests = null,
+                    TrainingPlans = null,
+                    UserAccountModel = usersList[0],
+                    WantsNutritionist = true,
+                    WantsTrainer = true,
+                    Weight = 70
+                }
+            };
+
+            IList<NutritionPlanNewRequest> plansList = new List<NutritionPlanNewRequest>
+            {
+                new NutritionPlanNewRequest()
+                {
+                    Client = clientsList[0],
+                    NutritionPlanNewRequestDate = DateTime.Now,
+                    NutritionPlanNewRequestDescription = "",
+                    NutritionPlanNewRequestDone = false,
+                    NutritionPlanNewRequestId = 1,
+                    NutritionPlanNewRequestName = "Test"
+                },
+                new NutritionPlanNewRequest()
+                {
+                    Client = new Client(),
+                    NutritionPlanNewRequestDate = DateTime.Now,
+                    NutritionPlanNewRequestDescription = "",
+                    NutritionPlanNewRequestDone = false,
+                    NutritionPlanNewRequestId = 2,
+                    NutritionPlanNewRequestName = "Test2"
+                },
+                new NutritionPlanNewRequest()
+                {
+                    Client = new Client(),
+                    NutritionPlanNewRequestDate = DateTime.Now,
+                    NutritionPlanNewRequestDescription = "",
+                    NutritionPlanNewRequestDone = false,
+                    NutritionPlanNewRequestId = 3,
+                    NutritionPlanNewRequestName = "Test3"
+                }
+            };
+
             IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
+            var plans = plansList.AsQueryable().BuildMockDbSet();
+            var clients = clientsList.AsQueryable().BuildMockDbSet();
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
+            _context.Client = clients.Object;
+            _context.NutritionPlanNewRequests = plans.Object;
             _manager = mockUserManager.Object;
         }
 
@@ -69,6 +140,98 @@ namespace NutriFitWebTest.Controllers
             NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
 
             Assert.NotNull(controller);
+        }
+
+        [Fact]
+        public async Task NutritionPlanNewRequestsController_NutritionPlanNewRequestDetails_Should_Return_NotFoundResult()
+        {
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.NutritionPlanNewRequestDetails(null);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionPlanNewRequestsController_NutritionPlanNewRequestDetails_Should_Return_ViewResult()
+        {
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.NutritionPlanNewRequestDetails(1);
+
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionPlanNewRequestsController_NutritionPlanNewRequestDetails_Should_Return_NotFoundResult_WhenNotInDB()
+        {
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.NutritionPlanNewRequestDetails(10);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public void NutritionPlanNewRequestsController_CreateNutritionPlan_Should_Return_ViewResult()
+        {
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = controller.CreateNutritionPlanNewRequest();
+
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionPlanNewRequestsController_DeleteNutritionPlanNewRequest_Should_Return_NotFoundResult()
+        {
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.DeleteNutritionPlanNewRequest(null);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionPlanNewRequestsController_DeleteNutritionPlanNewRequest_Should_Return_ViewResult()
+        {
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            {
+                HttpContext = fakeHttpContext.Object
+            };
+
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.DeleteNutritionPlanNewRequest(1);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task NutritionPlanNewRequestsController_DeleteNutritionPlanNewRequestConfirmed_Should_Return_ViewResult()
+        {
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            {
+                HttpContext = fakeHttpContext.Object
+            };
+
+            NutritionPlanNewRequestsController controller = new NutritionPlanNewRequestsController(_context, _manager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.DeleteNutritionPlanNewRequestConfirmed(1);
+
+            Assert.IsType<RedirectToActionResult>(result);
         }
     }
 }

@@ -171,6 +171,10 @@
               "target": "Package",
               "version": "[17.2.0-preview-20220301-01, )"
             },
+            "MockQueryable.Moq": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
             "Moq": {
               "target": "Package",
               "version": "[4.17.2, )"
