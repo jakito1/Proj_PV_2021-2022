@@ -2841,6 +2841,41 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
+      "MockQueryable.Core/6.0.1": ***REMOVED***
+        "type": "package",
+        "compile": ***REMOVED***
+          "lib/netstandard2.1/MockQueryable.Core.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/netstandard2.1/MockQueryable.Core.dll": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
+      "MockQueryable.EntityFrameworkCore/6.0.1": ***REMOVED***
+        "type": "package",
+        "dependencies": ***REMOVED***
+          "Microsoft.EntityFrameworkCore": "6.0.3",
+          "MockQueryable.Core": "6.0.1"
+      ***REMOVED***
+        "compile": ***REMOVED***
+          "lib/net6.0/MockQueryable.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/net6.0/MockQueryable.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
+      "MockQueryable.Moq/6.0.1": ***REMOVED***
+        "type": "package",
+        "dependencies": ***REMOVED***
+          "MockQueryable.EntityFrameworkCore": "6.0.1",
+          "Moq": "4.8.0"
+      ***REMOVED***
+        "compile": ***REMOVED***
+          "lib/net6.0/MockQueryable.Moq.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/net6.0/MockQueryable.Moq.dll": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
       "Moq/4.17.2": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
@@ -9159,6 +9194,48 @@
         "version.txt"
       ]
   ***REMOVED***
+    "MockQueryable.Core/6.0.1": ***REMOVED***
+      "sha512": "FUKgAeMBt5aN1PDjxDYYw22pGUxPGxa8SIrgDMgmqL5T8sjTBTyv6i7qGuOeOdu6eYYzyv3GMKWDkawx9bVjbg==",
+      "type": "package",
+      "path": "mockqueryable.core/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.1/MockQueryable.Core.dll",
+        "logo.png",
+        "mockqueryable.core.6.0.1.nupkg.sha512",
+        "mockqueryable.core.nuspec"
+      ]
+  ***REMOVED***
+    "MockQueryable.EntityFrameworkCore/6.0.1": ***REMOVED***
+      "sha512": "fvgJ1fEi+BP5elx+rM/ZE8M8VUjy12RkLQs9H93SSR4BtkhkfAd1kTBQ4m9mcigQBxl7StN1uVJ91OwEQX8+0g==",
+      "type": "package",
+      "path": "mockqueryable.entityframeworkcore/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/net6.0/MockQueryable.EntityFrameworkCore.dll",
+        "logo.png",
+        "mockqueryable.entityframeworkcore.6.0.1.nupkg.sha512",
+        "mockqueryable.entityframeworkcore.nuspec"
+      ]
+  ***REMOVED***
+    "MockQueryable.Moq/6.0.1": ***REMOVED***
+      "sha512": "u314CWM2ZU/HQJXBmLs1AbaoDmsDiwOGevWGT83Jq6cgjXCIVJaTbEw5ACV4zfjl2KGF8T4b/QHOrFRt7nbmBg==",
+      "type": "package",
+      "path": "mockqueryable.moq/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/net6.0/MockQueryable.Moq.dll",
+        "logo.png",
+        "mockqueryable.moq.6.0.1.nupkg.sha512",
+        "mockqueryable.moq.nuspec"
+      ]
+  ***REMOVED***
     "Moq/4.17.2": ***REMOVED***
       "sha512": "HytUPJ3/uks2UgJ9hIcyXm3YxpFAR4OJzbQwTHltbKGun3lFLhEHs97hiiPj1dY8jV/kasXeihTzDxct6Zf3iQ==",
       "type": "package",
@@ -14266,6 +14343,7 @@
       "Microsoft.Data.Sqlite.Core >= 7.0.0-preview.2.22153.1",
       "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.4",
       "Microsoft.NET.Test.Sdk >= 17.2.0-preview-20220301-01",
+      "MockQueryable.Moq >= 6.0.1",
       "Moq >= 4.17.2",
       "NutriFitWeb >= 1.0.0",
       "XunitXml.TestLogger >= 3.0.70",
@@ -14340,6 +14418,10 @@
           "Microsoft.NET.Test.Sdk": ***REMOVED***
             "target": "Package",
             "version": "[17.2.0-preview-20220301-01, )"
+        ***REMOVED***
+          "MockQueryable.Moq": ***REMOVED***
+            "target": "Package",
+            "version": "[6.0.1, )"
         ***REMOVED***
           "Moq": ***REMOVED***
             "target": "Package",

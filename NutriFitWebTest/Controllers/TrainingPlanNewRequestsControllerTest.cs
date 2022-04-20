@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MockQueryable.Moq;
 using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
@@ -9,6 +12,8 @@ using NutriFitWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
@@ -56,10 +61,76 @@ namespace NutriFitWebTest.Controllers
             ***REMOVED***
         ***REMOVED***;
 
+            IList<Client> clientsList = new List<Client>
+            ***REMOVED***
+                new Client()
+                ***REMOVED***
+                    ClientBirthday = DateTime.Now,
+                    ClientFirstName = "Test Client 1",
+                    ClientId = 1,
+                    ClientLastName = "Last Name",
+                    ClientProfilePhoto = null,
+                    ClientSex = ClientSex.MALE,
+                    DateAddedToGym = DateTime.Now,
+                    DateAddedToNutritionist = DateTime.Now,
+                    DateAddedToTrainer = DateTime.Now,
+                    FatMass = 60,
+                    Gym = new Gym(),
+                    Height = 175,
+                    LeanMass = 15,
+                    Nutritionist = new Nutritionist(),
+                    TrainingPlanRequests = null,
+                    TrainingPlans = null,
+                    OtherClientData = "",
+                    Trainer = new Trainer(),
+                    NutritionPlanRequests = null,
+                    NutritionPlans = null,
+                    UserAccountModel = usersList[0],
+                    WantsNutritionist = true,
+                    WantsTrainer = true,
+                    Weight = 70
+            ***REMOVED***
+        ***REMOVED***;
+
+            IList<TrainingPlanNewRequest> plansList = new List<TrainingPlanNewRequest>
+            ***REMOVED***
+                new TrainingPlanNewRequest()
+                ***REMOVED***
+                    Client = clientsList[0],
+                    TrainingPlanNewRequestDate = DateTime.Now,
+                    TrainingPlanNewRequestDescription = "",
+                    TrainingPlanNewRequestDone = false,
+                    TrainingPlanNewRequestId = 1,
+                    TrainingPlanNewRequestName = "Test"
+              ***REMOVED***
+                new TrainingPlanNewRequest()
+                ***REMOVED***
+                    Client = new Client(),
+                    TrainingPlanNewRequestDate = DateTime.Now,
+                    TrainingPlanNewRequestDescription = "",
+                    TrainingPlanNewRequestDone = false,
+                    TrainingPlanNewRequestId = 2,
+                    TrainingPlanNewRequestName = "Test2"
+              ***REMOVED***
+                new TrainingPlanNewRequest()
+                ***REMOVED***
+                    Client = new Client(),
+                    TrainingPlanNewRequestDate = DateTime.Now,
+                    TrainingPlanNewRequestDescription = "",
+                    TrainingPlanNewRequestDone = false,
+                    TrainingPlanNewRequestId = 3,
+                    TrainingPlanNewRequestName = "Test3"
+            ***REMOVED***
+        ***REMOVED***;
+
             IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
+            var plans = plansList.AsQueryable().BuildMockDbSet();
+            var clients = clientsList.AsQueryable().BuildMockDbSet();
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
+            _context.Client = clients.Object;
+            _context.TrainingPlanNewRequests = plans.Object;
             _manager = mockUserManager.Object;
     ***REMOVED***
 
@@ -69,6 +140,99 @@ namespace NutriFitWebTest.Controllers
             TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
 
             Assert.NotNull(controller);
+    ***REMOVED***
+
+
+        [Fact]
+        public async Task TrainingPlanNewRequestsController_TrainingPlanNewRequestDetails_Should_Return_NotFoundResult()
+        ***REMOVED***
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.TrainingPlanNewRequestDetails(null);
+
+            Assert.IsType<NotFoundResult>(result);
+    ***REMOVED***
+
+        [Fact]
+        public async Task TrainingPlanNewRequestsController_TrainingPlanNewRequestDetails_Should_Return_ViewResult()
+        ***REMOVED***
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.TrainingPlanNewRequestDetails(1);
+
+            Assert.IsType<ViewResult>(result);
+    ***REMOVED***
+
+        [Fact]
+        public async Task TrainingPlanNewRequestsController_TrainingPlanNewRequestDetails_Should_Return_NotFoundResult_WhenNotInDB()
+        ***REMOVED***
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.TrainingPlanNewRequestDetails(10);
+
+            Assert.IsType<NotFoundResult>(result);
+    ***REMOVED***
+
+        [Fact]
+        public void TrainingPlanNewRequestsController_CreateTrainingPlan_Should_Return_ViewResult()
+        ***REMOVED***
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = controller.CreateTrainingPlanNewRequest();
+
+            Assert.IsType<ViewResult>(result);
+    ***REMOVED***
+
+        [Fact]
+        public async Task TrainingPlanNewRequestsController_DeleteTrainingPlanNewRequest_Should_Return_NotFoundResult()
+        ***REMOVED***
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+
+            var result = await controller.DeleteTrainingPlanNewRequest(null);
+
+            Assert.IsType<NotFoundResult>(result);
+    ***REMOVED***
+
+        [Fact]
+        public async Task TrainingPlanNewRequestsController_DeleteTrainingPlanNewRequest_Should_Return_ViewResult()
+        ***REMOVED***
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            ***REMOVED***
+                HttpContext = fakeHttpContext.Object
+        ***REMOVED***;
+
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.DeleteTrainingPlanNewRequest(1);
+
+            Assert.IsType<NotFoundResult>(result);
+    ***REMOVED***
+
+        [Fact]
+        public async Task TrainingPlanNewRequestsController_DeleteTrainingPlanNewRequestConfirmed_Should_Return_ViewResult()
+        ***REMOVED***
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            ***REMOVED***
+                HttpContext = fakeHttpContext.Object
+        ***REMOVED***;
+
+            TrainingPlanNewRequestsController controller = new TrainingPlanNewRequestsController(_context, _manager, mockInteractNotification);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.DeleteTrainingPlanNewRequestConfirmed(1);
+
+            Assert.IsType<RedirectToActionResult>(result);
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
