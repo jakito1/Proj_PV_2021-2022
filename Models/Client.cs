@@ -70,7 +70,6 @@ namespace NutriFitWeb.Models
         public List<NutritionPlan>? NutritionPlans { get; set; }
         public List<NutritionPlanNewRequest>? NutritionPlanRequests { get; set; }
 
-        [Required]
         public UserAccountModel UserAccountModel { get; set; }
 
     }

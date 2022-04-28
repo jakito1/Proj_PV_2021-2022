@@ -15,7 +15,6 @@ namespace NutriFitWeb.Models
         [DisplayName("Foto de Perfil")]
         public Photo? GymProfilePhoto { get; set; }
 
-        [Required]
         public UserAccountModel UserAccountModel { get; set; }
 
         public List<Client>? Clients { get; set; }
