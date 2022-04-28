@@ -33,7 +33,6 @@ namespace NutriFitWeb.Data
         public DbSet<NutriFitWeb.Models.NutritionPlanNewRequest> NutritionPlanNewRequests ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.NutritionPlanEditRequest> NutritionPlanEditRequests ***REMOVED*** get; set; ***REMOVED***
         public DbSet<NutriFitWeb.Models.Notification> Notifications ***REMOVED*** get; set; ***REMOVED***
-
         public DbSet<NutriFitWeb.Models.Machine> Machines ***REMOVED*** get; set; ***REMOVED***
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         ***REMOVED***
@@ -72,7 +71,6 @@ namespace NutriFitWeb.Data
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Gym>().HasMany(a => a.Machines).WithOne(a => a.MachineGym)
                 .OnDelete(DeleteBehavior.Cascade);
-
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

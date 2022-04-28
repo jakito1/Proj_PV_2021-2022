@@ -70,7 +70,6 @@ namespace NutriFitWeb.Models
         public List<NutritionPlan>? NutritionPlans ***REMOVED*** get; set; ***REMOVED***
         public List<NutritionPlanNewRequest>? NutritionPlanRequests ***REMOVED*** get; set; ***REMOVED***
 
-        [Required]
         public UserAccountModel UserAccountModel ***REMOVED*** get; set; ***REMOVED***
 
 ***REMOVED***
