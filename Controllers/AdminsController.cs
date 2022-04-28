@@ -42,16 +42,29 @@ namespace NutriFitWeb.Controllers
             ViewData["CurrentFilter"] = searchString;
 
             IdentityRole? adminRole = await _context.Roles.FirstOrDefaultAsync(a => a.Name == "administrator");
-            IQueryable<IdentityUserRole<string>>? admins = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
-
-            IQueryable<UserAccountModel>? users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id));
-            if (!string.IsNullOrEmpty(searchString))
+            IQueryable<IdentityUserRole<string>>? admins = null;
+            IQueryable<UserAccountModel>? users = null;
+            if (adminRole is not null)
             {
-                users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(searchString));
+                admins = _context.UserRoles.Where(a => a.RoleId == adminRole.Id);
+                if (admins is not null)
+                {
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id)).Where(a => a.Email.Contains(searchString));
+                    }
+                    else
+                    {
+                        users = _context.Users.Where(p => admins.All(p2 => p2.UserId != p.Id));
+                    }
+                }
             }
-
-            int pageSize = 3;
-            return View(await PaginatedList<UserAccountModel>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
+            if (users is not null)
+            {
+                int pageSize = 3;
+                return View(await PaginatedList<UserAccountModel>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
+            return NoContent();
         }
 
         [Authorize(Roles = "administrator")]
@@ -145,7 +158,7 @@ namespace NutriFitWeb.Controllers
             }
 
             UserAccountModel? userToUpdate = await _context.Users.FindAsync(id);
-            if (await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "",
+            if (userToUpdate is not null && await TryUpdateModelAsync<UserAccountModel>(userToUpdate, "",
                 u => u.PhoneNumber, u => u.UserName))
             {
                 await _interactNotification.Create($"O administrador alterou parte da sua conta.", userToUpdate);

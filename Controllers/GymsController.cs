@@ -32,7 +32,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettings(string? id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             {
                 return BadRequest();
             }
@@ -55,7 +55,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettingsPost(string? id, IFormFile? formFile)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             {
                 return BadRequest();
             }
@@ -64,17 +64,20 @@ namespace NutriFitWeb.Controllers
             Gym? gymToUpdate = await GetGym(id);
 
             Photo? oldPhoto = null;
-            if (gymToUpdate is not null && gymToUpdate.GymProfilePhoto is not null)
+
+            if (gymToUpdate is null || gymToUpdate.UserAccountModel is null)
+            {
+                return NotFound();
+            }
+
+            if (gymToUpdate.GymProfilePhoto is not null)
             {
                 oldPhoto = gymToUpdate.GymProfilePhoto;
             }
-            if (gymToUpdate is not null)
-            {
-                gymToUpdate.GymProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
-            }
+            gymToUpdate.GymProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
 
             if (await TryUpdateModelAsync<Gym>(gymToUpdate, "",
-                g => g.GymName, g => g.GymProfilePhoto))
+                g => g.GymName!, g => g.GymProfilePhoto!))
             {
                 if (oldPhoto is not null && gymToUpdate.GymProfilePhoto is not null)
                 {
@@ -100,9 +103,9 @@ namespace NutriFitWeb.Controllers
             return View(gymToUpdate);
         }
 
-        private async Task<Gym> GetGym(string? id)
+        private async Task<Gym?> GetGym(string? id)
         {
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             {
                 return _context.Gym

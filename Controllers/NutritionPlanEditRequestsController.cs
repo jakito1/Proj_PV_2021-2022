@@ -26,6 +26,11 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "client, nutritionist")]
         public async Task<IActionResult> ShowNutritionPlanEditRequests(string? searchString, string? currentFilter, int? pageNumber)
         {
+            if (User.Identity is null)
+            {
+                return BadRequest();
+            }
+
             if (searchString is not null)
             {
                 pageNumber = 1;
@@ -36,42 +41,46 @@ namespace NutriFitWeb.Controllers
             }
 
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Nutritionist nutritionist = await _context.Nutritionist.Include(a => a.Clients).Include(a => a.NutritionPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Client client = await _context.Client.Include(a => a.NutritionPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).Include(a => a.NutritionPlans)
+                .FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client? client = await _context.Client.Include(a => a.NutritionPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             ViewData["CurrentFilter"] = searchString;
 
             HashSet<int>? clientIDs = null;
             IQueryable<NutritionPlanEditRequest>? requests = null;
 
-            if (nutritionist is not null && nutritionist.Clients is not null)
+            if (nutritionist is not null && nutritionist.Clients is not null && string.IsNullOrEmpty(searchString))
             {
                 clientIDs = new(nutritionist.Clients.Select(a => a.ClientId));
-                requests = _context.NutritionPlanEditRequests.Include(a => a.NutritionPlan).Where(a => clientIDs.Contains(a.Client.ClientId)).Where(a => a.NutritionPlanEditRequestDone == false);
+                requests = _context.NutritionPlanEditRequests.Include(a => a.NutritionPlan)
+                    .Where(a => a.Client != null && clientIDs.Contains(a.Client.ClientId)).Where(a => a.NutritionPlanEditRequestDone == false);
             }
-
-            if (client is not null)
+            else if (!string.IsNullOrEmpty(searchString) && nutritionist is not null && nutritionist.Clients is not null)
+            {
+                clientIDs = new(nutritionist.Clients.Select(a => a.ClientId));
+                requests = _context.NutritionPlanEditRequests.Include(a => a.NutritionPlan).Where(a => a.Client != null && clientIDs.Contains(a.Client.ClientId)).
+                    Where(a => a.NutritionPlan != null && a.NutritionPlan.NutritionPlanName != null && a.NutritionPlan.NutritionPlanName.Contains(searchString) ||
+                    a.Client != null && a.Client.UserAccountModel != null && a.Client.UserAccountModel.Email.Contains(searchString)).
+                    Where(a => a.NutritionPlanEditRequestDone == false);
+            }
+            else if (client is not null && string.IsNullOrEmpty(searchString))
             {
                 requests = _context.NutritionPlanEditRequests.Include(a => a.NutritionPlan).Where(a => a.Client == client).Where(a => a.NutritionPlanEditRequestDone == false);
             }
-
-            if (!string.IsNullOrEmpty(searchString) && nutritionist is not null && nutritionist.Clients is not null)
-            {
-                clientIDs = new(nutritionist.Clients.Select(a => a.ClientId));
-                requests = _context.NutritionPlanEditRequests.Include(a => a.NutritionPlan).Where(a => clientIDs.Contains(a.Client.ClientId)).
-                    Where(a => a.NutritionPlan.NutritionPlanName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString)).
-                    Where(a => a.NutritionPlanEditRequestDone == false);
-            }
-
-            if (!string.IsNullOrEmpty(searchString) && client is not null)
+            else if (!string.IsNullOrEmpty(searchString) && client is not null)
             {
                 requests = _context.NutritionPlanEditRequests.Include(a => a.NutritionPlan).Where(a => a.Client == client).
-                    Where(a => a.NutritionPlan.NutritionPlanName.Contains(searchString)).
+                    Where(a => a.NutritionPlan != null && a.NutritionPlan.NutritionPlanName != null && a.NutritionPlan.NutritionPlanName.Contains(searchString)).
                     Where(a => a.NutritionPlanEditRequestDone == false);
             }
 
-            int pageSize = 5;
-            return View(await PaginatedList<NutritionPlanEditRequest>.CreateAsync(requests.OrderByDescending(a => a.NutritionPlanEditRequestDate).AsNoTracking(), pageNumber ?? 1, pageSize));
+            if (requests is not null)
+            {
+                int pageSize = 5;
+                return View(await PaginatedList<NutritionPlanEditRequest>.CreateAsync(requests.OrderByDescending(a => a.NutritionPlanEditRequestDate).AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
+            return NotFound();
         }
 
         [Authorize(Roles = "client, nutritionist")]
@@ -98,10 +107,11 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateNutritionPlanEditRequest([Bind("NutritionPlanEditRequestDescription,NutritionPlanId")] NutritionPlanEditRequest trainingPlanEditRequest)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User.Identity is not null)
             {
                 UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Client? client = await _context.Client.Include(a => a.NutritionPlans).Include(a => a.Nutritionist.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client? client = await _context.Client.Include(a => a.NutritionPlans)
+                    .Include(a => a.Nutritionist!.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 NutritionPlan? trainingPlan = await _context.NutritionPlan.FirstOrDefaultAsync(a => a.NutritionPlanId == trainingPlanEditRequest.NutritionPlanId);
                 IQueryable<NutritionPlanEditRequest>? amountEditRequests = null;
                 if (trainingPlan is not null)
@@ -109,8 +119,8 @@ namespace NutriFitWeb.Controllers
                     amountEditRequests = _context.NutritionPlanEditRequests.Where(a => a.NutritionPlan == trainingPlan).Where(a => a.NutritionPlanEditRequestDone == false);
                 }
 
-                if (client is not null && client.Nutritionist is not null && trainingPlan is not null &&
-                    client.NutritionPlans.Contains(trainingPlan) &&
+                if (client is not null && client.Nutritionist is not null && client.Nutritionist.UserAccountModel is not null && trainingPlan is not null &&
+                    client.NutritionPlans is not null && client.NutritionPlans.Contains(trainingPlan) &&
                     amountEditRequests is not null && !amountEditRequests.Any())
                 {
                     trainingPlan.ToBeEdited = true;
@@ -128,9 +138,9 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "client")]
         public async Task<IActionResult> DeleteNutritionPlanEditRequest(int? id)
         {
-            if (id == null)
+            if (id is null || User.Identity is null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             NutritionPlanEditRequest? trainingPlanEditRequest = await _context.NutritionPlanEditRequests
@@ -152,8 +162,12 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "client")]
         [HttpPost, ActionName("DeleteNutritionPlanEditRequest")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteNutritionPlanEditRequestConfirmed(int id)
+        public async Task<IActionResult> DeleteNutritionPlanEditRequestConfirmed(int? id)
         {
+            if (id is null || User.Identity is null)
+            {
+                return BadRequest();
+            }
             NutritionPlanEditRequest? trainingPlanEditRequest = await _context.NutritionPlanEditRequests.FindAsync(id);
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);

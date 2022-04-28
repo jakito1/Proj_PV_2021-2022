@@ -31,6 +31,11 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowNutritionists(string? searchString, string? currentFilter, int? pageNumber)
         {
+            if (User.Identity is null)
+            {
+                return BadRequest();
+            }
+
             if (searchString is not null)
             {
                 pageNumber = 1;
@@ -42,19 +47,22 @@ namespace NutriFitWeb.Controllers
 
             ViewData["CurrentFilter"] = searchString;
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            IOrderedQueryable<Nutritionist>? nutritionists = null;
 
-            IOrderedQueryable<Nutritionist>? nutritionists = _context.Nutritionist.
-                    Include(a => a.UserAccountModel).
-                    Include(a => a.Gym).
-                    Include(a => a.Gym.UserAccountModel).
-                    OrderByDescending(a => a.Gym);
-
-            if (!string.IsNullOrEmpty(searchString))
+            if (string.IsNullOrEmpty(searchString))
+            {
+                nutritionists = _context.Nutritionist.
+                                    Include(a => a.UserAccountModel).
+                                    Include(a => a.Gym).
+                                    Include(a => a.Gym!.UserAccountModel).
+                                    OrderByDescending(a => a.Gym);
+            }
+            else
             {
                 nutritionists = _context.Nutritionist.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Gym).
-                    Include(a => a.Gym.UserAccountModel).
+                    Include(a => a.Gym!.UserAccountModel).
                     Where(a => a.UserAccountModel.Email.Contains(searchString)).
                     OrderByDescending(a => a.Gym);
             }
@@ -66,14 +74,24 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ChangeNutritionistGymStatus(int? id, int? pageNumber, string? currentFilter)
         {
+            if (id is null || User.Identity is null)
+            {
+                return BadRequest();
+            }
+
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Gym? gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Nutritionist? nutritionist = await _context.Nutritionist.
                 Include(a => a.Gym).
                 Include(a => a.Clients).
                 Include(a => a.NutritionPlans).
                 Include(a => a.UserAccountModel).
                 FirstOrDefaultAsync(a => a.NutritionistId == id);
+
+            if (nutritionist is null || nutritionist.UserAccountModel is null)
+            {
+                return NotFound();
+            }
 
             nutritionist.Gym = (nutritionist.Gym is null) ? gym : null;
             if (nutritionist.Gym is null)
@@ -90,6 +108,7 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowNutritionists", new { pageNumber, currentFilter });
         }
 
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> NutritionistDetails(int? id)
         {
             if (id is null)
@@ -107,7 +126,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, nutritionist")]
         public async Task<IActionResult> EditNutritionistSettings(string? id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             {
                 return BadRequest();
             }
@@ -130,7 +149,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, nutritionist")]
         public async Task<IActionResult> EditNutritionistSettingsPost(string? id, IFormFile? formFile)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             {
                 return BadRequest();
             }
@@ -138,18 +157,21 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist? nutritionistToUpdate = await GetNutritionist(id);
 
+            if (nutritionistToUpdate is null || nutritionistToUpdate.UserAccountModel is null)
+            {
+                return NotFound();
+            }
+
             Photo? oldPhoto = null;
-            if (nutritionistToUpdate is not null && nutritionistToUpdate.NutritionistProfilePhoto is not null)
+            if (nutritionistToUpdate.NutritionistProfilePhoto is not null)
             {
                 oldPhoto = nutritionistToUpdate.NutritionistProfilePhoto;
             }
-            if (nutritionistToUpdate is not null)
-            {
-                nutritionistToUpdate.NutritionistProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
-            }
+
+            nutritionistToUpdate.NutritionistProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
 
             if (await TryUpdateModelAsync<Nutritionist>(nutritionistToUpdate, "",
-                n => n.NutritionistFirstName, n => n.NutritionistLastName, n => n.NutritionistProfilePhoto))
+                n => n.NutritionistFirstName!, n => n.NutritionistLastName!, n => n.NutritionistProfilePhoto!))
             {
                 if (oldPhoto is not null && nutritionistToUpdate.NutritionistProfilePhoto is not null)
                 {
@@ -175,9 +197,9 @@ namespace NutriFitWeb.Controllers
             return View(nutritionistToUpdate);
         }
 
-        private async Task<Nutritionist> GetNutritionist(string? id)
+        private async Task<Nutritionist?> GetNutritionist(string? id)
         {
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             {
                 return _context.Nutritionist

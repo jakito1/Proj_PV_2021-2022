@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    [Authorize(Roles = "client, trainer")]
     public class ExercisesController : Controller
     {
         private readonly string SessionKeyExercises;
@@ -17,7 +19,7 @@ namespace NutriFitWeb.Controllers
 
         public IActionResult ShowExercisesList()
         {
-            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
             if (exercises is not null)
             {
                 exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
@@ -43,16 +45,18 @@ namespace NutriFitWeb.Controllers
                 else
                 {
                     exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-                    exercises.Add(exercise);
-                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+                    if (exercises is not null)
+                    {
+                        exercises.Add(exercise);
+                        HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+                    }
                 }
             }
         }
 
         public IActionResult EditExercise(int id)
         {
-
-            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
 
             if (exercises is null)
             {
@@ -68,8 +72,7 @@ namespace NutriFitWeb.Controllers
 
         public IActionResult DeleteExercise(int id)
         {
-
-            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
             if (exercises is not null)
             {
                 exercises.RemoveAt(id);

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 {
+    [Authorize(Roles = "client, nutritionist")]
     public class MealsController : Controller
     {
         private readonly string SessionKeyMeals;
@@ -17,7 +19,7 @@ namespace NutriFitWeb.Controllers
 
         public IActionResult ShowMealsList()
         {
-            List<Meal> meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
+            List<Meal>? meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
             if (meals is not null)
             {
                 meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
@@ -43,16 +45,18 @@ namespace NutriFitWeb.Controllers
                 else
                 {
                     meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
-                    meals.Add(meal);
-                    HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, meals);
+                    if (meals is not null)
+                    {
+                        meals.Add(meal);
+                        HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, meals);
+                    }
                 }
             }
         }
 
         public IActionResult EditMeal(int id)
         {
-
-            List<Meal> meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
+            List<Meal>? meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
 
             if (meals is null)
             {
@@ -63,13 +67,11 @@ namespace NutriFitWeb.Controllers
             meals.RemoveAt(id);
             HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, meals);
             return PartialView("_CreateMealPartial", meal);
-
         }
 
         public IActionResult DeleteMeal(int id)
         {
-
-            List<Meal> meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
+            List<Meal>? meals = HttpContext.Session.Get<List<Meal>>(SessionKeyMeals);
             if (meals is not null)
             {
                 meals.RemoveAt(id);

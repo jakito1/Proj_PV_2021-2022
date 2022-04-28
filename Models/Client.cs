@@ -69,7 +69,9 @@ namespace NutriFitWeb.Models
         public List<TrainingPlanNewRequest>? TrainingPlanRequests { get; set; }
         public List<NutritionPlan>? NutritionPlans { get; set; }
         public List<NutritionPlanNewRequest>? NutritionPlanRequests { get; set; }
-        public UserAccountModel? UserAccountModel { get; set; }
+
+        [Required]
+        public UserAccountModel UserAccountModel { get; set; }
 
     }
     public enum ClientSex

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿#nullable disable
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Models;
 
@@ -18,16 +19,15 @@ namespace NutriFitWeb.Data
         {
         }
 
-        public DbSet<NutriFitWeb.Models.Client>? Client { get; set; }
-        public DbSet<NutriFitWeb.Models.Nutritionist>? Nutritionist { get; set; }
-        public DbSet<NutriFitWeb.Models.Trainer>? Trainer { get; set; }
-        public DbSet<NutriFitWeb.Models.Gym>? Gym { get; set; }
-        public DbSet<NutriFitWeb.Models.TrainingPlan>? TrainingPlan { get; set; }
-        public DbSet<NutriFitWeb.Models.Exercise>? Exercise { get; set; }
-        public DbSet<NutriFitWeb.Models.NutritionPlan>? NutritionPlan { get; set; }
-        public DbSet<NutriFitWeb.Models.Meal>? Meal { get; set; }
-
-        public DbSet<NutriFitWeb.Models.Photo>? Photos { get; set; }
+        public DbSet<NutriFitWeb.Models.Client> Client { get; set; }
+        public DbSet<NutriFitWeb.Models.Nutritionist> Nutritionist { get; set; }
+        public DbSet<NutriFitWeb.Models.Trainer> Trainer { get; set; }
+        public DbSet<NutriFitWeb.Models.Gym> Gym { get; set; }
+        public DbSet<NutriFitWeb.Models.TrainingPlan> TrainingPlan { get; set; }
+        public DbSet<NutriFitWeb.Models.Exercise> Exercise { get; set; }
+        public DbSet<NutriFitWeb.Models.NutritionPlan> NutritionPlan { get; set; }
+        public DbSet<NutriFitWeb.Models.Meal> Meal { get; set; }
+        public DbSet<NutriFitWeb.Models.Photo> Photos { get; set; }
         public DbSet<NutriFitWeb.Models.TrainingPlanNewRequest> TrainingPlanNewRequests { get; set; }
         public DbSet<NutriFitWeb.Models.TrainingPlanEditRequest> TrainingPlanEditRequests { get; set; }
         public DbSet<NutriFitWeb.Models.NutritionPlanNewRequest> NutritionPlanNewRequests { get; set; }
@@ -74,10 +74,5 @@ namespace NutriFitWeb.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
         }
-
-
-
-
-
     }
 }

@@ -32,6 +32,10 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ShowTrainers(string? searchString, string? currentFilter, int? pageNumber)
         {
+            if (User.Identity is null)
+            {
+                return BadRequest();
+            }
             if (searchString is not null)
             {
                 pageNumber = 1;
@@ -43,33 +47,43 @@ namespace NutriFitWeb.Controllers
 
             ViewData["CurrentFilter"] = searchString;
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            IOrderedQueryable<Trainer>? trainers = null;
 
-            IOrderedQueryable<Trainer>? trainers = _context.Trainer.
+            if (string.IsNullOrEmpty(searchString))
+            {
+                trainers = _context.Trainer.
                 Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
-                Include(a => a.Gym.UserAccountModel).
+                Include(a => a.Gym!.UserAccountModel).
                 OrderByDescending(a => a.Gym);
-
-            if (!string.IsNullOrEmpty(searchString))
+            }
+            else if (!string.IsNullOrEmpty(searchString))
             {
                 trainers = _context.Trainer.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Gym).
-                    Include(a => a.Gym.UserAccountModel).
+                    Include(a => a.Gym!.UserAccountModel).
                     Where(a => a.UserAccountModel.Email.Contains(searchString)).
                     OrderByDescending(a => a.Gym);
             }
 
-            int pageSize = 3;
-            return View(await PaginatedList<Trainer>.CreateAsync(trainers.AsNoTracking(), pageNumber ?? 1, pageSize));
-
+            if (trainers is not null)
+            {
+                int pageSize = 3;
+                return View(await PaginatedList<Trainer>.CreateAsync(trainers.AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
+            return NotFound();
         }
 
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ChangeTrainerGymStatus(int? id, int? pageNumber, string? currentFilter)
         {
+            if (id is null || User.Identity is null)
+            {
+                return BadRequest();
+            }
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Gym gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
+            Gym? gym = await _context.Gym.Where(a => a.UserAccountModel.Id == user.Id).FirstOrDefaultAsync();
             Trainer? trainer = await _context.Trainer.
                 Include(a => a.Gym).
                 Include(a => a.Clients).
@@ -77,6 +91,11 @@ namespace NutriFitWeb.Controllers
                 Include(a => a.UserAccountModel).
                 Where(a => a.TrainerId == id).
                 FirstOrDefaultAsync();
+
+            if (trainer is null)
+            {
+                return NotFound();
+            }
 
             trainer.Gym = (trainer.Gym is null) ? gym : null;
             if (trainer.Gym is null)
@@ -94,6 +113,7 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowTrainers", new { pageNumber, currentFilter });
         }
 
+        [Authorize(Roles = "gym")]
         public async Task<IActionResult> TrainerDetails(int? id)
         {
             if (id is null)
@@ -112,7 +132,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, trainer")]
         public async Task<IActionResult> EditTrainerSettings(string? id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             {
                 return BadRequest();
             }
@@ -135,7 +155,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, trainer")]
         public async Task<IActionResult> EditTrainerSettingsPost(string? id, IFormFile? formFile)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             {
                 return BadRequest();
             }
@@ -143,18 +163,20 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer? trainerToUpdate = await GetTrainer(id);
 
+            if (trainerToUpdate is null)
+            {
+                return NotFound();
+            }
+
             Photo? oldPhoto = null;
-            if (trainerToUpdate is not null && trainerToUpdate.TrainerProfilePhoto is not null)
+            if (trainerToUpdate.TrainerProfilePhoto is not null)
             {
                 oldPhoto = trainerToUpdate.TrainerProfilePhoto;
             }
-            if (trainerToUpdate is not null)
-            {
-                trainerToUpdate.TrainerProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
-            }
+            trainerToUpdate.TrainerProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
 
             if (await TryUpdateModelAsync<Trainer>(trainerToUpdate, "",
-                t => t.TrainerFirstName, t => t.TrainerLastName, t => t.TrainerProfilePhoto))
+                t => t.TrainerFirstName!, t => t.TrainerLastName!, t => t.TrainerProfilePhoto!))
             {
                 if (oldPhoto is not null && trainerToUpdate.TrainerProfilePhoto is not null)
                 {
@@ -181,9 +203,9 @@ namespace NutriFitWeb.Controllers
             return View(trainerToUpdate);
         }
 
-        private async Task<Trainer> GetTrainer(string? id)
+        private async Task<Trainer?> GetTrainer(string? id)
         {
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             {
                 return _context.Trainer
