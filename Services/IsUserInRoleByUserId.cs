@@ -15,7 +15,11 @@ namespace NutriFitWeb.Services
         public async Task<bool> IsUserInRoleByUserIdAsync(string? userId, string? userType)
         ***REMOVED***
             IdentityRole? role = await _context.Roles.FirstOrDefaultAsync(a => a.Name == userType);
-            return _context.UserRoles.Where(a => a.RoleId == role.Id && a.UserId == userId).Any();
+            if (role is not null)
+            ***REMOVED***
+                return _context.UserRoles.Where(a => a.RoleId == role.Id && a.UserId == userId).Any();
+        ***REMOVED***
+            return false;
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

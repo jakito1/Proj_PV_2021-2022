@@ -4,7 +4,7 @@ namespace NutriFitWeb.Services
 ***REMOVED***
     public static class SessionExtensions
     ***REMOVED***
-        public static void Set<T>(this ISession session, string key, T value)
+        public static void Set<T>(this ISession session, string key, T? value)
         ***REMOVED***
             session.SetString(key, JsonSerializer.Serialize(value));
     ***REMOVED***

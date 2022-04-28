@@ -32,7 +32,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettings(string? id)
         ***REMOVED***
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             ***REMOVED***
                 return BadRequest();
         ***REMOVED***
@@ -55,7 +55,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettingsPost(string? id, IFormFile? formFile)
         ***REMOVED***
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || User.Identity is null)
             ***REMOVED***
                 return BadRequest();
         ***REMOVED***
@@ -64,17 +64,20 @@ namespace NutriFitWeb.Controllers
             Gym? gymToUpdate = await GetGym(id);
 
             Photo? oldPhoto = null;
-            if (gymToUpdate is not null && gymToUpdate.GymProfilePhoto is not null)
+
+            if (gymToUpdate is null || gymToUpdate.UserAccountModel is null)
+            ***REMOVED***
+                return NotFound();
+        ***REMOVED***
+
+            if (gymToUpdate.GymProfilePhoto is not null)
             ***REMOVED***
                 oldPhoto = gymToUpdate.GymProfilePhoto;
         ***REMOVED***
-            if (gymToUpdate is not null)
-            ***REMOVED***
-                gymToUpdate.GymProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
-        ***REMOVED***
+            gymToUpdate.GymProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
 
             if (await TryUpdateModelAsync<Gym>(gymToUpdate, "",
-                g => g.GymName, g => g.GymProfilePhoto))
+                g => g.GymName!, g => g.GymProfilePhoto!))
             ***REMOVED***
                 if (oldPhoto is not null && gymToUpdate.GymProfilePhoto is not null)
                 ***REMOVED***
@@ -100,9 +103,9 @@ namespace NutriFitWeb.Controllers
             return View(gymToUpdate);
     ***REMOVED***
 
-        private async Task<Gym> GetGym(string? id)
+        private async Task<Gym?> GetGym(string? id)
         ***REMOVED***
-            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             ***REMOVED***
                 return _context.Gym
