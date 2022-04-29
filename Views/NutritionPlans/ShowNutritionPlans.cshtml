@@ -7,7 +7,7 @@
     ViewData["Title"] = "Planos de Nutrição";
 }
 
-<h1>@ViewData["Title"] <img class="iconMargin" src="~/icons/leafIcon.svg" alt="leafIcon"/></h1>
+<h1>@ViewData["Title"] <img class="iconMargin" src="~/icons/leafIcon.svg" alt="leafIcon" /></h1>
 
 <input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
 
@@ -16,7 +16,8 @@
     @if (User.IsInRole("nutritionist"))
     {
         <p>Pode também <b>remover</b> e <b>editar planos</b>.</p>
-    }else if (User.IsInRole("client"))
+    }
+    else if (User.IsInRole("client"))
     {
         <p>Pode também <b>ver</b> os planos que <b>requisitou</b> ao seu nutricionista, <b>requisitar um nutricionista</b> e <b>requisitar</b>, <b>remover</b> e <b>editar planos</b>.</p>
     }
@@ -30,7 +31,7 @@
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
             <a class="createBtn" asp-action="CreateNutritionPlan">Criar plano</a>
         </form>
-        
+
     </div>
 }
 else if (User.IsInRole("client"))
@@ -40,17 +41,17 @@ else if (User.IsInRole("client"))
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
             <div class="marginFixChooseFile">
-                @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasNutritionistAndWants(User.Identity.Name) && 
-                await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
+                @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasNutritionistAndWants(User.Identity.Name) &&
+               await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
                 {
-                    <a class="createBtn" asp-controller="Clients" asp-action="RequestNutritionist" 
-                    asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Nutricionista</a>
+                    <a class="createBtn" asp-controller="Clients" asp-action="RequestNutritionist"
+               asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Nutricionista</a>
                 }
-                @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasNutritionist(User.Identity.Name) && 
-                await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
+                @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasNutritionist(User.Identity.Name) &&
+               await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
                 {
-                    <a class="createBtn" asp-controller="NutritionPlanNewRequests" asp-action="CreateNutritionPlanNewRequest" 
-                    asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Novo Plano</a>
+                    <a class="createBtn" asp-controller="NutritionPlanNewRequests" asp-action="CreateNutritionPlanNewRequest"
+               asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Novo Plano</a>
                 }
                 <a class="createBtn" asp-action="CreateNutritionPlan">Criar plano</a>
             </div>
@@ -59,73 +60,75 @@ else if (User.IsInRole("client"))
 }
 
 <div class="col-md-8">
-<table class="table">
-    <thead>
-        <tr>
-            <th class="roundedCornerTableLeft thStyle">
-                Nome
-            </th>
-            <th class="thStyle">
-                Descrição
-            </th>
-            @if (User.IsInRole("nutritionist"))
-            {
-                <th class="thStyle">
-                    Cliente
-                </th>
-            }
-            <th class="roundedCornerTableRight thStyle">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    <p class="details">@Html.DisplayFor(modelItem => item.NutritionPlanName)</p>
-                </td>
-                <td>
-                    @if (item.NutritionPlanDescription is null || item.NutritionPlanDescription == "")
-                    {
-                        <p class="details"><b>N/A</b></p>
-                    }
-                    else
-                    {
-                        string description = item.NutritionPlanDescription;
-                        if (description.Length > 20)
-                        {
-                            description = description.Substring(0, 20);
-                            <p class="details"><b>@description...</b></p>
-                        }else{
-                            <p class="details"><b>@description</b></p>
-                        }
-                    }
-                </td>
+                <th class="roundedCornerTableLeft thStyle">
+                    Nome
+                </th>
+                <th class="thStyle">
+                    Descrição
+                </th>
                 @if (User.IsInRole("nutritionist"))
                 {
-                    if (item.Client is not null)
-                    {
-                        <td>
-                            <p class="details">@Html.DisplayFor(modelItem => item.Client.UserAccountModel.Email)</p>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            <p class="details"><b>N/A</b></p>
-                        </td>
-                    }
+                    <th class="thStyle">
+                        Cliente
+                    </th>
                 }
-
-                <td>
-                    <a asp-action="EditNutritionPlan" asp-route-id="@item.NutritionPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
-                    <a asp-action="NutritionPlanDetails" asp-route-id="@item.NutritionPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
-                    <a asp-action="DeleteNutritionPlan" asp-route-id="@item.NutritionPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
-                </td>
+                <th class="roundedCornerTableRight thStyle">Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.NutritionPlanName)</p>
+                    </td>
+                    <td>
+                        @if (item.NutritionPlanDescription is null || item.NutritionPlanDescription == "")
+                        {
+                            <p class="details"><b>N/A</b></p>
+                        }
+                        else
+                        {
+                            string description = item.NutritionPlanDescription;
+                            if (description.Length > 20)
+                            {
+                                description = description.Substring(0, 20);
+                                <p class="details"><b>@description...</b></p>
+                            }
+                            else
+                            {
+                                <p class="details"><b>@description</b></p>
+                            }
+                        }
+                    </td>
+                    @if (User.IsInRole("nutritionist"))
+                    {
+                        if (item.Client is not null)
+                        {
+                            <td>
+                                <p class="details">@Html.DisplayFor(modelItem => item.Client.UserAccountModel.Email)</p>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <p class="details"><b>N/A</b></p>
+                            </td>
+                        }
+                    }
+
+                    <td>
+                        <a asp-action="EditNutritionPlan" asp-route-id="@item.NutritionPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
+                        <a asp-action="NutritionPlanDetails" asp-route-id="@item.NutritionPlanId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
+                        <a asp-action="DeleteNutritionPlan" asp-route-id="@item.NutritionPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 @{
@@ -159,7 +162,7 @@ else if (User.IsInRole("client"))
     }
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 {
     <div class="backBtnDiv">
         <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>

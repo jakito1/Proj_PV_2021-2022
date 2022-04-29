@@ -4,9 +4,9 @@ namespace NutriFitWeb.Services
 {
     public interface IStatistics
     {
-        IEnumerable<UserAccountModel>? GetUsersForGym(string userType, string userName);
-        IEnumerable<UserAccountModel>? GetUsersForTrainer(string userName);
-        IEnumerable<UserAccountModel>? GetUsersForNutritionist(string userName);
+        IEnumerable<UserAccountModel> GetUsersForGym(string userType, string userName);
+        IEnumerable<UserAccountModel> GetUsersForTrainer(string userName);
+        IEnumerable<UserAccountModel> GetUsersForNutritionist(string userName);
         Task<string> GetUserGym(string userName);
         Task<double> GetClientBMI(string? userName);
         Task<double> GetClientLeanMass(string? userName);
