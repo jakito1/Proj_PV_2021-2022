@@ -7,6 +7,13 @@ using NutriFitWeb.Services;
 using System.Globalization;
 
 WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");;
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<UserAccountModel>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();;
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
 // Add services to the container.

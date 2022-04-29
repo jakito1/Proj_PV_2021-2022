@@ -5,7 +5,7 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
-    [Authorize(Roles = "client, trainer")]
+    [Authorize(Roles = "client, trainer, gym")]
     public class ExercisesController : Controller
     ***REMOVED***
         private readonly string SessionKeyExercises;
@@ -37,7 +37,13 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             ***REMOVED***
                 List<Exercise>? exercises;
-                exercise.ExercisePhoto = _photoManagement.UploadProfilePhoto(formFile);
+                Photo? oldPhoto = exercise.ExercisePhoto;
+                Photo? newPhoto = _photoManagement.UploadProfilePhoto(formFile);
+                if (oldPhoto is not null || newPhoto is not null)
+                ***REMOVED***
+                    exercise.ExercisePhoto = newPhoto;
+            ***REMOVED***
+
                 if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) is null)
                 ***REMOVED***
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() ***REMOVED*** exercise ***REMOVED***);
