@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,6 +22,7 @@ namespace NutriFitWeb.Models
 
         [DisplayName("Data de Nascimento")]
         [DataType(DataType.Date)]
+        [Remote(action: "VerifyClientAge", controller: "Clients")]
         public DateTime? ClientBirthday ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Peso")]

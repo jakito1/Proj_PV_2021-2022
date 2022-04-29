@@ -9,11 +9,13 @@ namespace NutriFitWeb.Controllers
     public class MealsController : Controller
     ***REMOVED***
         private readonly string SessionKeyMeals;
+        private readonly string SessionKeyPhoto;
         private readonly IPhotoManagement _photoManagement;
 
         public MealsController(IPhotoManagement photoManagement)
         ***REMOVED***
             SessionKeyMeals = "_Meals";
+            SessionKeyPhoto = "_Photo";
             _photoManagement = photoManagement;
     ***REMOVED***
 
@@ -37,7 +39,16 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             ***REMOVED***
                 List<Meal>? meals;
-                meal.MealPhoto = _photoManagement.UploadProfilePhoto(formFile);
+                Photo? oldPhoto = HttpContext.Session.Get<Photo>(SessionKeyPhoto);
+                Photo? newPhoto = _photoManagement.UploadProfilePhoto(formFile);
+                if ((oldPhoto is not null && newPhoto is not null) || (newPhoto is not null && oldPhoto is null))
+                ***REMOVED***
+                    meal.MealPhoto = newPhoto;
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    meal.MealPhoto = oldPhoto;
+            ***REMOVED***
                 if (HttpContext.Session.Get<List<Meal>>(SessionKeyMeals) is null)
                 ***REMOVED***
                     HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, new List<Meal>() ***REMOVED*** meal ***REMOVED***);
@@ -66,6 +77,10 @@ namespace NutriFitWeb.Controllers
             Meal meal = meals[id];
             meals.RemoveAt(id);
             HttpContext.Session.Set<List<Meal>>(SessionKeyMeals, meals);
+            if (meal.MealPhoto is not null)
+            ***REMOVED***
+                HttpContext.Session.Set<Photo>(SessionKeyPhoto, meal.MealPhoto);
+        ***REMOVED***
             return PartialView("_CreateMealPartial", meal);
     ***REMOVED***
 
