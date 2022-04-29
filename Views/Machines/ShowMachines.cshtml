@@ -58,14 +58,10 @@
                     <td>
                         @if (User.IsInRole("gym"))
                         ***REMOVED***
+                            <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
                             <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
                     ***REMOVED***
                         <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
-                        @if (User.IsInRole("gym"))
-                        ***REMOVED***
-                            <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
-                    ***REMOVED***
-
                     </td>
                 </tr>
         ***REMOVED***
