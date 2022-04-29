@@ -320,7 +320,7 @@ namespace NutriFitWeb.Controllers
                 return Json(true);
         ***REMOVED***
 
-            return Json($"O email: ***REMOVED***clientEmail***REMOVED*** não pertence a um dos seus clientes.");
+            return Json($"O email inserido não pertence a um dos seus clientes.");
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***

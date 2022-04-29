@@ -51,16 +51,22 @@
                 @await Statistics.ClientBMICompared(User.Identity.Name)
             </td>
         </tr>
-        <tr>
-            <td colspan="3" class="statisticsValues">
-                @await Statistics.ClientLeanMassCompared(User.Identity.Name)
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="statisticsValues">
-                @await Statistics.ClientFatMassCompared(User.Identity.Name)
-            </td>
-        </tr>
+        @if (!string.IsNullOrEmpty(await Statistics.ClientLeanMassCompared(User.Identity.Name)))
+        ***REMOVED***
+            <tr>
+                <td colspan="3" class="statisticsValues">
+                    @await Statistics.ClientLeanMassCompared(User.Identity.Name)
+                </td>
+            </tr>
+    ***REMOVED***
+        @if (!string.IsNullOrEmpty(await Statistics.ClientFatMassCompared(User.Identity.Name)))
+        ***REMOVED***
+            <tr>
+                <td colspan="3" class="statisticsValues">
+                    @await Statistics.ClientFatMassCompared(User.Identity.Name)
+                </td>
+            </tr>
+    ***REMOVED***
     </table>
 
     <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
