@@ -461,11 +461,11 @@ namespace NutriFitWeb.Controllers
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
             {
-                return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
+                return await _context.Client.Include(a => a.ClientProfilePhoto).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
             }
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
-            return await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
+            return await _context.Client.Include(a => a.ClientProfilePhoto).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
         }
 
         private IOrderedQueryable<Client> GetClientsForGym(string? searchString, string? userID)

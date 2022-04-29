@@ -124,7 +124,7 @@ namespace NutriFitWeb.Controllers
         [Authorize(Roles = "gym")]
         [HttpPost, ActionName("CreateMachine")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateMachinePost([Bind("MachineId, MachineProfilePhoto,MachineName,MachineDescription,MachineType,MachineQRCodeUri")] Machine machine, IFormFile? formFile)
+        public async Task<IActionResult> CreateMachinePost([Bind("MachineId, MachineProfilePhoto,MachineName,MachineDescription,MachineType")] Machine machine, IFormFile? formFile)
         {
             if (ModelState.IsValid && User.Identity is not null)
             {
