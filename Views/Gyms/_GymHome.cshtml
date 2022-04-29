@@ -45,6 +45,11 @@
                 <td class="statisticsValues">@await Statistics.GetClientsAvgBMI(User.Identity.Name) kg/m²</td>
             </tr>
             <tr>
+                <th class="listsItemTitle">Massa Gorda</th>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                <th class="listsItemTitle">Massa Magra</th>
+            </tr>
+            <tr>
                 <td class="statisticsValues">@await Statistics.GetClientsAvgFatMass(User.Identity.Name) %</td>
                 <td><img src="~/icons/healthIcon.svg" /></td>
                 <td class="statisticsValues">@await Statistics.GetClientsAvgLeanMass(User.Identity.Name) %</td>
