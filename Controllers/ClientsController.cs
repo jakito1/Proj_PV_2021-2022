@@ -460,10 +460,10 @@ namespace NutriFitWeb.Controllers
         public IActionResult VerifyClientAge([Bind("ClientBirthday")] Client client)
         ***REMOVED***
             DateTime clientBirthDate = client.ClientBirthday.GetValueOrDefault();
-            DateTime dt_18 = clientBirthDate.AddYears(18);
-            if (dt_18.Date >= DateTime.Now || clientBirthDate == DateTime.MinValue)
+            DateTime dt_16 = clientBirthDate.AddYears(16);
+            if (dt_16.Date >= DateTime.Now || clientBirthDate == DateTime.MinValue)
             ***REMOVED***
-                return Json($"Data de Nascimento inválida.");
+                return Json($"Tem de ter mais de 16 anos.");
         ***REMOVED***
             return Json(true);
     ***REMOVED***
