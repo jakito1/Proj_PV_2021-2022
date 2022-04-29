@@ -16,7 +16,8 @@
     @if (User.IsInRole("trainer"))
     ***REMOVED***
         <p>Pode também <b>remover</b> e <b>editar planos</b>.</p>
-***REMOVED***else if (User.IsInRole("client"))
+***REMOVED***
+    else if (User.IsInRole("client"))
     ***REMOVED***
         <p>Pode também <b>ver</b> os planos que <b>requisitou</b> ao seu treinador, <b>requisitar um treinador</b> e <b>requisitar</b>, <b>remover</b> e <b>editar planos</b>.</p>
 ***REMOVED***
@@ -160,7 +161,7 @@ else if (User.IsInRole("client"))
 ***REMOVED***
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>

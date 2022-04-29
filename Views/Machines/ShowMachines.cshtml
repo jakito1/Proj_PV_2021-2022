@@ -100,7 +100,7 @@
 ***REMOVED***
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>

@@ -4,15 +4,18 @@
     ViewData["Title"] = "Index";
 ***REMOVED***
 
-<h1>Pedidos de Plano Novo <img src=~/icons/dumbbellsIcon.svg/></h1>
+<h1>Pedidos de Plano Novo <img src=~/icons/dumbbellsIcon.svg /></h1>
 
 <input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
 
 <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
-    @if(User.IsInRole("trainer"))***REMOVED***
+    @if (User.IsInRole("trainer"))
+    ***REMOVED***
         <p>Aqui pode <b>ver os pedidos</b> de <b>novo plano de treino</b> dos clientes associados.</p>
         <p>Nos <b>detalhes</b> de um pedido, pode então proceder à <b>criação</b> de um <b>novo plano de treino</b>.</p>
-***REMOVED***else if(User.IsInRole("client"))***REMOVED***
+***REMOVED***
+    else if (User.IsInRole("client"))
+    ***REMOVED***
         <p>Aqui pode <b>ver e apagar os pedidos</b> de <b>novos planos de treino</b> que requisitou.</p>
 ***REMOVED***
 </div>
@@ -24,7 +27,7 @@
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
             <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
         </form>
-        
+
     </div>
 ***REMOVED***
 else if (User.IsInRole("client"))
@@ -32,66 +35,69 @@ else if (User.IsInRole("client"))
     <div class="titlesMargin">
         <form asp-action="ShowTrainingPlanNewRequests" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
-            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>                   
-        </form>       
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+        </form>
     </div>
 ***REMOVED***
 
 <div class="col-md-8">
-<table class="table">
-    <thead>
-        <tr>
-            <th class="roundedCornerTableLeft thStyle">
-                <p>Nome</p>
-            </th>
-            <th class="thStyle">
-                <p>Descrição</p>
-            </th>
-            <th class="thStyle">
-                <p>Data</p>
-            </th>
-            <th class="roundedCornerTableRight thStyle">
-                <p>Ações</p>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) ***REMOVED***
-        <tr>
-            <td>
-                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestName)</p>
-            </td>
-            <td>
-                @if (item.TrainingPlanNewRequestDescription is null || item.TrainingPlanNewRequestDescription == "")
-                    ***REMOVED***
-                        <p class="details"><b>N/A</b></p>
-                ***REMOVED***
-                    else
-                    ***REMOVED***
-                        string? description = item.TrainingPlanNewRequestDescription;
-                        @if (description.Length > 20)
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="roundedCornerTableLeft thStyle">
+                    <p>Nome</p>
+                </th>
+                <th class="thStyle">
+                    <p>Descrição</p>
+                </th>
+                <th class="thStyle">
+                    <p>Data</p>
+                </th>
+                <th class="roundedCornerTableRight thStyle">
+                    <p>Ações</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            ***REMOVED***
+                <tr>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestName)</p>
+                    </td>
+                    <td>
+                        @if (item.TrainingPlanNewRequestDescription is null || item.TrainingPlanNewRequestDescription == "")
                         ***REMOVED***
-                            description = description.Substring(0, 20);
-                            <p class="details"><b>@description...</b></p>
-                    ***REMOVED***else***REMOVED***
-                            <p class="details"><b>@description</b></p>
+                            <p class="details"><b>N/A</b></p>
                     ***REMOVED***
-                ***REMOVED***
-            </td>
-            <td>
-                <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)</p>
-            </td>
-            <td>                   
-                <a asp-action="TrainingPlanNewRequestDetails" asp-route-id="@item.TrainingPlanNewRequestId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
-                @if (User.IsInRole("client"))
-                ***REMOVED***
-                    <a asp-action="DeleteTrainingPlanNewRequest" asp-route-id="@item.TrainingPlanNewRequestId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
-            ***REMOVED***               
-            </td>
-        </tr>
-***REMOVED***
-    </tbody>
-</table>
+                        else
+                        ***REMOVED***
+                            string? description = item.TrainingPlanNewRequestDescription;
+                            @if (description.Length > 20)
+                            ***REMOVED***
+                                description = description.Substring(0, 20);
+                                <p class="details"><b>@description...</b></p>
+                        ***REMOVED***
+                            else
+                            ***REMOVED***
+                                <p class="details"><b>@description</b></p>
+                        ***REMOVED***
+                    ***REMOVED***
+                    </td>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanNewRequestDate)</p>
+                    </td>
+                    <td>
+                        <a asp-action="TrainingPlanNewRequestDetails" asp-route-id="@item.TrainingPlanNewRequestId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
+                        @if (User.IsInRole("client"))
+                        ***REMOVED***
+                            <a asp-action="DeleteTrainingPlanNewRequest" asp-route-id="@item.TrainingPlanNewRequestId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
+                    ***REMOVED***
+                    </td>
+                </tr>
+        ***REMOVED***
+        </tbody>
+    </table>
 </div>
 
 @***REMOVED***
@@ -125,7 +131,7 @@ else if (User.IsInRole("client"))
 ***REMOVED***
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowTrainingPlanNewRequests" class="backToListBtn">Voltar</a>

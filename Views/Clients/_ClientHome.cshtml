@@ -4,70 +4,72 @@
 @inject SignInManager<UserAccountModel> SignInManager
 @inject IStatistics Statistics
 
-
-<h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity?.Name?.ToUpper()!</h2>
-<div class="md-col-6">
-    <table class="statisticsTable statisticsMargin">
-        <tr>
-            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-            <th class="listsItemTitle">O seu Ginásio</th>
-            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-        </tr>
-        <tr>
-            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
-            @if (!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name)))
+@if (User.Identity is not null)
+***REMOVED***
+    <h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity.Name!.ToUpper()!</h2>
+    <div class="md-col-6">
+        <table class="statisticsTable statisticsMargin">
+            <tr>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                <th class="listsItemTitle">O seu Ginásio</th>
+                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+            </tr>
+            <tr>
+                <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+                @if (!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name!)))
+                ***REMOVED***
+                    <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name!)</td>
             ***REMOVED***
-                <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name)</td>
-        ***REMOVED***
-            else
+                else
+                ***REMOVED***
+                    <td class="statisticsValues">N/A</td>
             ***REMOVED***
-                <td class="statisticsValues">N/A</td>
-        ***REMOVED***
-            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
-        </tr>
-    </table>
+                <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+            </tr>
+        </table>
 
-    <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
-    <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
-        <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
+        <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
+        <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+            <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
+        </div>
+        <br />
+
+        <table class="statisticsTable statisticsMargin">
+            <tr>
+                <th class="listsItemTitle">Massa Magra</th>
+                <th class="listsItemTitle">Massa Gorda</th>
+                <th class="listsItemTitle">IMC</th>
+            </tr>
+            <tr>
+                <td class="statisticsValues">@await Statistics.GetClientLeanMass(User.Identity.Name)</td>
+                <td class="statisticsValues">@await Statistics.GetClientFatMass(User.Identity.Name)</td>
+                <td class="statisticsValues">
+                    @await Statistics.GetClientBMI(User.Identity.Name) kg/m²
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="statisticsValues">
+                    @await Statistics.ClientBMICompared(User.Identity.Name)
+                </td>
+            </tr>
+            @if (!string.IsNullOrEmpty(await Statistics.ClientLeanMassCompared(User.Identity.Name)))
+            ***REMOVED***
+                <tr>
+                    <td colspan="3" class="statisticsValues">
+                        @await Statistics.ClientLeanMassCompared(User.Identity.Name)
+                    </td>
+                </tr>
+        ***REMOVED***
+            @if (!string.IsNullOrEmpty(await Statistics.ClientFatMassCompared(User.Identity.Name)))
+            ***REMOVED***
+                <tr>
+                    <td colspan="3" class="statisticsValues">
+                        @await Statistics.ClientFatMassCompared(User.Identity.Name)
+                    </td>
+                </tr>
+        ***REMOVED***
+        </table>
+
+        <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
     </div>
-    <br />
-
-    <table class="statisticsTable statisticsMargin">
-        <tr>
-            <th class="listsItemTitle">Massa Magra</th>
-            <th class="listsItemTitle">Massa Gorda</th>
-            <th class="listsItemTitle">IMC</th>
-        </tr>
-        <tr>
-            <td class="statisticsValues">@await Statistics.GetClientLeanMass(User.Identity.Name)</td>
-            <td class="statisticsValues">@await Statistics.GetClientFatMass(User.Identity.Name)</td>
-            <td class="statisticsValues">
-                @await Statistics.GetClientBMI(User.Identity.Name) kg/m²
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="statisticsValues">
-                @await Statistics.ClientBMICompared(User.Identity.Name)
-            </td>
-        </tr>
-        @if (!string.IsNullOrEmpty(await Statistics.ClientLeanMassCompared(User.Identity.Name)))
-        ***REMOVED***
-            <tr>
-                <td colspan="3" class="statisticsValues">
-                    @await Statistics.ClientLeanMassCompared(User.Identity.Name)
-                </td>
-            </tr>
-    ***REMOVED***
-        @if (!string.IsNullOrEmpty(await Statistics.ClientFatMassCompared(User.Identity.Name)))
-        ***REMOVED***
-            <tr>
-                <td colspan="3" class="statisticsValues">
-                    @await Statistics.ClientFatMassCompared(User.Identity.Name)
-                </td>
-            </tr>
-    ***REMOVED***
-    </table>
-
-    <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
-</div>
+***REMOVED***

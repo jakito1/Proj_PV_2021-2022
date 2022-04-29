@@ -7,7 +7,7 @@
 @inject IInteractNotification InteractNotification;
 
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (User.Identity is not null && SignInManager.IsSignedIn(User))
     ***REMOVED***
         @if (!User.IsInRole("administrator") && !User.IsInRole("nutritionist"))
         ***REMOVED***
@@ -131,7 +131,9 @@
                 @if (await InteractNotification.NotificationsExist(User.Identity.Name))
                 ***REMOVED***
                     <a class="nav-link text-dark menuItem iconBorder"><img class="notificationAlertIcon" src="~/icons/notificationAlertIcon.svg" alt="notificationsIcon" /></a>
-            ***REMOVED***else***REMOVED***
+            ***REMOVED***
+                else
+                ***REMOVED***
                     <a class="nav-link text-dark menuItem iconBorder"><img class="notificationIcon" src="~/icons/notificationIcon.svg" alt="notificationsIcon" /></a>
             ***REMOVED***
                 <div class="dropdown-content NotificationsSubMenuFix">
@@ -145,10 +147,12 @@
                     @if (await InteractNotification.NotificationsExist(User.Identity.Name))
                     ***REMOVED***
                         <a class="btn btn-link subMenuItem" asp-area="" asp-controller="Notifications" asp-action="ShowNotifications">Ver Tudo</a>
-                ***REMOVED***else***REMOVED***
+                ***REMOVED***
+                    else
+                    ***REMOVED***
                         <p class="details">Não tem notificações</p>
                 ***REMOVED***
-                    
+
                 </div>
             </li>
     ***REMOVED***

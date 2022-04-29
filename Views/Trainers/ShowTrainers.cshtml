@@ -26,7 +26,7 @@
 ***REMOVED***
     <div class="listsDiv">
         <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder">UserName</b> @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
-        <p class="listsItem"><img src="~/icons/emailIcon.svg"/> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
+        <p class="listsItem"><img src="~/icons/emailIcon.svg" /> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
 
             <a asp-action="ChangeTrainerGymStatus" asp-route-id="@item.TrainerId"
@@ -80,7 +80,7 @@
 ***REMOVED***
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowTrainers" class="backToListBtn">Voltar</a>

@@ -8,7 +8,7 @@
         <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
     </form>
 </div>
-@if (await InteractNotification.NotificationsExist(User.Identity.Name))
+@if (User.Identity is not null && await InteractNotification.NotificationsExist(User.Identity.Name!))
 ***REMOVED***
     <div class="marginFixChooseFile">
         <a class="createBtn" asp-action="RemoveAll">Limpar Notificações</a>
@@ -78,7 +78,7 @@
 ***REMOVED***
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowNotifications" class="backToListBtn">Voltar</a>

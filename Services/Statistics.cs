@@ -12,39 +12,57 @@ namespace NutriFitWeb.Services
             _context = context;
     ***REMOVED***
 
-        public IEnumerable<UserAccountModel>? GetUsersForGym(string? userType, string? userName)
+        public IEnumerable<UserAccountModel> GetUsersForGym(string? userType, string? userName)
         ***REMOVED***
             IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.UserName == userName select a.GymId;
             IQueryable<string>? role = from a in _context.Roles where a.Name == userType select a.Id;
+            IQueryable<UserAccountModel>? users = null;
             if (userType == "client")
             ***REMOVED***
-                return _context.Client.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym.FirstOrDefault())
+                users = _context.Client.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym.FirstOrDefault())
                     .OrderByDescending(a => a.DateAddedToGym).Select(a => a.UserAccountModel);
         ***REMOVED***
             else if (userType == "trainer")
             ***REMOVED***
-                return _context.Trainer.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym.FirstOrDefault())
+                users = _context.Trainer.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym.FirstOrDefault())
                     .Select(a => a.UserAccountModel);
         ***REMOVED***
             else if (userType == "nutritionist")
             ***REMOVED***
-                return _context.Nutritionist.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym
+                users = _context.Nutritionist.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym
                 .FirstOrDefault()).Select(a => a.UserAccountModel);
         ***REMOVED***
-            return null;
+
+            if (users is not null)
+            ***REMOVED***
+                return users;
+        ***REMOVED***
+            return Enumerable.Empty<UserAccountModel>();
     ***REMOVED***
 
-        public IEnumerable<UserAccountModel>? GetUsersForTrainer(string? userName)
+        public IEnumerable<UserAccountModel> GetUsersForTrainer(string? userName)
         ***REMOVED***
             IQueryable<int>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.UserName == userName select a.TrainerId;
-            return _context.Client.Where(a => a.Trainer != null && a.Trainer.TrainerId == loggedInTrainer
+            IQueryable<UserAccountModel>? users = _context.Client.Where(a => a.Trainer != null && a.Trainer.TrainerId == loggedInTrainer
             .FirstOrDefault()).OrderByDescending(a => a.DateAddedToTrainer).Select(a => a.UserAccountModel);
+
+            if (users is not null)
+            ***REMOVED***
+                return users;
+        ***REMOVED***
+            return Enumerable.Empty<UserAccountModel>();
     ***REMOVED***
-        public IEnumerable<UserAccountModel>? GetUsersForNutritionist(string? userName)
+        public IEnumerable<UserAccountModel> GetUsersForNutritionist(string? userName)
         ***REMOVED***
             IQueryable<int>? loggedInNutritionist = from a in _context.Nutritionist where a.UserAccountModel.UserName == userName select a.NutritionistId;
-            return _context.Client.Where(a => a.Nutritionist != null && a.Nutritionist.NutritionistId == loggedInNutritionist
+            IQueryable<UserAccountModel>? users = _context.Client.Where(a => a.Nutritionist != null && a.Nutritionist.NutritionistId == loggedInNutritionist
             .FirstOrDefault()).OrderByDescending(a => a.DateAddedToNutritionist).Select(a => a.UserAccountModel);
+
+            if (users is not null)
+            ***REMOVED***
+                return users;
+        ***REMOVED***
+            return Enumerable.Empty<UserAccountModel>();
     ***REMOVED***
 
         public async Task<string> GetUserGym(string? userName)

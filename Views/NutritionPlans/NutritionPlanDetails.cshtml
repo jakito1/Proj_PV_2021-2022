@@ -8,60 +8,64 @@
 
 <div class="col-md-8 profileDivs exercisesDiv">
     <table class="formTables">
-            <tr>
-                @if (User.IsInRole("client") && Model.Nutritionist is not null)
-                ***REMOVED***
-                    <th><p class="control-label listsItemTitle">Nutricionista</p></th>
-                    <td>
-                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Nutritionist.UserAccountModel.UserName)</p>
-                    </td>       
+        <tr>
+            @if (User.IsInRole("client") && Model.Nutritionist is not null)
             ***REMOVED***
-                @if (User.IsInRole("nutritionist") && Model.Client is not null)
-                ***REMOVED***
-                    <th class="control-label listsItemTitle">Cliente</th>
-                    <td>
-                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
-                    </td> 
-            ***REMOVED***
-            </tr>
-            <tr><th></th><td></td></tr>
-            <tr class="detailsTitle">
-                <th class="control-label listsItemTitle">Nome</th>
+                <th><p class="control-label listsItemTitle">Nutricionista</p></th>
                 <td>
-                    <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.NutritionPlanName)</p>
+                    <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Nutritionist!.UserAccountModel.UserName)</p>
                 </td>
-            </tr>
-            <tr><th></th><td></td></tr>
-            <tr>
-                <th class="control-label listsItemTitle">Descrição</th>
-                <td>
-                    @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
-                    ***REMOVED***
-                        <p class="itemsLeftMargin">N/A</p>
-                ***REMOVED***else***REMOVED***
-                        <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
-                ***REMOVED***
-                </td>
-            </tr>
-        </table>
-        @if(Model.Meals is not null && Model.Meals.Any())
         ***REMOVED***
-            <div id="_ShowMealsPartialList" class="plansListDetailsDiv">
-                <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
-            </div>
+            @if (User.IsInRole("nutritionist") && Model.Client is not null)
+            ***REMOVED***
+                <th class="control-label listsItemTitle">Cliente</th>
+                <td>
+                    <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client!.UserAccountModel.UserName)</p>
+                </td>
+        ***REMOVED***
+        </tr>
+        <tr><th></th><td></td></tr>
+        <tr class="detailsTitle">
+            <th class="control-label listsItemTitle">Nome</th>
+            <td>
+                <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.NutritionPlanName)</p>
+            </td>
+        </tr>
+        <tr><th></th><td></td></tr>
+        <tr>
+            <th class="control-label listsItemTitle">Descrição</th>
+            <td>
+                @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
+                ***REMOVED***
+                    <p class="itemsLeftMargin">N/A</p>
+            ***REMOVED***
+                else
+                ***REMOVED***
+                    <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.NutritionPlanDescription)</p>
+            ***REMOVED***
+            </td>
+        </tr>
+    </table>
+    @if (Model.Meals is not null && Model.Meals.Any())
     ***REMOVED***
-    
-        @if (User.IsInRole("client") && Model.Nutritionist is not null && !Model.ToBeEdited)
-        ***REMOVED***
-            <div class="form-group">
-                <input id="planEditButton" type="submit" value="Pedir Edição" class="btn btn-primary" onclick="hideButtonPlanEditRequestPartial()"/>
-            </div>
+        <div id="_ShowMealsPartialList" class="plansListDetailsDiv">
+            <partial name="~/Views/Meals/_ShowMealsDetailsPartial.cshtml" model=@Model.Meals />
+        </div>
+***REMOVED***
 
-            <div style="display:none;" id="_CreateEditRequestPartialItem">
-                @***REMOVED***NutritionPlanEditRequest nutritionPlanEditRequest = new() ***REMOVED*** NutritionPlanId = Model.NutritionPlanId ***REMOVED***;***REMOVED***
-                <partial name="~/Views/NutritionPlanEditRequests/_CreateNutritionPlanEditRequestPartial.cshtml" model=@nutritionPlanEditRequest/>
-            </div>
+    @if (User.IsInRole("client") && Model.Nutritionist is not null && !Model.ToBeEdited)
     ***REMOVED***
+        <div class="form-group">
+            <input id="planEditButton" type="submit" value="Pedir Edição" class="btn btn-primary" onclick="hideButtonPlanEditRequestPartial()" />
+        </div>
+
+        <div style="display:none;" id="_CreateEditRequestPartialItem">
+            @***REMOVED***
+                NutritionPlanEditRequest nutritionPlanEditRequest = new() ***REMOVED*** NutritionPlanId = Model.NutritionPlanId ***REMOVED***;
+        ***REMOVED***
+            <partial name="~/Views/NutritionPlanEditRequests/_CreateNutritionPlanEditRequestPartial.cshtml" model=@nutritionPlanEditRequest />
+        </div>
+***REMOVED***
 </div>
 
 <div class="backBtnDiv">
