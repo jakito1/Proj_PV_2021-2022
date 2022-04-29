@@ -13,12 +13,16 @@ namespace NutriFitWeb.Models
         [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? MealDescription ***REMOVED*** get; set; ***REMOVED***
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** calorias.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealCalorie ***REMOVED*** get; set; ***REMOVED***
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de proteína.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealProtein ***REMOVED*** get; set; ***REMOVED***
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de gordura.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealFat ***REMOVED*** get; set; ***REMOVED***
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de hidratos de carbono.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealCarbohydrate ***REMOVED*** get; set; ***REMOVED***
 
         [DataType(DataType.Date)]

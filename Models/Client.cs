@@ -31,6 +31,7 @@ namespace NutriFitWeb.Models
 
         [DisplayName("Altura")]
         [Range(1, 999, ErrorMessage = "Indique um valor inteiro entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** centímetros.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? Height ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Massa Magra")]
