@@ -9,11 +9,13 @@ namespace NutriFitWeb.Controllers
     public class ExercisesController : Controller
     {
         private readonly string SessionKeyExercises;
+        private readonly string SessionKeyPhoto;
         private readonly IPhotoManagement _photoManagement;
 
         public ExercisesController(IPhotoManagement photoManagement)
         {
             SessionKeyExercises = "_Exercises";
+            SessionKeyPhoto = "_Photo";
             _photoManagement = photoManagement;
         }
 
@@ -37,11 +39,15 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             {
                 List<Exercise>? exercises;
-                Photo? oldPhoto = exercise.ExercisePhoto;
+                Photo? oldPhoto = HttpContext.Session.Get<Photo>(SessionKeyPhoto);
                 Photo? newPhoto = _photoManagement.UploadProfilePhoto(formFile);
-                if (oldPhoto is not null || newPhoto is not null)
+                if ((oldPhoto is not null && newPhoto is not null) || (newPhoto is not null && oldPhoto is null))
                 {
                     exercise.ExercisePhoto = newPhoto;
+                }
+                else
+                {
+                    exercise.ExercisePhoto = oldPhoto;
                 }
 
                 if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) is null)
@@ -72,6 +78,10 @@ namespace NutriFitWeb.Controllers
             Exercise exercise = exercises[id];
             exercises.RemoveAt(id);
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+            if (exercise.ExercisePhoto is not null)
+            {
+                HttpContext.Session.Set<Photo>(SessionKeyPhoto, exercise.ExercisePhoto);
+            }
             return PartialView("_CreateExercisePartial", exercise);
 
         }

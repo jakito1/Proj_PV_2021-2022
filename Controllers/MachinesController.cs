@@ -102,7 +102,8 @@ namespace NutriFitWeb.Controllers
             {
                 return NotFound();
             }
-
+            List<Exercise>? exercises = await _context.Exercise.Where(a => a.Machine != null && a.Machine.MachineId == id)
+                .Include(a => a.ExercisePhoto).ToListAsync();
             Machine? machine = await _context.Machines
                 .Include(a => a.MachineExercises)
                 .Include(a => a.MachineProfilePhoto)
@@ -111,7 +112,7 @@ namespace NutriFitWeb.Controllers
             {
                 return NotFound();
             }
-
+            machine.MachineExercises = exercises;
             return View(machine);
         }
 

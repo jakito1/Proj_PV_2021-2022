@@ -456,6 +456,18 @@ namespace NutriFitWeb.Controllers
             return NotFound();
         }
 
+        [Authorize(Roles = "client, administrator")]
+        public IActionResult VerifyClientAge([Bind("ClientBirthday")] Client client)
+        {
+            DateTime clientBirthDate = client.ClientBirthday.GetValueOrDefault();
+            DateTime dt_18 = clientBirthDate.AddYears(18);
+            if (dt_18.Date >= DateTime.Now || clientBirthDate == DateTime.MinValue)
+            {
+                return Json($"Data de Nascimento inválida.");
+            }
+            return Json(true);
+        }
+
         private async Task<Client?> GetClient(string? id)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
