@@ -2,16 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 ***REMOVED***
@@ -95,20 +92,20 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 return Page();
         ***REMOVED***
 
-            var user = await _userManager.FindByEmailAsync(Input.Email);
+            UserAccountModel user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             ***REMOVED***
                 // Don't reveal that the user does not exist
                 return RedirectToPage("./ResetPasswordConfirmation");
         ***REMOVED***
 
-            var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
             if (result.Succeeded)
             ***REMOVED***
                 return RedirectToPage("./ResetPasswordConfirmation");
         ***REMOVED***
 
-            foreach (var error in result.Errors)
+            foreach (IdentityError error in result.Errors)
             ***REMOVED***
                 ModelState.AddModelError(string.Empty, error.Description);
         ***REMOVED***
