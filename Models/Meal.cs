@@ -28,21 +28,25 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the Meal calories.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} calorias.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealCalorie { get; set; }
         /// <summary>
         /// Gets and Sets the Meal protein value.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de proteína.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealProtein { get; set; }
         /// <summary>
         /// Gets and Sets the Meal fat value.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de gordura.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealFat { get; set; }
         /// <summary>
         /// Gets and Sets the Meal carbohydrate value.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de hidratos de carbono.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealCarbohydrate { get; set; }
         /// <summary>
         /// Gets and Sets the Meal target date.

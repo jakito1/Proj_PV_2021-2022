@@ -35,13 +35,8 @@ namespace NutriFitWeb.Models
         /// </summary>
         [DisplayName("Ginásio")]
         public Gym? Gym { get; set; }
-        /// <summary>
-        /// Gets and Sets the Nutritionist user account model.
-        /// </summary>
-        public UserAccountModel? UserAccountModel { get; set; }
-        /// <summary>
-        /// Gets and Sets the Nutritionist profile photo.
-        /// </summary>
+
+        public UserAccountModel UserAccountModel { get; set; }
         [DisplayName("Foto de Perfil")]
         public Photo? NutritionistProfilePhoto { get; set; }
         /// <summary>

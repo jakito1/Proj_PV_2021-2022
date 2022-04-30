@@ -20,7 +20,7 @@ namespace NutriFitWeb.Services
             _userManager = userManager;
 
         }
-        public Photo UploadProfilePhoto(IFormFile? file)
+        public Photo? UploadProfilePhoto(IFormFile? file)
         {
             if (file is not null && (string.Equals(Path.GetExtension(file.FileName), ".gif")
                                         || string.Equals(Path.GetExtension(file.FileName), ".png")
@@ -48,7 +48,7 @@ namespace NutriFitWeb.Services
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(userName);
             Client? client = await _context.Client.Include(a => a.ClientProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Trainer trainer = await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer? trainer = await _context.Trainer.Include(a => a.TrainerProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.NutritionistProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             Gym? gym = await _context.Gym.Include(a => a.GymProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 

@@ -6,7 +6,10 @@
     <table class="formTables">
         <tr>
             <th><p class="control-label listsItemTitle">Nome do plano</p></th>
-            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlan.NutritionPlanName)</p></td>
+            @if (Model.NutritionPlan is not null)
+            {
+                <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlan!.NutritionPlanName)</p></td>
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">Descrição do Pedido</p></th>
@@ -17,7 +20,7 @@
             <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)</p></td>
         </tr>
     </table>
-    @if (User.IsInRole("nutritionist"))
+    @if (User.IsInRole("nutritionist") && Model.NutritionPlan is not null)
     {
         <div class="form-group">
             <a asp-controller="NutritionPlans" asp-action="EditNutritionPlan" type="submit" asp-route-id="@Model.NutritionPlan.NutritionPlanId" class="createBtn">Editar plano de nutrição</a>

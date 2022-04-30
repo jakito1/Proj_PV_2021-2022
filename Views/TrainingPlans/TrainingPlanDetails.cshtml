@@ -10,14 +10,14 @@
                 {
                     <th><p class="control-label listsItemTitle">Treinador</p></th>
                     <td>
-                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Trainer.UserAccountModel.UserName)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Trainer!.UserAccountModel.UserName)</p>
                     </td>       
                 }
                 @if (User.IsInRole("trainer") && Model.Client is not null)
                 {
                     <th class="control-label listsItemTitle">Cliente</th>
                     <td>
-                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client.UserAccountModel.UserName)</p>
+                        <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client!.UserAccountModel.UserName)</p>
                     </td> 
                 }
             </tr>

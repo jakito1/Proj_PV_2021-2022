@@ -19,7 +19,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// </summary>
         public IActionResult OnGet()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity is not null && User.Identity.IsAuthenticated)
             {
                 return Page();
             }

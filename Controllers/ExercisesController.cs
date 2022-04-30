@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
@@ -10,6 +11,7 @@ namespace NutriFitWeb.Controllers
     public class ExercisesController : Controller
     {
         private readonly string SessionKeyExercises;
+        private readonly string SessionKeyPhoto;
         private readonly IPhotoManagement _photoManagement;
 
         /// <summary>
@@ -19,6 +21,7 @@ namespace NutriFitWeb.Controllers
         public ExercisesController(IPhotoManagement photoManagement)
         {
             SessionKeyExercises = "_Exercises";
+            SessionKeyPhoto = "_Photo";
             _photoManagement = photoManagement;
         }
 
@@ -28,7 +31,7 @@ namespace NutriFitWeb.Controllers
         /// <returns>An action result</returns>
         public IActionResult ShowExercisesList()
         {
-            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
             if (exercises is not null)
             {
                 exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
@@ -51,7 +54,17 @@ namespace NutriFitWeb.Controllers
             if (ModelState.IsValid)
             {
                 List<Exercise>? exercises;
-                exercise.ExercisePhoto = _photoManagement.UploadProfilePhoto(formFile);
+                Photo? oldPhoto = HttpContext.Session.Get<Photo>(SessionKeyPhoto);
+                Photo? newPhoto = _photoManagement.UploadProfilePhoto(formFile);
+                if ((oldPhoto is not null && newPhoto is not null) || (newPhoto is not null && oldPhoto is null))
+                {
+                    exercise.ExercisePhoto = newPhoto;
+                }
+                else
+                {
+                    exercise.ExercisePhoto = oldPhoto;
+                }
+
                 if (HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises) is null)
                 {
                     HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, new List<Exercise>() { exercise });
@@ -59,8 +72,11 @@ namespace NutriFitWeb.Controllers
                 else
                 {
                     exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
-                    exercises.Add(exercise);
-                    HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+                    if (exercises is not null)
+                    {
+                        exercises.Add(exercise);
+                        HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+                    }
                 }
             }
         }
@@ -72,8 +88,7 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         public IActionResult EditExercise(int id)
         {
-
-            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
 
             if (exercises is null)
             {
@@ -83,6 +98,10 @@ namespace NutriFitWeb.Controllers
             Exercise exercise = exercises[id];
             exercises.RemoveAt(id);
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, exercises);
+            if (exercise.ExercisePhoto is not null)
+            {
+                HttpContext.Session.Set<Photo>(SessionKeyPhoto, exercise.ExercisePhoto);
+            }
             return PartialView("_CreateExercisePartial", exercise);
 
         }
@@ -94,8 +113,7 @@ namespace NutriFitWeb.Controllers
         /// <returns>An action result</returns>
         public IActionResult DeleteExercise(int id)
         {
-
-            List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+            List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
             if (exercises is not null)
             {
                 exercises.RemoveAt(id);

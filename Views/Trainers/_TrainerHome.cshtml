@@ -5,79 +5,88 @@
 @inject IPhotoManagement PhotoManagement
 @inject IStatistics Statistics
 
-<h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity?.Name?.ToUpper()!</h2>
-<div class="md-col-6">
-    <table class="statisticsTable statisticsMargin">
-        <tr>
-            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-            <th class="listsItemTitle">O seu Ginásio</th>
-            <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-        </tr>
-        <tr>
-            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
-            @if(!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name)))
-            {
-                <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name)</td>
-            }else{
-                <td class="statisticsValues">N/A</td>
-            }
-            <td class="listsItemTitle statisticsTableHeaderFix">********</td>
-        </tr>
-    </table>
-
-    @if (Statistics.GetUsersForTrainer(User.Identity.Name).Any())
-    {
-        <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
-        <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
-            <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
-        </div>
-        <br />
-
+@if (User.Identity is not null)
+{
+    <h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity.Name!.ToUpper()!</h2>
+    <div class="md-col-6">
         <table class="statisticsTable statisticsMargin">
             <tr>
                 <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-                <th class="listsItemTitle">Médias</th>
+                <th class="listsItemTitle">O seu Ginásio</th>
                 <th class="listsItemTitle statisticsTableHeaderFix">********</th>
             </tr>
             <tr>
-                <th class="listsItemTitle">Peso</th>
-                <th class="listsItemTitle">Altura</th>
-                <th class="listsItemTitle">IMC</th>
-            </tr>
-            <tr>
-                <td class="statisticsValues">@await Statistics.GetClientsAvgWeight(User.Identity.Name) kg</td>
-                <td class="statisticsValues">@await Statistics.GetClientsAvgHeight(User.Identity.Name) cm</td>
-                <td class="statisticsValues">@await Statistics.GetClientsAvgBMI(User.Identity.Name) kg/m²</td>
-            </tr>
-            <tr>
-                <td class="statisticsValues">@await Statistics.GetClientsAvgFatMass(User.Identity.Name) %</td>
-                <td><img src="~/icons/healthIcon.svg" /></td>
-                <td class="statisticsValues">@await Statistics.GetClientsAvgLeanMass(User.Identity.Name) %</td>
-            </tr>
-        </table>
-
-        <table class="statisticsTable statisticsMargin">
-            <tr>
-                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-                <th class="listsItemTitle">Clientes mais recentes</th>
-                <th class="listsItemTitle statisticsTableHeaderFix">********</th>
-            </tr>
-            <tr>
-                @foreach (var item in Statistics.GetUsersForTrainer(User.Identity.Name).Take(3))
+                <td class="listsItemTitle statisticsTableHeaderFix">********</td>
+                @if (!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name!)))
                 {
-                    string? profilePic = await PhotoManagement.LoadProfileImage(@item.UserName);
-                    <td class="statisticsValues">
-                        @item.UserName.ToUpper()
-                        @if (!string.IsNullOrEmpty(profilePic))
-                        {
-                            <img class="accountIconPic" src="@profilePic" alt="accountIcon" />
-                        }
-                    </td>
-
+                    <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name!)</td>
                 }
+                else
+                {
+                    <td class="statisticsValues">N/A</td>
+                }
+                <td class="listsItemTitle statisticsTableHeaderFix">********</td>
             </tr>
         </table>
-    }
 
-    <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
-</div>
+        @if (Statistics.GetUsersForTrainer(User.Identity.Name!).Any())
+        {
+            <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
+            <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+                <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
+            </div>
+            <br />
+
+            <table class="statisticsTable statisticsMargin">
+                <tr>
+                    <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                    <th class="listsItemTitle">Médias</th>
+                    <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                </tr>
+                <tr>
+                    <th class="listsItemTitle">Peso</th>
+                    <th class="listsItemTitle">Altura</th>
+                    <th class="listsItemTitle">IMC</th>
+                </tr>
+                <tr>
+                    <td class="statisticsValues">@await Statistics.GetClientsAvgWeight(User.Identity.Name) kg</td>
+                    <td class="statisticsValues">@await Statistics.GetClientsAvgHeight(User.Identity.Name) cm</td>
+                    <td class="statisticsValues">@await Statistics.GetClientsAvgBMI(User.Identity.Name) kg/m²</td>
+                </tr>
+                <tr>
+                    <th class="listsItemTitle">Massa Gorda</th>
+                    <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                    <th class="listsItemTitle">Massa Magra</th>
+                </tr>
+                <tr>
+                    <td class="statisticsValues">@await Statistics.GetClientsAvgFatMass(User.Identity.Name) %</td>
+                    <td><img src="~/icons/healthIcon.svg" /></td>
+                    <td class="statisticsValues">@await Statistics.GetClientsAvgLeanMass(User.Identity.Name) %</td>
+                </tr>
+            </table>
+
+            <table class="statisticsTable statisticsMargin">
+                <tr>
+                    <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                    <th class="listsItemTitle">Clientes mais recentes</th>
+                    <th class="listsItemTitle statisticsTableHeaderFix">********</th>
+                </tr>
+                <tr>
+                    @foreach (var item in Statistics.GetUsersForTrainer(User.Identity.Name!).Take(3))
+                    {
+                        string? profilePic = await PhotoManagement.LoadProfileImage(@item.UserName);
+                        <td class="statisticsValues">
+                            @item.UserName.ToUpper()
+                            @if (!string.IsNullOrEmpty(profilePic))
+                            {
+                                <img class="accountIconPic" src="@profilePic" alt="accountIcon" />
+                            }
+                        </td>
+                    }
+                </tr>
+            </table>
+        }
+
+        <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
+    </div>
+}

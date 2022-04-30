@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -38,6 +39,7 @@ namespace NutriFitWeb.Models
         /// </summary>
         [DisplayName("Data de Nascimento")]
         [DataType(DataType.Date)]
+        [Remote(action: "VerifyClientAge", controller: "Clients")]
         public DateTime? ClientBirthday { get; set; }
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace NutriFitWeb.Models
         /// </summary>
         [DisplayName("Altura")]
         [Range(1, 999, ErrorMessage = "Indique um valor inteiro entre {1} e {2} centímetros.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? Height { get; set; }
 
         /// <summary>
@@ -141,10 +144,8 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the nutrition plan request list of the client.
         /// </summary>
         public List<NutritionPlanNewRequest>? NutritionPlanRequests { get; set; }
-        /// <summary>
-        /// Gets and Sets the client's user account model.
-        /// </summary>
-        public UserAccountModel? UserAccountModel { get; set; }
+
+        public UserAccountModel UserAccountModel { get; set; }
 
     }
     public enum ClientSex

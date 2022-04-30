@@ -89,7 +89,7 @@
     }
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 {
     <div class="backBtnDiv">
         <a asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>

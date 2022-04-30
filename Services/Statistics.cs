@@ -12,34 +12,57 @@ namespace NutriFitWeb.Services
             _context = context;
         }
 
-        public IEnumerable<UserAccountModel>? GetUsersForGym(string? userType, string? userName)
+        public IEnumerable<UserAccountModel> GetUsersForGym(string? userType, string? userName)
         {
             IQueryable<int>? loggedInGym = from a in _context.Gym where a.UserAccountModel.UserName == userName select a.GymId;
             IQueryable<string>? role = from a in _context.Roles where a.Name == userType select a.Id;
+            IQueryable<UserAccountModel>? users = null;
             if (userType == "client")
             {
-                return _context.Client.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).OrderByDescending(a => a.DateAddedToGym).Select(a => a.UserAccountModel);
+                users = _context.Client.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym.FirstOrDefault())
+                    .OrderByDescending(a => a.DateAddedToGym).Select(a => a.UserAccountModel);
             }
             else if (userType == "trainer")
             {
-                return _context.Trainer.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).Select(a => a.UserAccountModel);
+                users = _context.Trainer.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym.FirstOrDefault())
+                    .Select(a => a.UserAccountModel);
             }
             else if (userType == "nutritionist")
             {
-                return _context.Nutritionist.Where(a => a.Gym.GymId == loggedInGym.FirstOrDefault()).Select(a => a.UserAccountModel);
+                users = _context.Nutritionist.Where(a => a.Gym != null && a.Gym.GymId == loggedInGym
+                .FirstOrDefault()).Select(a => a.UserAccountModel);
             }
-            return null;
+
+            if (users is not null)
+            {
+                return users;
+            }
+            return Enumerable.Empty<UserAccountModel>();
         }
 
-        public IEnumerable<UserAccountModel>? GetUsersForTrainer(string? userName)
+        public IEnumerable<UserAccountModel> GetUsersForTrainer(string? userName)
         {
             IQueryable<int>? loggedInTrainer = from a in _context.Trainer where a.UserAccountModel.UserName == userName select a.TrainerId;
-            return _context.Client.Where(a => a.Trainer.TrainerId == loggedInTrainer.FirstOrDefault()).OrderByDescending(a => a.DateAddedToTrainer).Select(a => a.UserAccountModel);
+            IQueryable<UserAccountModel>? users = _context.Client.Where(a => a.Trainer != null && a.Trainer.TrainerId == loggedInTrainer
+            .FirstOrDefault()).OrderByDescending(a => a.DateAddedToTrainer).Select(a => a.UserAccountModel);
+
+            if (users is not null)
+            {
+                return users;
+            }
+            return Enumerable.Empty<UserAccountModel>();
         }
-        public IEnumerable<UserAccountModel>? GetUsersForNutritionist(string? userName)
+        public IEnumerable<UserAccountModel> GetUsersForNutritionist(string? userName)
         {
             IQueryable<int>? loggedInNutritionist = from a in _context.Nutritionist where a.UserAccountModel.UserName == userName select a.NutritionistId;
-            return _context.Client.Where(a => a.Nutritionist.NutritionistId == loggedInNutritionist.FirstOrDefault()).OrderByDescending(a => a.DateAddedToNutritionist).Select(a => a.UserAccountModel);
+            IQueryable<UserAccountModel>? users = _context.Client.Where(a => a.Nutritionist != null && a.Nutritionist.NutritionistId == loggedInNutritionist
+            .FirstOrDefault()).OrderByDescending(a => a.DateAddedToNutritionist).Select(a => a.UserAccountModel);
+
+            if (users is not null)
+            {
+                return users;
+            }
+            return Enumerable.Empty<UserAccountModel>();
         }
 
         public async Task<string> GetUserGym(string? userName)
@@ -208,20 +231,23 @@ namespace NutriFitWeb.Services
             {
                 Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
 
-                double gymBMIAvg = await GetClientsAvgBMI(gym.UserAccountModel.UserName);
-                double clientCurrentBMI = await GetClientBMI(userName);
-                double BMIDiff = gymBMIAvg - clientCurrentBMI;
-                if (BMIDiff > 0)
+                if (gym is not null)
                 {
-                    return $"O seu IMC está {Math.Round(BMIDiff, 2)} pontos abaixo da média do ginásio.";
-                }
-                else if (BMIDiff < 0)
-                {
-                    return $"O seu IMC está {Math.Round(Math.Abs(BMIDiff), 2)} pontos acima da média do ginásio.";
-                }
-                else if (BMIDiff == 0)
-                {
-                    return "O seu IMC está na média do ginásio.";
+                    double gymBMIAvg = await GetClientsAvgBMI(gym.UserAccountModel.UserName);
+                    double clientCurrentBMI = await GetClientBMI(userName);
+                    double BMIDiff = gymBMIAvg - clientCurrentBMI;
+                    if (BMIDiff > 0)
+                    {
+                        return $"O seu IMC está {Math.Round(BMIDiff, 2)} pontos abaixo da média do ginásio.";
+                    }
+                    else if (BMIDiff < 0)
+                    {
+                        return $"O seu IMC está {Math.Round(Math.Abs(BMIDiff), 2)} pontos acima da média do ginásio.";
+                    }
+                    else if (BMIDiff == 0)
+                    {
+                        return "O seu IMC está na média do ginásio.";
+                    }
                 }
             }
             return string.Empty;
@@ -234,19 +260,22 @@ namespace NutriFitWeb.Services
             {
                 Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
 
-                double gymLeanAvgMass = await GetClientsAvgLeanMass(gym.UserAccountModel.UserName);
-                double leanMassDiff = gymLeanAvgMass - (double)client.LeanMass;
-                if (leanMassDiff > 0)
+                if (gym is not null)
                 {
-                    return $"A sua massa magra está {Math.Round(leanMassDiff, 2)} pontos percentuais abaixo da média do ginásio.";
-                }
-                else if (leanMassDiff < 0)
-                {
-                    return $"A sua massa magra está {Math.Round(Math.Abs(leanMassDiff), 2)} pontos percentuais acima da média do ginásio.";
-                }
-                else if (leanMassDiff == 0)
-                {
-                    return "A sua massa magra está na média do ginásio.";
+                    double gymLeanAvgMass = await GetClientsAvgLeanMass(gym.UserAccountModel.UserName);
+                    double leanMassDiff = gymLeanAvgMass - (double)client.LeanMass;
+                    if (leanMassDiff > 0)
+                    {
+                        return $"A sua massa magra está {Math.Round(leanMassDiff, 2)} pontos percentuais abaixo da média do ginásio.";
+                    }
+                    else if (leanMassDiff < 0)
+                    {
+                        return $"A sua massa magra está {Math.Round(Math.Abs(leanMassDiff), 2)} pontos percentuais acima da média do ginásio.";
+                    }
+                    else if (leanMassDiff == 0)
+                    {
+                        return "A sua massa magra está na média do ginásio.";
+                    }
                 }
             }
             return string.Empty;
@@ -259,19 +288,22 @@ namespace NutriFitWeb.Services
             {
                 Gym? gym = await _context.Gym.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.GymId == client.Gym.GymId);
 
-                double gymFatAvgMass = await GetClientsAvgFatMass(gym.UserAccountModel.UserName);
-                double fatMassDiff = gymFatAvgMass - (double)client.FatMass;
-                if (fatMassDiff > 0)
+                if (gym is not null)
                 {
-                    return $"A sua massa gorda está {Math.Round(fatMassDiff, 2)} pontos percentuais abaixo da média do ginásio.";
-                }
-                else if (fatMassDiff < 0)
-                {
-                    return $"A sua massa gorda está {Math.Round(Math.Abs(fatMassDiff), 2)} pontos percentuais acima da média do ginásio.";
-                }
-                else if (fatMassDiff == 0)
-                {
-                    return "A sua massa gorda está na média do ginásio.";
+                    double gymFatAvgMass = await GetClientsAvgFatMass(gym.UserAccountModel.UserName);
+                    double fatMassDiff = gymFatAvgMass - (double)client.FatMass;
+                    if (fatMassDiff > 0)
+                    {
+                        return $"A sua massa gorda está {Math.Round(fatMassDiff, 2)} pontos percentuais abaixo da média do ginásio.";
+                    }
+                    else if (fatMassDiff < 0)
+                    {
+                        return $"A sua massa gorda está {Math.Round(Math.Abs(fatMassDiff), 2)} pontos percentuais acima da média do ginásio.";
+                    }
+                    else if (fatMassDiff == 0)
+                    {
+                        return "A sua massa gorda está na média do ginásio.";
+                    }
                 }
             }
             return string.Empty;

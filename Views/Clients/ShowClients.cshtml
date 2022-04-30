@@ -22,12 +22,12 @@
 {
     <div class="listsDiv">
         <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder">UserName</b> @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
-        <p class="listsItem"><img src="~/icons/emailIcon.svg"/> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
+        <p class="listsItem"><img src="~/icons/emailIcon.svg" /> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
         <div class="listsItem">
             @if (User.IsInRole("gym"))
             {
                 <a asp-action="ChangeClientGymStatus" asp-route-id="@item.ClientId"
-                    asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+           asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
                     @if (item.Gym is null)
                     {
                         <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
@@ -37,10 +37,11 @@
                         <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
                     }
                 </a>
-            } else if (User.IsInRole("trainer"))
+            }
+            else if (User.IsInRole("trainer"))
             {
                 <a asp-action="ChangeClientTrainerStatus" asp-route-id="@item.ClientId"
-                    asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+           asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
                     @if (item.Trainer is null)
                     {
                         <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
@@ -48,15 +49,16 @@
                     else if (UserManager.GetUserId(User) == item.Trainer.UserAccountModel.Id)
                     {
                         <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
+                        <a asp-controller="Clients" asp-action="EditClientForTrainerAndNutritionist" asp-route-id="@item.ClientId">
+                            <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
+                        </a>
                     }
                 </a>
-                <a asp-controller="Clients" asp-action="EditClientForTrainerAndNutritionist" asp-route-id="@item.ClientId">
-                    <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
-                </a>
-            } else if (User.IsInRole("nutritionist"))
-            {                
+            }
+            else if (User.IsInRole("nutritionist"))
+            {
                 <a asp-action="ChangeClientNutritionistStatus" asp-route-id="@item.ClientId"
-                    asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+           asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
                     @if (item.Nutritionist is null)
                     {
                         <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
@@ -64,14 +66,12 @@
                     else if (UserManager.GetUserId(User) == item.Nutritionist.UserAccountModel.Id)
                     {
                         <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
+                        <a asp-controller="Clients" asp-action="EditClientForTrainerAndNutritionist" asp-route-id="@item.ClientId">
+                            <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
+                        </a>
                     }
                 </a>
-                <a asp-controller="Clients" asp-action="EditClientForTrainerAndNutritionist" asp-route-id="@item.ClientId">
-                    <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
-                </a>
             }
-
-
             <a asp-action="ClientDetails" asp-route-id="@item.ClientId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
         </div>
     </div>
@@ -109,7 +109,7 @@
     }
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 {
     <div class="backBtnDiv">
         <a asp-action="ShowClients" class="backToListBtn">Voltar</a>

@@ -2,34 +2,37 @@
 
 <h2>Tem a certeza que pretende apagar este pedido?</h2>
 <div class="col-md-6 profileDivs">
-<table class="formTables">
-    <tr>
-        <th><p class="control-label listsItemTitle">Nome</p></th>
-        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlan.TrainingPlanName)</b></p></td>
-    </tr>
-    <tr>
-        <th><p class="control-label listsItemTitle">Descrição</p></th>
-        <td>
-            @if (Model.TrainingPlanEditRequestDescription is null || Model.TrainingPlanEditRequestDescription == "")
+    <table class="formTables">
+        <tr>
+            <th><p class="control-label listsItemTitle">Nome</p></th>
+            @if (Model.TrainingPlan is not null)
             {
-                <p><b>N/A</b></p>
+                <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlan!.TrainingPlanName)</b></p></td>
             }
-            else
-            {
-                <p><b>@Html.DisplayFor(model => model.TrainingPlanEditRequestDescription)</b></p>
-            }
-        </td>
-    </tr>
-    <tr>
-        <th><p class="control-label listsItemTitle">Data</p></th>
-        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlanEditRequestDate)</b></p></td>
-    </tr>
-</table>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Descrição</p></th>
+            <td>
+                @if (Model.TrainingPlanEditRequestDescription is null || Model.TrainingPlanEditRequestDescription == "")
+                {
+                    <p><b>N/A</b></p>
+                }
+                else
+                {
+                    <p><b>@Html.DisplayFor(model => model.TrainingPlanEditRequestDescription)</b></p>
+                }
+            </td>
+        </tr>
+        <tr>
+            <th><p class="control-label listsItemTitle">Data</p></th>
+            <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlanEditRequestDate)</b></p></td>
+        </tr>
+    </table>
 
-<form asp-action="DeleteTrainingPlanEditRequest">
-    <input type="hidden" asp-for="TrainingPlanEditRequestId" />
-    <input type="submit" value="Delete" class="btn btn-danger" />
-</form>
+    <form asp-action="DeleteTrainingPlanEditRequest">
+        <input type="hidden" asp-for="TrainingPlanEditRequestId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
 </div>
 
 <div class="backBtnDiv">
