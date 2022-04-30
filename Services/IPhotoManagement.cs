@@ -7,17 +7,8 @@ namespace NutriFitWeb.Services
     /// </summary>
     public interface IPhotoManagement
     ***REMOVED***
-        /// <summary>
-        /// Method to upload a Profile photo.
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns>Instance of a Photo class</returns>
-        Photo UploadProfilePhoto(IFormFile? file);
-        /// <summary>
-        /// Loads the profile image.
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns>A string Task result</returns>
+        Photo? UploadProfilePhoto(IFormFile? file);
+
         Task<string> LoadProfileImage(string? userName);
         /// <summary>
         /// Gets the path for the photo.

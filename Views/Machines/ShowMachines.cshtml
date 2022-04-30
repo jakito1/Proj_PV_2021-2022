@@ -58,14 +58,10 @@
                     <td>
                         @if (User.IsInRole("gym"))
                         ***REMOVED***
+                            <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
                             <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
                     ***REMOVED***
                         <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
-                        @if (User.IsInRole("gym"))
-                        ***REMOVED***
-                            <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
-                    ***REMOVED***
-
                     </td>
                 </tr>
         ***REMOVED***
@@ -104,7 +100,7 @@
 ***REMOVED***
 </div>
 
-@if (!string.IsNullOrEmpty((string)ViewData["CurrentFilter"]))
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
 ***REMOVED***
     <div class="backBtnDiv">
         <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>

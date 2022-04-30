@@ -28,21 +28,25 @@ namespace NutriFitWeb.Models
         /// Gets and Sets the Meal calories.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** calorias.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealCalorie ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the Meal protein value.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de proteína.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealProtein ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the Meal fat value.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de gordura.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealFat ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the Meal carbohydrate value.
         /// </summary>
         [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de hidratos de carbono.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? MealCarbohydrate ***REMOVED*** get; set; ***REMOVED***
         /// <summary>
         /// Gets and Sets the Meal target date.

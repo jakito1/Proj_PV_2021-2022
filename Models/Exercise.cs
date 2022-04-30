@@ -25,16 +25,12 @@ namespace NutriFitWeb.Models
         [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? ExerciseDescription ***REMOVED*** get; set; ***REMOVED***
 
-        /// <summary>
-        /// Gets and Sets the exercise duration.
-        /// </summary>
-        [Range(1, 120, ErrorMessage = "Para um treino saudável, deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** minutos.")]
+        [Range(1, 120, ErrorMessage = "Deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** minutos.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? ExerciseDuration ***REMOVED*** get; set; ***REMOVED***
 
-        /// <summary>
-        /// Gets and Sets the exercise repetitions.
-        /// </summary>
-        [Range(1, 999, ErrorMessage = "Para um treino saudável, deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** repetições.")]
+        [Range(1, 999, ErrorMessage = "Deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** repetições.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
         public int? ExerciseRepetitions ***REMOVED*** get; set; ***REMOVED***
 
         /// <summary>

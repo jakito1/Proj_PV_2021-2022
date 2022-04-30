@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NutriFitWeb.Data;
@@ -7,6 +8,7 @@ using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
 ***REMOVED***
+    [Authorize(Roles = "client, trainer, nutritionist, gym")]
     public class NotificationsController : Controller
     ***REMOVED***
         private readonly ApplicationDbContext _context;
@@ -20,6 +22,10 @@ namespace NutriFitWeb.Controllers
     ***REMOVED***
 
         public async Task<IActionResult> ShowNotifications(string? searchString, string? currentFilter, int? pageNumber)
+        ***REMOVED***
+            if (User.Identity is null)
+            ***REMOVED***
+                return BadRequest();
         ***REMOVED***
 
             if (searchString is not null)
@@ -44,18 +50,22 @@ namespace NutriFitWeb.Controllers
             if (!string.IsNullOrEmpty(searchString) && user is not null)
             ***REMOVED***
                 notifications = _context.Notifications.Where(a => a.NotificationReceiver == user)
-                    .Where(a => a.NotificationMessage.Contains(searchString));
+                    .Where(a => a.NotificationMessage != null && a.NotificationMessage.Contains(searchString));
         ***REMOVED***
 
-            int pageSize = 5;
-            return View(await PaginatedList<Notification>.CreateAsync(notifications.OrderByDescending(a => a.NotificationTime).AsNoTracking(), pageNumber ?? 1, pageSize));
+            if (notifications is not null)
+            ***REMOVED***
+                int pageSize = 5;
+                return View(await PaginatedList<Notification>.CreateAsync(notifications.OrderByDescending(a => a.NotificationTime).AsNoTracking(), pageNumber ?? 1, pageSize));
+        ***REMOVED***
+            return NotFound();
     ***REMOVED***
 
         public async Task<IActionResult> DeleteNotification(int? id)
         ***REMOVED***
-            if (id is null)
+            if (id is null || User.Identity is null)
             ***REMOVED***
-                return NotFound();
+                return BadRequest();
         ***REMOVED***
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -68,6 +78,10 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowNotifications");
     ***REMOVED***
         public async Task<IActionResult> RemoveAll()
+        ***REMOVED***
+            if (User.Identity is null)
+            ***REMOVED***
+                return BadRequest();
         ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             IQueryable<Notification>? notifications = null;
@@ -83,6 +97,5 @@ namespace NutriFitWeb.Controllers
 
             return RedirectToAction("ShowNotifications");
     ***REMOVED***
-
 ***REMOVED***
 ***REMOVED***

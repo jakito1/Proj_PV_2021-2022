@@ -35,13 +35,9 @@ namespace NutriFitWeb.Models
         /// </summary>
         [DisplayName("Ginásio")]
         public Gym? Gym ***REMOVED*** get; set; ***REMOVED***
-        /// <summary>
-        /// Gets and Sets the Trainer user account model.
-        /// </summary>
-        public UserAccountModel? UserAccountModel ***REMOVED*** get; set; ***REMOVED***
-        /// <summary>
-        /// Gets and Sets the Trainer profile photo.
-        /// </summary>
+
+        public UserAccountModel UserAccountModel ***REMOVED*** get; set; ***REMOVED***
+
         [DisplayName("Foto de Perfil")]
         public Photo? TrainerProfilePhoto ***REMOVED*** get; set; ***REMOVED***
         /// <summary>

@@ -7,7 +7,10 @@
     <table class="formTables">
         <tr>
             <th><p class="control-label listsItemTitle">Nome do plano</p></th>
-            <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlan.TrainingPlanName)</p></td>
+            @if (Model.TrainingPlan is not null)
+            ***REMOVED***
+                <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlan!.TrainingPlanName)</p></td>
+        ***REMOVED***
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">Descrição do Pedido</p></th>
@@ -18,7 +21,7 @@
             <td><p class="itemsLeftMargin">@Html.DisplayFor(model => model.TrainingPlanEditRequestDate)</p></td>
         </tr>
     </table>
-    @if (User.IsInRole("trainer"))
+    @if (User.IsInRole("trainer") && Model.TrainingPlan is not null)
     ***REMOVED***
         <div class="form-group">
             <a asp-controller="TrainingPlans" asp-action="EditTrainingPlan" type="submit" asp-route-id="@Model.TrainingPlan.TrainingPlanId" class="createBtn">Editar plano</a>

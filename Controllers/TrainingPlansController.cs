@@ -49,7 +49,10 @@ namespace NutriFitWeb.Controllers
         /// <returns>A View result</returns>
         public async Task<IActionResult> ShowTrainingPlans(string? searchString, string? currentFilter, int? pageNumber)
         ***REMOVED***
-
+            if (User.Identity is null)
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
             if (searchString is not null)
             ***REMOVED***
                 pageNumber = 1;
@@ -61,36 +64,39 @@ namespace NutriFitWeb.Controllers
 
             HttpContext.Session.Clear();
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             ViewData["CurrentFilter"] = searchString;
             IQueryable<TrainingPlan>? plans = null;
 
-            if (trainer is not null)
+            if (trainer is not null && string.IsNullOrEmpty(searchString))
             ***REMOVED***
-                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client.UserAccountModel);
+                plans = _context.TrainingPlan.Where(a => a.Trainer != null && a.Trainer.TrainerId == trainer.TrainerId).Include(a => a.Client!.UserAccountModel);
+        ***REMOVED***
+            else if (!string.IsNullOrEmpty(searchString) && trainer is not null)
+            ***REMOVED***
+                plans = _context.TrainingPlan.Where(a => a.Trainer != null && a.Trainer.TrainerId == trainer.TrainerId)
+                    .Where(a => a.TrainingPlanName != null && a.TrainingPlanName.Contains(searchString) ||
+                    a.Client != null && a.Client.UserAccountModel.Email.Contains(searchString))
+                    .Include(a => a.Client!.UserAccountModel);
+        ***REMOVED***
+            else if (client is not null && string.IsNullOrEmpty(searchString))
+            ***REMOVED***
+                plans = _context.TrainingPlan.Where(a => a.Client != null && a.Client.ClientId == client.ClientId);
+        ***REMOVED***
+            else if (!string.IsNullOrEmpty(searchString) && client is not null)
+            ***REMOVED***
+                plans = _context.TrainingPlan.Where(a => a.Client != null && a.Client.ClientId == client.ClientId)
+                    .Where(a => a.TrainingPlanName != null && a.TrainingPlanName.Contains(searchString));
         ***REMOVED***
 
-            if (client is not null)
+            if (plans is not null)
             ***REMOVED***
-                plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId);
+                int pageSize = 5;
+                return View(await PaginatedList<TrainingPlan>.CreateAsync(plans.AsNoTracking(), pageNumber ?? 1, pageSize));
         ***REMOVED***
-
-            if (!string.IsNullOrEmpty(searchString) && trainer is not null)
-            ***REMOVED***
-                plans = _context.TrainingPlan.Where(a => a.Trainer.TrainerId == trainer.TrainerId)
-                    .Where(a => a.TrainingPlanName.Contains(searchString) || a.Client.UserAccountModel.Email.Contains(searchString))
-                    .Include(a => a.Client.UserAccountModel);
-        ***REMOVED***
-
-            if (!string.IsNullOrEmpty(searchString) && client is not null)
-            ***REMOVED***
-                plans = _context.TrainingPlan.Where(a => a.Client.ClientId == client.ClientId).Where(a => a.TrainingPlanName.Contains(searchString));
-        ***REMOVED***
-
-            int pageSize = 5;
-            return View(await PaginatedList<TrainingPlan>.CreateAsync(plans.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return NotFound();
     ***REMOVED***
 
         /// <summary>
@@ -104,11 +110,11 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan.TrainingPlanId == id)
+            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan != null && a.TrainingPlan.TrainingPlanId == id)
                 .Include(a => a.ExercisePhoto).ToListAsync();
             TrainingPlan? trainingPlan = await _context.TrainingPlan
-                .Include(a => a.Trainer.UserAccountModel)
-                .Include(a => a.Client.UserAccountModel)
+                .Include(a => a.Trainer!.UserAccountModel)
+                .Include(a => a.Client!.UserAccountModel)
                 .FirstOrDefaultAsync(m => m.TrainingPlanId == id);
             if (trainingPlan is null)
             ***REMOVED***
@@ -125,6 +131,10 @@ namespace NutriFitWeb.Controllers
         /// <returns>A View result</returns>
         public async Task<IActionResult> CreateTrainingPlan(int? trainingPlanNewRequestId)
         ***REMOVED***
+            if (User.Identity is null)
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
             HttpContext.Session.Set(SessionKeyCurrentTrainer, trainer);
@@ -132,7 +142,8 @@ namespace NutriFitWeb.Controllers
                 await _context.Client.Where(a => a.Trainer == trainer).Include(a => a.UserAccountModel).ToListAsync());
             if (trainingPlanNewRequestId is not null)
             ***REMOVED***
-                ViewData["ClientEmail"] = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel.Email).FirstOrDefaultAsync();
+                ViewData["ClientEmail"] = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId)
+                    .Select(a => a.Client!.UserAccountModel.Email).FirstOrDefaultAsync();
                 HttpContext.Session.Set(SessionKeyTrainingPlanNewRequestId, trainingPlanNewRequestId);
         ***REMOVED***
             return View();
@@ -147,11 +158,11 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrainingPlanPost([Bind("TrainingPlanId,TrainingPlanName,TrainingPlanDescription,ClientEmail")] TrainingPlan trainingPlan)
         ***REMOVED***
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User.Identity is not null)
             ***REMOVED***
                 UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Trainer trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-                Client client = await _context.Client.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Trainer? trainer = await _context.Trainer.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+                Client? client = await _context.Client.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
                 int? trainingPlanNewRequestId = HttpContext.Session.Get<int?>(SessionKeyTrainingPlanNewRequestId);
 
                 UserAccountModel? clientAccount = null;
@@ -162,7 +173,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 else if (trainingPlanNewRequestId is not null)
                 ***REMOVED***
-                    clientAccount = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client.UserAccountModel).FirstOrDefaultAsync();
+                    clientAccount = await _context.TrainingPlanNewRequests.Where(a => a.TrainingPlanNewRequestId == trainingPlanNewRequestId).Select(a => a.Client!.UserAccountModel).FirstOrDefaultAsync();
             ***REMOVED***
 
                 if (trainer is not null && clientAccount is not null)
@@ -170,7 +181,7 @@ namespace NutriFitWeb.Controllers
                     client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel == clientAccount);
             ***REMOVED***
 
-                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Clear();
 
                 if (trainingPlanNewRequestId is not null)
@@ -182,6 +193,12 @@ namespace NutriFitWeb.Controllers
                         trainingPlanNewRequest.TrainingPlanNewRequestDone = true;
                 ***REMOVED***
             ***REMOVED***
+
+                if (client is null)
+                ***REMOVED***
+                    return NotFound();
+            ***REMOVED***
+
                 await _interactNotification.Create($"O seu novo plano de treino está pronto.", client.UserAccountModel);
                 trainingPlan.Exercises = exercises;
                 trainingPlan.Trainer = trainer;
@@ -209,7 +226,7 @@ namespace NutriFitWeb.Controllers
             ***REMOVED***
                 return NotFound();
         ***REMOVED***
-            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan.TrainingPlanId == id)
+            List<Exercise>? exercises = await _context.Exercise.Where(a => a.TrainingPlan != null && a.TrainingPlan.TrainingPlanId == id)
                 .Include(a => a.ExercisePhoto).ToListAsync();
             trainingPlan.Exercises = exercises;
             HttpContext.Session.Set<List<Exercise>>(SessionKeyExercises, trainingPlan.Exercises);
@@ -230,21 +247,26 @@ namespace NutriFitWeb.Controllers
                 return NotFound();
         ***REMOVED***
 
-            TrainingPlan? trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises).Include(a => a.Client.UserAccountModel).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
+            TrainingPlan? trainingPlanToUpdate = await _context.TrainingPlan.Include(a => a.Exercises)
+                .Include(a => a.Client!.UserAccountModel).FirstOrDefaultAsync(a => a.TrainingPlanId == id);
 
-            TrainingPlanEditRequest? trainingPlanEditRequest = null;
-            if (trainingPlanToUpdate is not null)
+            if (trainingPlanToUpdate is null)
             ***REMOVED***
-                trainingPlanEditRequest = await _context.TrainingPlanEditRequests.OrderByDescending(a => a.TrainingPlanEditRequestDate).
-                    FirstOrDefaultAsync(a => a.TrainingPlan == trainingPlanToUpdate);
+                return NotFound();
         ***REMOVED***
 
+            TrainingPlanEditRequest? trainingPlanEditRequest = null;
+
+            trainingPlanEditRequest = await _context.TrainingPlanEditRequests.OrderByDescending(a => a.TrainingPlanEditRequestDate).
+                FirstOrDefaultAsync(a => a.TrainingPlan == trainingPlanToUpdate);
+
+
             if (await TryUpdateModelAsync<TrainingPlan>(trainingPlanToUpdate, "",
-                u => u.TrainingPlanName, u => u.TrainingPlanDescription))
+                u => u.TrainingPlanName!, u => u.TrainingPlanDescription!))
             ***REMOVED***
-                List<Exercise> exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
+                List<Exercise>? exercises = HttpContext.Session.Get<List<Exercise>>(SessionKeyExercises);
                 HttpContext.Session.Remove(SessionKeyExercises);
-                if (exercises is not null && exercises.Any())
+                if (exercises is not null && exercises.Any() && trainingPlanToUpdate.Exercises is not null)
                 ***REMOVED***
                     HashSet<int>? excludedIDs = new(exercises.Select(a => a.ExerciseId));
                     IEnumerable<Exercise>? missingRows = trainingPlanToUpdate.Exercises.Where(a => !excludedIDs.Contains(a.ExerciseId));
@@ -254,7 +276,7 @@ namespace NutriFitWeb.Controllers
                 trainingPlanToUpdate.Exercises = exercises;
                 trainingPlanToUpdate.ToBeEdited = false;
 
-                if (trainingPlanEditRequest is not null)
+                if (trainingPlanEditRequest is not null && trainingPlanToUpdate.Client is not null)
                 ***REMOVED***
                     trainingPlanEditRequest.TrainingPlanEditRequestDone = true;
                     await _interactNotification.Create($"O seu plano de treino foi editado com sucesso.", trainingPlanToUpdate.Client.UserAccountModel);
@@ -295,14 +317,18 @@ namespace NutriFitWeb.Controllers
         /// <returns>A RedirectToAction result</returns>
         [HttpPost, ActionName("DeleteTrainingPlan")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteTrainingPlanConfirmed(int id)
+        public async Task<IActionResult> DeleteTrainingPlanConfirmed(int? id)
+        ***REMOVED***
+            if (id is null || User.Identity is null)
+            ***REMOVED***
+                return BadRequest();
         ***REMOVED***
             TrainingPlan? trainingPlan = await _context.TrainingPlan.FindAsync(id);
             UserAccountModel user = await _userManager.FindByNameAsync(User.Identity.Name);
-            Trainer trainer = await _context.Trainer.Include(a => a.TrainingPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
-            Client client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Trainer? trainer = await _context.Trainer.Include(a => a.TrainingPlans).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
+            Client? client = await _context.Client.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
-            if (trainer is not null && trainingPlan is not null && trainer.TrainingPlans.Contains(trainingPlan))
+            if (trainer is not null && trainingPlan is not null && trainer.TrainingPlans is not null && trainer.TrainingPlans.Contains(trainingPlan))
             ***REMOVED***
                 trainingPlan.Trainer = null;
                 await _context.SaveChangesAsync();
@@ -324,9 +350,17 @@ namespace NutriFitWeb.Controllers
         /// <returns>A JSON result</returns>
         public async Task<IActionResult> VerifyClientEmail(string? clientEmail)
         ***REMOVED***
+            if (User.Identity is null)
+            ***REMOVED***
+                return BadRequest();
+        ***REMOVED***
             List<Client>? clientsUsersAccounts = HttpContext.Session.Get<List<Client>>(SessionKeyClientsUserAccounts);
             Trainer? trainer = HttpContext.Session.Get<Trainer>(SessionKeyCurrentTrainer);
-            Client? client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == clientEmail);
+            Client? client = null;
+            if (clientsUsersAccounts is not null)
+            ***REMOVED***
+                client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == clientEmail);
+        ***REMOVED***
 
             if (clientsUsersAccounts is null || trainer is null)
             ***REMOVED***
@@ -340,7 +374,7 @@ namespace NutriFitWeb.Controllers
                 return Json(true);
         ***REMOVED***
 
-            return Json($"O email: ***REMOVED***clientEmail***REMOVED*** não pertence a um dos seus clientes.");
+            return Json($"O email inserido não pertence a um dos seus clientes.");
     ***REMOVED***
 ***REMOVED***
 ***REMOVED***
