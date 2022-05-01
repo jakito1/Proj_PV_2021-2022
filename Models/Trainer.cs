@@ -23,7 +23,6 @@ namespace NutriFitWeb.Models
         public UserAccountModel UserAccountModel { get; set; }
 
         [DisplayName("Foto de Perfil")]
-        [RegularExpression(@"(.*\.)(jpe?g|gif)$", ErrorMessage = "Apenas imagens são permitidas.")]
         public Photo? TrainerProfilePhoto { get; set; }
 
         [JsonIgnore]

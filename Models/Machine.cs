@@ -13,7 +13,6 @@ namespace NutriFitWeb.Models
         [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
         public string? MachineDescription { get; set; }
         public List<Exercise>? MachineExercises { get; set; }
-        [RegularExpression(@"(.*\.)(jpe?g|gif)$", ErrorMessage = "Apenas imagens são permitidas.")]
         public Photo? MachineProfilePhoto { get; set; }
         [Column(TypeName = "nvarchar(24)")]
         public MachineType? MachineType { get; set; }
