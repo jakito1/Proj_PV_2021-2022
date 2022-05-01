@@ -296,7 +296,7 @@ namespace NutriFitWeb.Controllers
             return RedirectToAction("ShowNutritionPlans");
         }
 
-        public async Task<IActionResult> VerifyClientEmail([Bind("ClientEmail")] NutritionPlan nutritionPlan)
+        public async Task<IActionResult> VerifyClientEmail(string? clientEmail)
         {
             if (User.Identity is null)
             {
@@ -308,7 +308,7 @@ namespace NutriFitWeb.Controllers
             Client? client = null;
             if (clientsUsersAccounts is not null)
             {
-                client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == nutritionPlan.ClientEmail);
+                client = clientsUsersAccounts.Find(a => a.UserAccountModel.Email == clientEmail);
             }
 
             if (clientsUsersAccounts is null || nutritionist is null)

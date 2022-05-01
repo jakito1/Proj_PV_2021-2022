@@ -312,7 +312,7 @@ namespace NutriFitWeb.Controllers
                         await _interactNotification.Create($"O nutricionista {nutritionist.UserAccountModel.UserName} alterou algumas informações do seu perfil.", clientToUpdate.UserAccountModel);
                     }
                     await _context.SaveChangesAsync();
-                    return LocalRedirect(Url.Content("~/"));
+                    return RedirectToAction("ShowClients");
                 }
             }
             return View(clientToUpdate);
@@ -329,7 +329,7 @@ namespace NutriFitWeb.Controllers
             Client? client = await GetClient(id);
             if (client is not null && client.ClientProfilePhoto is not null)
             {
-                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(client.UserAccountModel.UserName);
             }
 
             if (client is null)

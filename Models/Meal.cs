@@ -40,6 +40,7 @@ namespace NutriFitWeb.Models
         [JsonIgnore]
         public NutritionPlan? NutritionPlan { get; set; }
 
+        [RegularExpression(@"(.*\.)(jpe?g|gif)$", ErrorMessage = "Apenas imagens são permitidas.")]
         public Photo? MealPhoto { get; set; }
 
 

@@ -36,6 +36,7 @@ namespace NutriFitWeb.Models
         [JsonIgnore]
         public Machine? Machine { get; set; }
 
+        [RegularExpression(@"(.*\.)(jpe?g|gif)$", ErrorMessage = "Apenas imagens são permitidas.")]
         public Photo? ExercisePhoto { get; set; }
 
     }

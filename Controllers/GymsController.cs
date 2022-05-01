@@ -40,7 +40,7 @@ namespace NutriFitWeb.Controllers
             Gym? gym = await GetGym(id);
             if (gym is not null && gym.GymProfilePhoto is not null)
             {
-                gym.GymProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+                gym.GymProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(gym.UserAccountModel.UserName);
             }
 
             if (gym is null)
