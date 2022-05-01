@@ -13,7 +13,6 @@ namespace NutriFitWeb.Models
         public string? GymName ***REMOVED*** get; set; ***REMOVED***
 
         [DisplayName("Foto de Perfil")]
-        [RegularExpression(@"(.*\.)(jpe?g|gif)$", ErrorMessage = "Apenas imagens são permitidas.")]
         public Photo? GymProfilePhoto ***REMOVED*** get; set; ***REMOVED***
 
         public UserAccountModel UserAccountModel ***REMOVED*** get; set; ***REMOVED***
