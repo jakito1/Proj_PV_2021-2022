@@ -134,7 +134,7 @@ namespace NutriFitWeb.Controllers
             Nutritionist? nutritionist = await GetNutritionist(id);
             if (nutritionist is not null && nutritionist.NutritionistProfilePhoto is not null)
             ***REMOVED***
-                nutritionist.NutritionistProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+                nutritionist.NutritionistProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(nutritionist.UserAccountModel.UserName);
         ***REMOVED***
 
             if (nutritionist is null)
