@@ -239,13 +239,13 @@ namespace NutriFitWeb.Controllers
             return View(nutritionistToUpdate);
         }
 
-        private async Task<Nutritionist?> GetNutritionist(string? id)
+
         /// <summary>
         /// Returns a query result with the found Nutritionist given de id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A query result</returns>
-        private async Task<Nutritionist> GetNutritionist(string? id)
+        private async Task<Nutritionist?> GetNutritionist(string? id)
         {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))

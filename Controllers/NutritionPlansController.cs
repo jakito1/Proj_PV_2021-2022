@@ -100,10 +100,6 @@ namespace NutriFitWeb.Controllers
             }
             return NotFound();
         }
-
-            int pageSize = 5;
-            return View(await PaginatedList<NutritionPlan>.CreateAsync(plans.AsNoTracking(), pageNumber ?? 1, pageSize));
-        }
         /// <summary>
         /// Renders a view with the details of a new Nutrition plan.
         /// </summary>
