@@ -109,7 +109,7 @@ namespace NutriFitWebTest.Controllers
 
             var result = await controller.DeleteNotification(null);
 
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]

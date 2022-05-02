@@ -127,7 +127,7 @@ namespace NutriFitWebTest.Controllers
 
             IActionResult? result = await controller.EditMachine(1);
 
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]
@@ -137,7 +137,7 @@ namespace NutriFitWebTest.Controllers
 
             IActionResult? result = await controller.EditMachinePost(null, null);
 
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]

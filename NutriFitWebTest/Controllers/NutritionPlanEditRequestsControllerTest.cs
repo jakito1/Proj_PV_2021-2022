@@ -182,7 +182,7 @@ namespace NutriFitWebTest.Controllers
 
             var result = await controller.DeleteNutritionPlanEditRequest(null);
 
-            Assert.IsType<NotFoundResult>(result);
+            Assert.IsType<BadRequestResult>(result);
         }
 
         [Fact]
