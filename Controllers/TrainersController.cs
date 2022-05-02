@@ -177,7 +177,7 @@ namespace NutriFitWeb.Controllers
             Trainer? trainer = await GetTrainer(id);
             if (trainer is not null && trainer.TrainerProfilePhoto is not null)
             {
-                trainer.TrainerProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+                trainer.TrainerProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(trainer.UserAccountModel.UserName);
             }
 
             if (trainer is null)
