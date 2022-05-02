@@ -9,6 +9,7 @@ using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
 using NutriFitWeb.Services;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 using ViewResult = Microsoft.AspNetCore.Mvc.ViewResult;
@@ -80,5 +81,37 @@ namespace NutriFitWebTest.Controllers
 
             Assert.IsType<LocalRedirectResult>(result);
         }
+
+        [Fact]
+        public async Task AdminsController_DeleteUserAccountPost_ReturnsNotFound_WhenAccontDoesntExist()
+        {
+            AdminsController? controller = new AdminsController(_context, mockInteractNotification);
+
+            IActionResult? result = await controller.DeleteUserAccountPost(null);
+
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Fact]
+        public async Task AdminsController_EditUserSettings_ReturnsBadRequestResult_WhenIdIsNull()
+        {
+            AdminsController? controller = new AdminsController(_context, mockInteractNotification);
+
+            IActionResult? result = await controller.EditUserSettings(null);
+
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Fact]
+        public async Task AdminsController_EditUserSettingsPost_ReturnsBadRequestResult_WhenIdIsNull()
+        {
+            AdminsController? controller = new AdminsController(_context, mockInteractNotification);
+
+            IActionResult? result = await controller.EditUserSettingsPost(null);
+
+            Assert.IsType<BadRequestResult>(result);
+
+        }
+
     }
 }
