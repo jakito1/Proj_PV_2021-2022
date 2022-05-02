@@ -1,0 +1,126 @@
+﻿@using NutriFitWeb.Services
+@model IEnumerable<NutriFitWeb.Models.Meal>
+@inject IPhotoManagement PhotoManagement
+
+<br />
+<p class="listsItemTitle">Refeições</p>
+
+<table class="table exercisesMealsTable">
+    <thead class="tableHeader">
+        <tr>
+            <th class="roundedCornerTableLeft thStyle">
+                Nome/Descrição
+            </th>
+            <th class="thStyle">
+                Foto
+            </th>
+            <th class="roundedCornerTableRight thStyle">
+                Outros Dados
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="exercisesData breakText breakTextOtherData">
+                        <p>@Html.DisplayFor(modelItem => item.MealName)</p>
+                        <br />
+                        <p>@Html.DisplayFor(modelItem => item.MealDescription)</p>
+                    </td>
+                    <td>
+                        @if (item.MealPhoto is not null)
+                        {
+                            string? mealPhoto = PhotoManagement.GetPhotoPath(item.MealPhoto);
+                            <img class="profilePhoto" src="@mealPhoto" />
+                        }else{
+                            <p class="exercisesData">N/A</p>
+                        }
+                    </td>
+                    <td class="exercisesData">
+                        @if (item.MealDate is not null)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.MealDate)
+                                @if (item.MealCalorie is not null
+                               || item.MealProtein is not null
+                               || item.MealFat is not null
+                               || item.MealCarbohydrate is not null
+                               || item.MealURL is not null)
+                                {
+                                    <b>,</b>
+                                }
+                            </p>
+                        }
+                        @if (item.MealWeekDay is not null)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.MealWeekDay)
+                                @if (item.MealCalorie is not null
+                               || item.MealProtein is not null
+                               || item.MealFat is not null
+                               || item.MealCarbohydrate is not null
+                               || item.MealURL is not null)
+                                {
+                                    <b>,</b>
+                                }
+                            </p>
+                        }
+                        @if (item.MealCalorie is not null)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.MealCalorie) calorias
+                                @if (item.MealProtein is not null
+                               || item.MealFat is not null
+                               || item.MealCarbohydrate is not null
+                               || item.MealURL is not null)
+                                {
+                                    <b>,</b>
+                                }
+                            </p>
+                        }
+                        @if (item.MealProtein is not null)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.MealProtein)g de proteína
+                                @if (item.MealFat is not null
+                               || item.MealCarbohydrate is not null
+                               || item.MealURL is not null)
+                                {
+                                    <b>,</b>
+                                }
+                            </p>
+                        }
+                        @if (item.MealFat is not null)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.MealFat)g de gordura
+                                @if (item.MealCarbohydrate is not null
+                               || item.MealURL is not null)
+                                {
+                                    <b>,</b>
+                                }
+                            </p>
+                        }
+                        @if (item.MealCarbohydrate is not null)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.MealCarbohydrate)g de carboidratos
+                                @if (item.MealURL is not null)
+                                {
+                                    <b>,</b>
+                                }
+                            </p>
+                        }
+                        @if (item.MealURL is not null && item.MealURL != "")
+                        {
+                            <a class="videosUrl" href="@item.MealURL" target="_blank">Link da refeição</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

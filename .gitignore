@@ -61,5 +61,9 @@ Thumbs.db
 
 /.vs
 /bin/Release/net6.0
+NutriFitWebTest/bin/Release/net6.0
 /Properties/ServiceDependencies/NutriFitWeb - Web Deploy
 /Properties/PublishProfiles
+/VSdoc
+/NutriFitWebTest/obj
+*.user

@@ -1,0 +1,140 @@
+﻿@using NutriFitWeb.Services
+@model PaginatedList<NutriFitWeb.Models.TrainingPlanEditRequest>
+
+<h1>Pedidos de Edição de Plano <img src=~/icons/dumbbellsIcon.svg /></h1>
+
+<input type="submit" value="Ajuda" class="helpBtn" onclick="helpButton()" />
+
+<div class="col-md-4 helpDivs" style="display:none;" id="helpText">
+
+    @if (User.IsInRole("trainer"))
+    {
+        <p>Aqui pode <b>ver os pedidos</b> de <b>edição de planos de treino</b> dos clientes associados.</p>
+        <p>Nos <b>detalhes</b> de um pedido, pode então proceder à <b>edição</b> de um <b>plano de treino</b>.</p>
+    }
+    else if (User.IsInRole("client"))
+    {
+        <p>Aqui pode <b>ver e apagar os pedidos</b> de <b>edição de planos de treino</b> que requisitou.</p>
+    }
+</div>
+
+@if (User.IsInRole("trainer"))
+{
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlanEditRequests" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+        </form>
+
+    </div>
+}
+else if (User.IsInRole("client"))
+{
+    <div class="titlesMargin">
+        <form asp-action="ShowTrainingPlanEditRequests" method="get">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
+            <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
+        </form>
+    </div>
+}
+
+<div class="col-md-8">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="roundedCornerTableLeft thStyle">
+                    <p>Nome</p>
+                </th>
+                <th class="thStyle">
+                    <p>Descrição</p>
+                </th>
+                <th class="thStyle">
+                    <p>Data</p>
+                </th>
+                <th class="roundedCornerTableRight thStyle">
+                    <p>Ações</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.TrainingPlan is not null)
+                        {
+                            <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlan.TrainingPlanName)</p>
+                        }
+                    </td>
+                    <td>
+                        @if (item.TrainingPlanEditRequestDescription is null || item.TrainingPlanEditRequestDescription == "")
+                        {
+                            <p class="details"><b>N/A</b></p>
+                        }
+                        else
+                        {
+                            string? description = item.TrainingPlanEditRequestDescription;
+                            @if (description.Length > 20)
+                            {
+                                description = description.Substring(0, 20);
+                                <p class="details"><b>@description...</b></p>
+                            }
+                            else
+                            {
+                                <p class="details"><b>@description</b></p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanEditRequestDate)</p>
+                    </td>
+                    <td>
+                        <a asp-action="TrainingPlanEditRequestDetails" asp-route-id="@item.TrainingPlanEditRequestId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" alt="detailsIcon" /></a>
+                        @if (User.IsInRole("client"))
+                        {
+                            <a asp-action="DeleteTrainingPlanEditRequest" asp-route-id="@item.TrainingPlanEditRequestId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" /></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<div class="pagesDiv">
+    @if (prevDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainingPlanEditRequests"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+            <b>Anterior</b>
+        </a>
+    }
+
+    @if (nextDisabled != "disabled")
+    {
+        <a asp-action="ShowTrainingPlanEditRequests"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+            <b>Próximo</b>
+        </a>
+    }
+
+    @if (prevDisabled == "disabled" && nextDisabled == "disabled")
+    {
+        <p class="noMoreResults">Não existem mais resultados</p>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
+{
+    <div class="backBtnDiv">
+        <a asp-action="ShowTrainingPlanEditRequests" class="backToListBtn">Voltar</a>
+    </div>
+}

@@ -1,0 +1,35 @@
+﻿@model NutriFitWeb.Models.Machine
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Tem a certeza que pretende apagar esta máquina?</h2>
+
+<div class="col-md-6 profileDivs">
+<table class="formTables">
+    <tr>
+        <th><p class="control-label listsItemTitle">Nome</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.MachineName)</b></p></td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Descrição</p></th>
+        <td>
+            <p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.MachineDescription)</b></p>
+        </td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Tipo</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.MachineType)</b></p></td>
+    </tr>
+</table>
+
+<form asp-action="DeleteMachine">
+    <input type="hidden" asp-for="MachineId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+</div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
+</div>

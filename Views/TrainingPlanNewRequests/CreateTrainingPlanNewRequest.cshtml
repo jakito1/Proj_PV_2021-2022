@@ -1,0 +1,42 @@
+﻿@model NutriFitWeb.Models.TrainingPlanNewRequest
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Requisição de Novo Plano de Treino</h2>
+
+    <div class="col-md-6 profileDivs exercisesDiv">
+        <form asp-action="CreateTrainingPlanNewRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainingPlanNewRequestName" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="TrainingPlanNewRequestName" class="formsInput" />
+                        <br />
+                        <span asp-validation-for="TrainingPlanNewRequestName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainingPlanNewRequestDescription" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <textarea asp-for="TrainingPlanNewRequestDescription" class="descriptionBox"></textarea>
+                        <br />
+                        <span asp-validation-for="TrainingPlanNewRequestDescription" class="text-danger"></span>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+<div class="backBtnDiv">
+    <a asp-controller="TrainingPlans" asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

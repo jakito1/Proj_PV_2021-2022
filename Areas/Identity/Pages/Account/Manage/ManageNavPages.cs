@@ -2,122 +2,146 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace  NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
+{
     /// <summary>
-    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-    ///     directly from your code. This API may change or be removed in future releases.
+    ///     ManageNavPages class.
     /// </summary>
     public static class ManageNavPages
-    ***REMOVED***
+    {
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the Index page name.
         /// </summary>
         public static string Index => "Index";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the Email page name.
         /// </summary>
         public static string Email => "Email";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the ChangePassword page name.
         /// </summary>
         public static string ChangePassword => "ChangePassword";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the DownloadPersonalData page name.
         /// </summary>
         public static string DownloadPersonalData => "DownloadPersonalData";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the DeletePersonalData page name.
         /// </summary>
         public static string DeletePersonalData => "DeletePersonalData";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the ExternalLogins page name.
         /// </summary>
         public static string ExternalLogins => "ExternalLogins";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the PersonalData page name.
         /// </summary>
         public static string PersonalData => "PersonalData";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets the TwoFactorAuthentication page name.
         /// </summary>
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the Index page.
         /// </summary>
-        public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string IndexNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, Index);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the Email page.
         /// </summary>
-        public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string EmailNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, Email);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the ChangePassword page.
         /// </summary>
-        public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string ChangePasswordNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, ChangePassword);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the DownloadPersonalData page.
         /// </summary>
-        public static string DownloadPersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, DownloadPersonalData);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string DownloadPersonalDataNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, DownloadPersonalData);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the DeletePersonalData page.
         /// </summary>
-        public static string DeletePersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, DeletePersonalData);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string DeletePersonalDataNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, DeletePersonalData);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the ExternalLogins page.
         /// </summary>
-        public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string ExternalLoginsNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, ExternalLogins);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the PersonalData page.
         /// </summary>
-        public static string PersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, PersonalData);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string PersonalDataNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, PersonalData);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the TwoFactorAuthentication page.
         /// </summary>
-        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <returns></returns>
+        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext)
+        {
+            return PageNavClass(viewContext, TwoFactorAuthentication);
+        }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Tries to create the requested page.
         /// </summary>
+        /// <param name="viewContext">Context for the view execution.</param>
+        /// <param name="page">The name of the page to render.</param>
+        /// <returns></returns>
         public static string PageNavClass(ViewContext viewContext, string page)
-        ***REMOVED***
-            var activePage = viewContext.ViewData["ActivePage"] as string
-                ?? System.IO.Path.GetFileNameWithoutExtension(viewContext.ActionDescriptor.DisplayName);
+        {
+            string activePage = viewContext.ViewData["ActivePage"] as string
+                ?? Path.GetFileNameWithoutExtension(viewContext.ActionDescriptor.DisplayName);
             return string.Equals(activePage, page, StringComparison.OrdinalIgnoreCase) ? "active" : null;
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

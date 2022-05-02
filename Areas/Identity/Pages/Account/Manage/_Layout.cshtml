@@ -1,18 +1,17 @@
-﻿@***REMOVED***
+﻿@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
-    ***REMOVED***
-        Layout = (string)parentLayout;
-***REMOVED***
+    {
+            Layout = parentLayout as string;
+    }
     else
-    ***REMOVED***
+    {
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
-***REMOVED***
-***REMOVED***
+    }
+}
 
-<h1>Manage your account</h1>
+<h1>Gerir Conta</h1>
 
 <div>
-    <h2>Change your account settings</h2>
     <hr />
     <div class="row">
         <div class="col-md-3">
@@ -24,6 +23,6 @@
     </div>
 </div>
 
-@section Scripts ***REMOVED***
+@section Scripts {
     @RenderSection("Scripts", required: false)
-***REMOVED***
+}

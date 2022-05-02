@@ -1,12 +1,3 @@
-***REMOVED***
-  "dependencies": ***REMOVED***
-    "mssql1": ***REMOVED***
-      "type": "mssql.local",
-      "connectionId": "ConnectionStrings:DefaultConnection"
-  ***REMOVED***
-    "mssql2": ***REMOVED***
-      "type": "mssql.local",
-      "connectionId": "ConnectionStrings:NutriFitWebContextConnection"
-***REMOVED***
-  ***REMOVED***
-***REMOVED***
+{
+  "dependencies": {}
+}

@@ -1,9 +1,9 @@
 ﻿@page
 @model EnableAuthenticatorModel
-@***REMOVED***
+@{
     ViewData["Title"] = "Configure authenticator app";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
-***REMOVED***
+}
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
@@ -22,7 +22,6 @@
         </li>
         <li>
             <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
-            <div class="alert alert-info">Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable QR code generation</a>.</div>
             <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         </li>
@@ -48,6 +47,6 @@
     </ol>
 </div>
 
-@section Scripts ***REMOVED***
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
-***REMOVED***
+}

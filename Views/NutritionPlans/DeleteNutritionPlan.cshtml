@@ -1,0 +1,38 @@
+﻿@model NutriFitWeb.Models.NutritionPlan
+
+@{
+    ViewData["Title"] = "Remover";
+}
+
+<h2>Tem a certeza que pretende apagar este plano de nutrição?</h2>
+
+<div class="col-md-6 profileDivs">
+<table class="formTables">
+    <tr>
+        <th><p class="control-label listsItemTitle">Nome</p></th>
+        <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.NutritionPlanName)</b></p></td>
+    </tr>
+    <tr>
+        <th><p class="control-label listsItemTitle">Descrição</p></th>
+        <td>
+            @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
+            {
+                <p><b>N/A</b></p>
+            }
+            else
+            {
+                <p><b>@Html.DisplayFor(model => model.NutritionPlanDescription)</b></p>
+            }
+        </td>
+    </tr>
+</table>
+
+<form asp-action="DeleteNutritionPlan">
+    <input type="hidden" asp-for="NutritionPlanId" />
+    <input type="submit" value="Apagar" class="btn btn-danger" />
+</form>
+</div>
+
+<div class="backBtnDiv">
+    <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
+</div>

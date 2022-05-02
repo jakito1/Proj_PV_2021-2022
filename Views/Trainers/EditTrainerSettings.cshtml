@@ -1,0 +1,57 @@
+﻿@model NutriFitWeb.Models.Trainer
+
+@{
+    ViewData["Title"] = "Editar perfil do Treinador";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="col-md-4 profileDivs">
+    <form asp-action="EditTrainerSettings" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="TrainerId" />
+        <div class="form-group">
+            <label asp-for="TrainerProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
+            <br />
+            @if(Model.TrainerProfilePhoto is not null)
+            {
+                <img class="profilePhoto" src="@Model.TrainerProfilePhoto.PhotoUrl" />
+            }
+            <input type="file" asp-for="TrainerProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
+            <span asp-validation-for="TrainerProfilePhoto" class="text-danger"></span>
+        </div>
+
+        <table class="formTables">
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainerFirstName" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="TrainerFirstName" class="formsInput" />
+                        <span asp-validation-for="TrainerFirstName" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="alignTableTitles"><label asp-for="TrainerLastName" class="control-label listsItemTitle"></label></th>
+                    <td>
+                        <input asp-for="TrainerLastName" class="formsInput" />
+                        <span asp-validation-for="TrainerLastName" class="text-danger"></span>
+                    </td>
+                </tr>
+        </table>
+
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div class="backBtnDiv">
+    @if (User.IsInRole("administrator"))
+    {
+        <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
+    }
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
