@@ -176,7 +176,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Cryptography.Internal/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.Cryptography.Internal/6.0.4": ***REMOVED***
         "type": "package",
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": ***REMOVED******REMOVED***
@@ -185,10 +185,10 @@
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.3"
+          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.4"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": ***REMOVED******REMOVED***
@@ -235,10 +235,10 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.3"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.4"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
@@ -345,11 +345,11 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.3",
-          "Microsoft.Extensions.Identity.Stores": "6.0.3"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.4",
+          "Microsoft.Extensions.Identity.Stores": "6.0.4"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
@@ -358,11 +358,11 @@
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Identity.UI/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.Identity.UI/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.Extensions.FileProviders.Embedded": "6.0.3",
-          "Microsoft.Extensions.Identity.Stores": "6.0.3"
+          "Microsoft.Extensions.FileProviders.Embedded": "6.0.4",
+          "Microsoft.Extensions.Identity.Stores": "6.0.4"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll": ***REMOVED******REMOVED***
@@ -605,10 +605,10 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.Mvc.Testing/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.Mvc.Testing/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNetCore.TestHost": "6.0.3",
+          "Microsoft.AspNetCore.TestHost": "6.0.4",
           "Microsoft.Extensions.DependencyModel": "6.0.0",
           "Microsoft.Extensions.Hosting": "6.0.1"
       ***REMOVED***
@@ -727,7 +727,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Routing.Abstractions.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.AspNetCore.TestHost/6.0.3": ***REMOVED***
+      "Microsoft.AspNetCore.TestHost/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "System.IO.Pipelines": "6.0.2"
@@ -1621,7 +1621,7 @@
           "lib/netstandard1.1/Microsoft.DiaSymReader.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.DotNet.Scaffolding.Shared/6.0.2": ***REMOVED***
+      "Microsoft.DotNet.Scaffolding.Shared/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.CodeAnalysis.CSharp.Features": "4.0.0",
@@ -1719,17 +1719,26 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.EntityFrameworkCore.SqlServer/6.0.3": ***REMOVED***
+      "Microsoft.EntityFrameworkCore.SqlServer/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Data.SqlClient": "2.1.4",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.3"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.4"
       ***REMOVED***
         "compile": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": ***REMOVED******REMOVED***
       ***REMOVED***
         "runtime": ***REMOVED***
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
+      "Microsoft.Extensions.ApiDescription.Server/3.0.0": ***REMOVED***
+        "type": "package",
+        "build": ***REMOVED***
+          "build/_._": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "buildMultiTargeting": ***REMOVED***
+          "buildMultiTargeting/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
       "Microsoft.Extensions.Caching.Abstractions/6.0.0": ***REMOVED***
@@ -1945,7 +1954,7 @@
           "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Composite.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.FileProviders.Embedded/6.0.3": ***REMOVED***
+      "Microsoft.Extensions.FileProviders.Embedded/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Extensions.FileProviders.Abstractions": "6.0.0"
@@ -2041,10 +2050,10 @@
           "lib/netstandard2.1/Microsoft.Extensions.Hosting.Abstractions.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Identity.Core/6.0.3": ***REMOVED***
+      "Microsoft.Extensions.Identity.Core/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.3",
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.4",
           "Microsoft.Extensions.Logging": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0"
       ***REMOVED***
@@ -2055,11 +2064,11 @@
           "lib/net6.0/Microsoft.Extensions.Identity.Core.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.Extensions.Identity.Stores/6.0.3": ***REMOVED***
+      "Microsoft.Extensions.Identity.Stores/6.0.4": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Identity.Core": "6.0.3",
+          "Microsoft.Extensions.Identity.Core": "6.0.4",
           "Microsoft.Extensions.Logging": "6.0.0"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -2412,6 +2421,15 @@
           "lib/netstandard1.0/_._": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
+      "Microsoft.OpenApi/1.2.3": ***REMOVED***
+        "type": "package",
+        "compile": ***REMOVED***
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
       "Microsoft.TestPlatform.ObjectModel/17.2.0-preview-20220301-01": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
@@ -2673,11 +2691,11 @@
           "lib/netstandard2.0/Microsoft.VisualStudio.Debugger.Contracts.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGeneration/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGeneration/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "6.0.2",
+          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "6.0.3",
           "System.Collections.Immutable": "6.0.0",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
@@ -2688,11 +2706,11 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGeneration.Core/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGeneration.Core/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "6.0.2",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "6.0.3",
           "Newtonsoft.Json": "13.0.1",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
@@ -2703,12 +2721,12 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Build.Locator": "1.4.1",
-          "Microsoft.DotNet.Scaffolding.Shared": "6.0.2",
-          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "6.0.2",
+          "Microsoft.DotNet.Scaffolding.Shared": "6.0.3",
+          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "6.0.3",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -2728,11 +2746,11 @@
       ***REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.DotNet.Scaffolding.Shared": "6.0.2",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Core": "6.0.2",
+          "Microsoft.DotNet.Scaffolding.Shared": "6.0.3",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Core": "6.0.3",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -2742,13 +2760,13 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGeneration.Templating/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGeneration.Templating/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.AspNetCore.Razor.Language": "6.0.0",
           "Microsoft.CodeAnalysis.CSharp": "4.0.0",
           "Microsoft.CodeAnalysis.Razor": "6.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "6.0.2",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "6.0.3",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -2758,13 +2776,13 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGeneration.Utils/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGeneration.Utils/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
           "Microsoft.Build": "17.0.0",
           "Microsoft.Build.Locator": "1.4.1",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.0.0",
-          "Microsoft.DotNet.Scaffolding.Shared": "6.0.2",
+          "Microsoft.DotNet.Scaffolding.Shared": "6.0.3",
           "Newtonsoft.Json": "13.0.1",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
@@ -2775,11 +2793,11 @@
           "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll": ***REMOVED******REMOVED***
     ***REMOVED***
     ***REMOVED***
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/6.0.2": ***REMOVED***
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/6.0.3": ***REMOVED***
         "type": "package",
         "dependencies": ***REMOVED***
-          "Microsoft.DotNet.Scaffolding.Shared": "6.0.2",
-          "Microsoft.VisualStudio.Web.CodeGeneration": "6.0.2",
+          "Microsoft.DotNet.Scaffolding.Shared": "6.0.3",
+          "Microsoft.VisualStudio.Web.CodeGeneration": "6.0.3",
           "System.Private.Uri": "4.3.2"
       ***REMOVED***
         "compile": ***REMOVED***
@@ -3344,6 +3362,57 @@
         "runtime": ***REMOVED***
           "lib/netstandard2.1/StarkbankEcdsa.dll": ***REMOVED******REMOVED***
     ***REMOVED***
+    ***REMOVED***
+      "Swashbuckle.AspNetCore/6.3.1": ***REMOVED***
+        "type": "package",
+        "dependencies": ***REMOVED***
+          "Microsoft.Extensions.ApiDescription.Server": "3.0.0",
+          "Swashbuckle.AspNetCore.Swagger": "6.3.1",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.3.1",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.3.1"
+      ***REMOVED***
+        "build": ***REMOVED***
+          "build/_._": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
+      "Swashbuckle.AspNetCore.Swagger/6.3.1": ***REMOVED***
+        "type": "package",
+        "dependencies": ***REMOVED***
+          "Microsoft.OpenApi": "1.2.3"
+      ***REMOVED***
+        "compile": ***REMOVED***
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+    ***REMOVED***
+      "Swashbuckle.AspNetCore.SwaggerGen/6.3.1": ***REMOVED***
+        "type": "package",
+        "dependencies": ***REMOVED***
+          "Swashbuckle.AspNetCore.Swagger": "6.3.1"
+      ***REMOVED***
+        "compile": ***REMOVED***
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": ***REMOVED******REMOVED***
+    ***REMOVED***
+    ***REMOVED***
+      "Swashbuckle.AspNetCore.SwaggerUI/6.3.1": ***REMOVED***
+        "type": "package",
+        "compile": ***REMOVED***
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "runtime": ***REMOVED***
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": ***REMOVED******REMOVED***
+      ***REMOVED***
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
     ***REMOVED***
       "System.AppContext/4.3.0": ***REMOVED***
         "type": "package",
@@ -4959,14 +5028,15 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": ***REMOVED***
           "LigerShark.WebOptimizer.Core": "3.0.357",
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.3",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.3",
-          "Microsoft.AspNetCore.Identity.UI": "6.0.3",
-          "Microsoft.AspNetCore.Mvc.Testing": "6.0.3",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3",
-          "Microsoft.EntityFrameworkCore.Sqlite": "6.0.3",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2",
-          "SendGrid": "9.27.0"
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.4",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.4",
+          "Microsoft.AspNetCore.Identity.UI": "6.0.4",
+          "Microsoft.AspNetCore.Mvc.Testing": "6.0.4",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.4",
+          "Microsoft.EntityFrameworkCore.Sqlite": "6.0.4",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.3",
+          "SendGrid": "9.27.0",
+          "Swashbuckle.AspNetCore": "6.3.1"
       ***REMOVED***
         "compile": ***REMOVED***
           "bin/placeholder/NutriFitWeb.dll": ***REMOVED******REMOVED***
@@ -5208,10 +5278,10 @@
         "microsoft.aspnetcore.cors.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Cryptography.Internal/6.0.3": ***REMOVED***
-      "sha512": "x90uNiEssA16NRSJ0nYIBJRC2GVVs2pmvHR88MySsolexasmc449PmWkSVHok+FyA1gLfF0oVA4LjkngkWdlGw==",
+    "Microsoft.AspNetCore.Cryptography.Internal/6.0.4": ***REMOVED***
+      "sha512": "/0FX1OqckMmXAAlsHgBFNymTZuq4nuAOMhiwm6e8CEMi2aOjnMYwiMc7mtvpGTAO0O4C0zwx+iaChxDgvqit2A==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.internal/6.0.3",
+      "path": "microsoft.aspnetcore.cryptography.internal/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5223,14 +5293,14 @@
         "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "microsoft.aspnetcore.cryptography.internal.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.internal.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.3": ***REMOVED***
-      "sha512": "sOpvnKWMBMK9FEcR6KAbKZvO9XVy1DZvVKXkiZdWXcBKoO4a6I6geNyFHAPfG4Kqayymk3NRalxVt0j6fus8vg==",
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.4": ***REMOVED***
+      "sha512": "1Lbwrxg/HRY/nbrkcrB3EUXUYQN8Tkw7Ktgb6/2on2P7ybT5aM59H05gk+OBC8ZTBxwdle9e1tyT3wxEYKw5xw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/6.0.3",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5242,7 +5312,7 @@
         "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "microsoft.aspnetcore.cryptography.keyderivation.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
   ***REMOVED***
@@ -5285,10 +5355,10 @@
         "microsoft.aspnetcore.diagnostics.abstractions.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.3": ***REMOVED***
-      "sha512": "sba0OFsscmCi7CepYxKf5J3ENrUSY+UGmc4SZH3jX3EmSx9aqMypBnzNEvzgQaQFnfuedfpaAhu2S2ygSoo9Mg==",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/6.0.4": ***REMOVED***
+      "sha512": "mBOx8W+lrM5Sx09dczoEu4L2PB12pibpWFxyZ9x4FLHthqgJZJvFeEyQqqK1oWRcMKuXUMJOYKaKkBqeNbH0eA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/6.0.3",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5296,7 +5366,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.diagnostics.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
@@ -5391,10 +5461,10 @@
         "microsoft.aspnetcore.http.features.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.3": ***REMOVED***
-      "sha512": "214kfSUvhEqivtGCtRuJXRmELiOgQ4POpn4KHhHCxtxXEvZKMI0KqCrVW5ZO2XA6c1uhOimWU/jYutGhJLhwJg==",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.4": ***REMOVED***
+      "sha512": "Y6B69qkVsWBj0VX5Etgni/D4f0Sg5lWrfFN/Y0Hwzn7ZS0rPotjlKSMVIAmJzz+OBlep3HV+7h3PHl08+OYm0w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.3",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5402,14 +5472,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Identity.UI/6.0.3": ***REMOVED***
-      "sha512": "pc4y2vU1ew07uZdlitaoi/Yx8DXAGuVUr+8rBk+KTMH6YCfh5yRu1Y5SXo9qxmffinI/wkveQNhXmwgvFcU8Xg==",
+    "Microsoft.AspNetCore.Identity.UI/6.0.4": ***REMOVED***
+      "sha512": "4p2pC9dy8A5zX9VcCnvIa3lho70purfhGLd5Rumjht6zS6v+RDIKzDYUscmOAkvVeIs1E+PHK2UwktIV8TxRAA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.ui/6.0.3",
+      "path": "microsoft.aspnetcore.identity.ui/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5424,7 +5494,7 @@
         "buildTransitive/Microsoft.AspNetCore.Identity.UI.targets",
         "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll",
         "lib/net6.0/Microsoft.AspNetCore.Identity.UI.xml",
-        "microsoft.aspnetcore.identity.ui.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.identity.ui.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.identity.ui.nuspec",
         "staticwebassets/V4/css/site.css",
         "staticwebassets/V4/favicon.ico",
@@ -5722,10 +5792,10 @@
         "microsoft.aspnetcore.mvc.taghelpers.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.Mvc.Testing/6.0.3": ***REMOVED***
-      "sha512": "+NhhbRzLVZ97rEWw+euUC0dxCq87uLScTYDeFxY/lTFXDOY3kwd1LNTaLV+dRq/Wfmkg5Lq/i9YitDoWjsruig==",
+    "Microsoft.AspNetCore.Mvc.Testing/6.0.4": ***REMOVED***
+      "sha512": "1WBUlT3x+9/0GsGQCDWgJo/ImO1opmeKXz4DKucdutZTDCjOc6wfTHrHtnVVxDQlG0u6cxWx1h/EVeRimBmLEw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.mvc.testing/6.0.3",
+      "path": "microsoft.aspnetcore.mvc.testing/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5735,7 +5805,7 @@
         "buildTransitive/net6.0/Microsoft.AspNetCore.Mvc.Testing.targets",
         "lib/net6.0/Microsoft.AspNetCore.Mvc.Testing.dll",
         "lib/net6.0/Microsoft.AspNetCore.Mvc.Testing.xml",
-        "microsoft.aspnetcore.mvc.testing.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.testing.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.mvc.testing.nuspec",
         "tasks/netstandard2.0/Microsoft.AspNetCore.Mvc.Testing.Tasks.dll"
       ]
@@ -5859,10 +5929,10 @@
         "microsoft.aspnetcore.routing.abstractions.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.AspNetCore.TestHost/6.0.3": ***REMOVED***
-      "sha512": "oeK3KFtoLslFbKyQEiQ8HgKWAmTXUlp8vtYByUmC5ysWVrNEpCrQOKACGV/uYSeC9aFvEIvVyFTcommnxrsyiA==",
+    "Microsoft.AspNetCore.TestHost/6.0.4": ***REMOVED***
+      "sha512": "glganOCWeDVyPjy3D2K+Tpp5Xkwglv1I5aAT+nHh6Cq1fKlilibMf+yruBXogOZwasJIOgXzG4CLqVVXNoSpew==",
       "type": "package",
-      "path": "microsoft.aspnetcore.testhost/6.0.3",
+      "path": "microsoft.aspnetcore.testhost/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5870,7 +5940,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.AspNetCore.TestHost.dll",
         "lib/net6.0/Microsoft.AspNetCore.TestHost.xml",
-        "microsoft.aspnetcore.testhost.6.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.testhost.6.0.4.nupkg.sha512",
         "microsoft.aspnetcore.testhost.nuspec"
       ]
   ***REMOVED***
@@ -6906,21 +6976,17 @@
         "microsoft.diasymreader.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.DotNet.Scaffolding.Shared/6.0.2": ***REMOVED***
-      "sha512": "xUPi/uB+be9DNguoy5VjAIMFopDckVUvQ6htFz/0QpI/cW2/mzB9ez9lXOGkciJhrRpRS5CMCOjOIB+0rZ9FnA==",
+    "Microsoft.DotNet.Scaffolding.Shared/6.0.3": ***REMOVED***
+      "sha512": "MHPcl+Vm8tEyvCA0dSEMDd/DfEYW2VtkGs7DXEJBbeRToBmHoK/5djIQws4XWcdqcpuJNo1WqX+C35h7Y5G26w==",
       "type": "package",
-      "path": "microsoft.dotnet.scaffolding.shared/6.0.2",
+      "path": "microsoft.dotnet.scaffolding.shared/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "lib/net5.0/Microsoft.DotNet.Scaffolding.Shared.dll",
-        "lib/net5.0/Microsoft.DotNet.Scaffolding.Shared.xml",
         "lib/net6.0/Microsoft.DotNet.Scaffolding.Shared.dll",
         "lib/net6.0/Microsoft.DotNet.Scaffolding.Shared.xml",
-        "lib/netcoreapp3.1/Microsoft.DotNet.Scaffolding.Shared.dll",
-        "lib/netcoreapp3.1/Microsoft.DotNet.Scaffolding.Shared.xml",
-        "microsoft.dotnet.scaffolding.shared.6.0.2.nupkg.sha512",
+        "microsoft.dotnet.scaffolding.shared.6.0.3.nupkg.sha512",
         "microsoft.dotnet.scaffolding.shared.nuspec"
       ]
   ***REMOVED***
@@ -7007,18 +7073,45 @@
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.EntityFrameworkCore.SqlServer/6.0.3": ***REMOVED***
-      "sha512": "rd1lGh5au10tB6J0Jt3ZLLA78Bs/eQSWgkMSBE9n+cRAs/Db99OfdnxgkK3JqCCyFfp12LAsboWDUCnRhPOskw==",
+    "Microsoft.EntityFrameworkCore.SqlServer/6.0.4": ***REMOVED***
+      "sha512": "rMJcVbMxrXmufywA1wYUMqLuxS7PvoPVxR8juUGwJcBdQ31rKyDBxII3i5B2JrgSgWXGiy8V7n9acxKRTX03fw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/6.0.3",
+      "path": "microsoft.entityframeworkcore.sqlserver/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.6.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
+      ]
+  ***REMOVED***
+    "Microsoft.Extensions.ApiDescription.Server/3.0.0": ***REMOVED***
+      "sha512": "LH4OE/76F6sOCslif7+Xh3fS/wUUrE5ryeXAMcoCnuwOQGT5Smw0p57IgDh/pHgHaGz/e+AmEQb7pRgb++wt0w==",
+      "type": "package",
+      "path": "microsoft.extensions.apidescription.server/3.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Microsoft.Extensions.ApiDescription.Server.props",
+        "build/Microsoft.Extensions.ApiDescription.Server.targets",
+        "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.props",
+        "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets",
+        "microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+        "microsoft.extensions.apidescription.server.nuspec",
+        "tools/Newtonsoft.Json.dll",
+        "tools/dotnet-getdocument.deps.json",
+        "tools/dotnet-getdocument.dll",
+        "tools/dotnet-getdocument.runtimeconfig.json",
+        "tools/net461-x86/GetDocument.Insider.exe",
+        "tools/net461-x86/GetDocument.Insider.exe.config",
+        "tools/net461/GetDocument.Insider.exe",
+        "tools/net461/GetDocument.Insider.exe.config",
+        "tools/netcoreapp2.1/GetDocument.Insider.deps.json",
+        "tools/netcoreapp2.1/GetDocument.Insider.dll",
+        "tools/netcoreapp2.1/GetDocument.Insider.runtimeconfig.json"
       ]
   ***REMOVED***
     "Microsoft.Extensions.Caching.Abstractions/6.0.0": ***REMOVED***
@@ -7320,10 +7413,10 @@
         "microsoft.extensions.fileproviders.composite.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.FileProviders.Embedded/6.0.3": ***REMOVED***
-      "sha512": "LvecdQKBWAm8g88N+aoZ3OehOsTdWJLSaYd4Ag2DFjs4tsAcrJhpft0vtkXAuaANjTjHESOF9I74HxRY6B7h0w==",
+    "Microsoft.Extensions.FileProviders.Embedded/6.0.4": ***REMOVED***
+      "sha512": "Ydzdq2WxGzKpQUUD4CxEDU+m2HPxR573IrQMk3pzsf3QCg5X06Td1hFRuK8+Tv0xZaLup71yQnbKN2AvNTjAYQ==",
       "type": "package",
-      "path": "microsoft.extensions.fileproviders.embedded/6.0.3",
+      "path": "microsoft.extensions.fileproviders.embedded/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7338,7 +7431,7 @@
         "lib/net6.0/Microsoft.Extensions.FileProviders.Embedded.xml",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.dll",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.xml",
-        "microsoft.extensions.fileproviders.embedded.6.0.3.nupkg.sha512",
+        "microsoft.extensions.fileproviders.embedded.6.0.4.nupkg.sha512",
         "microsoft.extensions.fileproviders.embedded.nuspec",
         "tasks/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll"
       ]
@@ -7435,10 +7528,10 @@
         "useSharedDesignerContext.txt"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Identity.Core/6.0.3": ***REMOVED***
-      "sha512": "sCpESSuSgYl89xl1O+Yl1QXui8x9ORTj1jiGd25LJWZjqF7I3nuveUvkP/Rp2/bM2ffro42FsRJsYyf6VqB+4w==",
+    "Microsoft.Extensions.Identity.Core/6.0.4": ***REMOVED***
+      "sha512": "8vBsyGkA8ZI3lZvm1nf+9ynRC/TzPD+UtbdgTlKk+cz+AW5I41LrK8f/adGej5uXgprOA2DMjZw33vZG6vyXxA==",
       "type": "package",
-      "path": "microsoft.extensions.identity.core/6.0.3",
+      "path": "microsoft.extensions.identity.core/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7450,14 +7543,14 @@
         "lib/net6.0/Microsoft.Extensions.Identity.Core.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
-        "microsoft.extensions.identity.core.6.0.3.nupkg.sha512",
+        "microsoft.extensions.identity.core.6.0.4.nupkg.sha512",
         "microsoft.extensions.identity.core.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.Extensions.Identity.Stores/6.0.3": ***REMOVED***
-      "sha512": "r69xvrnPzzyapjEqHVU/7TByTqLdOzrGfUFGcJcMQbCj9tR1tb45EPb90jhUr2ARJDtfI1S2pwQH2ZV4KYfekw==",
+    "Microsoft.Extensions.Identity.Stores/6.0.4": ***REMOVED***
+      "sha512": "linRCnWBfnqg8qjrd9u/KMISy8O4a6X/GRhpHXU0ar654YQw9LJ/Ht+psx8QLqSX5EsCBbBCZzuamatH2FWIyQ==",
       "type": "package",
-      "path": "microsoft.extensions.identity.stores/6.0.3",
+      "path": "microsoft.extensions.identity.stores/6.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7469,7 +7562,7 @@
         "lib/net6.0/Microsoft.Extensions.Identity.Stores.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
-        "microsoft.extensions.identity.stores.6.0.3.nupkg.sha512",
+        "microsoft.extensions.identity.stores.6.0.4.nupkg.sha512",
         "microsoft.extensions.identity.stores.nuspec"
       ]
   ***REMOVED***
@@ -8001,6 +8094,23 @@
         "runtime.json"
       ]
   ***REMOVED***
+    "Microsoft.OpenApi/1.2.3": ***REMOVED***
+      "sha512": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
+      "type": "package",
+      "path": "microsoft.openapi/1.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/Microsoft.OpenApi.dll",
+        "lib/net46/Microsoft.OpenApi.pdb",
+        "lib/net46/Microsoft.OpenApi.xml",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.1.2.3.nupkg.sha512",
+        "microsoft.openapi.nuspec"
+      ]
+  ***REMOVED***
     "Microsoft.TestPlatform.ObjectModel/17.2.0-preview-20220301-01": ***REMOVED***
       "sha512": "q7a1y36Q9Uh4DRP9+kP7Aw+GGNz8C90zx8xwXj559jCSwWjbuElRxPso5IH2im97SGpwm9U19Wn4Hj5xgYe8QQ==",
       "type": "package",
@@ -8482,45 +8592,45 @@
         "microsoft.visualstudio.debugger.contracts.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGeneration/6.0.2": ***REMOVED***
-      "sha512": "moxGQEGLNw7jPiH2WlW884pHdCOGT0V3Ya1g7xBd9vb5eTwASQkpnVXAOT0LoNfSKUllU2etN74BhMuXOEZpCA==",
+    "Microsoft.VisualStudio.Web.CodeGeneration/6.0.3": ***REMOVED***
+      "sha512": "rD1Lj6LljO7iEeZJuGtEp0O9rZHvr+tAZJx8QgwdmlrMReaYA0+KQCH/woEdcmBo+ifnwUUyNgG+9NUECYTT9g==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration/6.0.2",
+      "path": "microsoft.visualstudio.web.codegeneration/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.dll",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.xml",
-        "microsoft.visualstudio.web.codegeneration.6.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGeneration.Core/6.0.2": ***REMOVED***
-      "sha512": "blW9QnVkq6uSSJeItbvPS+o5wQpOuy9xhZtlKWSVrOjHcdSd3IcvHjt65oRXhuxj6xZau9W+9fBhkLRZo8IHsg==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Core/6.0.3": ***REMOVED***
+      "sha512": "o+rN2+WrG4NTU4dzcExaMAGpQk84+SJMC8D3v7pe35f6DJQIXC3lc9V9npgNtiiD19aP+Pdto8L5nuwQ83dgTw==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.core/6.0.2",
+      "path": "microsoft.visualstudio.web.codegeneration.core/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.xml",
-        "microsoft.visualstudio.web.codegeneration.core.6.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.core.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.core.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGeneration.Design/6.0.2": ***REMOVED***
-      "sha512": "ffwwwsb6Ax8rKIMWg+jiQo4YJ3+2nSseg3KpHeQGRFlQ5w3fdP2Cr5NFrPJOTstfBF9F2XzIvaJj2Yku2E0t1g==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Design/6.0.3": ***REMOVED***
+      "sha512": "cqxm2k5KF7T0KejRlxt71aizeR+2a/9qk94c1p7/CCOjns4cgwL92IxyrhhpILn0U+kylslBE2O/AJoi28wkSA==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.design/6.0.2",
+      "path": "microsoft.visualstudio.web.codegeneration.design/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/dotnet-aspnet-codegenerator-design.dll",
         "lib/net6.0/dotnet-aspnet-codegenerator-design.xml",
-        "microsoft.visualstudio.web.codegeneration.design.6.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.design.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.design.nuspec",
         "runtimes/win-arm/lib/net6.0/dotnet-aspnet-codegenerator-design.exe",
         "runtimes/win-arm/lib/net6.0/dotnet-aspnet-codegenerator-design.xml",
@@ -8528,10 +8638,10 @@
         "runtimes/win-arm64/lib/net6.0/dotnet-aspnet-codegenerator-design.xml"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/6.0.2": ***REMOVED***
-      "sha512": "mF138giisvLjHncJ/0o4QXwI08yUrCBPh3NVyK4ByYlxJQxCLAOKYk0DJ+UiAKiFc1UHjR9wxzpVr6wW1VmL8A==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/6.0.3": ***REMOVED***
+      "sha512": "Mg0HpwFZyOJQHtW04gbCLekZ8Lt3VSs9s9JqgGm6DXoeTbAbaHhJGZohuT296Z+0MuFJgl9mD1/j1Zof8hPgcA==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/6.0.2",
+      "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8540,48 +8650,49 @@
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.runtimeconfig.json",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.xml",
-        "microsoft.visualstudio.web.codegeneration.entityframeworkcore.6.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.entityframeworkcore.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.entityframeworkcore.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGeneration.Templating/6.0.2": ***REMOVED***
-      "sha512": "HrIb/h2PJPwws8n8JE0fbIJDvgdspzJPO5hRT0hYf+YKHTxnmKcjsDznmpPwNhGZZ39aUFH/aPfNC9ELTh5NYQ==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Templating/6.0.3": ***REMOVED***
+      "sha512": "TMV1xzJSjNpiWCGkw6/8/XHmYF0HiimH/8kmPZfT/J+WBKABn4DRbZNpgTYNKmcuYxg4mKySFPVpblQ0XMf9Tg==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.templating/6.0.2",
+      "path": "microsoft.visualstudio.web.codegeneration.templating/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.xml",
-        "microsoft.visualstudio.web.codegeneration.templating.6.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.templating.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.templating.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGeneration.Utils/6.0.2": ***REMOVED***
-      "sha512": "1WBT82/JrUJxy4YA8Pban3mVOCPeEP4GEcs86zQeF/Cx1vIhX/LPslESBYzkmUcWT94sXyK+K35UlGv3ku3VTQ==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Utils/6.0.3": ***REMOVED***
+      "sha512": "M8k06jnZ0l7031mPYDbLaiiz20ju1MP+FJlpDKVilkAPOQVITSFRDm8Hhd2Pyd+BSj+nCzDC1ZMglK8z+lJ5ig==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.utils/6.0.2",
+      "path": "microsoft.visualstudio.web.codegeneration.utils/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll",
         "lib/net6.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.xml",
-        "microsoft.visualstudio.web.codegeneration.utils.6.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.utils.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.utils.nuspec"
       ]
   ***REMOVED***
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/6.0.2": ***REMOVED***
-      "sha512": "PKNDmK8SyZZ2b/bKtKvgqRsi6jibeVUkQFjdFEtL4ROOWiqnGiBgxN0o2A+rr3WsE5klU3b6HS6JpwlMjCklkQ==",
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/6.0.3": ***REMOVED***
+      "sha512": "Oe3QkXildc2AFM33rN9WSLj53kzuQAPLAv7aduz+bnYc86SFBPA/qpYZ2ZJhlKYbrJUpztRqoWvLqGfDT6XkUw==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegenerators.mvc/6.0.2",
+      "path": "microsoft.visualstudio.web.codegenerators.mvc/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Generators/ParameterDefinitions/area.json",
         "Generators/ParameterDefinitions/controller.json",
         "Generators/ParameterDefinitions/identity.json",
+        "Generators/ParameterDefinitions/minimalapi.json",
         "Generators/ParameterDefinitions/razorpage.json",
         "Generators/ParameterDefinitions/view.json",
         "Icon.png",
@@ -8965,6 +9076,10 @@
         "Templates/Identity_Versioned/Bootstrap4/wwwroot/lib/jquery/dist/jquery.js",
         "Templates/Identity_Versioned/Bootstrap4/wwwroot/lib/jquery/dist/jquery.min.js",
         "Templates/Identity_Versioned/Bootstrap4/wwwroot/lib/jquery/dist/jquery.min.map",
+        "Templates/MinimalApi/MinimalApi.cshtml",
+        "Templates/MinimalApi/MinimalApiEf.cshtml",
+        "Templates/MinimalApi/MinimalApiEfNoClass.cshtml",
+        "Templates/MinimalApi/MinimalApiNoClass.cshtml",
         "Templates/MvcLayout/Error.cshtml",
         "Templates/MvcLayout/_Layout.cshtml",
         "Templates/RazorPageGenerator/Create.cshtml",
@@ -9035,7 +9150,8 @@
         "lib/net6.0/bootstrap4_identitygeneratorfilesconfig.json",
         "lib/net6.0/bootstrap5_identitygeneratorfilesconfig.json",
         "lib/net6.0/identityMinimalHostingChanges.json",
-        "microsoft.visualstudio.web.codegenerators.mvc.6.0.2.nupkg.sha512",
+        "lib/net6.0/minimalApiChanges.json",
+        "microsoft.visualstudio.web.codegenerators.mvc.6.0.3.nupkg.sha512",
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
       ]
   ***REMOVED***
@@ -9743,6 +9859,87 @@
         "lib/netstandard2.1/StarkbankEcdsa.dll",
         "starkbank-ecdsa.1.3.3.nupkg.sha512",
         "starkbank-ecdsa.nuspec"
+      ]
+  ***REMOVED***
+    "Swashbuckle.AspNetCore/6.3.1": ***REMOVED***
+      "sha512": "JFk0+HHUPdjYuPhkpGBMLi2JtnEuWkE2pp0yXQp64DmeMe+Fb0hZyVNq/ENJ2vQNso7Zg+C758WmR/xyAl36bA==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore/6.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Swashbuckle.AspNetCore.props",
+        "swashbuckle.aspnetcore.6.3.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.nuspec"
+      ]
+  ***REMOVED***
+    "Swashbuckle.AspNetCore.Swagger/6.3.1": ***REMOVED***
+      "sha512": "idAFh4xhyJHYHfdLVOOn+BmscBul1OQbWsnL6YPJE8tO/0y6S79hDCvs6OY5VI093/9+1pYY3j31Zet9yaDZjA==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swagger/6.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net6.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net6.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "swashbuckle.aspnetcore.swagger.6.3.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.swagger.nuspec"
+      ]
+  ***REMOVED***
+    "Swashbuckle.AspNetCore.SwaggerGen/6.3.1": ***REMOVED***
+      "sha512": "+uoBV4h/6NhCPLoTofSmuOnZ+usu4PW1jP6l4OHwPyu2frbYXGNpJsHs5uUXXn929OiVQkT8wo3Lj/o+P99Ejg==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggergen/6.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "swashbuckle.aspnetcore.swaggergen.6.3.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggergen.nuspec"
+      ]
+  ***REMOVED***
+    "Swashbuckle.AspNetCore.SwaggerUI/6.3.1": ***REMOVED***
+      "sha512": "JLm9hN67jh7RHsX3H30+tb432Li8xm/qV5lRyMMkyHYMfWitIuKAAdrpo2ILcHOIeH7CLMuOO2hp/iLBmE+Bkw==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggerui/6.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "swashbuckle.aspnetcore.swaggerui.6.3.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
   ***REMOVED***
     "System.AppContext/4.3.0": ***REMOVED***

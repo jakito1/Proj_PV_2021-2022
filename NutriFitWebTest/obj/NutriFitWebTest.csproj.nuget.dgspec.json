@@ -49,41 +49,45 @@
           ***REMOVED***
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.AspNetCore.Identity.UI": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.AspNetCore.Mvc.Testing": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.SqlServer": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.EntityFrameworkCore.Tools": ***REMOVED***
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
           ***REMOVED***
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": ***REMOVED***
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.3, )"
           ***REMOVED***
             "SendGrid": ***REMOVED***
               "target": "Package",
               "version": "[9.27.0, )"
+          ***REMOVED***
+            "Swashbuckle.AspNetCore": ***REMOVED***
+              "target": "Package",
+              "version": "[6.3.1, )"
         ***REMOVED***
         ***REMOVED***
           "imports": [
