@@ -3,9 +3,9 @@
 
 @inject IIsUserInRoleByUserId IsUserInRoleByUserId
 
-@***REMOVED***
+@{
     ViewData["Title"] = "ShowAllUsers";
-***REMOVED***
+}
 
 <h1>Lista de Utilizadores <img class="iconMargin" src="~/icons/clientIcon.svg" alt="clientsIcon" /></h1>
 
@@ -20,7 +20,7 @@
     <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
 </form>
 @foreach (var item in Model)
-***REMOVED***
+{
 
     <div class="listsDiv">
         <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder allUsersTitleFix">UserName </b> &nbsp; @Html.DisplayFor(modelItem => item.UserName)</p>
@@ -31,68 +31,68 @@
             <a asp-action="EditUserSettings" asp-route-id="@item.Id"><img class="editProfileIcon icons" src="~/icons/editIcon.svg" alt="editIcon" /></a>
 
             @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "client"))
-            ***REMOVED***
+            {
                 <a asp-controller="Clients" asp-action="EditClientSettings" asp-route-id="@item.Id">
                     <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
                 </a>
-        ***REMOVED***
+            }
             @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "nutritionist"))
-            ***REMOVED***
+            {
                 <a asp-controller="Nutritionists" asp-action="EditNutritionistSettings" asp-route-id="@item.Id">
                     <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
                 </a>
-        ***REMOVED***
+            }
             @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "trainer"))
-            ***REMOVED***
+            {
                 <a asp-controller="Trainers" asp-action="EditTrainerSettings" asp-route-id="@item.Id">
                     <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
                 </a>
-        ***REMOVED***
+            }
             @if (await IsUserInRoleByUserId.IsUserInRoleByUserIdAsync(item.Id, "gym"))
-            ***REMOVED***
+            {
                 <a asp-controller="Gyms" asp-action="EditGymSettings" asp-route-id="@item.Id">
                     <img class="editIcon" src="~/icons/editProfileIcon.svg" alt="editProfileIcon" />
                 </a>
-        ***REMOVED***
+            }
         </div>
     </div>
-***REMOVED***
+}
 
-@***REMOVED***
+@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-***REMOVED***
+}
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowAllUsers"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
-***REMOVED***
+    }
 
     @if (nextDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowAllUsers"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
             <b>Próximo</b>
         </a>
-***REMOVED***
+    }
 
     @if (prevDisabled == "disabled" && nextDisabled == "disabled")
-    ***REMOVED***
+    {
         <p class="noMoreResults">Não existem mais resultados</p>
-***REMOVED***
+    }
 </div>
 
 @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
-***REMOVED***
+{
     <div class="backBtnDiv">
         <a asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
     </div>
-***REMOVED***
+}
 

@@ -1,9 +1,9 @@
 ﻿using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
-***REMOVED***
+{
     public interface IStatistics
-    ***REMOVED***
+    {
         IEnumerable<UserAccountModel> GetUsersForGym(string userType, string userName);
         IEnumerable<UserAccountModel> GetUsersForTrainer(string userName);
         IEnumerable<UserAccountModel> GetUsersForNutritionist(string userName);
@@ -19,5 +19,5 @@ namespace NutriFitWeb.Services
         Task<string> ClientBMICompared(string? userName);
         Task<string> ClientLeanMassCompared(string? userName);
         Task<string> ClientFatMassCompared(string? userName);
-***REMOVED***
-***REMOVED***
+    }
+}

@@ -5,7 +5,7 @@
 @inject IStatistics Statistics
 
 @if (User.Identity is not null)
-***REMOVED***
+{
     <h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity.Name!.ToUpper()!</h2>
     <div class="md-col-6">
         <table class="statisticsTable statisticsMargin">
@@ -17,13 +17,13 @@
             <tr>
                 <td class="listsItemTitle statisticsTableHeaderFix">********</td>
                 @if (!string.IsNullOrEmpty(await Statistics.GetUserGym(User.Identity.Name!)))
-                ***REMOVED***
+                {
                     <td class="statisticsValues">@await Statistics.GetUserGym(User.Identity.Name!)</td>
-            ***REMOVED***
+                }
                 else
-                ***REMOVED***
+                {
                     <td class="statisticsValues">N/A</td>
-            ***REMOVED***
+                }
                 <td class="listsItemTitle statisticsTableHeaderFix">********</td>
             </tr>
         </table>
@@ -53,23 +53,23 @@
                 </td>
             </tr>
             @if (!string.IsNullOrEmpty(await Statistics.ClientLeanMassCompared(User.Identity.Name)))
-            ***REMOVED***
+            {
                 <tr>
                     <td colspan="3" class="statisticsValues">
                         @await Statistics.ClientLeanMassCompared(User.Identity.Name)
                     </td>
                 </tr>
-        ***REMOVED***
+            }
             @if (!string.IsNullOrEmpty(await Statistics.ClientFatMassCompared(User.Identity.Name)))
-            ***REMOVED***
+            {
                 <tr>
                     <td colspan="3" class="statisticsValues">
                         @await Statistics.ClientFatMassCompared(User.Identity.Name)
                     </td>
                 </tr>
-        ***REMOVED***
+            }
         </table>
 
         <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
     </div>
-***REMOVED***
+}

@@ -5,12 +5,12 @@ using NutriFitWeb.Models;
 using System.Diagnostics;
 
 namespace NutriFitWeb.Controllers
-***REMOVED***
+{
     /// <summary>
     /// HomeController class, derived from Controller.
     /// </summary>
     public class HomeController : Controller
-    ***REMOVED***
+    {
 
         /// <summary>
         /// Build the HomeController to be used on the main page.
@@ -21,35 +21,35 @@ namespace NutriFitWeb.Controllers
         public HomeController(UserManager<UserAccountModel> userManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext context)
-        ***REMOVED***
+        {
             try
-            ***REMOVED***
+            {
                 SeedData.Seed(userManager, roleManager, context).Wait();
-        ***REMOVED***
+            }
             catch
-            ***REMOVED***
+            {
 
-        ***REMOVED***
-    ***REMOVED***
+            }
+        }
 
         /// <summary>
         /// Redirects to the Index page.
         /// </summary>
         /// <returns>ViewResult</returns>
         public IActionResult Index()
-        ***REMOVED***
+        {
             HttpContext.Session.Clear();
             return View();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Redirects to the Users page.
         /// </summary>
         /// <returns>ViewResult</returns>
         public IActionResult Users()
-        ***REMOVED***
+        {
             return View();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Redirects to Error Page when an error occurs.
@@ -57,8 +57,8 @@ namespace NutriFitWeb.Controllers
         /// <returns>ViewResult</returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        ***REMOVED***
-            return View(new ErrorViewModel ***REMOVED*** RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier ***REMOVED***);
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}

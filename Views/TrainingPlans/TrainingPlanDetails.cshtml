@@ -7,19 +7,19 @@
         <table class="formTables">
             <tr>
                 @if (User.IsInRole("client") && Model.Trainer is not null)
-                ***REMOVED***
+                {
                     <th><p class="control-label listsItemTitle">Treinador</p></th>
                     <td>
                         <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Trainer!.UserAccountModel.UserName)</p>
                     </td>       
-            ***REMOVED***
+                }
                 @if (User.IsInRole("trainer") && Model.Client is not null)
-                ***REMOVED***
+                {
                     <th class="control-label listsItemTitle">Cliente</th>
                     <td>
                         <p class="itemsLeftMargin">@Html.DisplayFor(model => model.Client!.UserAccountModel.UserName)</p>
                     </td> 
-            ***REMOVED***
+                }
             </tr>
             <tr><th></th><td></td></tr>
             <tr class="detailsTitle">
@@ -33,33 +33,33 @@
                 <th class="control-label listsItemTitle">Descrição</th>
                 <td>
                     @if (Model.TrainingPlanDescription is null || Model.TrainingPlanDescription == "")
-                    ***REMOVED***
+                    {
                         <p class="itemsLeftMargin">N/A</p>
-                ***REMOVED***else***REMOVED***
+                    }else{
                         <p class="itemsLeftMargin breakText">@Html.DisplayFor(model => model.TrainingPlanDescription)</p>
-                ***REMOVED***
+                    }
                 </td>
             </tr>
         </table>
     @if(Model.Exercises is not null && Model.Exercises.Any())
-    ***REMOVED***
+    {
         <br />
         <div id="_ShowExercisesPartialList" class="plansListDetailsDiv">
             <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.Exercises />
         </div>
-***REMOVED***
+    }
 
     @if (User.IsInRole("client") && Model.Trainer is not null && !Model.ToBeEdited)
-    ***REMOVED***
+    {
         <div class="form-group">
             <input id="planEditButton" type="submit" value="Pedir Edição" class="btn btn-primary" onclick="hideButtonPlanEditRequestPartial()"/>
         </div>
 
         <div class="form-group" style="display:none;" id="_CreateEditRequestPartialItem">
-            @***REMOVED***TrainingPlanEditRequest trainingPlanEditRequest = new() ***REMOVED*** TrainingPlanId = Model.TrainingPlanId ***REMOVED***;***REMOVED***
+            @{TrainingPlanEditRequest trainingPlanEditRequest = new() { TrainingPlanId = Model.TrainingPlanId };}
             <partial name="~/Views/TrainingPlanEditRequests/_CreateTrainingPlanEditRequestPartial.cshtml" model=@trainingPlanEditRequest/>
         </div>
-***REMOVED***
+    }
 </div>
 
 <div class="backBtnDiv">
@@ -67,8 +67,8 @@
 </div>
 
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+    }
+}

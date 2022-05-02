@@ -1,8 +1,8 @@
 ﻿@model NutriFitWeb.Models.UserAccountModel
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Editar Definições de Conta";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -37,8 +37,8 @@
     <a asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

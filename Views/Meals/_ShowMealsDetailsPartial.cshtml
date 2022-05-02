@@ -21,9 +21,9 @@
     </thead>
     <tbody>
         @if (Model is not null)
-        ***REMOVED***
+        {
             @foreach (var item in Model)
-            ***REMOVED***
+            {
                 <tr>
                     <td class="exercisesData breakText breakTextOtherData">
                         <p>@Html.DisplayFor(modelItem => item.MealName)</p>
@@ -32,16 +32,16 @@
                     </td>
                     <td>
                         @if (item.MealPhoto is not null)
-                        ***REMOVED***
+                        {
                             string? mealPhoto = PhotoManagement.GetPhotoPath(item.MealPhoto);
                             <img class="profilePhoto" src="@mealPhoto" />
-                    ***REMOVED***else***REMOVED***
+                        }else{
                             <p class="exercisesData">N/A</p>
-                    ***REMOVED***
+                        }
                     </td>
                     <td class="exercisesData">
                         @if (item.MealDate is not null)
-                        ***REMOVED***
+                        {
                             <p>
                                 @Html.DisplayFor(modelItem => item.MealDate)
                                 @if (item.MealCalorie is not null
@@ -49,13 +49,13 @@
                                || item.MealFat is not null
                                || item.MealCarbohydrate is not null
                                || item.MealURL is not null)
-                                ***REMOVED***
+                                {
                                     <b>,</b>
-                            ***REMOVED***
+                                }
                             </p>
-                    ***REMOVED***
+                        }
                         @if (item.MealWeekDay is not null)
-                        ***REMOVED***
+                        {
                             <p>
                                 @Html.DisplayFor(modelItem => item.MealWeekDay)
                                 @if (item.MealCalorie is not null
@@ -63,64 +63,64 @@
                                || item.MealFat is not null
                                || item.MealCarbohydrate is not null
                                || item.MealURL is not null)
-                                ***REMOVED***
+                                {
                                     <b>,</b>
-                            ***REMOVED***
+                                }
                             </p>
-                    ***REMOVED***
+                        }
                         @if (item.MealCalorie is not null)
-                        ***REMOVED***
+                        {
                             <p>
                                 @Html.DisplayFor(modelItem => item.MealCalorie) calorias
                                 @if (item.MealProtein is not null
                                || item.MealFat is not null
                                || item.MealCarbohydrate is not null
                                || item.MealURL is not null)
-                                ***REMOVED***
+                                {
                                     <b>,</b>
-                            ***REMOVED***
+                                }
                             </p>
-                    ***REMOVED***
+                        }
                         @if (item.MealProtein is not null)
-                        ***REMOVED***
+                        {
                             <p>
                                 @Html.DisplayFor(modelItem => item.MealProtein)g de proteína
                                 @if (item.MealFat is not null
                                || item.MealCarbohydrate is not null
                                || item.MealURL is not null)
-                                ***REMOVED***
+                                {
                                     <b>,</b>
-                            ***REMOVED***
+                                }
                             </p>
-                    ***REMOVED***
+                        }
                         @if (item.MealFat is not null)
-                        ***REMOVED***
+                        {
                             <p>
                                 @Html.DisplayFor(modelItem => item.MealFat)g de gordura
                                 @if (item.MealCarbohydrate is not null
                                || item.MealURL is not null)
-                                ***REMOVED***
+                                {
                                     <b>,</b>
-                            ***REMOVED***
+                                }
                             </p>
-                    ***REMOVED***
+                        }
                         @if (item.MealCarbohydrate is not null)
-                        ***REMOVED***
+                        {
                             <p>
                                 @Html.DisplayFor(modelItem => item.MealCarbohydrate)g de carboidratos
                                 @if (item.MealURL is not null)
-                                ***REMOVED***
+                                {
                                     <b>,</b>
-                            ***REMOVED***
+                                }
                             </p>
-                    ***REMOVED***
+                        }
                         @if (item.MealURL is not null && item.MealURL != "")
-                        ***REMOVED***
+                        {
                             <a class="videosUrl" href="@item.MealURL" target="_blank">Link da refeição</a>
-                    ***REMOVED***
+                        }
                     </td>
                 </tr>
-        ***REMOVED***
-    ***REMOVED***
+            }
+        }
     </tbody>
 </table>

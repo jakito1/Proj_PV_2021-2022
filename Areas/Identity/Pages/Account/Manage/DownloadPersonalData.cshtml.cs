@@ -9,12 +9,12 @@ using NutriFitWeb.Models;
 using System.Text.Json;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     /// DownloadPersonalDataModel class, derived from PageModel.
     /// </summary>
     public class DownloadPersonalDataModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
 
@@ -26,19 +26,19 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public DownloadPersonalDataModel(
             UserManager<UserAccountModel> userManager,
             ILogger<DownloadPersonalDataModel> logger)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _logger = logger;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handle the Get Request during the DownloadPersonalData process.
         /// </summary>
         /// <returns></returns>
         public IActionResult OnGet()
-        ***REMOVED***
+        {
             return NotFound();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handle the Post Request during the DownloadPersonalData process.
@@ -46,34 +46,34 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
-            _logger.LogInformation("User with ID '***REMOVED***UserId***REMOVED***' asked for their personal data.", _userManager.GetUserId(User));
+            _logger.LogInformation("User with ID '{UserId}' asked for their personal data.", _userManager.GetUserId(User));
 
             // Only include personal data for download
             Dictionary<string, string> personalData = new();
             IEnumerable<System.Reflection.PropertyInfo> personalDataProps = typeof(UserAccountModel).GetProperties().Where(
                             prop => Attribute.IsDefined(prop, typeof(PersonalDataAttribute)));
             foreach (System.Reflection.PropertyInfo p in personalDataProps)
-            ***REMOVED***
+            {
                 personalData.Add(p.Name, p.GetValue(user)?.ToString() ?? "null");
-        ***REMOVED***
+            }
 
             IList<UserLoginInfo> logins = await _userManager.GetLoginsAsync(user);
             foreach (UserLoginInfo l in logins)
-            ***REMOVED***
-                personalData.Add($"***REMOVED***l.LoginProvider***REMOVED*** external login provider key", l.ProviderKey);
-        ***REMOVED***
+            {
+                personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
+            }
 
             personalData.Add($"Authenticator Key", await _userManager.GetAuthenticatorKeyAsync(user));
 
             Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
             return new FileContentResult(JsonSerializer.SerializeToUtf8Bytes(personalData), "application/json");
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

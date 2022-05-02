@@ -7,9 +7,9 @@
 
 <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
     <p>Aqui pode <b>ver as máquinas</b> do ginásio ao qual pertence.</p>
-    @if(User.IsInRole("gym"))***REMOVED***
+    @if(User.IsInRole("gym")){
         <p>Pode também <b>adicionar</b>, <b>remover</b> e <b>editar máquinas</b> do/ao seu ginásio.</p>
-***REMOVED***
+    }
     <p>Pode ler o <b>Código QR</b> das máquinas do seu ginásio para ver os <b>detalhes</b> diretamente.</p>
 </div>
 
@@ -18,11 +18,11 @@
         <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Nome da máquina" class="searchBar" />
         <button type="submit" class="searchBtn"><img class="searchIcon" src="~/icons/searchIcon.svg" alt="searchIcon" /></button>
         @if (User.IsInRole("gym"))
-        ***REMOVED***
+        {
             <div class="marginFixChooseFile">
                 <a class="createBtn" asp-action="CreateMachine">Criar Máquina</a>
             </div>
-    ***REMOVED***
+        }
     </form>
 </div>
 
@@ -44,7 +44,7 @@
         </thead>
         <tbody>
             @foreach (var item in Model)
-            ***REMOVED***
+            {
                 <tr>
                     <td>
                         <p class="details">@Html.DisplayFor(modelItem => item.MachineName)</p>
@@ -57,52 +57,52 @@
                     </td>
                     <td>
                         @if (User.IsInRole("gym"))
-                        ***REMOVED***
+                        {
                             <a asp-action="DeleteMachine" asp-route-id="@item.MachineId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
                             <a asp-action="EditMachine" asp-route-id="@item.MachineId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
-                    ***REMOVED***
+                        }
                         <a asp-action="MachineDetails" asp-route-id="@item.MachineId"><img class="detailsIcon icons" src="~/icons/detailsIcon.svg" /></a>
                     </td>
                 </tr>
-        ***REMOVED***
+            }
         </tbody>
     </table>
 </div>
 
-@***REMOVED***
+@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-***REMOVED***
+}
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowMachines"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
-***REMOVED***
+    }
 
     @if (nextDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowMachines"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
             <b>Próximo</b>
         </a>
-***REMOVED***
+    }
 
     @if (prevDisabled == "disabled" && nextDisabled == "disabled")
-    ***REMOVED***
+    {
         <p class="noMoreResults">Não existem mais resultados</p>
-***REMOVED***
+    }
 </div>
 
 @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
-***REMOVED***
+{
     <div class="backBtnDiv">
         <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
     </div>
-***REMOVED***
+}

@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     //[Authorize(Roles = "client")]
     /// <summary>
     /// PersonalDataModel class, derived from PageModel.
     /// </summary>
     public class PersonalDataModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
 
         /// <summary>
@@ -22,23 +22,23 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public PersonalDataModel(
             UserManager<UserAccountModel> userManager)
-        ***REMOVED***
+        {
             _userManager = userManager;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handle the Get Request during the page creation process.
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnGet()
-        ***REMOVED***
+        {
             UserAccountModel? user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             return Page();
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

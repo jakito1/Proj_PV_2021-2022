@@ -1,8 +1,8 @@
 ﻿@model NutriFitWeb.Models.NutritionPlanNewRequest
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Create";
-***REMOVED***
+}
 
 <h2>Requisição de Novo Plano de Nutrição</h2>
 
@@ -38,6 +38,6 @@
     <a asp-controller="NutritionPlans" asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***await Html.RenderPartialAsync("_ValidationScriptsPartial");***REMOVED***
-***REMOVED***
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

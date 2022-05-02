@@ -6,21 +6,21 @@
         <tr>
             <th><p class="control-label listsItemTitle">Nome</p></th>
             @if (Model.TrainingPlan is not null)
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.TrainingPlan!.TrainingPlanName)</b></p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">Descrição</p></th>
             <td>
                 @if (Model.TrainingPlanEditRequestDescription is null || Model.TrainingPlanEditRequestDescription == "")
-                ***REMOVED***
+                {
                     <p><b>N/A</b></p>
-            ***REMOVED***
+                }
                 else
-                ***REMOVED***
+                {
                     <p><b>@Html.DisplayFor(model => model.TrainingPlanEditRequestDescription)</b></p>
-            ***REMOVED***
+                }
             </td>
         </tr>
         <tr>

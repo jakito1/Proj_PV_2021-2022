@@ -1,21 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 namespace NutriFitWeb.Services
-***REMOVED***
+{
     /// <summary>
     /// PaginatedList<T> class, derives from List<T>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class PaginatedList<T> : List<T>
-    ***REMOVED***
+    {
         /// <summary>
         /// Gets and Sets the page index.
         /// </summary>
-        public int PageIndex ***REMOVED*** get; private set; ***REMOVED***
+        public int PageIndex { get; private set; }
         /// <summary>
         /// Gets and Sets the total pages to be displayed in the list.
         /// </summary>
-        public int TotalPages ***REMOVED*** get; private set; ***REMOVED***
+        public int TotalPages { get; private set; }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -24,12 +24,12 @@ namespace NutriFitWeb.Services
         /// <param name="pageIndex">Index of the page</param>
         /// <param name="pageSize">Size of items that can be present in the list</param>
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
-        ***REMOVED***
+        {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
 
             AddRange(items);
-    ***REMOVED***
+        }
         /// <summary>
         /// Flag to know if the current page has any previous pages.
         /// </summary>
@@ -46,10 +46,10 @@ namespace NutriFitWeb.Services
         /// <param name="pageSize"></param>
         /// <returns></returns>
         public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
-        ***REMOVED***
+        {
             int count = await source.CountAsync();
             List<T>? items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
             return new PaginatedList<T>(items, count, pageIndex, pageSize);
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

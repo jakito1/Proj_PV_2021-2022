@@ -5,12 +5,12 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     ///     ManageNavPages class.
     /// </summary>
     public static class ManageNavPages
-    ***REMOVED***
+    {
         /// <summary>
         ///     Gets the Index page name.
         /// </summary>
@@ -57,9 +57,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string IndexNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, Index);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the Email page.
@@ -67,9 +67,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string EmailNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, Email);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the ChangePassword page.
@@ -77,9 +77,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string ChangePasswordNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, ChangePassword);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the DownloadPersonalData page.
@@ -87,9 +87,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string DownloadPersonalDataNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, DownloadPersonalData);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the DeletePersonalData page.
@@ -97,9 +97,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string DeletePersonalDataNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, DeletePersonalData);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the ExternalLogins page.
@@ -107,9 +107,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string ExternalLoginsNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, ExternalLogins);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the PersonalData page.
@@ -117,9 +117,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string PersonalDataNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, PersonalData);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the TwoFactorAuthentication page.
@@ -127,9 +127,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="viewContext">Context for the view execution.</param>
         /// <returns></returns>
         public static string TwoFactorAuthenticationNavClass(ViewContext viewContext)
-        ***REMOVED***
+        {
             return PageNavClass(viewContext, TwoFactorAuthentication);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Tries to create the requested page.
@@ -138,10 +138,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="page">The name of the page to render.</param>
         /// <returns></returns>
         public static string PageNavClass(ViewContext viewContext, string page)
-        ***REMOVED***
+        {
             string activePage = viewContext.ViewData["ActivePage"] as string
                 ?? Path.GetFileNameWithoutExtension(viewContext.ActionDescriptor.DisplayName);
             return string.Equals(activePage, page, StringComparison.OrdinalIgnoreCase) ? "active" : null;
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

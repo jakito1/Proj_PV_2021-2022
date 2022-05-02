@@ -1,12 +1,12 @@
 ﻿using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Services
-***REMOVED***
+{
     /// <summary>
     /// IPhotoManagement interface
     /// </summary>
     public interface IPhotoManagement
-    ***REMOVED***
+    {
         Photo? UploadProfilePhoto(IFormFile? file);
 
         Task<string> LoadProfileImage(string? userName);
@@ -17,5 +17,5 @@ namespace NutriFitWeb.Services
         /// <returns>A string with the photo path</returns>
         string GetPhotoPath(Photo? photo);
 
-***REMOVED***
-***REMOVED***
+    }
+}

@@ -1,8 +1,8 @@
 ﻿@model NutriFitWeb.Models.NutritionPlan
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Editar plano de nutrição";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -37,8 +37,8 @@
     <a asp-action="ShowNutritionPlans" class="backToListBtn">Voltar</a>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

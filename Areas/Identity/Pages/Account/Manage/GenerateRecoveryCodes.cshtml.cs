@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     /// GenerateRecoveryCodesModel class, derived from PageModel.
     /// </summary>
     public class GenerateRecoveryCodesModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
@@ -25,22 +25,22 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         public GenerateRecoveryCodesModel(
             UserManager<UserAccountModel> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _logger = logger;
-    ***REMOVED***
+        }
 
         /// <summary>
         ///     Gets or sets a temporary string array with the RecoveryCodes
         /// </summary>
         [TempData]
-        public string[] RecoveryCodes ***REMOVED*** get; set; ***REMOVED***
+        public string[] RecoveryCodes { get; set; }
 
         /// <summary>
         ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
-        public string StatusMessage ***REMOVED*** get; set; ***REMOVED***
+        public string StatusMessage { get; set; }
 
         /// <summary>
         /// Handle the Get Request during the recovery codes creation process.
@@ -48,21 +48,21 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">Exception thrown when the user doesn't have 2FA enabled.</exception>
         public async Task<IActionResult> OnGetAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             bool isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
             if (!isTwoFactorEnabled)
-            ***REMOVED***
+            {
                 throw new InvalidOperationException($"Cannot generate recovery codes for user because they do not have 2FA enabled.");
-        ***REMOVED***
+            }
 
             return Page();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handle the Post Request during the recovery codes creation process.
@@ -70,26 +70,26 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">Exception thrown when the user doesn't have 2FA enabled.</exception>
         public async Task<IActionResult> OnPostAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             bool isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
             string userId = await _userManager.GetUserIdAsync(user);
             if (!isTwoFactorEnabled)
-            ***REMOVED***
+            {
                 throw new InvalidOperationException($"Cannot generate recovery codes for user as they do not have 2FA enabled.");
-        ***REMOVED***
+            }
 
             IEnumerable<string> recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
             RecoveryCodes = recoveryCodes.ToArray();
 
-            _logger.LogInformation("User with ID '***REMOVED***UserId***REMOVED***' has generated new 2FA recovery codes.", userId);
+            _logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
             StatusMessage = "You have generated new recovery codes.";
             return RedirectToPage("./ShowRecoveryCodes");
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

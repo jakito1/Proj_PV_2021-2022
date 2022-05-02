@@ -17,45 +17,45 @@
 /*jslint white: true, browser: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: false */
 /*global window: false, jQuery: false */
 
-(function ($) ***REMOVED***
+(function ($) {
     var data_click = "unobtrusiveAjaxClick",
         data_target = "unobtrusiveAjaxClickTarget",
         data_validation = "unobtrusiveValidation";
 
-    function getFunction(code, argNames) ***REMOVED***
+    function getFunction(code, argNames) {
         var fn = window, parts = (code || "").split(".");
-        while (fn && parts.length) ***REMOVED***
+        while (fn && parts.length) {
             fn = fn[parts.shift()];
-    ***REMOVED***
-        if (typeof (fn) === "function") ***REMOVED***
+        }
+        if (typeof (fn) === "function") {
             return fn;
-    ***REMOVED***
+        }
         argNames.push(code);
         return Function.constructor.apply(null, argNames);
-***REMOVED***
+    }
 
-    function isMethodProxySafe(method) ***REMOVED***
+    function isMethodProxySafe(method) {
         return method === "GET" || method === "POST";
-***REMOVED***
+    }
 
-    function asyncOnBeforeSend(xhr, method) ***REMOVED***
-        if (!isMethodProxySafe(method)) ***REMOVED***
+    function asyncOnBeforeSend(xhr, method) {
+        if (!isMethodProxySafe(method)) {
             xhr.setRequestHeader("X-HTTP-Method-Override", method);
-    ***REMOVED***
-***REMOVED***
+        }
+    }
 
-    function asyncOnSuccess(element, data, contentType) ***REMOVED***
+    function asyncOnSuccess(element, data, contentType) {
         var mode;
 
-        if (contentType.indexOf("application/x-javascript") !== -1) ***REMOVED***  // jQuery already executes JavaScript for us
+        if (contentType.indexOf("application/x-javascript") !== -1) {  // jQuery already executes JavaScript for us
             return;
-    ***REMOVED***
+        }
 
         mode = (element.getAttribute("data-ajax-mode") || "").toUpperCase();
-        $(element.getAttribute("data-ajax-update")).each(function (i, update) ***REMOVED***
+        $(element.getAttribute("data-ajax-update")).each(function (i, update) {
             var top;
 
-            switch (mode) ***REMOVED***
+            switch (mode) {
                 case "BEFORE":
                     $(update).prepend(data);
                     break;
@@ -68,138 +68,138 @@
                 default:
                     $(update).html(data);
                     break;
-        ***REMOVED***
-    ***REMOVED***);
-***REMOVED***
+            }
+        });
+    }
 
-    function asyncRequest(element, options) ***REMOVED***
+    function asyncRequest(element, options) {
         var confirm, loading, method, duration;
 
         confirm = element.getAttribute("data-ajax-confirm");
-        if (confirm && !window.confirm(confirm)) ***REMOVED***
+        if (confirm && !window.confirm(confirm)) {
             return;
-    ***REMOVED***
+        }
 
         loading = $(element.getAttribute("data-ajax-loading"));
         duration = parseInt(element.getAttribute("data-ajax-loading-duration"), 10) || 0;
 
-        $.extend(options, ***REMOVED***
+        $.extend(options, {
             type: element.getAttribute("data-ajax-method") || undefined,
             url: element.getAttribute("data-ajax-url") || undefined,
             cache: (element.getAttribute("data-ajax-cache") || "").toLowerCase() === "true",
-            beforeSend: function (xhr) ***REMOVED***
+            beforeSend: function (xhr) {
                 var result;
                 asyncOnBeforeSend(xhr, method);
                 result = getFunction(element.getAttribute("data-ajax-begin"), ["xhr"]).apply(element, arguments);
-                if (result !== false) ***REMOVED***
+                if (result !== false) {
                     loading.show(duration);
-            ***REMOVED***
+                }
                 return result;
-          ***REMOVED***
-            complete: function () ***REMOVED***
+            },
+            complete: function () {
                 loading.hide(duration);
                 getFunction(element.getAttribute("data-ajax-complete"), ["xhr", "status"]).apply(element, arguments);
-          ***REMOVED***
-            success: function (data, status, xhr) ***REMOVED***
+            },
+            success: function (data, status, xhr) {
                 asyncOnSuccess(element, data, xhr.getResponseHeader("Content-Type") || "text/html");
                 getFunction(element.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(element, arguments);
-          ***REMOVED***
-            error: function () ***REMOVED***
+            },
+            error: function () {
                 getFunction(element.getAttribute("data-ajax-failure"), ["xhr", "status", "error"]).apply(element, arguments);
-        ***REMOVED***
-    ***REMOVED***);
+            }
+        });
 
-        options.data.push(***REMOVED*** name: "X-Requested-With", value: "XMLHttpRequest" ***REMOVED***);
+        options.data.push({ name: "X-Requested-With", value: "XMLHttpRequest" });
 
         method = options.type.toUpperCase();
-        if (!isMethodProxySafe(method)) ***REMOVED***
+        if (!isMethodProxySafe(method)) {
             options.type = "POST";
-            options.data.push(***REMOVED*** name: "X-HTTP-Method-Override", value: method ***REMOVED***);
-    ***REMOVED***
+            options.data.push({ name: "X-HTTP-Method-Override", value: method });
+        }
 
         // change here:
         // Check for a Form POST with enctype=multipart/form-data
         // add the input file that were not previously included in the serializeArray()
         // set processData and contentType to false
         var $element = $(element);
-        if ($element.is("form") && $element.attr("enctype") == "multipart/form-data") ***REMOVED***
+        if ($element.is("form") && $element.attr("enctype") == "multipart/form-data") {
             var formdata = new FormData();
-            $.each(options.data, function (i, v) ***REMOVED***
+            $.each(options.data, function (i, v) {
                 formdata.append(v.name, v.value);
-        ***REMOVED***);
-            $("input[type=file]", $element).each(function () ***REMOVED***
+            });
+            $("input[type=file]", $element).each(function () {
                 var file = this;
-                $.each(file.files, function (n, v) ***REMOVED***
+                $.each(file.files, function (n, v) {
                     formdata.append(file.name, v);
-            ***REMOVED***);
-        ***REMOVED***);
-            $.extend(options, ***REMOVED***
+                });
+            });
+            $.extend(options, {
                 processData: false,
                 contentType: false,
                 data: formdata
-        ***REMOVED***);
-    ***REMOVED***
+            });
+        }
         // end change
 
         $.ajax(options);
-***REMOVED***
+    }
 
-    function validate(form) ***REMOVED***
+    function validate(form) {
         var validationInfo = $(form).data(data_validation);
         return !validationInfo || !validationInfo.validate || validationInfo.validate();
-***REMOVED***
+    }
 
-    $(document).on("click", "a[data-ajax=true]", function (evt) ***REMOVED***
+    $(document).on("click", "a[data-ajax=true]", function (evt) {
         evt.preventDefault();
-        asyncRequest(this, ***REMOVED***
+        asyncRequest(this, {
             url: this.href,
             type: "GET",
             data: []
-    ***REMOVED***);
-***REMOVED***);
+        });
+    });
 
-    $(document).on("click", "form[data-ajax=true] input[type=image]", function (evt) ***REMOVED***
+    $(document).on("click", "form[data-ajax=true] input[type=image]", function (evt) {
         var name = evt.target.name,
             target = $(evt.target),
             form = $(target.parents("form")[0]),
             offset = target.offset();
 
         form.data(data_click, [
-            ***REMOVED*** name: name + ".x", value: Math.round(evt.pageX - offset.left) ***REMOVED***,
-            ***REMOVED*** name: name + ".y", value: Math.round(evt.pageY - offset.top) ***REMOVED***
+            { name: name + ".x", value: Math.round(evt.pageX - offset.left) },
+            { name: name + ".y", value: Math.round(evt.pageY - offset.top) }
         ]);
 
-        setTimeout(function () ***REMOVED***
+        setTimeout(function () {
             form.removeData(data_click);
-      ***REMOVED*** 0);
-***REMOVED***);
+        }, 0);
+    });
 
-    $(document).on("click", "form[data-ajax=true] :submit", function (evt) ***REMOVED***
+    $(document).on("click", "form[data-ajax=true] :submit", function (evt) {
         var name = evt.currentTarget.name,
             target = $(evt.target),
             form = $(target.parents("form")[0]);
 
-        form.data(data_click, name ? [***REMOVED*** name: name, value: evt.currentTarget.value ***REMOVED***] : []);
+        form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
 
-        setTimeout(function () ***REMOVED***
+        setTimeout(function () {
             form.removeData(data_click);
             form.removeData(data_target);
-      ***REMOVED*** 0);
-***REMOVED***);
+        }, 0);
+    });
 
-    $(document).on("submit", "form[data-ajax=true]", function (evt) ***REMOVED***
+    $(document).on("submit", "form[data-ajax=true]", function (evt) {
         var clickInfo = $(this).data(data_click) || [],
             clickTarget = $(this).data(data_target),
             isCancel = clickTarget && (clickTarget.hasClass("cancel") || clickTarget.attr('formnovalidate') !== undefined);
         evt.preventDefault();
-        if (!isCancel && !validate(this)) ***REMOVED***
+        if (!isCancel && !validate(this)) {
             return;
-    ***REMOVED***
-        asyncRequest(this, ***REMOVED***
+        }
+        asyncRequest(this, {
             url: this.action,
             type: this.method || "GET",
             data: clickInfo.concat($(this).serializeArray())
-    ***REMOVED***);
-***REMOVED***);
-***REMOVED***(jQuery));
+        });
+    });
+}(jQuery));

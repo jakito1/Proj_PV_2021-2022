@@ -1,17 +1,17 @@
 ﻿@model ErrorViewModel
-@***REMOVED***
+@{
     ViewData["Title"] = "Error";
-***REMOVED***
+}
 
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
 @if (Model?.ShowRequestId ?? false)
-***REMOVED***
+{
     <p>
         <strong>Request ID:</strong> <code>@Model?.RequestId</code>
     </p>
-***REMOVED***
+}
 
 <h3>Development Mode</h3>
 <p>

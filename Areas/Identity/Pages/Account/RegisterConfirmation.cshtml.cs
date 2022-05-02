@@ -11,13 +11,13 @@ using NutriFitWeb.Models;
 using System.Text;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
-***REMOVED***
+{
     /// <summary>
     /// RegisterConfirmationModel class, derived from PageModel.
     /// </summary>
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
 
         /// <summary>
@@ -26,24 +26,24 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
         /// <param name="sender">Microsoft EmailSender interface.</param>
         public RegisterConfirmationModel(UserManager<UserAccountModel> userManager)
-        ***REMOVED***
+        {
             _userManager = userManager;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Gets or sets the Email inputed by the user.
         /// </summary>
-        public string Email ***REMOVED*** get; set; ***REMOVED***
+        public string Email { get; set; }
 
         /// <summary>
         ///     Gets or sets the DisplayConfirmAccountLink (link to confirm the user account)
         /// </summary>
-        public bool DisplayConfirmAccountLink ***REMOVED*** get; set; ***REMOVED***
+        public bool DisplayConfirmAccountLink { get; set; }
 
         /// <summary>
         ///     Gets or sets the EmailConfirmationUrl (link to confirm the user account sent to the email)
         /// </summary>
-        public string EmailConfirmationUrl ***REMOVED*** get; set; ***REMOVED***
+        public string EmailConfirmationUrl { get; set; }
 
         /// <summary>
         /// Handle the Get Request during the RegisterConfirmation process.
@@ -53,34 +53,34 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="returnUrl"></param>
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
-        ***REMOVED***
+        {
             if (email is null)
-            ***REMOVED***
+            {
                 return RedirectToPage("/Index");
-        ***REMOVED***
+            }
             returnUrl ??= Url.Content("~/");
             UserAccountModel user = await _userManager.FindByEmailAsync(email);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with email '***REMOVED***email***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with email '{email}'.");
+            }
 
             Email = email;
             // Once you add a real email sender, you should remove this code that lets you confirm the account
             DisplayConfirmAccountLink = false;
             if (DisplayConfirmAccountLink)
-            ***REMOVED***
+            {
                 string userId = await _userManager.GetUserIdAsync(user);
                 string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new ***REMOVED*** area = "Identity", userId, code, returnUrl ***REMOVED***,
+                    values: new { area = "Identity", userId, code, returnUrl },
                     protocol: Request.Scheme);
-        ***REMOVED***
+            }
 
             return Page();
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

@@ -21,9 +21,9 @@
     </thead>
     <tbody>
         @if (Model is not null)
-        ***REMOVED***
+        {
             @foreach (var item in Model)
-            ***REMOVED***
+            {
 
                 <tr>
                     <td class="exercisesData breakText breakTextOtherData">
@@ -33,30 +33,30 @@
                     </td>
                     <td>
                         @if (item.ExercisePhoto is not null)
-                        ***REMOVED***
+                        {
                             string? exercisePhoto = PhotoManagement.GetPhotoPath(item.ExercisePhoto);
                             <img class="profilePhoto" src="@exercisePhoto" />
-                    ***REMOVED***else***REMOVED***
+                        }else{
                             <p class="exercisesData">N/A</p>
-                    ***REMOVED***
+                        }
                     </td>
                     <td class="exercisesData">
                         @if (item.ExerciseDuration is not null)
-                        ***REMOVED***
+                        {
                             <p>@Html.DisplayFor(modelItem => item.ExerciseDuration) minuto(s),</p>
-                    ***REMOVED***
+                        }
                         @if (item.ExerciseRepetitions is not null)
-                        ***REMOVED***
+                        {
                             <p>@Html.DisplayFor(modelItem => item.ExerciseRepetitions) repetições,</p>
-                    ***REMOVED***
+                        }
                         <p>@Html.DisplayFor(modelItem => item.ExerciseType), @Html.DisplayFor(modelItem => item.ExerciseMuscles),</p>
                         @if (item.ExerciseURL is not null && item.ExerciseURL != "")
-                        ***REMOVED***
+                        {
                             <a class="videosUrl" href="@item.ExerciseURL" target="_blank">Vídeo do Exercício</a>
-                    ***REMOVED***
+                        }
                     </td>
                 </tr>
-        ***REMOVED***
-    ***REMOVED***
+            }
+        }
     </tbody>
 </table>

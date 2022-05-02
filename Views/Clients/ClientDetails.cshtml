@@ -7,14 +7,14 @@
 
 <div class="col-md-6 profileDivs exercisesDiv">
     <div class="form-group">
-        @***REMOVED***
+        @{
             string? profilePic = await PhotoManagement.LoadProfileImage(@Model.UserAccountModel.UserName);
-    ***REMOVED***
+        }
         @if(Model.ClientProfilePhoto is not null)
-        ***REMOVED***
+        {
             <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientProfilePhoto)</p>
             <img class="profilePhoto" src="@profilePic" />
-    ***REMOVED***
+        }
     </div>
     <br />
     <table class="formTables">
@@ -29,17 +29,17 @@
         <tr>
             <th><p class="control-label listsItemTitle">Nome Completo</p></th>
             @if ((Model.ClientFirstName is null || Model.ClientFirstName == "") && (Model.ClientLastName is null || Model.ClientLastName == ""))
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***else if(Model.ClientFirstName is null || Model.ClientFirstName == "")
-            ***REMOVED***
+            }else if(Model.ClientFirstName is null || Model.ClientFirstName == "")
+            {
                 <td><p class="itemsLeftMargin">@Model.ClientLastName</p></td>
-        ***REMOVED***else if (Model.ClientLastName is null || Model.ClientLastName == "")
-            ***REMOVED***
+            }else if (Model.ClientLastName is null || Model.ClientLastName == "")
+            {
                 <td><p class="itemsLeftMargin">@Model.ClientLastName</p></td>
-        ***REMOVED***else***REMOVED***
+            }else{
                 <td><p class="itemsLeftMargin">@Model.ClientFirstName @Model.ClientLastName</p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientSex)</p></th>
@@ -48,13 +48,13 @@
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.ClientBirthday)</p></th>
             @if (Model.ClientBirthday is null)
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.ClientBirthday)</p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.Email)</p></th>
@@ -63,64 +63,64 @@
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.PhoneNumber)</p></th>
             @if(Model.UserAccountModel.PhoneNumber is null)
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.PhoneNumber)</p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.Gym)</p></th>
             @if (Model.Gym is null || Model.Gym.GymName is null || Model.Gym.GymName == "")
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.Gym!.GymName)</p></td> 
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">Treinador</p></th>
             @if (Model.Trainer is not null)
-            ***REMOVED***
+            {
                 @if ((Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "") && (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == ""))
-                ***REMOVED***
+                {
                     <td><p class="itemsLeftMargin">@Model.Trainer.UserAccountModel.UserName</p></td>
-            ***REMOVED***else if(Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "")
-                ***REMOVED***
+                }else if(Model.Trainer.TrainerFirstName is null || Model.Trainer.TrainerFirstName == "")
+                {
                     <td><p class="itemsLeftMargin">@Model.Trainer.TrainerLastName</p></td>
-            ***REMOVED***else if (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == "")
-                ***REMOVED***
+                }else if (Model.Trainer.TrainerLastName is null || Model.Trainer.TrainerLastName == "")
+                {
                     <td><p class="itemsLeftMargin">@Model.Trainer.TrainerFirstName</p></td>
-            ***REMOVED***else***REMOVED***
+                }else{
                     <td><p class="itemsLeftMargin">@Model.Trainer.TrainerFirstName @Model.Trainer.TrainerLastName</p></td>
-            ***REMOVED***
-        ***REMOVED***else***REMOVED***
+                }
+            }else{
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">Nutricionista</p></th>
             @if (Model.Nutritionist is not null)
-            ***REMOVED***
+            {
                 @if ((Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "") && (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == ""))
-                ***REMOVED***
+                {
                     <td><p class="itemsLeftMargin">@Model.Nutritionist.UserAccountModel.UserName</p></td>
-            ***REMOVED***else if(Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "")
-                ***REMOVED***
+                }else if(Model.Nutritionist.NutritionistFirstName is null || Model.Nutritionist.NutritionistFirstName == "")
+                {
                     <td><p class="itemsLeftMargin">@Model.Nutritionist.NutritionistLastName</p></td>
-            ***REMOVED***else if (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == "")
-                ***REMOVED***
+                }else if (Model.Nutritionist.NutritionistLastName is null || Model.Nutritionist.NutritionistLastName == "")
+                {
                     <td><p class="itemsLeftMargin">@Model.Nutritionist.NutritionistFirstName</p></td>
-            ***REMOVED***else***REMOVED***
+                }else{
                     <td><p class="itemsLeftMargin">@Model.Nutritionist.NutritionistFirstName @Model.Nutritionist.NutritionistLastName</p></td>
-            ***REMOVED***
-        ***REMOVED***else***REMOVED***
+                }
+            }else{
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***
+            }
         </tr>
     </table>
     <table class="formTables fixMeasurementsMargin">
@@ -131,22 +131,22 @@
         </tr>
         <tr>
             @if (Model.Weight is null || Model.Weight == 0)
-            ***REMOVED***
+            {
                 <td><p>N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p>@Html.DisplayFor(Model => Model.Weight) quilos</p></td>
-        ***REMOVED***
+            }
             <td></td>
             @if (Model.Height is null || Model.Height == 0)
-            ***REMOVED***
+            {
                 <td><p>N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p>@Html.DisplayFor(Model => Model.Height) centímetros</p></td>
-        ***REMOVED***
+            }
         </tr>
     </table>
     <table class="formTables fixMeasurementsMargin">
@@ -157,22 +157,22 @@
         </tr>
         <tr>
             @if (Model.FatMass is null || Model.FatMass == 0)
-            ***REMOVED***
+            {
                 <td><p>N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p>@Html.DisplayFor(Model => Model.FatMass)%</p></td>
-        ***REMOVED***
+            }
             <td></td>
             @if (Model.LeanMass is null || Model.LeanMass == 0)
-            ***REMOVED***
+            {
                 <td><p>N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p>@Html.DisplayFor(Model => Model.LeanMass)%</p></td>
-        ***REMOVED***
+            }
         </tr>
     </table>
 </div>

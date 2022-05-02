@@ -6,36 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     /// ShowRecoveryCodesModel class, derived from PageModel.
     /// </summary>
     public class ShowRecoveryCodesModel : PageModel
-    ***REMOVED***
+    {
         /// <summary>
         ///     Gets or sets a temporary string array with the RecoveryCodes
         /// </summary>
         [TempData]
-        public string[] RecoveryCodes ***REMOVED*** get; set; ***REMOVED***
+        public string[] RecoveryCodes { get; set; }
 
         /// <summary>
         ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
-        public string StatusMessage ***REMOVED*** get; set; ***REMOVED***
+        public string StatusMessage { get; set; }
 
         /// <summary>
         /// Handles the Get Request during the code show up process.
         /// </summary>
         /// <returns></returns>
         public IActionResult OnGet()
-        ***REMOVED***
+        {
             if (RecoveryCodes is null || RecoveryCodes.Length == 0)
-            ***REMOVED***
+            {
                 return RedirectToPage("./TwoFactorAuthentication");
-        ***REMOVED***
+            }
 
             return Page();
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

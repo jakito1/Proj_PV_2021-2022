@@ -1,10 +1,10 @@
 ﻿namespace NutriFitWeb.Services
-***REMOVED***
+{
     /// <summary>
     /// IHasTrainerNutritionistGym interface
     /// </summary>
     public interface IHasTrainerNutritionistGym
-    ***REMOVED***
+    {
         /// <summary>
         /// Check if the Client has any Nutritionist associated and wants to have one.
         /// </summary>
@@ -35,5 +35,5 @@
         /// <param name="userName"></param>
         /// <returns>A boolean Task result</returns>
         Task<bool> ClientHasGym(string? userName);
-***REMOVED***
-***REMOVED***
+    }
+}

@@ -1,9 +1,9 @@
 ﻿@page
 @model IndexModel
-@***REMOVED***
+@{
     ViewData["Title"] = "Perfil";
     ViewData["ActivePage"] = ManageNavPages.Index;
-***REMOVED***
+}
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
@@ -25,6 +25,6 @@
     </div>
 </div>
 
-@section Scripts ***REMOVED***
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
-***REMOVED***
+}

@@ -7,21 +7,21 @@
         <tr>
             <th><p class="control-label listsItemTitle">Nome</p></th>
             @if (Model.NutritionPlan is not null)
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin"><b>@Html.DisplayFor(model => model.NutritionPlan!.NutritionPlanName)</b></p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">Descrição</p></th>
             <td>
                 @if (Model.NutritionPlanEditRequestDescription is null || Model.NutritionPlanEditRequestDescription == "")
-                ***REMOVED***
+                {
                     <p><b>N/A</b></p>
-            ***REMOVED***
+                }
                 else
-                ***REMOVED***
+                {
                     <p><b>@Html.DisplayFor(model => model.NutritionPlanEditRequestDescription)</b></p>
-            ***REMOVED***
+                }
             </td>
         </tr>
         <tr>

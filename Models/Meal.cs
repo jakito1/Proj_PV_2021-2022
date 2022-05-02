@@ -3,85 +3,85 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
-***REMOVED***
+{
     /// <summary>
     /// Meal class, implements IValidatableObject
     /// </summary>
     public class Meal : IValidatableObject
-    ***REMOVED***
+    {
         /// <summary>
         /// Gets and Sets the Meal id.
         /// </summary>
-        public int MealId ***REMOVED*** get; set; ***REMOVED***
+        public int MealId { get; set; }
         /// <summary>
         /// Gets and Sets the Meal name.
         /// </summary>
         [Required(ErrorMessage = "Este campo é obrigatório.")]
         [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
-        public string? MealName ***REMOVED*** get; set; ***REMOVED***
+        public string? MealName { get; set; }
         /// <summary>
         /// Gets and Sets the Meal description.
         /// </summary>
         [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
-        public string? MealDescription ***REMOVED*** get; set; ***REMOVED***
+        public string? MealDescription { get; set; }
         /// <summary>
         /// Gets and Sets the Meal calories.
         /// </summary>
-        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** calorias.")]
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} calorias.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
-        public int? MealCalorie ***REMOVED*** get; set; ***REMOVED***
+        public int? MealCalorie { get; set; }
         /// <summary>
         /// Gets and Sets the Meal protein value.
         /// </summary>
-        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de proteína.")]
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de proteína.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
-        public int? MealProtein ***REMOVED*** get; set; ***REMOVED***
+        public int? MealProtein { get; set; }
         /// <summary>
         /// Gets and Sets the Meal fat value.
         /// </summary>
-        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de gordura.")]
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de gordura.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
-        public int? MealFat ***REMOVED*** get; set; ***REMOVED***
+        public int? MealFat { get; set; }
         /// <summary>
         /// Gets and Sets the Meal carbohydrate value.
         /// </summary>
-        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** gramas de hidratos de carbono.")]
+        [Range(1, 99999, ErrorMessage = "Uma refeição deve conter entre {1} e {2} gramas de hidratos de carbono.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
-        public int? MealCarbohydrate ***REMOVED*** get; set; ***REMOVED***
+        public int? MealCarbohydrate { get; set; }
         /// <summary>
         /// Gets and Sets the Meal target date.
         /// </summary>
 
         [DataType(DataType.Date)]
-        public DateTime? MealDate ***REMOVED*** get; set; ***REMOVED***
+        public DateTime? MealDate { get; set; }
         /// <summary>
         /// Gets the Sets the Meal target week day.
         /// </summary>
 
         [Column(TypeName = "nvarchar(24)")]
-        public MealWeekDay? MealWeekDay ***REMOVED*** get; set; ***REMOVED***
+        public MealWeekDay? MealWeekDay { get; set; }
         /// <summary>
         /// Gets and Sets the Meal type.
         /// </summary>
 
         [Column(TypeName = "nvarchar(24)")]
-        public MealType? MealType ***REMOVED*** get; set; ***REMOVED***
+        public MealType? MealType { get; set; }
         /// <summary>
         /// Gets and Sets the Meal url.
         /// </summary>
 
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
-        public string? MealURL ***REMOVED*** get; set; ***REMOVED***
+        public string? MealURL { get; set; }
         /// <summary>
         /// Gets and Sets the Meal associated nutrition plan.
         /// </summary>
 
         [JsonIgnore]
-        public NutritionPlan? NutritionPlan ***REMOVED*** get; set; ***REMOVED***
+        public NutritionPlan? NutritionPlan { get; set; }
         /// <summary>
         /// Gets and Sets the Meal photo.
         /// </summary>
-        public Photo? MealPhoto ***REMOVED*** get; set; ***REMOVED***
+        public Photo? MealPhoto { get; set; }
 
         /// <summary>
         /// Validation function to validate the MealDate and MealWeekDay
@@ -89,35 +89,35 @@ namespace NutriFitWeb.Models
         /// <param name="validationContext"></param>
         /// <returns></returns>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        ***REMOVED***
+        {
             if (MealDate is null && MealWeekDay is null)
-            ***REMOVED***
+            {
                 yield return new ValidationResult(
                     "Pelo menos uma data ou um dia de semana têm de ser fornecidos.",
-                    new[] ***REMOVED*** nameof(MealDate), nameof(MealWeekDay) ***REMOVED***);
-        ***REMOVED***
+                    new[] { nameof(MealDate), nameof(MealWeekDay) });
+            }
             if (MealDate is not null && MealWeekDay is not null)
-            ***REMOVED***
+            {
                 yield return new ValidationResult(
                     "Apenas pode fornecer uma data ou um dia de semana.",
-                    new[] ***REMOVED*** nameof(MealDate), nameof(MealWeekDay) ***REMOVED***);
-        ***REMOVED***
+                    new[] { nameof(MealDate), nameof(MealWeekDay) });
+            }
             yield return ValidationResult.Success;
-    ***REMOVED***
-***REMOVED***
+        }
+    }
 
     public enum MealType
-    ***REMOVED***
+    {
         [Display(Name = "Pequeno Almoço")]
         BREAKFAST,
         [Display(Name = "Almoço")]
         LUNCH,
         [Display(Name = "Jantar")]
         DINER
-***REMOVED***
+    }
 
     public enum MealWeekDay
-    ***REMOVED***
+    {
         [Display(Name = "Domingo")]
         SUNDAY,
         [Display(Name = "Segunda-Feira")]
@@ -132,5 +132,5 @@ namespace NutriFitWeb.Models
         FRIDAY,
         [Display(Name = "Sábado")]
         SATURDAY
-***REMOVED***
-***REMOVED***
+    }
+}

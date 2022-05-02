@@ -7,12 +7,12 @@ using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
-***REMOVED***
+{
     /// <summary>
     /// GymsController class, derives from Controller
     /// </summary>
     public class GymsController : Controller
-    ***REMOVED***
+    {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
@@ -31,13 +31,13 @@ namespace NutriFitWeb.Controllers
             IIsUserInRoleByUserId inRoleByUserId,
             IPhotoManagement photoManagement,
             IInteractNotification interactNotification)
-        ***REMOVED***
+        {
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = inRoleByUserId;
             _photoManagement = photoManagement;
             _interactNotification = interactNotification;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays the page to edit the gym settings.
@@ -47,24 +47,24 @@ namespace NutriFitWeb.Controllers
         /// <returns>A View result</returns>
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettings(string? id)
-        ***REMOVED***
+        {
             if (string.IsNullOrEmpty(id) || User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             Gym? gym = await GetGym(id);
             if (gym is not null && gym.GymProfilePhoto is not null)
-            ***REMOVED***
+            {
                 gym.GymProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(gym.UserAccountModel.UserName);
-        ***REMOVED***
+            }
 
             if (gym is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
             return View(gym);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// HTTP Post method on the API to edit the gym settings.
@@ -77,11 +77,11 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, gym")]
         public async Task<IActionResult> EditGymSettingsPost(string? id, IFormFile? formFile)
-        ***REMOVED***
+        {
             if (string.IsNullOrEmpty(id) || User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym? gymToUpdate = await GetGym(id);
@@ -89,42 +89,42 @@ namespace NutriFitWeb.Controllers
             Photo? oldPhoto = null;
 
             if (gymToUpdate is null || gymToUpdate.UserAccountModel is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
 
             if (gymToUpdate.GymProfilePhoto is not null)
-            ***REMOVED***
+            {
                 oldPhoto = gymToUpdate.GymProfilePhoto;
-        ***REMOVED***
+            }
             gymToUpdate.GymProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
 
             if (await TryUpdateModelAsync<Gym>(gymToUpdate, "",
                 g => g.GymName!, g => g.GymProfilePhoto!))
-            ***REMOVED***
+            {
                 if (oldPhoto is not null && gymToUpdate.GymProfilePhoto is not null)
-                ***REMOVED***
+                {
                     _context.Photos.Remove(oldPhoto);
-            ***REMOVED***
+                }
                 else if (gymToUpdate.GymProfilePhoto is null)
-                ***REMOVED***
+                {
                     gymToUpdate.GymProfilePhoto = oldPhoto;
-            ***REMOVED***
+                }
 
                 if (gymToUpdate.GymProfilePhoto is not null)
-                ***REMOVED***
+                {
                     gymToUpdate.GymProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
-            ***REMOVED***
+                }
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-                ***REMOVED***
+                {
                     await _interactNotification.Create($"O administrador alterou parte do seu perfil.", gymToUpdate.UserAccountModel);
                     return RedirectToAction("ShowAllUsers", "Admins");
-            ***REMOVED***
+                }
                 await _context.SaveChangesAsync();
                 return View(gymToUpdate);
-        ***REMOVED***
+            }
             return View(gymToUpdate);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Get a gym by id
@@ -132,19 +132,19 @@ namespace NutriFitWeb.Controllers
         /// <param name="id"></param>
         /// <returns>A query with the Gym details</returns>
         private async Task<Gym> GetGym(string? id)
-        ***REMOVED***
+        {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-            ***REMOVED***
+            {
                 return _context.Gym
                     .Include(a => a.UserAccountModel)
                     .Include(a => a.GymProfilePhoto).FirstOrDefault(a => a.UserAccountModel.Id == id);
-        ***REMOVED***
+            }
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
             return await _context.Gym
                 .Include(a => a.UserAccountModel)
                 .Include(a => a.GymProfilePhoto).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

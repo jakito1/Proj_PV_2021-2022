@@ -12,10 +12,10 @@
         <div class="form-group">
             <label asp-for="ExercisePhoto" class="control-label listsItemTitle">Foto do Exercicio</label>
             @if(Model is not null && Model.ExercisePhoto is not null)
-            ***REMOVED***
+            {
                 string? exercisePhoto = PhotoManagement.GetPhotoPath(Model.ExercisePhoto);
                 <div><img class="profilePhoto" src="@exercisePhoto" /></div>
-        ***REMOVED***
+            }
             <input type="file" asp-for="ExercisePhoto" class="form-control marginFixChooseFile" name="formFile"/>
             <span asp-validation-for="ExercisePhoto" class="text-danger"></span>
         </div>
@@ -41,16 +41,16 @@
         <table class="formTables">
             <tr>
                 @if (User.IsInRole("client") || User.IsInRole("trainer"))
-                ***REMOVED***
+                {
                     <th><label asp-for="ExerciseDuration" class="control-label">Duração</label></th>
                     <th><label asp-for="ExerciseRepetitions" class="control-label">Repetições</label></th>
-            ***REMOVED***
+                }
 
                 <th><label asp-for="ExerciseURL" class="control-label labelOne">Link do Exercício</label></th>
             </tr>
             <tr>
                 @if (User.IsInRole("client") || User.IsInRole("trainer"))
-                ***REMOVED***
+                {
                     <td>
                         <input asp-for="ExerciseDuration" class="formsInput" />
                         <span asp-validation-for="ExerciseDuration" class="text-danger"></span>
@@ -59,7 +59,7 @@
                         <input asp-for="ExerciseRepetitions" class="formsInput" />
                         <span asp-validation-for="ExerciseRepetitions" class="text-danger"></span>
                     </td>
-            ***REMOVED***
+                }
                 <td>
                     <input asp-for="ExerciseURL" class="formsInput" />
                     <span asp-validation-for="ExerciseURL" class="text-danger"></span>
@@ -90,8 +90,8 @@
     </form>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

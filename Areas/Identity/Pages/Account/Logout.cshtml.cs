@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
-***REMOVED***
+{
     /// <summary>
     /// LogoutModel class, derived from PageModel.
     /// </summary>
     public class LogoutModel : PageModel
-    ***REMOVED***
+    {
         private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
@@ -23,10 +23,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public LogoutModel(SignInManager<UserAccountModel> signInManager, ILogger<LogoutModel> logger)
-        ***REMOVED***
+        {
             _signInManager = signInManager;
             _logger = logger;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handles the Post Request during the logout process.
@@ -34,19 +34,19 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="returnUrl"></param>
         /// <returns></returns>
         public async Task<IActionResult> OnPost(string returnUrl = null)
-        ***REMOVED***
+        {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             if (returnUrl is not null)
-            ***REMOVED***
+            {
                 return LocalRedirect(returnUrl);
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 // This needs to be a redirect so that the browser performs a new
                 // request and the identity for the user gets updated.
                 return RedirectToPage();
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+            }
+        }
+    }
+}

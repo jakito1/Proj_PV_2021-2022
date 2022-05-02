@@ -18,12 +18,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
-***REMOVED***
+{
     options.Cookie.Name = ".NutriFitWeb.Session";
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.SameSite = SameSiteMode.Strict;
     options.Cookie.HttpOnly = true;
-***REMOVED***);
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -36,33 +36,33 @@ builder.Services.AddScoped<IPhotoManagement, PhotoManagement>();
 builder.Services.AddScoped<IInteractNotification, InteractNotification>();
 
 builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
-***REMOVED***
+{
     options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
-***REMOVED***)
+})
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddWebOptimizer(pipeline =>
-***REMOVED***
+{
     pipeline.MinifyJsFiles("/js/site.js");
     pipeline.MinifyCssFiles("/css/site.css");
-***REMOVED***);
+});
 
 WebApplication? app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
-***REMOVED***
+{
     app.UseMigrationsEndPoint();
-***REMOVED***
+}
 else
-***REMOVED***
+{
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-***REMOVED***
+}
 
 app.UseWebOptimizer();
 
@@ -80,7 +80,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "***REMOVED***controller=Home***REMOVED***/***REMOVED***action=Index***REMOVED***/***REMOVED***id?***REMOVED***");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

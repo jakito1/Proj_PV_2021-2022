@@ -11,10 +11,10 @@
         <div class="form-group">
             <label asp-for="MealPhoto" class="control-label listsItemTitle">Foto da Refeição</label>
             @if (Model is not null && Model.MealPhoto is not null)
-            ***REMOVED***
+            {
                 string? mealPhoto = PhotoManagement.GetPhotoPath(Model.MealPhoto);
                 <div><img class="profilePhoto" src="@mealPhoto" /></div>
-        ***REMOVED***
+            }
             <input type="file" asp-for="MealPhoto" class="form-control marginFixChooseFile" name="formFile" />
             <span asp-validation-for="MealPhoto" class="text-danger"></span>
         </div>
@@ -112,9 +112,9 @@
     </form>
 </div>
 
-@section Scripts ***REMOVED***
+@section Scripts {
 
-    @***REMOVED***
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

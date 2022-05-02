@@ -17,15 +17,15 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
-***REMOVED***
+{
     public class TrainingPlanEditRequestsControllerTest : IClassFixture<NutrifitContextFixture>
-    ***REMOVED***
+    {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _manager;
         private IInteractNotification mockInteractNotification;
 
         public TrainingPlanEditRequestsControllerTest(NutrifitContextFixture contextFixture)
-        ***REMOVED***
+        {
             _context = contextFixture.DbContext;
             mockInteractNotification = Mock.Of<IInteractNotification>();
 
@@ -40,31 +40,31 @@ namespace NutriFitWebTest.Controllers
                 new Mock<ILogger<UserManager<UserAccountModel>>>().Object);
 
             IList<UserAccountModel> usersList = new List<UserAccountModel>
-            ***REMOVED***
+            {
                 new UserAccountModel()
-                ***REMOVED***
+                {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "Test User 1",
                     Email = "testuser1@email.com"
-              ***REMOVED***
+                },
                 new UserAccountModel()
-                ***REMOVED***
+                {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "Test User 2",
                     Email = "testuser2@email.com"
-              ***REMOVED***
+                },
                 new UserAccountModel()
-                ***REMOVED***
+                {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "Test User 3",
                     Email = "testuser3@email.com"
-            ***REMOVED***
-        ***REMOVED***;
+                }
+            };
 
             IList<Client> clientsList = new List<Client>
-            ***REMOVED***
+            {
                 new Client()
-                ***REMOVED***
+                {
                     ClientBirthday = DateTime.Now,
                     ClientFirstName = "Test Client 1",
                     ClientId = 1,
@@ -89,13 +89,13 @@ namespace NutriFitWebTest.Controllers
                     WantsNutritionist = true,
                     WantsTrainer = true,
                     Weight = 70
-            ***REMOVED***
-        ***REMOVED***;
+                }
+            };
 
             IList<TrainingPlanEditRequest> plansList = new List<TrainingPlanEditRequest>
-            ***REMOVED***
+            {
                 new TrainingPlanEditRequest()
-                ***REMOVED***
+                {
                     Client = new Client(),
                     TrainingPlan = new TrainingPlan(),
                     TrainingPlanEditRequestDate = DateTime.Now,
@@ -103,9 +103,9 @@ namespace NutriFitWebTest.Controllers
                     TrainingPlanEditRequestDone = false,
                     TrainingPlanEditRequestId = 1,
                     TrainingPlanId = 1
-              ***REMOVED***
+                },
                 new TrainingPlanEditRequest()
-                ***REMOVED***
+                {
                     Client = new Client(),
                     TrainingPlan = new TrainingPlan(),
                     TrainingPlanEditRequestDate = DateTime.Now,
@@ -113,9 +113,9 @@ namespace NutriFitWebTest.Controllers
                     TrainingPlanEditRequestDone = false,
                     TrainingPlanEditRequestId = 2,
                     TrainingPlanId = 2
-              ***REMOVED***
+                },
                 new TrainingPlanEditRequest()
-                ***REMOVED***
+                {
                     Client = new Client(),
                     TrainingPlan = new TrainingPlan(),
                     TrainingPlanEditRequestDate = DateTime.Now,
@@ -123,8 +123,8 @@ namespace NutriFitWebTest.Controllers
                     TrainingPlanEditRequestDone = false,
                     TrainingPlanEditRequestId = 3,
                     TrainingPlanId = 3
-            ***REMOVED***
-        ***REMOVED***;
+                }
+            };
 
             IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
             var plans = plansList.AsQueryable().BuildMockDbSet();
@@ -135,68 +135,68 @@ namespace NutriFitWebTest.Controllers
             _context.Client = clients.Object;
             _context.TrainingPlanEditRequests = plans.Object;
             _manager = mockUserManager.Object;
-    ***REMOVED***
+        }
 
         [Fact]
         public void TrainingPlanEditRequestsController_Should_Create()
-        ***REMOVED***
+        {
             TrainingPlanEditRequestsController controller = new TrainingPlanEditRequestsController(_context, _manager, mockInteractNotification);
 
             Assert.NotNull(controller);
-    ***REMOVED***
+        }
 
         [Fact]
         public async Task TrainingPlanEditRequestsController_TrainingPlanEditRequestDetails_Should_Return_NotFoundResult()
-        ***REMOVED***
+        {
             TrainingPlanEditRequestsController controller = new TrainingPlanEditRequestsController(_context, _manager, mockInteractNotification);
 
             var result = await controller.TrainingPlanEditRequestDetails(null);
 
             Assert.IsType<NotFoundResult>(result);
-    ***REMOVED***
+        }
 
         [Fact]
         public async Task TrainingPlanEditRequestsController_TrainingPlanEditRequestDetails_Should_Return_ViewResult()
-        ***REMOVED***
+        {
             TrainingPlanEditRequestsController controller = new TrainingPlanEditRequestsController(_context, _manager, mockInteractNotification);
 
             var result = await controller.TrainingPlanEditRequestDetails(1);
 
             Assert.IsType<ViewResult>(result);
-    ***REMOVED***
+        }
 
         [Fact]
         public async Task TrainingPlanEditRequestsController_TrainingPlanEditRequestDetails_Should_Return_NotFoundResult_WhenNotInDB()
-        ***REMOVED***
+        {
             TrainingPlanEditRequestsController controller = new TrainingPlanEditRequestsController(_context, _manager, mockInteractNotification);
 
             var result = await controller.TrainingPlanEditRequestDetails(10);
 
             Assert.IsType<NotFoundResult>(result);
-    ***REMOVED***
+        }
 
         [Fact]
         public async Task TrainingPlanEditRequestsController_DeleteTrainingPlanEditRequest_Should_Return_NotFoundResult()
-        ***REMOVED***
+        {
             TrainingPlanEditRequestsController controller = new TrainingPlanEditRequestsController(_context, _manager, mockInteractNotification);
 
             var result = await controller.DeleteTrainingPlanEditRequest(null);
 
-            Assert.IsType<NotFoundResult>(result);
-    ***REMOVED***
+            Assert.IsType<BadRequestResult>(result);
+        }
 
         [Fact]
         public async Task TrainingPlanEditRequestsController_DeleteTrainingPlanEditRequest_Should_Return_ViewResult()
-        ***REMOVED***
+        {
             var fakeHttpContext = new Mock<HttpContext>();
             var fakeIdentity = new GenericIdentity("Test User 1");
             var principal = new GenericPrincipal(fakeIdentity, null);
 
             fakeHttpContext.Setup(t => t.User).Returns(principal);
             var controllerContext = new ControllerContext()
-            ***REMOVED***
+            {
                 HttpContext = fakeHttpContext.Object
-        ***REMOVED***;
+            };
 
             TrainingPlanEditRequestsController controller = new TrainingPlanEditRequestsController(_context, _manager, mockInteractNotification);
             controller.ControllerContext = controllerContext;
@@ -204,6 +204,6 @@ namespace NutriFitWebTest.Controllers
             var result = await controller.DeleteTrainingPlanEditRequest(1);
 
             Assert.IsType<NotFoundResult>(result);
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

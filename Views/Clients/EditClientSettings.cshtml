@@ -5,9 +5,9 @@
 @inject UserManager<UserAccountModel> UserManager
 @inject IPhotoManagement PhotoManagement
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Editar perfil do Cliente";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -18,9 +18,9 @@
         <div class="form-group">
             <label asp-for="ClientProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
             @if (Model.ClientProfilePhoto is not null)
-            ***REMOVED***
+            {
                 <div><img class="profilePhoto" src="@Model.ClientProfilePhoto.PhotoUrl" /></div>
-        ***REMOVED***
+            }
             <input type="file" asp-for="ClientProfilePhoto" class="form-control marginFixChooseFile" name="formFile" />
             <span asp-validation-for="ClientProfilePhoto" class="text-danger"></span>
         </div>
@@ -108,16 +108,16 @@
 </div>
 
 @if (User.IsInRole("administrator"))
-***REMOVED***
+{
     <div class="backBtnDiv">
 
         <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
     </div>
-***REMOVED***
+}
 
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

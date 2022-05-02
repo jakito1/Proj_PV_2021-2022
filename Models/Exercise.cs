@@ -3,96 +3,96 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace NutriFitWeb.Models
-***REMOVED***
+{
     /// <summary>
     /// Exercise class
     /// </summary>
     public class Exercise
-    ***REMOVED***
+    {
         /// <summary>
         /// Gets and Sets the exercise id.
         /// </summary>
-        public int ExerciseId ***REMOVED*** get; set; ***REMOVED***
+        public int ExerciseId { get; set; }
         /// <summary>
         /// Gets and Sets the exercise name.
         /// </summary>
         [Required(ErrorMessage = "Campo Obrigatório (máximo 20 caracteres)")]
         [StringLength(20, ErrorMessage = "O nome não pode exceder 20 caracteres.")]
-        public string? ExerciseName ***REMOVED*** get; set; ***REMOVED***
+        public string? ExerciseName { get; set; }
         /// <summary>
         /// Gets and Sets the exercise description.
         /// </summary>
         [StringLength(1000, ErrorMessage = "A descrição não pode exceder 1000 caracteres.")]
-        public string? ExerciseDescription ***REMOVED*** get; set; ***REMOVED***
+        public string? ExerciseDescription { get; set; }
 
-        [Range(1, 120, ErrorMessage = "Deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** minutos.")]
+        [Range(1, 120, ErrorMessage = "Deve inserir entre {1} e {2} minutos.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
-        public int? ExerciseDuration ***REMOVED*** get; set; ***REMOVED***
+        public int? ExerciseDuration { get; set; }
 
-        [Range(1, 999, ErrorMessage = "Deve inserir entre ***REMOVED***1***REMOVED*** e ***REMOVED***2***REMOVED*** repetições.")]
+        [Range(1, 999, ErrorMessage = "Deve inserir entre {1} e {2} repetições.")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Deve inserir um valor inteiro.")]
-        public int? ExerciseRepetitions ***REMOVED*** get; set; ***REMOVED***
+        public int? ExerciseRepetitions { get; set; }
 
         /// <summary>
         /// Gets and Sets the exercise url.
         /// </summary>
         [Url(ErrorMessage = "Este URL tem de estar no formato http, https, or ftp.")]
-        public string? ExerciseURL ***REMOVED*** get; set; ***REMOVED***
+        public string? ExerciseURL { get; set; }
 
         /// <summary>
         /// Gets and Sets the exercise type.
         /// Types of: ExerciseType.CARDIO, ExerciseType.STRENGTH
         /// </summary>
         [Column(TypeName = "nvarchar(24)")]
-        public ExerciseType? ExerciseType ***REMOVED*** get; set; ***REMOVED***
+        public ExerciseType? ExerciseType { get; set; }
 
         /// <summary>
         /// Gets and Sets the exercise muscle group.
         /// Types of: ExerciseMuscles.LEGS,ExerciseMuscles.ARMS,ExerciseMuscles.BACK
         /// </summary>
         [Column(TypeName = "nvarchar(24)")]
-        public ExerciseMuscles? ExerciseMuscles ***REMOVED*** get; set; ***REMOVED***
+        public ExerciseMuscles? ExerciseMuscles { get; set; }
 
         /// <summary>
         /// Gets and Sets the current trining plan associated with the exercise.
         /// </summary>
         [JsonIgnore]
-        public TrainingPlan? TrainingPlan ***REMOVED*** get; set; ***REMOVED***
+        public TrainingPlan? TrainingPlan { get; set; }
 
         /// <summary>
         /// Gets and Sets the current machine associated with the exercise.
         /// </summary>
         [JsonIgnore]
-        public Machine? Machine ***REMOVED*** get; set; ***REMOVED***
+        public Machine? Machine { get; set; }
 
         /// <summary>
         /// Gets and Sets the exercise photo.
         /// </summary>
-        public Photo? ExercisePhoto ***REMOVED*** get; set; ***REMOVED***
+        public Photo? ExercisePhoto { get; set; }
 
-***REMOVED***
+    }
 
     /// <summary>
     /// Types of exercises, with 2 types.
     /// </summary>
     public enum ExerciseType
-    ***REMOVED***
+    {
         [Display(Name = "Cardio")]
         CARDIO,
         [Display(Name = "Força")]
         STRENGHT
-***REMOVED***
+    }
 
     /// <summary>
     /// Exercise muscles with 3 muscle groups.
     /// </summary>
     public enum ExerciseMuscles
-    ***REMOVED***
+    {
         [Display(Name = "Pernas")]
         LEGS,
         [Display(Name = "Braços")]
         ARMS,
         [Display(Name = "Costas")]
         BACK
-***REMOVED***
-***REMOVED***
+    }
+}

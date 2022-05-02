@@ -7,14 +7,14 @@
 
 <div class="col-md-8 profileDivs exercisesDiv">
         <div>
-            @***REMOVED***
+            @{
                 string? machinePhoto = PhotoManagement.GetPhotoPath(@Model.MachineProfilePhoto); 
-         ***REMOVED***
+             }
             @if(Model.MachineProfilePhoto is not null)
-            ***REMOVED***
+            {
                 <div><img class="profilePhoto" src="@machinePhoto" /></div>
                 <br />
-        ***REMOVED***
+            }
         </div>
         <table class="formTables">
             <tr>
@@ -48,12 +48,12 @@
             </tr>
         </table>
         @if (Model.MachineExercises is not null && Model.MachineExercises.Any())
-        ***REMOVED***
+        {
             <br />
             <div id="_ShowExercisesPartialList" class="plansListDetailsDiv">
                 <partial name="~/Views/Exercises/_ShowExercisesDetailsPartial.cshtml" model=@Model.MachineExercises />
             </div>
-    ***REMOVED***
+        }
 </div>
 
 <div class="backBtnDiv">
@@ -68,14 +68,14 @@
 <div>
     <dl class="row">
         @if(Model.MachineProfilePhoto is not null)
-        ***REMOVED***
+        {
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.MachineName)
             </dt>
             <dd class="col-sm-10">
                 <div><img class="profilePhoto" src="@Model.MachineProfilePhoto.PhotoUrl" /></div>
             </dd>
-    ***REMOVED***
+        }
         
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MachineName)

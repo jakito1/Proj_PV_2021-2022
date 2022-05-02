@@ -19,12 +19,12 @@
         </tr>
     </table>
     @if (User.IsInRole("trainer"))
-    ***REMOVED***
+    {
         <div class="form-group">
             <a asp-controller="TrainingPlans" asp-action="CreateTrainingPlan" type="submit" asp-route-trainingPlanNewRequestId="@Model.TrainingPlanNewRequestId" class="createBtn">Criar plano de treino</a>
         </div>
         <br />
-***REMOVED***
+    }
 </div>
 
 <div class="backBtnDiv">

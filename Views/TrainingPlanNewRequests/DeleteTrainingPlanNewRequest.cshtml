@@ -12,13 +12,13 @@
         <th><p class="control-label listsItemTitle">Descrição</p></th>
         <td>
             @if (Model.TrainingPlanNewRequestDescription is null || Model.TrainingPlanNewRequestDescription == "")
-            ***REMOVED***
+            {
                 <p><b>N/A</b></p>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <p><b>@Html.DisplayFor(model => model.TrainingPlanNewRequestDescription)</b></p>
-        ***REMOVED***
+            }
         </td>
     </tr>
     <tr>

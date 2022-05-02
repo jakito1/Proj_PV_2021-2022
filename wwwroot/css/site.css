@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-html ***REMOVED***
+html {
   font-size: 14px;
-***REMOVED***
+}
 
-@media (min-width: 768px) ***REMOVED***
-  html ***REMOVED***
+@media (min-width: 768px) {
+  html {
     font-size: 16px;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
-h2 ***REMOVED***
+h2 {
     background-color: #00A2E8;
     color: white;
     font-weight: bold;
@@ -19,27 +19,27 @@ h2 ***REMOVED***
     margin: auto;
     margin-bottom: 1em;
     border-radius: 1em;
-***REMOVED***
+}
 
-.h2Fix***REMOVED***
+.h2Fix{
     margin-top: 1em;
-***REMOVED***
+}
 
-h3 ***REMOVED***
+h3 {
     margin-top: 2em;
     color: #00A2E8;
-***REMOVED***
+}
 
-html ***REMOVED***
+html {
   position: relative;
   min-height: 100%;
-***REMOVED***
+}
 
-header ***REMOVED***
+header {
     margin-bottom: 0px;
-***REMOVED***
+}
 
-body ***REMOVED***
+body {
     margin-bottom: 60px;
     background-color: white;
     font-family: 'Roboto', sans-serif;
@@ -49,33 +49,33 @@ body ***REMOVED***
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-***REMOVED***
+}
 
-a***REMOVED***
+a{
     text-decoration: none !important;
-***REMOVED***
+}
 
-.nutriFitHome ***REMOVED***
+.nutriFitHome {
     background-color: #00A2E8;
     color: white;
     border-radius: 0.2em;
     padding-left: 0.2em;
     padding-right: 0.2em;
-***REMOVED***
+}
 
-button.navbar-toggler ***REMOVED***
+button.navbar-toggler {
     border-color: white;
-***REMOVED***
+}
 
-.navbar-light .navbar-toggler-icon ***REMOVED***
+.navbar-light .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-***REMOVED***
+}
 
-.iconMargin***REMOVED***
+.iconMargin{
     margin-bottom: 0.2em;
-***REMOVED***
+}
 
-.formsInput ***REMOVED***
+.formsInput {
     border-color: lightgrey;
     text-decoration: none;
     border-style: solid;
@@ -85,14 +85,14 @@ button.navbar-toggler ***REMOVED***
     padding-left: 0.5em;
     margin: auto;
     margin-bottom: 1em;
-***REMOVED***
+}
 
-.formsElemsDivs ***REMOVED***
+.formsElemsDivs {
     margin: 0em;
-***REMOVED***
+}
 
 /* NutriFitWeb Header Title / Home Button */
-.navbar-light .navbar-brand ***REMOVED***
+.navbar-light .navbar-brand {
     font-family: 'Roboto', sans-serif;
     font-size: 35px;
     background-color: white;
@@ -101,143 +101,143 @@ button.navbar-toggler ***REMOVED***
     padding-top: 0px !important;
     padding-bottom: 0px !important;
     color: #00A2E8;
-***REMOVED***
+}
 
-.navbar-light:hover .navbar-brand:hover ***REMOVED***
+.navbar-light:hover .navbar-brand:hover {
     color: dodgerblue;
-***REMOVED***
+}
 
-p***REMOVED***
+p{
     margin-bottom: 0em !important;
-***REMOVED***
+}
 
 /* Header */
-.bg-white ***REMOVED***
+.bg-white {
     background-color: #00A2E8 !important;
-***REMOVED***
+}
 
 /* Register and Login Buttons*/
-.text-dark ***REMOVED***
+.text-dark {
     font-size: 25px;
     color: white !important;
-***REMOVED***
+}
 
 /*Margin between inputs*/
-input ***REMOVED***
+input {
     margin-top: 30px;
     margin-bottom: 20px;
-***REMOVED***
+}
 
 /*Log in container*/
-.container ***REMOVED***
+.container {
     margin-top: 50px;
     text-align: center;
-***REMOVED***
+}
 
 /*Login local account form*/
-.col-md-4 ***REMOVED***
+.col-md-4 {
     width: 50%;
     display: inline-block;
     margin-top: 20px;
-***REMOVED***
+}
 
-button ***REMOVED***
+button {
     margin-bottom: 30px;
     background-color: #00A2E8 !important;
-***REMOVED***
+}
 
 /* Titles*/
-h1 ***REMOVED***
+h1 {
     color: #00A2E8 !important;
     font-weight: 900 !important;
     font-size: 400% !important;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 0.4em;
-***REMOVED***
+}
 
 /* Different type of authentication section */
-.anotherLoginService ***REMOVED***
+.anotherLoginService {
     margin-top: 30px;
-***REMOVED***
+}
 
-#forgot-password, #register-new-account, #resend-confirmation ***REMOVED***
+#forgot-password, #register-new-account, #resend-confirmation {
     color: #00A2E8 !important;
     text-decoration: none;
     font-weight: bold;
-***REMOVED***
+}
 
 
 
-.settingsBtn:hover ***REMOVED***
+.settingsBtn:hover {
     background-color: dodgerblue !important;
     border-radius: 5px;
-***REMOVED***
+}
 
-    .settingsBtn:hover a ***REMOVED***
+    .settingsBtn:hover a {
         color: white !important;
-***REMOVED***
+    }
 
 /*Centrar conteúdo das definições*/
-.centerSettings ***REMOVED***
+.centerSettings {
     margin-left: auto !important;
     margin-right: auto !important;
-***REMOVED***
+}
 
-#enable-authenticator, .btnBorder ***REMOVED***
+#enable-authenticator, .btnBorder {
     background-color: #00A2E8;
     border-color: #00A2E8;
-***REMOVED***
+}
 
-.nav-pills .nav-link.active ***REMOVED***
+.nav-pills .nav-link.active {
     background-color: #00A2E8 !important;
     color: white !important;
-***REMOVED***
+}
 
-.nav-pills .nav-link ***REMOVED***
+.nav-pills .nav-link {
     color: #00A2E8 !important;
-***REMOVED***
+}
 
-.nav-link:hover***REMOVED***
+.nav-link:hover{
     color:lightgrey;
-***REMOVED***
+}
 
-.menuItem ***REMOVED***
+.menuItem {
     margin-top: auto !important;
     margin-bottom: auto !important;
     margin-left: 50px;
     text-decoration: none;
     color: white;
-***REMOVED***
+}
 
-.subMenuItem***REMOVED***
+.subMenuItem{
     background-color: white;
-***REMOVED***
+}
 
-.details ***REMOVED***
+.details {
     font-weight: bold;
     color: black;
-***REMOVED***
+}
 
-.logoutClick:active ***REMOVED***
+.logoutClick:active {
     border-color: red !important;
     
-***REMOVED***
+}
 
-.notLoggedInHome***REMOVED***
+.notLoggedInHome{
     margin: 2% !important;
-***REMOVED***
+}
 
-.imageHome ***REMOVED***
+.imageHome {
     max-width: 100%;
     max-height: 100%;
     border-radius: 1em;
-***REMOVED***
+}
 
-.menuItem:hover ***REMOVED***
+.menuItem:hover {
     color: lightgrey !important;
-***REMOVED***
+}
 
-.notificationIcon, .accountIcon ***REMOVED***
+.notificationIcon, .accountIcon {
     margin-top: 0.3em;
     text-decoration: none !important;
     height: 1em;
@@ -245,71 +245,71 @@ h1 ***REMOVED***
     font-size: 1.4em;
     border-radius: 1em;
     border-style: none !important;
-***REMOVED***
+}
 
-.notificationAlertIcon ***REMOVED***
+.notificationAlertIcon {
     margin-top: 0.3em;
     text-decoration: none !important;
     height: 1em;
     width: 1em;
     font-size: 1.4em;
     border-style: none !important;
-***REMOVED***
+}
 
-.NotificationsSubMenuFix ***REMOVED***
+.NotificationsSubMenuFix {
     margin-top: 0.5em;
     margin-left: -9.2em !important;
     width: 16em !important;
-***REMOVED***
+}
 
-.accountIcon ***REMOVED***
+.accountIcon {
     margin-top: 0em;
-***REMOVED***
+}
 
-.accountIconPic ***REMOVED***
+.accountIconPic {
     height: 1em;
     width: 1em;
     font-size: 1.6em;
     border-radius: 1em;
-***REMOVED***
+}
 
-.icons ***REMOVED***
+.icons {
     height: 3em;
     width: 3em;
-***REMOVED***
+}
 
-link***REMOVED***
+link{
     text-decoration: none;
-***REMOVED***
+}
 
-.icons:hover ***REMOVED***
+.icons:hover {
     padding: 2px;
     border-style: solid;
     border-radius: 1.5em;
-***REMOVED***
+}
 
-.removeIcon:hover***REMOVED***
+.removeIcon:hover{
     border-color: red;
-***REMOVED***
+}
 
-.editProfileIcon***REMOVED***
+.editProfileIcon{
     border-color: dodgerblue;
-***REMOVED***
+}
 
-.addIcon:hover ***REMOVED***
+.addIcon:hover {
     border-color: green;
-***REMOVED***
+}
 
-.detailsIcon:hover ***REMOVED***
+.detailsIcon:hover {
     border-color: #00A2E8;
-***REMOVED***
+}
 
-.iconBorder ***REMOVED***
+.iconBorder {
     margin-top: 5px;
     padding: 0px;
-***REMOVED***
+}
 
-.table ***REMOVED***
+.table {
     margin-top: 1em;
     margin-left: auto;
     margin-right: auto;
@@ -318,48 +318,48 @@ link***REMOVED***
     color: #00A2E8;
     background-color: white;
     border-radius: 1em;
-***REMOVED***
+}
 
-.exercisesMealsTable ***REMOVED***
+.exercisesMealsTable {
     table-layout: fixed !important;
-***REMOVED***
+}
 
-.thStyle ***REMOVED***
+.thStyle {
     background-color: #00A2E8 !important;
     color: white;
-***REMOVED***
+}
 
-.roundedCornerTableLeft ***REMOVED***
+.roundedCornerTableLeft {
     border-top-left-radius: 1em;
-***REMOVED***
+}
 
-.roundedCornerTableRight***REMOVED***
+.roundedCornerTableRight{
     border-top-right-radius: 1em;
-***REMOVED***
+}
 
-.alignTableTitles ***REMOVED***
+.alignTableTitles {
     padding-bottom: 1em;
-***REMOVED***
+}
 
-.formTables ***REMOVED***
+.formTables {
     margin: auto;
     margin-bottom: 2em;
-***REMOVED***
+}
 
-.fixMeasurementsMargin ***REMOVED***
+.fixMeasurementsMargin {
     border-collapse: separate;
     border-spacing: 1em 0.5em;
-***REMOVED***
+}
 
-.tableWrapper ***REMOVED***
+.tableWrapper {
     display: table;
-***REMOVED***
+}
 
-tr ***REMOVED***
+tr {
     border-radius: 1em;
-***REMOVED***
+}
 
-.listsDiv ***REMOVED***
+.listsDiv {
     border-style: solid;
     border-radius: 1em;
     border-color: grey;
@@ -371,7 +371,7 @@ tr ***REMOVED***
     margin-bottom: 1em;
     /*Breaks line if text is out of div bounds*/
     word-wrap: break-word;
-***REMOVED***
+}
 
 /*border-style: solid;
 border-radius: 1em;
@@ -383,36 +383,36 @@ padding-bottom: 0px;
 color: #00A2E8;
 font-weight: bold;*/
 
-.exercisesDiv ***REMOVED***
+.exercisesDiv {
     max-width: 95%;
     margin: 1em auto;
     border-style: solid;
     border-color: lightgrey;
     border-radius: 1em;
-***REMOVED***
+}
 
-.exListMargin***REMOVED***
+.exListMargin{
     margin-top: 1em;
-***REMOVED***
+}
 
-div.titlesMargin ***REMOVED***
+div.titlesMargin {
     margin-bottom: 1em;
-***REMOVED***
+}
 
-.detailsTitle ***REMOVED***
+.detailsTitle {
     margin-bottom: 1em;
-***REMOVED***
+}
 
-.pagesDiv ***REMOVED***
+.pagesDiv {
     border-style: solid;
     border-radius: 1em;
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
     border-color: #00A2E8;
-***REMOVED***
+}
 
-.profileDivs ***REMOVED***
+.profileDivs {
     border-radius: 1em;
     background-color: white;
     padding: 1em;
@@ -423,9 +423,9 @@ div.titlesMargin ***REMOVED***
     font-weight: bold;
     margin: auto;
     display: table;
-***REMOVED***
+}
 
-.detailsDivs ***REMOVED***
+.detailsDivs {
     border-radius: 1em;
     background-color: white;
     padding: 1em;
@@ -436,66 +436,66 @@ div.titlesMargin ***REMOVED***
     font-weight: bold;
     max-width: 65%;
     margin:auto;
-***REMOVED***
+}
 
-div.form-group ***REMOVED***
+div.form-group {
     max-width: 60%;
     margin: auto;
     text-align: center;
-***REMOVED***
+}
 
-.form-control***REMOVED***
+.form-control{
     border-radius: 1em;
     border-style: solid;
     border-color: lightgrey;
     border-width: medium;
-***REMOVED***
+}
 
-.profilePic ***REMOVED***
+.profilePic {
     border-radius: 1em;
     border-style: solid;
     border-color: lightgrey;
     border-width: medium;
-***REMOVED***
+}
 
-.control-label ***REMOVED***
+.control-label {
     font-weight: bold;
     color: #00A2E8;
     padding-right: 1em;
-***REMOVED***
+}
 
-.itemsLeftMargin***REMOVED***
+.itemsLeftMargin{
     padding-left: 1em;
-***REMOVED***
+}
 
-a.btn.btn-default:hover ***REMOVED***
+a.btn.btn-default:hover {
     border-radius: 0.8em;
     color: white;
     background-color: #00A2E8;
-***REMOVED***
+}
 
-a.btn.btn-default ***REMOVED***
+a.btn.btn-default {
     color: #00A2E8;
-***REMOVED***
+}
 
-a.btn.btn-default.disabled ***REMOVED***
+a.btn.btn-default.disabled {
     color: #212529; 
-***REMOVED***
+}
 
-.noMoreResults ***REMOVED***
+.noMoreResults {
     text-align: center;
     margin: 0.2em;
     color: #00A2E8;
     font-weight: bold;
-***REMOVED***
+}
 
-.listsItem ***REMOVED***
+.listsItem {
     font-size: 1em;
     margin: 1.5em 0.5em;
     font-weight: bold;
-***REMOVED***
+}
 
-.listsItemTitle ***REMOVED***
+.listsItemTitle {
     background-color: #00A2E8;
     color: white;
     border-style: solid;
@@ -505,26 +505,26 @@ a.btn.btn-default.disabled ***REMOVED***
     font-size: 1em;
     width: 9em;
     margin: auto;
-***REMOVED***
+}
 
-.homeTitlesFix ***REMOVED***
+.homeTitlesFix {
     margin-right: 0.5em;
-***REMOVED***
+}
 
-.showListsBorder ***REMOVED***
+.showListsBorder {
     border-color: white;
-***REMOVED***
+}
 
-.allUsersTitleFix ***REMOVED***
+.allUsersTitleFix {
     padding-right: 0em;
-***REMOVED***
+}
 
-.gymHomeImage ***REMOVED***
+.gymHomeImage {
     max-width: 50%;
     border-radius: 1em;
-***REMOVED***
+}
 
-.backToListBtn ***REMOVED***
+.backToListBtn {
     width: 100%;
     background-color: white;
     color: #00A2E8;
@@ -533,19 +533,19 @@ a.btn.btn-default.disabled ***REMOVED***
     border-color: #00A2E8;
     border-radius: 1em;
     padding: 1em;
-***REMOVED***
+}
 
-.backToListBtn:hover***REMOVED***
+.backToListBtn:hover{
     background-color: #00A2E8;
     color: white;
-***REMOVED***
+}
 
-.deleteB ***REMOVED***
+.deleteB {
     color: #00A2E8;
     font-weight: bold;
-***REMOVED***
+}
 
-input.btn.btn-primary:hover ***REMOVED***
+input.btn.btn-primary:hover {
     width: 50%;
     background-color: #00A2E8;
     color: white;
@@ -555,9 +555,9 @@ input.btn.btn-primary:hover ***REMOVED***
     border-radius: 1em;
     padding: 0.5em !important;
     border-width: medium;
-***REMOVED***
+}
 
-input.btn.btn-primary ***REMOVED***
+input.btn.btn-primary {
     width: 50%;
     background-color: white;
     color: #00A2E8;
@@ -567,9 +567,9 @@ input.btn.btn-primary ***REMOVED***
     border-radius: 1em;
     padding: 0.5em !important;
     border-width: medium;
-***REMOVED***
+}
 
-.createBtn ***REMOVED***
+.createBtn {
     width: 80%;
     background-color: white;
     color: #00A2E8;
@@ -578,9 +578,9 @@ input.btn.btn-primary ***REMOVED***
     border-color: #00A2E8;
     border-radius: 1em;
     padding: 0.5em !important;
-***REMOVED***
+}
 
-.createBtn:hover ***REMOVED***
+.createBtn:hover {
         width: 80%;
         background-color: #00A2E8;
         color: white;
@@ -589,27 +589,27 @@ input.btn.btn-primary ***REMOVED***
         border-color: #00A2E8;
         border-radius: 1em;
         padding: 0.5em !important;
-***REMOVED***
+}
 
-input.btn.btn-danger ***REMOVED***
+input.btn.btn-danger {
     border-radius: 1em !important;
     padding: 20px !important;
     padding-left: 2em !important;
     padding-right: 2em !important;
     font-size: 2em;
     margin-bottom: 1em;
-***REMOVED***
+}
 
-.center-content***REMOVED***
+.center-content{
     margin-left: auto;
     margin-right:auto;
-***REMOVED***
+}
 
-.backBtnDiv***REMOVED***
+.backBtnDiv{
     margin-top: 2em;
-***REMOVED***
+}
 
-.searchBar ***REMOVED***
+.searchBar {
     border-style: solid;
     border-color: lightgrey;
     border-radius: 0.5em;
@@ -617,97 +617,97 @@ input.btn.btn-danger ***REMOVED***
     width: 20em;
     height: 2.5em;
     margin-bottom: 1em;
-***REMOVED***
+}
 
-.searchBtn ***REMOVED***
+.searchBtn {
     border-style: solid;
     border-radius: 1em !important;
     border-color: #00A2E8 !important;
     height: 2.5em;
     width: 3.4em;
-***REMOVED***
+}
 
-.searchBtn:hover ***REMOVED***
+.searchBtn:hover {
     background-color: dodgerblue !important;
     border-style: solid;
     border-color: dodgerblue !important;
     border-width: medium;
-***REMOVED***
+}
 
-.btn***REMOVED***
+.btn{
     padding: 0.375rem;
-***REMOVED***
+}
 
-.searchIcon***REMOVED***
+.searchIcon{
     height: 1.2em;
     width: 1.2em;
-***REMOVED***
+}
 
-.editLink***REMOVED***
+.editLink{
     background-color: grey;
     padding: 1em;
     border-radius: 4em;
-***REMOVED***
+}
 
-.editLink:hover ***REMOVED***
+.editLink:hover {
     background-color: grey;
     padding: 1em;
     border-color: darkgrey;
     border-style: solid;
     border-radius: 4em;
-***REMOVED***
+}
      
-.editIcon ***REMOVED***
+.editIcon {
     width: 2.8em;
     height: 2.8em;
     background-color: grey;
     border-radius: 1em;
-***REMOVED***
+}
 
-.editIcon:hover ***REMOVED***
+.editIcon:hover {
     width: 2.8em;
     height: 2.8em;
     background-color: grey;
     border-radius: 1em;
     border-style: solid;
     border-color: grey;
-***REMOVED***
+}
 
-.row ***REMOVED***
+.row {
     padding: 5px;
     margin-left: auto;
     margin-right: auto;
-***REMOVED***
+}
 
-.userType ***REMOVED***
+.userType {
     margin: -16px;
     margin-left: 0px;
     color: dimgrey;
     font-size: 0.9em;
-***REMOVED***
+}
 
-.settingsMenu ***REMOVED***
+.settingsMenu {
     border-style: solid;
     border-radius: 0.8em;
     border-color: #00A2E8;
     background-color: white;
     margin: auto;
     margin-top: 4em;
-***REMOVED***
+}
 
-.homePageTitle ***REMOVED***
+.homePageTitle {
     background-color: white;
     color: #00A2E8;
     font-size: 300%;
     border-radius: 0.5em;
     width: fit-content;
-***REMOVED***
+}
 
-.welcome***REMOVED***
+.welcome{
     font-weight: 100;
-***REMOVED***
+}
 
-.statisticsTable ***REMOVED***
+.statisticsTable {
     background-color: lightgrey;
     border-radius: 1em;
     width: 30em;
@@ -716,35 +716,35 @@ input.btn.btn-danger ***REMOVED***
     border-spacing: 1em;
     border-style: solid;
     border-color: grey;
-***REMOVED***
+}
 
-.statisticsValues ***REMOVED***
+.statisticsValues {
     color: #00A2E8;
     font-weight: bold;
     background-color: white;
     border-radius: 2em;
     padding: 1em;
-***REMOVED***
+}
 
-.statisticsTableHeaderFix***REMOVED***
+.statisticsTableHeaderFix{
     color: lightgrey !important;
     background-color: lightgrey !important;
-***REMOVED***
+}
 
-.statisticsMargin ***REMOVED***
+.statisticsMargin {
     margin-bottom: 2em;
-***REMOVED***
+}
 
-.imcTableFix ***REMOVED***
+.imcTableFix {
     padding: 0.5em 0em !important;
-***REMOVED***
+}
 
-.imcChart ***REMOVED***
+.imcChart {
     max-width: 100%;
     max-height: 100%;
-***REMOVED***
+}
 
-.recentClientsGym ***REMOVED***
+.recentClientsGym {
     background-color: lightgrey;
     color: #00A2E8;
     border-radius: 1em;
@@ -753,9 +753,9 @@ input.btn.btn-danger ***REMOVED***
     margin-left: auto;
     margin-right: auto;
     font-size: small;
-***REMOVED***
+}
 
-.newUsersDiv ***REMOVED***
+.newUsersDiv {
     border-radius: 1em;
     background-color: white;
     padding: 1em;
@@ -765,44 +765,44 @@ input.btn.btn-danger ***REMOVED***
     margin-right: auto;
     margin-bottom: 1em;
     margin-top: 1em;
-***REMOVED***
+}
 
-.videosUrl ***REMOVED***
+.videosUrl {
     text-decoration: none;
     color: #00A2E8;
     border-radius: 0.5em;
     background-color: lightgrey;
     padding: 0.3em;
-***REMOVED***
+}
 
-.exercisesData***REMOVED***
+.exercisesData{
     font-weight: bold;
     color: black;
-***REMOVED***
+}
 
-.breakText***REMOVED***
+.breakText{
     word-break: break-word;
-***REMOVED***
+}
 
-.breakTextOtherData ***REMOVED***
+.breakTextOtherData {
     width: 60%;
-***REMOVED***
+}
 
-.plansListDetailsDiv ***REMOVED***
+.plansListDetailsDiv {
     border-style: solid;
     border-radius: 1em;
     border-color: lightgrey;
     margin: 1em 0em;
     padding: 1em 0em;
-***REMOVED***
+}
 
-.dropdown ***REMOVED***
+.dropdown {
     position: relative;
     display: inline-block;
     margin-right: 0em;
-***REMOVED***
+}
 
-.dropdown-content ***REMOVED***
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
@@ -812,78 +812,78 @@ input.btn.btn-danger ***REMOVED***
     /*Brings everything to the front*/
     z-index: 1;
     width: 7em;
-***REMOVED***
+}
 
-.plansSubMenuFix***REMOVED***
+.plansSubMenuFix{
     margin-left: 2.5em;
-***REMOVED***
+}
 
-.requestsSubMenuFix***REMOVED***
+.requestsSubMenuFix{
     margin-left: 1.5em;
     width: 10em;
-***REMOVED***
+}
 
-.dropdown:hover .dropdown-content ***REMOVED***
+.dropdown:hover .dropdown-content {
     display: block;
     text-align: center;
-***REMOVED***
+}
 
-.dropdown:hover .dropbtn ***REMOVED***
+.dropdown:hover .dropbtn {
     background-color: white;
 
-***REMOVED***
+}
 
-.dropdownBtnBorderFix ***REMOVED***
+.dropdownBtnBorderFix {
     border-style: none;
-***REMOVED***
+}
 
-button.subMenuItem, a.subMenuItem ***REMOVED***
+button.subMenuItem, a.subMenuItem {
     background-color: white !important;
     color: #00A2E8;
     margin-left: 0em;
     text-decoration: none;
     font-weight: bold;
     border-radius: 1em;
-***REMOVED***
+}
 
-button.subMenuItem:hover, a.subMenuItem:hover ***REMOVED***
+button.subMenuItem:hover, a.subMenuItem:hover {
     border-style: solid;
     border-radius: 1em;
     border-color: #00A2E8;
     color: white !important;
     background-color: #00A2E8 !important;
-***REMOVED***
+}
 
 
-.logout:hover .logoutIcon ***REMOVED***
+.logout:hover .logoutIcon {
     filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(1000%) contrast(105%);
-***REMOVED***
+}
 
-.logout***REMOVED***
+.logout{
     color:red !important;
-***REMOVED***
+}
 
-.spacingLi ***REMOVED***
+.spacingLi {
     margin-left: 2em;
-***REMOVED***
+}
 
-label.labelOne***REMOVED***
+label.labelOne{
     margin-right: 2.5em !important;
-***REMOVED***
+}
 
-label.labelTwo ***REMOVED***
+label.labelTwo {
     margin-right: 1em !important;
-***REMOVED***
+}
 
-label.labelThree ***REMOVED***
+label.labelThree {
     margin-right: 2em !important;
-***REMOVED***
+}
 
-label.labelFour ***REMOVED***
+label.labelFour {
     margin-right: 1.2em !important;
-***REMOVED***
+}
 
-.descriptionBox ***REMOVED***
+.descriptionBox {
     vertical-align: middle;
     height: 6em;
     border-style: solid;
@@ -894,43 +894,43 @@ label.labelFour ***REMOVED***
     padding: 0.5em;
     margin-top: 1em;
     margin-bottom: 1em;
-***REMOVED***
+}
 
-.profilePhoto***REMOVED***
+.profilePhoto{
     max-width: 10em;
     margin: 1em;
     margin-bottom: 0em;
     border-radius: 1em;
-***REMOVED***
+}
 
-.profilePhotoDiv***REMOVED***
+.profilePhotoDiv{
     border-style: solid;
     border-color: lightgrey;
     border-radius: 1em;
-***REMOVED***
+}
 
-.profilePicMenu ***REMOVED***
+.profilePicMenu {
     max-width: 80%;
-***REMOVED***
+}
 
-.marginFixChooseFile ***REMOVED***
+.marginFixChooseFile {
     margin-bottom: 3em;
-***REMOVED***
+}
 
-.col-md-8***REMOVED***
+.col-md-8{
     margin: auto;
-***REMOVED***
+}
 
-.helpDivs ***REMOVED***
+.helpDivs {
     background-color: white;
     border-style: solid;
     border-radius: 1em;
     border-color: #00A2E8;
     margin: auto;
     padding: 1em;
-***REMOVED***
+}
 
-.helpBtn ***REMOVED***
+.helpBtn {
     width: 6em;
     background-color: white;
     color: #00A2E8;
@@ -940,9 +940,9 @@ label.labelFour ***REMOVED***
     border-color: #00A2E8;
     border-width: medium;
     padding: 0.5em;
-***REMOVED***
+}
 
-.helpBtn:hover ***REMOVED***
+.helpBtn:hover {
     width: 6em;
     background-color: #00A2E8;
     color: white;
@@ -952,13 +952,13 @@ label.labelFour ***REMOVED***
     border-color: #00A2E8;
     border-width: medium;
     padding: 0.5em;
-***REMOVED***
+}
 
-.notificationInMenu***REMOVED***
+.notificationInMenu{
     background-color: lightgrey;
     border-radius: 1em;
     border-style: solid;
     border-color: grey;
     padding: 0.5em;
     margin-bottom: 0.5em !important;
-***REMOVED***
+}

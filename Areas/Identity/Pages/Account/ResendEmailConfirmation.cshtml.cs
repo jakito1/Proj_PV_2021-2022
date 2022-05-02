@@ -14,13 +14,13 @@ using System.Text;
 using System.Text.Encodings.Web;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
-***REMOVED***
+{
     /// <summary>
     /// ResendEmailConfirmationModel class, derived from PageModel.
     /// </summary>
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IEmailSender _emailSender;
 
@@ -30,36 +30,36 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
         /// <param name="emailSender">Microsoft EmailSender interface.</param>
         public ResendEmailConfirmationModel(UserManager<UserAccountModel> userManager, IEmailSender emailSender)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _emailSender = emailSender;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
-        public InputModel Input ***REMOVED*** get; set; ***REMOVED***
+        public InputModel Input { get; set; }
 
         /// <summary>
         ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
-        ***REMOVED***
+        {
             /// <summary>
             /// Gets or sets the Email inputed by the user.
             /// </summary>
             [Required]
             [EmailAddress]
-            public string Email ***REMOVED*** get; set; ***REMOVED***
-    ***REMOVED***
+            public string Email { get; set; }
+        }
 
         /// <summary>
         /// Handles the Get Request during the ResendEmailConfirmation process.
         /// </summary>
         public void OnGet()
-        ***REMOVED***
-    ***REMOVED***
+        {
+        }
 
         /// <summary>
         /// Handles the Post Request during the ResendEmailConfirmation process.
@@ -67,18 +67,18 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
-        ***REMOVED***
+        {
             if (!ModelState.IsValid)
-            ***REMOVED***
+            {
                 return Page();
-        ***REMOVED***
+            }
 
             UserAccountModel user = await _userManager.FindByEmailAsync(Input.Email);
             if (user is null)
-            ***REMOVED***
+            {
                 ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
                 return Page();
-        ***REMOVED***
+            }
 
             string userId = await _userManager.GetUserIdAsync(user);
             string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -86,15 +86,15 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             string callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new ***REMOVED*** userId, code ***REMOVED***,
+                values: new { userId, code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,
                 "Confirm your email",
-                $"Please confirm your account by <a href='***REMOVED***HtmlEncoder.Default.Encode(callbackUrl)***REMOVED***'>clicking here</a>.");
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

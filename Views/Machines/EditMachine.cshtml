@@ -14,9 +14,9 @@
             <div class="form-group">
                 <label asp-for="MachineProfilePhoto" class="control-label">Foto da Máquina</label>
                 @if(Model.MachineProfilePhoto is not null)
-                ***REMOVED***
+                {
                     <div><img class="profilePhoto" src="@Model.MachineProfilePhoto.PhotoUrl" /></div>
-            ***REMOVED***
+                }
                 <input type="file" asp-for="MachineProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
                 <span asp-validation-for="MachineProfilePhoto" class="text-danger"></span>
             </div>
@@ -58,8 +58,8 @@
     <a asp-action="ShowMachines" class="backToListBtn">Voltar</a>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

@@ -1,12 +1,12 @@
-***REMOVED***
+{
   "format": 1,
-  "restore": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED******REMOVED***
-***REMOVED***
-  "projects": ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
+  "restore": {
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": {}
+  },
+  "projects": {
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": {
       "version": "1.0.0",
-      "restore": ***REMOVED***
+      "restore": {
         "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj",
         "projectName": "NutriFitWeb",
         "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj",
@@ -23,73 +23,73 @@
         "originalTargetFrameworks": [
           "net6.0"
         ],
-        "sources": ***REMOVED***
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": ***REMOVED******REMOVED***,
-          "https://api.nuget.org/v3/index.json": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "frameworks": ***REMOVED***
-          "net6.0": ***REMOVED***
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": ***REMOVED******REMOVED***
-      ***REMOVED***
-      ***REMOVED***
-        "warningProperties": ***REMOVED***
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
           "warnAsError": [
             "NU1605"
           ]
-    ***REMOVED***
-    ***REMOVED***
-      "frameworks": ***REMOVED***
-        "net6.0": ***REMOVED***
+        }
+      },
+      "frameworks": {
+        "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": ***REMOVED***
-            "LigerShark.WebOptimizer.Core": ***REMOVED***
+          "dependencies": {
+            "LigerShark.WebOptimizer.Core": {
               "target": "Package",
               "version": "[3.0.357, )"
-          ***REMOVED***
-            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": ***REMOVED***
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": ***REMOVED***
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.AspNetCore.Identity.UI": ***REMOVED***
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.AspNetCore.Mvc.Testing": ***REMOVED***
+            },
+            "Microsoft.AspNetCore.Mvc.Testing": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.EntityFrameworkCore.SqlServer": ***REMOVED***
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.EntityFrameworkCore.Tools": ***REMOVED***
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": ***REMOVED***
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.3, )"
-          ***REMOVED***
-            "SendGrid": ***REMOVED***
+            },
+            "SendGrid": {
               "target": "Package",
               "version": "[9.27.0, )"
-          ***REMOVED***
-            "Swashbuckle.AspNetCore": ***REMOVED***
+            },
+            "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.3.1, )"
-        ***REMOVED***
-        ***REMOVED***
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -100,21 +100,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": ***REMOVED***
-            "Microsoft.AspNetCore.App": ***REMOVED***
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
-          ***REMOVED***
-            "Microsoft.NETCore.App": ***REMOVED***
+            },
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
-        ***REMOVED***
-        ***REMOVED***
+            }
+          },
           "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
-    ***REMOVED***
-  ***REMOVED***
-  ***REMOVED***
-    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": ***REMOVED***
+        }
+      }
+    },
+    "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj": {
       "version": "1.0.0",
-      "restore": ***REMOVED***
+      "restore": {
         "projectUniqueName": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
         "projectName": "NutriFitWebTest",
         "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWebTest\\NutriFitWebTest.csproj",
@@ -131,79 +131,79 @@
         "originalTargetFrameworks": [
           "net6.0"
         ],
-        "sources": ***REMOVED***
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": ***REMOVED******REMOVED***,
-          "https://api.nuget.org/v3/index.json": ***REMOVED******REMOVED***
-      ***REMOVED***
-        "frameworks": ***REMOVED***
-          "net6.0": ***REMOVED***
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": ***REMOVED***
-              "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": ***REMOVED***
+            "projectReferences": {
+              "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj": {
                 "projectPath": "D:\\Luis\\IPS\\2022\\PV\\NutriFit\\Nutrifit\\nutrifitweb\\NutriFitWeb.csproj"
-          ***REMOVED***
-        ***REMOVED***
-      ***REMOVED***
-      ***REMOVED***
-        "warningProperties": ***REMOVED***
+              }
+            }
+          }
+        },
+        "warningProperties": {
           "warnAsError": [
             "NU1605"
           ]
-    ***REMOVED***
-    ***REMOVED***
-      "frameworks": ***REMOVED***
-        "net6.0": ***REMOVED***
+        }
+      },
+      "frameworks": {
+        "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": ***REMOVED***
-            "Microsoft.AspNetCore.Mvc": ***REMOVED***
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"
-          ***REMOVED***
-            "Microsoft.Data.Sqlite": ***REMOVED***
+            },
+            "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.Data.Sqlite.Core": ***REMOVED***
+            },
+            "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
               "version": "[7.0.0-preview.2.22153.1, )"
-          ***REMOVED***
-            "Microsoft.EntityFrameworkCore.Sqlite": ***REMOVED***
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[6.0.4, )"
-          ***REMOVED***
-            "Microsoft.NET.Test.Sdk": ***REMOVED***
+            },
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.2.0-preview-20220301-01, )"
-          ***REMOVED***
-            "MockQueryable.Moq": ***REMOVED***
+            },
+            "MockQueryable.Moq": {
               "target": "Package",
               "version": "[6.0.1, )"
-          ***REMOVED***
-            "Moq": ***REMOVED***
+            },
+            "Moq": {
               "target": "Package",
               "version": "[4.17.2, )"
-          ***REMOVED***
-            "XunitXml.TestLogger": ***REMOVED***
+            },
+            "XunitXml.TestLogger": {
               "target": "Package",
               "version": "[3.0.70, )"
-          ***REMOVED***
-            "coverlet.collector": ***REMOVED***
+            },
+            "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.2, )"
-          ***REMOVED***
-            "xunit": ***REMOVED***
+            },
+            "xunit": {
               "target": "Package",
               "version": "[2.4.2-pre.12, )"
-          ***REMOVED***
-            "xunit.runner.visualstudio": ***REMOVED***
+            },
+            "xunit.runner.visualstudio": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.4.3, )"
-        ***REMOVED***
-        ***REMOVED***
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -214,14 +214,14 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": ***REMOVED***
-            "Microsoft.NETCore.App": ***REMOVED***
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
-        ***REMOVED***
-        ***REMOVED***
+            }
+          },
           "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
-  ***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
+}

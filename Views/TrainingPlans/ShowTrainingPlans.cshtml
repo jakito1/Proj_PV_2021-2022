@@ -3,9 +3,9 @@
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<UserAccountModel> UserManager
 @inject IHasTrainerNutritionistGym HasTrainerNutritionistGym
-@***REMOVED***
+@{
     ViewData["Title"] = "Planos de Treino";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"] <img class="iconMargin" src="~/icons/dumbbellsIcon.svg" alt="dumbbellsIcon" /></h1>
 
@@ -14,17 +14,17 @@
 <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
     <p>Aqui pode <b>ver/criar os seus planos de treino</b>.</p>
     @if (User.IsInRole("trainer"))
-    ***REMOVED***
+    {
         <p>Pode também <b>remover</b> e <b>editar planos</b>.</p>
-***REMOVED***
+    }
     else if (User.IsInRole("client"))
-    ***REMOVED***
+    {
         <p>Pode também <b>ver</b> os planos que <b>requisitou</b> ao seu treinador, <b>requisitar um treinador</b> e <b>requisitar</b>, <b>remover</b> e <b>editar planos</b>.</p>
-***REMOVED***
+    }
 </div>
 
 @if (User.IsInRole("trainer"))
-***REMOVED***
+{
     <div class="titlesMargin">
         <form asp-action="ShowTrainingPlans" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Email do cliente/Nome do plano" class="searchBar" />
@@ -32,9 +32,9 @@
             <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
         </form>
     </div>
-***REMOVED***
+}
 else if (User.IsInRole("client"))
-***REMOVED***
+{
     <div class="titlesMargin">
         <form asp-action="ShowTrainingPlans" method="get">
             <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Insira o nome do plano" class="searchBar" />
@@ -42,21 +42,21 @@ else if (User.IsInRole("client"))
             <div class="marginFixChooseFile">
                 @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasTrainerAndWants(User.Identity.Name) &&
                await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
-                ***REMOVED***
+                {
                     <a class="createBtn" asp-controller="Clients" asp-action="RequestTrainer"
                asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Treinador</a>
-            ***REMOVED***
+                }
                 @if (User.Identity is not null && await HasTrainerNutritionistGym.ClientHasTrainer(User.Identity.Name) &&
                await HasTrainerNutritionistGym.ClientHasGym(User.Identity.Name))
-                ***REMOVED***
+                {
                     <a class="createBtn" asp-controller="TrainingPlanNewRequests" asp-action="CreateTrainingPlanNewRequest"
                asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">Requisitar Novo Plano</a>
-            ***REMOVED***
+                }
                 <a class="createBtn" asp-action="CreateTrainingPlan">Criar plano</a>
             </div>
         </form>
     </div>
-***REMOVED***
+}
 
 <div class="col-md-8">
     <table class="table">
@@ -69,55 +69,55 @@ else if (User.IsInRole("client"))
                     Descrição
                 </th>
                 @if (User.IsInRole("trainer"))
-                ***REMOVED***
+                {
                     <th class="thStyle">
                         Cliente
                     </th>
-            ***REMOVED***
+                }
                 <th class="roundedCornerTableRight thStyle">Ações</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
-            ***REMOVED***
+            {
                 <tr>
                     <td>
                         <p class="details">@Html.DisplayFor(modelItem => item.TrainingPlanName)</p>
                     </td>
                     <td>
                         @if (item.TrainingPlanDescription is null || item.TrainingPlanDescription == "")
-                        ***REMOVED***
+                        {
                             <p class="details"><b>N/A</b></p>
-                    ***REMOVED***
+                        }
                         else
-                        ***REMOVED***
+                        {
                             string description = item.TrainingPlanDescription;
                             if (description.Length > 20)
-                            ***REMOVED***
+                            {
                                 description = description.Substring(0, 20);
                                 <p class="details"><b>@description...</b></p>
-                        ***REMOVED***
+                            }
                             else
-                            ***REMOVED***
+                            {
                                 <p class="details"><b>@description</b></p>
-                        ***REMOVED***
-                    ***REMOVED***
+                            }
+                        }
                     </td>
                     @if (User.IsInRole("trainer"))
-                    ***REMOVED***
+                    {
                         if (item.Client is not null)
-                        ***REMOVED***
+                        {
                             <td>
                                 <p class="details">@Html.DisplayFor(modelItem => item.Client.UserAccountModel.Email)</p>
                             </td>
-                    ***REMOVED***
+                        }
                         else
-                        ***REMOVED***
+                        {
                             <td>
                                 <p class="details"><b>N/A</b></p>
                             </td>
-                    ***REMOVED***
-                ***REMOVED***
+                        }
+                    }
 
                     <td>
                         <a asp-action="EditTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
@@ -125,45 +125,45 @@ else if (User.IsInRole("client"))
                         <a asp-action="DeleteTrainingPlan" asp-route-id="@item.TrainingPlanId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
                     </td>
                 </tr>
-        ***REMOVED***
+            }
         </tbody>
     </table>
 </div>
 
-@***REMOVED***
+@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-***REMOVED***
+}
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowTrainingPlans"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
-***REMOVED***
+    }
 
     @if (nextDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowTrainingPlans"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
             <b>Próximo</b>
         </a>
-***REMOVED***
+    }
 
     @if (prevDisabled == "disabled" && nextDisabled == "disabled")
-    ***REMOVED***
+    {
         <p class="noMoreResults">Não existem mais resultados</p>
-***REMOVED***
+    }
 </div>
 
 @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
-***REMOVED***
+{
     <div class="backBtnDiv">
         <a asp-action="ShowTrainingPlans" class="backToListBtn">Voltar</a>
     </div>
-***REMOVED***
+}

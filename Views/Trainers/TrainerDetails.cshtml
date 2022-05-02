@@ -2,22 +2,22 @@
 @using NutriFitWeb.Services
 @inject IPhotoManagement PhotoManagement
 
-@***REMOVED***
+@{
     ViewData["Title"] = "TrainerDetails";
-***REMOVED***
+}
 
 <h1 class="detailsTitle">Detalhes do Treinador</h1>
 
 <div class="col-md-6 profileDivs exercisesDiv">
     <div class="form-group">
         <p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.TrainerProfilePhoto)</p>
-        @***REMOVED***
+        @{
             string? profilePic = await PhotoManagement.LoadProfileImage(@Model.UserAccountModel.UserName);
-    ***REMOVED***
+        }
         @if(Model.TrainerProfilePhoto is not null)
-        ***REMOVED***
+        {
             <img class="profilePhoto" src="@profilePic" />
-    ***REMOVED***
+        }
     </div>
     <br />
     <table class="formTables">
@@ -32,17 +32,17 @@
         <tr>
             <th><p class="control-label listsItemTitle">Nome Completo</p></th>
             @if ((Model.TrainerFirstName is null || Model.TrainerFirstName == "") && (Model.TrainerLastName is null || Model.TrainerLastName == ""))
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***else if(Model.TrainerFirstName is null || Model.TrainerFirstName == "")
-            ***REMOVED***
+            }else if(Model.TrainerFirstName is null || Model.TrainerFirstName == "")
+            {
                 <td><p class="itemsLeftMargin">@Model.TrainerLastName</p></td>
-        ***REMOVED***else if (Model.TrainerLastName is null || Model.TrainerLastName == "")
-            ***REMOVED***
+            }else if (Model.TrainerLastName is null || Model.TrainerLastName == "")
+            {
                 <td><p class="itemsLeftMargin">@Model.TrainerFirstName</p></td>
-        ***REMOVED***else***REMOVED***
+            }else{
                 <td><p class="itemsLeftMargin">@Model.TrainerFirstName @Model.TrainerLastName</p></td>
-        ***REMOVED***
+            }
         </tr>
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.Email)</p></th>
@@ -51,13 +51,13 @@
         <tr>
             <th><p class="control-label listsItemTitle">@Html.DisplayNameFor(Model => Model.UserAccountModel.PhoneNumber)</p></th>
             @if(Model.UserAccountModel.PhoneNumber is null)
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">N/A</p></td>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <td><p class="itemsLeftMargin">@Html.DisplayFor(Model => Model.UserAccountModel.PhoneNumber)</p></td>
-        ***REMOVED***
+            }
         </tr>
     </table>
 </div>

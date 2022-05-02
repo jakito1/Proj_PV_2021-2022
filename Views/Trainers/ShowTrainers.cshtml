@@ -5,9 +5,9 @@
 @inject SignInManager<UserAccountModel> SignInManager
 @inject UserManager<UserAccountModel> UserManager
 
-@***REMOVED***
+@{
     ViewData["Title"] = "ShowTrainers";
-***REMOVED***
+}
 
 <h1>Treinadores <img class="iconMargin" src="~/icons/trainerIcon.svg" alt="TrainerIcon" /></h1>
 
@@ -23,7 +23,7 @@
 </form>
 
 @foreach (var item in Model)
-***REMOVED***
+{
     <div class="listsDiv">
         <p class="listsItem"><b class="listsItem listsItemTitle showListsBorder">UserName</b> @Html.DisplayFor(modelItem => item.UserAccountModel.UserName)</p>
         <p class="listsItem"><img src="~/icons/emailIcon.svg" /> @Html.DisplayFor(modelItem => item.UserAccountModel.Email)</p>
@@ -32,13 +32,13 @@
             <a asp-action="ChangeTrainerGymStatus" asp-route-id="@item.TrainerId"
            asp-route-pageNumber="@(Model.PageIndex)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
                 @if (item.Gym is null)
-                ***REMOVED***
+                {
                     <img class="addIcon icons" src="~/icons/addIcon.svg" alt="addIcon" />
-            ***REMOVED***
+                }
                 else if (UserManager.GetUserId(User) == item.Gym.UserAccountModel.Id)
-                ***REMOVED***
+                {
                     <img class="removeIcon icons" src="~/icons/removeIcon.svg" alt="removeIcon" />
-            ***REMOVED***
+                }
             </a>
 
             <a asp-action="TrainerDetails" asp-route-id="@item.TrainerId">
@@ -46,43 +46,43 @@
             </a>
         </div>
     </div>
-***REMOVED***
+}
 
-@***REMOVED***
+@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-***REMOVED***
+}
 
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowTrainers"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
-***REMOVED***
+    }
 
     @if (nextDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowTrainers"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
             <b>Próximo</b>
         </a>
-***REMOVED***
+    }
 
     @if (prevDisabled == "disabled" && nextDisabled == "disabled")
-    ***REMOVED***
+    {
         <p class="noMoreResults">Não existem mais resultados</p>
-***REMOVED***
+    }
 </div>
 
 @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
-***REMOVED***
+{
     <div class="backBtnDiv">
         <a asp-action="ShowTrainers" class="backToListBtn">Voltar</a>
     </div>
-***REMOVED***
+}

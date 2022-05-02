@@ -9,11 +9,11 @@
     </form>
 </div>
 @if (User.Identity is not null && await InteractNotification.NotificationsExist(User.Identity.Name!))
-***REMOVED***
+{
     <div class="marginFixChooseFile">
         <a class="createBtn" asp-action="RemoveAll">Limpar Notificações</a>
     </div>
-***REMOVED***
+}
 
 <div class="col-md-8">
     <table class="table">
@@ -30,7 +30,7 @@
         </thead>
         <tbody>
             @foreach (var item in Model)
-            ***REMOVED***
+            {
                 <tr>
                     <td>
                         <p class="details">@Html.DisplayFor(modelItem => item.NotificationMessage)</p>
@@ -42,45 +42,45 @@
                         <a asp-action="DeleteNotification" asp-route-id="@item.NotificationId"><img class="removeIcon icons" src="~/icons/removeIcon.svg" /></a>
                     </td>
                 </tr>
-        ***REMOVED***
+            }
         </tbody>
     </table>
 
 </div>
-@***REMOVED***
+@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-***REMOVED***
+}
 <div class="pagesDiv">
     @if (prevDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowNotifications"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
             <b>Anterior</b>
         </a>
-***REMOVED***
+    }
 
     @if (nextDisabled != "disabled")
-    ***REMOVED***
+    {
         <a asp-action="ShowNotifications"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
             <b>Próximo</b>
         </a>
-***REMOVED***
+    }
 
     @if (prevDisabled == "disabled" && nextDisabled == "disabled")
-    ***REMOVED***
+    {
         <p class="noMoreResults">Não existem mais notificações</p>
-***REMOVED***
+    }
 </div>
 
 @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"] as string))
-***REMOVED***
+{
     <div class="backBtnDiv">
         <a asp-action="ShowNotifications" class="backToListBtn">Voltar</a>
     </div>
-***REMOVED***
+}

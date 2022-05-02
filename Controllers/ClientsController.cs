@@ -7,12 +7,12 @@ using NutriFitWeb.Models;
 using NutriFitWeb.Services;
 
 namespace NutriFitWeb.Controllers
-***REMOVED***
+{
     /// <summary>
     /// ClientsController Class derives from Controller
     /// </summary>
     public class ClientsController : Controller
-    ***REMOVED***
+    {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IIsUserInRoleByUserId _isUserInRoleByUserId;
@@ -30,13 +30,13 @@ namespace NutriFitWeb.Controllers
             IIsUserInRoleByUserId isUserInRoleByUserId,
             IPhotoManagement photoManagement,
             IInteractNotification interactNotification)
-        ***REMOVED***
+        {
             _context = context;
             _userManager = userManager;
             _isUserInRoleByUserId = isUserInRoleByUserId;
             _photoManagement = photoManagement;
             _interactNotification = interactNotification;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Shows a paginated View of all the clients.
@@ -47,20 +47,20 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "gym, nutritionist, trainer")]
         public async Task<IActionResult> ShowClients(string? searchString, string? currentFilter, int? pageNumber)
-        ***REMOVED***
+        {
             if (User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             if (searchString is not null)
-            ***REMOVED***
+            {
                 pageNumber = 1;
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 searchString = currentFilter;
-        ***REMOVED***
+            }
 
             ViewData["CurrentFilter"] = searchString;
 
@@ -68,25 +68,25 @@ namespace NutriFitWeb.Controllers
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (User.IsInRole("gym"))
-            ***REMOVED***
+            {
                 clients = GetClientsForGym(searchString, user.Id);
-        ***REMOVED***
+            }
             else if (User.IsInRole("trainer"))
-            ***REMOVED***
+            {
                 clients = await GetClientsForTrainer(searchString, user.Id);
-        ***REMOVED***
+            }
             else if (User.IsInRole("nutritionist"))
-            ***REMOVED***
+            {
                 clients = await GetClientsForNutritionist(searchString, user.Id);
-        ***REMOVED***
+            }
 
             if (clients is not null)
-            ***REMOVED***
+            {
                 int pageSize = 3;
                 return View(await PaginatedList<Client>.CreateAsync(clients.AsNoTracking(), pageNumber ?? 1, pageSize));
-        ***REMOVED***
+            }
             return NotFound();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Shows a specific client details page, based on client id.
@@ -95,11 +95,11 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "gym, trainer, nutritionist")]
         public async Task<IActionResult> ClientDetails(int? id)
-        ***REMOVED***
+        {
             if (id is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
 
             return View(await _context.Client.
                             Include(a => a.UserAccountModel).
@@ -108,7 +108,7 @@ namespace NutriFitWeb.Controllers
                             Include(a => a.Nutritionist).
                             Include(a => a.ClientProfilePhoto).
                             FirstOrDefaultAsync(a => a.ClientId == id));
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays the page to change a client's gym status, based on client id.
@@ -120,11 +120,11 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "gym")]
         public async Task<IActionResult> ChangeClientGymStatus(int? id, int? pageNumber, string? currentFilter)
-        ***REMOVED***
+        {
             if (User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Gym? gym = await _context.Gym.FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -140,22 +140,22 @@ namespace NutriFitWeb.Controllers
             FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (client is not null && client.UserAccountModel is not null)
-            ***REMOVED***
+            {
                 if (gym is not null && client.Gym is null ||
                                     (client.Gym is not null && client.Gym.UserAccountModel is not null &&
                                     _userManager.GetUserId(User) == client.Gym.UserAccountModel.Id))
-                ***REMOVED***
+                {
                     client.Gym = (client.Gym is null) ? gym : null;
                     if (client.Gym is null)
-                    ***REMOVED***
+                    {
                         if (client.Trainer is not null && client.Trainer.TrainingPlans is not null)
-                        ***REMOVED***
+                        {
                             client.Trainer.TrainingPlans = client.Trainer.TrainingPlans.Where(a => a.Client != client).ToList();
-                    ***REMOVED***
+                        }
                         if (client.Nutritionist is not null && client.Nutritionist.NutritionPlans is not null)
-                        ***REMOVED***
+                        {
                             client.Nutritionist.NutritionPlans = client.Nutritionist.NutritionPlans.Where(a => a.Client != client).ToList();
-                    ***REMOVED***
+                        }
                         client.Trainer = null;
                         client.WantsTrainer = false;
                         client.Nutritionist = null;
@@ -164,19 +164,19 @@ namespace NutriFitWeb.Controllers
                         client.NutritionPlanRequests = null;
                         client.DateAddedToGym = null;
                         await _interactNotification.Create("Foi removido do seu ginásio.", client.UserAccountModel);
-                ***REMOVED***
+                    }
                     else
-                    ***REMOVED***
+                    {
                         client.DateAddedToGym = DateTime.Now;
-                        await _interactNotification.Create($"Foi adicionado ao ginásio ***REMOVED***client.Gym.GymName***REMOVED***.", client.UserAccountModel);
-                ***REMOVED***
+                        await _interactNotification.Create($"Foi adicionado ao ginásio {client.Gym.GymName}.", client.UserAccountModel);
+                    }
                     _context.Client.Update(client);
                     await _context.SaveChangesAsync();
-            ***REMOVED***
-                return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-        ***REMOVED***
+                }
+                return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
+            }
             return NoContent();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays the page to change a client's trainer status, based on client id.
@@ -188,11 +188,11 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "trainer")]
         public async Task<IActionResult> ChangeClientTrainerStatus(int? id, int? pageNumber, string? currentFilter)
-        ***REMOVED***
+        {
             if (User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Trainer? trainer = await _context.Trainer.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
@@ -204,35 +204,35 @@ namespace NutriFitWeb.Controllers
 
             if (client is not null && client.UserAccountModel is not null &&
                 trainer is not null && trainer.UserAccountModel is not null)
-            ***REMOVED***
+            {
                 if (client.Gym == trainer.Gym && client.Trainer is null ||
                 (client.Trainer is not null && client.Trainer.UserAccountModel is not null &&
                 _userManager.GetUserId(User) == client.Trainer.UserAccountModel.Id))
-                ***REMOVED***
+                {
                     if (client.Trainer is not null && client.Trainer.TrainingPlans is not null)
-                    ***REMOVED***
+                    {
                         client.Trainer.TrainingPlans = client.Trainer.TrainingPlans.Where(a => a.Client != client).ToList();
-                ***REMOVED***
+                    }
                     client.Trainer = (client.Trainer is null) ? trainer : null;
                     if (client.Trainer is null)
-                    ***REMOVED***
+                    {
                         client.DateAddedToTrainer = null;
-                        await _interactNotification.Create($"O ***REMOVED***trainer.UserAccountModel.UserName***REMOVED*** já não é seu treinador.", client.UserAccountModel);
-                ***REMOVED***
+                        await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} já não é seu treinador.", client.UserAccountModel);
+                    }
                     else
-                    ***REMOVED***
+                    {
                         client.DateAddedToTrainer = DateTime.Now;
-                        await _interactNotification.Create($"O ***REMOVED***trainer.UserAccountModel.UserName***REMOVED*** é agora o seu treinador.", client.UserAccountModel);
-                ***REMOVED***
+                        await _interactNotification.Create($"O {trainer.UserAccountModel.UserName} é agora o seu treinador.", client.UserAccountModel);
+                    }
 
                     client.WantsTrainer = false;
                     _context.Client.Update(client);
                     await _context.SaveChangesAsync();
-            ***REMOVED***
-                return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-        ***REMOVED***
+                }
+                return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
+            }
             return NoContent();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays the page to change a client's nutritionist status, based on client id.
@@ -244,11 +244,11 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "nutritionist")]
         public async Task<IActionResult> ChangeClientNutritionistStatus(int? id, int? pageNumber, string? currentFilter)
-        ***REMOVED***
+        {
             if (User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.UserAccountModel)
@@ -261,34 +261,34 @@ namespace NutriFitWeb.Controllers
 
             if (client is not null && client.UserAccountModel is not null &&
                 nutritionist is not null && nutritionist.UserAccountModel is not null)
-            ***REMOVED***
+            {
                 if (client.Gym == nutritionist.Gym && client.Nutritionist is null ||
                 (client.Nutritionist is not null && client.Nutritionist.UserAccountModel is not null &&
                 _userManager.GetUserId(User) == client.Nutritionist.UserAccountModel.Id))
-                ***REMOVED***
+                {
                     if (client.Nutritionist is not null && client.Nutritionist.NutritionPlans is not null)
-                    ***REMOVED***
+                    {
                         client.Nutritionist.NutritionPlans = client.Nutritionist.NutritionPlans.Where(a => a.Client != client).ToList();
-                ***REMOVED***
+                    }
                     client.Nutritionist = (client.Nutritionist is null) ? nutritionist : null;
                     if (client.Nutritionist is null)
-                    ***REMOVED***
+                    {
                         client.DateAddedToNutritionist = null;
-                        await _interactNotification.Create($"O ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** já não é seu nutricionista.", client.UserAccountModel);
-                ***REMOVED***
+                        await _interactNotification.Create($"O {nutritionist.UserAccountModel.UserName} já não é seu nutricionista.", client.UserAccountModel);
+                    }
                     else
-                    ***REMOVED***
+                    {
                         client.DateAddedToNutritionist = DateTime.Now;
-                        await _interactNotification.Create($"O ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** é agora o seu nutricionista.", client.UserAccountModel);
-                ***REMOVED***
+                        await _interactNotification.Create($"O {nutritionist.UserAccountModel.UserName} é agora o seu nutricionista.", client.UserAccountModel);
+                    }
                     client.WantsNutritionist = false;
                     _context.Client.Update(client);
                     await _context.SaveChangesAsync();
-            ***REMOVED***
-                return RedirectToAction("ShowClients", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-        ***REMOVED***
+                }
+                return RedirectToAction("ShowClients", new { pageNumber, currentFilter });
+            }
             return NoContent();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays a page to edit the client details.
@@ -298,18 +298,18 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "trainer, nutritionist")]
         public async Task<IActionResult> EditClientForTrainerAndNutritionist(int? id)
-        ***REMOVED***
+        {
             if (id is null || User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             Client? client = await _context.Client.FindAsync(id);
 
             if (client is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients)
@@ -319,11 +319,11 @@ namespace NutriFitWeb.Controllers
 
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Contains(client) ||
                 trainer is not null && trainer.Clients is not null && trainer.Clients.Contains(client))
-            ***REMOVED***
+            {
                 return View(client);
-        ***REMOVED***
+            }
             return Forbid();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Http POST method to the API to edit the client for the trainers and nutritionists.
@@ -335,18 +335,18 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "trainer, nutritionist")]
         public async Task<IActionResult> EditClientForTrainerAndNutritionistPost(int? id)
-        ***REMOVED***
+        {
             if (id is null || User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             Client? clientToUpdate = await _context.Client.Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.ClientId == id);
 
             if (clientToUpdate is null || clientToUpdate.UserAccountModel is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Clients).Include(a => a.UserAccountModel)
@@ -356,24 +356,24 @@ namespace NutriFitWeb.Controllers
 
             if (nutritionist is not null && nutritionist.Clients is not null && nutritionist.Clients.Contains(clientToUpdate) ||
                 trainer is not null && trainer.Clients is not null && trainer.Clients.Contains(clientToUpdate))
-            ***REMOVED***
+            {
                 if (await TryUpdateModelAsync<Client>(clientToUpdate, "",
                 c => c.Weight!, c => c.Height!, c => c.LeanMass!, c => c.FatMass!, c => c.OtherClientData!))
-                ***REMOVED***
+                {
                     if (trainer is not null && trainer.UserAccountModel is not null)
-                    ***REMOVED***
-                        await _interactNotification.Create($"O treinador ***REMOVED***trainer.UserAccountModel.UserName***REMOVED*** alterou algumas informações do seu perfil.", clientToUpdate.UserAccountModel);
-                ***REMOVED***
+                    {
+                        await _interactNotification.Create($"O treinador {trainer.UserAccountModel.UserName} alterou algumas informações do seu perfil.", clientToUpdate.UserAccountModel);
+                    }
                     else if (nutritionist is not null && nutritionist.UserAccountModel is not null)
-                    ***REMOVED***
-                        await _interactNotification.Create($"O nutricionista ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** alterou algumas informações do seu perfil.", clientToUpdate.UserAccountModel);
-                ***REMOVED***
+                    {
+                        await _interactNotification.Create($"O nutricionista {nutritionist.UserAccountModel.UserName} alterou algumas informações do seu perfil.", clientToUpdate.UserAccountModel);
+                    }
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowClients");
-            ***REMOVED***
-        ***REMOVED***
+                }
+            }
             return View(clientToUpdate);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays a page to edit the client settings for admins and clients.
@@ -383,24 +383,24 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "administrator, client")]
         public async Task<IActionResult> EditClientSettings(string? id)
-        ***REMOVED***
+        {
             if (string.IsNullOrEmpty(id) || User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             Client? client = await GetClient(id);
             if (client is not null && client.ClientProfilePhoto is not null)
-            ***REMOVED***
+            {
                 client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(client.UserAccountModel.UserName);
-        ***REMOVED***
+            }
 
             if (client is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
             return View(client);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Http POST method to the API to edit the client for the admins and clients.
@@ -412,25 +412,25 @@ namespace NutriFitWeb.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrator, client")]
         public async Task<IActionResult> EditClientSettingsPost(string? id, IFormFile? formFile)
-        ***REMOVED***
+        {
             if (string.IsNullOrEmpty(id) || User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity.Name);
             Client? clientToUpdate = await GetClient(id);
 
             Photo? oldPhoto = null;
 
             if (clientToUpdate is null || clientToUpdate.UserAccountModel is null)
-            ***REMOVED***
+            {
                 return NotFound();
-        ***REMOVED***
+            }
 
             if (clientToUpdate.ClientProfilePhoto is not null)
-            ***REMOVED***
+            {
                 oldPhoto = clientToUpdate.ClientProfilePhoto;
-        ***REMOVED***
+            }
 
             clientToUpdate.ClientProfilePhoto = _photoManagement.UploadProfilePhoto(formFile);
 
@@ -438,31 +438,31 @@ namespace NutriFitWeb.Controllers
                 c => c.ClientFirstName!, c => c.ClientLastName!, c => c.ClientBirthday!,
                 c => c.Weight!, c => c.Height!, c => c.LeanMass!, c => c.FatMass!, c => c.OtherClientData!,
                 c => c.ClientProfilePhoto!, c => c.ClientSex!))
-            ***REMOVED***
+            {
                 if (oldPhoto is not null && clientToUpdate.ClientProfilePhoto is not null)
-                ***REMOVED***
+                {
                     _context.Photos.Remove(oldPhoto);
-            ***REMOVED***
+                }
                 else if (clientToUpdate.ClientProfilePhoto is null)
-                ***REMOVED***
+                {
                     clientToUpdate.ClientProfilePhoto = oldPhoto;
-            ***REMOVED***
+                }
 
                 if (clientToUpdate.ClientProfilePhoto is not null)
-                ***REMOVED***
+                {
                     clientToUpdate.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
-            ***REMOVED***
+                }
                 if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-                ***REMOVED***
+                {
                     await _interactNotification.Create($"O administrador alterou parte do seu perfil.", clientToUpdate.UserAccountModel);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("ShowAllUsers", "Admins");
-            ***REMOVED***
+                }
                 await _context.SaveChangesAsync();
                 return View(clientToUpdate);
-        ***REMOVED***
+            }
             return View(clientToUpdate);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays a page for the users to request a trainer.
@@ -473,11 +473,11 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "client")]
         public async Task<IActionResult> RequestTrainer(int? pageNumber, string? currentFilter)
-        ***REMOVED***
+        {
             if (User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
             UserAccountModel? user = null;
             Client? client = null;
 
@@ -486,20 +486,20 @@ namespace NutriFitWeb.Controllers
                 .FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             if (user is not null && client is not null && client.UserAccountModel is not null && client.Gym is not null)
-            ***REMOVED***
+            {
                 client.WantsTrainer = true;
                 foreach (Trainer trainer in _context.Trainer.Include(a => a.UserAccountModel).Where(a => a.Gym == client.Gym))
-                ***REMOVED***
+                {
                     if (trainer.UserAccountModel is not null)
-                    ***REMOVED***
-                        await _interactNotification.Create($"O cliente '***REMOVED***client.UserAccountModel.UserName***REMOVED***' está à procura de um treinador.", trainer.UserAccountModel);
-                ***REMOVED***
-            ***REMOVED***
+                    {
+                        await _interactNotification.Create($"O cliente '{client.UserAccountModel.UserName}' está à procura de um treinador.", trainer.UserAccountModel);
+                    }
+                }
                 await _context.SaveChangesAsync();
-                return RedirectToAction("ShowTrainingPlans", "TrainingPlans", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-        ***REMOVED***
+                return RedirectToAction("ShowTrainingPlans", "TrainingPlans", new { pageNumber, currentFilter });
+            }
             return NotFound();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Displays a page for the users to request a nutritionist.
@@ -510,11 +510,11 @@ namespace NutriFitWeb.Controllers
         /// <returns>An Action result</returns>
         [Authorize(Roles = "client")]
         public async Task<IActionResult> RequestNutritionist(int? pageNumber, string? currentFilter)
-        ***REMOVED***
+        {
             if (User.Identity is null)
-            ***REMOVED***
+            {
                 return BadRequest();
-        ***REMOVED***
+            }
 
             UserAccountModel? user = null;
             Client? client = null;
@@ -524,32 +524,32 @@ namespace NutriFitWeb.Controllers
                 .FirstOrDefaultAsync(a => a.UserAccountModel.Id == user.Id);
 
             if (user is not null && client is not null && client.UserAccountModel is not null && client.Gym is not null)
-            ***REMOVED***
+            {
                 client.WantsNutritionist = true;
                 foreach (Nutritionist nutritionist in _context.Nutritionist.Include(a => a.UserAccountModel).Where(a => a.Gym == client.Gym))
-                ***REMOVED***
+                {
                     if (nutritionist.UserAccountModel is not null)
-                    ***REMOVED***
-                        await _interactNotification.Create($"O cliente '***REMOVED***client.UserAccountModel.UserName***REMOVED***' está à procura de um nutricionista.", nutritionist.UserAccountModel);
-                ***REMOVED***
-            ***REMOVED***
+                    {
+                        await _interactNotification.Create($"O cliente '{client.UserAccountModel.UserName}' está à procura de um nutricionista.", nutritionist.UserAccountModel);
+                    }
+                }
                 await _context.SaveChangesAsync();
-                return RedirectToAction("ShowNutritionPlans", "NutritionPlans", new ***REMOVED*** pageNumber, currentFilter ***REMOVED***);
-        ***REMOVED***
+                return RedirectToAction("ShowNutritionPlans", "NutritionPlans", new { pageNumber, currentFilter });
+            }
             return NotFound();
-    ***REMOVED***
+        }
 
         [Authorize(Roles = "client, administrator")]
         public IActionResult VerifyClientAge([Bind("ClientBirthday")] Client client)
-        ***REMOVED***
+        {
             DateTime clientBirthDate = client.ClientBirthday.GetValueOrDefault();
             DateTime dt_16 = clientBirthDate.AddYears(16);
             if (dt_16.Date >= DateTime.Now || clientBirthDate == DateTime.MinValue)
-            ***REMOVED***
+            {
                 return Json($"Tem de ter mais de 16 anos.");
-        ***REMOVED***
+            }
             return Json(true);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Utility method to get a client by id.
@@ -557,16 +557,16 @@ namespace NutriFitWeb.Controllers
         /// <param name="id"></param>
         /// <returns>A query result</returns>
         private async Task<Client> GetClient(string? id)
-        ***REMOVED***
+        {
             UserAccountModel? user = await _userManager.FindByNameAsync(User.Identity!.Name);
             if (await _isUserInRoleByUserId.IsUserInRoleByUserIdAsync(user.Id, "administrator"))
-            ***REMOVED***
+            {
                 return await _context.Client.Include(a => a.ClientProfilePhoto).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel.Id == id);
-        ***REMOVED***
+            }
 
             UserAccountModel? userAccount = await _userManager.FindByNameAsync(id);
             return await _context.Client.Include(a => a.ClientProfilePhoto).Include(a => a.UserAccountModel).FirstOrDefaultAsync(a => a.UserAccountModel == userAccount);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Utility method to get all clients for a gym by client id.
@@ -575,23 +575,23 @@ namespace NutriFitWeb.Controllers
         /// <param name="userID"></param>
         /// <returns>A query result</returns>
         private IOrderedQueryable<Client> GetClientsForGym(string? searchString, string? userID)
-        ***REMOVED***
+        {
             if (string.IsNullOrEmpty(searchString))
-            ***REMOVED***
+            {
                 return _context.Client.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Gym).
                     Include(a => a.Gym!.UserAccountModel).
                     Where(a => a.Gym != null && a.Gym.UserAccountModel != null && a.Gym.UserAccountModel.Id == userID).
                     OrderByDescending(a => a.Gym);
-        ***REMOVED***
+            }
             return _context.Client.
                 Include(a => a.UserAccountModel).
                 Include(a => a.Gym).
                 Include(a => a.Gym!.UserAccountModel).
                 Where(a => a.UserAccountModel.Email.Contains(searchString) && (a.Gym == null || (a.Gym.UserAccountModel != null && a.Gym.UserAccountModel.Id == userID))).
                 OrderByDescending(a => a.Gym);
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Utility method to get all clients for a trainer by client id.
@@ -600,19 +600,19 @@ namespace NutriFitWeb.Controllers
         /// <param name="userID"></param>
         /// <returns>A query result</returns>
         private async Task<IOrderedQueryable<Client>> GetClientsForTrainer(string? searchString, string? userID)
-        ***REMOVED***
+        {
             Trainer? trainer = await _context.Trainer.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == userID);
             if (trainer is not null)
-            ***REMOVED***
+            {
                 if (string.IsNullOrEmpty(searchString))
-                ***REMOVED***
+                {
                     return _context.Client.
                         Include(a => a.UserAccountModel).
                         Include(a => a.Trainer).
                         Include(a => a.Trainer!.UserAccountModel).
                         Where(a => a.Trainer != null && a.Trainer.UserAccountModel != null && a.Trainer.UserAccountModel.Id == userID || (a.Gym == trainer.Gym && a.WantsTrainer)).
                         OrderByDescending(a => a.Trainer);
-            ***REMOVED***
+                }
                 return _context.Client.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Trainer).
@@ -620,9 +620,9 @@ namespace NutriFitWeb.Controllers
                     Where(a => a.UserAccountModel.Email.Contains(searchString) &&
                         (a.Trainer != null && a.Trainer.UserAccountModel != null && a.Trainer.UserAccountModel.Id == userID || (a.Gym == trainer.Gym && a.WantsTrainer))).
                     OrderByDescending(a => a.Trainer);
-        ***REMOVED***
+            }
             return null;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Utility method to get all clients for a nutritionist by client id.
@@ -631,12 +631,12 @@ namespace NutriFitWeb.Controllers
         /// <param name="userID"></param>
         /// <returns>A query result</returns>
         private async Task<IOrderedQueryable<Client>> GetClientsForNutritionist(string? searchString, string? userID)
-        ***REMOVED***
+        {
             Nutritionist? nutritionist = await _context.Nutritionist.Include(a => a.Gym).FirstOrDefaultAsync(a => a.UserAccountModel.Id == userID);
             if (nutritionist is not null)
-            ***REMOVED***
+            {
                 if (string.IsNullOrEmpty(searchString))
-                ***REMOVED***
+                {
                     return _context.Client.
                         Include(a => a.UserAccountModel).
                         Include(a => a.Nutritionist).
@@ -644,7 +644,7 @@ namespace NutriFitWeb.Controllers
                         Where(a => a.Nutritionist != null && a.Nutritionist.UserAccountModel != null && a.Nutritionist.UserAccountModel.Id == userID ||
                         (a.Gym == nutritionist.Gym && a.WantsNutritionist)).
                         OrderByDescending(a => a.Nutritionist);
-            ***REMOVED***
+                }
                 return _context.Client.
                     Include(a => a.UserAccountModel).
                     Include(a => a.Nutritionist).
@@ -653,8 +653,8 @@ namespace NutriFitWeb.Controllers
                         (a.Nutritionist != null && a.Nutritionist.UserAccountModel != null && a.Nutritionist.UserAccountModel.Id == userID ||
                         (a.Gym == nutritionist.Gym && a.WantsNutritionist))).
                     OrderByDescending(a => a.Nutritionist);
-        ***REMOVED***
+            }
             return null;
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     /// ResetAuthenticatorModel class, derived from PageModel.
     /// </summary>
     public class ResetAuthenticatorModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<ResetAuthenticatorModel> _logger;
@@ -28,32 +28,32 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             UserManager<UserAccountModel> userManager,
             SignInManager<UserAccountModel> signInManager,
             ILogger<ResetAuthenticatorModel> logger)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-    ***REMOVED***
+        }
 
         /// <summary>
         ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
-        public string StatusMessage ***REMOVED*** get; set; ***REMOVED***
+        public string StatusMessage { get; set; }
 
         /// <summary>
         /// Handle the Get Request during the 2FA reset process.
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnGet()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             return Page();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handle the Post Request during the 2FA reset process.
@@ -61,21 +61,21 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             await _userManager.SetTwoFactorEnabledAsync(user, false);
             await _userManager.ResetAuthenticatorKeyAsync(user);
-            _logger.LogInformation("User with ID '***REMOVED***UserId***REMOVED***' has reset their authentication app key.", user.Id);
+            _logger.LogInformation("User with ID '{UserId}' has reset their authentication app key.", user.Id);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
 
             return RedirectToPage("./EnableAuthenticator");
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

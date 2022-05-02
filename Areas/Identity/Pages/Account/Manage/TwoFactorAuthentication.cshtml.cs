@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using NutriFitWeb.Models;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     /// TwoFactorAuthenticationModel class, derived from PageModel.
     /// </summary>
     public class TwoFactorAuthenticationModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly SignInManager<UserAccountModel> _signInManager;
 
@@ -25,49 +25,49 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public TwoFactorAuthenticationModel(
             UserManager<UserAccountModel> userManager, SignInManager<UserAccountModel> signInManager)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _signInManager = signInManager;
-    ***REMOVED***
+        }
 
         /// <summary>
         ///     Gets or sets the flag containing whether the user has 2FA setup.
         /// </summary>
-        public bool HasAuthenticator ***REMOVED*** get; set; ***REMOVED***
+        public bool HasAuthenticator { get; set; }
 
         /// <summary>
         ///     Gets or sets the amount of recovery codes left.
         /// </summary>
-        public int RecoveryCodesLeft ***REMOVED*** get; set; ***REMOVED***
+        public int RecoveryCodesLeft { get; set; }
 
         /// <summary>
         ///      Gets or sets the flag containing whether the user has 2FA enabled.
         /// </summary>
         [BindProperty]
-        public bool Is2faEnabled ***REMOVED*** get; set; ***REMOVED***
+        public bool Is2faEnabled { get; set; }
 
         /// <summary>
         ///     Gets or sets the flag containing whether the user has the current machine remembered.
         /// </summary>
-        public bool IsMachineRemembered ***REMOVED*** get; set; ***REMOVED***
+        public bool IsMachineRemembered { get; set; }
 
         /// <summary>
         ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
-        public string StatusMessage ***REMOVED*** get; set; ***REMOVED***
+        public string StatusMessage { get; set; }
 
         /// <summary>
         /// Handles the Get Request during the 2FA code request process.
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             HasAuthenticator = await _userManager.GetAuthenticatorKeyAsync(user) is not null;
             Is2faEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
@@ -75,7 +75,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             RecoveryCodesLeft = await _userManager.CountRecoveryCodesAsync(user);
 
             return Page();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handles the Post Request during the 2FA code request process.
@@ -83,16 +83,16 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Unable to load user with ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
 
             await _signInManager.ForgetTwoFactorClientAsync();
             StatusMessage = "The current browser has been forgotten. When you login again from this browser you will be prompted for your 2fa code.";
             return RedirectToPage();
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

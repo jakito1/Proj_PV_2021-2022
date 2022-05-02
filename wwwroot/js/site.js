@@ -1,81 +1,81 @@
-﻿function UpdateExercisesList() ***REMOVED***
-    $.ajax(***REMOVED***
+﻿function UpdateExercisesList() {
+    $.ajax({
         url: "/Exercises/ShowExercisesList",
         type: "GET",
         datatype: "HTML",
-        success: function (data) ***REMOVED***
+        success: function (data) {
             $('#_CreateExercisePartialForm').removeData('validator');
             $('#_CreateExercisePartialForm').removeData('unobtrusiveValidation');
             $.validator.unobtrusive.parse('#_CreateExercisePartialForm');
             $("#_ShowExercisesPartialList").html(data);
-    ***REMOVED***
-***REMOVED***)
-***REMOVED***
-function UpdateCreateExercise() ***REMOVED***
-    $.ajax(***REMOVED***
+        }
+    })
+}
+function UpdateCreateExercise() {
+    $.ajax({
         url: "/Exercises/GetCleanCreateExercisePartial",
         type: "GET",
         datatype: "HTML",
-        success: function (data) ***REMOVED***
+        success: function (data) {
             $("#_CreateExercisePartialItem").html(data);
-    ***REMOVED***
-***REMOVED***)
-***REMOVED***
-function UpdateMealsList() ***REMOVED***
-    $.ajax(***REMOVED***
+        }
+    })
+}
+function UpdateMealsList() {
+    $.ajax({
         url: "/Meals/ShowMealsList",
         type: "GET",
         datatype: "HTML",
-        success: function (data) ***REMOVED***
+        success: function (data) {
             $('#_CreateMealPartialForm').removeData('validator');
             $('#_CreateMealPartialForm').removeData('unobtrusiveValidation');
             $.validator.unobtrusive.parse('#_CreateMealPartialForm');
             $("#_ShowMealsPartialList").html(data);
-    ***REMOVED***
-***REMOVED***)
-***REMOVED***
-function UpdateCreateMeal() ***REMOVED***
-    $.ajax(***REMOVED***
+        }
+    })
+}
+function UpdateCreateMeal() {
+    $.ajax({
         url: "/Meals/GetCleanCreateMealPartial",
         type: "GET",
         datatype: "HTML",
-        success: function (data) ***REMOVED***
+        success: function (data) {
             $("#_CreateMealPartialItem").html(data);
-    ***REMOVED***
-***REMOVED***)
-***REMOVED***
+        }
+    })
+}
 
-function showDateOrWeekDayDiv(select) ***REMOVED***
-    if (select.value == 1) ***REMOVED***
+function showDateOrWeekDayDiv(select) {
+    if (select.value == 1) {
         document.getElementById('MealDateID').style.display = "block";
         document.getElementById('MealWeekDayID').style.display = "none";
         document.getElementById('MealWeekDaySelectID').value = ''
-***REMOVED*** else ***REMOVED***
+    } else {
         document.getElementById('MealDateID').style.display = "none";
         document.getElementById('MealWeekDayID').style.display = "block";
         document.getElementById('MealDateInputID').value = ''
-***REMOVED***
-***REMOVED*** 
+    }
+} 
 
-function hideButtonPlanEditRequestPartial() ***REMOVED***
+function hideButtonPlanEditRequestPartial() {
     document.getElementById('planEditButton').style.display = "none";
     document.getElementById('_CreateEditRequestPartialItem').style.display = "block";
-***REMOVED***
+}
 
-function helpButton() ***REMOVED***
-    if (document.getElementById('helpText').style.display == "none") ***REMOVED***
+function helpButton() {
+    if (document.getElementById('helpText').style.display == "none") {
         document.getElementById('helpText').style.display = "block";
-***REMOVED*** else ***REMOVED***
+    } else {
         document.getElementById('helpText').style.display = "none";
-***REMOVED***
-***REMOVED***
+    }
+}
 
-window.addEventListener("load", () => ***REMOVED***
+window.addEventListener("load", () => {
     const uri = document.getElementById("qrCodeData").getAttribute('data-url');
     new QRCode(document.getElementById("qrCode"),
-        ***REMOVED***
+        {
             text: uri,
             width: 150,
             height: 150
-    ***REMOVED***);
-***REMOVED***);
+        });
+});

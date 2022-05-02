@@ -6,7 +6,7 @@
 @inject IStatistics Statistics
 
 @if (User.Identity is not null)
-***REMOVED***
+{
     <h2 class="homePageTitle"><b class="welcome">Bem vindo de volta</b> @User.Identity.Name!.ToUpper()!</h2>
     <div class="md-col-6">
         <table class="statisticsTable statisticsMargin">
@@ -23,7 +23,7 @@
         </table>
 
         @if (Statistics.GetUsersForGym("client", User.Identity.Name!).Any())
-        ***REMOVED***
+        {
             <input type="submit" class="helpBtn imcTableFix" value="Tabela IMC" onclick="helpButton()" />
             <div class="col-md-4 helpDivs" style="display:none;" id="helpText">
                 <img class="imcChart" src="~/images/IMCChart.PNG" alt="imcChart" />
@@ -66,20 +66,20 @@
                 </tr>
                 <tr>
                     @foreach (var item in Statistics.GetUsersForGym("client", User.Identity.Name!).Take(3))
-                    ***REMOVED***
+                    {
                         string? profilePic = await PhotoManagement.LoadProfileImage(@item.UserName);
                         <td class="statisticsValues">
                             @item.UserName.ToUpper()
                             @if (!string.IsNullOrEmpty(profilePic))
-                            ***REMOVED***
+                            {
                                 <img class="accountIconPic" src="@profilePic" alt="accountIcon" />
-                        ***REMOVED***
+                            }
                         </td>
-                ***REMOVED***
+                    }
                 </tr>
             </table>
-    ***REMOVED***
+        }
 
         <img src="~/images/gymHome.jpg" alt="MainPageGymImage" class="gymHomeImage" />
     </div>
-***REMOVED***
+}

@@ -1,8 +1,8 @@
 ﻿@model NutriFitWeb.Models.Client
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Editar perfil do Cliente";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -27,7 +27,7 @@
                         <span asp-validation-for="Height" class="text-danger"></span>
                     </td>
                 </tr>
-                @if(User.IsInRole("nutritionist"))***REMOVED***
+                @if(User.IsInRole("nutritionist")){
                     <tr>
                         <th class="alignTableTitles"><label asp-for="LeanMass" class="control-label listsItemTitle"></label></th>
                         <td>
@@ -44,7 +44,7 @@
                             <span asp-validation-for="FatMass" class="text-danger"></span>
                         </td>
                     </tr>
-            ***REMOVED***
+                }
                 <tr>
                     <th class="alignTableTitles"><label asp-for="OtherClientData" class="control-label listsItemTitle"></label></th>
                     <td>
@@ -65,8 +65,8 @@
     <a asp-action="ShowClients" class="backToListBtn">Voltar</a>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

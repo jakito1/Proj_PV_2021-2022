@@ -15,12 +15,12 @@ using System.Text;
 using System.Text.Encodings.Web;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
-***REMOVED***
+{
     /// <summary>
     /// RegisterModel class, derived from PageModel.
     /// </summary>
     public class RegisterModel : PageModel
-    ***REMOVED***
+    {
         private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly IUserStore<UserAccountModel> _userStore;
@@ -44,7 +44,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             ApplicationDbContext context)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -52,36 +52,36 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _context = context;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
-        public InputModel Input ***REMOVED*** get; set; ***REMOVED***
+        public InputModel Input { get; set; }
 
         /// <summary>
         ///     Gets or sets the temporary string containing the ErrorMessage.
         /// </summary>
-        public string ReturnUrl ***REMOVED*** get; set; ***REMOVED***
+        public string ReturnUrl { get; set; }
 
         /// <summary>
         ///     Gets or sets a list with the ExternalLogins.
         /// </summary>
-        public IList<AuthenticationScheme> ExternalLogins ***REMOVED*** get; set; ***REMOVED***
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         /// <summary>
         ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
-        ***REMOVED***
+        {
             /// <summary>
             /// Gets or sets the UserName inputed by the user.
             /// </summary>
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "User Name")]
-            public string UserName ***REMOVED*** get; set; ***REMOVED***
+            public string UserName { get; set; }
 
             /// <summary>
             /// Gets or sets the Email inputed by the user.
@@ -89,16 +89,16 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
-            public string Email ***REMOVED*** get; set; ***REMOVED***
+            public string Email { get; set; }
 
             /// <summary>
             ///     Gets or sets the Password inputed by the user.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The ***REMOVED***0***REMOVED*** must be at least ***REMOVED***2***REMOVED*** and at max ***REMOVED***1***REMOVED*** characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
-            public string Password ***REMOVED*** get; set; ***REMOVED***
+            public string Password { get; set; }
 
             /// <summary>
             ///     Gets or sets the repeated Password inputed by the user.
@@ -106,10 +106,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             [Display(Name = "Confirmar password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword ***REMOVED*** get; set; ***REMOVED***
+            public string ConfirmPassword { get; set; }
 
 
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handles the Get Request during the register process.
@@ -117,10 +117,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="returnUrl"></param>
         /// <returns></returns>
         public async Task OnGetAsync(string returnUrl = null)
-        ***REMOVED***
+        {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handles the Post Request during the register process.
@@ -129,22 +129,22 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
         /// <param name="returnUrl"></param>
         /// <returns></returns>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
-        ***REMOVED***
+        {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
-            ***REMOVED***
+            {
                 UserAccountModel user = CreateUser();
 
                 string accountType = Request.Form["AccountType"].ToString();
-                if (string.IsNullOrEmpty(accountType)) ***REMOVED*** accountType = "client"; ***REMOVED***
+                if (string.IsNullOrEmpty(accountType)) { accountType = "client"; }
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 IdentityResult result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
-                ***REMOVED***
+                {
                     _logger.LogInformation("User created a new account with password.");
 
                     string userId = await _userManager.GetUserIdAsync(user);
@@ -153,74 +153,74 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                     string callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new ***REMOVED*** area = "Identity", userId, code, returnUrl ***REMOVED***,
+                        values: new { area = "Identity", userId, code, returnUrl },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='***REMOVED***HtmlEncoder.Default.Encode(callbackUrl)***REMOVED***'>clicking here</a>.");
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (accountType.Equals("client"))
-                    ***REMOVED***
-                        await _context.Client.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
-                ***REMOVED***
+                    {
+                        await _context.Client.AddAsync(new() { UserAccountModel = user });
+                    }
                     else if (accountType.Equals("trainer"))
-                    ***REMOVED***
-                        await _context.Trainer.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
-                ***REMOVED***
+                    {
+                        await _context.Trainer.AddAsync(new() { UserAccountModel = user });
+                    }
                     else if (accountType.Equals("nutritionist"))
-                    ***REMOVED***
-                        await _context.Nutritionist.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
-                ***REMOVED***
+                    {
+                        await _context.Nutritionist.AddAsync(new() { UserAccountModel = user });
+                    }
                     else if (accountType.Equals("gym"))
-                    ***REMOVED***
-                        await _context.Gym.AddAsync(new() ***REMOVED*** UserAccountModel = user ***REMOVED***);
-                ***REMOVED***
+                    {
+                        await _context.Gym.AddAsync(new() { UserAccountModel = user });
+                    }
 
                     await _context.SaveChangesAsync();
 
                     await _userManager.AddToRoleAsync(user, accountType);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    ***REMOVED***
-                        return RedirectToPage("RegisterConfirmation", new ***REMOVED*** email = Input.Email, returnUrl ***REMOVED***);
-                ***REMOVED***
+                    {
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
+                    }
                     else
-                    ***REMOVED***
+                    {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                ***REMOVED***
-            ***REMOVED***
+                    }
+                }
                 foreach (IdentityError error in result.Errors)
-                ***REMOVED***
+                {
                     ModelState.AddModelError(string.Empty, error.Description);
-            ***REMOVED***
-        ***REMOVED***
+                }
+            }
 
             // If we got this far, something failed, redisplay form
             return Page();
-    ***REMOVED***
+        }
 
         private UserAccountModel CreateUser()
-        ***REMOVED***
+        {
             try
-            ***REMOVED***
+            {
                 return new UserAccountModel();
-        ***REMOVED***
+            }
             catch
-            ***REMOVED***
-                throw new InvalidOperationException($"Can't create an instance of '***REMOVED***nameof(UserAccountModel)***REMOVED***'. " +
-                    $"Ensure that '***REMOVED***nameof(UserAccountModel)***REMOVED***' is not an abstract class and has a parameterless constructor, or alternatively " +
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserAccountModel)}'. " +
+                    $"Ensure that '{nameof(UserAccountModel)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-        ***REMOVED***
-    ***REMOVED***
+            }
+        }
 
         private IUserEmailStore<UserAccountModel> GetEmailStore()
-        ***REMOVED***
+        {
             if (!_userManager.SupportsUserEmail)
-            ***REMOVED***
+            {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
-        ***REMOVED***
+            }
             return (IUserEmailStore<UserAccountModel>)_userStore;
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

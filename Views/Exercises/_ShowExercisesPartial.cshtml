@@ -17,20 +17,20 @@
     </thead>
     <tbody>
         @if (Model is not null)
-        ***REMOVED***
-            @foreach (var item in Model.Select((value, i) => new ***REMOVED*** i, value ***REMOVED***))
-            ***REMOVED***
+        {
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
                 <tr>
                     <td>
                         <p class="details">@Html.DisplayFor(modelItem => item.value.ExerciseName)</p>
                     </td>
                     <td>
                         @if (String.IsNullOrEmpty(item.value.ExerciseDescription))
-                        ***REMOVED***
+                        {
                             <p class="details">N/A</p>
-                    ***REMOVED***else***REMOVED***
+                        }else{
                             <p class="details">@Html.DisplayFor(modelItem => item.value.ExerciseDescription)</p>
-                    ***REMOVED***
+                        }
                     </td>
                     <td>
                         <a asp-action="DeleteExercise" asp-controller="Exercises" data-ajax="true" data-ajax-update="#_ShowExercisesPartialList"
@@ -39,9 +39,9 @@
                    data-ajax-update="#_CreateExercisePartialItem" asp-route-id="@item.i"><img class="editIcon" src="~/icons/editProfileIcon.svg" /></a>
                     </td>
                 </tr>
-        ***REMOVED***
+            }
 
-    ***REMOVED***
+        }
     </tbody>
 </table>
 <br />

@@ -1,8 +1,8 @@
 ﻿@model NutriFitWeb.Models.Nutritionist
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Editar perfil do Nutricionista";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -13,9 +13,9 @@
         <div class="form-group">
             <label asp-for="NutritionistProfilePhoto" class="control-label listsItemTitle">Foto de Perfil</label>
             @if(Model.NutritionistProfilePhoto is not null)
-            ***REMOVED***
+            {
                 <img class="profilePhoto" src="@Model.NutritionistProfilePhoto.PhotoUrl" />
-        ***REMOVED***
+            }
             <input type="file" asp-for="NutritionistProfilePhoto" class="form-control marginFixChooseFile" name="formFile"/>
             <span asp-validation-for="NutritionistProfilePhoto" class="text-danger"></span>
         </div>
@@ -44,13 +44,13 @@
 </div>
 <div class="backBtnDiv">
     @if (User.IsInRole("administrator"))
-    ***REMOVED***
+    {
         <a asp-controller="Admins" asp-action="ShowAllUsers" class="backToListBtn">Voltar</a>
-***REMOVED***
+    }
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

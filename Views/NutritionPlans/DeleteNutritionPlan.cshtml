@@ -1,8 +1,8 @@
 ﻿@model NutriFitWeb.Models.NutritionPlan
 
-@***REMOVED***
+@{
     ViewData["Title"] = "Remover";
-***REMOVED***
+}
 
 <h2>Tem a certeza que pretende apagar este plano de nutrição?</h2>
 
@@ -16,13 +16,13 @@
         <th><p class="control-label listsItemTitle">Descrição</p></th>
         <td>
             @if (Model.NutritionPlanDescription is null || Model.NutritionPlanDescription == "")
-            ***REMOVED***
+            {
                 <p><b>N/A</b></p>
-        ***REMOVED***
+            }
             else
-            ***REMOVED***
+            {
                 <p><b>@Html.DisplayFor(model => model.NutritionPlanDescription)</b></p>
-        ***REMOVED***
+            }
         </td>
     </tr>
 </table>

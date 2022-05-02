@@ -12,15 +12,15 @@ using System.Linq;
 using Xunit;
 
 namespace NutriFitWebTest.Controllers
-***REMOVED***
+{
     public class NutritionPlansControllerTest : IClassFixture<NutrifitContextFixture>
-    ***REMOVED***
+    {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _manager;
         private IInteractNotification mockInteractNotification;
 
         public NutritionPlansControllerTest(NutrifitContextFixture contextFixture)
-        ***REMOVED***
+        {
             _context = contextFixture.DbContext;
             mockInteractNotification = Mock.Of<IInteractNotification>();
 
@@ -35,40 +35,40 @@ namespace NutriFitWebTest.Controllers
                 new Mock<ILogger<UserManager<UserAccountModel>>>().Object);
 
             IList<UserAccountModel> usersList = new List<UserAccountModel>
-            ***REMOVED***
+            {
                 new UserAccountModel()
-                ***REMOVED***
+                {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "Test User 1",
                     Email = "testuser1@email.com"
-              ***REMOVED***
+                },
                 new UserAccountModel()
-                ***REMOVED***
+                {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "Test User 2",
                     Email = "testuser2@email.com"
-              ***REMOVED***
+                },
                 new UserAccountModel()
-                ***REMOVED***
+                {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "Test User 3",
                     Email = "testuser3@email.com"
-            ***REMOVED***
-        ***REMOVED***;
+                }
+            };
 
             IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
             _manager = mockUserManager.Object;
-    ***REMOVED***
+        }
 
         [Fact]
         public void NutritionPlansController_Should_Create_Controller()
-        ***REMOVED***
+        {
             NutritionPlansController controller = new NutritionPlansController(_context, _manager, mockInteractNotification);
 
             Assert.NotNull(controller);
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}

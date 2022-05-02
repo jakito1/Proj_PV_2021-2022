@@ -1,71 +1,71 @@
 ﻿@page
 @using Microsoft.AspNetCore.Http.Features
 @model TwoFactorAuthenticationModel
-@***REMOVED***
+@{
     ViewData["Title"] = "Fator Duplo de Autenticação (2FA)";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
-***REMOVED***
+}
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
-@***REMOVED***
+@{
     var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
     @if (consentFeature?.CanTrack ?? true)
-    ***REMOVED***
+    {
         @if (Model.Is2faEnabled)
-        ***REMOVED***
+        {
             if (Model.RecoveryCodesLeft == 0)
-            ***REMOVED***
+            {
                 <div class="alert alert-danger">
                     <strong>Já não tem códigos de recuperação.</strong>
                     <p>Você tem de <a asp-page="./GenerateRecoveryCodes">gerar um novo conjunto de códigos de recuperação.</a> before you can log in with a recovery code.</p>
                 </div>
-        ***REMOVED***
+            }
             else if (Model.RecoveryCodesLeft == 1)
-            ***REMOVED***
+            {
                 <div class="alert alert-danger">
                     <strong>Apenas tem 1 código de recuperação.</strong>
                     <p>Você pode <a asp-page="./GenerateRecoveryCodes">gerar um novo conjunto de códigos de recuperação.</a>.</p>
                 </div>
-        ***REMOVED***
+            }
             else if (Model.RecoveryCodesLeft <= 3)
-            ***REMOVED***
+            {
                 <div class="alert alert-warning">
                     <strong>Você tem @Model.RecoveryCodesLeft códigos de recuperação.</strong>
                     <p>You should <a asp-page="./GenerateRecoveryCodes">gerar um novo conjunto de códigos de recuperação.</a>.</p>
                 </div>
-        ***REMOVED***
+            }
 
             if (Model.IsMachineRemembered)
-            ***REMOVED***
+            {
                 <form method="post" style="display: inline-block">
                     <button type="submit" class="btn btn-primary">Esquecer este motor de pesquisa</button>
                 </form>
-        ***REMOVED***
+            }
             <a asp-page="./Disable2fa" class="btn btn-primary">Disable 2FA</a>
             <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Fazer reset aos códigos de recuperação</a>
-    ***REMOVED***
+        }
 
         <h4>Authenticator app</h4>
         @if (!Model.HasAuthenticator)
-        ***REMOVED***
+        {
             <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Adicionar app de dupla autenticação</a>
-    ***REMOVED***
+        }
         else
-        ***REMOVED***
+        {
             <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Configurar app de autenticação</a>
             <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Fazer reset à app de autenticação</a>
-    ***REMOVED***
-***REMOVED***
+        }
+    }
     else
-    ***REMOVED***
+    {
         <div class="alert alert-danger">
             <strong>A política de privacidade e cookie não foi aceite.</strong>
             <p>Tem de aceitar a política antes de ativar o fator duplo de autenticação.</p>
         </div>
-***REMOVED***
-***REMOVED***
+    }
+}
 
-@section Scripts ***REMOVED***
+@section Scripts {
     <partial name="_ValidationScriptsPartial" />
-***REMOVED***
+}

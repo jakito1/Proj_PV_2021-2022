@@ -1,9 +1,9 @@
 ﻿@model NutriFitWeb.Models.TrainingPlan
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<UserAccountModel> UserManager
-@***REMOVED***
+@{
     ViewData["Title"] = "Criar plano de treino";
-***REMOVED***
+}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -31,9 +31,9 @@
                 </td>
             </tr>
             @if (User.IsInRole("trainer"))
-            ***REMOVED***
+            {
                 @if (ViewData["ClientEmail"] is null)
-                ***REMOVED***
+                {
                     <tr>
                         <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
                         <td>
@@ -42,17 +42,17 @@
                             <span asp-validation-for="ClientEmail" class="text-danger"></span>
                         </td>
                     </tr>
-            ***REMOVED***
+                }
                 else
-                ***REMOVED***
+                {
                     <tr>
                         <th class="alignTableTitles"><label asp-for="ClientEmail" class="control-label">Cliente</label></th>
                         <td>
                             <p>@ViewData["ClientEmail"]</p>
                         </td>
                     </tr>
-            ***REMOVED***
-        ***REMOVED***
+                }
+            }
         </table>
     </form>
     <div id="_CreateExercisePartialItem">
@@ -67,8 +67,8 @@
     <a class="backToListBtn" asp-action="ShowTrainingPlans">Voltar aos planos</a>
 </div>
 
-@section Scripts ***REMOVED***
-    @***REMOVED***
+@section Scripts {
+    @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
-***REMOVED***
-***REMOVED***
+}
+}

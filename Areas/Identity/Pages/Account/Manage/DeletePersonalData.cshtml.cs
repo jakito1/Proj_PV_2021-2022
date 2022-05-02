@@ -9,12 +9,12 @@ using NutriFitWeb.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
-***REMOVED***
+{
     /// <summary>
     /// DeletePersonalDataModel class, derived from PageModel.
     /// </summary>
     public class DeletePersonalDataModel : PageModel
-    ***REMOVED***
+    {
         private readonly UserManager<UserAccountModel> _userManager;
         private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<DeletePersonalDataModel> _logger;
@@ -29,51 +29,51 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             UserManager<UserAccountModel> userManager,
             SignInManager<UserAccountModel> signInManager,
             ILogger<DeletePersonalDataModel> logger)
-        ***REMOVED***
+        {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
-        public InputModel Input ***REMOVED*** get; set; ***REMOVED***
+        public InputModel Input { get; set; }
 
         /// <summary>
         ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
-        ***REMOVED***
+        {
             /// <summary>
             ///     Gets or sets the Password inputed by the user.
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
-            public string Password ***REMOVED*** get; set; ***REMOVED***
-    ***REMOVED***
+            public string Password { get; set; }
+        }
 
         /// <summary>
         ///     Gets or sets the flag whether the user has or not password in the account.
         /// </summary>
-        public bool RequirePassword ***REMOVED*** get; set; ***REMOVED***
+        public bool RequirePassword { get; set; }
 
         /// <summary>
         /// Handle the Get Request during the DeletePersonalData process.
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> OnGet()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Não foi possível carregar o utilizador com o ID '{_userManager.GetUserId(User)}'.");
+            }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
             return Page();
-    ***REMOVED***
+        }
 
         /// <summary>
         /// Handle the Post Request during the DeletePersonalData process.
@@ -82,35 +82,35 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">Exception thrown when an error occurs during the account deletion</exception>
         public async Task<IActionResult> OnPostAsync()
-        ***REMOVED***
+        {
             UserAccountModel user = await _userManager.GetUserAsync(User);
             if (user is null)
-            ***REMOVED***
-                return NotFound($"Não foi possível carregar o utilizador com o ID '***REMOVED***_userManager.GetUserId(User)***REMOVED***'.");
-        ***REMOVED***
+            {
+                return NotFound($"Não foi possível carregar o utilizador com o ID '{_userManager.GetUserId(User)}'.");
+            }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
             if (RequirePassword)
-            ***REMOVED***
+            {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
-                ***REMOVED***
+                {
                     ModelState.AddModelError(string.Empty, "Palavra-passe incorreta.");
                     return Page();
-            ***REMOVED***
-        ***REMOVED***
+                }
+            }
 
             IdentityResult result = await _userManager.DeleteAsync(user);
             string userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
-            ***REMOVED***
+            {
                 throw new InvalidOperationException($"Erro inesperado ao tentar apagar o utilizador.");
-        ***REMOVED***
+            }
 
             await _signInManager.SignOutAsync();
 
-            _logger.LogInformation("O utilizador com o ID '***REMOVED***UserId***REMOVED***' apagou a sua conta.", userId);
+            _logger.LogInformation("O utilizador com o ID '{UserId}' apagou a sua conta.", userId);
 
             return Redirect("~/");
-    ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+    }
+}
