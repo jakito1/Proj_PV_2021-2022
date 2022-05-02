@@ -26,7 +26,7 @@ namespace NutriFitWebTest.Models
         ***REMOVED***
             string expected = "TestRequestId";
 
-            string actual = testCase.RequestId;
+            string? actual = testCase.RequestId;
 
             Assert.Equal(expected, actual);
     ***REMOVED***

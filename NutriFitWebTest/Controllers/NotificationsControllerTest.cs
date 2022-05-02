@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MockQueryable.Moq;
 using Moq;
 using NutriFitWeb.Controllers;
 using NutriFitWeb.Data;
 using NutriFitWeb.Models;
-using NutriFitWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,14 @@ using Xunit;
 
 namespace NutriFitWebTest.Controllers
 ***REMOVED***
-
-    public class GymsControllerTest : IClassFixture<NutrifitContextFixture>
+    public class NotificationsControllerTest : IClassFixture<NutrifitContextFixture>
     ***REMOVED***
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _manager;
-        private IInteractNotification mockInteractNotification;
-        private IIsUserInRoleByUserId _isUserInRoleByUserId;
-        private IPhotoManagement _photoManager;
 
-        public GymsControllerTest(NutrifitContextFixture contextFixture)
+        public NotificationsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
-            mockInteractNotification = Mock.Of<IInteractNotification>();
-            _isUserInRoleByUserId = Mock.Of<IIsUserInRoleByUserId>();
-            _photoManager = Mock.Of<IPhotoManagement>();
 
             Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
@@ -65,43 +59,61 @@ namespace NutriFitWebTest.Controllers
             ***REMOVED***
         ***REMOVED***;
 
+            IList<Notification> notificationsList = new List<Notification>
+            ***REMOVED***
+                new Notification()
+                ***REMOVED***
+                    NotificationId = 1,
+                    NotificationMessage = "Test Message",
+                    NotificationTime = DateTime.Now,
+                    NotificationReceiver = usersList[0]
+              ***REMOVED***
+                new Notification()
+                ***REMOVED***
+                    NotificationId = 2,
+                    NotificationMessage = "Test Message",
+                    NotificationTime = DateTime.Now,
+                    NotificationReceiver = usersList[1]
+              ***REMOVED***
+                new Notification()
+                ***REMOVED***
+                    NotificationId = 3,
+                    NotificationMessage = "Test Message",
+                    NotificationTime = DateTime.Now,
+                    NotificationReceiver = usersList[2]
+            ***REMOVED***
+        ***REMOVED***;
+
             IQueryable<UserAccountModel>? users = usersList.AsAsyncQueryable();
+            var notifications = notificationsList.AsQueryable().BuildMockDbSet();
+
 
             mockUserManager.Setup(u => u.Users).Returns(users);
 
+            _context.Notifications = notifications.Object;
             _manager = mockUserManager.Object;
     ***REMOVED***
 
         [Fact]
-        public void GymsController_Should_Create()
+        public void NotificationsController_Should_Create()
         ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
+            NotificationsController controller = new NotificationsController(_context, _manager);
 
             Assert.NotNull(controller);
     ***REMOVED***
 
         [Fact]
-        public async Task GymsController_EditGymSettings_Should_Return_BadRequest()
+        public async Task NotificationsController_DeleteNotification_Should_Return_NotFoundResult()
         ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
+            NotificationsController controller = new NotificationsController(_context, _manager);
 
-            IActionResult? result = await controller.EditGymSettings(null);
+            var result = await controller.DeleteNotification(null);
 
-            Assert.IsType<BadRequestResult>(result);
+            Assert.IsType<NotFoundResult>(result);
     ***REMOVED***
 
         [Fact]
-        public async Task GymsController_EditGymSettingsPost_Should_Return_BadRequest()
-        ***REMOVED***
-            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
-
-            IActionResult? result = await controller.EditGymSettingsPost(null, null);
-
-            Assert.IsType<BadRequestResult>(result);
-    ***REMOVED***
-
-        [Fact (Skip = "Broken")]
-        public async Task GymsController_Edit_Should_Return_ViewResult()
+        public async Task NotificationsController_DeleteNotification_Should_Return_RedirectToActionResult()
         ***REMOVED***
             var fakeHttpContext = new Mock<HttpContext>();
             var fakeIdentity = new GenericIdentity("Test User 1");
@@ -113,13 +125,33 @@ namespace NutriFitWebTest.Controllers
                 HttpContext = fakeHttpContext.Object
         ***REMOVED***;
 
-            GymsController? controller = new GymsController(_context, _manager, _isUserInRoleByUserId, _photoManager, mockInteractNotification);
+            NotificationsController controller = new NotificationsController(_context, _manager);
             controller.ControllerContext = controllerContext;
 
-            IActionResult? result = await controller.EditGymSettingsPost("Test User 1", null);
+            var result = await controller.DeleteNotification(1);
 
-            Assert.Null(result);
+            Assert.IsType<RedirectToActionResult>(result);
     ***REMOVED***
 
+        [Fact]
+        public async Task NotificationsController_RemoveAll_Should_Return_RedirectToActionResult()
+        ***REMOVED***
+            var fakeHttpContext = new Mock<HttpContext>();
+            var fakeIdentity = new GenericIdentity("Test User 1");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new ControllerContext()
+            ***REMOVED***
+                HttpContext = fakeHttpContext.Object
+        ***REMOVED***;
+
+            NotificationsController controller = new NotificationsController(_context, _manager);
+            controller.ControllerContext = controllerContext;
+
+            var result = await controller.RemoveAll();
+
+            Assert.IsType<RedirectToActionResult>(result);
+    ***REMOVED***
 ***REMOVED***
 ***REMOVED***

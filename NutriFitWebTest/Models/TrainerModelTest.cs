@@ -42,7 +42,7 @@ namespace NutriFitWebTest.Models
         ***REMOVED***
             string expected = "TestFirstName";
 
-            string actual = testCase.TrainerFirstName;
+            string? actual = testCase.TrainerFirstName;
 
             Assert.Equal(expected, actual);
     ***REMOVED***
@@ -52,7 +52,7 @@ namespace NutriFitWebTest.Models
         ***REMOVED***
             string expected = "TestLastName";
 
-            string actual = testCase.TrainerLastName;
+            string? actual = testCase.TrainerLastName;
 
             Assert.Equal(expected, actual);
     ***REMOVED***
@@ -60,9 +60,9 @@ namespace NutriFitWebTest.Models
         [Fact]
         public void Trainer_TestTrainerGymIsCorrect()
         ***REMOVED***
-            Gym expected = null;
+            Gym? expected = null;
 
-            Gym actual = testCase.Gym;
+            Gym? actual = testCase.Gym;
 
             Assert.Equal(expected, actual);
     ***REMOVED***
@@ -70,9 +70,9 @@ namespace NutriFitWebTest.Models
         [Fact]
         public void Trainer_TestTrainerUserAccountModelIsCorrect()
         ***REMOVED***
-            UserAccountModel expected = null;
+            UserAccountModel? expected = null;
 
-            UserAccountModel actual = testCase.UserAccountModel;
+            UserAccountModel? actual = testCase.UserAccountModel;
 
             Assert.Equal(expected, actual);
     ***REMOVED***
@@ -82,7 +82,7 @@ namespace NutriFitWebTest.Models
         ***REMOVED***
             int expected = 0;
 
-            int actual = testCase.Clients.Count;
+            int? actual = testCase.Clients?.Count;
 
             Assert.Equal(expected, actual);
     ***REMOVED***

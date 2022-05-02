@@ -7,6 +7,11 @@ Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "Nut
 EndProject
 Project("***REMOVED***9A19103F-16F7-4668-BE54-9A1E7A4F7556***REMOVED***") = "NutriFitWebTest", "NutriFitWebTest\NutriFitWebTest.csproj", "***REMOVED***CD9577BC-35A0-4586-8827-1DAD773910AE***REMOVED***"
 EndProject
+Project("***REMOVED***2150E333-8FDC-42A3-9474-1A3956D46DE8***REMOVED***") = "Solution Items", "Solution Items", "***REMOVED***9A6B2A71-ADDD-4412-83C9-D6DBBF27E3EB***REMOVED***"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

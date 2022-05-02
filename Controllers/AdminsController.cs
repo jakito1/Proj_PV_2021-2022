@@ -198,10 +198,5 @@ namespace NutriFitWeb.Controllers
         ***REMOVED***
             return View(userToUpdate);
     ***REMOVED***
-
-        public IActionResult EditUserSettings()
-        ***REMOVED***
-            throw new NotImplementedException();
-    ***REMOVED***
 ***REMOVED***
 ***REMOVED***

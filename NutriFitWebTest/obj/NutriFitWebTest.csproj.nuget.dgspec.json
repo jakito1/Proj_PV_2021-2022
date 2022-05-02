@@ -175,9 +175,17 @@
               "target": "Package",
               "version": "[17.2.0-preview-20220301-01, )"
           ***REMOVED***
+            "MockQueryable.Moq": ***REMOVED***
+              "target": "Package",
+              "version": "[6.0.1, )"
+          ***REMOVED***
             "Moq": ***REMOVED***
               "target": "Package",
               "version": "[4.17.2, )"
+          ***REMOVED***
+            "XunitXml.TestLogger": ***REMOVED***
+              "target": "Package",
+              "version": "[3.0.70, )"
           ***REMOVED***
             "coverlet.collector": ***REMOVED***
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

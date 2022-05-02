@@ -83,11 +83,15 @@ namespace NutriFitWebTest.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<UserAccountModel> _manager;
         private IInteractNotification mockInteractNotification;
+        private IIsUserInRoleByUserId _userInRole;
+        private IPhotoManagement _photoManager;
 
         public ClientsControllerTest(NutrifitContextFixture contextFixture)
         ***REMOVED***
             _context = contextFixture.DbContext;
             mockInteractNotification = Mock.Of<IInteractNotification>();
+            _userInRole = Mock.Of<IIsUserInRoleByUserId>();
+            _photoManager = Mock.Of<IPhotoManagement>();
 
             Mock<UserManager<UserAccountModel>>? mockUserManager = new Mock<UserManager<UserAccountModel>>(new Mock<IUserStore<UserAccountModel>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,
@@ -135,7 +139,7 @@ namespace NutriFitWebTest.Controllers
             ***REMOVED***
                 HttpContext = Mock.Of<HttpContext>(ctx => ctx.User.Identity.Name == "User")
         ***REMOVED***;
-            ClientsController? controller = new ClientsController(_context, _manager, null, null, mockInteractNotification)
+            ClientsController? controller = new ClientsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification)
             ***REMOVED***
                 ControllerContext = controllerContext
         ***REMOVED***;
@@ -152,7 +156,7 @@ namespace NutriFitWebTest.Controllers
             ***REMOVED***
                 HttpContext = Mock.Of<HttpContext>(ctx => ctx.User.Identity.Name == "User")
         ***REMOVED***;
-            ClientsController? controller = new ClientsController(_context, _manager, null, null, mockInteractNotification)
+            ClientsController? controller = new ClientsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification)
             ***REMOVED***
                 ControllerContext = controllerContext
         ***REMOVED***;
@@ -165,7 +169,7 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task Clients_TestClientDetailsNotFoundOnNullDetails()
         ***REMOVED***
-            ClientsController? controller = new ClientsController(_context, _manager, null, null, mockInteractNotification);
+            ClientsController? controller = new ClientsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
 
             IActionResult? result = await controller.ClientDetails(null);
 
@@ -175,7 +179,7 @@ namespace NutriFitWebTest.Controllers
         [Fact]
         public async Task Clients_TestClientDetailsReturnsViewResult()
         ***REMOVED***
-            ClientsController? controller = new ClientsController(_context, _manager, null, null, mockInteractNotification);
+            ClientsController? controller = new ClientsController(_context, _manager, _userInRole, _photoManager, mockInteractNotification);
 
             Client mockClient = new Client()
             ***REMOVED***
