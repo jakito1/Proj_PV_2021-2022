@@ -369,7 +369,7 @@ namespace NutriFitWeb.Controllers
                         await _interactNotification.Create($"O nutricionista ***REMOVED***nutritionist.UserAccountModel.UserName***REMOVED*** alterou algumas informações do seu perfil.", clientToUpdate.UserAccountModel);
                 ***REMOVED***
                     await _context.SaveChangesAsync();
-                    return LocalRedirect(Url.Content("~/"));
+                    return RedirectToAction("ShowClients");
             ***REMOVED***
         ***REMOVED***
             return View(clientToUpdate);
@@ -392,7 +392,7 @@ namespace NutriFitWeb.Controllers
             Client? client = await GetClient(id);
             if (client is not null && client.ClientProfilePhoto is not null)
             ***REMOVED***
-                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(User.Identity.Name);
+                client.ClientProfilePhoto.PhotoUrl = await _photoManagement.LoadProfileImage(client.UserAccountModel.UserName);
         ***REMOVED***
 
             if (client is null)
