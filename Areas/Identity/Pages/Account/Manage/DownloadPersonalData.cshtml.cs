@@ -2,42 +2,53 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
+using System.Text.Json;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// DownloadPersonalDataModel class, derived from PageModel.
+    /// </summary>
     public class DownloadPersonalDataModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
 
+        /// <summary>
+        /// Build the DownloadPersonalDataModel model to be used when the user wants to view the page where it's possible to download the personal data in the account profile.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
         public DownloadPersonalDataModel(
-            UserManager<UserAccount> userManager,
+            UserManager<UserAccountModel> userManager,
             ILogger<DownloadPersonalDataModel> logger)
         {
             _userManager = userManager;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Handle the Get Request during the DownloadPersonalData process.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet()
         {
             return NotFound();
         }
 
+        /// <summary>
+        /// Handle the Post Request during the DownloadPersonalData process.
+        /// Tries to download the personal user data.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
@@ -45,16 +56,16 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             _logger.LogInformation("User with ID '{UserId}' asked for their personal data.", _userManager.GetUserId(User));
 
             // Only include personal data for download
-            var personalData = new Dictionary<string, string>();
-            var personalDataProps = typeof(UserAccount).GetProperties().Where(
+            Dictionary<string, string> personalData = new();
+            IEnumerable<System.Reflection.PropertyInfo> personalDataProps = typeof(UserAccountModel).GetProperties().Where(
                             prop => Attribute.IsDefined(prop, typeof(PersonalDataAttribute)));
-            foreach (var p in personalDataProps)
+            foreach (System.Reflection.PropertyInfo p in personalDataProps)
             {
                 personalData.Add(p.Name, p.GetValue(user)?.ToString() ?? "null");
             }
 
-            var logins = await _userManager.GetLoginsAsync(user);
-            foreach (var l in logins)
+            IList<UserLoginInfo> logins = await _userManager.GetLoginsAsync(user);
+            foreach (UserLoginInfo l in logins)
             {
                 personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
             }

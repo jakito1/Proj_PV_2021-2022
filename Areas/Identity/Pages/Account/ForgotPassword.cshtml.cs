@@ -2,60 +2,67 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// ForgotPasswordModel class, derived from PageModel.
+    /// </summary>
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<UserAccount> userManager, IEmailSender emailSender)
+        /// <summary>
+        /// Build the ForgotPasswordModel model to be used when the user forgets the password.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="emailSender">Microsoft EmailSender interface.</param>
+        public ForgotPasswordModel(UserManager<UserAccountModel> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// Gets or sets the Email inputed by the user.
             /// </summary>
             [Required]
             [EmailAddress]
             public string Email { get; set; }
         }
 
+        /// <summary>
+        /// Handles the Post Request during the ForgotPassword process.
+        /// Send link to the user email with a password reset link.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                UserAccountModel user = await _userManager.FindByEmailAsync(Input.Email);
+                if (user is null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return RedirectToPage("./ForgotPasswordConfirmation");
@@ -63,9 +70,9 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
 
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                string code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
+                string callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
                     values: new { area = "Identity", code },

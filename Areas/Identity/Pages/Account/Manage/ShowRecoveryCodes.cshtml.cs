@@ -2,41 +2,35 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using NutriFitWeb.Areas.Identity.Data;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
     /// <summary>
-    ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-    ///     directly from your code. This API may change or be removed in future releases.
+    /// ShowRecoveryCodesModel class, derived from PageModel.
     /// </summary>
     public class ShowRecoveryCodesModel : PageModel
     {
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets a temporary string array with the RecoveryCodes
         /// </summary>
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Handles the Get Request during the code show up process.
         /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet()
         {
-            if (RecoveryCodes == null || RecoveryCodes.Length == 0)
+            if (RecoveryCodes is null || RecoveryCodes.Length == 0)
             {
                 return RedirectToPage("./TwoFactorAuthentication");
             }

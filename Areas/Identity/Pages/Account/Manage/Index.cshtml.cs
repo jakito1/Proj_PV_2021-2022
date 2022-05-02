@@ -2,69 +2,69 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// IndexModel class, derived from PageModel.
+    /// </summary>
     public class IndexModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly SignInManager<UserAccount> _signInManager;
+        private readonly UserManager<UserAccountModel> _userManager;
+        private readonly SignInManager<UserAccountModel> _signInManager;
 
+        /// <summary>
+        /// Build the IndexModel model to be used when the user wants to view the page where it's possible to add the phone number in the account profile.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
         public IndexModel(
-            UserManager<UserAccount> userManager,
-            SignInManager<UserAccount> signInManager)
+            UserManager<UserAccountModel> userManager,
+            SignInManager<UserAccountModel> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the Username
         /// </summary>
         public string Username { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets the phone number inputed by the user.
             /// </summary>
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Telemóvel")]
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(UserAccount user)
+        private async Task LoadAsync(UserAccountModel user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            string userName = await _userManager.GetUserNameAsync(user);
+            string phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
 
@@ -74,10 +74,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             };
         }
 
+        /// <summary>
+        /// Handle the Get Request during the phone number addition process.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
@@ -86,10 +90,15 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Handle the Post Request during the phone number addition process.
+        /// Tries to add the inputed phone number to the user profile.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
@@ -100,10 +109,10 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            string phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                IdentityResult setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";

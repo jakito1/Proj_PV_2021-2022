@@ -1,27 +1,56 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using NutriFitWeb.Areas.Identity.Data;
-using NutriFitWeb.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
+using NutriFitWeb.Data;
+using NutriFitWeb.Models;
 using NutriFitWeb.Services;
+using System.Globalization;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<NutriFitWebContext>(options =>
-    options.UseSqlServer(connectionString));builder.Services.AddDbContext<ApplicationDbContext>(options =>
+string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<UserAccount>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".NutriFitWeb.Session";
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.Cookie.HttpOnly = true;
+});
+
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IEmailSender, EmailSender>();
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.AddSingleton<IEmailSender>(new EmailSender(builder.Configuration.GetConnectionString("SendGridKey")));
 
-var app = builder.Build();
+builder.Services.AddScoped<IIsUserInRoleByUserId, IsUserInRoleByUserId>();
+builder.Services.AddScoped<IStatistics, Statistics>();
+builder.Services.AddScoped<IHasTrainerNutritionistGym, HasTrainerNutritionistGym>();
+builder.Services.AddScoped<IPhotoManagement, PhotoManagement>();
+builder.Services.AddScoped<IInteractNotification, InteractNotification>();
+
+builder.Services.AddDefaultIdentity<UserAccountModel>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.User.RequireUniqueEmail = true;
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddRazorPages();
+builder.Services.AddWebOptimizer(pipeline =>
+{
+    pipeline.MinifyJsFiles("/js/site.js");
+    pipeline.MinifyCssFiles("/css/site.css");
+});
+
+WebApplication? app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,13 +64,19 @@ else
     app.UseHsts();
 }
 
+app.UseWebOptimizer();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",

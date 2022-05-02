@@ -10,6 +10,26 @@ html {
   }
 }
 
+h2 {
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    padding: 0.3em;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 1em;
+    border-radius: 1em;
+}
+
+.h2Fix{
+    margin-top: 1em;
+}
+
+h3 {
+    margin-top: 2em;
+    color: #00A2E8;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -23,6 +43,52 @@ body {
     margin-bottom: 60px;
     background-color: white;
     font-family: 'Roboto', sans-serif;
+    overflow: scroll !important;
+    background-image: url("../images//background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.nutriFitHome {
+    background-color: #00A2E8;
+    color: white;
+    border-radius: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+button.navbar-toggler {
+    border-color: white;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.iconMargin{
+    margin-bottom: 0.2em;
+}
+
+.formsInput {
+    border-color: lightgrey;
+    text-decoration: none;
+    border-style: solid;
+    border-radius: 1em;
+    height: 2.5em;
+    width: 15em;
+    padding-left: 0.5em;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.formsElemsDivs {
+    margin: 0em;
 }
 
 /* NutriFitWeb Header Title / Home Button */
@@ -39,6 +105,10 @@ body {
 
 .navbar-light:hover .navbar-brand:hover {
     color: dodgerblue;
+}
+
+p{
+    margin-bottom: 0em !important;
 }
 
 /* Header */
@@ -80,8 +150,9 @@ button {
 h1 {
     color: #00A2E8 !important;
     font-weight: 900 !important;
-    font-size: 500% !important;
+    font-size: 400% !important;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.4em;
 }
 
 /* Different type of authentication section */
@@ -93,4 +164,801 @@ h1 {
     color: #00A2E8 !important;
     text-decoration: none;
     font-weight: bold;
+}
+
+
+
+.settingsBtn:hover {
+    background-color: dodgerblue !important;
+    border-radius: 5px;
+}
+
+    .settingsBtn:hover a {
+        color: white !important;
+    }
+
+/*Centrar conteúdo das definições*/
+.centerSettings {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#enable-authenticator, .btnBorder {
+    background-color: #00A2E8;
+    border-color: #00A2E8;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #00A2E8 !important;
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #00A2E8 !important;
+}
+
+.nav-link:hover{
+    color:lightgrey;
+}
+
+.menuItem {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    margin-left: 50px;
+    text-decoration: none;
+    color: white;
+}
+
+.subMenuItem{
+    background-color: white;
+}
+
+.details {
+    font-weight: bold;
+    color: black;
+}
+
+.logoutClick:active {
+    border-color: red !important;
+    
+}
+
+.notLoggedInHome{
+    margin: 2% !important;
+}
+
+.imageHome {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 1em;
+}
+
+.menuItem:hover {
+    color: lightgrey !important;
+}
+
+.notificationIcon, .accountIcon {
+    margin-top: 0.3em;
+    text-decoration: none !important;
+    height: 1em;
+    width: 1em;
+    font-size: 1.4em;
+    border-radius: 1em;
+    border-style: none !important;
+}
+
+.notificationAlertIcon {
+    margin-top: 0.3em;
+    text-decoration: none !important;
+    height: 1em;
+    width: 1em;
+    font-size: 1.4em;
+    border-style: none !important;
+}
+
+.NotificationsSubMenuFix {
+    margin-top: 0.5em;
+    margin-left: -9.2em !important;
+    width: 16em !important;
+}
+
+.accountIcon {
+    margin-top: 0em;
+}
+
+.accountIconPic {
+    height: 1em;
+    width: 1em;
+    font-size: 1.6em;
+    border-radius: 1em;
+}
+
+.icons {
+    height: 3em;
+    width: 3em;
+}
+
+link{
+    text-decoration: none;
+}
+
+.icons:hover {
+    padding: 2px;
+    border-style: solid;
+    border-radius: 1.5em;
+}
+
+.removeIcon:hover{
+    border-color: red;
+}
+
+.editProfileIcon{
+    border-color: dodgerblue;
+}
+
+.addIcon:hover {
+    border-color: green;
+}
+
+.detailsIcon:hover {
+    border-color: #00A2E8;
+}
+
+.iconBorder {
+    margin-top: 5px;
+    padding: 0px;
+}
+
+.table {
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6em;
+    max-width: 80%;
+    color: #00A2E8;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.exercisesMealsTable {
+    table-layout: fixed !important;
+}
+
+.thStyle {
+    background-color: #00A2E8 !important;
+    color: white;
+}
+
+.roundedCornerTableLeft {
+    border-top-left-radius: 1em;
+}
+
+.roundedCornerTableRight{
+    border-top-right-radius: 1em;
+}
+
+.alignTableTitles {
+    padding-bottom: 1em;
+}
+
+.formTables {
+    margin: auto;
+    margin-bottom: 2em;
+}
+
+.fixMeasurementsMargin {
+    border-collapse: separate;
+    border-spacing: 1em 0.5em;
+}
+
+.tableWrapper {
+    display: table;
+}
+
+tr {
+    border-radius: 1em;
+}
+
+.listsDiv {
+    border-style: solid;
+    border-radius: 1em;
+    border-color: grey;
+    background-color: lightgrey;
+    max-width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    /*Breaks line if text is out of div bounds*/
+    word-wrap: break-word;
+}
+
+/*border-style: solid;
+border-radius: 1em;
+border-color: #00A2E8;
+background-color: white;
+padding: 1em;
+padding-top: 4em;
+padding-bottom: 0px;
+color: #00A2E8;
+font-weight: bold;*/
+
+.exercisesDiv {
+    max-width: 95%;
+    margin: 1em auto;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 1em;
+}
+
+.exListMargin{
+    margin-top: 1em;
+}
+
+div.titlesMargin {
+    margin-bottom: 1em;
+}
+
+.detailsTitle {
+    margin-bottom: 1em;
+}
+
+.pagesDiv {
+    border-style: solid;
+    border-radius: 1em;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #00A2E8;
+}
+
+.profileDivs {
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 0.5em;
+    margin-bottom: 3em;
+    color: black;
+    font-weight: bold;
+    margin: auto;
+    display: table;
+}
+
+.detailsDivs {
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 3em;
+    padding-bottom: 2em;
+    margin-bottom: 3em;
+    color: black;
+    font-weight: bold;
+    max-width: 65%;
+    margin:auto;
+}
+
+div.form-group {
+    max-width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+.form-control{
+    border-radius: 1em;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: medium;
+}
+
+.profilePic {
+    border-radius: 1em;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: medium;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #00A2E8;
+    padding-right: 1em;
+}
+
+.itemsLeftMargin{
+    padding-left: 1em;
+}
+
+a.btn.btn-default:hover {
+    border-radius: 0.8em;
+    color: white;
+    background-color: #00A2E8;
+}
+
+a.btn.btn-default {
+    color: #00A2E8;
+}
+
+a.btn.btn-default.disabled {
+    color: #212529; 
+}
+
+.noMoreResults {
+    text-align: center;
+    margin: 0.2em;
+    color: #00A2E8;
+    font-weight: bold;
+}
+
+.listsItem {
+    font-size: 1em;
+    margin: 1.5em 0.5em;
+    font-weight: bold;
+}
+
+.listsItemTitle {
+    background-color: #00A2E8;
+    color: white;
+    border-style: solid;
+    border-color: #00A2E8;
+    padding: 0.3em;
+    border-radius: 1em;
+    font-size: 1em;
+    width: 9em;
+    margin: auto;
+}
+
+.homeTitlesFix {
+    margin-right: 0.5em;
+}
+
+.showListsBorder {
+    border-color: white;
+}
+
+.allUsersTitleFix {
+    padding-right: 0em;
+}
+
+.gymHomeImage {
+    max-width: 50%;
+    border-radius: 1em;
+}
+
+.backToListBtn {
+    width: 100%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.backToListBtn:hover{
+    background-color: #00A2E8;
+    color: white;
+}
+
+.deleteB {
+    color: #00A2E8;
+    font-weight: bold;
+}
+
+input.btn.btn-primary:hover {
+    width: 50%;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+    border-width: medium;
+}
+
+input.btn.btn-primary {
+    width: 50%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+    border-width: medium;
+}
+
+.createBtn {
+    width: 80%;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-color: #00A2E8;
+    border-radius: 1em;
+    padding: 0.5em !important;
+}
+
+.createBtn:hover {
+        width: 80%;
+        background-color: #00A2E8;
+        color: white;
+        font-weight: bold;
+        border-style: solid;
+        border-color: #00A2E8;
+        border-radius: 1em;
+        padding: 0.5em !important;
+}
+
+input.btn.btn-danger {
+    border-radius: 1em !important;
+    padding: 20px !important;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.center-content{
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.backBtnDiv{
+    margin-top: 2em;
+}
+
+.searchBar {
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 0.5em;
+    color: #00A2E8;
+    width: 20em;
+    height: 2.5em;
+    margin-bottom: 1em;
+}
+
+.searchBtn {
+    border-style: solid;
+    border-radius: 1em !important;
+    border-color: #00A2E8 !important;
+    height: 2.5em;
+    width: 3.4em;
+}
+
+.searchBtn:hover {
+    background-color: dodgerblue !important;
+    border-style: solid;
+    border-color: dodgerblue !important;
+    border-width: medium;
+}
+
+.btn{
+    padding: 0.375rem;
+}
+
+.searchIcon{
+    height: 1.2em;
+    width: 1.2em;
+}
+
+.editLink{
+    background-color: grey;
+    padding: 1em;
+    border-radius: 4em;
+}
+
+.editLink:hover {
+    background-color: grey;
+    padding: 1em;
+    border-color: darkgrey;
+    border-style: solid;
+    border-radius: 4em;
+}
+     
+.editIcon {
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+}
+
+.editIcon:hover {
+    width: 2.8em;
+    height: 2.8em;
+    background-color: grey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
+}
+
+.row {
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.userType {
+    margin: -16px;
+    margin-left: 0px;
+    color: dimgrey;
+    font-size: 0.9em;
+}
+
+.settingsMenu {
+    border-style: solid;
+    border-radius: 0.8em;
+    border-color: #00A2E8;
+    background-color: white;
+    margin: auto;
+    margin-top: 4em;
+}
+
+.homePageTitle {
+    background-color: white;
+    color: #00A2E8;
+    font-size: 300%;
+    border-radius: 0.5em;
+    width: fit-content;
+}
+
+.welcome{
+    font-weight: 100;
+}
+
+.statisticsTable {
+    background-color: lightgrey;
+    border-radius: 1em;
+    width: 30em;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 1em;
+    border-style: solid;
+    border-color: grey;
+}
+
+.statisticsValues {
+    color: #00A2E8;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 2em;
+    padding: 1em;
+}
+
+.statisticsTableHeaderFix{
+    color: lightgrey !important;
+    background-color: lightgrey !important;
+}
+
+.statisticsMargin {
+    margin-bottom: 2em;
+}
+
+.imcTableFix {
+    padding: 0.5em 0em !important;
+}
+
+.imcChart {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.recentClientsGym {
+    background-color: lightgrey;
+    color: #00A2E8;
+    border-radius: 1em;
+    padding: 1em;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: small;
+}
+
+.newUsersDiv {
+    border-radius: 1em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 2em;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.videosUrl {
+    text-decoration: none;
+    color: #00A2E8;
+    border-radius: 0.5em;
+    background-color: lightgrey;
+    padding: 0.3em;
+}
+
+.exercisesData{
+    font-weight: bold;
+    color: black;
+}
+
+.breakText{
+    word-break: break-word;
+}
+
+.breakTextOtherData {
+    width: 60%;
+}
+
+.plansListDetailsDiv {
+    border-style: solid;
+    border-radius: 1em;
+    border-color: lightgrey;
+    margin: 1em 0em;
+    padding: 1em 0em;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 0em;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 1em;
+    padding: 1em;
+    margin-left: 1.3em;
+    /*Brings everything to the front*/
+    z-index: 1;
+    width: 7em;
+}
+
+.plansSubMenuFix{
+    margin-left: 2.5em;
+}
+
+.requestsSubMenuFix{
+    margin-left: 1.5em;
+    width: 10em;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    text-align: center;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+
+}
+
+.dropdownBtnBorderFix {
+    border-style: none;
+}
+
+button.subMenuItem, a.subMenuItem {
+    background-color: white !important;
+    color: #00A2E8;
+    margin-left: 0em;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 1em;
+}
+
+button.subMenuItem:hover, a.subMenuItem:hover {
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    color: white !important;
+    background-color: #00A2E8 !important;
+}
+
+
+.logout:hover .logoutIcon {
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(24deg) brightness(1000%) contrast(105%);
+}
+
+.logout{
+    color:red !important;
+}
+
+.spacingLi {
+    margin-left: 2em;
+}
+
+label.labelOne{
+    margin-right: 2.5em !important;
+}
+
+label.labelTwo {
+    margin-right: 1em !important;
+}
+
+label.labelThree {
+    margin-right: 2em !important;
+}
+
+label.labelFour {
+    margin-right: 1.2em !important;
+}
+
+.descriptionBox {
+    vertical-align: middle;
+    height: 6em;
+    border-style: solid;
+    border-radius: 1em;
+    border-width: 0.2em;
+    border-color: lightgrey;
+    width: 15em;
+    padding: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.profilePhoto{
+    max-width: 10em;
+    margin: 1em;
+    margin-bottom: 0em;
+    border-radius: 1em;
+}
+
+.profilePhotoDiv{
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 1em;
+}
+
+.profilePicMenu {
+    max-width: 80%;
+}
+
+.marginFixChooseFile {
+    margin-bottom: 3em;
+}
+
+.col-md-8{
+    margin: auto;
+}
+
+.helpDivs {
+    background-color: white;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    margin: auto;
+    padding: 1em;
+}
+
+.helpBtn {
+    width: 6em;
+    background-color: white;
+    color: #00A2E8;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
+}
+
+.helpBtn:hover {
+    width: 6em;
+    background-color: #00A2E8;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 1em;
+    border-color: #00A2E8;
+    border-width: medium;
+    padding: 0.5em;
+}
+
+.notificationInMenu{
+    background-color: lightgrey;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: grey;
+    padding: 0.5em;
+    margin-bottom: 0.5em !important;
 }

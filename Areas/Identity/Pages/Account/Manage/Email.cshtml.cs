@@ -2,81 +2,79 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// EmailModel class, derived from PageModel.
+    /// </summary>
     public class EmailModel : PageModel
     {
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly SignInManager<UserAccount> _signInManager;
+        private readonly UserManager<UserAccountModel> _userManager;
         private readonly IEmailSender _emailSender;
 
+        /// <summary>
+        /// Build the EmailModel model to be used when the user wants to view the page where it's possible to change the email in the account profile.
+        /// </summary>
+        /// <param name="userManager">Provides the APIs for managing the UserAccountModel in a persistence store.</param>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="emailSender">Microsoft EmailSender interface.</param>
         public EmailModel(
-            UserManager<UserAccount> userManager,
-            SignInManager<UserAccount> signInManager,
+            UserManager<UserAccountModel> userManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _emailSender = emailSender;
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the user's Email.
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the flag whether the email is confirmed.
         /// </summary>
         public bool IsEmailConfirmed { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string StatusMessage.
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets the new email inputed by the user.
             /// </summary>
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Novo Email")]
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(UserAccount user)
+        private async Task LoadAsync(UserAccountModel user)
         {
-            var email = await _userManager.GetEmailAsync(user);
+            string email = await _userManager.GetEmailAsync(user);
             Email = email;
 
             Input = new InputModel
@@ -87,10 +85,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
         }
 
+        /// <summary>
+        /// Handle the Get Request during the Email change process.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
@@ -99,10 +101,15 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// Handle the Post Request during the Email change process.
+        /// Tries to change the email if the new email is different from the old one.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostChangeEmailAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
@@ -113,16 +120,16 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var email = await _userManager.GetEmailAsync(user);
+            string email = await _userManager.GetEmailAsync(user);
             if (Input.NewEmail != email)
             {
-                var userId = await _userManager.GetUserIdAsync(user);
-                var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
+                string userId = await _userManager.GetUserIdAsync(user);
+                string code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
+                string callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
+                    values: new { area = "Identity", userId, email = Input.NewEmail, code },
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
@@ -137,10 +144,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
 
+        /// <summary>
+        /// Tries to create and request the EmailSender to send an email to the user containing the account confirmation link after the email is successfully changed.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            UserAccountModel user = await _userManager.GetUserAsync(User);
+            if (user is null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
@@ -151,14 +162,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var userId = await _userManager.GetUserIdAsync(user);
-            var email = await _userManager.GetEmailAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            string userId = await _userManager.GetUserIdAsync(user);
+            string email = await _userManager.GetEmailAsync(user);
+            string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
+            string callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new { area = "Identity", userId = userId, code = code },
+                values: new { area = "Identity", userId, code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,

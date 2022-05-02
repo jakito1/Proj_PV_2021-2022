@@ -2,89 +2,88 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using NutriFitWeb.Areas.Identity.Data;
+using NutriFitWeb.Models;
+using System.ComponentModel.DataAnnotations;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace NutriFitWeb.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// LoginModel class, derived from PageModel.
+    /// </summary>
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<UserAccount> _signInManager;
+        private readonly SignInManager<UserAccountModel> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<UserAccount> signInManager, ILogger<LoginModel> logger)
+        /// <summary>
+        /// Build the LoginModel model to be used when the user tries to login.
+        /// </summary>
+        /// <param name="signInManager">Provides the APIs for user sign in using the UserAccountModel.</param>
+        /// <param name="logger">A generic interface for logging where the category name is derived from this class.</param>
+        public LoginModel(SignInManager<UserAccountModel> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets the data containing the user input.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        /// Gets or sets a list with the ExternalLogins.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the ReturnUrl.
         /// </summary>
         public string ReturnUrl { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Gets or sets the temporary string containing the ErrorMessage.
         /// </summary>
         [TempData]
         public string ErrorMessage { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Inner class specifying what data the user can input.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            /// Gets or sets the Email inputed by the user.
             /// </summary>
             [Required]
             [EmailAddress]
             public string Email { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets the Password inputed by the user.
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Gets or sets if the user selected the "Remember me?" option.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Lembrar conta?")]
             public bool RememberMe { get; set; }
         }
 
+        /// <summary>
+        /// Handle the Get Request during the Login process.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -102,6 +101,12 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        /// <summary>
+        /// Handles the Post Request during the Login process.
+        /// Tries to login the user.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -112,7 +117,14 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                UserAccountModel user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
+
+                SignInResult result = SignInResult.Failed;
+                if (user is not null)
+                {
+                    result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                };
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -120,7 +132,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
@@ -129,7 +141,7 @@ namespace NutriFitWeb.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tentativa de Login inválida.");
                     return Page();
                 }
             }
